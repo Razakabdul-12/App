@@ -2414,6 +2414,7 @@ const ROUTES = {
         getRoute: (bossEmail?: string) => `onboarding/test-drive${bossEmail ? `?bossEmail=${encodeURIComponent(bossEmail)}` : ''}` as const,
     },
     TEST_DRIVE_DEMO_ROOT: 'onboarding/test-drive/demo',
+    TRACK_TRAINING_MODAL: 'feature-training/track-expenses',
     AUTO_SUBMIT_MODAL_ROOT: '/auto-submit',
     WORKSPACE_CONFIRMATION: {
         route: 'workspace/confirmation',
