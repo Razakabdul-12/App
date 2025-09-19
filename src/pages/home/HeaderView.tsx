@@ -1,5 +1,4 @@
 import {useRoute} from '@react-navigation/native';
-import {isPast} from 'date-fns';
 import React, {memo, useMemo} from 'react';
 import {View} from 'react-native';
 import type {OnyxEntry} from 'react-native-onyx';
@@ -38,7 +37,6 @@ import {getPersonalDetailsForAccountIDs} from '@libs/OptionsListUtils';
 import Parser from '@libs/Parser';
 import {
     canJoinChat,
-    canUserPerformWriteAction,
     getChatRoomSubtitle,
     getDisplayNamesWithTooltips,
     getParentNavigationSubtitle,
@@ -108,7 +106,6 @@ function HeaderView({report, parentReportAction, onNavigationMenuButtonClicked, 
     const shouldShowLoadingBar = useLoadingBarVisibility();
     const [firstDayFreeTrial] = useOnyx(ONYXKEYS.NVP_FIRST_DAY_FREE_TRIAL, {canBeMissing: true});
     const [lastDayFreeTrial] = useOnyx(ONYXKEYS.NVP_LAST_DAY_FREE_TRIAL, {canBeMissing: true});
-    const [account] = useOnyx(ONYXKEYS.ACCOUNT, {canBeMissing: true});
     const [reportNameValuePairs] = useOnyx(`${ONYXKEYS.COLLECTION.REPORT_NAME_VALUE_PAIRS}${report?.reportID}`, {canBeMissing: true});
     const [reportMetadata] = useOnyx(`${ONYXKEYS.COLLECTION.REPORT_METADATA}${report?.reportID}`, {canBeMissing: true});
     const isReportArchived = isArchivedReport(reportNameValuePairs);
@@ -162,15 +159,6 @@ function HeaderView({report, parentReportAction, onNavigationMenuButtonClicked, 
         return true;
     };
 
-    const shouldShowGuideBooking =
-        !!account &&
-        account?.guideDetails?.email !== CONST.EMAIL.CONCIERGE &&
-        !!account?.guideDetails?.calendarLink &&
-        isAdminRoom(report) &&
-        !!canUserPerformWriteAction(report, isReportArchived) &&
-        !isChatThread &&
-        introSelected?.companySize !== CONST.ONBOARDING_COMPANY_SIZE.MICRO;
-
     const join = callFunctionIfActionIsAllowed(() => joinRoom(report));
 
     const canJoin = canJoinChat(report, parentReportAction, policy, isReportArchived);
@@ -217,18 +205,13 @@ function HeaderView({report, parentReportAction, onNavigationMenuButtonClicked, 
     const [onboardingPurposeSelected] = useOnyx(ONYXKEYS.ONBOARDING_PURPOSE_SELECTED, {canBeMissing: true});
     const isChatUsedForOnboarding = isChatUsedForOnboardingReportUtils(report, onboardingPurposeSelected);
     const shouldShowRegisterForWebinar = introSelected?.companySize === CONST.ONBOARDING_COMPANY_SIZE.MICRO && (isChatUsedForOnboarding || (isAdminRoom(report) && !isChatThread));
-    const shouldShowOnBoardingHelpDropdownButton = (shouldShowRegisterForWebinar || shouldShowGuideBooking) && !isReportArchived;
+    const shouldShowOnBoardingHelpDropdownButton = shouldShowRegisterForWebinar && !isReportArchived;
     const shouldShowEarlyDiscountBanner = shouldShowDiscount && isChatUsedForOnboarding;
-    const latestScheduledCall = reportNameValuePairs?.calendlyCalls?.at(-1);
-    const hasActiveScheduledCall = latestScheduledCall && !isPast(latestScheduledCall.eventTime) && latestScheduledCall.status !== CONST.SCHEDULE_CALL_STATUS.CANCELLED;
 
     const onboardingHelpDropdownButton = (
         <OnboardingHelpDropdownButton
-            reportID={report?.reportID}
             shouldUseNarrowLayout={shouldUseNarrowLayout}
             shouldShowRegisterForWebinar={shouldShowRegisterForWebinar}
-            shouldShowGuideBooking={shouldShowGuideBooking}
-            hasActiveScheduledCall={hasActiveScheduledCall}
         />
     );
 
@@ -349,7 +332,6 @@ function HeaderView({report, parentReportAction, onNavigationMenuButtonClicked, 
                                     {!shouldUseNarrowLayout && !shouldShowDiscount && isChatUsedForOnboarding && (
                                         <FreeTrial
                                             pressable
-                                            success={!hasActiveScheduledCall}
                                         />
                                     )}
                                     {!shouldUseNarrowLayout && isOpenTaskReport(report, parentReportAction) && <TaskHeaderActionButton report={report} />}
@@ -384,7 +366,6 @@ function HeaderView({report, parentReportAction, onNavigationMenuButtonClicked, 
                         <FreeTrial
                             pressable
                             addSpacing
-                            success={!hasActiveScheduledCall}
                             inARow={shouldShowOnBoardingHelpDropdownButton}
                         />
                     )}
@@ -402,7 +383,6 @@ function HeaderView({report, parentReportAction, onNavigationMenuButtonClicked, 
                 <EarlyDiscountBanner
                     onboardingHelpDropdownButton={shouldUseNarrowLayout && shouldShowOnBoardingHelpDropdownButton ? onboardingHelpDropdownButton : undefined}
                     isSubscriptionPage={false}
-                    hasActiveScheduledCall={hasActiveScheduledCall}
                 />
             )}
         </>

@@ -1814,7 +1814,6 @@ type RightModalNavigatorParamList = {
     [SCREENS.MONEY_REQUEST.SPLIT_EXPENSE]: NavigatorScreenParams<SplitExpenseParamList>;
     [SCREENS.MONEY_REQUEST.SPLIT_EXPENSE_EDIT]: NavigatorScreenParams<SplitExpenseParamList>;
     [SCREENS.RIGHT_MODAL.ADD_UNREPORTED_EXPENSE]: NavigatorScreenParams<{reportId: string | undefined}>;
-    [SCREENS.RIGHT_MODAL.SCHEDULE_CALL]: NavigatorScreenParams<ScheduleCallParamList>;
     [SCREENS.RIGHT_MODAL.REPORT_CHANGE_APPROVER]: NavigatorScreenParams<ReportChangeApproverParamList>;
     [SCREENS.RIGHT_MODAL.MERGE_TRANSACTION]: NavigatorScreenParams<MergeTransactionNavigatorParamList>;
 };
@@ -2321,15 +2320,6 @@ type DebugParamList = {
     };
 };
 
-type ScheduleCallParamList = {
-    [SCREENS.SCHEDULE_CALL.BOOK]: {
-        reportID: string;
-    };
-    [SCREENS.SCHEDULE_CALL.CONFIRMATION]: {
-        reportID: string;
-    };
-};
-
 type ReportChangeApproverParamList = {
     [SCREENS.REPORT_CHANGE_APPROVER.ROOT]: {
         reportID: string;
@@ -2434,7 +2424,6 @@ export type {
     WorkspaceDuplicateNavigatorParamList,
     TwoFactorAuthNavigatorParamList,
     ConsoleNavigatorParamList,
-    ScheduleCallParamList,
     TestDriveModalNavigatorParamList,
     WorkspaceScreenName,
     TestDriveDemoNavigatorParamList,

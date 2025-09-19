@@ -526,20 +526,6 @@ function validateReportDraftProperty(key: keyof Report | keyof ReportNameValuePa
                 tripID: 'string',
                 payload: 'object',
             });
-        case 'calendlySchedule':
-            return validateObject<ObjectElement<ReportNameValuePairs, 'calendlySchedule'>>(value, {
-                isLoading: 'boolean',
-                data: 'object',
-                errors: 'object',
-            });
-        case 'calendlyCalls':
-            return validateArray<ArrayElement<ReportNameValuePairs, 'calendlyCalls'>>(value, {
-                status: 'string',
-                host: 'number',
-                eventTime: 'string',
-                eventURI: 'string',
-                inserted: 'string',
-            });
         case 'agentZeroProcessingRequestIndicator':
             return validateString(value);
         case 'pendingAction':
@@ -609,8 +595,6 @@ function validateReportDraftProperty(key: keyof Report | keyof ReportNameValuePa
                 errors: CONST.RED_BRICK_ROAD_PENDING_ACTION,
                 createReport: CONST.RED_BRICK_ROAD_PENDING_ACTION,
                 exportFailedTime: CONST.RED_BRICK_ROAD_PENDING_ACTION,
-                calendlySchedule: CONST.RED_BRICK_ROAD_PENDING_ACTION,
-                calendlyCalls: CONST.RED_BRICK_ROAD_PENDING_ACTION,
                 agentZeroProcessingRequestIndicator: CONST.RED_BRICK_ROAD_PENDING_ACTION,
             });
     }

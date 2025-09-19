@@ -545,9 +545,6 @@ const ONYXKEYS = {
     /** Information about vacation delegate */
     NVP_PRIVATE_VACATION_DELEGATE: 'nvp_private_vacationDelegate',
 
-    /** Stores draft information while user is scheduling the call. */
-    SCHEDULE_CALL_DRAFT: 'scheduleCallDraft',
-
     /** Onyx updates that should be stored after sequential queue is flushed */
     QUEUE_FLUSHED_DATA: 'queueFlushedData',
 
@@ -1242,7 +1239,6 @@ type OnyxValuesMapping = {
     [ONYXKEYS.NVP_SIDE_PANEL]: OnyxTypes.SidePanel;
     [ONYXKEYS.NVP_DISMISSED_REJECT_USE_EXPLANATION]: boolean;
     [ONYXKEYS.NVP_PRIVATE_VACATION_DELEGATE]: OnyxTypes.VacationDelegate;
-    [ONYXKEYS.SCHEDULE_CALL_DRAFT]: OnyxTypes.ScheduleCallDraft;
     [ONYXKEYS.IS_FORCED_TO_CHANGE_CURRENCY]: boolean | undefined;
     [ONYXKEYS.IS_COMING_FROM_GLOBAL_REIMBURSEMENTS_FLOW]: boolean | undefined;
     [ONYXKEYS.HAS_MORE_UNREPORTED_TRANSACTIONS_RESULTS]: boolean | undefined;

@@ -29,12 +29,9 @@ type EarlyDiscountBannerProps = {
 
     /** Function to trigger when the discount banner is dismissed */
     onDismissedDiscountBanner?: () => void;
-
-    /** Has user active Schedule call with guide */
-    hasActiveScheduledCall?: boolean;
 };
 
-function EarlyDiscountBanner({isSubscriptionPage, onboardingHelpDropdownButton, onDismissedDiscountBanner, hasActiveScheduledCall}: EarlyDiscountBannerProps) {
+function EarlyDiscountBanner({isSubscriptionPage, onboardingHelpDropdownButton, onDismissedDiscountBanner}: EarlyDiscountBannerProps) {
     const theme = useTheme();
     const styles = useThemeStyles();
     const StyleUtils = useStyleUtils();
@@ -84,7 +81,7 @@ function EarlyDiscountBanner({isSubscriptionPage, onboardingHelpDropdownButton, 
             <View style={[styles.flexRow, styles.gap2, smallScreenStyle, styles.alignItemsCenter]}>
                 {onboardingHelpDropdownButton}
                 <Button
-                    success={!hasActiveScheduledCall}
+                    success
                     style={shouldUseNarrowLayout ? [styles.earlyDiscountButton, styles.flexGrow2] : styles.mr2}
                     text={translate('subscription.billingBanner.earlyDiscount.claimOffer')}
                     onPress={() => Navigation.navigate(ROUTES.SETTINGS_SUBSCRIPTION.getRoute(Navigation.getActiveRoute()))}
@@ -94,7 +91,6 @@ function EarlyDiscountBanner({isSubscriptionPage, onboardingHelpDropdownButton, 
         );
     }, [
         shouldUseNarrowLayout,
-        hasActiveScheduledCall,
         styles.flex0,
         styles.flexBasis100,
         styles.justifyContentCenter,

@@ -7205,17 +7205,7 @@ const CONST = {
     },
 
     ONBOARDING_HELP: {
-        SCHEDULE_CALL: 'scheduleCall',
-        EVENT_TIME: 'eventTime',
-        RESCHEDULE: 'reschedule',
-        CANCEL: 'cancel',
         REGISTER_FOR_WEBINAR: 'registerForWebinar',
-    },
-
-    SCHEDULE_CALL_STATUS: {
-        CREATED: 'created',
-        RESCHEDULED: 'rescheduled',
-        CANCELLED: 'cancelled',
     },
 
     SIGNIN_ROUTE: '/signin',

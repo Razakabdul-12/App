@@ -3243,15 +3243,6 @@ const ROUTES = {
         route: 'reject/reason/:transactionID',
         getRoute: (transactionID: string, reportID: string, backTo?: string) => `reject/reason/${transactionID}?reportID=${reportID}&backTo=${backTo}` as const,
     },
-    SCHEDULE_CALL_BOOK: {
-        route: 'r/:reportID/schedule-call/book',
-        getRoute: (reportID: string) => `r/${reportID}/schedule-call/book` as const,
-    },
-    SCHEDULE_CALL_CONFIRMATION: {
-        route: 'r/:reportID/schedule-call/confirmation',
-        getRoute: (reportID: string) => `r/${reportID}/schedule-call/confirmation` as const,
-    },
-
     TEST_TOOLS_MODAL: {
         route: 'test-tools',
 
