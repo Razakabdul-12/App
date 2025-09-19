@@ -41,7 +41,6 @@ import type {
     SplitDetailsNavigatorParamList,
     TaskDetailsNavigatorParamList,
     TransactionDuplicateNavigatorParamList,
-    TravelNavigatorParamList,
     WalletStatementNavigatorParamList,
     WorkspaceConfirmationNavigatorParamList,
     WorkspaceDuplicateNavigatorParamList,
@@ -178,19 +177,6 @@ const MoneyRequestModalStackNavigator = createModalStackNavigator<MoneyRequestNa
     [SCREENS.MONEY_REQUEST.STEP_DISTANCE_MANUAL]: () => require<ReactComponentModule>('../../../../pages/iou/request/step/IOURequestStepDistanceManual').default,
 });
 
-const TravelModalStackNavigator = createModalStackNavigator<TravelNavigatorParamList>({
-    [SCREENS.TRAVEL.MY_TRIPS]: () => require<ReactComponentModule>('../../../../pages/Travel/MyTripsPage').default,
-    [SCREENS.TRAVEL.TRAVEL_DOT_LINK_WEB_VIEW]: () => require<ReactComponentModule>('../../../../pages/Travel/TravelDotLinkWebview').default,
-    [SCREENS.TRAVEL.TCS]: () => require<ReactComponentModule>('../../../../pages/Travel/TravelTerms').default,
-    [SCREENS.TRAVEL.UPGRADE]: () => require<ReactComponentModule>('../../../../pages/Travel/TravelUpgrade').default,
-    [SCREENS.TRAVEL.TRIP_SUMMARY]: () => require<ReactComponentModule>('../../../../pages/Travel/TripSummaryPage').default,
-    [SCREENS.TRAVEL.TRIP_DETAILS]: () => require<ReactComponentModule>('../../../../pages/Travel/TripDetailsPage').default,
-    [SCREENS.TRAVEL.DOMAIN_SELECTOR]: () => require<ReactComponentModule>('../../../../pages/Travel/DomainSelectorPage').default,
-    [SCREENS.TRAVEL.DOMAIN_PERMISSION_INFO]: () => require<ReactComponentModule>('../../../../pages/Travel/DomainPermissionInfoPage').default,
-    [SCREENS.TRAVEL.PUBLIC_DOMAIN_ERROR]: () => require<ReactComponentModule>('../../../../pages/Travel/PublicDomainErrorPage').default,
-    [SCREENS.TRAVEL.WORKSPACE_ADDRESS]: () => require<ReactComponentModule>('../../../../pages/Travel/WorkspaceAddressForTravelPage').default,
-    [SCREENS.TRAVEL.VERIFY_ACCOUNT]: () => require<ReactComponentModule>('../../../../pages/Travel/VerifyAccountPage').default,
-});
 
 const SplitDetailsModalStackNavigator = createModalStackNavigator<SplitDetailsNavigatorParamList>({
     [SCREENS.SPLIT_DETAILS.ROOT]: () => require<ReactComponentModule>('../../../../pages/iou/SplitBillDetailsPage').default,
@@ -873,7 +859,6 @@ export {
     NewTaskModalStackNavigator,
     ProfileModalStackNavigator,
     ReferralModalStackNavigator,
-    TravelModalStackNavigator,
     NewReportWorkspaceSelectionModalStackNavigator,
     ReportDescriptionModalStackNavigator,
     ReportDetailsModalStackNavigator,

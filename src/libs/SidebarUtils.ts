@@ -46,7 +46,6 @@ import {
     getReportActionMessageText,
     getRetractedMessage,
     getTagListNameUpdatedMessage,
-    getTravelUpdateMessage,
     getUpdatedApprovalRuleMessage,
     getUpdatedAuditRateMessage,
     getUpdatedManualApprovalThresholdMessage,
@@ -869,8 +868,6 @@ function getOptionData({
             result.alternateText = getRetractedMessage();
         } else if (lastAction?.actionName === CONST.REPORT.ACTIONS.TYPE.REOPENED) {
             result.alternateText = getReopenedMessage();
-        } else if (isActionOfType(lastAction, CONST.REPORT.ACTIONS.TYPE.TRAVEL_UPDATE)) {
-            result.alternateText = getTravelUpdateMessage(lastAction);
         } else if (isActionOfType(lastAction, CONST.REPORT.ACTIONS.TYPE.TAKE_CONTROL) || isActionOfType(lastAction, CONST.REPORT.ACTIONS.TYPE.REROUTE)) {
             result.alternateText = getChangedApproverActionMessage(lastAction);
         } else {

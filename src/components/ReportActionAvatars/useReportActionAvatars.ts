@@ -158,7 +158,6 @@ function useReportActionAvatars({
     const isWorkspaceWithoutChatReportProp = !chatReport && isWorkspacePolicy;
     const isAnInvoiceRoom = isInvoiceRoom(chatReport);
     const isAWorkspaceChat = (isPolicyExpenseChat(chatReport) || isWorkspaceWithoutChatReportProp) && !isAnInvoiceRoom;
-    const isATripPreview = action?.actionName === CONST.REPORT.ACTIONS.TYPE.TRIP_PREVIEW;
     const isReportPreviewOrNoAction = !action || isAReportPreviewAction;
     const isReportPreviewInTripRoom = isAReportPreviewAction && isATripRoom;
 
@@ -174,7 +173,7 @@ function useReportActionAvatars({
     const isWorkspaceExpense = isWorkspacePolicy && isExpense;
 
     const shouldUseSubscriptAvatar =
-        (((shouldShowSubscriptAvatar && isReportPreviewOrNoAction) || isReportPreviewInTripRoom || isATripPreview || isWorkspaceExpense) &&
+        (((shouldShowSubscriptAvatar && isReportPreviewOrNoAction) || isReportPreviewInTripRoom || isWorkspaceExpense) &&
             !shouldStackHorizontally &&
             !(isChatThreadOutsideTripRoom && !isWorkspaceExpense) &&
             !shouldShowConvertedSubscriptAvatar) ||
@@ -204,7 +203,7 @@ function useReportActionAvatars({
     const isChatReportOnlyProp = !iouReport && chatReport;
     const isWorkspaceChatWithoutChatReport = !chatReport && isAWorkspaceChat;
     // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-    const usePersonalDetailsAvatars = (isChatReportOnlyProp || isWorkspaceChatWithoutChatReport) && isReportPreviewOrNoAction && !isATripPreview && !isAnInvoiceRoom;
+    const usePersonalDetailsAvatars = (isChatReportOnlyProp || isWorkspaceChatWithoutChatReport) && isReportPreviewOrNoAction && !isAnInvoiceRoom;
     const useNearestReportAvatars = (!accountID || !action) && accountIDs.length === 0;
 
     const getIconsWithDefaults = (onyxReport: OnyxInputOrEntry<Report>) =>
@@ -273,8 +272,6 @@ function useReportActionAvatars({
         secondaryAvatar = getIconsWithDefaults(iouReport ?? chatReport).at(1);
     } else if (usePersonalDetailsAvatars) {
         secondaryAvatar = reportIcons.at(1);
-    } else if (isATripPreview) {
-        secondaryAvatar = reportIcons.at(0);
     } else if (isReportPreviewInTripRoom || displayAllActors) {
         const iouReportIcons = getIconsWithDefaults(iouReport);
         secondaryAvatar = iouReportIcons.at(iouReportIcons.at(1)?.id === primaryAvatar.id ? 0 : 1);

@@ -225,9 +225,6 @@ const ONYXKEYS = {
     /** The NVP with the last action taken (for the Quick Action Button) */
     NVP_QUICK_ACTION_GLOBAL_CREATE: 'nvp_quickActionGlobalCreate',
 
-    /** The NVP containing all information necessary to connect with Spotnana */
-    NVP_TRAVEL_SETTINGS: 'nvp_travelSettings',
-
     /** The start date (yyyy-MM-dd HH:mm:ss) of the workspace owner’s free trial period. */
     NVP_FIRST_DAY_FREE_TRIAL: 'nvp_private_firstDayFreeTrial',
 
@@ -535,9 +532,6 @@ const ONYXKEYS = {
 
     /** Timestamp of when the last full reconnect was done on this client */
     LAST_FULL_RECONNECT_TIME: 'lastFullReconnectTime',
-
-    /** Information about travel provisioning process */
-    TRAVEL_PROVISIONING: 'travelProvisioning',
 
     /** Stores the information about the state of side panel */
     NVP_SIDE_PANEL: 'nvp_sidePanel',
@@ -1199,7 +1193,6 @@ type OnyxValuesMapping = {
     [ONYXKEYS.SUBSCRIPTION_RETRY_BILLING_STATUS_FAILED]: boolean;
     [ONYXKEYS.SUBSCRIPTION_RETRY_BILLING_STATUS_SUCCESSFUL]: boolean;
     [ONYXKEYS.SUBSCRIPTION_RETRY_BILLING_STATUS_PENDING]: boolean;
-    [ONYXKEYS.NVP_TRAVEL_SETTINGS]: OnyxTypes.TravelSettings;
     [ONYXKEYS.REVIEW_DUPLICATES]: OnyxTypes.ReviewDuplicates;
     [ONYXKEYS.ADD_NEW_COMPANY_CARD]: OnyxTypes.AddNewCompanyCardFeed;
     [ONYXKEYS.ASSIGN_CARD]: OnyxTypes.AssignCard;
@@ -1232,7 +1225,6 @@ type OnyxValuesMapping = {
     [ONYXKEYS.NVP_DISMISSED_PRODUCT_TRAINING]: OnyxTypes.DismissedProductTraining;
     [ONYXKEYS.CORPAY_ONBOARDING_FIELDS]: OnyxTypes.CorpayOnboardingFields;
     [ONYXKEYS.LAST_FULL_RECONNECT_TIME]: string;
-    [ONYXKEYS.TRAVEL_PROVISIONING]: OnyxTypes.TravelProvisioning;
     [ONYXKEYS.IS_LOADING_BILL_WHEN_DOWNGRADE]: boolean | undefined;
     [ONYXKEYS.SHOULD_BILL_WHEN_DOWNGRADING]: boolean | undefined;
     [ONYXKEYS.BILLING_RECEIPT_DETAILS]: OnyxTypes.BillingReceiptDetails;

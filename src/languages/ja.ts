@@ -3334,7 +3334,7 @@ const translations = {
             header: '続行する前に...',
             title: '利用規約',
             label: '利用規約に同意します。',
-            subtitle: `Expensify Travelの<a href="${CONST.TRAVEL_TERMS_URL}">利用規約</a>に同意してください。`,
+            subtitle: 'Expensify Travelの利用規約に同意してください。',
             error: '続行するには、Expensify Travel の利用規約に同意する必要があります。',
             defaultWorkspaceError:
                 'Expensify Travelを有効にするには、デフォルトのワークスペースを設定する必要があります。設定 > ワークスペース > ワークスペースの横にある縦の3つのドットをクリック > デフォルトのワークスペースとして設定し、もう一度お試しください！',

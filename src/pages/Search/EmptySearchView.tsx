@@ -1,24 +1,18 @@
-import React, {useMemo, useRef, useState} from 'react';
+import React, {useMemo, useState} from 'react';
 // eslint-disable-next-line no-restricted-imports
-import type {GestureResponderEvent, ImageStyle, Text as RNText, TextStyle, ViewStyle} from 'react-native';
-import {Linking, View} from 'react-native';
+import type {ImageStyle, TextStyle, ViewStyle} from 'react-native';
+import {View} from 'react-native';
 import type {OnyxCollection, OnyxEntry} from 'react-native-onyx';
-import BookTravelButton from '@components/BookTravelButton';
 import ConfirmModal from '@components/ConfirmModal';
 import EmptyStateComponent from '@components/EmptyStateComponent';
 import type {EmptyStateButton} from '@components/EmptyStateComponent/types';
-import type {FeatureListItem} from '@components/FeatureList';
-import {Alert, PiggyBank} from '@components/Icon/Illustrations';
 import LottieAnimations from '@components/LottieAnimations';
 import type DotLottieAnimation from '@components/LottieAnimations/types';
-import MenuItem from '@components/MenuItem';
-import PressableWithSecondaryInteraction from '@components/PressableWithSecondaryInteraction';
 import ScrollView from '@components/ScrollView';
 import {SearchScopeProvider} from '@components/Search/SearchScopeProvider';
 import type {SearchGroupBy} from '@components/Search/types';
 import SearchRowSkeleton from '@components/Skeletons/SearchRowSkeleton';
 import Text from '@components/Text';
-import TextLink from '@components/TextLink';
 import useCurrentUserPersonalDetails from '@hooks/useCurrentUserPersonalDetails';
 import useLocalize from '@hooks/useLocalize';
 import useOnyx from '@hooks/useOnyx';
@@ -37,8 +31,6 @@ import {areAllGroupPoliciesExpenseChatDisabled, getGroupPaidPoliciesWithExpenseC
 import {generateReportID} from '@libs/ReportUtils';
 import type {SearchTypeMenuSection} from '@libs/SearchUIUtils';
 import {shouldRestrictUserBillableActions} from '@libs/SubscriptionUtils';
-import {showContextMenu} from '@pages/home/report/ContextMenu/ReportActionContextMenu';
-import variables from '@styles/variables';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import ROUTES from '@src/ROUTES';
@@ -76,17 +68,6 @@ type EmptySearchViewItem = {
     subtitleStyle?: TextStyle;
     children?: React.ReactNode;
 };
-
-const tripsFeatures: FeatureListItem[] = [
-    {
-        icon: PiggyBank,
-        translationKey: 'travel.features.saveMoney',
-    },
-    {
-        icon: Alert,
-        translationKey: 'travel.features.alerts',
-    },
-];
 
 function EmptySearchView({similarSearchHash, type, groupBy, hasResults}: EmptySearchViewProps) {
     const currentUserPersonalDetails = useCurrentUserPersonalDetails();
@@ -148,7 +129,6 @@ function EmptySearchViewContent({
     const StyleUtils = useStyleUtils();
     const {translate} = useLocalize();
     const styles = useThemeStyles();
-    const contextMenuAnchor = useRef<RNText>(null);
     const [modalVisible, setModalVisible] = useState(false);
 
     const [hasTransactions] = useOnyx(ONYXKEYS.COLLECTION.TRANSACTION, {
@@ -164,63 +144,6 @@ function EmptySearchViewContent({
     const typeMenuItems = useMemo(() => {
         return typeMenuSections.map((section) => section.menuItems).flat();
     }, [typeMenuSections]);
-
-    const tripViewChildren = useMemo(() => {
-        const onLongPress = (event: GestureResponderEvent | MouseEvent) => {
-            showContextMenu({
-                type: CONST.CONTEXT_MENU_TYPES.LINK,
-                event,
-                selection: CONST.BOOK_TRAVEL_DEMO_URL,
-                contextMenuAnchor: contextMenuAnchor.current,
-            });
-        };
-
-        return (
-            <>
-                <Text style={[styles.textSupporting, styles.textNormal]}>
-                    {translate('travel.subtitle')}{' '}
-                    <PressableWithSecondaryInteraction
-                        inline
-                        onSecondaryInteraction={onLongPress}
-                        accessible
-                        accessibilityLabel={translate('travel.bookADemo')}
-                    >
-                        <TextLink
-                            onLongPress={onLongPress}
-                            onPress={() => {
-                                Linking.openURL(CONST.BOOK_TRAVEL_DEMO_URL);
-                            }}
-                            ref={contextMenuAnchor}
-                        >
-                            {translate('travel.bookADemo')}
-                        </TextLink>
-                    </PressableWithSecondaryInteraction>
-                    {translate('travel.toLearnMore')}
-                </Text>
-                <View style={[styles.flex1, styles.flexRow, styles.flexWrap, styles.rowGap4, styles.pt4, styles.pl1, styles.mb5]}>
-                    {tripsFeatures.map((tripsFeature) => (
-                        <View
-                            key={tripsFeature.translationKey}
-                            style={styles.w100}
-                        >
-                            <MenuItem
-                                title={translate(tripsFeature.translationKey)}
-                                icon={tripsFeature.icon}
-                                iconWidth={variables.menuIconSize}
-                                iconHeight={variables.menuIconSize}
-                                interactive={false}
-                                displayInDefaultIconColor
-                                wrapperStyle={[styles.p0, styles.cursorAuto]}
-                                containerStyle={[styles.m0, styles.wAuto]}
-                                numberOfLinesTitle={0}
-                            />
-                        </View>
-                    ))}
-                </View>
-                <BookTravelButton text={translate('search.searchResults.emptyTripResults.buttonText')} />
-            </>
-        );
-    }, [styles, translate]);
 
     // Default 'Folder' lottie animation, along with its background styles
     const defaultViewItemHeader = useMemo(
@@ -322,15 +245,6 @@ function EmptySearchViewContent({
         // If we didn't match a specific search hash, show a specific message
         // based on the type of the data
         switch (type) {
-            case CONST.SEARCH.DATA_TYPES.TRIP:
-                return {
-                    headerMedia: LottieAnimations.TripsEmptyState,
-                    headerContentStyles: [styles.emptyStateFolderWebStyles, StyleUtils.getBackgroundColorStyle(theme.travelBG)],
-                    title: translate('travel.title'),
-                    titleStyles: {...styles.textAlignLeft},
-                    children: tripViewChildren,
-                    lottieWebViewStyles: {backgroundColor: theme.travelBG, ...styles.emptyStateFolderWebStyles, ...styles.tripEmptyStateLottieWebView},
-                };
             case CONST.SEARCH.DATA_TYPES.EXPENSE:
                 if (!hasResults || !hasTransactions) {
                     return {
@@ -410,11 +324,8 @@ function EmptySearchViewContent({
         translate,
         StyleUtils,
         theme.todoBG,
-        theme.travelBG,
         styles.emptyStateFireworksWebStyles,
         styles.emptyStateFolderWebStyles,
-        styles.textAlignLeft,
-        styles.tripEmptyStateLottieWebView,
         introSelected,
         hasResults,
         defaultViewItemHeader,
@@ -423,7 +334,6 @@ function EmptySearchViewContent({
         activePolicy,
         activePolicyID,
         currentUserPersonalDetails,
-        tripViewChildren,
         shouldRedirectToExpensifyClassic,
         hasTransactions,
         tryNewDot?.hasBeenAddedToNudgeMigration,

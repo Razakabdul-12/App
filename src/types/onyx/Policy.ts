@@ -4,7 +4,6 @@ import type CONST from '@src/CONST';
 import type {Country} from '@src/CONST';
 import type * as OnyxTypes from '.';
 import type * as OnyxCommon from './OnyxCommon';
-import type {WorkspaceTravelSettings} from './TravelSettings';
 
 /** Distance units */
 type Unit = 'mi' | 'km';
@@ -1933,8 +1932,6 @@ type Policy = OnyxCommon.OnyxValueWithOfflineFeedback<
         /** Indicates if the Policy ownership change is failed */
         isChangeOwnerFailed?: boolean;
 
-        /** Object containing all policy information necessary to connect with Spotnana */
-        travelSettings?: WorkspaceTravelSettings;
 
         /** Indicates if the policy is pending an upgrade */
         isPendingUpgrade?: boolean;

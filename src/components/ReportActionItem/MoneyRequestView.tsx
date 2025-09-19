@@ -4,7 +4,6 @@ import {View} from 'react-native';
 import type {OnyxCollection, OnyxEntry} from 'react-native-onyx';
 import Icon from '@components/Icon';
 import * as Expensicons from '@components/Icon/Expensicons';
-import MenuItem from '@components/MenuItem';
 import MenuItemWithTopDescription from '@components/MenuItemWithTopDescription';
 import OfflineWithFeedback from '@components/OfflineWithFeedback';
 import {usePolicyCategories, usePolicyTags} from '@components/OnyxListItemProvider';
@@ -39,7 +38,6 @@ import {
     getReportName,
     getReportOrDraftReport,
     getTransactionDetails,
-    getTripIDFromTransactionParentReportID,
     isInvoiceReport,
     isPaidGroupPolicy,
     isReportApproved,
@@ -59,7 +57,6 @@ import {
     getTagForDisplay,
     getTaxName,
     hasMissingSmartscanFields,
-    hasReservationList,
     hasRoute as hasRouteTransactionUtils,
     isCardTransaction as isCardTransactionTransactionUtils,
     isDistanceRequest as isDistanceRequestTransactionUtils,
@@ -278,8 +275,6 @@ function MoneyRequestView({
     const shouldShowAttendees = useMemo(() => shouldShowAttendeesTransactionUtils(iouType, policy), [iouType, policy]);
 
     const shouldShowTax = isTaxTrackingEnabled(shouldShowPolicySpecificFields, policy, isDistanceRequest, isPerDiemRequest);
-    const tripID = getTripIDFromTransactionParentReportID(parentReport?.parentReportID);
-    const shouldShowViewTripDetails = hasReservationList(transaction) && !!tripID;
 
     const {getViolationsForField} = useViolations(transactionViolations ?? [], isTransactionScanning || !isPaidGroupPolicy(report));
     const hasViolations = useCallback(
@@ -856,23 +851,6 @@ function MoneyRequestView({
                             shouldRenderAsHTML
                         />
                     </OfflineWithFeedback>
-                )}
-                {/* Note: "View trip details" should be always the last item */}
-                {shouldShowViewTripDetails && (
-                    <MenuItem
-                        title={translate('travel.viewTripDetails')}
-                        icon={Expensicons.Suitcase}
-                        onPress={() => {
-                            if (!transaction?.transactionID || !report?.reportID) {
-                                return;
-                            }
-                            const reservations = transaction?.receipt?.reservationList?.length ?? 0;
-                            if (reservations > 1) {
-                                Navigation.navigate(ROUTES.TRAVEL_TRIP_SUMMARY.getRoute(report.reportID, transaction.transactionID, getReportRHPActiveRoute()));
-                            }
-                            Navigation.navigate(ROUTES.TRAVEL_TRIP_DETAILS.getRoute(report.reportID, transaction.transactionID, '0', 0, getReportRHPActiveRoute()));
-                        }}
-                    />
                 )}
             </>
         </View>

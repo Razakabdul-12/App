@@ -1459,26 +1459,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.REFERRAL_DETAILS]: ROUTES.REFERRAL_DETAILS_MODAL.route,
                     },
                 },
-                [SCREENS.RIGHT_MODAL.TRAVEL]: {
-                    screens: {
-                        [SCREENS.TRAVEL.MY_TRIPS]: ROUTES.TRAVEL_MY_TRIPS,
-                        [SCREENS.TRAVEL.TRAVEL_DOT_LINK_WEB_VIEW]: ROUTES.TRAVEL_DOT_LINK_WEB_VIEW.route,
-                        [SCREENS.TRAVEL.UPGRADE]: ROUTES.TRAVEL_UPGRADE.route,
-                        [SCREENS.TRAVEL.TCS]: ROUTES.TRAVEL_TCS.route,
-                        [SCREENS.TRAVEL.TRIP_SUMMARY]: ROUTES.TRAVEL_TRIP_SUMMARY.route,
-                        [SCREENS.TRAVEL.TRIP_DETAILS]: {
-                            path: ROUTES.TRAVEL_TRIP_DETAILS.route,
-                            parse: {
-                                reservationIndex: (reservationIndex: string) => parseInt(reservationIndex, 10),
-                            },
-                        },
-                        [SCREENS.TRAVEL.DOMAIN_SELECTOR]: ROUTES.TRAVEL_DOMAIN_SELECTOR.route,
-                        [SCREENS.TRAVEL.DOMAIN_PERMISSION_INFO]: ROUTES.TRAVEL_DOMAIN_PERMISSION_INFO.route,
-                        [SCREENS.TRAVEL.PUBLIC_DOMAIN_ERROR]: ROUTES.TRAVEL_PUBLIC_DOMAIN_ERROR.route,
-                        [SCREENS.TRAVEL.WORKSPACE_ADDRESS]: ROUTES.TRAVEL_WORKSPACE_ADDRESS.route,
-                        [SCREENS.TRAVEL.VERIFY_ACCOUNT]: ROUTES.TRAVEL_VERIFY_ACCOUNT.route,
-                    },
-                },
                 [SCREENS.RIGHT_MODAL.SEARCH_REPORT]: {
                     screens: {
                         [SCREENS.SEARCH.REPORT_RHP]: ROUTES.SEARCH_REPORT.route,

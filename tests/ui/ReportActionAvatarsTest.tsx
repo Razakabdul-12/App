@@ -137,13 +137,6 @@ const reportPreviewSingleTransactionDMAction = {
     childManagerAccountID: SECOND_USER_ID,
 };
 
-const tripPreviewAction = {
-    ...actionR14932,
-    actionName: CONST.REPORT.ACTIONS.TYPE.TRIP_PREVIEW,
-    reportActionID: 'TRIP_PREVIEW',
-    childReportID: 'IOU_REPORT_TRIP',
-};
-
 const commentAction = {
     ...actionR14932,
     actionName: CONST.REPORT.ACTIONS.TYPE.ADD_COMMENT,
@@ -171,14 +164,6 @@ const iouReport = {
     reportID: 'IOU_REPORT',
     chatReportID: chatReport.reportID,
     parentReportActionID: reportPreviewAction.reportActionID,
-    policyID: policy.id,
-};
-
-const iouTripReport = {
-    ...iouReportR14932,
-    reportID: 'IOU_REPORT_TRIP',
-    chatReportID: chatReport.reportID,
-    parentReportActionID: tripPreviewAction.reportActionID,
     policyID: policy.id,
 };
 
@@ -227,7 +212,7 @@ const transactions = [
     },
 ];
 
-const reports = [iouReport, iouTripReport, chatReport, iouDMReport, iouDMSingleExpenseReport, reportChatDM];
+const reports = [iouReport, chatReport, iouDMReport, iouDMSingleExpenseReport, reportChatDM];
 const policies = [policy, personalPolicy];
 
 const DEFAULT_WORKSPACE_AVATAR = getDefaultWorkspaceAvatar(policies.at(0)?.name);
@@ -240,7 +225,6 @@ const transactionCollectionDataSet = toCollectionDataSet(ONYXKEYS.COLLECTION.TRA
 const reportActionCollectionDataSet = {
     [`${ONYXKEYS.COLLECTION.REPORT_ACTIONS}${chatReport.reportID}`]: {
         [reportPreviewAction.reportActionID]: reportPreviewAction,
-        [tripPreviewAction.reportActionID]: tripPreviewAction,
         [commentAction.reportActionID]: commentAction,
     },
     [`${ONYXKEYS.COLLECTION.REPORT_ACTIONS}${reportChatDM.reportID}`]: {
@@ -393,11 +377,6 @@ describe('ReportActionAvatars', () => {
         it('renders workspace avatar with user subscript avatar on chat report view', async () => {
             const retrievedData = await retrieveDataFromAvatarView({reportID: chatReport.reportID});
             isSubscriptAvatarRendered({...retrievedData, workspaceIconAsPrimaryAvatar: true});
-        });
-
-        it('renders user primary avatar and workspace subscript next to the trip preview', async () => {
-            const retrievedData = await retrieveDataFromAvatarView({reportID: iouTripReport.reportID});
-            isSubscriptAvatarRendered(retrievedData);
         });
 
         it('renders subscript avatar if the report preview action is provided instead of report ID', async () => {

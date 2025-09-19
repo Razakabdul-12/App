@@ -519,13 +519,6 @@ function validateReportDraftProperty(key: keyof Report | keyof ReportNameValuePa
             );
         case 'permissions':
             return validateArray<'constantEnum'>(value, CONST.REPORT.PERMISSIONS);
-        case 'tripData':
-            return validateObject<ObjectElement<Report, 'tripData'>>(value, {
-                startDate: 'string',
-                endDate: 'string',
-                tripID: 'string',
-                payload: 'object',
-            });
         case 'agentZeroProcessingRequestIndicator':
             return validateString(value);
         case 'pendingAction':
@@ -583,7 +576,6 @@ function validateReportDraftProperty(key: keyof Report | keyof ReportNameValuePa
                 nonReimbursableTotal: CONST.RED_BRICK_ROAD_PENDING_ACTION,
                 fieldList: CONST.RED_BRICK_ROAD_PENDING_ACTION,
                 permissions: CONST.RED_BRICK_ROAD_PENDING_ACTION,
-                tripData: CONST.RED_BRICK_ROAD_PENDING_ACTION,
                 private_isArchived: CONST.RED_BRICK_ROAD_PENDING_ACTION,
                 addWorkspaceRoom: CONST.RED_BRICK_ROAD_PENDING_ACTION,
                 avatar: CONST.RED_BRICK_ROAD_PENDING_ACTION,

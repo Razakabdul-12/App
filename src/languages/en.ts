@@ -3315,7 +3315,7 @@ const translations = {
             header: 'Before we continue...',
             title: 'Terms & conditions',
             label: 'I agree to the terms & conditions',
-            subtitle: `Please agree to the Expensify Travel <a href="${CONST.TRAVEL_TERMS_URL}">terms & conditions</a>.`,
+            subtitle: 'Please agree to the Expensify Travel terms & conditions.',
             error: 'You must agree to the Expensify Travel terms & conditions to continue',
             defaultWorkspaceError:
                 'You need to set a default workspace to enable Expensify Travel. Go to Settings > Workspaces > click the three vertical dots next to a workspace > Set as default workspace, then try again!',

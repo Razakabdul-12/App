@@ -43,7 +43,7 @@ function EReceiptThumbnail({transactionID, borderRadius, fileExtension, isReceip
         canBeMissing: true,
     });
 
-    const {primaryColor, secondaryColor, MCCIcon, tripIcon, backgroundImage} = useEReceipt(transaction, fileExtension, isReceiptThumbnail);
+    const {primaryColor, secondaryColor, MCCIcon, backgroundImage} = useEReceipt(transaction, fileExtension, isReceiptThumbnail);
     const isPerDiemRequest = isPerDiemRequestTransactionUtils(transaction);
 
     let receiptIconWidth: number = variables.eReceiptIconWidth;
@@ -121,14 +121,6 @@ function EReceiptThumbnail({transactionID, borderRadius, fileExtension, isReceip
                     {!isPerDiemRequest && MCCIcon && !isReceiptThumbnail ? (
                         <Icon
                             src={MCCIcon}
-                            height={receiptMCCSize}
-                            width={receiptMCCSize}
-                            fill={primaryColor}
-                        />
-                    ) : null}
-                    {!isPerDiemRequest && !MCCIcon && tripIcon ? (
-                        <Icon
-                            src={tripIcon}
                             height={receiptMCCSize}
                             width={receiptMCCSize}
                             fill={primaryColor}

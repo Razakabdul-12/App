@@ -103,7 +103,6 @@ const lightTheme = {
     videoPlayerBG: `${colors.productDark100}cc`,
     transparentWhite: `${colors.white}51`,
     emptyFolderBG: colors.yellow600,
-    travelBG: colors.blue600,
     todoBG: colors.blue800,
     trialTimer: colors.green600,
 

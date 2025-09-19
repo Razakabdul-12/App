@@ -7,7 +7,6 @@ import useOnyx from '@hooks/useOnyx';
 import useResponsiveLayout from '@hooks/useResponsiveLayout';
 import useThemeStyles from '@hooks/useThemeStyles';
 import onyxSubscribe from '@libs/onyxSubscribe';
-import {isTripPreview} from '@libs/ReportActionsUtils';
 import type {Ancestor} from '@libs/ReportUtils';
 import {
     canCurrentUserOpenReport,
@@ -176,7 +175,7 @@ function ReportActionItemParentAction({
             {allAncestors.map((ancestor) => {
                 const ancestorReport = allReports?.[`${ONYXKEYS.COLLECTION.REPORT}${ancestor.report.reportID}`];
                 const canUserPerformWriteAction = canUserPerformWriteActionReportUtils(ancestorReport, isReportArchived);
-                const shouldDisplayThreadDivider = !isTripPreview(ancestor.reportAction);
+                const shouldDisplayThreadDivider = true;
                 const reportNameValuePair =
                     ancestorReportNameValuePairs?.[`${ONYXKEYS.COLLECTION.REPORT_NAME_VALUE_PAIRS}${ancestorReports.current?.[ancestor?.report?.reportID]?.reportID}`];
                 const isAncestorReportArchived = isArchivedReport(reportNameValuePair);

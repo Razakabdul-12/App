@@ -269,7 +269,6 @@ export type {default as UpdateSubscriptionTypeParams} from './UpdateSubscription
 export type {default as SignUpUserParams} from './SignUpUserParams';
 export type {default as UpdateSubscriptionAutoRenewParams} from './UpdateSubscriptionAutoRenewParams';
 export type {default as UpdateSubscriptionAddNewUsersAutomaticallyParams} from './UpdateSubscriptionAddNewUsersAutomaticallyParams';
-export type {default as GenerateSpotnanaTokenParams} from './GenerateSpotnanaTokenParams';
 export type {default as UpdateSubscriptionSizeParams} from './UpdateSubscriptionSizeParams';
 export type {default as ReportExportParams} from './ReportExportParams';
 export type {default as MarkAsExportedParams} from './MarkAsExportedParams';
@@ -395,7 +394,6 @@ export type {default as CreatePerDiemRequestParams} from './CreatePerDiemRequest
 export type {default as QueueExpensifyCardForBillingParams} from './QueueExpensifyCardForBillingParams';
 export type {default as GetCorpayOnboardingFieldsParams} from './GetCorpayOnboardingFieldsParams';
 export type {SaveCorpayOnboardingCompanyDetailsParams} from './SaveCorpayOnboardingCompanyDetailsParams';
-export type {default as AcceptSpotnanaTermsParams} from './AcceptSpotnanaTermsParams';
 export type {default as SaveCorpayOnboardingBeneficialOwnerParams} from './SaveCorpayOnboardingBeneficialOwnerParams';
 export type {default as DeleteAppReportParams} from './DeleteAppReportParams';
 export type {default as SaveCorpayOnboardingDirectorInformationParams} from './SaveCorpayOnboardingDirectorInformationParams';

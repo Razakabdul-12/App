@@ -34,7 +34,6 @@ import isSearchTopmostFullScreenRoute from '@libs/Navigation/helpers/isSearchTop
 import navigateAfterInteraction from '@libs/Navigation/navigateAfterInteraction';
 import Navigation from '@libs/Navigation/Navigation';
 import {hasSeenTourSelector, tryNewDotOnyxSelector} from '@libs/onboardingSelectors';
-import {openTravelDotLink, shouldOpenTravelDotLinkWeb} from '@libs/openTravelDotLink';
 import {
     areAllGroupPoliciesExpenseChatDisabled,
     canSendInvoice as canSendInvoicePolicyUtils,
@@ -91,8 +90,6 @@ const policySelector = (policy: OnyxEntry<OnyxTypes.Policy>): PolicySelector =>
 
 const sessionSelector = (session: OnyxEntry<OnyxTypes.Session>) => ({email: session?.email, accountID: session?.accountID});
 
-const accountPrimaryLoginSelector = (account: OnyxEntry<OnyxTypes.Account>) => account?.primaryLogin;
-
 /**
  * Responsible for rendering the {@link PopoverMenu}, and the accompanying
  * FAB that can open or close the menu.
@@ -133,11 +130,7 @@ function FloatingActionButtonAndPopover({onHideCreateMenu, onShowCreateMenu, isT
     const isReportArchived = useReportIsArchived(quickActionReport?.reportID);
     const {isOffline} = useNetwork();
     const {isBetaEnabled} = usePermissions();
-    const isBlockedFromSpotnanaTravel = isBetaEnabled(CONST.BETAS.PREVENT_SPOTNANA_TRAVEL);
     const isManualDistanceTrackingEnabled = isBetaEnabled(CONST.BETAS.MANUAL_DISTANCE);
-    const [primaryLogin] = useOnyx(ONYXKEYS.ACCOUNT, {selector: accountPrimaryLoginSelector, canBeMissing: true});
-    const primaryContactMethod = primaryLogin ?? session?.email ?? '';
-    const [travelSettings] = useOnyx(ONYXKEYS.NVP_TRAVEL_SETTINGS, {canBeMissing: true});
 
     const canSendInvoice = useMemo(() => canSendInvoicePolicyUtils(allPolicies as OnyxCollection<OnyxTypes.Policy>, session?.email), [allPolicies, session?.email]);
     const isValidReport = !(isEmptyObject(quickActionReport) || isReportArchived);
@@ -415,24 +408,6 @@ function FloatingActionButtonAndPopover({onHideCreateMenu, onShowCreateMenu, isT
         allTransactionDrafts,
     ]);
 
-    const isTravelEnabled = useMemo(() => {
-        if (!!isBlockedFromSpotnanaTravel || !primaryContactMethod || Str.isSMSLogin(primaryContactMethod) || !isPaidGroupPolicy(activePolicy)) {
-            return false;
-        }
-
-        const isPolicyProvisioned = activePolicy?.travelSettings?.spotnanaCompanyID ?? activePolicy?.travelSettings?.associatedTravelDomainAccountID;
-
-        return activePolicy?.travelSettings?.hasAcceptedTerms ?? (travelSettings?.hasAcceptedTerms && isPolicyProvisioned);
-    }, [activePolicy, isBlockedFromSpotnanaTravel, primaryContactMethod, travelSettings?.hasAcceptedTerms]);
-
-    const openTravel = useCallback(() => {
-        if (isTravelEnabled) {
-            openTravelDotLink(activePolicy?.id);
-            return;
-        }
-        Navigation.navigate(ROUTES.TRAVEL_MY_TRIPS);
-    }, [activePolicy, isTravelEnabled]);
-
     const menuItems = [
         ...expenseMenuItems,
         ...(isManualDistanceTrackingEnabled
@@ -539,14 +514,6 @@ function FloatingActionButtonAndPopover({onHideCreateMenu, onShowCreateMenu, isT
                   },
               ]
             : []),
-        ...[
-            {
-                icon: Expensicons.Suitcase,
-                text: translate('travel.bookTravel'),
-                rightIcon: isTravelEnabled && shouldOpenTravelDotLinkWeb() ? Expensicons.NewWindow : undefined,
-                onSelected: () => interceptAnonymousUser(() => openTravel()),
-            },
-        ],
         ...(!hasSeenTour
             ? [
                   {

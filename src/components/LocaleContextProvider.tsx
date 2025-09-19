@@ -1,4 +1,3 @@
-import {format as formatDate} from 'date-fns';
 import React, {createContext, useEffect, useMemo, useState} from 'react';
 import {importEmojiLocale} from '@assets/emojis';
 import useCurrentUserPersonalDetails from '@hooks/useCurrentUserPersonalDetails';
@@ -57,9 +56,6 @@ type LocaleContextProps = {
     /** This is a wrapper around the localeCompare function that uses the preferred locale from the user's settings. */
     localeCompare: (a: string, b: string) => number;
 
-    /** Formats travel dates using transport date formatting (no timezone conversion, matches Trip Summary) */
-    formatTravelDate: (datetime: string) => string;
-
     /** The user's preferred locale e.g. 'en', 'es' */
     preferredLocale: Locale | undefined;
 };
@@ -75,7 +71,6 @@ const LocaleContext = createContext<LocaleContextProps>({
     toLocaleOrdinal: () => '',
     fromLocaleDigit: () => '',
     localeCompare: () => 0,
-    formatTravelDate: () => '',
     preferredLocale: undefined,
 });
 
@@ -175,17 +170,6 @@ function LocaleContextProvider({children}: LocaleContextProviderProps) {
 
     const localeCompare = useMemo<LocaleContextProps['localeCompare']>(() => (a, b) => collator.compare(a, b), [collator]);
 
-    const formatTravelDate = useMemo<LocaleContextProps['formatTravelDate']>(
-        () => (datetime) => {
-            const date = new Date(datetime);
-            const formattedDate = formatDate(date, CONST.DATE.MONTH_DAY_YEAR_ABBR_FORMAT);
-            const formattedHour = formatDate(date, CONST.DATE.LOCAL_TIME_FORMAT);
-            const at = translateLocalize(currentLocale, 'common.conjunctionAt');
-            return `${formattedDate} ${at} ${formattedHour}`;
-        },
-        [currentLocale],
-    );
-
     const contextValue = useMemo<LocaleContextProps>(
         () => ({
             translate,
@@ -198,7 +182,6 @@ function LocaleContextProvider({children}: LocaleContextProviderProps) {
             toLocaleOrdinal,
             fromLocaleDigit,
             localeCompare,
-            formatTravelDate,
             preferredLocale: currentLocale,
         }),
         [
@@ -212,7 +195,6 @@ function LocaleContextProvider({children}: LocaleContextProviderProps) {
             toLocaleOrdinal,
             fromLocaleDigit,
             localeCompare,
-            formatTravelDate,
             currentLocale,
         ],
     );

@@ -132,8 +132,6 @@ function getSearchColumns(type: ValueOf<typeof CONST.SEARCH.DATA_TYPES>, groupBy
             return getExpenseHeaders(groupBy);
         case CONST.SEARCH.DATA_TYPES.INVOICE:
             return getExpenseHeaders(groupBy);
-        case CONST.SEARCH.DATA_TYPES.TRIP:
-            return getExpenseHeaders(groupBy);
         case CONST.SEARCH.DATA_TYPES.TASK:
             return taskHeaders;
         case CONST.SEARCH.DATA_TYPES.CHAT:

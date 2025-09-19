@@ -1,7 +1,6 @@
 import Onyx from 'react-native-onyx';
 import type {OnyxEntry} from 'react-native-onyx';
 import * as API from '@libs/API';
-import type {GenerateSpotnanaTokenParams} from '@libs/API/parameters';
 import {SIDE_EFFECT_REQUEST_COMMANDS} from '@libs/API/types';
 import asyncOpenURL from '@libs/asyncOpenURL';
 import * as Environment from '@libs/Environment/Environment';
@@ -82,55 +81,6 @@ function openOldDotLink(url: string, shouldOpenInSameTab = false) {
     );
 }
 
-function buildTravelDotURL(spotnanaToken: string, isTestAccount: boolean, postLoginPath?: string): string {
-    const environmentURL = isTestAccount ? CONST.STAGING_TRAVEL_DOT_URL : CONST.TRAVEL_DOT_URL;
-    const tmcID = isTestAccount ? CONST.STAGING_SPOTNANA_TMC_ID : CONST.SPOTNANA_TMC_ID;
-
-    const authCode = `authCode=${spotnanaToken}`;
-    const tmcIDParam = `tmcId=${tmcID}`;
-    const redirectURL = postLoginPath ? `redirectUrl=${Url.addLeadingForwardSlash(postLoginPath)}` : '';
-
-    const paramsArray = [authCode, tmcIDParam, redirectURL];
-    const params = paramsArray.filter(Boolean).join('&');
-    const travelDotDomain = addTrailingForwardSlash(environmentURL);
-    return `${travelDotDomain}auth/code?${params}`;
-}
-
-/**
- * @param postLoginPath When provided, we will redirect the user to this path post login on travelDot. eg: 'trips/:tripID'
- */
-function openTravelDotLink(policyID: OnyxEntry<string>, postLoginPath?: string) {
-    if (policyID === null || policyID === undefined) {
-        return;
-    }
-
-    const parameters: GenerateSpotnanaTokenParams = {
-        policyID,
-    };
-
-    return new Promise((resolve, reject) => {
-        const error = new Error('Failed to generate spotnana token.');
-
-        asyncOpenURL(
-            // eslint-disable-next-line rulesdir/no-api-side-effects-method
-            API.makeRequestWithSideEffects(SIDE_EFFECT_REQUEST_COMMANDS.GENERATE_SPOTNANA_TOKEN, parameters, {})
-                .then((response) => {
-                    if (!response?.spotnanaToken) {
-                        reject(error);
-                        throw error;
-                    }
-                    const travelURL = buildTravelDotURL(response.spotnanaToken, response.isTestAccount ?? false, postLoginPath);
-                    resolve(undefined);
-                    return travelURL;
-                })
-                .catch(() => {
-                    reject(error);
-                    throw error;
-                }),
-            (travelDotURL) => travelDotURL ?? '',
-        );
-    });
-}
 
 function getInternalNewExpensifyPath(href: string) {
     if (!href) {
@@ -222,22 +172,4 @@ function openExternalLinkWithToken(url: string, shouldSkipCustomSafariLogic = fa
     );
 }
 
-function getTravelDotLink(policyID: OnyxEntry<string>) {
-    if (policyID === null || policyID === undefined) {
-        return Promise.reject(new Error('Policy ID is required'));
-    }
-
-    const parameters: GenerateSpotnanaTokenParams = {
-        policyID,
-    };
-
-    // eslint-disable-next-line rulesdir/no-api-side-effects-method
-    return API.makeRequestWithSideEffects(SIDE_EFFECT_REQUEST_COMMANDS.GENERATE_SPOTNANA_TOKEN, parameters, {}).then((response) => {
-        if (!response?.spotnanaToken) {
-            throw new Error('Failed to generate spotnana token.');
-        }
-        return response;
-    });
-}
-
-export {openOldDotLink, openExternalLink, openLink, getInternalNewExpensifyPath, getInternalExpensifyPath, openTravelDotLink, buildTravelDotURL, openExternalLinkWithToken, getTravelDotLink};
+export {openOldDotLink, openExternalLink, openLink, getInternalNewExpensifyPath, getInternalExpensifyPath, openExternalLinkWithToken};

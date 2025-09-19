@@ -3326,7 +3326,7 @@ const translations = {
             header: 'Avant de continuer...',
             title: 'Termes et conditions',
             label: "J'accepte les termes et conditions",
-            subtitle: `Veuillez accepter les <a href="${CONST.TRAVEL_TERMS_URL}">conditions générales</a> d'Expensify Travel.`,
+            subtitle: "Veuillez accepter les conditions générales d'Expensify Travel.",
             error: 'Vous devez accepter les conditions générales de Expensify Travel pour continuer.',
             defaultWorkspaceError:
                 "Vous devez définir un espace de travail par défaut pour activer Expensify Travel. Allez dans Paramètres > Espaces de travail > cliquez sur les trois points verticaux à côté d'un espace de travail > Définir comme espace de travail par défaut, puis réessayez !",

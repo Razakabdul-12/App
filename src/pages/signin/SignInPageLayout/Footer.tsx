@@ -67,10 +67,6 @@ const columns = ({navigateFocus = () => {}}: Pick<FooterProps, 'navigateFocus'>)
                 href: CONST.FOOTER.PAYROLL_URL,
                 translationPath: 'footer.payroll',
             },
-            {
-                href: CONST.FOOTER.TRAVEL_URL,
-                translationPath: 'footer.travel',
-            },
         ],
     },
     {

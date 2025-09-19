@@ -324,7 +324,6 @@ const WRITE_COMMANDS = {
     SHARE_TRACKED_EXPENSE: 'ShareTrackedExpense',
     LEAVE_POLICY: 'LeavePolicy',
     DISMISS_VIOLATION: 'DismissViolation',
-    ACCEPT_SPOTNANA_TERMS: 'AcceptSpotnanaTerms',
     SEND_INVOICE: 'SendInvoice',
     PAY_INVOICE: 'PayInvoice',
     MARK_AS_CASH: 'MarkAsCash',
@@ -499,7 +498,6 @@ const WRITE_COMMANDS = {
     FINISH_CORPAY_BANK_ACCOUNT_ONBOARDING: 'FinishCorpayBankAccountOnboarding',
     ENABLE_GLOBAL_REIMBURSEMENTS_FOR_USD_BANK_ACCOUNT: 'EnableGlobalReimbursementsForUSDBankAccount',
     REOPEN_REPORT: 'ReopenReport',
-    TRAVEL_SIGNUP_REQUEST: 'RequestTravelAccess',
     DELETE_VACATION_DELEGATE: 'DeleteVacationDelegate',
     IMPORT_PLAID_ACCOUNTS: 'ImportPlaidAccounts',
     ASSIGN_REPORT_TO_ME: 'AssignReportToMe',
@@ -838,7 +836,6 @@ type WriteCommandParameters = {
     [WRITE_COMMANDS.SHARE_TRACKED_EXPENSE]: Parameters.ShareTrackedExpenseParams;
     [WRITE_COMMANDS.LEAVE_POLICY]: Parameters.LeavePolicyParams;
     [WRITE_COMMANDS.DISMISS_VIOLATION]: Parameters.DismissViolationParams;
-    [WRITE_COMMANDS.ACCEPT_SPOTNANA_TERMS]: Parameters.AcceptSpotnanaTermsParams;
     [WRITE_COMMANDS.SEND_INVOICE]: Parameters.SendInvoiceParams;
     [WRITE_COMMANDS.PAY_INVOICE]: Parameters.PayInvoiceParams;
     [WRITE_COMMANDS.MARK_AS_CASH]: Parameters.MarkAsCashParams;
@@ -1024,7 +1021,6 @@ type WriteCommandParameters = {
 
     // Change transaction report
     [WRITE_COMMANDS.CHANGE_TRANSACTIONS_REPORT]: Parameters.ChangeTransactionsReportParams;
-    [WRITE_COMMANDS.TRAVEL_SIGNUP_REQUEST]: null;
     [WRITE_COMMANDS.ASSIGN_REPORT_TO_ME]: Parameters.AssignReportToMeParams;
     [WRITE_COMMANDS.ADD_REPORT_APPROVER]: Parameters.AddReportApproverParams;
 };
@@ -1181,7 +1177,6 @@ type ReadCommandParameters = {
 
 const SIDE_EFFECT_REQUEST_COMMANDS = {
     AUTHENTICATE_PUSHER: 'AuthenticatePusher',
-    GENERATE_SPOTNANA_TOKEN: 'GenerateSpotnanaToken',
     GET_MISSING_ONYX_MESSAGES: 'GetMissingOnyxMessages',
     OPEN_OLD_DOT_LINK: 'OpenOldDotLink',
     RECONNECT_APP: 'ReconnectApp',
@@ -1212,7 +1207,6 @@ type SideEffectRequestCommandParameters = {
     [SIDE_EFFECT_REQUEST_COMMANDS.REVEAL_EXPENSIFY_CARD_DETAILS]: Parameters.RevealExpensifyCardDetailsParams;
     [SIDE_EFFECT_REQUEST_COMMANDS.GET_MISSING_ONYX_MESSAGES]: Parameters.GetMissingOnyxMessagesParams;
     [SIDE_EFFECT_REQUEST_COMMANDS.RECONNECT_APP]: Parameters.ReconnectAppParams;
-    [SIDE_EFFECT_REQUEST_COMMANDS.GENERATE_SPOTNANA_TOKEN]: Parameters.GenerateSpotnanaTokenParams;
     [SIDE_EFFECT_REQUEST_COMMANDS.TWO_FACTOR_AUTH_VALIDATE]: Parameters.ValidateTwoFactorAuthParams;
     [SIDE_EFFECT_REQUEST_COMMANDS.CONNECT_AS_DELEGATE]: Parameters.ConnectAsDelegateParams;
     [SIDE_EFFECT_REQUEST_COMMANDS.DISCONNECT_AS_DELEGATE]: EmptyObject;

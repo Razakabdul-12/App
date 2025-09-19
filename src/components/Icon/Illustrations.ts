@@ -40,7 +40,6 @@ import CreditCardsBlue from '@assets/images/product-illustrations/credit-cards--
 import EmptyStateExpenses from '@assets/images/product-illustrations/emptystate__expenses.svg';
 import HoldExpense from '@assets/images/product-illustrations/emptystate__holdexpense.svg';
 import ReceiptFairy from '@assets/images/product-illustrations/emptystate__receiptfairy.svg';
-import EmptyStateTravel from '@assets/images/product-illustrations/emptystate__travel.svg';
 import FolderWithPapers from '@assets/images/product-illustrations/folder-with-papers.svg';
 import GpsTrackOrange from '@assets/images/product-illustrations/gps-track--orange.svg';
 import Hands from '@assets/images/product-illustrations/home-illustration-hands.svg';
@@ -276,7 +275,6 @@ export {
     CarIce,
     ReceiptLocationMarker,
     Lightbulb,
-    EmptyStateTravel,
     Stopwatch,
     SubscriptionAnnual,
     SubscriptionPPU,

@@ -200,13 +200,6 @@ function getInvoiceStatusOptions(): Array<MultiSelectItem<SingularSearchStatus>>
     ];
 }
 
-function getTripStatusOptions(): Array<MultiSelectItem<SingularSearchStatus>> {
-    return [
-        {text: translateLocal('search.filters.current'), value: CONST.SEARCH.STATUS.TRIP.CURRENT},
-        {text: translateLocal('search.filters.past'), value: CONST.SEARCH.STATUS.TRIP.PAST},
-    ];
-}
-
 function getTaskStatusOptions(): Array<MultiSelectItem<SingularSearchStatus>> {
     return [
         {text: translateLocal('common.outstanding'), value: CONST.SEARCH.STATUS.TASK.OUTSTANDING},
@@ -2057,8 +2050,6 @@ function getStatusOptions(type: SearchDataTypes, groupBy: SearchGroupBy | undefi
             return getChatStatusOptions();
         case CONST.SEARCH.DATA_TYPES.INVOICE:
             return getInvoiceStatusOptions();
-        case CONST.SEARCH.DATA_TYPES.TRIP:
-            return getTripStatusOptions();
         case CONST.SEARCH.DATA_TYPES.TASK:
             return getTaskStatusOptions();
         case CONST.SEARCH.DATA_TYPES.EXPENSE:
@@ -2086,7 +2077,6 @@ function getTypeOptions(policies: OnyxCollection<OnyxTypes.Policy>, currentUserL
         {text: translateLocal('common.expense'), value: CONST.SEARCH.DATA_TYPES.EXPENSE},
         {text: translateLocal('common.chat'), value: CONST.SEARCH.DATA_TYPES.CHAT},
         {text: translateLocal('common.invoice'), value: CONST.SEARCH.DATA_TYPES.INVOICE},
-        {text: translateLocal('common.trip'), value: CONST.SEARCH.DATA_TYPES.TRIP},
         {text: translateLocal('common.task'), value: CONST.SEARCH.DATA_TYPES.TASK},
     ];
     const shouldHideInvoiceOption = !canSendInvoice(policies, currentUserLogin) && !hasInvoiceReports();

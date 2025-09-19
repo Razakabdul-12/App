@@ -630,15 +630,6 @@ type OriginalMessageModifiedExpense = {
     newAttendees?: Attendee[];
 };
 
-/** Model of a `travel update` report action */
-type OriginalMessageTravelUpdate = Reservation & UpdateOperationType;
-
-/** Travel update operation type */
-type UpdateOperationType = {
-    /** Type of operation */
-    operation: ValueOf<typeof CONST.TRAVEL.UPDATE_OPERATION_TYPE>;
-};
-
 /** Model of the `deleted transaction` report action */
 type OriginalMessageDeletedTransaction = {
     /** The merchant of the transaction */
@@ -745,18 +736,6 @@ type OriginalMessageDismissedViolation = {
 
     /** Name of the violation */
     violationName: string;
-};
-
-/** Model of `trip room preview` report action */
-type OriginalMessageTripRoomPreview = {
-    /** ID of the report to be previewed */
-    linkedReportID: string;
-
-    /** When was report action last modified */
-    lastModified?: string;
-
-    /** Collection of accountIDs of users mentioned in report */
-    whisperedTo?: number[];
 };
 
 /** Model of `approved` report action */
@@ -1004,12 +983,10 @@ type OriginalMessageMap = {
     [CONST.REPORT.ACTIONS.TYPE.TASK_EDITED]: never;
     [CONST.REPORT.ACTIONS.TYPE.TASK_REOPENED]: never;
     [CONST.REPORT.ACTIONS.TYPE.TAKE_CONTROL]: OriginalMessageTakeControl;
-    [CONST.REPORT.ACTIONS.TYPE.TRAVEL_UPDATE]: OriginalMessageTravelUpdate;
     [CONST.REPORT.ACTIONS.TYPE.UNAPPROVED]: OriginalMessageUnapproved;
     [CONST.REPORT.ACTIONS.TYPE.UNHOLD]: never;
     [CONST.REPORT.ACTIONS.TYPE.UNSHARE]: never;
     [CONST.REPORT.ACTIONS.TYPE.UPDATE_GROUP_CHAT_MEMBER_ROLE]: never;
-    [CONST.REPORT.ACTIONS.TYPE.TRIP_PREVIEW]: OriginalMessageTripRoomPreview;
     [CONST.REPORT.ACTIONS.TYPE.REIMBURSEMENT_REQUESTED]: never;
     [CONST.REPORT.ACTIONS.TYPE.REIMBURSEMENT_SETUP]: never;
     [CONST.REPORT.ACTIONS.TYPE.EXPORTED_TO_QUICK_BOOKS]: never;

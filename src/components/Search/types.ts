@@ -66,10 +66,9 @@ type SortOrder = ValueOf<typeof CONST.SEARCH.SORT_ORDER>;
 type SearchColumnType = ValueOf<typeof CONST.SEARCH.TABLE_COLUMNS>;
 type ExpenseSearchStatus = ValueOf<typeof CONST.SEARCH.STATUS.EXPENSE>;
 type InvoiceSearchStatus = ValueOf<typeof CONST.SEARCH.STATUS.INVOICE>;
-type TripSearchStatus = ValueOf<typeof CONST.SEARCH.STATUS.TRIP>;
 type ChatSearchStatus = ValueOf<typeof CONST.SEARCH.STATUS.CHAT>;
 type TaskSearchStatus = ValueOf<typeof CONST.SEARCH.STATUS.TASK>;
-type SingularSearchStatus = ExpenseSearchStatus | InvoiceSearchStatus | TripSearchStatus | ChatSearchStatus | TaskSearchStatus;
+type SingularSearchStatus = ExpenseSearchStatus | InvoiceSearchStatus | ChatSearchStatus | TaskSearchStatus;
 type SearchStatus = SingularSearchStatus | SingularSearchStatus[];
 type SearchGroupBy = ValueOf<typeof CONST.SEARCH.GROUP_BY>;
 type TableColumnSize = ValueOf<typeof CONST.SEARCH.TABLE_COLUMN_SIZES>;
@@ -226,7 +225,6 @@ export type {
     UserFriendlyKey,
     ExpenseSearchStatus,
     InvoiceSearchStatus,
-    TripSearchStatus,
     ChatSearchStatus,
     TaskSearchStatus,
     SearchAutocompleteResult,

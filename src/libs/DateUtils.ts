@@ -764,38 +764,6 @@ function getFormattedReservationRangeDate(date1: Date, date2: Date): string {
 }
 
 /**
- * Returns a formatted date of departure.
- * Dates are formatted as follows:
- * 1. When the date refers to the current year: Departs on Sunday, Mar 17 at 8:00.
- * 2. When the date refers not to the current year: Departs on Wednesday, Mar 17, 2023 at 8:00.
- */
-function getFormattedTransportDate(date: Date): string {
-    if (isThisYear(date)) {
-        return `${translateLocal('travel.departs')} ${format(date, 'EEEE, MMM d')} ${translateLocal('common.conjunctionAt')} ${format(date, 'hh:mm a')}`;
-    }
-    return `${translateLocal('travel.departs')} ${format(date, 'EEEE, MMM d, yyyy')} ${translateLocal('common.conjunctionAt')} ${format(date, 'hh:mm a')}`;
-}
-
-/**
- * Returns a formatted flight date and hour.
- * Dates are formatted as follows:
- * 1. When the date refers to the current year: Wednesday, Mar 17 8:00 AM
- * 2. When the date refers not to the current year: Wednesday, Mar 17, 2023 8:00 AM
- */
-function getFormattedTransportDateAndHour(date: Date): {date: string; hour: string} {
-    if (isThisYear(date)) {
-        return {
-            date: format(date, 'EEEE, MMM d'),
-            hour: format(date, 'h:mm a'),
-        };
-    }
-    return {
-        date: format(date, 'EEEE, MMM d, yyyy'),
-        hour: format(date, 'h:mm a'),
-    };
-}
-
-/**
  * Returns a formatted cancellation date.
  * Dates are formatted as follows:
  * 1. When the date refers to the current year: Wednesday, Mar 17 8:00 AM
@@ -939,8 +907,6 @@ const DateUtils = {
     getLastBusinessDayOfMonth,
     getFormattedDateRange,
     getFormattedReservationRangeDate,
-    getFormattedTransportDate,
-    getFormattedTransportDateAndHour,
     getFormattedCancellationDate,
     doesDateBelongToAPastYear,
     isCardExpired,

@@ -32,7 +32,6 @@ import MoneyRequestReportPreview from '@components/ReportActionItem/MoneyRequest
 import TaskAction from '@components/ReportActionItem/TaskAction';
 import TaskPreview from '@components/ReportActionItem/TaskPreview';
 import TransactionPreview from '@components/ReportActionItem/TransactionPreview';
-import TripRoomPreview from '@components/ReportActionItem/TripRoomPreview';
 import {SearchContext} from '@components/Search/SearchContext';
 import {useIsOnSearch} from '@components/Search/SearchScopeProvider';
 import {ShowContextMenuContext} from '@components/ShowContextMenuContext';
@@ -86,7 +85,6 @@ import {
     getReportActionMessage,
     getReportActionText,
     getTagListNameUpdatedMessage,
-    getTravelUpdateMessage,
     getUpdatedApprovalRuleMessage,
     getUpdatedAuditRateMessage,
     getUpdatedManualApprovalThresholdMessage,
@@ -129,7 +127,6 @@ import {
     isTagModificationAction,
     isTaskAction,
     isTrackExpenseAction as isTrackExpenseActionReportActionsUtils,
-    isTripPreview,
     isUnapprovedAction,
     isWhisperActionTargetedToOthers,
     useTableReportViewActionRenderConditionals,
@@ -191,7 +188,6 @@ import ReportActionItemMessage from './ReportActionItemMessage';
 import ReportActionItemMessageEdit from './ReportActionItemMessageEdit';
 import ReportActionItemSingle from './ReportActionItemSingle';
 import ReportActionItemThread from './ReportActionItemThread';
-import TripSummary from './TripSummary';
 
 type PureReportActionItemProps = {
     /** All the data of the report collection */
@@ -444,7 +440,7 @@ function PureReportActionItem({
     currentUserAccountID,
 }: PureReportActionItemProps) {
     const actionSheetAwareScrollViewContext = useContext(ActionSheetAwareScrollView.ActionSheetAwareScrollViewContext);
-    const {translate, formatPhoneNumber, localeCompare, formatTravelDate} = useLocalize();
+    const {translate, formatPhoneNumber, localeCompare} = useLocalize();
     const personalDetail = useCurrentUserPersonalDetails();
     const {shouldUseNarrowLayout} = useResponsiveLayout();
     const reportID = report?.reportID ?? action?.reportID;
@@ -975,19 +971,6 @@ function PureReportActionItem({
                     children = emptyHTML;
                 }
             }
-        } else if (isTripPreview(action)) {
-            children = (
-                <TripRoomPreview
-                    action={action}
-                    chatReport={linkedReport}
-                    iouReport={iouReportOfLinkedReport}
-                    isHovered={hovered}
-                    contextMenuAnchor={popoverAnchorRef.current}
-                    containerStyles={displayAsGroup ? [] : [styles.mt2]}
-                    checkIfContextMenuActive={toggleContextMenuFromActiveReportAction}
-                    shouldDisplayContextMenu={shouldDisplayContextMenu}
-                />
-            );
         } else if (action.actionName === CONST.REPORT.ACTIONS.TYPE.REPORT_PREVIEW && isClosedExpenseReportWithNoExpenses) {
             children = <RenderHTML html={`<deleted-action>${translate('parentReportAction.deletedReport')}</deleted-action>`} />;
         } else if (action.actionName === CONST.REPORT.ACTIONS.TYPE.REPORT_PREVIEW) {
@@ -1185,12 +1168,6 @@ function PureReportActionItem({
             children = (
                 <ReportActionItemBasicMessage message="">
                     <RenderHTML html={`<comment><muted-text>${getMovedActionMessage(action, report)}</muted-text></comment>`} />
-                </ReportActionItemBasicMessage>
-            );
-        } else if (isActionOfType(action, CONST.REPORT.ACTIONS.TYPE.TRAVEL_UPDATE)) {
-            children = (
-                <ReportActionItemBasicMessage message="">
-                    <RenderHTML html={`<comment><muted-text>${getTravelUpdateMessage(action, formatTravelDate)}</muted-text></comment>`} />
                 </ReportActionItemBasicMessage>
             );
         } else if (action.actionName === CONST.REPORT.ACTIONS.TYPE.UNREPORTED_TRANSACTION) {
@@ -1502,10 +1479,6 @@ function PureReportActionItem({
                 shouldHideThreadDividerLine={shouldHideThreadDividerLine}
             />
         );
-    }
-
-    if (isTripPreview(action) && isThreadReportParentAction) {
-        return <TripSummary reportID={getOriginalMessage(action)?.linkedReportID} />;
     }
 
     if (isChronosOOOListAction(action)) {

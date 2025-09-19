@@ -41,7 +41,7 @@ function EReceipt({transactionID, transactionItem, isThumbnail = false}: EReceip
     const [cardList] = useOnyx(ONYXKEYS.CARD_LIST, {canBeMissing: true});
     const [transaction] = useOnyx(`${ONYXKEYS.COLLECTION.TRANSACTION}${getNonEmptyStringOnyxID(transactionID)}`, {canBeMissing: true});
 
-    const {primaryColor, secondaryColor, titleColor, MCCIcon, tripIcon, backgroundImage} = useEReceipt(transactionItem ?? transaction);
+    const {primaryColor, secondaryColor, titleColor, MCCIcon, backgroundImage} = useEReceipt(transactionItem ?? transaction);
 
     const {
         amount: transactionAmount,
@@ -90,24 +90,14 @@ function EReceipt({transactionID, transactionItem, isThumbnail = false}: EReceip
                                         styles.mb3,
                                     ]}
                                 >
-                                    <View>
-                                        {MCCIcon ? (
-                                            <Icon
-                                                src={MCCIcon}
-                                                height={receiptMCCSize}
-                                                width={receiptMCCSize}
-                                                fill={primaryColor}
-                                            />
-                                        ) : null}
-                                        {!MCCIcon && tripIcon ? (
-                                            <Icon
-                                                src={tripIcon}
-                                                height={receiptMCCSize}
-                                                width={receiptMCCSize}
-                                                fill={primaryColor}
-                                            />
-                                        ) : null}
-                                    </View>
+                                    {MCCIcon ? (
+                                        <Icon
+                                            src={MCCIcon}
+                                            height={receiptMCCSize}
+                                            width={receiptMCCSize}
+                                            fill={primaryColor}
+                                        />
+                                    ) : null}
                                 </View>
                                 <Text style={[styles.eReceiptGuaranteed, primaryTextColorStyle]}>{translate('eReceipt.guaranteed')}</Text>
                                 <View style={[styles.alignItemsCenter]}>

@@ -101,7 +101,6 @@ const Tag = 'Tag';
 const CarIce = 'CarIce';
 const ReceiptLocationMarker = 'ReceiptLocationMarker';
 const Lightbulb = 'Lightbulb';
-const EmptyStateTravel = 'EmptyStateTravel';
 const Stopwatch = 'Stopwatch';
 const SubscriptionAnnual = 'SubscriptionAnnual';
 const SubscriptionPPU = 'SubscriptionPPU';
@@ -254,7 +253,6 @@ export {
     CarIce,
     ReceiptLocationMarker,
     Lightbulb,
-    EmptyStateTravel,
     Stopwatch,
     SubscriptionAnnual,
     SubscriptionPPU,

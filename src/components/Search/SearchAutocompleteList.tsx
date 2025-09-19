@@ -218,9 +218,6 @@ function SearchAutocompleteList({
             case CONST.SEARCH.DATA_TYPES.CHAT:
                 suggestedStatuses = Object.values(CONST.SEARCH.STATUS.CHAT);
                 break;
-            case CONST.SEARCH.DATA_TYPES.TRIP:
-                suggestedStatuses = Object.values(CONST.SEARCH.STATUS.TRIP);
-                break;
             case CONST.SEARCH.DATA_TYPES.TASK:
                 suggestedStatuses = Object.values(CONST.SEARCH.STATUS.TASK);
                 break;
@@ -229,7 +226,6 @@ function SearchAutocompleteList({
                     ...CONST.SEARCH.STATUS.EXPENSE,
                     ...CONST.SEARCH.STATUS.INVOICE,
                     ...CONST.SEARCH.STATUS.CHAT,
-                    ...CONST.SEARCH.STATUS.TRIP,
                     ...CONST.SEARCH.STATUS.TASK,
                 });
         }

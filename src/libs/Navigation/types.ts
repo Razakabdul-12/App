@@ -1804,7 +1804,6 @@ type RightModalNavigatorParamList = {
     [SCREENS.RIGHT_MODAL.SIGN_IN]: NavigatorScreenParams<SignInNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.REFERRAL]: NavigatorScreenParams<ReferralDetailsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.TRANSACTION_DUPLICATE]: NavigatorScreenParams<TransactionDuplicateNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.TRAVEL]: NavigatorScreenParams<TravelNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.SEARCH_REPORT]: NavigatorScreenParams<SearchReportParamList>;
     [SCREENS.RIGHT_MODAL.RESTRICTED_ACTION]: NavigatorScreenParams<RestrictedActionParamList>;
     [SCREENS.RIGHT_MODAL.SEARCH_ADVANCED_FILTERS]: NavigatorScreenParams<SearchAdvancedFiltersParamList>;
@@ -1816,50 +1815,6 @@ type RightModalNavigatorParamList = {
     [SCREENS.RIGHT_MODAL.ADD_UNREPORTED_EXPENSE]: NavigatorScreenParams<{reportId: string | undefined}>;
     [SCREENS.RIGHT_MODAL.REPORT_CHANGE_APPROVER]: NavigatorScreenParams<ReportChangeApproverParamList>;
     [SCREENS.RIGHT_MODAL.MERGE_TRANSACTION]: NavigatorScreenParams<MergeTransactionNavigatorParamList>;
-};
-
-type TravelNavigatorParamList = {
-    [SCREENS.TRAVEL.MY_TRIPS]: undefined;
-    [SCREENS.TRAVEL.TRAVEL_DOT_LINK_WEB_VIEW]: {
-        token: string;
-        isTestAccount?: string;
-    };
-    [SCREENS.TRAVEL.TRIP_SUMMARY]: {
-        reportID: string;
-        transactionID: string;
-        backTo?: string;
-    };
-    [SCREENS.TRAVEL.TRIP_DETAILS]: {
-        reportID: string;
-        transactionID: string;
-        sequenceIndex: number;
-        pnr: string;
-        backTo?: string;
-    };
-    [SCREENS.TRAVEL.TCS]: {
-        domain?: string;
-    };
-    [SCREENS.TRAVEL.DOMAIN_PERMISSION_INFO]: {
-        domain: string;
-    };
-    [SCREENS.TRAVEL.WORKSPACE_ADDRESS]: {
-        domain: string;
-        backTo?: Routes;
-    };
-    [SCREENS.TRAVEL.PUBLIC_DOMAIN_ERROR]: {
-        backTo?: Routes;
-    };
-    [SCREENS.TRAVEL.UPGRADE]: {
-        backTo?: Routes;
-    };
-    [SCREENS.TRAVEL.DOMAIN_SELECTOR]: {
-        backTo?: Routes;
-    };
-    [SCREENS.TRAVEL.VERIFY_ACCOUNT]: {
-        domain: string;
-    };
-};
-
 type ReportsSplitNavigatorParamList = {
     [SCREENS.HOME]: undefined;
     [SCREENS.REPORT]: {
@@ -2416,7 +2371,6 @@ export type {
     StateOrRoute,
     TaskDetailsNavigatorParamList,
     TransactionDuplicateNavigatorParamList,
-    TravelNavigatorParamList,
     WalletStatementNavigatorParamList,
     WorkspaceSplitNavigatorParamList,
     MigratedUserModalNavigatorParamList,

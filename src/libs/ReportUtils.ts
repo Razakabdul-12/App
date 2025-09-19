@@ -176,7 +176,6 @@ import {
     getReportActionMessageText,
     getReportActionText,
     getRetractedMessage,
-    getTravelUpdateMessage,
     getWorkspaceCurrencyUpdateMessage,
     getWorkspaceFrequencyUpdateMessage,
     getWorkspaceReportFieldAddMessage,
@@ -219,7 +218,6 @@ import {
     isThreadParentMessage,
     isTrackExpenseAction,
     isTransactionThread,
-    isTripPreview,
     isUnapprovedAction,
     isWhisperAction,
     shouldReportActionBeVisible,
@@ -5367,10 +5365,6 @@ function getReportName(
         return getIntegrationSyncFailedMessage(parentReportAction, report?.policyID);
     }
 
-    if (isActionOfType(parentReportAction, CONST.REPORT.ACTIONS.TYPE.TRAVEL_UPDATE)) {
-        return getTravelUpdateMessage(parentReportAction);
-    }
-
     if (isChatThread(report)) {
         if (!isEmptyObject(parentReportAction) && isTransactionThread(parentReportAction)) {
             formattedName = getTransactionReportName({reportAction: parentReportAction, transactions, reports});
@@ -9742,11 +9736,6 @@ function getAllAncestorReportActions(report: Report | null | undefined, currentU
             break;
         }
 
-        // For threads, we don't want to display trip summary
-        if (isTripPreview(parentReportAction) && allAncestors.length > 0) {
-            break;
-        }
-
         const isParentReportActionUnread = isCurrentActionUnread(parentReport, parentReportAction);
         allAncestors.push({
             report: parentReport,
@@ -9925,9 +9914,7 @@ function shouldCreateNewMoneyRequestReport(existingIOUReport: OnyxInputOrEntry<R
     return !existingIOUReport || hasIOUWaitingOnCurrentUserBankAccount(chatReport) || !canAddTransaction(existingIOUReport) || (isScanRequest && isASAPSubmitBetaEnabled);
 }
 
-function getTripIDFromTransactionParentReportID(transactionParentReportID: string | undefined): string | undefined {
-    return (getReportOrDraftReport(transactionParentReportID) as OnyxEntry<Report>)?.tripData?.tripID;
-}
+
 
 /**
  * Checks if report contains actions with errors
@@ -11943,7 +11930,6 @@ export {
     updateOptimisticParentReportAction,
     updateReportPreview,
     temporary_getMoneyRequestOptions,
-    getTripIDFromTransactionParentReportID,
     buildOptimisticInvoiceReport,
     isCurrentUserInvoiceReceiver,
     isDraftReport,

@@ -51,7 +51,6 @@ import {
     getRetractedMessage,
     getRoomChangeLogMessage,
     getSortedReportActions,
-    getTravelUpdateMessage,
     getUpdateRoomDescriptionMessage,
     isActionableAddPaymentCard,
     isActionableJoinRequest,
@@ -697,8 +696,6 @@ function getLastMessageTextForReport({
         lastMessageTextFromReport = getReopenedMessage();
     } else if (isActionOfType(lastReportAction, CONST.REPORT.ACTIONS.TYPE.CHANGE_POLICY)) {
         lastMessageTextFromReport = getPolicyChangeMessage(lastReportAction);
-    } else if (isActionOfType(lastReportAction, CONST.REPORT.ACTIONS.TYPE.TRAVEL_UPDATE)) {
-        lastMessageTextFromReport = getTravelUpdateMessage(lastReportAction);
     } else if (isInviteOrRemovedAction(lastReportAction)) {
         lastMessageTextFromReport = getRoomChangeLogMessage(lastReportAction);
     } else if (isRenamedAction(lastReportAction)) {

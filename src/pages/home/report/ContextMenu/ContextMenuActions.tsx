@@ -48,7 +48,6 @@ import {
     getReopenedMessage,
     getReportActionMessageText,
     getTagListNameUpdatedMessage,
-    getTravelUpdateMessage,
     getUpdatedApprovalRuleMessage,
     getUpdatedAuditRateMessage,
     getUpdatedManualApprovalThresholdMessage,
@@ -87,7 +86,6 @@ import {
     isReportPreviewAction as isReportPreviewActionReportActionsUtils,
     isTagModificationAction,
     isTaskAction as isTaskActionReportActionsUtils,
-    isTripPreview,
     isUnapprovedAction,
     isWhisperAction as isWhisperActionReportActionsUtils,
 } from '@libs/ReportActionsUtils';
@@ -494,7 +492,7 @@ const ContextMenuActions: ContextMenuAction[] = [
         successTextTranslateKey: 'reportActionContextMenu.copied',
         successIcon: Expensicons.Checkmark,
         shouldShow: ({type, reportAction}) =>
-            type === CONST.CONTEXT_MENU_TYPES.REPORT_ACTION && !isReportActionAttachment(reportAction) && !isMessageDeleted(reportAction) && !isTripPreview(reportAction),
+            type === CONST.CONTEXT_MENU_TYPES.REPORT_ACTION && !isReportActionAttachment(reportAction) && !isMessageDeleted(reportAction),
 
         // If return value is true, we switch the `text` and `icon` on
         // `ContextMenuItem` with `successText` and `successIcon` which will fall back to
@@ -674,8 +672,6 @@ const ContextMenuActions: ContextMenuAction[] = [
                     setClipboardMessage(getAddedConnectionMessage(reportAction));
                 } else if (isActionOfType(reportAction, CONST.REPORT.ACTIONS.TYPE.POLICY_CHANGE_LOG.DELETE_INTEGRATION)) {
                     setClipboardMessage(getRemovedConnectionMessage(reportAction));
-                } else if (isActionOfType(reportAction, CONST.REPORT.ACTIONS.TYPE.TRAVEL_UPDATE)) {
-                    setClipboardMessage(getTravelUpdateMessage(reportAction));
                 } else if (isActionOfType(reportAction, CONST.REPORT.ACTIONS.TYPE.POLICY_CHANGE_LOG.UPDATE_AUDIT_RATE)) {
                     setClipboardMessage(getUpdatedAuditRateMessage(reportAction));
                 } else if (isActionOfType(reportAction, CONST.REPORT.ACTIONS.TYPE.POLICY_CHANGE_LOG.ADD_APPROVER_RULE)) {

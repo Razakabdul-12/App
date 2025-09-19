@@ -116,7 +116,6 @@ const userFriendlyStatusList = Object.values({
     ...CONST.SEARCH.STATUS.EXPENSE,
     ...CONST.SEARCH.STATUS.INVOICE,
     ...CONST.SEARCH.STATUS.CHAT,
-    ...CONST.SEARCH.STATUS.TRIP,
     ...CONST.SEARCH.STATUS.TASK,
 }).map((value) => getUserFriendlyValue(value));
 
