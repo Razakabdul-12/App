@@ -1520,11 +1520,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.RESTRICTED_ACTION_ROOT]: ROUTES.RESTRICTED_ACTION.route,
                     },
                 },
-                [SCREENS.RIGHT_MODAL.MISSING_PERSONAL_DETAILS]: {
-                    screens: {
-                        [SCREENS.MISSING_PERSONAL_DETAILS_ROOT]: ROUTES.MISSING_PERSONAL_DETAILS,
-                    },
-                },
                 [SCREENS.RIGHT_MODAL.ADD_UNREPORTED_EXPENSE]: {
                     screens: {
                         [SCREENS.ADD_UNREPORTED_EXPENSES_ROOT]: ROUTES.ADD_UNREPORTED_EXPENSE.route,

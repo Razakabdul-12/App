@@ -2520,17 +2520,6 @@ const CONST = {
         VENDOR_BILL: 'VENDOR_BILL',
     },
 
-    MISSING_PERSONAL_DETAILS_INDEXES: {
-        MAPPING: {
-            LEGAL_NAME: 0,
-            DATE_OF_BIRTH: 1,
-            ADDRESS: 2,
-            PHONE_NUMBER: 3,
-            CONFIRM: 4,
-        },
-        INDEX_LIST: ['1', '2', '3', '4'],
-    },
-
     ACCOUNT_ID: {
         ACCOUNTING: Number(Config?.EXPENSIFY_ACCOUNT_ID_ACCOUNTING ?? 9645353),
         ACCOUNTS_PAYABLE: Number(Config?.EXPENSIFY_ACCOUNT_ID_ACCOUNTS_PAYABLE ?? 10903701),

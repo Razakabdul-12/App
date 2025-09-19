@@ -226,10 +226,6 @@ function RightModalNavigator({navigation, route}: RightModalNavigatorProps) {
                             component={ModalStackNavigators.SearchSavedSearchModalStackNavigator}
                         />
                         <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.MISSING_PERSONAL_DETAILS}
-                            component={ModalStackNavigators.MissingPersonalDetailsModalStackNavigator}
-                        />
-                        <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.ADD_UNREPORTED_EXPENSE}
                             component={ModalStackNavigators.AddUnreportedExpenseModalStackNavigator}
                         />
