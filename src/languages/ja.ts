@@ -949,7 +949,7 @@ const translations = {
         draftedMessage: '下書きメッセージ',
         listOfChatMessages: 'チャットメッセージのリスト',
         listOfChats: 'チャットのリスト',
-        saveTheWorld: '世界を救う',
+
         tooltip: 'ここから始めましょう！',
         redirectToExpensifyClassicModal: {
             title: '近日公開',
@@ -6476,29 +6476,7 @@ const translations = {
         share: '私の会計士と共有する',
         nothing: '今のところ何もありません。',
     },
-    teachersUnitePage: {
-        teachersUnite: 'Teachers Unite',
-        joinExpensifyOrg: 'Expensify.orgと共に、世界中の不正をなくしましょう。現在の「Teachers Unite」キャンペーンは、必要な学用品の費用を分担することで、世界中の教育者を支援しています。',
-        iKnowATeacher: '私は教師を知っています。',
-        iAmATeacher: '私は教師です',
-        getInTouch: '素晴らしいです！彼らの連絡先情報を共有してください。こちらから連絡を取ります。',
-        introSchoolPrincipal: 'あなたの学校の校長への紹介',
-        schoolPrincipalVerifyExpense:
-            'Expensify.orgは、低所得世帯の学生がより良い学習体験を得られるように、必需品の学用品の費用を分担します。あなたの校長があなたの経費を確認するよう求められます。',
-        principalFirstName: '名',
-        principalLastName: '姓',
-        principalWorkEmail: '主要な勤務先のメールアドレス',
-        updateYourEmail: 'メールアドレスを更新してください',
-        updateEmail: 'メールアドレスを更新する',
-        schoolMailAsDefault: ({contactMethodsRoute}: ContactMethodsRouteParams) =>
-            `先に進む前に、学校のメールをデフォルトの連絡方法として設定してください。設定 > プロフィール > <a href="${contactMethodsRoute}">連絡方法</a> で行うことができます。`,
-        error: {
-            enterPhoneEmail: '有効なメールアドレスまたは電話番号を入力してください',
-            enterEmail: 'メールアドレスを入力してください',
-            enterValidEmail: '有効なメールアドレスを入力してください',
-            tryDifferentEmail: '別のメールアドレスを試してください',
-        },
-    },
+
     cardTransactions: {
         notActivated: '未アクティベート',
         outOfPocket: '自己負担の支出',

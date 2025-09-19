@@ -947,7 +947,7 @@ const translations = {
         draftedMessage: 'Wiadomość robocza',
         listOfChatMessages: 'Lista wiadomości czatu',
         listOfChats: 'Lista czatów',
-        saveTheWorld: 'Ratuj świat',
+
         tooltip: 'Rozpocznij tutaj!',
         redirectToExpensifyClassicModal: {
             title: 'Już wkrótce',
@@ -6497,30 +6497,7 @@ const translations = {
         share: 'Udostępnij to mojemu księgowemu',
         nothing: 'Nic na razie',
     },
-    teachersUnitePage: {
-        teachersUnite: 'Nauczyciele, łączcie się',
-        joinExpensifyOrg:
-            'Dołącz do Expensify.org, aby wyeliminować niesprawiedliwość na całym świecie. Obecna kampania "Teachers Unite" wspiera nauczycieli wszędzie, dzieląc koszty niezbędnych materiałów szkolnych.',
-        iKnowATeacher: 'Znam nauczyciela',
-        iAmATeacher: 'Jestem nauczycielem',
-        getInTouch: 'Świetnie! Proszę podziel się ich informacjami, abyśmy mogli się z nimi skontaktować.',
-        introSchoolPrincipal: 'Wprowadzenie do dyrektora szkoły',
-        schoolPrincipalVerifyExpense:
-            'Expensify.org dzieli koszty podstawowych przyborów szkolnych, aby uczniowie z gospodarstw domowych o niskich dochodach mogli mieć lepsze doświadczenia edukacyjne. Twój dyrektor zostanie poproszony o weryfikację Twoich wydatków.',
-        principalFirstName: 'Imię główne',
-        principalLastName: 'Nazwisko dyrektora',
-        principalWorkEmail: 'Główny służbowy adres e-mail',
-        updateYourEmail: 'Zaktualizuj swój adres e-mail',
-        updateEmail: 'Zaktualizuj adres e-mail',
-        schoolMailAsDefault: ({contactMethodsRoute}: ContactMethodsRouteParams) =>
-            `Zanim przejdziesz dalej, upewnij się, że ustawiłeś swój szkolny e-mail jako domyślną metodę kontaktu. Możesz to zrobić w Ustawieniach > Profil > <a href="${contactMethodsRoute}">Metody kontaktu</a>.`,
-        error: {
-            enterPhoneEmail: 'Wprowadź prawidłowy adres e-mail lub numer telefonu',
-            enterEmail: 'Wprowadź adres e-mail',
-            enterValidEmail: 'Wprowadź prawidłowy adres e-mail',
-            tryDifferentEmail: 'Proszę spróbować inny adres e-mail',
-        },
-    },
+
     cardTransactions: {
         notActivated: 'Nieaktywowany',
         outOfPocket: 'Wydatki z własnej kieszeni',

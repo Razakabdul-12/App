@@ -938,7 +938,6 @@ const translations = {
         draftedMessage: 'Drafted message',
         listOfChatMessages: 'List of chat messages',
         listOfChats: 'List of chats',
-        saveTheWorld: 'Save the world',
         tooltip: 'Get started here!',
         redirectToExpensifyClassicModal: {
             title: 'Coming soon',
@@ -6473,30 +6472,6 @@ const translations = {
         categorize: 'Categorize it',
         share: 'Share it with my accountant',
         nothing: 'Nothing for now',
-    },
-    teachersUnitePage: {
-        teachersUnite: 'Teachers Unite',
-        joinExpensifyOrg:
-            'Join Expensify.org in eliminating injustice around the world. The current "Teachers Unite" campaign supports educators everywhere by splitting the costs of essential school supplies.',
-        iKnowATeacher: 'I know a teacher',
-        iAmATeacher: 'I am a teacher',
-        getInTouch: 'Excellent! Please share their information so we can get in touch with them.',
-        introSchoolPrincipal: 'Intro to your school principal',
-        schoolPrincipalVerifyExpense:
-            'Expensify.org splits the cost of essential school supplies so that students from low-income households can have a better learning experience. Your principal will be asked to verify your expenses.',
-        principalFirstName: 'Principal first name',
-        principalLastName: 'Principal last name',
-        principalWorkEmail: 'Principal work email',
-        updateYourEmail: 'Update your email address',
-        updateEmail: 'Update email address',
-        schoolMailAsDefault: ({contactMethodsRoute}: ContactMethodsRouteParams) =>
-            `Before you move forward, please make sure to set your school email as your default contact method. You can do so in Settings > Profile > <a href="${contactMethodsRoute}">Contact methods</a>.`,
-        error: {
-            enterPhoneEmail: 'Enter a valid email or phone number',
-            enterEmail: 'Enter an email',
-            enterValidEmail: 'Enter a valid email',
-            tryDifferentEmail: 'Please try a different email',
-        },
     },
     cardTransactions: {
         notActivated: 'Not activated',

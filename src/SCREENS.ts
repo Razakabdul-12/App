@@ -91,7 +91,6 @@ const SCREENS = {
         SHARE_CODE: 'Settings_Share_Code',
         SECURITY: 'Settings_Security',
         ABOUT: 'Settings_About',
-        SAVE_THE_WORLD: 'Settings_TeachersUnite',
         APP_DOWNLOAD_LINKS: 'Settings_App_Download_Links',
         ADD_DEBIT_CARD: 'Settings_Add_Debit_Card',
         ADD_PAYMENT_CARD_CHANGE_CURRENCY: 'Settings_Add_Payment_Card_Change_Currency',
@@ -186,9 +185,6 @@ const SCREENS = {
         DISABLED: 'Settings_TwoFactorAuth_Disabled',
         DISABLE: 'Settings_TwoFactorAuth_Disable',
     },
-    SAVE_THE_WORLD: {
-        ROOT: 'SaveTheWorld_Root',
-    },
     RIGHT_MODAL: {
         SETTINGS: 'Settings',
         TWO_FACTOR_AUTH: 'TwoFactorAuth',
@@ -205,7 +201,6 @@ const SCREENS = {
         PARTICIPANTS: 'Participants',
         MONEY_REQUEST: 'MoneyRequest',
         NEW_TASK: 'NewTask',
-        TEACHERS_UNITE: 'TeachersUnite',
         TASK_DETAILS: 'Task_Details',
         ENABLE_PAYMENTS: 'EnablePayments',
         SPLIT_DETAILS: 'SplitDetails',
@@ -725,9 +720,6 @@ const SCREENS = {
         ROOT: 'TestDrive_Demo_Root',
     },
 
-    I_KNOW_A_TEACHER: 'I_Know_A_Teacher',
-    INTRO_SCHOOL_PRINCIPAL: 'Intro_School_Principal',
-    I_AM_A_TEACHER: 'I_Am_A_Teacher',
     ENABLE_PAYMENTS_ROOT: 'EnablePayments_Root',
     ADD_PERSONAL_BANK_ACCOUNT_ROOT: 'AddPersonalBankAccount_Root',
     REIMBURSEMENT_ACCOUNT_ROOT: 'Reimbursement_Account_Root',

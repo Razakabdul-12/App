@@ -269,12 +269,6 @@ function InitialSettingsPage({currentUserPersonalDetails}: InitialSettingsPagePr
                     action: () => Navigation.navigate(ROUTES.SETTINGS_TROUBLESHOOT),
                 },
                 {
-                    translationKey: 'sidebarScreen.saveTheWorld',
-                    icon: Expensicons.Heart,
-                    screenName: SCREENS.SETTINGS.SAVE_THE_WORLD,
-                    action: () => Navigation.navigate(ROUTES.SETTINGS_SAVE_THE_WORLD),
-                },
-                {
                     translationKey: signOutTranslationKey,
                     icon: Expensicons.Exit,
                     action: () => signOut(false),

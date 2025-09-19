@@ -85,7 +85,6 @@ const House = 'House';
 const Building = 'Building';
 const Buildings = 'Buildings';
 const Alert = 'Alert';
-const TeachersUnite = 'TeachersUnite';
 const Abacus = 'Abacus';
 const Binoculars = 'Binoculars';
 const CompanyCard = 'CompanyCard';
@@ -239,7 +238,6 @@ export {
     Building,
     Buildings,
     Alert,
-    TeachersUnite,
     Abacus,
     Binoculars,
     CompanyCard,

@@ -41,11 +41,6 @@ const DotLottieAnimations = {
         h: 240,
         backgroundColor: colors.pink800,
     },
-    SaveTheWorld: {
-        file: require<LottieViewProps['source']>('@assets/animations/SaveTheWorld.lottie'),
-        w: 375,
-        h: 240,
-    },
     Safe: {
         file: require<LottieViewProps['source']>('@assets/animations/Safe.lottie'),
         w: 625,

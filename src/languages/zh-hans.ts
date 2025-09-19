@@ -943,7 +943,7 @@ const translations = {
         draftedMessage: '草稿消息',
         listOfChatMessages: '聊天消息列表',
         listOfChats: '聊天列表',
-        saveTheWorld: '拯救世界',
+
         tooltip: '从这里开始！',
         redirectToExpensifyClassicModal: {
             title: '即将推出',
@@ -6385,28 +6385,7 @@ const translations = {
         share: '与我的会计分享',
         nothing: '暂时没有',
     },
-    teachersUnitePage: {
-        teachersUnite: '教师联合',
-        joinExpensifyOrg: '加入 Expensify.org，消除世界各地的不公正现象。目前的“教师联合”运动通过分担基本学校用品的费用来支持各地的教育工作者。',
-        iKnowATeacher: '我认识一位老师',
-        iAmATeacher: '我是老师',
-        getInTouch: '太好了！请分享他们的信息，以便我们可以与他们联系。',
-        introSchoolPrincipal: '介绍你的校长',
-        schoolPrincipalVerifyExpense: 'Expensify.org 分担基本学习用品的费用，以便低收入家庭的学生能够获得更好的学习体验。您的校长将被要求核实您的费用。',
-        principalFirstName: '名',
-        principalLastName: '校长姓氏',
-        principalWorkEmail: '主要工作邮箱',
-        updateYourEmail: '更新您的电子邮件地址',
-        updateEmail: '更新电子邮件地址',
-        schoolMailAsDefault: ({contactMethodsRoute}: ContactMethodsRouteParams) =>
-            `在继续之前，请确保将您的学校电子邮件设置为默认联系方式。您可以在 设置 > 个人资料 > <a href="${contactMethodsRoute}">联系方式</a> 中进行设置。`,
-        error: {
-            enterPhoneEmail: '请输入有效的电子邮件或电话号码',
-            enterEmail: '输入电子邮件地址',
-            enterValidEmail: '请输入有效的电子邮件地址',
-            tryDifferentEmail: '请尝试使用其他电子邮件',
-        },
-    },
+
     cardTransactions: {
         notActivated: '未激活',
         outOfPocket: '自付费用',

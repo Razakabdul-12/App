@@ -951,7 +951,7 @@ const translations = {
         draftedMessage: 'Entwurfene Nachricht',
         listOfChatMessages: 'Liste der Chatnachrichten',
         listOfChats: 'Liste der Chats',
-        saveTheWorld: 'Rette die Welt',
+
         tooltip: 'Hier starten!',
         redirectToExpensifyClassicModal: {
             title: 'Demnächst verfügbar',
@@ -6508,30 +6508,7 @@ const translations = {
         share: 'Teilen Sie es mit meinem Buchhalter',
         nothing: 'Nichts für jetzt',
     },
-    teachersUnitePage: {
-        teachersUnite: 'Lehrer vereinigen sich',
-        joinExpensifyOrg:
-            'Schließen Sie sich Expensify.org an, um Ungerechtigkeit auf der ganzen Welt zu beseitigen. Die aktuelle Kampagne "Teachers Unite" unterstützt Lehrer überall, indem sie die Kosten für wichtige Schulmaterialien aufteilt.',
-        iKnowATeacher: 'Ich kenne einen Lehrer.',
-        iAmATeacher: 'Ich bin Lehrer.',
-        getInTouch: 'Ausgezeichnet! Bitte teilen Sie uns deren Informationen mit, damit wir Kontakt aufnehmen können.',
-        introSchoolPrincipal: 'Einführung zu Ihrem Schulleiter',
-        schoolPrincipalVerifyExpense:
-            'Expensify.org teilt die Kosten für wichtige Schulmaterialien, damit Schüler aus einkommensschwachen Haushalten eine bessere Lernerfahrung haben können. Ihr Schulleiter wird gebeten, Ihre Ausgaben zu überprüfen.',
-        principalFirstName: 'Vorname des Hauptansprechpartners',
-        principalLastName: 'Nachname des Schulleiters',
-        principalWorkEmail: 'Hauptarbeits-E-Mail-Adresse',
-        updateYourEmail: 'Aktualisieren Sie Ihre E-Mail-Adresse',
-        updateEmail: 'E-Mail-Adresse aktualisieren',
-        schoolMailAsDefault: ({contactMethodsRoute}: ContactMethodsRouteParams) =>
-            `Bevor Sie fortfahren, stellen Sie bitte sicher, dass Sie Ihre Schul-E-Mail als Ihre Standardkontaktmethode festlegen. Sie können dies unter Einstellungen > Profil > <a href="${contactMethodsRoute}">Kontaktmethoden</a>.`,
-        error: {
-            enterPhoneEmail: 'Geben Sie eine gültige E-Mail-Adresse oder Telefonnummer ein',
-            enterEmail: 'Geben Sie eine E-Mail-Adresse ein',
-            enterValidEmail: 'Geben Sie eine gültige E-Mail-Adresse ein',
-            tryDifferentEmail: 'Bitte versuchen Sie eine andere E-Mail-Adresse',
-        },
-    },
+
     cardTransactions: {
         notActivated: 'Nicht aktiviert',
         outOfPocket: 'Ausgaben aus eigener Tasche',

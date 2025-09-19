@@ -947,7 +947,7 @@ const translations = {
         draftedMessage: 'Opgesteld bericht',
         listOfChatMessages: 'Lijst van chatberichten',
         listOfChats: 'Lijst van chats',
-        saveTheWorld: 'Red de wereld',
+
         tooltip: 'Begin hier!',
         redirectToExpensifyClassicModal: {
             title: 'Binnenkort beschikbaar',
@@ -6511,30 +6511,7 @@ const translations = {
         share: 'Deel het met mijn accountant',
         nothing: 'Niets voor nu',
     },
-    teachersUnitePage: {
-        teachersUnite: 'Leraren Verenigd',
-        joinExpensifyOrg:
-            'Doe mee met Expensify.org om onrecht wereldwijd te elimineren. De huidige "Teachers Unite" campagne ondersteunt docenten overal door de kosten van essentiële schoolbenodigdheden te delen.',
-        iKnowATeacher: 'Ik ken een leraar.',
-        iAmATeacher: 'Ik ben een leraar.',
-        getInTouch: 'Uitstekend! Deel alstublieft hun informatie zodat we contact met hen kunnen opnemen.',
-        introSchoolPrincipal: 'Introductie aan je schooldirecteur',
-        schoolPrincipalVerifyExpense:
-            'Expensify.org deelt de kosten van essentiële schoolbenodigdheden zodat studenten uit huishoudens met een laag inkomen een betere leerervaring kunnen hebben. Uw directeur zal worden gevraagd om uw uitgaven te verifiëren.',
-        principalFirstName: 'Voornaam van de directeur',
-        principalLastName: 'Achternaam van de directeur',
-        principalWorkEmail: 'Primaire werk e-mail',
-        updateYourEmail: 'Werk uw e-mailadres bij',
-        updateEmail: 'E-mailadres bijwerken',
-        schoolMailAsDefault: ({contactMethodsRoute}: ContactMethodsRouteParams) =>
-            `Voordat je verder gaat, zorg ervoor dat je je school e-mailadres instelt als je standaard contactmethode. Dit kun je doen in Instellingen > Profiel > <a href="${contactMethodsRoute}">Contactmethoden</a>.`,
-        error: {
-            enterPhoneEmail: 'Voer een geldig e-mailadres of telefoonnummer in',
-            enterEmail: 'Voer een e-mailadres in',
-            enterValidEmail: 'Voer een geldig e-mailadres in',
-            tryDifferentEmail: 'Probeer een ander e-mailadres alstublieft.',
-        },
-    },
+
     cardTransactions: {
         notActivated: 'Niet geactiveerd',
         outOfPocket: 'Uit eigen zak uitgaven',

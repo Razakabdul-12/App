@@ -166,10 +166,6 @@ function RightModalNavigator({navigation, route}: RightModalNavigatorProps) {
                             component={ModalStackNavigators.NewTaskModalStackNavigator}
                         />
                         <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.TEACHERS_UNITE}
-                            component={ModalStackNavigators.NewTeachersUniteNavigator}
-                        />
-                        <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.TASK_DETAILS}
                             component={ModalStackNavigators.TaskModalStackNavigator}
                         />

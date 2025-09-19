@@ -390,8 +390,6 @@ const ROUTES = {
         getRoute: (source: string) => `settings/troubleshoot/console/share-log?source=${encodeURI(source)}` as const,
     },
 
-    SETTINGS_SAVE_THE_WORLD: 'settings/teachersunite',
-
     KEYBOARD_SHORTCUTS: {
         route: 'keyboard-shortcuts',
 
@@ -1166,11 +1164,6 @@ const ROUTES = {
         // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
         getRoute: (backTo?: string) => getUrlWithBackToParam('new/task/description', backTo),
     },
-
-    TEACHERS_UNITE: 'settings/teachersunite',
-    I_KNOW_A_TEACHER: 'settings/teachersunite/i-know-a-teacher',
-    I_AM_A_TEACHER: 'settings/teachersunite/i-am-a-teacher',
-    INTRO_SCHOOL_PRINCIPAL: 'settings/teachersunite/intro-school-principal',
 
     ERECEIPT: {
         route: 'eReceipt/:transactionID',

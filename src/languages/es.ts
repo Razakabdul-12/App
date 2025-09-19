@@ -930,7 +930,6 @@ const translations = {
         draftedMessage: 'Mensaje borrador',
         listOfChatMessages: 'Lista de mensajes del chat',
         listOfChats: 'lista de chats',
-        saveTheWorld: 'Salvar el mundo',
         tooltip: '¡Comienza aquí!',
         redirectToExpensifyClassicModal: {
             title: 'Próximamente',
@@ -6962,29 +6961,6 @@ const translations = {
         levelOneResult: 'Envía una advertencia anónima y el mensaje es reportado para revisión.',
         levelTwoResult: 'Mensaje ocultado en el canal, más advertencia anónima y mensaje reportado para revisión.',
         levelThreeResult: 'Mensaje eliminado del canal, más advertencia anónima y mensaje reportado para revisión.',
-    },
-    teachersUnitePage: {
-        teachersUnite: 'Profesores Unidos',
-        joinExpensifyOrg: 'Únete a Expensify.org para eliminar la injusticia en todo el mundo y ayuda a los profesores a dividir sus gastos para las aulas más necesitadas.',
-        iKnowATeacher: 'Yo conozco a un profesor',
-        iAmATeacher: 'Soy profesor',
-        getInTouch: '¡Excelente! Por favor, comparte tu información para que podamos ponernos en contacto con ellos.',
-        introSchoolPrincipal: 'Introducción al director del colegio',
-        schoolPrincipalVerifyExpense:
-            'Expensify.org divide el coste del material escolar esencial para que los estudiantes de familias con bajos ingresos puedan tener una mejor experiencia de aprendizaje. Se pedirá a tu director que verifique tus gastos.',
-        principalFirstName: 'Nombre del director',
-        principalLastName: 'Apellido del director',
-        principalWorkEmail: 'Correo electrónico de trabajo del director',
-        updateYourEmail: 'Actualiza tu dirección de correo electrónico',
-        updateEmail: 'Actualización de la dirección de correo electrónico',
-        schoolMailAsDefault: ({contactMethodsRoute}: ContactMethodsRouteParams) =>
-            `Antes de seguir adelante, asegúrate de establecer el correo electrónico de tu colegio como método de contacto predeterminado. Puede hacerlo en Configuración > Perfil > <a href="${contactMethodsRoute}">Métodos de contacto</a>.`,
-        error: {
-            enterPhoneEmail: 'Ingrese un correo electrónico o número de teléfono válido',
-            enterEmail: 'Introduce un correo electrónico',
-            enterValidEmail: 'Introduzca un correo electrónico válido',
-            tryDifferentEmail: 'Por favor intenta con un correo electrónico diferente',
-        },
     },
     cardTransactions: {
         notActivated: 'No activado',

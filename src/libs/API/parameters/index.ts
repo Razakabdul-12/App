@@ -8,7 +8,6 @@ export type {default as VerifySetupIntentParams} from './VerifySetupIntentParams
 export type {default as VerifySetupIntentAndRequestPolicyOwnerChangeParams} from './VerifySetupIntentAndRequestPolicyOwnerChangeParams';
 export type {default as AddPersonalBankAccountParams} from './AddPersonalBankAccountParams';
 export type {default as RestartBankAccountSetupParams} from './RestartBankAccountSetupParams';
-export type {default as AddSchoolPrincipalParams} from './AddSchoolPrincipalParams';
 export type {default as AuthenticatePusherParams} from './AuthenticatePusherParams';
 export type {default as BankAccountHandlePlaidErrorParams} from './BankAccountHandlePlaidErrorParams';
 export type {default as BeginAppleSignInParams} from './BeginAppleSignInParams';
@@ -61,7 +60,6 @@ export type {default as OpenPolicyReceiptPartnersPageParams} from './OpenPolicyR
 export type {default as PaymentCardParams} from './PaymentCardParams';
 export type {default as PusherPingParams} from './PusherPingParams';
 export type {default as ReconnectAppParams} from './ReconnectAppParams';
-export type {default as ReferTeachersUniteVolunteerParams} from './ReferTeachersUniteVolunteerParams';
 export type {default as ReportVirtualExpensifyCardFraudParams} from './ReportVirtualExpensifyCardFraudParams';
 export type {default as RequestContactMethodValidateCodeParams} from './RequestContactMethodValidateCodeParams';
 export type {default as RequestNewValidateCodeParams} from './RequestNewValidateCodeParams';

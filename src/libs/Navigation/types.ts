@@ -1627,13 +1627,6 @@ type NewTaskNavigatorParamList = {
     };
 };
 
-type TeachersUniteNavigatorParamList = {
-    [SCREENS.SAVE_THE_WORLD.ROOT]: undefined;
-    [SCREENS.I_KNOW_A_TEACHER]: undefined;
-    [SCREENS.INTRO_SCHOOL_PRINCIPAL]: undefined;
-    [SCREENS.I_AM_A_TEACHER]: undefined;
-};
-
 type TaskDetailsNavigatorParamList = {
     [SCREENS.TASK.TITLE]: {
         backTo?: Routes;
@@ -1812,7 +1805,6 @@ type RightModalNavigatorParamList = {
     [SCREENS.RIGHT_MODAL.WORKSPACE_CONFIRMATION]: NavigatorScreenParams<WorkspaceConfirmationNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.WORKSPACE_DUPLICATE]: NavigatorScreenParams<WorkspaceDuplicateNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.NEW_TASK]: NavigatorScreenParams<NewTaskNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.TEACHERS_UNITE]: NavigatorScreenParams<TeachersUniteNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.TASK_DETAILS]: NavigatorScreenParams<TaskDetailsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.ENABLE_PAYMENTS]: NavigatorScreenParams<EnablePaymentsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.SPLIT_DETAILS]: NavigatorScreenParams<SplitDetailsNavigatorParamList>;
@@ -1903,7 +1895,6 @@ type SettingsSplitNavigatorParamList = {
     [SCREENS.SETTINGS.WALLET.ROOT]: undefined;
     [SCREENS.SETTINGS.ABOUT]: undefined;
     [SCREENS.SETTINGS.TROUBLESHOOT]: undefined;
-    [SCREENS.SETTINGS.SAVE_THE_WORLD]: undefined;
     [SCREENS.SETTINGS.SUBSCRIPTION.ROOT]?: {backTo?: Routes};
 };
 
@@ -2447,7 +2438,6 @@ export type {
     State,
     StateOrRoute,
     TaskDetailsNavigatorParamList,
-    TeachersUniteNavigatorParamList,
     TransactionDuplicateNavigatorParamList,
     TravelNavigatorParamList,
     WalletStatementNavigatorParamList,

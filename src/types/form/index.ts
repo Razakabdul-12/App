@@ -6,8 +6,6 @@ export type {DisplayNameForm} from './DisplayNameForm';
 export type {EditTaskForm} from './EditTaskForm';
 export type {FeedbackSurveyForm} from './FeedbackSurveyForm';
 export type {HomeAddressForm} from './HomeAddressForm';
-export type {IKnowTeacherForm} from './IKnowTeacherForm';
-export type {IntroSchoolPrincipalForm} from './IntroSchoolPrincipalForm';
 export type {IssueNewExpensifyCardForm} from './IssueNewExpensifyCardForm';
 export type {AddNewCardFeedForm} from './AddNewCardFeedForm';
 export type {EditExpensifyCardNameForm} from './EditExpensifyCardNameForm';
