@@ -103,9 +103,6 @@ type AttachmentModalProps = {
     /** The type of the attachment */
     type?: ValueOf<typeof CONST.ATTACHMENT_TYPE>;
 
-    /** If the attachment originates from a note, the accountID will represent the author of that note. */
-    accountID?: number;
-
     /** Optional callback to fire when we want to do something after modal show. */
     onModalShow?: () => void;
 
@@ -181,7 +178,6 @@ function AttachmentModal({
     shouldShowNotFoundPage = false,
     type = undefined,
     attachmentID,
-    accountID = undefined,
     shouldDisableSendButton = false,
     draftTransactionID,
     iouAction,
@@ -499,7 +495,6 @@ function AttachmentModal({
                             // We shouldn't show carousel arrow in search result attachment
                             (!isEmptyObject(report) && !isReceiptAttachment && type !== CONST.ATTACHMENT_TYPE.SEARCH ? (
                                 <AttachmentCarousel
-                                    accountID={accountID}
                                     type={type}
                                     attachmentID={attachmentID}
                                     report={report}

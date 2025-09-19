@@ -1820,16 +1820,6 @@ const translations = {
         passwordUpdated: 'パスワードが更新されました！',
         allSet: '準備完了です。新しいパスワードを安全に保管してください。',
     },
-    privateNotes: {
-        title: 'プライベートメモ',
-        personalNoteMessage: 'このチャットに関するメモをここに記録してください。メモを追加、編集、または表示できるのはあなただけです。',
-        sharedNoteMessage: 'このチャットに関するメモをここに記録してください。Expensifyの従業員およびteam.expensify.comドメインの他のメンバーはこれらのメモを閲覧できます。',
-        composerLabel: 'メモ',
-        myNote: '私のメモ',
-        error: {
-            genericFailureMessage: 'プライベートノートを保存できませんでした。',
-        },
-    },
     billingCurrency: {
         error: {
             securityCode: '有効なセキュリティコードを入力してください',

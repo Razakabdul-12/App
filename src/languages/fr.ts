@@ -1832,16 +1832,6 @@ const translations = {
         passwordUpdated: 'Mot de passe mis à jour !',
         allSet: 'Tout est prêt. Gardez votre nouveau mot de passe en sécurité.',
     },
-    privateNotes: {
-        title: 'Notes privées',
-        personalNoteMessage: 'Conservez des notes sur cette discussion ici. Vous êtes la seule personne qui peut ajouter, modifier ou consulter ces notes.',
-        sharedNoteMessage: "Conservez des notes sur cette discussion ici. Les employés d'Expensify et les autres membres du domaine team.expensify.com peuvent consulter ces notes.",
-        composerLabel: 'Notes',
-        myNote: 'Ma note',
-        error: {
-            genericFailureMessage: "Les notes privées n'ont pas pu être enregistrées.",
-        },
-    },
     billingCurrency: {
         error: {
             securityCode: 'Veuillez entrer un code de sécurité valide',

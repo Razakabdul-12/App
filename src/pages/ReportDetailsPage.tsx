@@ -86,7 +86,6 @@ import {
     isTrackExpenseReport as isTrackExpenseReportUtil,
     isUserCreatedPolicyRoom as isUserCreatedPolicyRoomUtil,
     navigateBackOnDeleteTransaction,
-    navigateToPrivateNotes,
     shouldDisableRename as shouldDisableRenameUtil,
     shouldUseFullTitleToDisplay,
 } from '@libs/ReportUtils';
@@ -96,8 +95,6 @@ import {deleteMoneyRequest, deleteTrackExpense, getNavigationUrlAfterTrackExpens
 import {
     clearAvatarErrors,
     clearPolicyRoomNameErrors,
-    getReportPrivateNote,
-    hasErrorInPrivateNotes,
     leaveGroupChat,
     leaveRoom,
     setDeleteTransactionNavigateBackUrl,
@@ -242,7 +239,6 @@ function ReportDetailsPage({policy, report, route, reportMetadata}: ReportDetail
         return !pendingMember || pendingMember.pendingAction !== CONST.RED_BRICK_ROAD_PENDING_ACTION.DELETE ? accountID : [];
     });
 
-    const isPrivateNotesFetchTriggered = reportMetadata?.isLoadingPrivateNotes !== undefined;
     const requestParentReportAction = useMemo(() => {
         // 2. MoneyReport case
         if (caseID === CASES.MONEY_REPORT) {
@@ -289,15 +285,6 @@ function ReportDetailsPage({policy, report, route, reportMetadata}: ReportDetail
 
         setIsDeleteModalVisible(false);
     }, [canDeleteRequest]);
-
-    useEffect(() => {
-        // Do not fetch private notes if isLoadingPrivateNotes is already defined, or if the network is offline, or if the report is a self DM.
-        if (isPrivateNotesFetchTriggered || isOffline || isSelfDM) {
-            return;
-        }
-
-        getReportPrivateNote(report?.reportID);
-    }, [report?.reportID, isOffline, isPrivateNotesFetchTriggered, isSelfDM]);
 
     const leaveChat = useCallback(() => {
         Navigation.dismissModal();
@@ -435,19 +422,6 @@ function ReportDetailsPage({policy, report, route, reportMetadata}: ReportDetail
                     },
                 });
             }
-        }
-
-        // Prevent displaying private notes option for threads and task reports
-        if (!isChatThread && !isMoneyRequestReport && !isInvoiceReport && !isTaskReport) {
-            items.push({
-                key: CONST.REPORT_DETAILS_MENU_ITEM.PRIVATE_NOTES,
-                translationKey: 'privateNotes.title',
-                icon: Expensicons.Pencil,
-                isAnonymousAction: false,
-                shouldShowRightIcon: true,
-                action: () => navigateToPrivateNotes(report, session, backTo),
-                brickRoadIndicator: hasErrorInPrivateNotes(report) ? CONST.BRICK_ROAD_INDICATOR_STATUS.ERROR : undefined,
-            });
         }
 
         // Show actions related to Task Reports

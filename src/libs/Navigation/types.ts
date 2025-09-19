@@ -1718,17 +1718,6 @@ type ReferralDetailsNavigatorParamList = {
     };
 };
 
-type PrivateNotesNavigatorParamList = {
-    [SCREENS.PRIVATE_NOTES.LIST]: {
-        backTo?: Routes;
-    };
-    [SCREENS.PRIVATE_NOTES.EDIT]: {
-        reportID: string;
-        accountID: string;
-        backTo?: Routes;
-    };
-};
-
 type TransactionDuplicateNavigatorParamList = {
     [SCREENS.TRANSACTION_DUPLICATE.REVIEW]: {
         threadReportID: string;
@@ -1814,7 +1803,6 @@ type RightModalNavigatorParamList = {
     [SCREENS.RIGHT_MODAL.EDIT_REQUEST]: NavigatorScreenParams<EditRequestNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.SIGN_IN]: NavigatorScreenParams<SignInNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.REFERRAL]: NavigatorScreenParams<ReferralDetailsNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.PRIVATE_NOTES]: NavigatorScreenParams<PrivateNotesNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.TRANSACTION_DUPLICATE]: NavigatorScreenParams<TransactionDuplicateNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.TRAVEL]: NavigatorScreenParams<TravelNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.SEARCH_REPORT]: NavigatorScreenParams<SearchReportParamList>;
@@ -2405,7 +2393,6 @@ export type {
     OnboardingFlowName,
     OnboardingModalNavigatorParamList,
     ParticipantsNavigatorParamList,
-    PrivateNotesNavigatorParamList,
     ProfileNavigatorParamList,
     PublicScreensParamList,
     ReferralDetailsNavigatorParamList,

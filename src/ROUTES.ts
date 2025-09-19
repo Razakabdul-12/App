@@ -597,18 +597,6 @@ const ROUTES = {
             return getUrlWithBackToParam(`r/${reportID}/assignee` as const, backTo);
         },
     },
-    PRIVATE_NOTES_LIST: {
-        route: 'r/:reportID/notes',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (reportID: string, backTo?: string) => getUrlWithBackToParam(`r/${reportID}/notes` as const, backTo),
-    },
-    PRIVATE_NOTES_EDIT: {
-        route: 'r/:reportID/notes/:accountID/edit',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (reportID: string, accountID: number, backTo?: string) => getUrlWithBackToParam(`r/${reportID}/notes/${accountID}/edit` as const, backTo),
-    },
     ROOM_MEMBERS: {
         route: 'r/:reportID/members',
 
@@ -3298,18 +3286,17 @@ function getAttachmentModalScreenRoute(url: AttachmentRoutes, params?: ReportAtt
         return url;
     }
 
-    const {source, attachmentID, type, reportID, accountID, isAuthTokenRequired, originalFileName, attachmentLink} = params;
+    const {source, attachmentID, type, reportID, isAuthTokenRequired, originalFileName, attachmentLink} = params;
 
     const sourceParam = `?source=${encodeURIComponent(source as string)}`;
     const attachmentIDParam = attachmentID ? `&attachmentID=${attachmentID}` : '';
     const typeParam = type ? `&type=${type as string}` : '';
     const reportIDParam = reportID ? `&reportID=${reportID}` : '';
-    const accountIDParam = accountID ? `&accountID=${accountID}` : '';
     const authTokenParam = isAuthTokenRequired ? '&isAuthTokenRequired=true' : '';
     const fileNameParam = originalFileName ? `&originalFileName=${originalFileName}` : '';
     const attachmentLinkParam = attachmentLink ? `&attachmentLink=${attachmentLink}` : '';
 
-    return `${url}${sourceParam}${typeParam}${reportIDParam}${attachmentIDParam}${accountIDParam}${authTokenParam}${fileNameParam}${attachmentLinkParam} ` as const;
+    return `${url}${sourceParam}${typeParam}${reportIDParam}${attachmentIDParam}${authTokenParam}${fileNameParam}${attachmentLinkParam} ` as const;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

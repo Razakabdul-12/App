@@ -494,17 +494,6 @@ function validateReportDraftProperty(key: keyof Report | keyof ReportNameValuePa
             return validateObject<ObjectElement<Report, 'errorFields', string>>(value, {}, 'string');
         case 'errors':
             return validateObject<ObjectElement<Report, 'errors'>>(value, {});
-        case 'privateNotes':
-            return validateObject<ObjectElement<Report, 'privateNotes', number>>(
-                value,
-                {
-                    note: 'string',
-                    errors: 'string',
-                    pendingAction: CONST.RED_BRICK_ROAD_PENDING_ACTION,
-                    pendingFields: 'object',
-                },
-                'number',
-            );
         case 'fieldList':
             return validateObject<ObjectElement<Report, 'fieldList'>>(
                 value,
@@ -558,7 +547,6 @@ function validateReportDraftProperty(key: keyof Report | keyof ReportNameValuePa
         case 'pendingFields':
             return validateObject<ObjectElement<Report | ReportNameValuePairs, 'pendingFields'>>(value, {
                 description: CONST.RED_BRICK_ROAD_PENDING_ACTION,
-                privateNotes: CONST.RED_BRICK_ROAD_PENDING_ACTION,
                 currency: CONST.RED_BRICK_ROAD_PENDING_ACTION,
                 type: CONST.RED_BRICK_ROAD_PENDING_ACTION,
                 policyID: CONST.RED_BRICK_ROAD_PENDING_ACTION,

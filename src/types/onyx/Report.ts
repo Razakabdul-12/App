@@ -15,15 +15,6 @@ type WriteCapability = ValueOf<typeof CONST.REPORT.WRITE_CAPABILITIES>;
 /** Defines which users have access to the chat */
 type RoomVisibility = ValueOf<typeof CONST.REPORT.VISIBILITY>;
 
-/** Model of report private note */
-type Note = OnyxCommon.OnyxValueWithOfflineFeedback<{
-    /** Content of the note */
-    note: string;
-
-    /** Collection of errors to show to the user */
-    errors?: OnyxCommon.Errors;
-}>;
-
 /** Report participant properties */
 type Participant = OnyxCommon.OnyxValueWithOfflineFeedback<{
     /** What is the role of the participant in the report */
@@ -215,9 +206,6 @@ type Report = OnyxCommon.OnyxValueWithOfflineFeedback<
         /** If the report contains nonreimbursable expenses, send the nonreimbursable total */
         nonReimbursableTotal?: number;
 
-        /** Collection of participant private notes, indexed by their accountID */
-        privateNotes?: Record<number, Note>;
-
         /** Collection of policy report fields, indexed by their fieldID */
         fieldList?: Record<string, PolicyReportField>;
 
@@ -250,4 +238,4 @@ type ReportCollectionDataSet = CollectionDataSet<typeof ONYXKEYS.COLLECTION.REPO
 
 export default Report;
 
-export type {NotificationPreference, RoomVisibility, WriteCapability, Note, ReportCollectionDataSet, Participant, Participants, InvoiceReceiver, InvoiceReceiverType};
+export type {NotificationPreference, RoomVisibility, WriteCapability, ReportCollectionDataSet, Participant, Participants, InvoiceReceiver, InvoiceReceiverType};

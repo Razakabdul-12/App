@@ -32,7 +32,6 @@ const INPUT_IDS = {
     POLICY_AVATAR: 'policyAvatar',
     POLICY_ID: 'policyID',
     POLICY_NAME: 'policyName',
-    PRIVATE_NOTES: 'privateNotes',
     PRIVATE_IS_ARCHIVED: 'private_isArchived',
     REPORT_ID: 'reportID',
     REPORT_NAME: 'reportName',
@@ -80,7 +79,6 @@ type DebugReportForm = Form<
         [INPUT_IDS.POLICY_AVATAR]: string;
         [INPUT_IDS.POLICY_ID]: string;
         [INPUT_IDS.POLICY_NAME]: string;
-        [INPUT_IDS.PRIVATE_NOTES]: string;
         [INPUT_IDS.PRIVATE_IS_ARCHIVED]: string;
         [INPUT_IDS.REPORT_ID]: string;
         [INPUT_IDS.REPORT_NAME]: string;

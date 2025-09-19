@@ -15,7 +15,7 @@ import extractAttachments from './extractAttachments';
 import type {AttachmentCarouselProps} from './types';
 import useCarouselArrows from './useCarouselArrows';
 
-function AttachmentCarousel({report, attachmentID, source, onNavigate, setDownloadButtonVisibility, type, accountID, onClose, attachmentLink, onAttachmentError}: AttachmentCarouselProps) {
+function AttachmentCarousel({report, attachmentID, source, onNavigate, setDownloadButtonVisibility, type, onClose, attachmentLink, onAttachmentError}: AttachmentCarouselProps) {
     const [parentReportActions] = useOnyx(`${ONYXKEYS.COLLECTION.REPORT_ACTIONS}${report.parentReportID}`, {canEvict: false, canBeMissing: true});
     const [reportActions] = useOnyx(`${ONYXKEYS.COLLECTION.REPORT_ACTIONS}${report.reportID}`, {canEvict: false, canBeMissing: true});
     const canUseTouchScreen = canUseTouchScreenUtil();
@@ -42,9 +42,7 @@ function AttachmentCarousel({report, attachmentID, source, onNavigate, setDownlo
     useEffect(() => {
         const parentReportAction = report.parentReportActionID && parentReportActions ? parentReportActions[report.parentReportActionID] : undefined;
         let newAttachments: Attachment[] = [];
-        if (type === CONST.ATTACHMENT_TYPE.NOTE && accountID) {
-            newAttachments = extractAttachments(CONST.ATTACHMENT_TYPE.NOTE, {privateNotes: report.privateNotes, accountID, report, isReportArchived});
-        } else if (type === CONST.ATTACHMENT_TYPE.ONBOARDING) {
+        if (type === CONST.ATTACHMENT_TYPE.ONBOARDING) {
             newAttachments = extractAttachments(CONST.ATTACHMENT_TYPE.ONBOARDING, {parentReportAction, reportActions: reportActions ?? undefined, report, isReportArchived});
         } else {
             newAttachments = extractAttachments(CONST.ATTACHMENT_TYPE.REPORT, {parentReportAction, reportActions: reportActions ?? undefined, report, isReportArchived});
@@ -86,7 +84,7 @@ function AttachmentCarousel({report, attachmentID, source, onNavigate, setDownlo
                 onNavigate(attachment);
             }
         }
-    }, [reportActions, parentReportActions, compareImage, attachments, setDownloadButtonVisibility, onNavigate, accountID, type, report, isReportArchived]);
+    }, [reportActions, parentReportActions, compareImage, attachments, setDownloadButtonVisibility, onNavigate, type, report, isReportArchived]);
 
     if (page == null) {
         return (

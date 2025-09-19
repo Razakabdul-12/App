@@ -1823,16 +1823,6 @@ const translations = {
         passwordUpdated: 'Senha atualizada!',
         allSet: 'Tudo pronto. Mantenha sua nova senha segura.',
     },
-    privateNotes: {
-        title: 'Notas privadas',
-        personalNoteMessage: 'Mantenha notas sobre este chat aqui. Você é a única pessoa que pode adicionar, editar ou visualizar essas notas.',
-        sharedNoteMessage: 'Mantenha anotações sobre este chat aqui. Funcionários da Expensify e outros membros do domínio team.expensify.com podem visualizar estas notas.',
-        composerLabel: 'Notas',
-        myNote: 'Minha nota',
-        error: {
-            genericFailureMessage: 'Notas privadas não puderam ser salvas',
-        },
-    },
     billingCurrency: {
         error: {
             securityCode: 'Por favor, insira um código de segurança válido.',

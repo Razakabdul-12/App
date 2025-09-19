@@ -30,14 +30,12 @@ import {
     hasAutomatedExpensifyAccountIDs,
     isConciergeChatReport,
     isHiddenForCurrentUser as isReportHiddenForCurrentUser,
-    navigateToPrivateNotes,
 } from '@libs/ReportUtils';
 import {generateAccountID} from '@libs/UserUtils';
 import {isValidAccountRoute} from '@libs/ValidationUtils';
 import type {ProfileNavigatorParamList} from '@navigation/types';
 import {openExternalLink} from '@userActions/Link';
 import {openPublicProfilePage} from '@userActions/PersonalDetails';
-import {hasErrorInPrivateNotes} from '@userActions/Report';
 import {callFunctionIfActionIsAllowed, isAnonymousUser as isAnonymousUserSession} from '@userActions/Session';
 import CONST from '@src/CONST';
 import type {TranslationPaths} from '@src/languages/types';
@@ -261,17 +259,6 @@ function ProfilePage({route}: ProfilePageProps) {
                                 title={notificationPreference}
                                 description={translate('notificationPreferencesPage.label')}
                                 onPress={() => Navigation.navigate(ROUTES.REPORT_SETTINGS_NOTIFICATION_PREFERENCES.getRoute(report.reportID, navigateBackTo))}
-                            />
-                        )}
-                        {!isEmptyObject(report) && !!report.reportID && !isCurrentUser && (
-                            <MenuItem
-                                title={`${translate('privateNotes.title')}`}
-                                titleStyle={styles.flex1}
-                                icon={Expensicons.Pencil}
-                                onPress={() => navigateToPrivateNotes(report, session, navigateBackTo)}
-                                wrapperStyle={styles.breakAll}
-                                shouldShowRightIcon
-                                brickRoadIndicator={hasErrorInPrivateNotes(report) ? CONST.BRICK_ROAD_INDICATOR_STATUS.ERROR : undefined}
                             />
                         )}
                         {isConcierge && !!guideCalendarLink && (

@@ -1823,16 +1823,6 @@ const translations = {
         passwordUpdated: 'Wachtwoord bijgewerkt!',
         allSet: 'Je bent klaar. Bewaar je nieuwe wachtwoord veilig.',
     },
-    privateNotes: {
-        title: 'Privé notities',
-        personalNoteMessage: 'Houd notities over deze chat hier bij. Jij bent de enige persoon die deze notities kan toevoegen, bewerken of bekijken.',
-        sharedNoteMessage: 'Houd notities over deze chat hier bij. Expensify-medewerkers en andere leden op het team.expensify.com-domein kunnen deze notities bekijken.',
-        composerLabel: 'Notities',
-        myNote: 'Mijn notitie',
-        error: {
-            genericFailureMessage: 'Privé notities konden niet worden opgeslagen',
-        },
-    },
     billingCurrency: {
         error: {
             securityCode: 'Voer een geldige beveiligingscode in alstublieft',

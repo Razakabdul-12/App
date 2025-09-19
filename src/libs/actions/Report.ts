@@ -1,7 +1,6 @@
 import {findFocusedRoute} from '@react-navigation/native';
 import {format as timezoneFormat, toZonedTime} from 'date-fns-tz';
 import {Str} from 'expensify-common';
-import isEmpty from 'lodash/isEmpty';
 import {DeviceEventEmitter, InteractionManager, Linking} from 'react-native';
 import type {NullishDeep, OnyxCollection, OnyxCollectionInputValue, OnyxEntry, OnyxUpdate} from 'react-native-onyx';
 import Onyx from 'react-native-onyx';
@@ -23,7 +22,6 @@ import type {
     FlagCommentParams,
     GetNewerActionsParams,
     GetOlderActionsParams,
-    GetReportPrivateNoteParams,
     InviteToGroupChatParams,
     InviteToRoomParams,
     LeaveRoomParams,
@@ -51,7 +49,6 @@ import type {
     UpdateGroupChatMemberRolesParams,
     UpdatePolicyRoomNameParams,
     UpdateReportNotificationPreferenceParams,
-    UpdateReportPrivateNoteParams,
     UpdateReportWriteCapabilityParams,
     UpdateRoomDescriptionParams,
 } from '@libs/API/parameters';
@@ -360,19 +357,6 @@ Onyx.connect({
     key: ONYXKEYS.ACCOUNT,
     callback: (value) => {
         account = value ?? {};
-    },
-});
-
-const draftNoteMap: OnyxCollection<string> = {};
-Onyx.connect({
-    key: ONYXKEYS.COLLECTION.PRIVATE_NOTES_DRAFT,
-    callback: (value, key) => {
-        if (!key) {
-            return;
-        }
-
-        const reportID = key.replace(ONYXKEYS.COLLECTION.PRIVATE_NOTES_DRAFT, '');
-        draftNoteMap[reportID] = value;
     },
 });
 
@@ -4145,103 +4129,6 @@ function flagComment(reportID: string | undefined, reportAction: OnyxEntry<Repor
     API.write(WRITE_COMMANDS.FLAG_COMMENT, parameters, {optimisticData, successData, failureData});
 }
 
-/** Updates a given user's private notes on a report */
-const updatePrivateNotes = (reportID: string, accountID: number, note: string) => {
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT}${reportID}`,
-            value: {
-                privateNotes: {
-                    [accountID]: {
-                        pendingAction: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE,
-                        errors: null,
-                        note,
-                    },
-                },
-            },
-        },
-    ];
-
-    const successData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT}${reportID}`,
-            value: {
-                privateNotes: {
-                    [accountID]: {
-                        pendingAction: null,
-                        errors: null,
-                    },
-                },
-            },
-        },
-    ];
-
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT}${reportID}`,
-            value: {
-                privateNotes: {
-                    [accountID]: {
-                        errors: getMicroSecondOnyxErrorWithTranslationKey('privateNotes.error.genericFailureMessage'),
-                    },
-                },
-            },
-        },
-    ];
-
-    const parameters: UpdateReportPrivateNoteParams = {reportID, privateNotes: note};
-
-    API.write(WRITE_COMMANDS.UPDATE_REPORT_PRIVATE_NOTE, parameters, {optimisticData, successData, failureData});
-};
-
-/** Fetches all the private notes for a given report */
-function getReportPrivateNote(reportID: string | undefined) {
-    if (isAnonymousUser()) {
-        return;
-    }
-
-    if (!reportID) {
-        return;
-    }
-
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT_METADATA}${reportID}`,
-            value: {
-                isLoadingPrivateNotes: true,
-            },
-        },
-    ];
-
-    const successData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT_METADATA}${reportID}`,
-            value: {
-                isLoadingPrivateNotes: false,
-            },
-        },
-    ];
-
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT_METADATA}${reportID}`,
-            value: {
-                isLoadingPrivateNotes: false,
-            },
-        },
-    ];
-
-    const parameters: GetReportPrivateNoteParams = {reportID};
-
-    API.read(READ_COMMANDS.GET_REPORT_PRIVATE_NOTE, parameters, {optimisticData, successData, failureData});
-}
-
 function completeOnboarding({
     engagementChoice,
     onboardingMessage,
@@ -4351,33 +4238,6 @@ function openRoomMembersPage(reportID: string) {
     const parameters: OpenRoomMembersPageParams = {reportID};
 
     API.read(READ_COMMANDS.OPEN_ROOM_MEMBERS_PAGE, parameters);
-}
-
-/**
- * Checks if there are any errors in the private notes for a given report
- *
- * @returns Returns true if there are errors in any of the private notes on the report
- */
-function hasErrorInPrivateNotes(report: OnyxEntry<Report>): boolean {
-    const privateNotes = report?.privateNotes ?? {};
-    return Object.values(privateNotes).some((privateNote) => !isEmpty(privateNote.errors));
-}
-
-/** Clears all errors associated with a given private note */
-function clearPrivateNotesError(reportID: string, accountID: number) {
-    Onyx.merge(`${ONYXKEYS.COLLECTION.REPORT}${reportID}`, {privateNotes: {[accountID]: {errors: null}}});
-}
-
-function getDraftPrivateNote(reportID: string): string {
-    return draftNoteMap?.[reportID] ?? '';
-}
-
-/**
- * Saves the private notes left by the user as they are typing. By saving this data the user can switch between chats, close
- * tab, refresh etc without worrying about loosing what they typed out.
- */
-function savePrivateNotesDraft(reportID: string, note: string) {
-    Onyx.merge(`${ONYXKEYS.COLLECTION.PRIVATE_NOTES_DRAFT}${reportID}`, note);
 }
 
 function searchForReports(searchInput: string, policyID?: string) {
@@ -6089,7 +5949,6 @@ export {
     clearNewRoomFormError,
     setNewRoomFormLoading,
     clearPolicyRoomNameErrors,
-    clearPrivateNotesError,
     clearReportFieldKeyErrors,
     completeOnboarding,
     createNewReport,
@@ -6108,14 +5967,11 @@ export {
     flagComment,
     getCurrentUserAccountID,
     getCurrentUserEmail,
-    getDraftPrivateNote,
     getMostRecentReportID,
     getNewerActions,
     getOlderActions,
-    getReportPrivateNote,
     handleReportChanged,
     handleUserDeletedLinksInHtml,
-    hasErrorInPrivateNotes,
     inviteToGroupChat,
     buildInviteToRoomOnyxData,
     inviteToRoom,
@@ -6142,7 +5998,6 @@ export {
     resolveActionableMentionConfirmWhisper,
     resolveActionableReportMentionWhisper,
     resolveConciergeCategoryOptions,
-    savePrivateNotesDraft,
     saveReportActionDraft,
     saveReportDraftComment,
     searchInServer,
@@ -6168,7 +6023,6 @@ export {
     updateLoadingInitialReportAction,
     updateNotificationPreference,
     updatePolicyRoomName,
-    updatePrivateNotes,
     updateReportField,
     updateReportName,
     updateRoomVisibility,

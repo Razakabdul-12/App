@@ -1819,16 +1819,6 @@ const translations = {
         passwordUpdated: 'Hasło zaktualizowane!',
         allSet: 'Wszystko gotowe. Zachowaj swoje nowe hasło w bezpiecznym miejscu.',
     },
-    privateNotes: {
-        title: 'Prywatne notatki',
-        personalNoteMessage: 'Prowadź notatki dotyczące tej rozmowy tutaj. Jesteś jedyną osobą, która może dodawać, edytować lub przeglądać te notatki.',
-        sharedNoteMessage: 'Zapisuj notatki dotyczące tej rozmowy tutaj. Pracownicy Expensify i inni członkowie na domenie team.expensify.com mogą przeglądać te notatki.',
-        composerLabel: 'Notatki',
-        myNote: 'Moja notatka',
-        error: {
-            genericFailureMessage: 'Prywatne notatki nie mogły zostać zapisane',
-        },
-    },
     billingCurrency: {
         error: {
             securityCode: 'Proszę wprowadzić prawidłowy kod zabezpieczający',

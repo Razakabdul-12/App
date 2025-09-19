@@ -5708,30 +5708,6 @@ function navigateBackOnDeleteTransaction(backRoute: Route | undefined, isFromRHP
     });
 }
 
-/**
- * Go back to the previous page from the edit private page of a given report
- */
-function goBackFromPrivateNotes(report: OnyxEntry<Report>, accountID?: number, backTo?: string) {
-    if (isEmpty(report) || !accountID) {
-        return;
-    }
-    const currentUserPrivateNote = report.privateNotes?.[accountID]?.note ?? '';
-    if (isEmpty(currentUserPrivateNote)) {
-        const participantAccountIDs = getParticipantsAccountIDsForDisplay(report);
-
-        if (isOneOnOneChat(report)) {
-            Navigation.goBack(ROUTES.PROFILE.getRoute(participantAccountIDs.at(0), backTo));
-            return;
-        }
-
-        if (report?.reportID) {
-            Navigation.goBack(ROUTES.REPORT_WITH_ID_DETAILS.getRoute(report?.reportID, backTo));
-            return;
-        }
-    }
-    Navigation.goBack(ROUTES.PRIVATE_NOTES_LIST.getRoute(report.reportID, backTo));
-}
-
 function navigateOnDeleteExpense(backToRoute: Route) {
     const rootState = navigationRef.getRootState();
     const focusedRoute = findFocusedRoute(rootState);
@@ -9650,21 +9626,6 @@ function shouldAutoFocusOnKeyPress(event: KeyboardEvent): boolean {
 }
 
 /**
- * Navigates to the appropriate screen based on the presence of a private note for the current user.
- */
-function navigateToPrivateNotes(report: OnyxEntry<Report>, session: OnyxEntry<Session>, backTo?: string) {
-    if (isEmpty(report) || isEmpty(session) || !session.accountID) {
-        return;
-    }
-    const currentUserPrivateNote = report.privateNotes?.[session.accountID]?.note ?? '';
-    if (isEmpty(currentUserPrivateNote)) {
-        Navigation.navigate(ROUTES.PRIVATE_NOTES_EDIT.getRoute(report.reportID, session.accountID, backTo));
-        return;
-    }
-    Navigation.navigate(ROUTES.PRIVATE_NOTES_LIST.getRoute(report.reportID, backTo));
-}
-
-/**
  * Get all held transactions of a iouReport
  */
 function getAllHeldTransactions(iouReportID?: string): Transaction[] {
@@ -11843,7 +11804,6 @@ export {
     getWorkspaceChats,
     getWorkspaceIcon,
     goBackToDetailsPage,
-    goBackFromPrivateNotes,
     getInvoicePayerName,
     getInvoicesChatName,
     getPayeeName,
@@ -11962,7 +11922,6 @@ export {
     getDefaultNotificationPreferenceForReport,
     canWriteInReport,
     navigateToDetailsPage,
-    navigateToPrivateNotes,
     navigateBackOnDeleteTransaction,
     parseReportRouteParams,
     parseReportActionHtmlToText,

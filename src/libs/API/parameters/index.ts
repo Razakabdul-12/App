@@ -39,7 +39,6 @@ export type {default as GetMissingOnyxMessagesParams} from './GetMissingOnyxMess
 export type {default as GetNewerActionsParams} from './GetNewerActionsParams';
 export type {default as GetOlderActionsParams} from './GetOlderActionsParams';
 export type {default as GetPolicyCategoriesParams} from './GetPolicyCategories';
-export type {default as GetReportPrivateNoteParams} from './GetReportPrivateNoteParams';
 export type {default as GetRouteParams} from './GetRouteParams';
 export type {default as CreateAppReportParams} from './CreateAppReportParams';
 export type {default as GetStatementPDFParams} from './GetStatementPDFParams';
@@ -132,7 +131,6 @@ export type {default as InviteWorkspaceEmployeesToUberParams} from './InviteWork
 export type {default as RemoveFromRoomParams} from './RemoveFromRoomParams';
 export type {default as RemoveFromGroupChatParams} from './RemoveFromGroupChatParams';
 export type {default as FlagCommentParams} from './FlagCommentParams';
-export type {default as UpdateReportPrivateNoteParams} from './UpdateReportPrivateNoteParams';
 export type {default as UpdateCompanyInformationForBankAccountParams} from './UpdateCompanyInformationForBankAccountParams';
 export type {default as UpdatePersonalDetailsForWalletParams} from './UpdatePersonalDetailsForWalletParams';
 export type {default as VerifyIdentityParams} from './VerifyIdentityParams';

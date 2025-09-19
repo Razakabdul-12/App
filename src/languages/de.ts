@@ -1833,16 +1833,6 @@ const translations = {
         passwordUpdated: 'Passwort aktualisiert!',
         allSet: 'Alles erledigt. Bewahren Sie Ihr neues Passwort sicher auf.',
     },
-    privateNotes: {
-        title: 'Private Notizen',
-        personalNoteMessage: 'Notizen zu diesem Chat hier festhalten. Sie sind die einzige Person, die diese Notizen hinzufügen, bearbeiten oder einsehen kann.',
-        sharedNoteMessage: 'Notizen zu diesem Chat hier festhalten. Expensify-Mitarbeiter und andere Mitglieder der team.expensify.com-Domain können diese Notizen einsehen.',
-        composerLabel: 'Notizen',
-        myNote: 'Meine Notiz',
-        error: {
-            genericFailureMessage: 'Private Notizen konnten nicht gespeichert werden',
-        },
-    },
     billingCurrency: {
         error: {
             securityCode: 'Bitte geben Sie einen gültigen Sicherheitscode ein',

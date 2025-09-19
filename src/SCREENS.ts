@@ -209,7 +209,6 @@ const SCREENS = {
         FLAG_COMMENT: 'Flag_Comment',
         EDIT_REQUEST: 'EditRequest',
         SIGN_IN: 'SignIn',
-        PRIVATE_NOTES: 'Private_Notes',
         ROOM_MEMBERS: 'RoomMembers',
         ROOM_MEMBER_DETAILS: 'RoomMembers_Details',
         ROOM_INVITE: 'RoomInvite',
@@ -370,11 +369,6 @@ const SCREENS = {
     TASK: {
         TITLE: 'Task_Title',
         ASSIGNEE: 'Task_Assignee',
-    },
-
-    PRIVATE_NOTES: {
-        LIST: 'PrivateNotes_List',
-        EDIT: 'PrivateNotes_Edit',
     },
 
     NEW_REPORT_WORKSPACE_SELECTION: {

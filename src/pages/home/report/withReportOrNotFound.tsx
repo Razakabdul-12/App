@@ -12,7 +12,6 @@ import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavig
 import {canAccessReport} from '@libs/ReportUtils';
 import type {
     ParticipantsNavigatorParamList,
-    PrivateNotesNavigatorParamList,
     ReportChangeApproverParamList,
     ReportChangeWorkspaceNavigatorParamList,
     ReportDescriptionNavigatorParamList,
@@ -44,7 +43,6 @@ type WithReportOrNotFoundOnyxProps = {
 };
 
 type ScreenProps =
-    | PlatformStackScreenProps<PrivateNotesNavigatorParamList, typeof SCREENS.PRIVATE_NOTES.EDIT>
     | PlatformStackScreenProps<ReportDescriptionNavigatorParamList, typeof SCREENS.REPORT_DESCRIPTION_ROOT>
     | PlatformStackScreenProps<ParticipantsNavigatorParamList, typeof SCREENS.REPORT_PARTICIPANTS.ROOT>
     | PlatformStackScreenProps<ParticipantsNavigatorParamList, typeof SCREENS.REPORT_PARTICIPANTS.DETAILS>

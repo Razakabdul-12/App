@@ -117,7 +117,6 @@ const defaultReportMetadata = {
 const reportDetailScreens = [
     ...Object.values(SCREENS.REPORT_DETAILS),
     ...Object.values(SCREENS.REPORT_SETTINGS),
-    ...Object.values(SCREENS.PRIVATE_NOTES),
     ...Object.values(SCREENS.REPORT_PARTICIPANTS),
 ];
 

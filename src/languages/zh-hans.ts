@@ -1800,16 +1800,6 @@ const translations = {
         passwordUpdated: '密码已更新！',
         allSet: '一切就绪。请妥善保管您的新密码。',
     },
-    privateNotes: {
-        title: '私人备注',
-        personalNoteMessage: '在此处记录有关此聊天的笔记。您是唯一可以添加、编辑或查看这些笔记的人。',
-        sharedNoteMessage: '在此处记录有关此聊天的笔记。Expensify员工和team.expensify.com域上的其他成员可以查看这些笔记。',
-        composerLabel: '备注',
-        myNote: '我的备注',
-        error: {
-            genericFailureMessage: '私人备注无法保存',
-        },
-    },
     billingCurrency: {
         error: {
             securityCode: '请输入有效的安全代码',
