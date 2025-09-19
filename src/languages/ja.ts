@@ -349,6 +349,7 @@ const translations = {
         next: '次へ',
         previous: '前へ',
         goBack: '戻る',
+        switchToExpensifyClassic: 'Expensify Classicに切り替える',
         create: '作成',
         add: '追加',
         resend: '再送信',
@@ -6706,44 +6707,6 @@ const translations = {
         mute: 'ミュート',
         unmute: 'ミュート解除',
         normal: '通常',
-    },
-    exitSurvey: {
-        header: '行く前に',
-        reasonPage: {
-            title: '退会理由を教えてください',
-            subtitle: '行く前に、Expensify Classicに切り替えたい理由を教えてください。',
-        },
-        reasons: {
-            [CONST.EXIT_SURVEY.REASONS.FEATURE_NOT_AVAILABLE]: 'Expensify Classicでのみ利用可能な機能が必要です。',
-            [CONST.EXIT_SURVEY.REASONS.DONT_UNDERSTAND]: 'New Expensifyの使い方がわかりません。',
-            [CONST.EXIT_SURVEY.REASONS.PREFER_CLASSIC]: 'New Expensifyの使い方は理解していますが、Expensify Classicの方が好きです。',
-        },
-        prompts: {
-            [CONST.EXIT_SURVEY.REASONS.FEATURE_NOT_AVAILABLE]: 'New Expensifyにないどの機能が必要ですか？',
-            [CONST.EXIT_SURVEY.REASONS.DONT_UNDERSTAND]: '何をしようとしているのですか？',
-            [CONST.EXIT_SURVEY.REASONS.PREFER_CLASSIC]: 'なぜExpensify Classicを好むのですか？',
-        },
-        responsePlaceholder: 'あなたの返信',
-        thankYou: 'フィードバックありがとうございます！',
-        thankYouSubtitle: 'あなたの回答は、私たちがより良い製品を作り、物事を成し遂げるのに役立ちます。ありがとうございます！',
-        goToExpensifyClassic: 'Expensify Classicに切り替える',
-        offlineTitle: 'ここで行き詰まっているようです…',
-        offline:
-            'オフラインのようです。残念ながら、Expensify Classicはオフラインでは動作しませんが、新しいExpensifyは動作します。Expensify Classicを使用したい場合は、インターネット接続があるときに再試行してください。',
-        quickTip: 'ちょっとしたヒント...',
-        quickTipSubTitle: 'expensify.comにアクセスして、Expensify Classicに直接移動できます。簡単なショートカットとしてブックマークしてください！',
-        bookACall: '通話を予約する',
-        noThanks: '結構です',
-        bookACallTitle: 'プロダクトマネージャーと話しますか？',
-        benefits: {
-            [CONST.EXIT_SURVEY.BENEFIT.CHATTING_DIRECTLY]: '経費やレポートで直接チャットする',
-            [CONST.EXIT_SURVEY.BENEFIT.EVERYTHING_MOBILE]: 'モバイルで全てを行う能力',
-            [CONST.EXIT_SURVEY.BENEFIT.TRAVEL_EXPENSE]: 'チャットのスピードで出張と経費を管理',
-        },
-        bookACallTextTop: 'Expensify Classicに切り替えると、次のことを逃すことになります：',
-        bookACallTextBottom:
-            'なぜかを理解するために、あなたとお電話でお話しできることを楽しみにしています。ご要望について話し合うために、私たちのシニアプロダクトマネージャーの一人との通話を予約できます。',
-        takeMeToExpensifyClassic: 'Expensify Classicに連れて行ってください。',
     },
     listBoundary: {
         errorMessage: 'メッセージをさらに読み込む際にエラーが発生しました。',

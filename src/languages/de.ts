@@ -349,6 +349,7 @@ const translations = {
         next: 'Nächste',
         previous: 'Vorherige',
         goBack: 'Zurückgehen',
+        switchToExpensifyClassic: 'Zu Expensify Classic wechseln',
         create: 'Erstellen',
         add: 'Hinzufügen',
         resend: 'Erneut senden',
@@ -6741,44 +6742,6 @@ const translations = {
         mute: 'Stumm schalten',
         unmute: 'Stummschaltung aufheben',
         normal: 'Normal',
-    },
-    exitSurvey: {
-        header: 'Bevor Sie gehen',
-        reasonPage: {
-            title: 'Bitte teilen Sie uns mit, warum Sie uns verlassen.',
-            subtitle: 'Bevor Sie gehen, teilen Sie uns bitte mit, warum Sie zu Expensify Classic wechseln möchten.',
-        },
-        reasons: {
-            [CONST.EXIT_SURVEY.REASONS.FEATURE_NOT_AVAILABLE]: 'Ich benötige eine Funktion, die nur in Expensify Classic verfügbar ist.',
-            [CONST.EXIT_SURVEY.REASONS.DONT_UNDERSTAND]: 'Ich verstehe nicht, wie man New Expensify benutzt.',
-            [CONST.EXIT_SURVEY.REASONS.PREFER_CLASSIC]: 'Ich verstehe, wie man New Expensify benutzt, aber ich bevorzuge Expensify Classic.',
-        },
-        prompts: {
-            [CONST.EXIT_SURVEY.REASONS.FEATURE_NOT_AVAILABLE]: 'Welche Funktion benötigen Sie, die in New Expensify nicht verfügbar ist?',
-            [CONST.EXIT_SURVEY.REASONS.DONT_UNDERSTAND]: 'Was versuchst du zu tun?',
-            [CONST.EXIT_SURVEY.REASONS.PREFER_CLASSIC]: 'Warum bevorzugen Sie Expensify Classic?',
-        },
-        responsePlaceholder: 'Ihre Antwort',
-        thankYou: 'Danke für das Feedback!',
-        thankYouSubtitle: 'Ihre Antworten helfen uns, ein besseres Produkt zu entwickeln, um Dinge zu erledigen. Vielen Dank!',
-        goToExpensifyClassic: 'Zu Expensify Classic wechseln',
-        offlineTitle: 'Sie scheinen hier festzustecken...',
-        offline:
-            'Sie scheinen offline zu sein. Leider funktioniert Expensify Classic nicht offline, aber New Expensify schon. Wenn Sie Expensify Classic verwenden möchten, versuchen Sie es erneut, wenn Sie eine Internetverbindung haben.',
-        quickTip: 'Kurzer Tipp...',
-        quickTipSubTitle: 'Sie können direkt zu Expensify Classic gehen, indem Sie expensify.com besuchen. Setzen Sie ein Lesezeichen, um eine einfache Abkürzung zu haben!',
-        bookACall: 'Einen Anruf buchen',
-        noThanks: 'Nein danke',
-        bookACallTitle: 'Möchten Sie mit einem Produktmanager sprechen?',
-        benefits: {
-            [CONST.EXIT_SURVEY.BENEFIT.CHATTING_DIRECTLY]: 'Direktes Chatten über Ausgaben und Berichte',
-            [CONST.EXIT_SURVEY.BENEFIT.EVERYTHING_MOBILE]: 'Fähigkeit, alles auf dem Handy zu erledigen',
-            [CONST.EXIT_SURVEY.BENEFIT.TRAVEL_EXPENSE]: 'Reisen und Ausgaben mit der Geschwindigkeit des Chats',
-        },
-        bookACallTextTop: 'Wenn Sie zu Expensify Classic wechseln, verpassen Sie:',
-        bookACallTextBottom:
-            'Wir würden uns freuen, mit Ihnen einen Anruf zu vereinbaren, um zu verstehen, warum. Sie können einen Anruf mit einem unserer leitenden Produktmanager buchen, um Ihre Bedürfnisse zu besprechen.',
-        takeMeToExpensifyClassic: 'Bring mich zu Expensify Classic',
     },
     listBoundary: {
         errorMessage: 'Beim Laden weiterer Nachrichten ist ein Fehler aufgetreten.',

@@ -149,12 +149,6 @@ const SCREENS = {
             ENABLE_GLOBAL_REIMBURSEMENTS: 'Settings_Wallet_Enable_Global_Reimbursements',
         },
 
-        EXIT_SURVEY: {
-            REASON: 'Settings_ExitSurvey_Reason',
-            RESPONSE: 'Settings_ExitSurvey_Response',
-            CONFIRM: 'Settings_ExitSurvey_Confirm',
-        },
-
         DELEGATE: {
             VERIFY_ACCOUNT: 'Settings_Delegate_VerifyAccount',
             ADD_DELEGATE: 'Settings_Delegate_Add',

@@ -460,7 +460,7 @@ function EmptySearchViewContent({
                 }}
                 onCancel={() => setModalVisible(false)}
                 title={translate('sidebarScreen.redirectToExpensifyClassicModal.title')}
-                confirmText={translate('exitSurvey.goToExpensifyClassic')}
+                confirmText={translate('common.switchToExpensifyClassic')}
                 cancelText={translate('common.cancel')}
             />
         </>
