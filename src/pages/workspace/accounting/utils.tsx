@@ -57,26 +57,6 @@ function getAccountingIntegrationData(
     const netsuiteConfig = policy?.connections?.netsuite?.options?.config;
     const netsuiteSelectedSubsidiary = (policy?.connections?.netsuite?.options?.data?.subsidiaryList ?? []).find((subsidiary) => subsidiary.internalID === netsuiteConfig?.subsidiaryID);
     const hasPoliciesConnectedToSageIntacct = !!getAdminPoliciesConnectedToSageIntacct().length;
-    const getBackToAfterWorkspaceUpgradeRouteForIntacct = () => {
-        if (integrationToDisconnect) {
-            return ROUTES.POLICY_ACCOUNTING.getRoute(policyID, connectionName, integrationToDisconnect, shouldDisconnectIntegrationBeforeConnecting);
-        }
-        if (hasPoliciesConnectedToSageIntacct) {
-            return ROUTES.POLICY_ACCOUNTING_SAGE_INTACCT_EXISTING_CONNECTIONS.getRoute(policyID);
-        }
-        return ROUTES.POLICY_ACCOUNTING_SAGE_INTACCT_PREREQUISITES.getRoute(policyID);
-    };
-
-    const getBackToAfterWorkspaceUpgradeRouteForQBD = () => {
-        if (integrationToDisconnect) {
-            return ROUTES.POLICY_ACCOUNTING.getRoute(policyID, connectionName, integrationToDisconnect, shouldDisconnectIntegrationBeforeConnecting);
-        }
-        if (isMobile) {
-            return ROUTES.POLICY_ACCOUNTING_QUICKBOOKS_DESKTOP_SETUP_REQUIRED_DEVICE_MODAL.getRoute(policyID);
-        }
-        return ROUTES.POLICY_ACCOUNTING_QUICKBOOKS_DESKTOP_SETUP_MODAL.getRoute(policyID);
-    };
-
     switch (connectionName) {
         case CONST.POLICY.CONNECTIONS.NAME.QBO:
             return {
@@ -218,12 +198,6 @@ function getAccountingIntegrationData(
                         ? [CONST.NETSUITE_CONFIG.CUSTOM_FORM_ID_TYPE.REIMBURSABLE, CONST.NETSUITE_CONFIG.CUSTOM_FORM_ID_TYPE.NON_REIMBURSABLE]
                         : []),
                 ],
-                workspaceUpgradeNavigationDetails: {
-                    integrationAlias: CONST.UPGRADE_FEATURE_INTRO_MAPPING.netsuite.alias,
-                    backToAfterWorkspaceUpgradeRoute: integrationToDisconnect
-                        ? ROUTES.POLICY_ACCOUNTING.getRoute(policyID, connectionName, integrationToDisconnect, shouldDisconnectIntegrationBeforeConnecting)
-                        : ROUTES.POLICY_ACCOUNTING_NETSUITE_TOKEN_INPUT.getRoute(policyID),
-                },
                 pendingFields: {...netsuiteConfig?.pendingFields, ...policy?.connections?.netsuite?.config?.pendingFields, ...policy?.connections?.netsuite?.options?.config?.pendingFields},
                 errorFields: {...netsuiteConfig?.errorFields, ...policy?.connections?.netsuite?.config?.errorFields, ...policy?.connections?.netsuite?.options?.config?.errorFields},
             };
@@ -265,10 +239,6 @@ function getAccountingIntegrationData(
                     CONST.SAGE_INTACCT_CONFIG.SYNC_REIMBURSED_REPORTS,
                     CONST.SAGE_INTACCT_CONFIG.REIMBURSEMENT_ACCOUNT_ID,
                 ],
-                workspaceUpgradeNavigationDetails: {
-                    integrationAlias: CONST.UPGRADE_FEATURE_INTRO_MAPPING.intacct.alias,
-                    backToAfterWorkspaceUpgradeRoute: getBackToAfterWorkspaceUpgradeRouteForIntacct(),
-                },
                 pendingFields: policy?.connections?.intacct?.config?.pendingFields,
                 errorFields: policy?.connections?.intacct?.config?.errorFields,
             };
@@ -304,10 +274,6 @@ function getAccountingIntegrationData(
                     CONST.QUICKBOOKS_DESKTOP_CONFIG.SHOULD_AUTO_CREATE_VENDOR,
                 ],
                 subscribedAdvancedSettings: [CONST.QUICKBOOKS_DESKTOP_CONFIG.SHOULD_AUTO_CREATE_VENDOR, CONST.QUICKBOOKS_DESKTOP_CONFIG.AUTO_SYNC],
-                workspaceUpgradeNavigationDetails: {
-                    integrationAlias: CONST.UPGRADE_FEATURE_INTRO_MAPPING.quickbooksDesktop.alias,
-                    backToAfterWorkspaceUpgradeRoute: getBackToAfterWorkspaceUpgradeRouteForQBD(),
-                },
             };
         default:
             return undefined;

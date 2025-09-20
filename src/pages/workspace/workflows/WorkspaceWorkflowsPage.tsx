@@ -37,6 +37,7 @@ import {setApprovalWorkflow} from '@libs/actions/Workflow';
 import {getAllCardsForWorkspace, isSmartLimitEnabled as isSmartLimitEnabledUtil} from '@libs/CardUtils';
 import {getLatestErrorField} from '@libs/ErrorUtils';
 import Navigation from '@libs/Navigation/Navigation';
+import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import {getPaymentMethodDescription} from '@libs/PaymentUtils';
 import {getPersonalDetailByEmail} from '@libs/PersonalDetailsUtils';
@@ -158,13 +159,7 @@ function WorkspaceWorkflowsPage({policy, route}: WorkspaceWorkflowsPageProps) {
         });
 
         if (!isControlPolicy(policy)) {
-            Navigation.navigate(
-                ROUTES.WORKSPACE_UPGRADE.getRoute(
-                    route.params.policyID,
-                    CONST.UPGRADE_FEATURE_INTRO_MAPPING.approvals.alias,
-                    ROUTES.WORKSPACE_WORKFLOWS_APPROVALS_EXPENSES_FROM.getRoute(route.params.policyID),
-                ),
-            );
+            navigateToSubscription(ROUTES.WORKSPACE_WORKFLOWS_APPROVALS_EXPENSES_FROM.getRoute(route.params.policyID));
             return;
         }
 

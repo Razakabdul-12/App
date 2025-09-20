@@ -5514,7 +5514,7 @@ const translations = {
                 description: `Profitez de la synchronisation automatisée et réduisez les saisies manuelles avec l'intégration Expensify + QuickBooks Desktop. Obtenez une efficacité ultime grâce à une connexion bidirectionnelle en temps réel et au codage des dépenses par classe, article, client et projet.`,
                 onlyAvailableOnPlan: 'Notre intégration QuickBooks Desktop est uniquement disponible avec le plan Control, à partir de',
             },
-            [CONST.UPGRADE_FEATURE_INTRO_MAPPING.approvals.id]: {
+            approvals: {
                 title: 'Approvals avancés',
                 description: `Si vous souhaitez ajouter plus de niveaux d'approbation au processus – ou simplement vous assurer que les dépenses les plus importantes bénéficient d'un autre regard – nous avons ce qu'il vous faut. Les approbations avancées vous aident à mettre en place les contrôles appropriés à chaque niveau afin de garder les dépenses de votre équipe sous contrôle.`,
                 onlyAvailableOnPlan: 'Les approbations avancées ne sont disponibles que sur le plan Control, qui commence à',
@@ -5572,7 +5572,7 @@ const translations = {
                 description: 'Créez et gérez vos propres tarifs, suivez en miles ou en kilomètres, et définissez des catégories par défaut pour les frais de distance.',
                 onlyAvailableOnPlan: 'Les tarifs de distance sont disponibles sur le plan Collect, à partir de',
             },
-            [CONST.UPGRADE_FEATURE_INTRO_MAPPING.multiApprovalLevels.id]: {
+            multiApprovalLevels: {
                 title: "Niveaux d'approbation multiples",
                 description:
                     "Les niveaux d'approbation multiples sont un outil de flux de travail pour les entreprises qui exigent que plus d'une personne approuve un rapport avant qu'il ne puisse être remboursé.",

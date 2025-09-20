@@ -18,6 +18,7 @@ import useTheme from '@hooks/useTheme';
 import useThemeStyles from '@hooks/useThemeStyles';
 import OpenWorkspacePlanPage from '@libs/actions/Policy/Plan';
 import Navigation from '@navigation/Navigation';
+import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 import CardSectionUtils from '@pages/settings/Subscription/CardSection/utils';
 import type {PersonalPolicyTypeExcludedProps} from '@pages/settings/Subscription/SubscriptionPlan/SubscriptionPlanCard';
 import CONST from '@src/CONST';
@@ -80,7 +81,7 @@ function WorkspaceOverviewPlanTypePage({policy}: WithPolicyProps) {
 
     const handleUpdatePlan = () => {
         if (policyID && policy?.type === CONST.POLICY.TYPE.TEAM && currentPlan === CONST.POLICY.TYPE.CORPORATE) {
-            Navigation.navigate(ROUTES.WORKSPACE_UPGRADE.getRoute(policyID));
+            navigateToSubscription(Navigation.getActiveRoute());
             return;
         }
 

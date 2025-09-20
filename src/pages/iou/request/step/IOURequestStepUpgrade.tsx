@@ -1,8 +1,11 @@
 import React, {useCallback, useMemo, useRef, useState} from 'react';
+import Button from '@components/Button';
+import ConfirmationPage from '@components/ConfirmationPage';
 import HeaderWithBackButton from '@components/HeaderWithBackButton';
 import {usePersonalDetails} from '@components/OnyxListItemProvider';
 import ScreenWrapper from '@components/ScreenWrapper';
 import ScrollView from '@components/ScrollView';
+import Text from '@components/Text';
 import WorkspaceConfirmationForm from '@components/WorkspaceConfirmationForm';
 import type {WorkspaceConfirmationSubmitFunctionParams} from '@components/WorkspaceConfirmationForm';
 import useCurrentUserPersonalDetails from '@hooks/useCurrentUserPersonalDetails';
@@ -16,14 +19,13 @@ import Navigation from '@libs/Navigation/Navigation';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {MoneyRequestNavigatorParamList} from '@libs/Navigation/types';
 import {getParticipantsOption} from '@libs/OptionsListUtils';
-import UpgradeConfirmation from '@pages/workspace/upgrade/UpgradeConfirmation';
-import UpgradeIntro from '@pages/workspace/upgrade/UpgradeIntro';
 import {setCustomUnitRateID, setMoneyRequestParticipants} from '@userActions/IOU';
 import CONST from '@src/CONST';
 import * as Policy from '@src/libs/actions/Policy/Policy';
 import ONYXKEYS from '@src/ONYXKEYS';
 import ROUTES from '@src/ROUTES';
 import type SCREENS from '@src/SCREENS';
+import {View} from 'react-native';
 
 type IOURequestStepUpgradeProps = PlatformStackScreenProps<MoneyRequestNavigatorParamList, typeof SCREENS.MONEY_REQUEST.STEP_UPGRADE>;
 
@@ -43,19 +45,35 @@ function IOURequestStepUpgrade({
 
     const [isUpgraded, setIsUpgraded] = useState(false);
     const [showConfirmationForm, setShowConfirmationForm] = useState(false);
-    const [createdPolicyName, setCreatedPolicyName] = useState('');
     const policyDataRef = useRef<CreateWorkspaceParams | null>(null);
     const isDistanceRateUpgrade = upgradePath === CONST.UPGRADE_PATHS.DISTANCE_RATES;
     const isCategorizing = upgradePath === CONST.UPGRADE_PATHS.CATEGORIES;
     const isReporting = upgradePath === CONST.UPGRADE_PATHS.REPORTS;
 
-    const feature = useMemo(
-        () =>
-            Object.values(CONST.UPGRADE_FEATURE_INTRO_MAPPING)
-                .filter((value) => value.id !== CONST.UPGRADE_FEATURE_INTRO_MAPPING.policyPreventMemberChangingTitle.id)
-                .find((f) => f.alias === upgradePath),
-        [upgradePath],
-    );
+    const upgradeContent = useMemo(() => {
+        switch (upgradePath) {
+            case CONST.UPGRADE_PATHS.DISTANCE_RATES:
+                return {
+                    title: translate('workspace.upgrade.distanceRates.title'),
+                    description: translate('workspace.upgrade.distanceRates.description'),
+                };
+            case CONST.UPGRADE_PATHS.CATEGORIES:
+                return {
+                    title: translate('workspace.upgrade.categories.title'),
+                    description: translate('workspace.upgrade.categories.description'),
+                };
+            case CONST.UPGRADE_PATHS.REPORTS:
+                return {
+                    title: translate('workspace.upgrade.reportFields.title'),
+                    description: translate('workspace.upgrade.reportFields.description'),
+                };
+            default:
+                return {
+                    title: translate('workspace.upgrade.upgradeToUnlock'),
+                    description: translate('workspace.upgrade.commonFeatures.note'),
+                };
+        }
+    }, [translate, upgradePath]);
 
     const afterUpgradeAcknowledged = useCallback(() => {
         const expenseReportID = policyDataRef.current?.expenseChatReportID ?? reportID;
@@ -133,7 +151,6 @@ function IOURequestStepUpgrade({
             engagementChoice: CONST.ONBOARDING_CHOICES.TRACK_WORKSPACE,
         });
         policyDataRef.current = policyData;
-        setCreatedPolicyName(params.name);
         setShowConfirmationForm(false);
         setIsUpgraded(true);
     };
@@ -153,23 +170,39 @@ function IOURequestStepUpgrade({
             {!showConfirmationForm && (
                 <ScrollView contentContainerStyle={styles.flexGrow1}>
                     {!!isUpgraded && (
-                        <UpgradeConfirmation
-                            afterUpgradeAcknowledged={afterUpgradeAcknowledged}
-                            policyName={createdPolicyName}
-                            isCategorizing={isCategorizing}
-                            isReporting={isReporting}
-                            isDistanceRateUpgrade={isDistanceRateUpgrade}
+                        <ConfirmationPage
+                            heading={
+                                isCategorizing || isReporting
+                                    ? translate('workspace.upgrade.completed.createdWorkspace')
+                                    : translate('workspace.upgrade.completed.headline')
+                            }
+                            descriptionComponent={
+                                <Text style={[styles.textAlignCenter, styles.w100]}>
+                                    {isCategorizing || isReporting
+                                        ? translate('workspace.upgrade.completed.categorizeMessage')
+                                        : isDistanceRateUpgrade
+                                          ? translate('workspace.upgrade.completed.distanceRateMessage')
+                                          : translate('workspace.upgrade.completed.headline')}
+                                </Text>
+                            }
+                            shouldShowButton
+                            onButtonPress={afterUpgradeAcknowledged}
+                            buttonText={translate('workspace.upgrade.completed.gotIt')}
+                            containerStyle={[styles.flexGrow1, styles.justifyContentCenter]}
                         />
                     )}
                     {!isUpgraded && (
-                        <UpgradeIntro
-                            feature={feature}
-                            onUpgrade={onUpgrade}
-                            buttonDisabled={isOffline}
-                            loading={false}
-                            isCategorizing={isCategorizing}
-                            isDistanceRateUpgrade={isDistanceRateUpgrade}
-                        />
+                        <View style={[styles.flexGrow1, styles.justifyContentCenter, styles.ph5]}>
+                            <Text style={[styles.textAlignCenter, styles.textHeadlineH2, styles.mb3]}>{upgradeContent.title}</Text>
+                            <Text style={[styles.textAlignCenter, styles.mb5]}>{upgradeContent.description}</Text>
+                            <Button
+                                success
+                                large
+                                text={translate('common.upgrade')}
+                                onPress={onUpgrade}
+                                disabled={isOffline}
+                            />
+                        </View>
                     )}
                 </ScrollView>
             )}

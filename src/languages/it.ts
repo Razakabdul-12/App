@@ -5511,7 +5511,7 @@ const translations = {
                 description: `Goditi la sincronizzazione automatica e riduci le immissioni manuali con l'integrazione Expensify + QuickBooks Desktop. Ottieni la massima efficienza con una connessione bidirezionale in tempo reale e la codifica delle spese per classe, articolo, cliente e progetto.`,
                 onlyAvailableOnPlan: 'La nostra integrazione con QuickBooks Desktop è disponibile solo con il piano Control, a partire da',
             },
-            [CONST.UPGRADE_FEATURE_INTRO_MAPPING.approvals.id]: {
+            approvals: {
                 title: 'Approvazioni Avanzate',
                 description: `Se desideri aggiungere più livelli di approvazione al processo – o semplicemente assicurarti che le spese più grandi ricevano un ulteriore controllo – ti abbiamo coperto. Le approvazioni avanzate ti aiutano a mettere in atto i controlli giusti a ogni livello, in modo da mantenere sotto controllo le spese del tuo team.`,
                 onlyAvailableOnPlan: 'Le approvazioni avanzate sono disponibili solo nel piano Control, che parte da',
@@ -5569,7 +5569,7 @@ const translations = {
                 description: 'Crea e gestisci le tue tariffe, traccia in miglia o chilometri e imposta categorie predefinite per le spese di distanza.',
                 onlyAvailableOnPlan: 'Le tariffe a distanza sono disponibili con il piano Collect, a partire da',
             },
-            [CONST.UPGRADE_FEATURE_INTRO_MAPPING.multiApprovalLevels.id]: {
+            multiApprovalLevels: {
                 title: 'Livelli di approvazione multipli',
                 description:
                     'I livelli di approvazione multipli sono uno strumento di flusso di lavoro per le aziende che richiedono a più di una persona di approvare un report prima che possa essere rimborsato.',

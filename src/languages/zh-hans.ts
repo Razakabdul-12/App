@@ -5413,7 +5413,7 @@ const translations = {
                 description: `通过Expensify与QuickBooks Desktop的集成，享受自动同步并减少手动输入。通过实时双向连接以及按类别、项目、客户和项目的费用编码，实现终极效率。`,
                 onlyAvailableOnPlan: '我们的 QuickBooks Desktop 集成仅在 Control 计划中提供，起价为',
             },
-            [CONST.UPGRADE_FEATURE_INTRO_MAPPING.approvals.id]: {
+            approvals: {
                 title: '高级审批',
                 description: `如果您想在审批流程中增加更多层级，或者只是想确保最大额的费用能被再次审核，我们可以满足您的需求。高级审批帮助您在每个层级设置适当的检查，以便控制团队的支出。`,
                 onlyAvailableOnPlan: '高级审批仅在Control计划中提供，起价为',
@@ -5468,7 +5468,7 @@ const translations = {
                 description: '创建和管理您自己的费率，以英里或公里为单位进行跟踪，并为距离费用设置默认类别。',
                 onlyAvailableOnPlan: '在 Collect 计划中提供的距离费率，起价为',
             },
-            [CONST.UPGRADE_FEATURE_INTRO_MAPPING.multiApprovalLevels.id]: {
+            multiApprovalLevels: {
                 title: '多级审批',
                 description: '多级审批是一种工作流工具，适用于要求一人以上审批报销单后才能进行报销的公司。',
                 onlyAvailableOnPlan: '多级审批仅在 Control 套餐上提供，起价为 ',

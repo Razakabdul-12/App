@@ -1,9 +1,13 @@
 import type {StackScreenProps} from '@react-navigation/stack';
 import React, {useState} from 'react';
+import {View} from 'react-native';
+import Button from '@components/Button';
+import ConfirmationPage from '@components/ConfirmationPage';
 import HeaderWithBackButton from '@components/HeaderWithBackButton';
 import Modal from '@components/Modal';
 import ScreenWrapper from '@components/ScreenWrapper';
 import ScrollView from '@components/ScrollView';
+import Text from '@components/Text';
 import type {WorkspaceConfirmationSubmitFunctionParams} from '@components/WorkspaceConfirmationForm';
 import WorkspaceConfirmationForm from '@components/WorkspaceConfirmationForm';
 import useLocalize from '@hooks/useLocalize';
@@ -11,17 +15,14 @@ import useNetwork from '@hooks/useNetwork';
 import useThemeStyles from '@hooks/useThemeStyles';
 import Navigation from '@libs/Navigation/Navigation';
 import type {TravelNavigatorParamList} from '@libs/Navigation/types';
-import UpgradeConfirmation from '@pages/workspace/upgrade/UpgradeConfirmation';
-import UpgradeIntro from '@pages/workspace/upgrade/UpgradeIntro';
-import CONST from '@src/CONST';
 import {createDraftWorkspace, createWorkspace} from '@src/libs/actions/Policy/Policy';
+import CONST from '@src/CONST';
 import type SCREENS from '@src/SCREENS';
 
 type TravelUpgradeProps = StackScreenProps<TravelNavigatorParamList, typeof SCREENS.TRAVEL.UPGRADE>;
 
 function TravelUpgrade({route}: TravelUpgradeProps) {
     const styles = useThemeStyles();
-    const feature = CONST.UPGRADE_FEATURE_INTRO_MAPPING.travel;
     const {translate} = useLocalize();
     const {isOffline} = useNetwork();
 
@@ -83,19 +84,27 @@ function TravelUpgrade({route}: TravelUpgradeProps) {
             </Modal>
             <ScrollView contentContainerStyle={styles.flexGrow1}>
                 {isUpgraded ? (
-                    <UpgradeConfirmation
-                        afterUpgradeAcknowledged={() => Navigation.goBack()}
-                        policyName=""
-                        isTravelUpgrade
+                    <ConfirmationPage
+                        heading={translate('workspace.upgrade.completed.headline')}
+                        descriptionComponent={
+                            <Text style={[styles.textAlignCenter, styles.w100]}>{translate('workspace.upgrade.completed.travelMessage')}</Text>
+                        }
+                        shouldShowButton
+                        onButtonPress={() => Navigation.goBack()}
+                        buttonText={translate('workspace.upgrade.completed.gotIt')}
+                        containerStyle={[styles.flexGrow1, styles.justifyContentCenter]}
                     />
                 ) : (
-                    <UpgradeIntro
-                        feature={feature}
-                        onUpgrade={() => setShouldShowConfirmation(true)}
-                        buttonDisabled={isOffline}
-                        loading={false}
-                        isCategorizing
-                    />
+                    <View style={[styles.flexGrow1, styles.justifyContentCenter, styles.ph5]}>
+                        <Text style={[styles.textAlignCenter, styles.mb5]}>{translate('travel.subtitle')}</Text>
+                        <Button
+                            success
+                            large
+                            text={translate('common.upgrade')}
+                            onPress={() => setShouldShowConfirmation(true)}
+                            disabled={isOffline}
+                        />
+                    </View>
                 )}
             </ScrollView>
         </ScreenWrapper>

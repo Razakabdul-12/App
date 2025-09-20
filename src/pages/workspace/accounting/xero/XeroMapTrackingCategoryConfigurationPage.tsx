@@ -16,6 +16,7 @@ import withPolicyConnections from '@pages/workspace/withPolicyConnections';
 import CONST from '@src/CONST';
 import type {TranslationPaths} from '@src/languages/types';
 import ROUTES from '@src/ROUTES';
+import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 
 type RouteParams = {
     categoryId?: string;
@@ -64,12 +65,9 @@ function XeroMapTrackingCategoryConfigurationPage({policy}: WithPolicyProps) {
         (option: {value: string}) => {
             if (option.value !== currentTrackingCategoryValue) {
                 if (option.value === CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.REPORT_FIELD && !isControlPolicy(policy)) {
-                    const backToRoute = ROUTES.WORKSPACE_UPGRADE.getRoute(
-                        policyID,
-                        `${CONST.REPORT_FIELDS_FEATURE.xero.mapping}`,
-                        ROUTES.POLICY_ACCOUNTING_XERO_TRACKING_CATEGORIES.getRoute(policyID),
-                    );
-                    Navigation.navigate(`${backToRoute}&categoryId=${categoryId}`);
+                    const trackingCategoriesRoute = ROUTES.POLICY_ACCOUNTING_XERO_TRACKING_CATEGORIES.getRoute(policyID);
+                    const backToRoute = categoryId ? `${trackingCategoriesRoute}?categoryId=${categoryId}` : trackingCategoriesRoute;
+                    navigateToSubscription(backToRoute);
                     return;
                 }
                 if (!policyID) {

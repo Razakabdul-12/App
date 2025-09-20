@@ -12,6 +12,7 @@ import useThemeStyles from '@hooks/useThemeStyles';
 import {upgradeToCorporate} from '@libs/actions/Policy/Policy';
 import {canModifyPlan, getOwnedPaidPolicies} from '@libs/PolicyUtils';
 import Navigation from '@navigation/Navigation';
+import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 import {getCurrentUserAccountID} from '@userActions/Report';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
@@ -78,7 +79,7 @@ function SubscriptionPlanCardActionButton({subscriptionPlan, isFromComparisonMod
                 closeComparisonModal?.();
                 return;
             }
-            Navigation.navigate(ROUTES.WORKSPACE_UPGRADE.getRoute(policy?.id, undefined, Navigation.getActiveRoute()));
+            navigateToSubscription(Navigation.getActiveRoute());
         }
     };
 

@@ -16,6 +16,7 @@ import usePolicy from '@hooks/usePolicy';
 import useThemeStyles from '@hooks/useThemeStyles';
 import {getLatestErrorMessageField} from '@libs/ErrorUtils';
 import Navigation from '@libs/Navigation/Navigation';
+import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import {isDisablingOrDeletingLastEnabledTag} from '@libs/OptionsListUtils';
 import {getPersonalDetailByEmail} from '@libs/PersonalDetailsUtils';
@@ -102,14 +103,10 @@ function TagSettingsPage({route, navigation}: TagSettingsPageProps) {
 
     const navigateToEditGlCode = () => {
         if (!isControlPolicy(policy)) {
-            Navigation.navigate(
-                ROUTES.WORKSPACE_UPGRADE.getRoute(
-                    policyID,
-                    CONST.UPGRADE_FEATURE_INTRO_MAPPING.glCodes.alias,
-                    isQuickSettingsFlow
-                        ? ROUTES.SETTINGS_TAG_GL_CODE.getRoute(policyID, orderWeight, tagName, backTo)
-                        : ROUTES.WORKSPACE_TAG_GL_CODE.getRoute(policyID, orderWeight, tagName),
-                ),
+            navigateToSubscription(
+                isQuickSettingsFlow
+                    ? ROUTES.SETTINGS_TAG_GL_CODE.getRoute(policyID, orderWeight, tagName, backTo)
+                    : ROUTES.WORKSPACE_TAG_GL_CODE.getRoute(policyID, orderWeight, tagName),
             );
             return;
         }

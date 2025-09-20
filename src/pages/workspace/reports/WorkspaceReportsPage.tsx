@@ -28,6 +28,7 @@ import {isConnectionInProgress, isConnectionUnverified} from '@libs/actions/conn
 import {clearPolicyTitleFieldError, enablePolicyReportFields, setPolicyPreventMemberCreatedTitle} from '@libs/actions/Policy/Policy';
 import {getLatestErrorField} from '@libs/ErrorUtils';
 import Navigation from '@libs/Navigation/Navigation';
+import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {WorkspaceSplitNavigatorParamList} from '@libs/Navigation/types';
 import {getConnectedIntegration, getCurrentConnectionName, hasAccountingConnections as hasAccountingConnectionsPolicyUtils, isControlPolicy, shouldShowSyncError} from '@libs/PolicyUtils';
@@ -228,13 +229,7 @@ function WorkspaceReportFieldsPage({
                                 isActive={!policy?.fieldList?.[CONST.POLICY.FIELDS.FIELD_LIST_TITLE].deletable}
                                 onToggle={(isEnabled) => {
                                     if (isEnabled && !isControlPolicy(policy)) {
-                                        Navigation.navigate(
-                                            ROUTES.WORKSPACE_UPGRADE.getRoute(
-                                                policyID,
-                                                CONST.UPGRADE_FEATURE_INTRO_MAPPING.policyPreventMemberChangingTitle.alias,
-                                                ROUTES.WORKSPACE_REPORTS.getRoute(policyID),
-                                            ),
-                                        );
+                                        navigateToSubscription(ROUTES.WORKSPACE_REPORTS.getRoute(policyID));
                                         return;
                                     }
 
@@ -259,9 +254,7 @@ function WorkspaceReportFieldsPage({
                                         return;
                                     }
                                     if (!isControlPolicy(policy)) {
-                                        Navigation.navigate(
-                                            ROUTES.WORKSPACE_UPGRADE.getRoute(policyID, CONST.UPGRADE_FEATURE_INTRO_MAPPING.reportFields.alias, ROUTES.WORKSPACE_REPORTS.getRoute(policyID)),
-                                        );
+                                        navigateToSubscription(ROUTES.WORKSPACE_REPORTS.getRoute(policyID));
                                         return;
                                     }
                                     enablePolicyReportFields(policyID, isEnabled);

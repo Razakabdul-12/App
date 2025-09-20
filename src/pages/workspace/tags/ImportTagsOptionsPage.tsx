@@ -18,6 +18,7 @@ import useThemeStyles from '@hooks/useThemeStyles';
 import {cleanPolicyTags, downloadMultiLevelIndependentTagsCSV, downloadTagsCSV, setImportedSpreadsheetIsImportingMultiLevelTags} from '@libs/actions/Policy/Tag';
 import {canUseTouchScreen} from '@libs/DeviceCapabilities';
 import Navigation from '@libs/Navigation/Navigation';
+import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {SettingsNavigatorParamList} from '@libs/Navigation/types';
 import {
@@ -139,7 +140,7 @@ function ImportTagsOptionsPage({route}: ImportTagsOptionsPageProps) {
                         onPress={() => {
                             if (!isControlPolicy(policy)) {
                                 setShouldRunPostUpgradeFlow(true);
-                                Navigation.navigate(ROUTES.WORKSPACE_UPGRADE.getRoute(policyID, CONST.UPGRADE_FEATURE_INTRO_MAPPING.multiLevelTags.alias, Navigation.getActiveRoute()));
+                                navigateToSubscription(Navigation.getActiveRoute());
                                 return;
                             }
                             startMultiLevelTagImportFlow();

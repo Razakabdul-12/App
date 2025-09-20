@@ -9,6 +9,7 @@ import useThemeStyles from '@hooks/useThemeStyles';
 import * as QuickbooksOnline from '@libs/actions/connections/QuickbooksOnline';
 import * as ErrorUtils from '@libs/ErrorUtils';
 import Navigation from '@libs/Navigation/Navigation';
+import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 import * as PolicyUtils from '@libs/PolicyUtils';
 import {shouldShowLocationsLineItemsRestriction, shouldSwitchLocationsToReportFields} from '@pages/workspace/accounting/qbo/utils';
 import type {WithPolicyProps} from '@pages/workspace/withPolicy';
@@ -32,9 +33,7 @@ function QuickbooksLocationsPage({policy}: WithPolicyProps) {
     const updateQuickbooksOnlineSyncLocations = useCallback(
         (settingValue: IntegrationEntityMap) => {
             if (settingValue === CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD && !PolicyUtils.isControlPolicy(policy)) {
-                Navigation.navigate(
-                    ROUTES.WORKSPACE_UPGRADE.getRoute(policyID, CONST.REPORT_FIELDS_FEATURE.qbo.locations, ROUTES.POLICY_ACCOUNTING_QUICKBOOKS_ONLINE_LOCATIONS.getRoute(policyID)),
-                );
+                navigateToSubscription(ROUTES.POLICY_ACCOUNTING_QUICKBOOKS_ONLINE_LOCATIONS.getRoute(policyID));
                 return;
             }
             QuickbooksOnline.updateQuickbooksOnlineSyncLocations(policyID, settingValue, qboConfig?.syncLocations);

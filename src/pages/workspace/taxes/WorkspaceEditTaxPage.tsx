@@ -14,6 +14,7 @@ import useThemeStyles from '@hooks/useThemeStyles';
 import {clearTaxRateFieldError, deletePolicyTaxes, setPolicyTaxesEnabled} from '@libs/actions/TaxRate';
 import {getLatestErrorField} from '@libs/ErrorUtils';
 import Navigation from '@libs/Navigation/Navigation';
+import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {SettingsNavigatorParamList} from '@libs/Navigation/types';
 import {canEditTaxRate as canEditTaxRateUtil, getCurrentTaxID, hasAccountingConnections, isControlPolicy} from '@libs/PolicyUtils';
@@ -144,13 +145,7 @@ function WorkspaceEditTaxPage({
                             titleStyle={styles.flex1}
                             onPress={() => {
                                 if (!isControlPolicy(policy)) {
-                                    Navigation.navigate(
-                                        ROUTES.WORKSPACE_UPGRADE.getRoute(
-                                            policyID,
-                                            CONST.UPGRADE_FEATURE_INTRO_MAPPING.taxCodes.alias,
-                                            ROUTES.WORKSPACE_TAX_CODE.getRoute(`${policyID}`, taxID),
-                                        ),
-                                    );
+                                    navigateToSubscription(ROUTES.WORKSPACE_TAX_CODE.getRoute(`${policyID}`, taxID));
                                     return;
                                 }
                                 Navigation.navigate(ROUTES.WORKSPACE_TAX_CODE.getRoute(`${policyID}`, taxID));
