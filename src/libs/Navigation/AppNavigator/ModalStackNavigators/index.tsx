@@ -671,13 +671,7 @@ const SettingsModalStackNavigator = createModalStackNavigator<SettingsNavigatorP
         require<ReactComponentModule>('../../../../pages/workspace/accounting/intacct/import/SageIntacctAddUserDimensionPage').default,
     [SCREENS.WORKSPACE.ACCOUNTING.SAGE_INTACCT_EDIT_USER_DIMENSION]: () =>
         require<ReactComponentModule>('../../../../pages/workspace/accounting/intacct/import/SageIntacctEditUserDimensionsPage').default,
-    [SCREENS.SETTINGS.DELEGATE.VERIFY_ACCOUNT]: () => require<ReactComponentModule>('../../../../pages/settings/Security/AddDelegate/VerifyAccountPage').default,
-    [SCREENS.SETTINGS.DELEGATE.ADD_DELEGATE]: () => require<ReactComponentModule>('../../../../pages/settings/Security/AddDelegate/AddDelegatePage').default,
-    [SCREENS.SETTINGS.DELEGATE.DELEGATE_ROLE]: () => require<ReactComponentModule>('../../../../pages/settings/Security/AddDelegate/SelectDelegateRolePage').default,
-    [SCREENS.SETTINGS.DELEGATE.UPDATE_DELEGATE_ROLE]: () =>
-        require<ReactComponentModule>('../../../../pages/settings/Security/AddDelegate/UpdateDelegateRole/UpdateDelegateRolePage').default,
-    [SCREENS.SETTINGS.DELEGATE.DELEGATE_CONFIRM]: () => require<ReactComponentModule>('../../../../pages/settings/Security/AddDelegate/ConfirmDelegatePage').default,
-    [SCREENS.SETTINGS.LOCK.LOCK_ACCOUNT]: () => require<ReactComponentModule>('../../../../pages/settings/Security/LockAccount/LockAccountPage').default,
+     [SCREENS.SETTINGS.LOCK.LOCK_ACCOUNT]: () => require<ReactComponentModule>('../../../../pages/settings/Security/LockAccount/LockAccountPage').default,
     [SCREENS.SETTINGS.LOCK.UNLOCK_ACCOUNT]: () => require<ReactComponentModule>('../../../../pages/settings/Security/LockAccount/UnlockAccountPage').default,
     [SCREENS.SETTINGS.LOCK.FAILED_TO_LOCK_ACCOUNT]: () => require<ReactComponentModule>('../../../../pages/settings/Security/LockAccount/FailedToLockAccountPage').default,
     [SCREENS.WORKSPACE.REPORTS_DEFAULT_TITLE]: () => require<ReactComponentModule>('../../../../pages/workspace/reports/ReportsDefaultTitle').default,

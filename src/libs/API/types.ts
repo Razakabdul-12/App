@@ -433,9 +433,6 @@ const WRITE_COMMANDS = {
     CREATE_EXPENSIFY_CARD: 'CreateExpensifyCard',
     CREATE_ADMIN_ISSUED_VIRTUAL_CARD: 'CreateAdminIssuedVirtualCard',
     QUEUE_EXPENSIFY_CARD_FOR_BILLING: 'Domain_QueueExpensifyCardForBilling',
-    ADD_DELEGATE: 'AddDelegate',
-    REMOVE_DELEGATE: 'RemoveDelegate',
-    UPDATE_DELEGATE_ROLE: 'UpdateDelegateRole',
     TOGGLE_CARD_CONTINUOUS_RECONCILIATION: 'ToggleCardContinuousReconciliation',
     SET_POLICY_TAG_APPROVER: 'SetPolicyTagApprover',
     SAVE_SEARCH: 'SaveSearch',
@@ -966,9 +963,6 @@ type WriteCommandParameters = {
     [WRITE_COMMANDS.CREATE_EXPENSIFY_CARD]: Parameters.CreateExpensifyCardParams;
     [WRITE_COMMANDS.CREATE_ADMIN_ISSUED_VIRTUAL_CARD]: Omit<Parameters.CreateExpensifyCardParams, 'feedCountry'>;
     [WRITE_COMMANDS.QUEUE_EXPENSIFY_CARD_FOR_BILLING]: Parameters.QueueExpensifyCardForBillingParams;
-    [WRITE_COMMANDS.ADD_DELEGATE]: Parameters.AddDelegateParams;
-    [WRITE_COMMANDS.UPDATE_DELEGATE_ROLE]: Parameters.UpdateDelegateRoleParams;
-    [WRITE_COMMANDS.REMOVE_DELEGATE]: Parameters.RemoveDelegateParams;
     [WRITE_COMMANDS.TOGGLE_CARD_CONTINUOUS_RECONCILIATION]: Parameters.ToggleCardContinuousReconciliationParams;
     [WRITE_COMMANDS.SAVE_SEARCH]: Parameters.SaveSearchParams;
     [WRITE_COMMANDS.DELETE_SAVED_SEARCH]: Parameters.DeleteSavedSearchParams;
@@ -1087,7 +1081,6 @@ const READ_COMMANDS = {
     OPEN_CARD_DETAILS_PAGE: 'OpenCardDetailsPage',
     GET_CORPAY_ONBOARDING_FIELDS: 'GetCorpayOnboardingFields',
     OPEN_WORKSPACE_PLAN_PAGE: 'OpenWorkspacePlanPage',
-    OPEN_SECURITY_SETTINGS_PAGE: 'OpenSecuritySettingsPage',
     OPEN_UNREPORTED_EXPENSES_PAGE: 'OpenUnreportedExpensesPage',
     GET_GUIDE_CALL_AVAILABILITY_SCHEDULE: 'GetGuideCallAvailabilitySchedule',
     GET_TRANSACTIONS_FOR_MERGING: 'GetTransactionsForMerging',
@@ -1162,7 +1155,6 @@ type ReadCommandParameters = {
     [READ_COMMANDS.OPEN_CARD_DETAILS_PAGE]: Parameters.OpenCardDetailsPageParams;
     [READ_COMMANDS.GET_CORPAY_ONBOARDING_FIELDS]: Parameters.GetCorpayOnboardingFieldsParams;
     [READ_COMMANDS.OPEN_WORKSPACE_PLAN_PAGE]: Parameters.OpenWorkspacePlanPageParams;
-    [READ_COMMANDS.OPEN_SECURITY_SETTINGS_PAGE]: null;
     [READ_COMMANDS.OPEN_UNREPORTED_EXPENSES_PAGE]: Parameters.OpenUnreportedExpensesPageParams;
     [READ_COMMANDS.GET_GUIDE_CALL_AVAILABILITY_SCHEDULE]: Parameters.GetGuideCallAvailabilityScheduleParams;
     [READ_COMMANDS.GET_TRANSACTIONS_FOR_MERGING]: Parameters.GetTransactionsForMergingParams;

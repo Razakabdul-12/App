@@ -133,14 +133,6 @@ const SCREENS = {
             CARDS_DIGITAL_DETAILS_UPDATE_ADDRESS: 'Settings_Wallet_Cards_Digital_Details_Update_Address',
             ENABLE_GLOBAL_REIMBURSEMENTS: 'Settings_Wallet_Enable_Global_Reimbursements',
         },
-
-        DELEGATE: {
-            VERIFY_ACCOUNT: 'Settings_Delegate_VerifyAccount',
-            ADD_DELEGATE: 'Settings_Delegate_Add',
-            DELEGATE_ROLE: 'Settings_Delegate_Role',
-            DELEGATE_CONFIRM: 'Settings_Delegate_Confirm',
-            UPDATE_DELEGATE_ROLE: 'Settings_Delegate_Update_Role',
-        },
         LOCK: {
             LOCK_ACCOUNT: 'Settings_Lock_LockAccount',
             UNLOCK_ACCOUNT: 'Settings_Lock_UnlockAccount',

@@ -324,8 +324,6 @@ export type {default as SetPolicyAttendeeTrackingEnabledParams} from './SetPolic
 export type {default as ConfigureExpensifyCardsForPolicyParams} from './ConfigureExpensifyCardsForPolicyParams';
 export type {default as CreateExpensifyCardParams} from './CreateExpensifyCardParams';
 export type {default as UpdateExpensifyCardTitleParams} from './UpdateExpensifyCardTitleParams';
-export type {default as AddDelegateParams} from './AddDelegateParams';
-export type {default as UpdateDelegateRoleParams} from './UpdateDelegateRoleParams';
 export type {default as OpenCardDetailsPageParams} from './OpenCardDetailsPageParams';
 export type {default as SetPolicyCategoryDescriptionRequiredParams} from './SetPolicyCategoryDescriptionRequiredParams';
 export type {default as SetPolicyCategoryApproverParams} from './SetPolicyCategoryApproverParams';
@@ -336,7 +334,6 @@ export type {default as EnablePolicyCompanyCardsParams} from './EnablePolicyComp
 export type {default as ToggleCardContinuousReconciliationParams} from './ToggleCardContinuousReconciliationParams';
 export type {default as CardDeactivateParams} from './CardDeactivateParams';
 export type {default as UpdateExpensifyCardLimitTypeParams} from './UpdateExpensifyCardLimitTypeParams';
-export type {default as RemoveDelegateParams} from './RemoveDelegateParams';
 export type {default as SetPolicyTagApproverParams} from './SetPolicyTagApproverParams';
 export type {default as SaveSearchParams} from './SaveSearch';
 export type {default as DeleteSavedSearchParams} from './DeleteSavedSearch';

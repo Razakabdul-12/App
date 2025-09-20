@@ -7,7 +7,6 @@ import NAVIGATORS from '@src/NAVIGATORS';
 import ROUTES from '@src/ROUTES';
 import type {Screen} from '@src/SCREENS';
 import SCREENS from '@src/SCREENS';
-import getHistoryParamParse from './helpers/getHistoryParamParse';
 import HISTORY_PARAM from './HISTORY_PARAM';
 
 // Moved to a separate file to avoid cyclic dependencies.
@@ -325,24 +324,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.SETTINGS.PROFILE.ADDRESS_STATE]: {
                             path: ROUTES.SETTINGS_ADDRESS_STATE.route,
                             exact: true,
-                        },
-                        [SCREENS.SETTINGS.DELEGATE.VERIFY_ACCOUNT]: {
-                            path: ROUTES.SETTINGS_DELEGATE_VERIFY_ACCOUNT,
-                            exact: true,
-                        },
-                        [SCREENS.SETTINGS.DELEGATE.ADD_DELEGATE]: {
-                            path: ROUTES.SETTINGS_ADD_DELEGATE,
-                            exact: true,
-                        },
-                        [SCREENS.SETTINGS.DELEGATE.DELEGATE_ROLE]: {
-                            path: ROUTES.SETTINGS_DELEGATE_ROLE.route,
-                        },
-                        [SCREENS.SETTINGS.DELEGATE.UPDATE_DELEGATE_ROLE]: {
-                            path: ROUTES.SETTINGS_UPDATE_DELEGATE_ROLE.route,
-                        },
-                        [SCREENS.SETTINGS.DELEGATE.DELEGATE_CONFIRM]: {
-                            path: ROUTES.SETTINGS_DELEGATE_CONFIRM.route,
-                            parse: getHistoryParamParse(HISTORY_PARAM.SHOW_VALIDATE_CODE_ACTION_MODAL),
                         },
                         [SCREENS.SETTINGS.PROFILE.STATUS]: {
                             path: ROUTES.SETTINGS_STATUS,

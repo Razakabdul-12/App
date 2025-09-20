@@ -909,24 +909,6 @@ type SettingsNavigatorParamList = {
     };
     [SCREENS.TWO_FACTOR_AUTH.DISABLED]: undefined;
     [SCREENS.TWO_FACTOR_AUTH.DISABLE]: undefined;
-    [SCREENS.SETTINGS.DELEGATE.VERIFY_ACCOUNT]: undefined;
-    [SCREENS.SETTINGS.DELEGATE.ADD_DELEGATE]: undefined;
-    [SCREENS.SETTINGS.DELEGATE.DELEGATE_ROLE]: {
-        login: string;
-        role?: string;
-        backTo?: Routes;
-    };
-    [SCREENS.SETTINGS.DELEGATE.UPDATE_DELEGATE_ROLE]: {
-        login: string;
-        currentRole: string;
-        showValidateActionModal?: string;
-        newRole?: ValueOf<typeof CONST.DELEGATE_ROLE>;
-    };
-    [SCREENS.SETTINGS.DELEGATE.DELEGATE_CONFIRM]: {
-        login: string;
-        role: string;
-        showValidateActionModal?: string;
-    };
     [SCREENS.SETTINGS.REPORT_CARD_LOST_OR_DAMAGED]: {
         /** cardID of selected card */
         cardID: string;

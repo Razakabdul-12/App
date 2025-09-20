@@ -211,25 +211,6 @@ const ROUTES = {
     SETTINGS_LOCK_ACCOUNT: 'settings/security/lock-account',
     SETTINGS_UNLOCK_ACCOUNT: 'settings/security/unlock-account',
     SETTINGS_FAILED_TO_LOCK_ACCOUNT: 'settings/security/failed-to-lock-account',
-    SETTINGS_DELEGATE_VERIFY_ACCOUNT: `settings/security/delegate/${VERIFY_ACCOUNT}`,
-    SETTINGS_ADD_DELEGATE: 'settings/security/delegate',
-    SETTINGS_DELEGATE_ROLE: {
-        route: 'settings/security/delegate/:login/role/:role',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (login: string, role?: string, backTo?: string) => getUrlWithBackToParam(`settings/security/delegate/${encodeURIComponent(login)}/role/${role}`, backTo),
-    },
-    SETTINGS_UPDATE_DELEGATE_ROLE: {
-        route: 'settings/security/delegate/:login/update-role/:currentRole',
-        getRoute: (login: string, currentRole: string) => `settings/security/delegate/${encodeURIComponent(login)}/update-role/${currentRole}` as const,
-    },
-    SETTINGS_DELEGATE_CONFIRM: {
-        route: 'settings/security/delegate/:login/role/:role/confirm',
-        getRoute: (login: string, role: string, showValidateActionModal?: boolean) => {
-            const validateActionModalParam = showValidateActionModal ? `?showValidateActionModal=true` : '';
-            return `settings/security/delegate/${encodeURIComponent(login)}/role/${role}/confirm${validateActionModalParam}` as const;
-        },
-    },
     SETTINGS_ABOUT: 'settings/about',
     SETTINGS_APP_DOWNLOAD_LINKS: 'settings/about/app-download-links',
     SETTINGS_WALLET: 'settings/wallet',
