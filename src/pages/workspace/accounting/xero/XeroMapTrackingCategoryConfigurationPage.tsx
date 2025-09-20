@@ -16,6 +16,7 @@ import withPolicyConnections from '@pages/workspace/withPolicyConnections';
 import CONST from '@src/CONST';
 import type {TranslationPaths} from '@src/languages/types';
 import ROUTES from '@src/ROUTES';
+import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 
 type RouteParams = {
     categoryId?: string;

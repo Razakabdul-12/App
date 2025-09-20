@@ -5381,7 +5381,7 @@ const translations = {
                 description: `Ciesz się automatyczną synchronizacją i redukcją ręcznych wpisów dzięki integracji Expensify + QuickBooks Desktop. Zyskaj maksymalną wydajność dzięki dwukierunkowemu połączeniu w czasie rzeczywistym oraz kodowaniu wydatków według klasy, pozycji, klienta i projektu.`,
                 onlyAvailableOnPlan: 'Nasza integracja z QuickBooks Desktop jest dostępna tylko w planie Control, zaczynającym się od',
             },
-            [CONST.UPGRADE_FEATURE_INTRO_MAPPING.approvals.id]: {
+            approvals: {
                 title: 'Zaawansowane zatwierdzenia',
                 description: `Jeśli chcesz dodać więcej warstw zatwierdzeń do procesu – lub po prostu upewnić się, że największe wydatki zostaną ponownie sprawdzone – mamy dla Ciebie rozwiązanie. Zaawansowane zatwierdzenia pomagają wprowadzić odpowiednie kontrole na każdym poziomie, aby utrzymać wydatki zespołu pod kontrolą.`,
                 onlyAvailableOnPlan: 'Zaawansowane zatwierdzenia są dostępne tylko w planie Control, który zaczyna się od',
@@ -5439,7 +5439,7 @@ const translations = {
                 description: 'Twórz i zarządzaj własnymi stawkami, śledź w milach lub kilometrach i ustawiaj domyślne kategorie dla wydatków na odległość.',
                 onlyAvailableOnPlan: 'Stawki za odległość są dostępne w planie Collect, zaczynając od',
             },
-            [CONST.UPGRADE_FEATURE_INTRO_MAPPING.multiApprovalLevels.id]: {
+            multiApprovalLevels: {
                 title: 'Wiele poziomów zatwierdzania',
                 description:
                     'Wiele poziomów zatwierdzania to narzędzie workflow dla firm, które wymagają zatwierdzenia raportu przez więcej niż jedną osobę, zanim będzie mógł zostać zrefundowany.',

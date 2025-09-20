@@ -5366,7 +5366,7 @@ const translations = {
                 description: `Expensify + QuickBooks Desktop の統合で、自動同期を楽しみ、手動入力を減らしましょう。クラス、アイテム、顧客、プロジェクトごとの経費コード化とリアルタイムの双方向接続で、究極の効率性を実現します。`,
                 onlyAvailableOnPlan: 'QuickBooks Desktopの統合は、Controlプランでのみ利用可能で、料金は',
             },
-            [CONST.UPGRADE_FEATURE_INTRO_MAPPING.approvals.id]: {
+            approvals: {
                 title: '高度な承認',
                 description: `追加の承認レイヤーを加えたい場合や、最も大きな経費にもう一つの目を通したい場合でも、私たちがサポートします。高度な承認機能により、あらゆるレベルで適切なチェックを行い、チームの支出を管理することができます。`,
                 onlyAvailableOnPlan: '高度な承認は、Controlプランでのみ利用可能で、料金は',
@@ -5423,7 +5423,7 @@ const translations = {
                 description: '独自の料金を作成および管理し、マイルまたはキロメートルで追跡し、距離経費のデフォルトカテゴリを設定します。',
                 onlyAvailableOnPlan: '距離料金は、Collectプランで利用可能で、料金は',
             },
-            [CONST.UPGRADE_FEATURE_INTRO_MAPPING.multiApprovalLevels.id]: {
+            multiApprovalLevels: {
                 title: '複数の承認レベル',
                 description: '複数の承認レベルは、払い戻しが行われる前に複数の人がレポートを承認する必要がある企業向けのワークフローツールです。',
                 onlyAvailableOnPlan: '複数の承認レベルは、Controlプランでのみ利用可能です。料金は ',

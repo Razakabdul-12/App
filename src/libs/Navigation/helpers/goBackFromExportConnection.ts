@@ -1,5 +1,5 @@
 import Navigation from '@libs/Navigation/Navigation';
-import CONST from '@src/CONST';
+import {FEATURE_IDS} from '@src/CONST';
 import replaceCompanyCardsRoute from './replaceCompanyCardsRoute';
 
 /**
@@ -7,9 +7,7 @@ import replaceCompanyCardsRoute from './replaceCompanyCardsRoute';
  * If not, just regular go back
  */
 function goBackFromExportConnection(shouldGoBackToSpecificRoute: boolean, backTo?: string) {
-    const feature = CONST.UPGRADE_FEATURE_INTRO_MAPPING.companyCards;
-
-    if (!(shouldGoBackToSpecificRoute && backTo?.includes(feature.alias))) {
+    if (!(shouldGoBackToSpecificRoute && backTo?.includes(FEATURE_IDS.COMPANY_CARDS))) {
         return Navigation.goBack();
     }
     const companyCardDetailsPage = replaceCompanyCardsRoute(backTo);

@@ -18,6 +18,7 @@ import Navigation from '@libs/Navigation/Navigation';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {ReportChangeApproverParamList} from '@libs/Navigation/types';
 import {isControlPolicy, isPolicyAdmin} from '@libs/PolicyUtils';
+import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 import {isAllowedToApproveExpenseReport, isMoneyRequestReport, isMoneyRequestReportPendingDeletion} from '@libs/ReportUtils';
 import CONST from '@src/CONST';
 import ROUTES from '@src/ROUTES';
@@ -52,13 +53,7 @@ function ReportChangeApproverPage({report, policy, isLoadingReportData}: ReportC
         }
         if (selectedApproverType === APPROVER_TYPE.ADD_APPROVER) {
             if (policy && !isControlPolicy(policy)) {
-                Navigation.navigate(
-                    ROUTES.WORKSPACE_UPGRADE.getRoute(
-                        policy.id,
-                        CONST.UPGRADE_FEATURE_INTRO_MAPPING.multiApprovalLevels.alias,
-                        ROUTES.REPORT_CHANGE_APPROVER_ADD_APPROVER.getRoute(report.reportID),
-                    ),
-                );
+                navigateToSubscription(ROUTES.REPORT_CHANGE_APPROVER_ADD_APPROVER.getRoute(report.reportID));
                 return;
             }
             Navigation.navigate(ROUTES.REPORT_CHANGE_APPROVER_ADD_APPROVER.getRoute(report.reportID));

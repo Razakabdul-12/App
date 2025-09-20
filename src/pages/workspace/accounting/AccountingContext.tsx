@@ -5,8 +5,11 @@ import type {OnyxEntry} from 'react-native-onyx';
 import AccountingConnectionConfirmationModal from '@components/AccountingConnectionConfirmationModal';
 import useLocalize from '@hooks/useLocalize';
 import {removePolicyConnection} from '@libs/actions/connections';
+import {getAdminPoliciesConnectedToSageIntacct} from '@libs/actions/Policy/Policy';
 import Navigation from '@libs/Navigation/Navigation';
+import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 import {isControlPolicy} from '@libs/PolicyUtils';
+import getPlatform from '@libs/getPlatform';
 import CONST from '@src/CONST';
 import ROUTES from '@src/ROUTES';
 import type {ConnectionName} from '@src/types/onyx/Policy';
@@ -66,21 +69,69 @@ function AccountingContextProvider({children, policy}: AccountingContextProvider
                 return;
             }
 
-            const accountingIntegrationData = getAccountingIntegrationData(
-                newActiveIntegration.name,
-                policyID,
-                translate,
-                undefined,
-                undefined,
-                newActiveIntegration.integrationToDisconnect,
-                newActiveIntegration.shouldDisconnectIntegrationBeforeConnecting,
-                undefined,
-            );
-            const workspaceUpgradeNavigationDetails = accountingIntegrationData?.workspaceUpgradeNavigationDetails;
-            if (workspaceUpgradeNavigationDetails && !isControlPolicy(policy)) {
-                Navigation.navigate(
-                    ROUTES.WORKSPACE_UPGRADE.getRoute(policyID, workspaceUpgradeNavigationDetails.integrationAlias, workspaceUpgradeNavigationDetails.backToAfterWorkspaceUpgradeRoute),
-                );
+            const shouldPromptForSubscription =
+                !isControlPolicy(policy) &&
+                [
+                    CONST.POLICY.CONNECTIONS.NAME.NETSUITE,
+                    CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT,
+                    CONST.POLICY.CONNECTIONS.NAME.QBD,
+                ].includes(newActiveIntegration.name);
+
+            if (shouldPromptForSubscription) {
+                const {integrationToDisconnect, shouldDisconnectIntegrationBeforeConnecting} = newActiveIntegration;
+                let backToRoute: string | undefined;
+
+                switch (newActiveIntegration.name) {
+                    case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
+                        backToRoute = integrationToDisconnect
+                            ? ROUTES.POLICY_ACCOUNTING.getRoute(
+                                  policyID,
+                                  newActiveIntegration.name,
+                                  integrationToDisconnect,
+                                  shouldDisconnectIntegrationBeforeConnecting,
+                              )
+                            : ROUTES.POLICY_ACCOUNTING_NETSUITE_TOKEN_INPUT.getRoute(policyID);
+                        break;
+                    case CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT: {
+                        if (integrationToDisconnect) {
+                            backToRoute = ROUTES.POLICY_ACCOUNTING.getRoute(
+                                policyID,
+                                newActiveIntegration.name,
+                                integrationToDisconnect,
+                                shouldDisconnectIntegrationBeforeConnecting,
+                            );
+                            break;
+                        }
+
+                        const hasPoliciesConnectedToSageIntacct = !!getAdminPoliciesConnectedToSageIntacct().length;
+                        backToRoute = hasPoliciesConnectedToSageIntacct
+                            ? ROUTES.POLICY_ACCOUNTING_SAGE_INTACCT_EXISTING_CONNECTIONS.getRoute(policyID)
+                            : ROUTES.POLICY_ACCOUNTING_SAGE_INTACCT_PREREQUISITES.getRoute(policyID);
+                        break;
+                    }
+                    case CONST.POLICY.CONNECTIONS.NAME.QBD: {
+                        if (integrationToDisconnect) {
+                            backToRoute = ROUTES.POLICY_ACCOUNTING.getRoute(
+                                policyID,
+                                newActiveIntegration.name,
+                                integrationToDisconnect,
+                                shouldDisconnectIntegrationBeforeConnecting,
+                            );
+                            break;
+                        }
+
+                        const platform = getPlatform(true);
+                        const isMobile = [CONST.PLATFORM.MOBILE_WEB, CONST.PLATFORM.IOS, CONST.PLATFORM.ANDROID].some((value) => value === platform);
+                        backToRoute = isMobile
+                            ? ROUTES.POLICY_ACCOUNTING_QUICKBOOKS_DESKTOP_SETUP_REQUIRED_DEVICE_MODAL.getRoute(policyID)
+                            : ROUTES.POLICY_ACCOUNTING_QUICKBOOKS_DESKTOP_SETUP_MODAL.getRoute(policyID);
+                        break;
+                    }
+                    default:
+                        backToRoute = undefined;
+                }
+
+                navigateToSubscription(backToRoute);
                 return;
             }
             setActiveIntegration({

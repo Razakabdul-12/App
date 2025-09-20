@@ -701,9 +701,7 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.WORKSPACE.CATEGORY_SETTINGS]: {
                             path: ROUTES.WORKSPACE_CATEGORY_SETTINGS.route,
                         },
-                        [SCREENS.WORKSPACE.UPGRADE]: {
-                            path: ROUTES.WORKSPACE_UPGRADE.route,
-                        },
+                      
                         [SCREENS.WORKSPACE.CATEGORIES_SETTINGS]: {
                             path: ROUTES.WORKSPACE_CATEGORIES_SETTINGS.route,
                         },

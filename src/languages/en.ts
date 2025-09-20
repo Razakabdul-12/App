@@ -5360,7 +5360,7 @@ const translations = {
                 description: `Enjoy automated syncing and reduce manual entries with the Expensify + QuickBooks Desktop integration. Gain ultimate efficiency with a realtime, two-way connection and expense coding by class, item, customer, and project.`,
                 onlyAvailableOnPlan: 'Our QuickBooks Desktop integration is only available on the Control plan, starting at ',
             },
-            [CONST.UPGRADE_FEATURE_INTRO_MAPPING.approvals.id]: {
+            approvals: {
                 title: 'Advanced Approvals',
                 description: `If you want to add more layers of approval to the mix – or just make sure the largest expenses get another set of eyes – we’ve got you covered. Advanced approvals help you put the right checks in place at every level so you keep your team’s spend under control.`,
                 onlyAvailableOnPlan: 'Advanced approvals are only available on the Control plan, which starts at ',
@@ -5417,7 +5417,7 @@ const translations = {
                 description: 'Create and manage your own rates, track in miles or kilometers, and set default categories for distance expenses.',
                 onlyAvailableOnPlan: 'Distance rates are available on the Collect plan, starting at ',
             },
-            [CONST.UPGRADE_FEATURE_INTRO_MAPPING.multiApprovalLevels.id]: {
+            multiApprovalLevels: {
                 title: 'Multiple approval levels',
                 description: 'Multiple approval levels is a workflow tool for companies that require more than one person to approve a report before it can be reimbursed.',
                 onlyAvailableOnPlan: 'Multiple approval levels are only available on the Control plan, starting at ',
