@@ -115,16 +115,6 @@ function shouldShowEmployeeListError(policy: OnyxEntry<Policy>): boolean {
 }
 
 /**
- *  Check if the policy has any tax rate errors.
- */
-function shouldShowTaxRateError(policy: OnyxEntry<Policy>): boolean {
-    return (
-        isPolicyAdmin(policy) &&
-        Object.values(policy?.taxRates?.taxes ?? {}).some((taxRate) => Object.keys(taxRate?.errors ?? {}).length > 0 || Object.values(taxRate?.errorFields ?? {}).some(Boolean))
-    );
-}
-
-/**
  * Check if the policy has any errors within the categories.
  */
 function hasPolicyCategoriesError(policyCategories: OnyxEntry<PolicyCategories>): boolean {
@@ -657,13 +647,6 @@ function getAllTaxRatesNamesAndKeys(): Record<string, string[]> {
         });
     });
     return allTaxRates;
-}
-
-/**
- * Whether the tax rate can be deleted and disabled
- */
-function canEditTaxRate(policy: Policy, taxID: string): boolean {
-    return policy.taxRates?.defaultExternalID !== taxID && policy.taxRates?.foreignTaxDefault !== taxID;
 }
 
 function isPolicyFeatureEnabled(policy: OnyxEntry<Policy>, featureName: PolicyFeatureName): boolean {
@@ -1304,10 +1287,6 @@ function hasNoPolicyOtherThanPersonalType() {
     );
 }
 
-function getCurrentTaxID(policy: OnyxEntry<Policy>, taxID: string): string | undefined {
-    return Object.keys(policy?.taxRates?.taxes ?? {}).find((taxIDKey) => policy?.taxRates?.taxes?.[taxIDKey].previousTaxCode === taxID || taxIDKey === taxID);
-}
-
 function getWorkspaceAccountID(policyID?: string) {
     // This will be fixed as part of https://github.com/Expensify/Expensify/issues/507850
     // eslint-disable-next-line deprecation/deprecation
@@ -1515,7 +1494,6 @@ function isMemberPolicyAdmin(policy: OnyxEntry<Policy>, memberEmail: string | un
 }
 
 export {
-    canEditTaxRate,
     escapeTagName,
     getActivePolicies,
     getPerDiemCustomUnits,
@@ -1552,7 +1530,6 @@ export {
     hasPolicyCategoriesError,
     shouldShowPolicyError,
     shouldShowPolicyErrorFields,
-    shouldShowTaxRateError,
     isControlOnAdvancedApprovalMode,
     isExpensifyTeam,
     isDeletedPolicyEmployee,
@@ -1630,7 +1607,6 @@ export {
     isNetSuiteCustomFieldPropertyEditable,
     getCurrentSageIntacctEntityName,
     hasNoPolicyOtherThanPersonalType,
-    getCurrentTaxID,
     areSettingsInErrorFields,
     settingsPendingAction,
     getGroupPaidPoliciesWithExpenseChatEnabled,

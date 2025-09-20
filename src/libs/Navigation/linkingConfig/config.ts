@@ -7,7 +7,6 @@ import NAVIGATORS from '@src/NAVIGATORS';
 import ROUTES from '@src/ROUTES';
 import type {Screen} from '@src/SCREENS';
 import SCREENS from '@src/SCREENS';
-import HISTORY_PARAM from './HISTORY_PARAM';
 
 // Moved to a separate file to avoid cyclic dependencies.
 const config: LinkingOptions<RootNavigatorParamList>['config'] = {
@@ -840,19 +839,7 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                                 orderWeight: Number,
                             },
                         },
-                        [SCREENS.WORKSPACE.TAXES_SETTINGS]: {
-                            path: ROUTES.WORKSPACE_TAXES_SETTINGS.route,
-                        },
-                        [SCREENS.WORKSPACE.TAXES_SETTINGS_CUSTOM_TAX_NAME]: {
-                            path: ROUTES.WORKSPACE_TAXES_SETTINGS_CUSTOM_TAX_NAME.route,
-                        },
-                        [SCREENS.WORKSPACE.TAXES_SETTINGS_FOREIGN_CURRENCY_DEFAULT]: {
-                            path: ROUTES.WORKSPACE_TAXES_SETTINGS_FOREIGN_CURRENCY_DEFAULT.route,
-                        },
-                        [SCREENS.WORKSPACE.TAXES_SETTINGS_WORKSPACE_CURRENCY_DEFAULT]: {
-                            path: ROUTES.WORKSPACE_TAXES_SETTINGS_WORKSPACE_CURRENCY_DEFAULT.route,
-                        },
-                 
+                    
                         [SCREENS.WORKSPACE.WORKFLOWS_CONNECT_EXISTING_BANK_ACCOUNT]: {
                             path: ROUTES.WORKSPACE_WORKFLOWS_CONNECT_EXISTING_BANK_ACCOUNT.route,
                             exact: true,
@@ -868,21 +855,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.WORKSPACE.NAME]: ROUTES.WORKSPACE_OVERVIEW_NAME.route,
                         [SCREENS.SETTINGS.SHARE_CODE]: {
                             path: ROUTES.SETTINGS_SHARE_CODE,
-                        },
-                        [SCREENS.WORKSPACE.TAX_CREATE]: {
-                            path: ROUTES.WORKSPACE_TAX_CREATE.route,
-                        },
-                        [SCREENS.WORKSPACE.TAX_EDIT]: {
-                            path: ROUTES.WORKSPACE_TAX_EDIT.route,
-                        },
-                        [SCREENS.WORKSPACE.TAX_CODE]: {
-                            path: ROUTES.WORKSPACE_TAX_CODE.route,
-                        },
-                        [SCREENS.WORKSPACE.TAX_NAME]: {
-                            path: ROUTES.WORKSPACE_TAX_NAME.route,
-                        },
-                        [SCREENS.WORKSPACE.TAX_VALUE]: {
-                            path: ROUTES.WORKSPACE_TAX_VALUE.route,
                         },
                         [SCREENS.WORKSPACE.PER_DIEM_IMPORT]: {
                             path: ROUTES.WORKSPACE_PER_DIEM_IMPORT.route,
@@ -1581,9 +1553,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                 },
                 [SCREENS.WORKSPACE.TAGS]: {
                     path: ROUTES.WORKSPACE_TAGS.route,
-                },
-                [SCREENS.WORKSPACE.TAXES]: {
-                    path: ROUTES.WORKSPACE_TAXES.route,
                 },
                 [SCREENS.WORKSPACE.DISTANCE_RATES]: {
                     path: ROUTES.WORKSPACE_DISTANCE_RATES.route,

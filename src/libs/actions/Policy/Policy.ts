@@ -2519,7 +2519,6 @@ function buildDuplicatePolicyData(policy: Policy, options: DuplicatePolicyDataOp
     const isReportsOptionSelected = parts?.reports;
     const isConnectionsOptionSelected = parts?.connections;
     const isCategoriesOptionSelected = parts?.categories;
-    const isTaxesOptionSelected = parts?.taxes;
     const isTagsOptionSelected = parts?.tags;
     const isCustomUnitsOptionSelected = parts?.customUnits;
     const isRulesOptionSelected = parts?.expenses;
@@ -2551,14 +2550,12 @@ function buildDuplicatePolicyData(policy: Policy, options: DuplicatePolicyDataOp
                 areConnectionsEnabled: isConnectionsOptionSelected,
                 arePerDiemRatesEnabled: isPerDiemOptionSelected,
                 workspaceAccountID: undefined,
-                tax: isTaxesOptionSelected ? policy?.tax : undefined,
                 employeeList: isMemberOptionSelected ? policy.employeeList : {[policy.owner]: policy?.employeeList?.[policy.owner]},
                 id: targetPolicyID,
                 name: policyName,
                 fieldList: isReportsOptionSelected ? policy?.fieldList : undefined,
                 connections: isConnectionsOptionSelected ? policy?.connections : undefined,
                 customUnits: isCustomUnitsOptionSelected ? policy?.customUnits : undefined,
-                taxRates: isTaxesOptionSelected ? policy?.taxRates : undefined,
                 pendingAction: CONST.RED_BRICK_ROAD_PENDING_ACTION.ADD,
                 pendingFields: {
                     autoReporting: CONST.RED_BRICK_ROAD_PENDING_ACTION.ADD,

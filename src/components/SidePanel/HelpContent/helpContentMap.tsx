@@ -1002,52 +1002,7 @@ const helpContentMap: HelpContent = {
                                 </View>
                             ),
                         },
-                        taxes: {
-                            content: ({styles}: {styles: ThemeStyles}) => (
-                                <View>
-                                    <Text style={[styles.textHeadlineH1, styles.mv4]}>Tax Settings</Text>
-                                    <Text style={[styles.textNormal]}>
-                                        Track VAT, GST, or any other regional taxes right in Expensify. Perfect for staying compliant—especially if you’re working in non-USD currencies. You
-                                        can set up different tax rates for your workspace currency and for foreign currencies, too.
-                                    </Text>
-
-                                    <BulletList
-                                        styles={styles}
-                                        items={[
-                                            <Text style={styles.textNormal}>
-                                                <Text style={[styles.textNormal]}>
-                                                    <Text style={styles.textBold}>How to set up tax rates</Text>: Click the green + button to add a tax rate. Just enter the tax name,
-                                                    percentage, and tax code for your records.
-                                                </Text>
-                                            </Text>,
-                                            <Text style={styles.textNormal}>
-                                                <Text style={[styles.textNormal]}>
-                                                    <Text style={styles.textBold}>Default tax settings</Text>: Set separate default rates for your workspace currency and foreign currencies,
-                                                    so everything’s accurate no matter where you’re spending.
-                                                </Text>
-                                            </Text>,
-                                            <Text style={styles.textNormal}>
-                                                <Text style={[styles.textNormal]}>
-                                                    <Text style={styles.textBold}>Managing tax rates</Text>: You can turn rates on or off, update their values, or delete them entirely. Use
-                                                    bulk actions to move faster, or make changes one at a time.
-                                                </Text>
-                                            </Text>,
-                                        ]}
-                                    />
-
-                                    <Text style={[styles.textNormal]}>
-                                        Learn more about workspace tax settings here ➡️{' '}
-                                        <TextLink
-                                            href="https://help.expensify.com/articles/new-expensify/workspaces/Track-Taxes"
-                                            style={styles.link}
-                                        >
-                                            Track Taxes
-                                        </TextLink>
-                                        .
-                                    </Text>
-                                </View>
-                            ),
-                        },
+                  
                         members: {
                             content: ({styles}: {styles: ThemeStyles}) => (
                                 <View>

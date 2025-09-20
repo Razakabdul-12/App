@@ -37,7 +37,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
     const allIds = getMemberAccountIDsForWorkspace(policy?.employeeList);
     const totalMembers = Object.keys(allIds).length;
     const [policyTags] = useOnyx(`${ONYXKEYS.COLLECTION.POLICY_TAGS}${policyID}`, {canBeMissing: false});
-    const taxesLength = Object.keys(policy?.taxRates?.taxes ?? {}).length ?? 0;
     const [policyCategories] = useOnyx(`${ONYXKEYS.COLLECTION.POLICY_CATEGORIES}${policyID}`, {canBeMissing: true});
     const categoriesCount = Object.keys(policyCategories ?? {}).length;
     const [selectedItems, setSelectedItems] = useState<string[]>([]);
@@ -104,13 +103,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
                       alternateText: categoriesCount ? `${categoriesCount} ${translate('workspace.duplicateWorkspace.categories').toLowerCase()}` : undefined,
                   }
                 : undefined,
-            taxesLength > 0
-                ? {
-                      translation: translate('workspace.common.taxes'),
-                      value: 'taxes',
-                      alternateText: taxesLength ? `${taxesLength} ${translate('workspace.common.taxes').toLowerCase()}` : undefined,
-                  }
-                : undefined,
             workflows && workflows?.length > 0
                 ? {
                       translation: translate('workspace.common.workflows'),
@@ -143,7 +135,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
         connectedIntegration,
         totalTags,
         categoriesCount,
-        taxesLength,
         ratesCount,
         isCollect,
         allRates,
@@ -184,7 +175,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
                 connections: selectedItems.includes('accounting'),
                 categories: selectedItems.includes('categories'),
                 tags: selectedItems.includes('tags'),
-                taxes: selectedItems.includes('taxes'),
                 perDiem: selectedItems.includes('perDiem'),
                 expenses: selectedItems.includes('rules'),
                 customUnits: selectedItems.includes('distanceRates'),

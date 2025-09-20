@@ -429,18 +429,7 @@ type SettingsNavigatorParamList = {
     [SCREENS.SETTINGS.SUBSCRIPTION.ADD_PAYMENT_CARD]: undefined;
     [SCREENS.SETTINGS.SUBSCRIPTION.CHANGE_BILLING_CURRENCY]: undefined;
     [SCREENS.SETTINGS.SUBSCRIPTION.CHANGE_PAYMENT_CURRENCY]: undefined;
-    [SCREENS.WORKSPACE.TAXES_SETTINGS]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.TAXES_SETTINGS_CUSTOM_TAX_NAME]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.TAXES_SETTINGS_FOREIGN_CURRENCY_DEFAULT]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.TAXES_SETTINGS_WORKSPACE_CURRENCY_DEFAULT]: {
-        policyID: string;
-    };
+  
     [SCREENS.WORKSPACE.MEMBER_DETAILS]: {
         policyID: string;
         accountID: string;
@@ -881,25 +870,7 @@ type SettingsNavigatorParamList = {
     [SCREENS.KEYBOARD_SHORTCUTS]: {
         backTo: Routes;
     };
-    [SCREENS.WORKSPACE.TAX_CREATE]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.TAX_EDIT]: {
-        policyID: string;
-        taxID: string;
-    };
-    [SCREENS.WORKSPACE.TAX_NAME]: {
-        policyID: string;
-        taxID: string;
-    };
-    [SCREENS.WORKSPACE.TAX_VALUE]: {
-        policyID: string;
-        taxID: string;
-    };
-    [SCREENS.WORKSPACE.TAX_CODE]: {
-        policyID: string;
-        taxID: string;
-    };
+   
     [SCREENS.WORKSPACE.COMPANY_CARDS_SELECT_FEED]: {
         policyID: string;
     };
@@ -1802,9 +1773,6 @@ type WorkspaceSplitNavigatorParamList = {
     [SCREENS.SETTINGS_TAGS.SETTINGS_TAGS_ROOT]: {
         policyID: string;
         backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.TAXES]: {
-        policyID: string;
     };
     [SCREENS.WORKSPACE.DISTANCE_RATES]: {
         policyID: string;

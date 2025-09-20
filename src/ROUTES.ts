@@ -1761,31 +1761,6 @@ const ROUTES = {
         route: 'workspaces/:policyID/tags/imported/multi-level',
         getRoute: (policyID: string) => `workspaces/${policyID}/tags/imported/multi-level` as const,
     },
-    WORKSPACE_TAXES: {
-        route: 'workspaces/:policyID/taxes',
-        getRoute: (policyID: string | undefined) => {
-            if (!policyID) {
-                Log.warn('Invalid policyID is used to build the WORKSPACE_TAXES route');
-            }
-            return `workspaces/${policyID}/taxes` as const;
-        },
-    },
-    WORKSPACE_TAXES_SETTINGS: {
-        route: 'workspaces/:policyID/taxes/settings',
-        getRoute: (policyID: string) => `workspaces/${policyID}/taxes/settings` as const,
-    },
-    WORKSPACE_TAXES_SETTINGS_WORKSPACE_CURRENCY_DEFAULT: {
-        route: 'workspaces/:policyID/taxes/settings/workspace-currency',
-        getRoute: (policyID: string) => `workspaces/${policyID}/taxes/settings/workspace-currency` as const,
-    },
-    WORKSPACE_TAXES_SETTINGS_FOREIGN_CURRENCY_DEFAULT: {
-        route: 'workspaces/:policyID/taxes/settings/foreign-currency',
-        getRoute: (policyID: string) => `workspaces/${policyID}/taxes/settings/foreign-currency` as const,
-    },
-    WORKSPACE_TAXES_SETTINGS_CUSTOM_TAX_NAME: {
-        route: 'workspaces/:policyID/taxes/settings/tax-name',
-        getRoute: (policyID: string) => `workspaces/${policyID}/taxes/settings/tax-name` as const,
-    },
     WORKSPACE_MEMBER_DETAILS: {
         route: 'workspaces/:policyID/members/:accountID',
         getRoute: (policyID: string, accountID: number) => `workspaces/${policyID}/members/${accountID}` as const,
@@ -1825,26 +1800,7 @@ const ROUTES = {
             return getUrlWithBackToParam(`workspaces/${policyID}/change-owner/${accountID}/${error as string}` as const, backTo);
         },
     },
-    WORKSPACE_TAX_CREATE: {
-        route: 'workspaces/:policyID/taxes/new',
-        getRoute: (policyID: string) => `workspaces/${policyID}/taxes/new` as const,
-    },
-    WORKSPACE_TAX_EDIT: {
-        route: 'workspaces/:policyID/tax/:taxID',
-        getRoute: (policyID: string, taxID: string) => `workspaces/${policyID}/tax/${encodeURIComponent(taxID)}` as const,
-    },
-    WORKSPACE_TAX_NAME: {
-        route: 'workspaces/:policyID/tax/:taxID/name',
-        getRoute: (policyID: string, taxID: string) => `workspaces/${policyID}/tax/${encodeURIComponent(taxID)}/name` as const,
-    },
-    WORKSPACE_TAX_VALUE: {
-        route: 'workspaces/:policyID/tax/:taxID/value',
-        getRoute: (policyID: string, taxID: string) => `workspaces/${policyID}/tax/${encodeURIComponent(taxID)}/value` as const,
-    },
-    WORKSPACE_TAX_CODE: {
-        route: 'workspaces/:policyID/tax/:taxID/tax-code',
-        getRoute: (policyID: string, taxID: string) => `workspaces/${policyID}/tax/${encodeURIComponent(taxID)}/tax-code` as const,
-    },
+   
     WORKSPACE_COMPANY_CARDS: {
         route: 'workspaces/:policyID/company-cards',
         getRoute: (policyID: string | undefined) => {
