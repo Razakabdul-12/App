@@ -43,7 +43,6 @@ import type {
     BeginningOfChatHistoryInvoiceRoomParams,
     BeginningOfChatHistoryPolicyExpenseChatParams,
     BeginningOfChatHistoryUserRoomParams,
-    BillableDefaultDescriptionParams,
     BillingBannerCardAuthenticationRequiredParams,
     BillingBannerCardExpiredParams,
     BillingBannerCardOnDisputeParams,
@@ -5544,8 +5543,8 @@ const translations = {
         rules: {
             individualExpenseRules: {
                 title: 'Spese',
-                subtitle: ({categoriesPageLink, tagsPageLink}: IndividualExpenseRulesSubtitleParams) =>
-                    `<muted-text>Imposta controlli di spesa e valori predefiniti per le singole spese. Puoi anche creare regole per <a href="${categoriesPageLink}">categorie</a> e <a href="${tagsPageLink}">tag</a>.</muted-text>`,
+                subtitle: ({categoriesPageLink}: IndividualExpenseRulesSubtitleParams) =>
+                    `<muted-text>Imposta controlli di spesa e valori predefiniti per le singole spese. Puoi anche creare regole per <a href="${categoriesPageLink}">categorie</a>.</muted-text>`,
                 receiptRequiredAmount: 'Importo richiesto della ricevuta',
                 receiptRequiredAmountDescription: 'Richiedi ricevute quando la spesa supera questo importo, a meno che non sia derogato da una regola di categoria.',
                 maxExpenseAmount: 'Importo massimo spesa',
@@ -5569,8 +5568,8 @@ const translations = {
                 alwaysNonReimbursable: 'Mai rimborsabile',
                 alwaysNonReimbursableDescription: 'Le spese non sono mai rimborsate ai dipendenti',
                 billableDefault: 'Predefinito fatturabile',
-                billableDefaultDescription: ({tagsPageLink}: BillableDefaultDescriptionParams) =>
-                    `<muted-text>Scegli se le spese in contanti e con carta di credito devono essere fatturabili per impostazione predefinita. Le spese fatturabili possono essere abilitate o disabilitate nei <a href="${tagsPageLink}">tag</a>.</muted-text>`,
+                billableDefaultDescription:
+                    '<muted-text>Scegli se le spese in contanti e con carta di credito devono essere fatturabili per impostazione predefinita.</muted-text>',
                 billable: 'Fatturabile',
                 billableDescription: 'Le spese sono più spesso riaddebitate ai clienti.',
                 nonBillable: 'Non-fatturabile',

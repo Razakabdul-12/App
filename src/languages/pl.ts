@@ -43,7 +43,6 @@ import type {
     BeginningOfChatHistoryInvoiceRoomParams,
     BeginningOfChatHistoryPolicyExpenseChatParams,
     BeginningOfChatHistoryUserRoomParams,
-    BillableDefaultDescriptionParams,
     BillingBannerCardAuthenticationRequiredParams,
     BillingBannerCardExpiredParams,
     BillingBannerCardOnDisputeParams,
@@ -5529,8 +5528,8 @@ const translations = {
         rules: {
             individualExpenseRules: {
                 title: 'Wydatki',
-                subtitle: ({categoriesPageLink, tagsPageLink}: IndividualExpenseRulesSubtitleParams) =>
-                    `<muted-text>Ustaw limity wydatków i domyślne wartości dla poszczególnych wydatków. Możesz również tworzyć reguły dla <a href="${categoriesPageLink}">kategorie</a> i <a href="${tagsPageLink}">tagi</a>.</muted-text>`,
+                subtitle: ({categoriesPageLink}: IndividualExpenseRulesSubtitleParams) =>
+                    `<muted-text>Ustaw limity wydatków i domyślne wartości dla poszczególnych wydatków. Możesz również tworzyć reguły dla <a href="${categoriesPageLink}">kategorii</a>.</muted-text>`,
                 receiptRequiredAmount: 'Wymagana kwota paragonu',
                 receiptRequiredAmountDescription: 'Wymagaj paragonów, gdy wydatki przekraczają tę kwotę, chyba że zostanie to zmienione przez regułę kategorii.',
                 maxExpenseAmount: 'Maksymalna kwota wydatku',
@@ -5554,8 +5553,8 @@ const translations = {
                 alwaysNonReimbursable: 'Nigdy nie zwracany',
                 alwaysNonReimbursableDescription: 'Wydatki nigdy nie są zwracane pracownikom',
                 billableDefault: 'Domyślne do rozliczenia',
-                billableDefaultDescription: ({tagsPageLink}: BillableDefaultDescriptionParams) =>
-                    `<muted-text>Wybierz, czy wydatki gotówkowe i kartą kredytową powinny być domyślnie rozliczane. Rozliczane wydatki można włączyć lub wyłączyć w <a href="${tagsPageLink}">tagi</a>.</muted-text>`,
+                billableDefaultDescription:
+                    '<muted-text>Wybierz, czy wydatki gotówkowe i kartą kredytową powinny być domyślnie rozliczane.</muted-text>',
                 billable: 'Podlegające fakturowaniu',
                 billableDescription: 'Wydatki są najczęściej ponownie fakturowane klientom',
                 nonBillable: 'Niepodlegające fakturowaniu',

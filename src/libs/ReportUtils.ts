@@ -10334,7 +10334,6 @@ function prepareOnboardingOnyxData(
         onboardingCompanySize: companySize ?? onboardingCompanySize,
         workspaceSettingsLink: `${environmentURL}/${ROUTES.WORKSPACE_INITIAL.getRoute(onboardingPolicyID ?? firstAdminPolicy?.id)}`,
         workspaceCategoriesLink: `${environmentURL}/${ROUTES.WORKSPACE_CATEGORIES.getRoute(onboardingPolicyID)}`,
-        workspaceTagsLink: `${environmentURL}/${ROUTES.WORKSPACE_TAGS.getRoute(onboardingPolicyID)}`,
         workspaceMembersLink: `${environmentURL}/${ROUTES.WORKSPACE_MEMBERS.getRoute(onboardingPolicyID)}`,
         workspaceMoreFeaturesLink: `${environmentURL}/${ROUTES.WORKSPACE_MORE_FEATURES.getRoute(onboardingPolicyID)}`,
         workspaceConfirmationLink: `${environmentURL}/${ROUTES.WORKSPACE_CONFIRMATION.getRoute(ROUTES.WORKSPACES_LIST.route)}`,
@@ -10362,11 +10361,11 @@ function prepareOnboardingOnyxData(
                 }
             }
 
-            if (([CONST.ONBOARDING_TASK_TYPE.SETUP_CATEGORIES, CONST.ONBOARDING_TASK_TYPE.SETUP_TAGS] as string[]).includes(task.type) && userReportedIntegration) {
+            if (task.type === CONST.ONBOARDING_TASK_TYPE.SETUP_CATEGORIES && userReportedIntegration) {
                 return false;
             }
 
-            if (([CONST.ONBOARDING_TASK_TYPE.ADD_ACCOUNTING_INTEGRATION, CONST.ONBOARDING_TASK_TYPE.SETUP_CATEGORIES_AND_TAGS] as string[]).includes(task.type) && !userReportedIntegration) {
+            if (task.type === CONST.ONBOARDING_TASK_TYPE.ADD_ACCOUNTING_INTEGRATION && !userReportedIntegration) {
                 return false;
             }
             type SkipViewTourOnboardingChoices = 'newDotSubmit' | 'newDotSplitChat' | 'newDotPersonalSpend' | 'newDotEmployer';

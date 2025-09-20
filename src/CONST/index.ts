@@ -7084,8 +7084,6 @@ const CONST = {
         ADD_ACCOUNTING_INTEGRATION: 'addAccountingIntegration',
         CONNECT_CORPORATE_CARD: 'connectCorporateCard',
         INVITE_TEAM: 'inviteTeam',
-        SETUP_CATEGORIES_AND_TAGS: 'setupCategoriesAndTags',
-        SETUP_TAGS: 'setupTags',
         START_CHAT: 'startChat',
         SPLIT_EXPENSE: 'splitExpense',
         REVIEW_WORKSPACE_SETTINGS: 'reviewWorkspaceSettings',
@@ -7106,7 +7104,6 @@ const FEATURE_IDS = {
     CATEGORIES: 'categories',
     ACCOUNTING: 'accounting',
     COMPANY_CARDS: 'company-cards',
-    TAGS: 'tags',
     WORKFLOWS: 'workflows',
     PER_DIEM: 'per-diem',
     DISTANCE_RATES: 'distance-rates',
@@ -7117,7 +7114,6 @@ const TASK_TO_FEATURE: Record<string, string> = {
     [CONST.ONBOARDING_TASK_TYPE.SETUP_CATEGORIES]: FEATURE_IDS.CATEGORIES,
     [CONST.ONBOARDING_TASK_TYPE.ADD_ACCOUNTING_INTEGRATION]: FEATURE_IDS.ACCOUNTING,
     [CONST.ONBOARDING_TASK_TYPE.CONNECT_CORPORATE_CARD]: FEATURE_IDS.COMPANY_CARDS,
-    [CONST.ONBOARDING_TASK_TYPE.SETUP_TAGS]: FEATURE_IDS.TAGS,
 };
 
 type Country = keyof typeof CONST.ALL_COUNTRIES;

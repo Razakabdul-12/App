@@ -44,7 +44,6 @@ type OnboardingTaskLinks = Partial<{
     integrationName: string;
     workspaceSettingsLink: string;
     workspaceCategoriesLink: string;
-    workspaceTagsLink: string;
     workspaceMoreFeaturesLink: string;
     workspaceMembersLink: string;
     workspaceAccountingLink: string;
@@ -271,23 +270,6 @@ const getOnboardingMessages = (hasIntroSelected = false, locale?: Locale) => {
         description: ({workspaceMembersLink}) => translate(resolvedLocale, 'onboarding.tasks.inviteTeamTask.description', {workspaceMembersLink}),
     };
 
-    const setupCategoriesAndTags: OnboardingTask = {
-        type: CONST.ONBOARDING_TASK_TYPE.SETUP_CATEGORIES_AND_TAGS,
-        autoCompleted: false,
-        mediaAttributes: {},
-        title: ({workspaceCategoriesLink, workspaceTagsLink}) => translate(resolvedLocale, 'onboarding.tasks.setupCategoriesAndTags.title', {workspaceCategoriesLink, workspaceTagsLink}),
-        description: ({workspaceCategoriesLink, workspaceAccountingLink}) =>
-            translate(resolvedLocale, 'onboarding.tasks.setupCategoriesAndTags.description', {workspaceCategoriesLink, workspaceAccountingLink}),
-    };
-    const setupTagsTask: OnboardingTask = {
-        type: CONST.ONBOARDING_TASK_TYPE.SETUP_TAGS,
-        autoCompleted: false,
-        title: ({workspaceTagsLink}) => translate(resolvedLocale, 'onboarding.tasks.setupTagsTask.title', {workspaceTagsLink}),
-        description: ({workspaceMoreFeaturesLink}) => translate(resolvedLocale, 'onboarding.tasks.setupTagsTask.description', {workspaceMoreFeaturesLink}),
-        mediaAttributes: {
-            [`${CONST.CLOUDFRONT_URL}/videos/walkthrough-tags-v2.mp4`]: `data-expensify-thumbnail-url="${CONST.CLOUDFRONT_URL}/images/walkthrough-tags.png" data-expensify-width="1920" data-expensify-height="1080"`,
-        },
-    };
 
     const startChatTask: OnboardingTask = {
         type: CONST.ONBOARDING_TASK_TYPE.START_CHAT,
@@ -342,7 +324,7 @@ const getOnboardingMessages = (hasIntroSelected = false, locale?: Locale) => {
 
     const onboardingManageTeamMessage: OnboardingMessage = {
         message: translate(resolvedLocale, 'onboarding.messages.onboardingManageTeamMessage', {hasIntroSelected}),
-        tasks: [createWorkspaceTask, testDriveAdminTask, addAccountingIntegrationTask, connectCorporateCardTask, inviteTeamTask, setupCategoriesAndTags, setupCategoriesTask, setupTagsTask],
+        tasks: [createWorkspaceTask, testDriveAdminTask, addAccountingIntegrationTask, connectCorporateCardTask, inviteTeamTask, setupCategoriesTask],
     };
 
     const onboardingTrackWorkspaceMessage: OnboardingMessage = {

@@ -43,7 +43,6 @@ import type {
     BeginningOfChatHistoryInvoiceRoomParams,
     BeginningOfChatHistoryPolicyExpenseChatParams,
     BeginningOfChatHistoryUserRoomParams,
-    BillableDefaultDescriptionParams,
     BillingBannerCardAuthenticationRequiredParams,
     BillingBannerCardExpiredParams,
     BillingBannerCardOnDisputeParams,
@@ -5540,8 +5539,8 @@ const translations = {
         rules: {
             individualExpenseRules: {
                 title: 'Despesas',
-                subtitle: ({categoriesPageLink, tagsPageLink}: IndividualExpenseRulesSubtitleParams) =>
-                    `<muted-text>Defina controles de gastos e padrões para despesas individuais. Você também pode criar regras para <a href="${categoriesPageLink}">categorias</a> e <a href="${tagsPageLink}">tags</a>.</muted-text>`,
+                subtitle: ({categoriesPageLink}: IndividualExpenseRulesSubtitleParams) =>
+                    `<muted-text>Defina controles de gastos e padrões para despesas individuais. Você também pode criar regras para <a href="${categoriesPageLink}">categorias</a>.</muted-text>`,
                 receiptRequiredAmount: 'Valor necessário do recibo',
                 receiptRequiredAmountDescription: 'Exigir recibos quando o gasto exceder este valor, a menos que seja substituído por uma regra de categoria.',
                 maxExpenseAmount: 'Valor máximo da despesa',
@@ -5565,8 +5564,8 @@ const translations = {
                 alwaysNonReimbursable: 'Nunca reembolsável',
                 alwaysNonReimbursableDescription: 'Despesas nunca são reembolsadas aos funcionários',
                 billableDefault: 'Padrão faturável',
-                billableDefaultDescription: ({tagsPageLink}: BillableDefaultDescriptionParams) =>
-                    `<muted-text>Escolha se as despesas em dinheiro e cartão de crédito devem ser faturáveis por padrão. As despesas faturáveis são ativadas ou desativadas nas <a href="${tagsPageLink}">tags</a>.</muted-text>`,
+                billableDefaultDescription:
+                    '<muted-text>Escolha se as despesas em dinheiro e cartão de crédito devem ser faturáveis por padrão.</muted-text>',
                 billable: 'Faturável',
                 billableDescription: 'Despesas são mais frequentemente refaturadas para clientes.',
                 nonBillable: 'Não faturável',

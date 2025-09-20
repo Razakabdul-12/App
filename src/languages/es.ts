@@ -30,7 +30,6 @@ import type {
     BeginningOfChatHistoryInvoiceRoomParams,
     BeginningOfChatHistoryPolicyExpenseChatParams,
     BeginningOfChatHistoryUserRoomParams,
-    BillableDefaultDescriptionParams,
     BillingBannerCardAuthenticationRequiredParams,
     BillingBannerCardExpiredParams,
     BillingBannerCardOnDisputeParams,
@@ -5544,8 +5543,8 @@ const translations = {
         rules: {
             individualExpenseRules: {
                 title: 'Gastos',
-                subtitle: ({categoriesPageLink, tagsPageLink}: IndividualExpenseRulesSubtitleParams) =>
-                    `<muted-text>Establece controles y valores predeterminados para gastos individuales. También puedes crear reglas para <a href="${categoriesPageLink}">categorías</a> y <a href="${tagsPageLink}">etiquetas</a>.</muted-text>`,
+                subtitle: ({categoriesPageLink}: IndividualExpenseRulesSubtitleParams) =>
+                    `<muted-text>Establece controles y valores predeterminados para gastos individuales. También puedes crear reglas para <a href="${categoriesPageLink}">categorías</a>.</muted-text>`,
                 receiptRequiredAmount: 'Cantidad requerida para los recibos',
                 receiptRequiredAmountDescription: 'Exige recibos cuando los gastos superen este importe, a menos que lo anule una regla de categoría.',
                 maxExpenseAmount: 'Importe máximo del gasto',
@@ -5569,8 +5568,8 @@ const translations = {
                 alwaysNonReimbursable: 'Siempre no reembolsable',
                 alwaysNonReimbursableDescription: 'Los gastos nunca son reembolsados a los empleados',
                 billableDefault: 'Valor predeterminado facturable',
-                billableDefaultDescription: ({tagsPageLink}: BillableDefaultDescriptionParams) =>
-                    `<muted-text>Elige si los gastos en efectivo y con tarjeta de crédito deben ser facturables por defecto. Los gastos facturables se activan o desactivan en <a href="${tagsPageLink}">etiquetas</a>.</muted-text>`,
+                billableDefaultDescription:
+                    '<muted-text>Elige si los gastos en efectivo y con tarjeta de crédito deben ser facturables por defecto.</muted-text>',
                 billable: 'Facturable',
                 billableDescription: 'Los gastos se vuelven a facturar a los clientes en la mayoría de los casos',
                 nonBillable: 'No facturable',

@@ -291,14 +291,6 @@ type SettingsNavigatorParamList = {
         policyID: string;
         backTo?: Routes;
     };
-    [SCREENS.WORKSPACE.TAG_CREATE]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.SETTINGS_TAGS.SETTINGS_TAG_CREATE]: {
-        policyID: string;
-        backTo?: Routes;
-    };
     [SCREENS.WORKSPACE.DISTANCE_RATE_DETAILS]: {
         policyID: string;
         rateID: string;
@@ -318,109 +310,6 @@ type SettingsNavigatorParamList = {
     [SCREENS.WORKSPACE.DISTANCE_RATE_TAX_RATE_EDIT]: {
         policyID: string;
         rateID: string;
-    };
-    [SCREENS.WORKSPACE.TAGS_SETTINGS]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.SETTINGS_TAGS.SETTINGS_TAGS_SETTINGS]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.TAGS_IMPORT]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.SETTINGS_TAGS.SETTINGS_TAGS_IMPORT]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.TAGS_IMPORT_OPTIONS]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.TAGS_IMPORT_MULTI_LEVEL_SETTINGS]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.TAGS_IMPORTED]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.SETTINGS_TAGS.SETTINGS_TAGS_IMPORTED]: {policyID: string; backTo?: Routes};
-    [SCREENS.WORKSPACE.TAGS_IMPORTED_MULTI_LEVEL]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.TAG_SETTINGS]: {
-        policyID: string;
-        orderWeight: number;
-        tagName: string;
-        backTo?: Routes;
-        parentTagsFilter?: string;
-    };
-    [SCREENS.SETTINGS_TAGS.SETTINGS_TAG_SETTINGS]: {
-        policyID: string;
-        orderWeight: number;
-        tagName: string;
-        backTo?: Routes;
-        parentTagsFilter?: string;
-    };
-    [SCREENS.WORKSPACE.TAG_LIST_VIEW]: {
-        policyID: string;
-        orderWeight: number;
-        backTo?: Routes;
-    };
-    [SCREENS.SETTINGS_TAGS.SETTINGS_TAG_LIST_VIEW]: {
-        policyID: string;
-        orderWeight: number;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.TAGS_EDIT]: {
-        policyID: string;
-        orderWeight: number;
-        backTo?: Routes;
-    };
-    [SCREENS.SETTINGS_TAGS.SETTINGS_TAGS_EDIT]: {
-        policyID: string;
-        orderWeight: number;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.TAG_EDIT]: {
-        policyID: string;
-        orderWeight: number;
-        tagName: string;
-        backTo?: Routes;
-    };
-    [SCREENS.SETTINGS_TAGS.SETTINGS_TAG_EDIT]: {
-        policyID: string;
-        orderWeight: number;
-        tagName: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.TAG_APPROVER]: {
-        policyID: string;
-        orderWeight: number;
-        tagName: string;
-        backTo?: Routes;
-    };
-    [SCREENS.SETTINGS_TAGS.SETTINGS_TAG_APPROVER]: {
-        policyID: string;
-        orderWeight: number;
-        tagName: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.TAG_GL_CODE]: {
-        policyID: string;
-        orderWeight: number;
-        tagName: string;
-        backTo?: Routes;
-    };
-    [SCREENS.SETTINGS_TAGS.SETTINGS_TAG_GL_CODE]: {
-        policyID: string;
-        orderWeight: number;
-        tagName: string;
-        backTo?: Routes;
     };
     [SCREENS.SETTINGS.SUBSCRIPTION.SIZE]: {
         canChangeSize: 0 | 1;
@@ -1642,7 +1531,6 @@ type RightModalNavigatorParamList = {
     [SCREENS.RIGHT_MODAL.REPORT_CHANGE_WORKSPACE]: NavigatorScreenParams<ReportChangeWorkspaceNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.REPORT_SETTINGS]: NavigatorScreenParams<ReportSettingsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.SETTINGS_CATEGORIES]: NavigatorScreenParams<SettingsNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.SETTINGS_TAGS]: NavigatorScreenParams<SettingsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.EXPENSIFY_CARD]: NavigatorScreenParams<SettingsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.DOMAIN_CARD]: NavigatorScreenParams<SettingsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.REPORT_DESCRIPTION]: NavigatorScreenParams<ReportDescriptionNavigatorParamList>;
@@ -1766,14 +1654,7 @@ type WorkspaceSplitNavigatorParamList = {
     [SCREENS.WORKSPACE.MORE_FEATURES]: {
         policyID: string;
     };
-    [SCREENS.WORKSPACE.TAGS]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.SETTINGS_TAGS.SETTINGS_TAGS_ROOT]: {
-        policyID: string;
-        backTo?: Routes;
-    };
+ 
     [SCREENS.WORKSPACE.DISTANCE_RATES]: {
         policyID: string;
     };

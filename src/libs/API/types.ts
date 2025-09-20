@@ -11,8 +11,6 @@ import type UpdateBeneficialOwnersForBankAccountParams from './parameters/Update
 type ApiRequestType = ValueOf<typeof CONST.API_REQUEST_TYPE>;
 
 const WRITE_COMMANDS = {
-    CLEAN_POLICY_TAGS: 'ClearPolicyTags',
-    IMPORT_MULTI_LEVEL_TAGS: 'ImportMultiLevelTags',
     SET_WORKSPACE_AUTO_REPORTING_FREQUENCY: 'SetWorkspaceAutoReportingFrequency',
     SET_WORKSPACE_AUTO_REPORTING_MONTHLY_OFFSET: 'SetWorkspaceAutoReportingOffset',
     SET_WORKSPACE_APPROVAL_MODE: 'SetWorkspaceApprovalMode',
@@ -140,34 +138,21 @@ const WRITE_COMMANDS = {
     UPDATE_POLICY_MEMBERS_CUSTOM_FIELDS: 'UpdatePolicyMembersCustomFields',
     SET_WORKSPACE_CATEGORIES_ENABLED: 'SetWorkspaceCategoriesEnabled',
     MOVE_IOU_REPORT_TO_POLICY_AND_INVITE_SUBMITTER: 'MoveIOUReportToPolicyAndInviteSubmitter',
-    SET_POLICY_TAGS_ENABLED: 'SetPolicyTagsEnabled',
     CREATE_WORKSPACE_CATEGORIES: 'CreateWorkspaceCategories',
     IMPORT_CATEGORIES_SPREADSHEET: 'ImportCategoriesSpreadsheet',
     IMPORT_MEMBERS_SPREADSHEET: 'ImportMembersSpreadsheet',
-    IMPORT_TAGS_SPREADSHEET: 'ImportTagsSpreadsheet',
     IMPORT_PER_DIEM_RATES: 'ImportPerDiemRates',
     EXPORT_CATEGORIES_CSV: 'ExportCategoriesCSV',
     EXPORT_MEMBERS_CSV: 'ExportMembersCSV',
-    EXPORT_TAGS_CSV: 'ExportSingleLevelTagsCSV',
-    EXPORT_MULTI_LEVEL_TAGS_CSV: 'ExportMultiLevelTagsCSV',
     EXPORT_PER_DIEM_CSV: 'ExportPerDiemCSV',
     EXPORT_REPORT_TO_CSV: 'ExportReportToCSV',
     MOVE_IOU_REPORT_TO_EXISTING_POLICY: 'MoveIOUReportToExistingPolicy',
     EXPORT_REPORT_TO_PDF: 'ExportReportToPDF',
     RENAME_WORKSPACE_CATEGORY: 'RenameWorkspaceCategory',
-    CREATE_POLICY_TAG: 'CreatePolicyTag',
-    RENAME_POLICY_TAG: 'RenamePolicyTag',
     SET_WORKSPACE_REQUIRES_CATEGORY: 'SetWorkspaceRequiresCategory',
     UPDATE_POLICY_CATEGORY_PAYROLL_CODE: 'UpdatePolicyCategoryPayrollCode',
     UPDATE_POLICY_CATEGORY_GL_CODE: 'UpdatePolicyCategoryGLCode',
     DELETE_WORKSPACE_CATEGORIES: 'DeleteWorkspaceCategories',
-    SET_POLICY_TAGS_REQUIRED: 'SetPolicyTagsRequired',
-    SET_POLICY_TAG_LISTS_REQUIRED: 'SetPolicyTagListsRequired',
-    SET_POLICY_REQUIRES_TAG: 'SetPolicyRequiresTag',
-    // cspell:disable-next-line
-    RENAME_POLICY_TAG_LIST: 'RenamePolicyTaglist',
-    DELETE_POLICY_TAGS: 'DeletePolicyTags',
-    UPDATE_POLICY_TAG_GL_CODE: 'UpdatePolicyTagGLCode',
     CREATE_TASK: 'CreateTask',
     CANCEL_TASK: 'CancelTask',
     EDIT_TASK_ASSIGNEE: 'EditTaskAssignee',
@@ -221,7 +206,6 @@ const WRITE_COMMANDS = {
     ENABLE_POLICY_CATEGORIES: 'EnablePolicyCategories',
     ENABLE_POLICY_CONNECTIONS: 'EnablePolicyConnections',
     ENABLE_POLICY_DISTANCE_RATES: 'EnablePolicyDistanceRates',
-    ENABLE_POLICY_TAGS: 'EnablePolicyTags',
     ENABLE_POLICY_TAXES: 'EnablePolicyTaxes',
     ENABLE_POLICY_WORKFLOWS: 'EnablePolicyWorkflows',
     ENABLE_POLICY_EXPENSIFY_CARDS: 'EnablePolicyExpensifyCards',
@@ -406,7 +390,6 @@ const WRITE_COMMANDS = {
     CREATE_ADMIN_ISSUED_VIRTUAL_CARD: 'CreateAdminIssuedVirtualCard',
     QUEUE_EXPENSIFY_CARD_FOR_BILLING: 'Domain_QueueExpensifyCardForBilling',
     TOGGLE_CARD_CONTINUOUS_RECONCILIATION: 'ToggleCardContinuousReconciliation',
-    SET_POLICY_TAG_APPROVER: 'SetPolicyTagApprover',
     SAVE_SEARCH: 'SaveSearch',
     DELETE_SAVED_SEARCH: 'DeleteSavedSearch',
     UPDATE_CARD_SETTLEMENT_FREQUENCY: 'UpdateCardSettlementFrequency',
@@ -473,8 +456,6 @@ const WRITE_COMMANDS = {
 type WriteCommand = ValueOf<typeof WRITE_COMMANDS>;
 
 type WriteCommandParameters = {
-    [WRITE_COMMANDS.CLEAN_POLICY_TAGS]: Parameters.CleanPolicyTagsParams;
-    [WRITE_COMMANDS.IMPORT_MULTI_LEVEL_TAGS]: Parameters.ImportMultiLevelTagsParams;
     [WRITE_COMMANDS.DISMISS_REFERRAL_BANNER]: Parameters.DismissReferralBannerParams;
     [WRITE_COMMANDS.UPDATE_PREFERRED_LOCALE]: Parameters.UpdatePreferredLocaleParams;
     [WRITE_COMMANDS.RECONNECT_APP]: Parameters.ReconnectAppParams;
@@ -608,11 +589,8 @@ type WriteCommandParameters = {
     [WRITE_COMMANDS.IMPORT_CATEGORIES_SPREADSHEET]: Parameters.ImportCategoriesSpreadsheetParams;
     [WRITE_COMMANDS.IMPORT_PER_DIEM_RATES]: Parameters.ImportPerDiemRatesParams;
     [WRITE_COMMANDS.IMPORT_MEMBERS_SPREADSHEET]: Parameters.ImportMembersSpreadsheetParams;
-    [WRITE_COMMANDS.IMPORT_TAGS_SPREADSHEET]: Parameters.ImportTagsSpreadsheetParams;
     [WRITE_COMMANDS.EXPORT_CATEGORIES_CSV]: Parameters.ExportCategoriesSpreadsheetParams;
     [WRITE_COMMANDS.EXPORT_MEMBERS_CSV]: Parameters.ExportMembersSpreadsheetParams;
-    [WRITE_COMMANDS.EXPORT_TAGS_CSV]: Parameters.ExportTagsSpreadsheetParams;
-    [WRITE_COMMANDS.EXPORT_MULTI_LEVEL_TAGS_CSV]: Parameters.ExportMultiLevelTagsSpreadSheetParams;
     [WRITE_COMMANDS.EXPORT_PER_DIEM_CSV]: Parameters.ExportPerDiemCSVParams;
     [WRITE_COMMANDS.EXPORT_REPORT_TO_PDF]: Parameters.ExportReportPDFParams;
     [WRITE_COMMANDS.RENAME_WORKSPACE_CATEGORY]: Parameters.RenameWorkspaceCategoriesParams;
@@ -620,15 +598,6 @@ type WriteCommandParameters = {
     [WRITE_COMMANDS.DELETE_WORKSPACE_CATEGORIES]: Parameters.DeleteWorkspaceCategoriesParams;
     [WRITE_COMMANDS.UPDATE_POLICY_CATEGORY_PAYROLL_CODE]: Parameters.UpdatePolicyCategoryPayrollCodeParams;
     [WRITE_COMMANDS.UPDATE_POLICY_CATEGORY_GL_CODE]: Parameters.UpdatePolicyCategoryGLCodeParams;
-    [WRITE_COMMANDS.SET_POLICY_REQUIRES_TAG]: Parameters.SetPolicyRequiresTag;
-    [WRITE_COMMANDS.SET_POLICY_TAGS_REQUIRED]: Parameters.SetPolicyTagsRequired;
-    [WRITE_COMMANDS.SET_POLICY_TAG_LISTS_REQUIRED]: Parameters.SetPolicyTagListsRequired;
-    [WRITE_COMMANDS.RENAME_POLICY_TAG_LIST]: Parameters.RenamePolicyTagListParams;
-    [WRITE_COMMANDS.CREATE_POLICY_TAG]: Parameters.CreatePolicyTagsParams;
-    [WRITE_COMMANDS.RENAME_POLICY_TAG]: Parameters.RenamePolicyTagsParams;
-    [WRITE_COMMANDS.UPDATE_POLICY_TAG_GL_CODE]: Parameters.UpdatePolicyTagGLCodeParams;
-    [WRITE_COMMANDS.SET_POLICY_TAGS_ENABLED]: Parameters.SetPolicyTagsEnabled;
-    [WRITE_COMMANDS.DELETE_POLICY_TAGS]: Parameters.DeletePolicyTagsParams;
     [WRITE_COMMANDS.CREATE_TASK]: Parameters.CreateTaskParams;
     [WRITE_COMMANDS.CANCEL_TASK]: Parameters.CancelTaskParams;
     [WRITE_COMMANDS.EDIT_TASK_ASSIGNEE]: Parameters.EditTaskAssigneeParams;
@@ -691,7 +660,6 @@ type WriteCommandParameters = {
     [WRITE_COMMANDS.ENABLE_POLICY_CATEGORIES]: Parameters.EnablePolicyCategoriesParams;
     [WRITE_COMMANDS.ENABLE_POLICY_CONNECTIONS]: Parameters.EnablePolicyConnectionsParams;
     [WRITE_COMMANDS.ENABLE_POLICY_DISTANCE_RATES]: Parameters.EnablePolicyDistanceRatesParams;
-    [WRITE_COMMANDS.ENABLE_POLICY_TAGS]: Parameters.EnablePolicyTagsParams;
     [WRITE_COMMANDS.ENABLE_POLICY_TAXES]: Parameters.EnablePolicyTaxesParams;
     [WRITE_COMMANDS.ENABLE_POLICY_WORKFLOWS]: Parameters.EnablePolicyWorkflowsParams;
     [WRITE_COMMANDS.ENABLE_POLICY_EXPENSIFY_CARDS]: Parameters.EnablePolicyExpensifyCardsParams;
@@ -710,7 +678,6 @@ type WriteCommandParameters = {
     [WRITE_COMMANDS.DECLINE_JOIN_REQUEST]: Parameters.DeclineJoinRequestParams;
     [WRITE_COMMANDS.SET_POLICY_TAXES_CURRENCY_DEFAULT]: Parameters.SetPolicyCurrencyDefaultParams;
     [WRITE_COMMANDS.SET_POLICY_CUSTOM_TAX_NAME]: Parameters.SetPolicyCustomTaxNameParams;
-    [WRITE_COMMANDS.SET_POLICY_TAG_APPROVER]: Parameters.SetPolicyTagApproverParams;
     [WRITE_COMMANDS.SET_POLICY_TAXES_FOREIGN_CURRENCY_DEFAULT]: Parameters.SetPolicyForeignCurrencyDefaultParams;
     [WRITE_COMMANDS.CREATE_POLICY_TAX]: Parameters.CreatePolicyTaxParams;
     [WRITE_COMMANDS.SET_POLICY_TAXES_ENABLED]: Parameters.SetPolicyTaxesEnabledParams;
@@ -994,7 +961,6 @@ const READ_COMMANDS = {
     OPEN_WORKSPACE_MEMBERS_PAGE: 'OpenWorkspaceMembersPage',
     OPEN_POLICY_MEMBER_PROFILE_PAGE: 'OpenPolicyMemberProfilePage',
     OPEN_POLICY_CATEGORIES_PAGE: 'OpenPolicyCategoriesPage',
-    OPEN_POLICY_TAGS_PAGE: 'OpenPolicyTagsPage',
     OPEN_POLICY_TAXES_PAGE: 'OpenPolicyTaxesPage',
     OPEN_POLICY_EXPENSIFY_CARDS_PAGE: 'OpenPolicyExpensifyCardsPage',
     OPEN_POLICY_COMPANY_CARDS_FEED: 'OpenPolicyCompanyCardsFeed',
@@ -1066,7 +1032,6 @@ type ReadCommandParameters = {
     [READ_COMMANDS.OPEN_WORKSPACE_MEMBERS_PAGE]: Parameters.OpenWorkspaceMembersPageParams;
     [READ_COMMANDS.OPEN_POLICY_MEMBER_PROFILE_PAGE]: Parameters.OpenPolicyMemberProfilePageParams;
     [READ_COMMANDS.OPEN_POLICY_CATEGORIES_PAGE]: Parameters.OpenPolicyCategoriesPageParams;
-    [READ_COMMANDS.OPEN_POLICY_TAGS_PAGE]: Parameters.OpenPolicyTagsPageParams;
     [READ_COMMANDS.OPEN_POLICY_TAXES_PAGE]: Parameters.OpenPolicyTaxesPageParams;
     [READ_COMMANDS.OPEN_WORKSPACE_INVITE_PAGE]: Parameters.OpenWorkspaceInvitePageParams;
     [READ_COMMANDS.OPEN_DRAFT_WORKSPACE_REQUEST]: Parameters.OpenDraftWorkspaceRequestParams;

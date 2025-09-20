@@ -16,7 +16,6 @@ import {
     Folder,
     Gear,
     Sync,
-    Tag,
     Users,
     Workflows,
 } from '@components/Icon/Expensicons';
@@ -195,16 +194,7 @@ function WorkspaceInitialPage({policyDraft, policy: policyProp, route}: Workspac
             });
         }
 
-        if (featureStates?.[CONST.POLICY.MORE_FEATURES.ARE_TAGS_ENABLED]) {
-            protectedMenuItems.push({
-                translationKey: 'workspace.common.tags',
-                icon: Tag,
-                action: singleExecution(waitForNavigate(() => Navigation.navigate(ROUTES.WORKSPACE_TAGS.getRoute(policyID)))),
-                screenName: SCREENS.WORKSPACE.TAGS,
-                highlighted: highlightedFeature === CONST.POLICY.MORE_FEATURES.ARE_TAGS_ENABLED,
-            });
-        }
-
+     
         if (featureStates?.[CONST.POLICY.MORE_FEATURES.ARE_WORKFLOWS_ENABLED]) {
             protectedMenuItems.push({
                 translationKey: 'workspace.common.workflows',

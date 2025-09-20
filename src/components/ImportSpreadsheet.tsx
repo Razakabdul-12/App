@@ -6,7 +6,6 @@ import useLocalize from '@hooks/useLocalize';
 import useResponsiveLayout from '@hooks/useResponsiveLayout';
 import useThemeStyles from '@hooks/useThemeStyles';
 import {setSpreadsheetData} from '@libs/actions/ImportSpreadsheet';
-import {setImportedSpreadsheetIsImportingMultiLevelTags} from '@libs/actions/Policy/Tag';
 import {canUseTouchScreen} from '@libs/DeviceCapabilities';
 import {splitExtensionFromFileName} from '@libs/fileDownload/FileUtils';
 import Navigation from '@libs/Navigation/Navigation';
@@ -207,9 +206,6 @@ function ImportSpreadsheet({backTo, goTo, isImportingMultiLevelTags}: ImportSpre
                         <HeaderWithBackButton
                             title={translate('spreadsheet.importSpreadsheet')}
                             onBackButtonPress={() => {
-                                if (isImportingMultiLevelTags) {
-                                    setImportedSpreadsheetIsImportingMultiLevelTags(false);
-                                }
                                 Navigation.goBack(backTo);
                             }}
                         />

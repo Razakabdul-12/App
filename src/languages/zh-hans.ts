@@ -43,7 +43,6 @@ import type {
     BeginningOfChatHistoryInvoiceRoomParams,
     BeginningOfChatHistoryPolicyExpenseChatParams,
     BeginningOfChatHistoryUserRoomParams,
-    BillableDefaultDescriptionParams,
     BillingBannerCardAuthenticationRequiredParams,
     BillingBannerCardExpiredParams,
     BillingBannerCardOnDisputeParams,
@@ -5439,8 +5438,8 @@ const translations = {
         rules: {
             individualExpenseRules: {
                 title: '费用',
-                subtitle: ({categoriesPageLink, tagsPageLink}: IndividualExpenseRulesSubtitleParams) =>
-                    `<muted-text>为单项支出设置支出控制和默认值。您还可以为<a href="${categoriesPageLink}">类别</a>和<a href="${tagsPageLink}">标签</a>创建规则。</muted-text>`,
+                subtitle: ({categoriesPageLink}: IndividualExpenseRulesSubtitleParams) =>
+                    `<muted-text>为单项支出设置支出控制和默认值。您还可以为<a href="${categoriesPageLink}">类别</a>创建规则。</muted-text>`,
                 receiptRequiredAmount: '所需收据金额',
                 receiptRequiredAmountDescription: '当支出超过此金额时需要收据，除非被类别规则覆盖。',
                 maxExpenseAmount: '最大报销金额',
@@ -5463,8 +5462,8 @@ const translations = {
                 alwaysNonReimbursable: '始终不可报销',
                 alwaysNonReimbursableDescription: '支出永远不会报销给员工',
                 billableDefault: '默认计费',
-                billableDefaultDescription: ({tagsPageLink}: BillableDefaultDescriptionParams) =>
-                    `<muted-text>C选择现金和信用卡支出是否默认可计费。可计费支出可在<a href="${tagsPageLink}">标签</a>中启用或禁用。</muted-text>`,
+                billableDefaultDescription:
+                    '<muted-text>选择现金和信用卡支出是否默认可计费。</muted-text>',
                 billable: '可计费的',
                 billableDescription: '费用通常会重新计费给客户。',
                 nonBillable: '非计费',
