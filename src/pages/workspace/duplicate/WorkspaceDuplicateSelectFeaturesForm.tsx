@@ -19,7 +19,7 @@ import ONYXKEYS from '@src/ONYXKEYS';
 import ROUTES from '@src/ROUTES';
 import type {Rate} from '@src/types/onyx/Policy';
 import {isEmptyObject} from '@src/types/utils/EmptyObject';
-import {getAllValidConnectedIntegration, getWorkflowRules, getWorkspaceRules} from './utils';
+import {getAllValidConnectedIntegration, getWorkflowRules} from './utils';
 
 type WorkspaceDuplicateFormProps = {
     policyID?: string;
@@ -64,7 +64,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
             : '';
 
     const items = useMemo(() => {
-        const rules = getWorkspaceRules(policy, translate);
         const workflows = getWorkflowRules(policy, translate);
 
         const result = [
@@ -117,15 +116,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
                       translation: translate('workspace.common.workflows'),
                       value: 'workflows',
                       alternateText: workflows?.join(', '),
-                  }
-                : undefined,
-            rules && rules.length > 0 && !isCollect
-                ? {
-                      translation: translate('workspace.common.rules'),
-                      value: 'rules',
-                      alternateText: rules.length
-                          ? `${rules.length} ${translate('workspace.common.workspace').toLowerCase()} ${translate('workspace.common.rules').toLowerCase()}: ${rules.join(', ')}`
-                          : undefined,
                   }
                 : undefined,
             ratesCount > 0

@@ -1048,67 +1048,6 @@ const helpContentMap: HelpContent = {
                                 </View>
                             ),
                         },
-                        rules: {
-                            content: ({styles}: {styles: ThemeStyles}) => (
-                                <View>
-                                    <Text style={[styles.textHeadlineH1, styles.mv4]}>Workspace Rules</Text>
-                                    <Text style={[styles.textNormal, styles.mb4]}>
-                                        Rules help you stick to your expense policy without micromanaging. Set limits, require receipts, and automate approvals. Expensify checks every
-                                        expense against your rules and flags anything that’s off.
-                                    </Text>
-                                    <Text style={[styles.textNormal]}>
-                                        <Text style={styles.textBold}>Note:</Text> Workspace rules are only available on the Control plan.
-                                    </Text>
-
-                                    <BulletList
-                                        styles={styles}
-                                        items={[
-                                            <Text style={styles.textNormal}>
-                                                <Text style={[styles.textNormal]}>
-                                                    <Text style={styles.textBold}>Expense requirements:</Text> Decide when receipts are required, set a max spend per expense, and control how
-                                                    far back expenses can be submitted.
-                                                </Text>
-                                            </Text>,
-                                            <Text style={styles.textNormal}>
-                                                <Text style={[styles.textNormal]}>
-                                                    <Text style={styles.textBold}>Prohibited expenses:</Text> Let Expensify’s AI catch restricted items like alcohol, gambling, or tobacco—no
-                                                    manual review needed.
-                                                </Text>
-                                            </Text>,
-                                            <Text style={styles.textNormal}>
-                                                <Text style={[styles.textNormal]}>
-                                                    <Text style={styles.textBold}>Automatic approvals:</Text> Save time by auto-approving compliant reports under a certain amount. You can
-                                                    even randomly audit a few to keep everyone honest.
-                                                </Text>
-                                            </Text>,
-                                        ]}
-                                    />
-
-                                    <Text style={[styles.textHeadlineH2, styles.mt4, styles.mb1]}>Learn More</Text>
-                                    <BulletList
-                                        styles={styles}
-                                        items={[
-                                            <Text style={styles.textNormal}>
-                                                <TextLink
-                                                    href="https://help.expensify.com/articles/new-expensify/workspaces/Workspace-Rules"
-                                                    style={styles.link}
-                                                >
-                                                    Workspace Rules
-                                                </TextLink>
-                                            </Text>,
-                                            <Text style={styles.textNormal}>
-                                                <TextLink
-                                                    href="https://help.expensify.com/articles/new-expensify/workspaces/Prohibited-Expense-Rule"
-                                                    style={styles.link}
-                                                >
-                                                    Prohibited Expense Rules
-                                                </TextLink>
-                                            </Text>,
-                                        ]}
-                                    />
-                                </View>
-                            ),
-                        },
                         members: {
                             content: ({styles}: {styles: ThemeStyles}) => (
                                 <View>
@@ -1294,9 +1233,8 @@ const helpContentMap: HelpContent = {
                                         items={[
                                             <Text style={styles.textNormal}>
                                                 <Text style={[styles.textNormal]}>
-                                                    <Text style={styles.textBold}>Report title</Text>: Use the Custom Report Names feature (under workspace Rules) to create naming templates
-                                                    for new reports. It’s a smarter way to keep things organized and make reports easier to find. You also have the option to prevent members
-                                                    from changing the custom report names you set.
+                                                    <Text style={styles.textBold}>Report title</Text>: Use the Custom Report Names feature to create naming templates for new reports. It’s a smarter way to keep
+                                                    things organized and make reports easier to find. You also have the option to prevent members from changing the custom report names you set.
                                                 </Text>
                                             </Text>,
                                             <Text style={styles.textNormal}>

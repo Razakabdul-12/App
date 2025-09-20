@@ -55,30 +55,6 @@ describe('WorkspaceUpgrade', () => {
         jest.clearAllMocks();
     });
 
-    it('should enable policy rules', async () => {
-        const policy: Policy = LHNTestUtils.getFakePolicy();
-
-        // Given that a policy is initialized in Onyx
-        await Onyx.merge(`${ONYXKEYS.COLLECTION.POLICY}${policy.id}`, policy);
-
-        // And WorkspaceUpgradePage for rules is opened
-        const {unmount} = renderPage(SCREENS.WORKSPACE.UPGRADE, {policyID: policy.id, featureName: 'rules'});
-
-        // When the policy is upgraded by clicking on the Upgrade button
-        fireEvent.press(screen.getByTestId('upgrade-button'));
-        await waitForBatchedUpdatesWithAct();
-
-        // Then "Upgrade to Corporate" API request should be made
-        TestHelper.expectAPICommandToHaveBeenCalled(WRITE_COMMANDS.UPGRADE_TO_CORPORATE, 1);
-
-        // When WorkspaceUpgradePage is unmounted
-        unmount();
-        await waitForBatchedUpdates();
-
-        // Then "Set policy rules enabled" API request should be made
-        TestHelper.expectAPICommandToHaveBeenCalled(WRITE_COMMANDS.SET_POLICY_RULES_ENABLED, 1);
-    });
-
     it("should show the upgrade corporate plan price is in the user's local currency", async () => {
         // Team policy which the user can upgrade to corporate
         const policy = LHNTestUtils.getFakePolicy();
@@ -112,8 +88,11 @@ describe('WorkspaceUpgrade', () => {
 
             expect(screen.getByText(price)).toBeTruthy();
 
-            // Render the WorkspaceUpgradePage with rules as a feature to render UpgradeIntro
-            const {unmount} = renderPage(SCREENS.WORKSPACE.UPGRADE, {policyID: policy.id, featureName: 'rules'});
+            // Render the WorkspaceUpgradePage with company cards as a feature to render UpgradeIntro
+            const {unmount} = renderPage(SCREENS.WORKSPACE.UPGRADE, {
+                policyID: policy.id,
+                featureName: CONST.UPGRADE_FEATURE_INTRO_MAPPING.companyCards.alias,
+            });
 
             expect(screen.getByText(price)).toBeTruthy();
 

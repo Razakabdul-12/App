@@ -996,36 +996,7 @@ type SettingsNavigatorParamList = {
         cardID: string;
         backTo?: Routes;
     };
-    [SCREENS.WORKSPACE.RULES_AUTO_APPROVE_REPORTS_UNDER]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.RULES_RANDOM_REPORT_AUDIT]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.RULES_AUTO_PAY_REPORTS_UNDER]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.RULES_RECEIPT_REQUIRED_AMOUNT]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.RULES_MAX_EXPENSE_AMOUNT]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.RULES_MAX_EXPENSE_AGE]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.RULES_BILLABLE_DEFAULT]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.RULES_REIMBURSABLE_DEFAULT]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.RULES_PROHIBITED_DEFAULT]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.RULES_CUSTOM]: {
-        policyID: string;
-    };
+ 
     [SCREENS.WORKSPACE.PER_DIEM_IMPORT]: {
         policyID: string;
     };
@@ -1860,9 +1831,6 @@ type WorkspaceSplitNavigatorParamList = {
         policyID: string;
     };
     [SCREENS.WORKSPACE.EXPENSIFY_CARD]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.RULES]: {
         policyID: string;
     };
 };

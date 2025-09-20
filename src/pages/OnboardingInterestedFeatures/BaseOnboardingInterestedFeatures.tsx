@@ -97,13 +97,6 @@ function BaseOnboardingInterestedFeatures({shouldUseNativeStyles}: BaseOnboardin
                 apiEndpoint: WRITE_COMMANDS.ENABLE_POLICY_WORKFLOWS,
             },
             {
-                id: FEATURE_IDS.RULES,
-                title: translate('workspace.moreFeatures.rules.title'),
-                icon: Illustrations.Rules,
-                apiEndpoint: WRITE_COMMANDS.SET_POLICY_RULES_ENABLED,
-                requiresUpdate: true,
-            },
-            {
                 id: FEATURE_IDS.DISTANCE_RATES,
                 title: translate('workspace.moreFeatures.distanceRates.title'),
                 icon: Illustrations.Car,

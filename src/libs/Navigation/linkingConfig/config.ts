@@ -884,36 +884,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.WORKSPACE.TAX_VALUE]: {
                             path: ROUTES.WORKSPACE_TAX_VALUE.route,
                         },
-                        [SCREENS.WORKSPACE.RULES_AUTO_APPROVE_REPORTS_UNDER]: {
-                            path: ROUTES.RULES_AUTO_APPROVE_REPORTS_UNDER.route,
-                        },
-                        [SCREENS.WORKSPACE.RULES_RANDOM_REPORT_AUDIT]: {
-                            path: ROUTES.RULES_RANDOM_REPORT_AUDIT.route,
-                        },
-                        [SCREENS.WORKSPACE.RULES_AUTO_PAY_REPORTS_UNDER]: {
-                            path: ROUTES.RULES_AUTO_PAY_REPORTS_UNDER.route,
-                        },
-                        [SCREENS.WORKSPACE.RULES_RECEIPT_REQUIRED_AMOUNT]: {
-                            path: ROUTES.RULES_RECEIPT_REQUIRED_AMOUNT.route,
-                        },
-                        [SCREENS.WORKSPACE.RULES_MAX_EXPENSE_AMOUNT]: {
-                            path: ROUTES.RULES_MAX_EXPENSE_AMOUNT.route,
-                        },
-                        [SCREENS.WORKSPACE.RULES_MAX_EXPENSE_AGE]: {
-                            path: ROUTES.RULES_MAX_EXPENSE_AGE.route,
-                        },
-                        [SCREENS.WORKSPACE.RULES_BILLABLE_DEFAULT]: {
-                            path: ROUTES.RULES_BILLABLE_DEFAULT.route,
-                        },
-                        [SCREENS.WORKSPACE.RULES_REIMBURSABLE_DEFAULT]: {
-                            path: ROUTES.RULES_REIMBURSABLE_DEFAULT.route,
-                        },
-                        [SCREENS.WORKSPACE.RULES_CUSTOM]: {
-                            path: ROUTES.RULES_CUSTOM.route,
-                        },
-                        [SCREENS.WORKSPACE.RULES_PROHIBITED_DEFAULT]: {
-                            path: ROUTES.RULES_PROHIBITED_DEFAULT.route,
-                        },
                         [SCREENS.WORKSPACE.PER_DIEM_IMPORT]: {
                             path: ROUTES.WORKSPACE_PER_DIEM_IMPORT.route,
                         },
@@ -1617,9 +1587,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                 },
                 [SCREENS.WORKSPACE.DISTANCE_RATES]: {
                     path: ROUTES.WORKSPACE_DISTANCE_RATES.route,
-                },
-                [SCREENS.WORKSPACE.RULES]: {
-                    path: ROUTES.WORKSPACE_RULES.route,
                 },
             },
         },

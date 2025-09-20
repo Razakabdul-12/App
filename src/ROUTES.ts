@@ -2007,15 +2007,6 @@ const ROUTES = {
         route: 'workspaces/:policyID/company-cards/settings/statement-close-date',
         getRoute: (policyID: string) => `workspaces/${policyID}/company-cards/settings/statement-close-date` as const,
     },
-    WORKSPACE_RULES: {
-        route: 'workspaces/:policyID/rules',
-        getRoute: (policyID: string | undefined) => {
-            if (!policyID) {
-                Log.warn('Invalid policyID is used to build the WORKSPACE_RULES route');
-            }
-            return `workspaces/${policyID}/rules` as const;
-        },
-    },
     WORKSPACE_DISTANCE_RATES: {
         route: 'workspaces/:policyID/distance-rates',
         getRoute: (policyID: string | undefined) => {
@@ -2105,46 +2096,7 @@ const ROUTES = {
         route: 'workspaces/:policyID/per-diem/edit/currency/:rateID/:subRateID',
         getRoute: (policyID: string, rateID: string, subRateID: string) => `workspaces/${policyID}/per-diem/edit/currency/${rateID}/${subRateID}` as const,
     },
-    RULES_AUTO_APPROVE_REPORTS_UNDER: {
-        route: 'workspaces/:policyID/rules/auto-approve',
-        getRoute: (policyID: string) => `workspaces/${policyID}/rules/auto-approve` as const,
-    },
-    RULES_RANDOM_REPORT_AUDIT: {
-        route: 'workspaces/:policyID/rules/audit',
-        getRoute: (policyID: string) => `workspaces/${policyID}/rules/audit` as const,
-    },
-    RULES_AUTO_PAY_REPORTS_UNDER: {
-        route: 'workspaces/:policyID/rules/auto-pay',
-        getRoute: (policyID: string) => `workspaces/${policyID}/rules/auto-pay` as const,
-    },
-    RULES_RECEIPT_REQUIRED_AMOUNT: {
-        route: 'workspaces/:policyID/rules/receipt-required-amount',
-        getRoute: (policyID: string) => `workspaces/${policyID}/rules/receipt-required-amount` as const,
-    },
-    RULES_MAX_EXPENSE_AMOUNT: {
-        route: 'workspaces/:policyID/rules/max-expense-amount',
-        getRoute: (policyID: string) => `workspaces/${policyID}/rules/max-expense-amount` as const,
-    },
-    RULES_MAX_EXPENSE_AGE: {
-        route: 'workspaces/:policyID/rules/max-expense-age',
-        getRoute: (policyID: string) => `workspaces/${policyID}/rules/max-expense-age` as const,
-    },
-    RULES_BILLABLE_DEFAULT: {
-        route: 'workspaces/:policyID/rules/billable',
-        getRoute: (policyID: string) => `workspaces/${policyID}/rules/billable` as const,
-    },
-    RULES_REIMBURSABLE_DEFAULT: {
-        route: 'workspaces/:policyID/rules/reimbursable',
-        getRoute: (policyID: string) => `workspaces/${policyID}/rules/reimbursable` as const,
-    },
-    RULES_PROHIBITED_DEFAULT: {
-        route: 'workspaces/:policyID/rules/prohibited',
-        getRoute: (policyID: string) => `workspaces/${policyID}/rules/prohibited` as const,
-    },
-    RULES_CUSTOM: {
-        route: 'workspaces/:policyID/overview/policy',
-        getRoute: (policyID: string) => `workspaces/${policyID}/overview/policy` as const,
-    },
+
     // Referral program promotion
     REFERRAL_DETAILS_MODAL: {
         route: 'referral/:contentType',
