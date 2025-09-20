@@ -172,33 +172,6 @@ type Account = {
         calendarLink: string;
     };
 
-    /** Model of the getValidateCodeForAccountMerge API call */
-    getValidateCodeForAccountMerge?: {
-        /** Whether the validation code was sent */
-        isLoading?: boolean;
-
-        /** Whether the user validation code was sent */
-        validateCodeSent?: boolean;
-
-        /** Whether the user validation code was re-sent */
-        validateCodeResent?: boolean;
-
-        /** Errors while requesting the validation code */
-        errors: OnyxCommon.Errors;
-    };
-
-    /** Model of the mergeWithValidateCode API call */
-    mergeWithValidateCode?: {
-        /** Whether the API call is loading */
-        isLoading?: boolean;
-
-        /** Whether the account was merged successfully */
-        isAccountMerged?: boolean;
-
-        /** Errors while merging the account */
-        errors: OnyxCommon.Errors;
-    };
-
     /** Whether or not the user is subscribed to news updates */
     isSubscribedToNewsletter?: boolean;
 

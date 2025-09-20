@@ -1537,7 +1537,7 @@ const helpContentMap: HelpContent = {
                         <View>
                             <Text style={[styles.textHeadlineH1, styles.mv4]}>Security</Text>
                             <Text style={[styles.textNormal]}>
-                                This is where you control who can access your account and how secure it is. From adding two-factor authentication to merging accounts, it’s all in one spot.
+                                This is where you control who can access your account and how secure it is. From adding two-factor authentication to locking things down, it’s all in one spot.
                             </Text>
 
                             <Text style={[styles.textHeadlineH2, styles.mv4]}>Two-Factor Authentication</Text>
@@ -1562,33 +1562,6 @@ const helpContentMap: HelpContent = {
                                     <Text style={styles.textNormal}>
                                         <Text style={[styles.textNormal]}>
                                             <Text style={styles.textBold}>How login works:</Text> You’ll log in with your email magic code and a 6-digit code from your authenticator app.
-                                        </Text>
-                                    </Text>,
-                                ]}
-                            />
-
-                            <Text style={[styles.textHeadlineH2, styles.mv4]}>Merge Accounts</Text>
-                            <Text style={[styles.textNormal]}>
-                                If you’ve ended up with two Expensify accounts, you can merge them to keep expense history and workspace access under a single login.
-                            </Text>
-                            <BulletList
-                                styles={styles}
-                                items={[
-                                    <Text style={styles.textNormal}>
-                                        <Text style={[styles.textNormal]}>
-                                            <Text style={styles.textBold}>Heads up:</Text> Merging is permanent and must be done from your company account by pulling in the personal one.
-                                        </Text>
-                                    </Text>,
-                                    <Text style={styles.textNormal}>
-                                        <Text style={[styles.textNormal]}>
-                                            <Text style={styles.textBold}>How to merge:</Text> Under <Text style={styles.textBold}>Account &gt; Security &gt; Merge accounts</Text>, add the
-                                            email address of the account you’re merging and then enter the magic code sent to your email.
-                                        </Text>
-                                    </Text>,
-                                    <Text style={styles.textNormal}>
-                                        <Text style={[styles.textNormal]}>
-                                            <Text style={styles.textBold}>What moves over:</Text> Expenses, reports, cards, co-pilots — everything from the merged account rolls over into
-                                            your existing account.
                                         </Text>
                                     </Text>,
                                 ]}
@@ -1637,14 +1610,6 @@ const helpContentMap: HelpContent = {
                                             style={styles.link}
                                         >
                                             Report Suspicious Activity
-                                        </TextLink>
-                                    </Text>,
-                                    <Text style={styles.textNormal}>
-                                        <TextLink
-                                            href="https://help.expensify.com/articles/new-expensify/settings/Merge-Accounts"
-                                            style={styles.link}
-                                        >
-                                            Merge Accounts
                                         </TextLink>
                                     </Text>,
                                     <Text style={styles.textNormal}>

@@ -143,9 +143,6 @@ import type {
     ManagerApprovedParams,
     MarkedReimbursedParams,
     MarkReimbursedFromIntegrationParams,
-    MergeFailureDescriptionGenericParams,
-    MergeFailureUncreatedAccountDescriptionParams,
-    MergeSuccessDescriptionParams,
     MissingPropertyParams,
     MovedActionParams,
     MovedFromPersonalSpaceParams,
@@ -1667,61 +1664,6 @@ const translations = {
         enterDefaultContact: '输入您的默认联系方式',
         defaultContact: '默认联系方式：',
         enterYourDefaultContactMethod: '请输入您的默认联系方式以关闭您的账户。',
-    },
-    mergeAccountsPage: {
-        mergeAccount: '合并账户',
-        accountDetails: {
-            accountToMergeInto: '输入您想要合并的账户',
-            notReversibleConsent: '我明白这是不可逆的。',
-        },
-        accountValidate: {
-            confirmMerge: '您确定要合并账户吗？',
-            lossOfUnsubmittedData: `合并您的账户是不可逆的，并且将导致任何未提交费用的丢失`,
-            enterMagicCode: `要继续，请输入发送到的验证码`,
-            errors: {
-                incorrectMagicCode: '魔法代码不正确或无效。请重试或请求新代码。',
-                fallback: '出现问题。请稍后再试。',
-            },
-        },
-        mergeSuccess: {
-            accountsMerged: '账户已合并！',
-            description: ({from, to}: MergeSuccessDescriptionParams) =>
-                `<muted-text><centered-text>您已成功将 <strong>${from}</strong> 中的所有数据合并到 <strong>${to}</strong>。今后，您可以使用该账户的任意一个登录名。</centered-text></muted-text>`,
-        },
-        mergePendingSAML: {
-            weAreWorkingOnIt: '我们正在处理此事',
-            limitedSupport: '我们尚未支持在 New Expensify 上合并账户。请在 Expensify Classic 上执行此操作。',
-            reachOutForHelp: '<muted-text><centered-text>如有任何疑问，请随时<concierge-link>联系Concierge</concierge-link>！</centered-text></muted-text>',
-            goToExpensifyClassic: '前往 Expensify Classic',
-        },
-        mergeFailureSAMLDomainControlDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>您无法合并 <strong>${email}</strong>，因为它受 <strong>${email.split('@').at(1) ?? ''}</strong> 控制。请<concierge-link>联系Concierge</concierge-link>寻求帮助。</centered-text></muted-text>`,
-        mergeFailureSAMLAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>您不能将 <strong>${email}</strong> 并入其他账户，因为您的域名管理员已将其设置为您的主登录名。请将其他账户合并到该账户中。</centered-text></muted-text>`,
-        mergeFailure2FA: {
-            description: ({email}: MergeFailureDescriptionGenericParams) =>
-                `<muted-text><centered-text>您无法合并账户，因为 <strong>${email}</strong> 启用了双因素身份验证 (2FA)。请禁用 <strong>${email}</strong> 的 2FA，然后重试。</centered-text></muted-text>`,
-            learnMore: '了解更多关于合并账户的信息。',
-        },
-        mergeFailureAccountLockedDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>您无法合并 <strong>${email}</strong>，因为它已被锁定。请<concierge-link>联系Concierge</concierge-link>寻求帮助。</centered-text></muted-text>`,
-        mergeFailureUncreatedAccountDescription: ({email, contactMethodLink}: MergeFailureUncreatedAccountDescriptionParams) =>
-            `<muted-text><centered-text>您无法合并账户，因为 <strong>${email}</strong> 没有 Expensify 账户。请将<a href="${contactMethodLink}">其添加为联系方式</a>。</centered-text></muted-text>`,
-        mergeFailureSmartScannerAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>您不能将 <strong>${email}</strong> 并入其他账户。请将其他账户合并到其中。</centered-text></muted-text>`,
-        mergeFailureInvoicedAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>您不能将账户合并到 <strong>${email}</strong>，因为该账户拥有发票账单关系。</centered-text></muted-text>`,
-        mergeFailureTooManyAttempts: {
-            heading: '请稍后再试',
-            description: '尝试合并账户的次数过多。请稍后再试。',
-        },
-        mergeFailureUnvalidatedAccount: {
-            description: '您无法合并到其他账户，因为该账户尚未验证。请验证该账户后重试。',
-        },
-        mergeFailureSelfMerge: {
-            description: '您不能将一个账户合并到其自身。',
-        },
-        mergeFailureGenericHeading: '无法合并账户',
     },
     lockAccountPage: {
         reportSuspiciousActivity: '报告可疑活动',

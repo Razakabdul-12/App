@@ -116,19 +116,6 @@ type SettingsNavigatorParamList = {
     [SCREENS.SETTINGS.PREFERENCES.LANGUAGE]: undefined;
     [SCREENS.SETTINGS.PREFERENCES.THEME]: undefined;
     [SCREENS.SETTINGS.CLOSE]: undefined;
-    [SCREENS.SETTINGS.MERGE_ACCOUNTS.ACCOUNT_DETAILS]: {
-        email?: string;
-    };
-    [SCREENS.SETTINGS.MERGE_ACCOUNTS.ACCOUNT_VALIDATE]: {
-        login: string;
-        backTo?: Routes;
-        forwardTo?: Routes;
-    };
-    [SCREENS.SETTINGS.MERGE_ACCOUNTS.MERGE_RESULT]: {
-        backTo?: Routes;
-        result: ValueOf<typeof CONST.MERGE_ACCOUNT_RESULTS>;
-        login: string;
-    };
     [SCREENS.SETTINGS.LOCK.LOCK_ACCOUNT]: undefined;
     [SCREENS.SETTINGS.LOCK.UNLOCK_ACCOUNT]: undefined;
     [SCREENS.SETTINGS.LOCK.FAILED_TO_LOCK_ACCOUNT]: undefined;

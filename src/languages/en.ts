@@ -132,9 +132,6 @@ import type {
     ManagerApprovedParams,
     MarkedReimbursedParams,
     MarkReimbursedFromIntegrationParams,
-    MergeFailureDescriptionGenericParams,
-    MergeFailureUncreatedAccountDescriptionParams,
-    MergeSuccessDescriptionParams,
     MissingPropertyParams,
     MovedActionParams,
     MovedFromPersonalSpaceParams,
@@ -1675,61 +1672,6 @@ const translations = {
         enterDefaultContact: 'Enter your default contact method',
         defaultContact: 'Default contact method:',
         enterYourDefaultContactMethod: 'Please enter your default contact method to close your account.',
-    },
-    mergeAccountsPage: {
-        mergeAccount: 'Merge accounts',
-        accountDetails: {
-            accountToMergeInto: 'Enter the account you want to merge into ',
-            notReversibleConsent: 'I understand this is not reversible',
-        },
-        accountValidate: {
-            confirmMerge: 'Are you sure you want to merge accounts?',
-            lossOfUnsubmittedData: `Merging your accounts is irreversible and will result in the loss of any unsubmitted expenses for `,
-            enterMagicCode: `To continue, please enter the magic code sent to `,
-            errors: {
-                incorrectMagicCode: 'Incorrect or invalid magic code. Please try again or request a new code.',
-                fallback: 'Something went wrong. Please try again later.',
-            },
-        },
-        mergeSuccess: {
-            accountsMerged: 'Accounts merged!',
-            description: ({from, to}: MergeSuccessDescriptionParams) =>
-                `<muted-text><centered-text>You've successfully merged all data from <strong>${from}</strong> into <strong>${to}</strong>. Moving forward, you can use either login for this account.</centered-text></muted-text>`,
-        },
-        mergePendingSAML: {
-            weAreWorkingOnIt: 'We’re working on it',
-            limitedSupport: 'We don’t yet support merging accounts on New Expensify. Please take this action on Expensify Classic instead.',
-            reachOutForHelp: '<muted-text><centered-text>Feel free to <concierge-link>reach out to Concierge</concierge-link> if you have any questions!</centered-text></muted-text>',
-            goToExpensifyClassic: 'Go to Expensify Classic',
-        },
-        mergeFailureSAMLDomainControlDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>You can’t merge <strong>${email}</strong> because it’s controlled by <strong>${email.split('@').at(1) ?? ''}</strong>. Please <concierge-link>reach out to Concierge</concierge-link> for assistance.</centered-text></muted-text>`,
-        mergeFailureSAMLAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>You can’t merge <strong>${email}</strong> into other accounts because your domain admin has set it as your primary login. Please merge other accounts into it instead.</centered-text></muted-text>`,
-        mergeFailure2FA: {
-            description: ({email}: MergeFailureDescriptionGenericParams) =>
-                `<muted-text><centered-text>You can’t merge accounts because <strong>${email}</strong> has two-factor authentication (2FA) enabled. Please disable 2FA for <strong>${email}</strong> and try again.</centered-text></muted-text>`,
-            learnMore: 'Learn more about merging accounts.',
-        },
-        mergeFailureAccountLockedDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>You can’t merge <strong>${email}</strong> because it’s locked. Please <concierge-link>reach out to Concierge</concierge-link> for assistance.</centered-text></muted-text>`,
-        mergeFailureUncreatedAccountDescription: ({email, contactMethodLink}: MergeFailureUncreatedAccountDescriptionParams) =>
-            `<muted-text><centered-text>You can’t merge accounts because <strong>${email}</strong> doesn’t have an Expensify account. Please <a href="${contactMethodLink}">add it as a contact method</a> instead.</centered-text></muted-text>`,
-        mergeFailureSmartScannerAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>You can’t merge <strong>${email}</strong> into other accounts. Please merge other accounts into it instead.</centered-text></muted-text>`,
-        mergeFailureInvoicedAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>You can’t merge accounts into <strong>${email}</strong> because this account owns an invoiced billing relationship.</centered-text></muted-text>`,
-        mergeFailureTooManyAttempts: {
-            heading: 'Try again later',
-            description: 'There were too many attempts to merge accounts. Please try again later.',
-        },
-        mergeFailureUnvalidatedAccount: {
-            description: "You can't merge into other accounts because it's not validated. Please validate the account and try again.",
-        },
-        mergeFailureSelfMerge: {
-            description: 'You cannot merge an account into itself.',
-        },
-        mergeFailureGenericHeading: 'Can’t merge accounts',
     },
     lockAccountPage: {
         reportSuspiciousActivity: 'Report suspicious activity',

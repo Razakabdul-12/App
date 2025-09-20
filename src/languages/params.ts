@@ -857,20 +857,6 @@ type SettlementAccountInfoParams = {
     accountNumber: string;
 };
 
-type MergeSuccessDescriptionParams = {
-    from: string;
-    to: string;
-};
-
-type MergeFailureUncreatedAccountDescriptionParams = {
-    email: string;
-    contactMethodLink: string;
-};
-
-type MergeFailureDescriptionGenericParams = {
-    email: string;
-};
-
 type EnableContinuousReconciliationParams = {
     connectionName: string;
     accountingAdvancedSettingsLink: string;
@@ -1209,9 +1195,6 @@ export type {
     EmptyCategoriesSubtitleWithAccountingParams,
     EmptyTagsSubtitleWithAccountingParams,
     SettlementAccountInfoParams,
-    MergeSuccessDescriptionParams,
-    MergeFailureUncreatedAccountDescriptionParams,
-    MergeFailureDescriptionGenericParams,
     EnableContinuousReconciliationParams,
     WorkspaceUpgradeNoteParams,
     ChangedApproverMessageParams,

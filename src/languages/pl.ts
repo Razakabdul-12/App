@@ -143,9 +143,6 @@ import type {
     ManagerApprovedParams,
     MarkedReimbursedParams,
     MarkReimbursedFromIntegrationParams,
-    MergeFailureDescriptionGenericParams,
-    MergeFailureUncreatedAccountDescriptionParams,
-    MergeSuccessDescriptionParams,
     MissingPropertyParams,
     MovedActionParams,
     MovedFromPersonalSpaceParams,
@@ -1684,61 +1681,6 @@ const translations = {
         enterDefaultContact: 'Wprowadź domyślną metodę kontaktu',
         defaultContact: 'Domyślna metoda kontaktu:',
         enterYourDefaultContactMethod: 'Proszę podać domyślną metodę kontaktu, aby zamknąć konto.',
-    },
-    mergeAccountsPage: {
-        mergeAccount: 'Połącz konta',
-        accountDetails: {
-            accountToMergeInto: 'Wprowadź konto, z którym chcesz połączyć',
-            notReversibleConsent: 'Rozumiem, że to jest nieodwracalne',
-        },
-        accountValidate: {
-            confirmMerge: 'Czy na pewno chcesz połączyć konta?',
-            lossOfUnsubmittedData: `Scalanie kont jest nieodwracalne i spowoduje utratę wszelkich niezatwierdzonych wydatków dla`,
-            enterMagicCode: `Aby kontynuować, wprowadź magiczny kod wysłany na`,
-            errors: {
-                incorrectMagicCode: 'Niepoprawny lub nieważny kod magiczny. Spróbuj ponownie lub poproś o nowy kod.',
-                fallback: 'Coś poszło nie tak. Spróbuj ponownie później.',
-            },
-        },
-        mergeSuccess: {
-            accountsMerged: 'Konta połączone!',
-            description: ({from, to}: MergeSuccessDescriptionParams) =>
-                `<muted-text><centered-text>Pomyślnie scalono wszystkie dane z <strong>${from}</strong> do <strong>${to}</strong>. W przyszłości możesz używać dowolnego loginu dla tego konta.</centered-text></muted-text>`,
-        },
-        mergePendingSAML: {
-            weAreWorkingOnIt: 'Pracujemy nad tym',
-            limitedSupport: 'Nie obsługujemy jeszcze łączenia kont w New Expensify. Proszę wykonać tę czynność w Expensify Classic.',
-            reachOutForHelp: '<muted-text><centered-text>Jeśli masz jakiekolwiek pytania, <concierge-link>skontaktuj się z Concierge</concierge-link>!</centered-text></muted-text>',
-            goToExpensifyClassic: 'Przejdź do Expensify Classic',
-        },
-        mergeFailureSAMLDomainControlDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Nie można połączyć strony <strong>${email}</strong>, ponieważ jest ona kontrolowana przez <strong>${email.split('@').at(1) ?? ''}</strong>. <concierge-link>Skontaktuj się z Concierge</concierge-link>, aby uzyskać pomoc.</centered-text></muted-text>`,
-        mergeFailureSAMLAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Nie można połączyć <strong>${email}</strong> z innymi kontami, ponieważ administrator domeny ustawił je jako główny login. Zamiast tego połącz z nim inne konta.</centered-text></muted-text>`,
-        mergeFailure2FA: {
-            description: ({email}: MergeFailureDescriptionGenericParams) =>
-                `<muted-text><centered-text>Nie można scalić kont, ponieważ <strong>${email}</strong> ma włączone uwierzytelnianie dwuskładnikowe (2FA). Wyłącz 2FA dla <strong>${email}</strong> i spróbuj ponownie.</centered-text></muted-text>`,
-            learnMore: 'Dowiedz się więcej o łączeniu kont.',
-        },
-        mergeFailureAccountLockedDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Nie można scalić strony <strong>${email}</strong>, ponieważ jest zablokowana. <concierge-link>Skontaktuj się z Concierge</concierge-link>, aby uzyskać pomoc.</centered-text></muted-text>`,
-        mergeFailureUncreatedAccountDescription: ({email, contactMethodLink}: MergeFailureUncreatedAccountDescriptionParams) =>
-            `<muted-text><centered-text>Nie możesz scalić kont, ponieważ <strong>${email}</strong> nie ma konta Expensify. Zamiast tego <a href="${contactMethodLink}">dodaj je jako metodę kontaktu</a>.</centered-text></muted-text>`,
-        mergeFailureSmartScannerAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Nie można połączyć <strong>${email}</strong> z innymi kontami. Zamiast tego połącz z nim inne konta.</centered-text></muted-text>`,
-        mergeFailureInvoicedAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Nie można scalić kont w <strong>${email}</strong>, ponieważ to konto posiada zafakturowaną relację rozliczeniową.</centered-text></muted-text>`,
-        mergeFailureTooManyAttempts: {
-            heading: 'Spróbuj ponownie później',
-            description: 'Było zbyt wiele prób połączenia kont. Proszę spróbować ponownie później.',
-        },
-        mergeFailureUnvalidatedAccount: {
-            description: 'Nie możesz połączyć się z innymi kontami, ponieważ nie jest ono zweryfikowane. Proszę zweryfikować konto i spróbować ponownie.',
-        },
-        mergeFailureSelfMerge: {
-            description: 'Nie można połączyć konta z samym sobą.',
-        },
-        mergeFailureGenericHeading: 'Nie można połączyć kont',
     },
     lockAccountPage: {
         reportSuspiciousActivity: 'Zgłoś podejrzaną aktywność',

@@ -143,9 +143,6 @@ import type {
     ManagerApprovedParams,
     MarkedReimbursedParams,
     MarkReimbursedFromIntegrationParams,
-    MergeFailureDescriptionGenericParams,
-    MergeFailureUncreatedAccountDescriptionParams,
-    MergeSuccessDescriptionParams,
     MissingPropertyParams,
     MovedActionParams,
     MovedFromPersonalSpaceParams,
@@ -1688,61 +1685,6 @@ const translations = {
         enterDefaultContact: 'Voer uw standaard contactmethode in',
         defaultContact: 'Standaard contactmethode:',
         enterYourDefaultContactMethod: 'Voer uw standaard contactmethode in om uw account te sluiten.',
-    },
-    mergeAccountsPage: {
-        mergeAccount: 'Accounts samenvoegen',
-        accountDetails: {
-            accountToMergeInto: 'Voer het account in waarmee u wilt samenvoegen',
-            notReversibleConsent: 'Ik begrijp dat dit niet omkeerbaar is.',
-        },
-        accountValidate: {
-            confirmMerge: 'Weet je zeker dat je accounts wilt samenvoegen?',
-            lossOfUnsubmittedData: `Het samenvoegen van uw accounts is onomkeerbaar en zal resulteren in het verlies van alle niet-ingediende uitgaven voor`,
-            enterMagicCode: `Om door te gaan, voer de magische code in die is verzonden naar`,
-            errors: {
-                incorrectMagicCode: 'Onjuiste of ongeldige magische code. Probeer het opnieuw of vraag een nieuwe code aan.',
-                fallback: 'Er is iets misgegaan. Probeer het later opnieuw.',
-            },
-        },
-        mergeSuccess: {
-            accountsMerged: 'Accounts samengevoegd!',
-            description: ({from, to}: MergeSuccessDescriptionParams) =>
-                `<muted-text><centered-text>Je hebt met succes alle gegevens van <strong>${from}</strong> samengevoegd in <strong>${to}</strong>. Je kunt nu elke login gebruiken voor deze account.</centered-text></muted-text>`,
-        },
-        mergePendingSAML: {
-            weAreWorkingOnIt: 'We zijn ermee bezig',
-            limitedSupport: 'We ondersteunen het samenvoegen van accounts nog niet op New Expensify. Voer deze actie in plaats daarvan uit op Expensify Classic.',
-            reachOutForHelp: '<muted-text><centered-text>Neem gerust <concierge-link>contact op met Concierge</concierge-link> als je vragen hebt!</centered-text></muted-text>',
-            goToExpensifyClassic: 'Ga naar Expensify Classic',
-        },
-        mergeFailureSAMLDomainControlDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Je kunt <strong>${email}</strong> niet samenvoegen omdat het wordt beheerd door <strong>${email.split('@').at(1) ?? ''}</strong>. Neem <concierge-link>contact op met Concierge</concierge-link> voor hulp.</centered-text></muted-text>`,
-        mergeFailureSAMLAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>U kunt <strong>${email}</strong> niet samenvoegen met andere accounts omdat uw domeinbeheerder dit heeft ingesteld als uw primaire login. Voeg in plaats daarvan andere accounts samen.</centered-text></muted-text>`,
-        mergeFailure2FA: {
-            description: ({email}: MergeFailureDescriptionGenericParams) =>
-                `<muted-text><centered-text>Je kunt accounts niet samenvoegen omdat <strong>${email}</strong> twee-factor authenticatie (2FA) heeft ingeschakeld. Schakel 2FA uit voor <strong>${email}</strong> en probeer het opnieuw.</centered-text></muted-text>`,
-            learnMore: 'Meer informatie over het samenvoegen van accounts.',
-        },
-        mergeFailureAccountLockedDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Je kunt <strong>${email}</strong> niet samenvoegen omdat het vergrendeld is. Neem <concierge-link>contact op met Concierge</concierge-link> voor hulp.</centered-text></muted-text>`,
-        mergeFailureUncreatedAccountDescription: ({email, contactMethodLink}: MergeFailureUncreatedAccountDescriptionParams) =>
-            `<muted-text><centered-text>Je kunt geen accounts samenvoegen omdat <strong>${email}</strong> geen Expensify account heeft. <a href="${contactMethodLink}">Voeg het toe als een contactmethode</a> in plaats daarvan.</centered-text></muted-text>`,
-        mergeFailureSmartScannerAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Je kunt <strong>${email}</strong> niet samenvoegen met andere accounts. Voeg in plaats daarvan andere accounts samen.</centered-text></muted-text>`,
-        mergeFailureInvoicedAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Je kunt accounts niet samenvoegen in <strong>${email}</strong> omdat deze account een gefactureerde factureringsrelatie heeft.</centered-text></muted-text>`,
-        mergeFailureTooManyAttempts: {
-            heading: 'Probeer het later opnieuw',
-            description: 'Er waren te veel pogingen om accounts samen te voegen. Probeer het later opnieuw.',
-        },
-        mergeFailureUnvalidatedAccount: {
-            description: 'U kunt niet samenvoegen met andere accounts omdat het niet gevalideerd is. Valideer het account en probeer het opnieuw.',
-        },
-        mergeFailureSelfMerge: {
-            description: 'U kunt geen account met zichzelf samenvoegen.',
-        },
-        mergeFailureGenericHeading: 'Kan accounts niet samenvoegen',
     },
     lockAccountPage: {
         reportSuspiciousActivity: 'Verdachte activiteit melden',

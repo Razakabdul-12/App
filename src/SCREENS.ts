@@ -141,11 +141,6 @@ const SCREENS = {
             DELEGATE_CONFIRM: 'Settings_Delegate_Confirm',
             UPDATE_DELEGATE_ROLE: 'Settings_Delegate_Update_Role',
         },
-        MERGE_ACCOUNTS: {
-            ACCOUNT_DETAILS: 'Settings_MergeAccounts_AccountDetails',
-            ACCOUNT_VALIDATE: 'Settings_MergeAccounts_AccountValidate',
-            MERGE_RESULT: 'Settings_MergeAccounts_MergeResult',
-        },
         LOCK: {
             LOCK_ACCOUNT: 'Settings_Lock_LockAccount',
             UNLOCK_ACCOUNT: 'Settings_Lock_UnlockAccount',

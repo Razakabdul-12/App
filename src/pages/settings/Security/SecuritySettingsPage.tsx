@@ -22,10 +22,8 @@ import ScrollView from '@components/ScrollView';
 import Section from '@components/Section';
 import Text from '@components/Text';
 import TextLink from '@components/TextLink';
-import useCurrentUserPersonalDetails from '@hooks/useCurrentUserPersonalDetails';
 import useLocalize from '@hooks/useLocalize';
 import useOnyx from '@hooks/useOnyx';
-import usePrivateSubscription from '@hooks/usePrivateSubscription';
 import useResponsiveLayout from '@hooks/useResponsiveLayout';
 import useThemeStyles from '@hooks/useThemeStyles';
 import useWaitForNavigation from '@hooks/useWaitForNavigation';
@@ -62,8 +60,6 @@ function SecuritySettingsPage() {
     const {windowWidth} = useWindowDimensions();
     const personalDetails = usePersonalDetails();
     const [account] = useOnyx(ONYXKEYS.ACCOUNT, {canBeMissing: true});
-    const currentUserPersonalDetails = useCurrentUserPersonalDetails();
-    const privateSubscription = usePrivateSubscription();
     const isUserValidated = account?.validated;
     const delegateButtonRef = useRef<HTMLDivElement | null>(null);
 
@@ -141,28 +137,6 @@ function SecuritySettingsPage() {
                     Navigation.navigate(ROUTES.SETTINGS_2FA_ROOT.getRoute());
                 },
             },
-            {
-                translationKey: 'mergeAccountsPage.mergeAccount',
-                icon: Expensicons.ArrowCollapse,
-                action: () => {
-                    if (isDelegateAccessRestricted) {
-                        showDelegateNoAccessModal();
-                        return;
-                    }
-                    if (isAccountLocked) {
-                        showLockedAccountModal();
-                        return;
-                    }
-                    if (privateSubscription?.type === CONST.SUBSCRIPTION.TYPE.INVOICING) {
-                        Navigation.navigate(
-                            ROUTES.SETTINGS_MERGE_ACCOUNTS_RESULT.getRoute(currentUserPersonalDetails.login ?? '', CONST.MERGE_ACCOUNT_RESULTS.ERR_INVOICING, ROUTES.SETTINGS_SECURITY),
-                        );
-                        return;
-                    }
-
-                    Navigation.navigate(ROUTES.SETTINGS_MERGE_ACCOUNTS.route);
-                },
-            },
         ];
 
         if (isAccountLocked) {
@@ -210,8 +184,6 @@ function SecuritySettingsPage() {
         isUserValidated,
         showDelegateNoAccessModal,
         showLockedAccountModal,
-        privateSubscription?.type,
-        currentUserPersonalDetails.login,
         waitForNavigate,
         translate,
         styles.sectionMenuItemTopDescription,

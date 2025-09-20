@@ -143,9 +143,6 @@ import type {
     ManagerApprovedParams,
     MarkedReimbursedParams,
     MarkReimbursedFromIntegrationParams,
-    MergeFailureDescriptionGenericParams,
-    MergeFailureUncreatedAccountDescriptionParams,
-    MergeSuccessDescriptionParams,
     MissingPropertyParams,
     MovedActionParams,
     MovedFromPersonalSpaceParams,
@@ -1686,61 +1683,6 @@ const translations = {
         enterDefaultContact: 'デフォルトの連絡方法を入力してください',
         defaultContact: 'デフォルトの連絡方法:',
         enterYourDefaultContactMethod: 'アカウントを閉じるために、デフォルトの連絡方法を入力してください。',
-    },
-    mergeAccountsPage: {
-        mergeAccount: 'アカウントを統合する',
-        accountDetails: {
-            accountToMergeInto: 'マージしたいアカウントを入力してください',
-            notReversibleConsent: 'これは元に戻せないことを理解しています。',
-        },
-        accountValidate: {
-            confirmMerge: 'アカウントをマージしてもよろしいですか？',
-            lossOfUnsubmittedData: `アカウントの統合は元に戻せず、未提出の経費が失われる結果になります。`,
-            enterMagicCode: `続行するには、に送信されたマジックコードを入力してください。`,
-            errors: {
-                incorrectMagicCode: '無効または不正なマジックコードです。もう一度お試しいただくか、新しいコードをリクエストしてください。',
-                fallback: '問題が発生しました。後でもう一度お試しください。',
-            },
-        },
-        mergeSuccess: {
-            accountsMerged: 'アカウントが統合されました！',
-            description: ({from, to}: MergeSuccessDescriptionParams) =>
-                `<muted-text><centered-text><strong>${from}</strong>、<strong>${to}</strong> の全データのマージに成功しました。今後、このアカウントにはどちらのログインも使用できます。</centered-text></muted-text>`,
-        },
-        mergePendingSAML: {
-            weAreWorkingOnIt: '対応中です',
-            limitedSupport: '新しいExpensifyではアカウントの統合をまだサポートしていません。この操作はExpensify Classicで行ってください。',
-            reachOutForHelp: '<muted-text><centered-text>ご質問は<concierge-link>Conciergeまでお</concierge-link>気軽にどうぞ！</centered-text></muted-text>',
-            goToExpensifyClassic: 'Expensify Classicに移動',
-        },
-        mergeFailureSAMLDomainControlDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text><strong>${email}</strong> は <strong>${email.split('@').at(1) ?? ''}</strong> によって管理されているため、マージできません。<concierge-link>Conciergeにご相談</concierge-link>ください。</centered-text></muted-text>`,
-        mergeFailureSAMLAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>ドメイン管理者がプライマリログインとして設定しているため、<strong>${email}</strong> を他のアカウントに統合することはできません。代わりに他のアカウントをマージしてください。</centered-text></muted-text>`,
-        mergeFailure2FA: {
-            description: ({email}: MergeFailureDescriptionGenericParams) =>
-                `<muted-text><centered-text><strong>${email}</strong>、二要素認証（2FA）が有効になっているため、アカウントを統合できません。<strong>${email}</strong>、2FAを無効にして再度お試しください。</centered-text></muted-text>`,
-            learnMore: 'アカウントの統合について詳しく学ぶ。',
-        },
-        mergeFailureAccountLockedDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text><strong>${email}</strong> はロックされているので、マージできない。<concierge-link>Conciergeにご相談</concierge-link>ください。</centered-text></muted-text>`,
-        mergeFailureUncreatedAccountDescription: ({email, contactMethodLink}: MergeFailureUncreatedAccountDescriptionParams) =>
-            `<muted-text><centered-text><strong>${email}</strong> がExpensifyアカウントを持っていないため、アカウントを統合できません。代わりに<a href="${contactMethodLink}">連絡先として追加して</a>ください。</centered-text></muted-text>`,
-        mergeFailureSmartScannerAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text><strong>${email}</strong> を他のアカウントに統合することはできません。代わりに他のアカウントを統合してください。</centered-text></muted-text>`,
-        mergeFailureInvoicedAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>このアカウントは請求済みの請求リレーションシップを所有しているため、<strong>${email}</strong> にアカウントをマージすることはできません。</centered-text></muted-text>`,
-        mergeFailureTooManyAttempts: {
-            heading: '後でもう一度お試しください。',
-            description: 'アカウントの統合を試みる回数が多すぎます。後でもう一度お試しください。',
-        },
-        mergeFailureUnvalidatedAccount: {
-            description: '他のアカウントにマージできません。アカウントが検証されていないためです。アカウントを検証して、再度お試しください。',
-        },
-        mergeFailureSelfMerge: {
-            description: 'アカウントをそれ自体にマージすることはできません。',
-        },
-        mergeFailureGenericHeading: 'アカウントを統合できません',
     },
     lockAccountPage: {
         reportSuspiciousActivity: '疑わしい活動を報告',

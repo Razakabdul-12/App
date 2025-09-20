@@ -52,9 +52,6 @@ import useModalStackScreenOptions from './useModalStackScreenOptions';
 type Screens = Partial<Record<Screen, () => React.ComponentType>>;
 
 const OPTIONS_PER_SCREEN: Partial<Record<Screen, PlatformStackNavigationOptions>> = {
-    [SCREENS.SETTINGS.MERGE_ACCOUNTS.MERGE_RESULT]: {
-        animationTypeForReplace: 'push',
-    },
     [SCREENS.SEARCH.REPORT_RHP]: {
         animation: Animations.NONE,
     },
@@ -680,9 +677,6 @@ const SettingsModalStackNavigator = createModalStackNavigator<SettingsNavigatorP
     [SCREENS.SETTINGS.DELEGATE.UPDATE_DELEGATE_ROLE]: () =>
         require<ReactComponentModule>('../../../../pages/settings/Security/AddDelegate/UpdateDelegateRole/UpdateDelegateRolePage').default,
     [SCREENS.SETTINGS.DELEGATE.DELEGATE_CONFIRM]: () => require<ReactComponentModule>('../../../../pages/settings/Security/AddDelegate/ConfirmDelegatePage').default,
-    [SCREENS.SETTINGS.MERGE_ACCOUNTS.ACCOUNT_DETAILS]: () => require<ReactComponentModule>('../../../../pages/settings/Security/MergeAccounts/AccountDetailsPage').default,
-    [SCREENS.SETTINGS.MERGE_ACCOUNTS.ACCOUNT_VALIDATE]: () => require<ReactComponentModule>('../../../../pages/settings/Security/MergeAccounts/AccountValidatePage').default,
-    [SCREENS.SETTINGS.MERGE_ACCOUNTS.MERGE_RESULT]: () => require<ReactComponentModule>('../../../../pages/settings/Security/MergeAccounts/MergeResultPage').default,
     [SCREENS.SETTINGS.LOCK.LOCK_ACCOUNT]: () => require<ReactComponentModule>('../../../../pages/settings/Security/LockAccount/LockAccountPage').default,
     [SCREENS.SETTINGS.LOCK.UNLOCK_ACCOUNT]: () => require<ReactComponentModule>('../../../../pages/settings/Security/LockAccount/UnlockAccountPage').default,
     [SCREENS.SETTINGS.LOCK.FAILED_TO_LOCK_ACCOUNT]: () => require<ReactComponentModule>('../../../../pages/settings/Security/LockAccount/FailedToLockAccountPage').default,

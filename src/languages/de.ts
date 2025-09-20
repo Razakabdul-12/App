@@ -143,9 +143,6 @@ import type {
     ManagerApprovedParams,
     MarkedReimbursedParams,
     MarkReimbursedFromIntegrationParams,
-    MergeFailureDescriptionGenericParams,
-    MergeFailureUncreatedAccountDescriptionParams,
-    MergeSuccessDescriptionParams,
     MissingPropertyParams,
     MovedActionParams,
     MovedFromPersonalSpaceParams,
@@ -1697,61 +1694,6 @@ const translations = {
         enterDefaultContact: 'Geben Sie Ihre Standardkontaktmethode ein',
         defaultContact: 'Standardkontaktmethode:',
         enterYourDefaultContactMethod: 'Bitte geben Sie Ihre Standardkontaktmethode ein, um Ihr Konto zu schließen.',
-    },
-    mergeAccountsPage: {
-        mergeAccount: 'Konten zusammenführen',
-        accountDetails: {
-            accountToMergeInto: 'Geben Sie das Konto ein, in das Sie zusammenführen möchten.',
-            notReversibleConsent: 'Ich verstehe, dass dies nicht umkehrbar ist.',
-        },
-        accountValidate: {
-            confirmMerge: 'Möchten Sie die Konten wirklich zusammenführen?',
-            lossOfUnsubmittedData: `Das Zusammenführen Ihrer Konten ist unwiderruflich und führt zum Verlust aller nicht eingereichten Ausgaben für`,
-            enterMagicCode: `Um fortzufahren, geben Sie bitte den magischen Code ein, der an  gesendet wurde.`,
-            errors: {
-                incorrectMagicCode: 'Falscher oder ungültiger Magic-Code. Bitte versuche es erneut oder fordere einen neuen Code an.',
-                fallback: 'Etwas ist schiefgelaufen. Bitte versuchen Sie es später noch einmal.',
-            },
-        },
-        mergeSuccess: {
-            accountsMerged: 'Konten zusammengeführt!',
-            description: ({from, to}: MergeSuccessDescriptionParams) =>
-                `<muted-text><centered-text>Sie haben erfolgreich alle Daten von <strong>${from}</strong> in <strong>${to}</strong> zusammengeführt. In Zukunft können Sie beide Logins für dieses Konto verwenden.</centered-text></muted-text>`,
-        },
-        mergePendingSAML: {
-            weAreWorkingOnIt: 'Wir arbeiten daran.',
-            limitedSupport: 'Wir unterstützen das Zusammenführen von Konten in New Expensify noch nicht. Bitte führen Sie diese Aktion stattdessen in Expensify Classic aus.',
-            reachOutForHelp: '<muted-text><centered-text>Wenn Sie Fragen haben, wenden Sie sich <concierge-link>bitte an den Concierge</concierge-link>!</centered-text></muted-text>',
-            goToExpensifyClassic: 'Gehe zu Expensify Classic',
-        },
-        mergeFailureSAMLDomainControlDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Sie können <strong>${email}</strong> nicht zusammenführen, da es von <strong>${email.split('@').at(1) ?? ''}</strong>kontrolliert wird. Bitte <concierge-link>wenden Sie sich an Concierge</concierge-link>, um Hilfe zu erhalten.</centered-text></muted-text>`,
-        mergeFailureSAMLAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Sie können <strong>${email}</strong> nicht mit anderen Konten zusammenführen, da Ihr Domain-Administrator es als Ihr primäres Login festgelegt hat. Bitte fügen Sie stattdessen andere Konten zu diesem Konto hinzu.</centered-text></muted-text>`,
-        mergeFailure2FA: {
-            description: ({email}: MergeFailureDescriptionGenericParams) =>
-                `<muted-text><centered-text>Sie können Konten nicht zusammenführen, weil <strong>${email}</strong> die Zwei-Faktor-Authentifizierung (2FA) aktiviert hat. Bitte deaktivieren Sie 2FA für <strong>${email}</strong> und versuchen Sie es erneut.</centered-text></muted-text>`,
-            learnMore: 'Erfahren Sie mehr über das Zusammenführen von Konten.',
-        },
-        mergeFailureAccountLockedDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Sie können <strong>${email}</strong> nicht zusammenführen, weil es gesperrt ist. Bitte <concierge-link>wenden Sie sich an Concierge</concierge-link>, um Hilfe zu erhalten.</centered-text></muted-text>`,
-        mergeFailureUncreatedAccountDescription: ({email, contactMethodLink}: MergeFailureUncreatedAccountDescriptionParams) =>
-            `<muted-text><centered-text>Sie können Konten nicht zusammenführen, weil <strong>${email}</strong> kein Expensify-Konto hat. Bitte <a href="${contactMethodLink}">fügen Sie es stattdessen als Kontaktmethode hinzu</a>.</centered-text></muted-text>`,
-        mergeFailureSmartScannerAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Sie können <strong>${email}</strong> nicht mit anderen Konten zusammenführen. Bitte fügen Sie stattdessen andere Konten hinzu.</centered-text></muted-text>`,
-        mergeFailureInvoicedAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Sie können keine Konten in <strong>${email}</strong> zusammenführen, da dieses Konto eine fakturierte Abrechnungsbeziehung besitzt.</centered-text></muted-text>`,
-        mergeFailureTooManyAttempts: {
-            heading: 'Versuchen Sie es später noch einmal.',
-            description: 'Es gab zu viele Versuche, Konten zusammenzuführen. Bitte versuchen Sie es später erneut.',
-        },
-        mergeFailureUnvalidatedAccount: {
-            description: 'Sie können nicht in andere Konten zusammenführen, da es nicht verifiziert ist. Bitte verifizieren Sie das Konto und versuchen Sie es erneut.',
-        },
-        mergeFailureSelfMerge: {
-            description: 'Sie können ein Konto nicht mit sich selbst zusammenführen.',
-        },
-        mergeFailureGenericHeading: 'Konten können nicht zusammengeführt werden',
     },
     lockAccountPage: {
         reportSuspiciousActivity: 'Verdächtige Aktivität melden',

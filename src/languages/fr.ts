@@ -143,9 +143,6 @@ import type {
     ManagerApprovedParams,
     MarkedReimbursedParams,
     MarkReimbursedFromIntegrationParams,
-    MergeFailureDescriptionGenericParams,
-    MergeFailureUncreatedAccountDescriptionParams,
-    MergeSuccessDescriptionParams,
     MissingPropertyParams,
     MovedActionParams,
     MovedFromPersonalSpaceParams,
@@ -1694,61 +1691,6 @@ const translations = {
         enterDefaultContact: 'Entrez votre méthode de contact par défaut',
         defaultContact: 'Méthode de contact par défaut :',
         enterYourDefaultContactMethod: 'Veuillez entrer votre méthode de contact par défaut pour clôturer votre compte.',
-    },
-    mergeAccountsPage: {
-        mergeAccount: 'Fusionner les comptes',
-        accountDetails: {
-            accountToMergeInto: 'Entrez le compte dans lequel vous souhaitez fusionner',
-            notReversibleConsent: "Je comprends que cela n'est pas réversible",
-        },
-        accountValidate: {
-            confirmMerge: 'Êtes-vous sûr de vouloir fusionner les comptes ?',
-            lossOfUnsubmittedData: `La fusion de vos comptes est irréversible et entraînera la perte de toutes les dépenses non soumises pour`,
-            enterMagicCode: `Pour continuer, veuillez entrer le code magique envoyé à`,
-            errors: {
-                incorrectMagicCode: 'Code magique incorrect ou invalide. Veuillez réessayer ou demander un nouveau code.',
-                fallback: 'Un problème est survenu. Veuillez réessayer plus tard.',
-            },
-        },
-        mergeSuccess: {
-            accountsMerged: 'Comptes fusionnés !',
-            description: ({from, to}: MergeSuccessDescriptionParams) =>
-                `<muted-text><centered-text>Vous avez fusionné avec succès toutes les données de <strong>${from}</strong> dans <strong>${to}</strong>. Pour la suite, vous pouvez utiliser n'importe quel login pour ce compte.</centered-text></muted-text>`,
-        },
-        mergePendingSAML: {
-            weAreWorkingOnIt: 'Nous y travaillons',
-            limitedSupport: 'Nous ne prenons pas encore en charge la fusion des comptes sur New Expensify. Veuillez effectuer cette action sur Expensify Classic à la place.',
-            reachOutForHelp: "<muted-text><centered-text>N'hésitez pas à <concierge-link>contacter le Concierge</concierge-link> si vous avez des questions !</centered-text></muted-text>",
-            goToExpensifyClassic: 'Aller à Expensify Classic',
-        },
-        mergeFailureSAMLDomainControlDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Vous ne pouvez pas fusionner <strong>${email}</strong> car il est contrôlé par <strong>${email.split('@').at(1) ?? ''}</strong>. Veuillez <concierge-link>contacter le Concierge</concierge-link> pour obtenir de l'aide.</centered-text></muted-text>`,
-        mergeFailureSAMLAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Vous ne pouvez pas fusionner <strong>${email}</strong> iavec d'autres comptes car votre administrateur de domaine l'a défini comme votre login principal. Veuillez fusionner d'autres comptes à la place.</centered-text></muted-text>`,
-        mergeFailure2FA: {
-            description: ({email}: MergeFailureDescriptionGenericParams) =>
-                `<muted-text><centered-text>Vous ne pouvez pas fusionner les comptes car l'authentification à deux facteurs (2FA) est activée sur <strong>${email}</strong>. Veuillez désactiver l'authentification à deux facteurs pour <strong>${email}</strong> et réessayer.</centered-text></muted-text>`,
-            learnMore: 'En savoir plus sur la fusion des comptes.',
-        },
-        mergeFailureAccountLockedDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Vous ne pouvez pas fusionner <strong>${email}</strong> parce qu'il est verrouillé. Veuillez <concierge-link>contacter le Concierge</concierge-link> pour obtenir de l'aide.</centered-text></muted-text>`,
-        mergeFailureUncreatedAccountDescription: ({email, contactMethodLink}: MergeFailureUncreatedAccountDescriptionParams) =>
-            `<muted-text><centered-text>Vous ne pouvez pas fusionner les comptes car <strong>${email}</strong> n'a pas de compte Expensify. Veuillez <a href="${contactMethodLink}">l'ajouter comme méthode de contact</a> à la place.</centered-text></muted-text>`,
-        mergeFailureSmartScannerAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Vous ne pouvez pas fusionner <strong>${email}</strong> avec d'autres comptes. Veuillez fusionner d'autres comptes à la place.</centered-text></muted-text>`,
-        mergeFailureInvoicedAccountDescription: ({email}: MergeFailureDescriptionGenericParams) =>
-            `<muted-text><centered-text>Vous ne pouvez pas fusionner des comptes dans <strong>${email}</strong> parce que ce compte possède une relation de facturation.</centered-text></muted-text>`,
-        mergeFailureTooManyAttempts: {
-            heading: 'Réessayez plus tard',
-            description: 'Il y a eu trop de tentatives de fusion de comptes. Veuillez réessayer plus tard.',
-        },
-        mergeFailureUnvalidatedAccount: {
-            description: "Vous ne pouvez pas fusionner avec d'autres comptes car il n'est pas validé. Veuillez valider le compte et réessayer.",
-        },
-        mergeFailureSelfMerge: {
-            description: 'Vous ne pouvez pas fusionner un compte avec lui-même.',
-        },
-        mergeFailureGenericHeading: 'Impossible de fusionner les comptes',
     },
     lockAccountPage: {
         reportSuspiciousActivity: 'Signaler une activité suspecte',
