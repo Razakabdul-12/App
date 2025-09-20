@@ -49,7 +49,7 @@ type TriggerKYCFlow = (event: KYCFlowEvent, iouPaymentType: PaymentMethodType, p
 type CurrencyType = TupleToUnion<typeof CONST.DIRECT_REIMBURSEMENT_CURRENCIES>;
 
 function SettlementButton({
-    addDebitCardRoute = ROUTES.IOU_SEND_ADD_DEBIT_CARD,
+    addDebitCardRoute = ROUTES.SETTINGS_ADD_DEBIT_CARD,
     kycWallAnchorAlignment = {
         horizontal: CONST.MODAL.ANCHOR_ORIGIN_HORIZONTAL.LEFT, // button is at left, so horizontal anchor is at LEFT
         vertical: CONST.MODAL.ANCHOR_ORIGIN_VERTICAL.TOP, // we assume that popover menu opens below the button, anchor is at TOP

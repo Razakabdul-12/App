@@ -5,7 +5,6 @@ import type {QuickActionName} from '@src/types/onyx/QuickAction';
 import type QuickAction from '@src/types/onyx/QuickAction';
 import type {IOURequestType} from './IOU';
 import {startDistanceRequest, startMoneyRequest} from './IOU';
-import {startOutCreateTaskQuickAction} from './Task';
 
 type NavigateToQuickActionParams = {
     isValidReport: boolean;
@@ -60,9 +59,6 @@ function navigateToQuickAction(params: NavigateToQuickActionParams) {
             break;
         case CONST.QUICK_ACTIONS.SEND_MONEY:
             selectOption(() => startMoneyRequest(CONST.IOU.TYPE.PAY, reportID, undefined, true), false);
-            break;
-        case CONST.QUICK_ACTIONS.ASSIGN_TASK:
-            selectOption(() => startOutCreateTaskQuickAction(isValidReport ? reportID : '', quickAction.targetAccountID ?? CONST.DEFAULT_NUMBER_ID), false);
             break;
         case CONST.QUICK_ACTIONS.TRACK_MANUAL:
         case CONST.QUICK_ACTIONS.TRACK_SCAN:

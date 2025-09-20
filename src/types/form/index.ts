@@ -19,7 +19,6 @@ export type {MoneyRequestCompanyInfoForm} from './MoneyRequestCompanyInfoForm';
 export type {NewContactMethodForm} from './NewContactMethodForm';
 export type {ChangeBillingCurrencyForm} from './ChangeBillingCurrencyForm';
 export type {NewRoomForm} from './NewRoomForm';
-export type {NewTaskForm} from './NewTaskForm';
 export type {PersonalBankAccountForm} from './PersonalBankAccountForm';
 export type {ProfileSettingsForm} from './ProfileSettingsForm';
 export type {ReimbursementAccountForm} from './ReimbursementAccountForm';

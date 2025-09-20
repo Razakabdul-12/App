@@ -1,6 +1,5 @@
 import {startDistanceRequest, startMoneyRequest} from '@libs/actions/IOU';
 import {navigateToQuickAction} from '@libs/actions/QuickActionNavigation';
-import {startOutCreateTaskQuickAction} from '@libs/actions/Task';
 import {generateReportID} from '@libs/ReportUtils';
 import CONST from '@src/CONST';
 
@@ -10,9 +9,6 @@ jest.mock('@libs/actions/IOU', () => ({
 }));
 jest.mock('@libs/actions/Report', () => ({
     createNewReport: jest.fn(),
-}));
-jest.mock('@libs/actions/Task', () => ({
-    startOutCreateTaskQuickAction: jest.fn(),
 }));
 
 describe('IOU Utils', () => {
@@ -99,21 +95,6 @@ describe('IOU Utils', () => {
             });
             // Then we should start per diem request flow
             expect(startMoneyRequest).toHaveBeenCalledWith(CONST.IOU.TYPE.SUBMIT, reportID, CONST.IOU.REQUEST_TYPE.PER_DIEM, true);
-        });
-    });
-});
-
-describe('Non IOU quickActions test:', () => {
-    describe('navigateToQuickAction', () => {
-        it('starts create task flow for "assignTask" quick action', () => {
-            navigateToQuickAction({
-                isValidReport: true,
-                quickAction: {action: CONST.QUICK_ACTIONS.ASSIGN_TASK, targetAccountID: 123},
-                selectOption: (onSelected: () => void) => {
-                    onSelected();
-                },
-            });
-            expect(startOutCreateTaskQuickAction).toHaveBeenCalled();
         });
     });
 });

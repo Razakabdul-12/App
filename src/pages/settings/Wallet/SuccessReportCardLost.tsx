@@ -19,7 +19,7 @@ function SuccessReportCardLost({cardID}: {cardID: string}) {
             illustration={CardReplacementSuccess}
             shouldShowButton
             onButtonPress={() => {
-                Navigation.navigate(ROUTES.SETTINGS_WALLET_DOMAIN_CARD.getRoute(cardID));
+                Navigation.navigate(ROUTES.SETTINGS_WALLET);
             }}
             buttonText={translate('common.buttonConfirm')}
             containerStyle={styles.h100}

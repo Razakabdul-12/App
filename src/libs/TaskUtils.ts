@@ -2,12 +2,10 @@ import type {OnyxCollection, OnyxEntry} from 'react-native-onyx';
 import Onyx from 'react-native-onyx';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
-import ROUTES from '@src/ROUTES';
 import type {Report} from '@src/types/onyx';
 import type {Message} from '@src/types/onyx/ReportAction';
 import type ReportAction from '@src/types/onyx/ReportAction';
 import {translateLocal} from './Localize';
-import Navigation from './Navigation/Navigation';
 import Parser from './Parser';
 import {getReportActionHtml, getReportActionText} from './ReportActionsUtils';
 
@@ -23,12 +21,8 @@ Onyx.connect({
 /**
  * Check if the active route belongs to task edit flow.
  */
-function isActiveTaskEditRoute(reportID: string | undefined): boolean {
-    if (!reportID) {
-        return false;
-    }
-
-    return [ROUTES.TASK_TITLE, ROUTES.TASK_ASSIGNEE, ROUTES.REPORT_DESCRIPTION].map((route) => route.getRoute(reportID)).some(Navigation.isActiveRoute);
+function isActiveTaskEditRoute(): boolean {
+    return false;
 }
 
 /**

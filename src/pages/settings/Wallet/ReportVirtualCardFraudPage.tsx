@@ -63,7 +63,6 @@ function ReportVirtualCardFraudPage({
         }
 
         if (latestIssuedVirtualCardID) {
-            Navigation.removeScreenFromNavigationState(SCREENS.SETTINGS.WALLET.DOMAIN_CARD);
             Navigation.goBack(ROUTES.SETTINGS_REPORT_FRAUD_CONFIRMATION.getRoute(latestIssuedVirtualCardID));
             setIsValidateCodeActionModalVisible(false);
         }

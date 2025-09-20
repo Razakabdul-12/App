@@ -18,15 +18,15 @@ type ReportVirtualCardFraudConfirmationPageProps = PlatformStackScreenProps<Sett
 
 function ReportVirtualCardFraudConfirmationPage({
     route: {
-        params: {cardID = ''},
+        params: {cardID: _cardID = ''},
     },
 }: ReportVirtualCardFraudConfirmationPageProps) {
     const themeStyles = useThemeStyles();
     const {translate} = useLocalize();
 
     const close = useCallback(() => {
-        Navigation.navigate(ROUTES.SETTINGS_WALLET_DOMAIN_CARD.getRoute(cardID));
-    }, [cardID]);
+        Navigation.navigate(ROUTES.SETTINGS_WALLET);
+    }, []);
 
     return (
         <ScreenWrapper

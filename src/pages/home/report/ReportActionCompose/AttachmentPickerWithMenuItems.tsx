@@ -23,13 +23,12 @@ import useWindowDimensions from '@hooks/useWindowDimensions';
 import {isSafari} from '@libs/Browser';
 import getIconForAction from '@libs/getIconForAction';
 import Navigation from '@libs/Navigation/Navigation';
-import {canCreateTaskInReport, getPayeeName, isPaidGroupPolicy, isPolicyExpenseChat, isReportOwner, temporary_getMoneyRequestOptions} from '@libs/ReportUtils';
+import {getPayeeName, isPaidGroupPolicy, isPolicyExpenseChat, isReportOwner, temporary_getMoneyRequestOptions} from '@libs/ReportUtils';
 import {shouldRestrictUserBillableActions} from '@libs/SubscriptionUtils';
 import type {FileObject} from '@pages/media/AttachmentModalScreen/types';
 import {startDistanceRequest, startMoneyRequest} from '@userActions/IOU';
 import {close} from '@userActions/Modal';
 import {createNewReport, setIsComposerFullSize} from '@userActions/Report';
-import {clearOutTaskInfoAndNavigate} from '@userActions/Task';
 import type {IOUType} from '@src/CONST';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
@@ -255,24 +254,6 @@ function AttachmentPickerWithMenuItems({
         ];
     }, [currentUserPersonalDetails, report, selectOption, translate]);
 
-    /**
-     * Determines if we can show the task option
-     */
-    const taskOption: PopoverMenuItem[] = useMemo(() => {
-        if (!canCreateTaskInReport(report)) {
-            return [];
-        }
-
-        return [
-            {
-                icon: Expensicons.Task,
-                text: translate('newTaskPage.assignTask'),
-                shouldCallAfterModalHide: shouldUseNarrowLayout,
-                onSelected: () => clearOutTaskInfoAndNavigate(reportID, report),
-            },
-        ];
-    }, [report, reportID, translate, shouldUseNarrowLayout]);
-
     const onPopoverMenuClose = () => {
         setMenuVisibility(false);
         onMenuClosed?.();
@@ -341,7 +322,6 @@ function AttachmentPickerWithMenuItems({
                 const menuItems = [
                     ...moneyRequestOptions,
                     ...createReportOption,
-                    ...taskOption,
                     {
                         icon: Expensicons.Paperclip,
                         text: translate('reportActionCompose.addAttachment'),

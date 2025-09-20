@@ -134,10 +134,6 @@ function RightModalNavigator({navigation, route}: RightModalNavigatorProps) {
                             component={ModalStackNavigators.ExpensifyCardModalStackNavigator}
                         />
                         <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.DOMAIN_CARD}
-                            component={ModalStackNavigators.DomainCardModalStackNavigator}
-                        />
-                        <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.PARTICIPANTS}
                             component={ModalStackNavigators.ReportParticipantsModalStackNavigator}
                         />
@@ -152,14 +148,6 @@ function RightModalNavigator({navigation, route}: RightModalNavigatorProps) {
                         <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.WORKSPACE_CONFIRMATION}
                             component={ModalStackNavigators.WorkspaceConfirmationModalStackNavigator}
-                        />
-                        <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.NEW_TASK}
-                            component={ModalStackNavigators.NewTaskModalStackNavigator}
-                        />
-                        <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.TASK_DETAILS}
-                            component={ModalStackNavigators.TaskModalStackNavigator}
                         />
                         <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.SPLIT_DETAILS}

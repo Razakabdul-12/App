@@ -128,10 +128,6 @@ type SettingsNavigatorParamList = {
         backTo: Routes;
     };
     [SCREENS.SETTINGS.WALLET.CARDS_DIGITAL_DETAILS_UPDATE_ADDRESS]: undefined;
-    [SCREENS.SETTINGS.WALLET.DOMAIN_CARD]: {
-        /** cardID of selected card */
-        cardID: string;
-    };
     [SCREENS.SETTINGS.WALLET.REPORT_VIRTUAL_CARD_FRAUD]: {
         /** cardID of selected card */
         cardID: string;
@@ -1074,8 +1070,6 @@ type MoneyRequestNavigatorParamList = {
         reportID: string;
         backTo: Routes;
     };
-    [SCREENS.IOU_SEND.ADD_BANK_ACCOUNT]: undefined;
-    [SCREENS.IOU_SEND.ADD_DEBIT_CARD]: undefined;
     [SCREENS.MONEY_REQUEST.STEP_DISTANCE]: {
         action: IOUAction;
         iouType: IOUType;
@@ -1286,35 +1280,6 @@ type WorkspaceConfirmationNavigatorParamList = {
     };
 };
 
-type NewTaskNavigatorParamList = {
-    [SCREENS.NEW_TASK.ROOT]: {
-        backTo?: Routes;
-    };
-    [SCREENS.NEW_TASK.TASK_ASSIGNEE_SELECTOR]: {
-        backTo?: Routes;
-    };
-    [SCREENS.NEW_TASK.TASK_SHARE_DESTINATION_SELECTOR]: undefined;
-    [SCREENS.NEW_TASK.DETAILS]: {
-        backTo?: Routes;
-    };
-    [SCREENS.NEW_TASK.TITLE]: {
-        backTo?: Routes;
-    };
-    [SCREENS.NEW_TASK.DESCRIPTION]: {
-        backTo?: Routes;
-    };
-};
-
-type TaskDetailsNavigatorParamList = {
-    [SCREENS.TASK.TITLE]: {
-        backTo?: Routes;
-    };
-    [SCREENS.TASK.ASSIGNEE]: {
-        reportID: string;
-        backTo?: Routes;
-    };
-};
-
 type SplitDetailsNavigatorParamList = {
     [SCREENS.SPLIT_DETAILS.ROOT]: {
         reportID: string;
@@ -1459,14 +1424,11 @@ type RightModalNavigatorParamList = {
     [SCREENS.RIGHT_MODAL.REPORT_SETTINGS]: NavigatorScreenParams<ReportSettingsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.SETTINGS_CATEGORIES]: NavigatorScreenParams<SettingsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.EXPENSIFY_CARD]: NavigatorScreenParams<SettingsNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.DOMAIN_CARD]: NavigatorScreenParams<SettingsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.REPORT_DESCRIPTION]: NavigatorScreenParams<ReportDescriptionNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.PARTICIPANTS]: NavigatorScreenParams<ParticipantsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.ROOM_MEMBERS]: NavigatorScreenParams<RoomMembersNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.MONEY_REQUEST]: NavigatorScreenParams<MoneyRequestNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.WORKSPACE_CONFIRMATION]: NavigatorScreenParams<WorkspaceConfirmationNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.NEW_TASK]: NavigatorScreenParams<NewTaskNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.TASK_DETAILS]: NavigatorScreenParams<TaskDetailsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.SPLIT_DETAILS]: NavigatorScreenParams<SplitDetailsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.ADD_PERSONAL_BANK_ACCOUNT]: NavigatorScreenParams<AddPersonalBankAccountNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.WALLET_STATEMENT]: NavigatorScreenParams<WalletStatementNavigatorParamList>;
@@ -1956,7 +1918,6 @@ export type {
     NavigationStateRoute,
     NavigationRoute,
     NewChatNavigatorParamList,
-    NewTaskNavigatorParamList,
     OnboardingFlowName,
     OnboardingModalNavigatorParamList,
     ParticipantsNavigatorParamList,
@@ -1991,7 +1952,6 @@ export type {
     StackNavigationAction,
     State,
     StateOrRoute,
-    TaskDetailsNavigatorParamList,
     TransactionDuplicateNavigatorParamList,
     WalletStatementNavigatorParamList,
     WorkspaceSplitNavigatorParamList,

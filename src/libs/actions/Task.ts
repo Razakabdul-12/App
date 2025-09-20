@@ -136,7 +136,6 @@ function createTaskAndNavigate(
     assigneeChatReport?: OnyxEntry<OnyxTypes.Report>,
     policyID: string = CONST.POLICY.OWNER_EMAIL_FAKE,
     isCreatedUsingMarkdown = false,
-    quickAction: OnyxEntry<OnyxTypes.QuickAction> = {},
 ) {
     if (!parentReportID) {
         return;
@@ -282,23 +281,6 @@ function createTaskAndNavigate(
             },
         });
     }
-
-    // FOR QUICK ACTION NVP
-    optimisticData.push({
-        onyxMethod: Onyx.METHOD.SET,
-        key: ONYXKEYS.NVP_QUICK_ACTION_GLOBAL_CREATE,
-        value: {
-            action: CONST.QUICK_ACTIONS.ASSIGN_TASK,
-            chatReportID: parentReportID,
-            isFirstQuickAction: isEmptyObject(quickAction),
-            targetAccountID: assigneeAccountID,
-        },
-    });
-    failureData.push({
-        onyxMethod: Onyx.METHOD.SET,
-        key: ONYXKEYS.NVP_QUICK_ACTION_GLOBAL_CREATE,
-        value: quickAction ?? null,
-    });
 
     // If needed, update optimistic data for parent report action of the parent report.
     const optimisticParentReportData = ReportUtils.getOptimisticDataForParentReportAction(parentReport, currentTime, CONST.RED_BRICK_ROAD_PENDING_ACTION.ADD);
@@ -913,40 +895,6 @@ function setAssigneeValue(
 }
 
 /**
- * Sets the parentReportID value for the task
- */
-function setParentReportID(parentReportID: string) {
-    // This is only needed for creation of a new task and so it should only be stored locally
-    Onyx.merge(ONYXKEYS.TASK, {parentReportID});
-}
-
-/**
- * Clears out the task info from the store and navigates to the NewTaskDetails page
- */
-function clearOutTaskInfoAndNavigate(reportID?: string, chatReport?: OnyxEntry<OnyxTypes.Report>, accountID = 0, skipConfirmation = false) {
-    clearOutTaskInfo(skipConfirmation);
-    if (reportID && reportID !== '0') {
-        setParentReportID(reportID);
-    }
-    if (accountID > 0) {
-        const accountLogin = allPersonalDetails?.[accountID]?.login ?? '';
-        setAssigneeValue(accountLogin, accountID, reportID, chatReport, accountID === currentUserAccountID, skipConfirmation);
-    }
-    Navigation.navigate(ROUTES.NEW_TASK_DETAILS.getRoute(Navigation.getReportRHPActiveRoute()));
-}
-
-/**
- * Start out create task action quick action step
- */
-function startOutCreateTaskQuickAction(reportID: string, targetAccountID: number) {
-    // The second parameter of clearOutTaskInfoAndNavigate is the chat report or DM report
-    // between the user and the person to whom the task is assigned.
-    // Since chatReportID isn't stored in NVP_QUICK_ACTION_GLOBAL_CREATE, we set
-    // it to undefined. This will make setAssigneeValue to search for the correct report.
-    clearOutTaskInfoAndNavigate(reportID, undefined, targetAccountID, true);
-}
-
-/**
  * Get the assignee data
  */
 function getAssignee(assigneeAccountID: number | undefined, personalDetails: OnyxEntry<OnyxTypes.PersonalDetailsList>): Assignee | undefined {
@@ -1347,8 +1295,6 @@ export {
     reopenTask,
     buildTaskData,
     completeTask,
-    clearOutTaskInfoAndNavigate,
-    startOutCreateTaskQuickAction,
     getAssignee,
     getShareDestination,
     deleteTask,

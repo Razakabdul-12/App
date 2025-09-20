@@ -410,7 +410,6 @@ describe('actions/Task', () => {
                 mockAssigneeChatReport,
                 mockPolicyID,
                 false, // isCreatedUsingMarkdown
-                {}, // quickAction
             );
             // Then: Verify API.write called with expected arguments
             const calls = (API.write as jest.Mock).mock.calls;
@@ -438,12 +437,6 @@ describe('actions/Task', () => {
 
         it('should handle task creation without assignee chat report', () => {
             // Given: Task creation without assignee chat report
-            const mockQuickAction = {
-                action: CONST.QUICK_ACTIONS.ASSIGN_TASK,
-                chatReportID: 'quick_action_chat_123',
-                targetAccountID: 789,
-            };
-
             // When: Call createTaskAndNavigate without assignee chat report
             createTaskAndNavigate(
                 mockParentReportID,
@@ -454,7 +447,6 @@ describe('actions/Task', () => {
                 undefined, // assigneeChatReport
                 mockPolicyID,
                 false, // isCreatedUsingMarkdown
-                mockQuickAction,
             );
 
             // eslint-disable-next-line rulesdir/no-multiple-api-calls
@@ -470,20 +462,15 @@ describe('actions/Task', () => {
                     assigneeChatReportActionID: undefined,
                     assigneeChatCreatedReportActionID: undefined,
                 }),
-                expect.objectContaining({
-                    optimisticData: expect.arrayContaining([
-                        expect.objectContaining({
-                            key: ONYXKEYS.NVP_QUICK_ACTION_GLOBAL_CREATE,
-                            value: expect.objectContaining({
-                                action: CONST.QUICK_ACTIONS.ASSIGN_TASK,
-                                chatReportID: mockParentReportID,
-                                isFirstQuickAction: false,
-                                targetAccountID: mockAssigneeAccountID,
-                            }),
-                        }),
-                    ]),
-                }),
+                expect.any(Object),
             );
+
+            // eslint-disable-next-line rulesdir/no-multiple-api-calls
+            const [, , onyxData] = (API.write as jest.Mock).mock.calls.at(0);
+            const hasQuickActionUpdate =
+                Array.isArray(onyxData.optimisticData) &&
+                onyxData.optimisticData.some((update) => update.key === ONYXKEYS.NVP_QUICK_ACTION_GLOBAL_CREATE);
+            expect(hasQuickActionUpdate).toBe(false);
         });
 
         it('should handle task creation with markdown', () => {
@@ -510,7 +497,6 @@ describe('actions/Task', () => {
                 mockAssigneeChatReport,
                 mockPolicyID,
                 true, // isCreatedUsingMarkdown
-                {}, // quickAction
             );
 
             // eslint-disable-next-line rulesdir/no-multiple-api-calls
@@ -544,7 +530,6 @@ describe('actions/Task', () => {
                 mockAssigneeChatReport,
                 CONST.POLICY.OWNER_EMAIL_FAKE, // default policy ID
                 false, // isCreatedUsingMarkdown
-                {}, // quickAction
             );
 
             // eslint-disable-next-line rulesdir/no-multiple-api-calls
@@ -585,7 +570,6 @@ describe('actions/Task', () => {
                 mockAssigneeChatReport,
                 mockPolicyID,
                 false, // isCreatedUsingMarkdown
-                {}, // quickAction
             );
 
             // eslint-disable-next-line rulesdir/no-multiple-api-calls
@@ -636,58 +620,10 @@ describe('actions/Task', () => {
                 mockAssigneeChatReport,
                 mockPolicyID,
                 false, // isCreatedUsingMarkdown
-                {}, // quickAction
             );
 
             // eslint-disable-next-line rulesdir/no-multiple-api-calls
             expect(API.write).not.toHaveBeenCalled();
-        });
-
-        it('should handle task creation with first quick action', () => {
-            // Given: Task creation with empty quick action (first quick action)
-            const mockAssigneeChatReport = {
-                reportID: 'assignee_chat_first',
-                type: CONST.REPORT.TYPE.CHAT,
-                participants: {
-                    [mockAssigneeAccountID]: {
-                        accountID: mockAssigneeAccountID,
-                        role: CONST.REPORT.ROLE.MEMBER,
-                        notificationPreference: CONST.REPORT.NOTIFICATION_PREFERENCE.ALWAYS,
-                    },
-                },
-            };
-
-            // When: Call createTaskAndNavigate with empty quick action
-            createTaskAndNavigate(
-                mockParentReportID,
-                mockTitle,
-                mockDescription,
-                mockAssigneeEmail,
-                mockAssigneeAccountID,
-                mockAssigneeChatReport,
-                mockPolicyID,
-                false, // isCreatedUsingMarkdown
-                {}, // quickAction is empty
-            );
-
-            // eslint-disable-next-line rulesdir/no-multiple-api-calls
-            expect(API.write).toHaveBeenCalledWith(
-                'CreateTask',
-                expect.any(Object),
-                expect.objectContaining({
-                    optimisticData: expect.arrayContaining([
-                        expect.objectContaining({
-                            key: ONYXKEYS.NVP_QUICK_ACTION_GLOBAL_CREATE,
-                            value: expect.objectContaining({
-                                action: CONST.QUICK_ACTIONS.ASSIGN_TASK,
-                                chatReportID: mockParentReportID,
-                                isFirstQuickAction: true, // Should be true for empty quick action
-                                targetAccountID: mockAssigneeAccountID,
-                            }),
-                        }),
-                    ]),
-                }),
-            );
         });
     });
 });

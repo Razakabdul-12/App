@@ -124,7 +124,6 @@ const SCREENS = {
         WALLET: {
             ROOT: 'Settings_Wallet',
             VERIFY_ACCOUNT: 'Settings_Wallet_VerifyAccount',
-            DOMAIN_CARD: 'Settings_Wallet_DomainCard',
             TRANSFER_BALANCE: 'Settings_Wallet_Transfer_Balance',
             CHOOSE_TRANSFER_ACCOUNT: 'Settings_Wallet_Choose_Transfer_Account',
             CARD_ACTIVATE: 'Settings_Wallet_Card_Activate',
@@ -172,8 +171,6 @@ const SCREENS = {
         REPORT_DESCRIPTION: 'Report_Description',
         PARTICIPANTS: 'Participants',
         MONEY_REQUEST: 'MoneyRequest',
-        NEW_TASK: 'NewTask',
-        TASK_DETAILS: 'Task_Details',
         SPLIT_DETAILS: 'SplitDetails',
         ADD_PERSONAL_BANK_ACCOUNT: 'AddPersonalBankAccount',
         WALLET_STATEMENT: 'Wallet_Statement',
@@ -191,7 +188,6 @@ const SCREENS = {
         SEARCH_SAVED_SEARCH: 'SearchSavedSearch',
         SETTINGS_CATEGORIES: 'SettingsCategories',
         EXPENSIFY_CARD: 'ExpensifyCard',
-        DOMAIN_CARD: 'DomainCard',
         RESTRICTED_ACTION: 'RestrictedAction',
         REPORT_EXPORT: 'Report_Export',
         DEBUG: 'Debug',
@@ -274,11 +270,6 @@ const SCREENS = {
         CONFIRMATION_PAGE: 'Merge_Transaction_Confirmation_Page',
     },
 
-    IOU_SEND: {
-        ADD_BANK_ACCOUNT: 'IOU_Send_Add_Bank_Account',
-        ADD_DEBIT_CARD: 'IOU_Send_Add_Debit_Card',
-    },
-
     SETTINGS_CATEGORIES: {
         SETTINGS_CATEGORY_SETTINGS: 'Settings_Category_Settings',
         SETTINGS_CATEGORIES_SETTINGS: 'Settings_Categories_Settings',
@@ -296,32 +287,12 @@ const SCREENS = {
         EXPENSIFY_CARD_LIMIT: 'Expensify_Card_Limit',
         EXPENSIFY_CARD_LIMIT_TYPE: 'Expensify_Card_Limit_Type',
     },
-    DOMAIN_CARD: {
-        DOMAIN_CARD_DETAIL: 'Domain_Card_Detail',
-        DOMAIN_CARD_REPORT_FRAUD: 'Domain_Card_Report_Fraud',
-    },
-
-
     REPORT_SETTINGS: {
         ROOT: 'Report_Settings_Root',
         NAME: 'Report_Settings_Name',
         NOTIFICATION_PREFERENCES: 'Report_Settings_Notification_Preferences',
         WRITE_CAPABILITY: 'Report_Settings_Write_Capability',
         VISIBILITY: 'Report_Settings_Visibility',
-    },
-
-    NEW_TASK: {
-        ROOT: 'NewTask_Root',
-        TASK_ASSIGNEE_SELECTOR: 'NewTask_TaskAssigneeSelector',
-        TASK_SHARE_DESTINATION_SELECTOR: 'NewTask_TaskShareDestinationSelector',
-        DETAILS: 'NewTask_Details',
-        TITLE: 'NewTask_Title',
-        DESCRIPTION: 'NewTask_Description',
-    },
-
-    TASK: {
-        TITLE: 'Task_Title',
-        ASSIGNEE: 'Task_Assignee',
     },
 
     NEW_REPORT_WORKSPACE_SELECTION: {

@@ -24,8 +24,6 @@ const getQuickActionIcon = (action: QuickActionName): React.FC<SvgProps> => {
             return getIconForAction(CONST.IOU.TYPE.SPLIT);
         case CONST.QUICK_ACTIONS.SEND_MONEY:
             return getIconForAction(CONST.IOU.TYPE.SEND);
-        case CONST.QUICK_ACTIONS.ASSIGN_TASK:
-            return Expensicons.Task;
         case CONST.QUICK_ACTIONS.TRACK_DISTANCE:
             return Expensicons.Car;
         case CONST.QUICK_ACTIONS.TRACK_MANUAL:
@@ -82,8 +80,6 @@ const getQuickActionTitle = (action: QuickActionName): TranslationPaths => {
             return 'quickAction.splitDistance';
         case CONST.QUICK_ACTIONS.SEND_MONEY:
             return 'quickAction.paySomeone';
-        case CONST.QUICK_ACTIONS.ASSIGN_TASK:
-            return 'quickAction.assignTask';
         default:
             return '' as TranslationPaths;
     }

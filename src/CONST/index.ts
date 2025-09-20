@@ -1071,7 +1071,6 @@ const CONST = {
         TRACK_MANUAL: 'trackManual',
         TRACK_SCAN: 'trackScan',
         TRACK_DISTANCE: 'trackDistance',
-        ASSIGN_TASK: 'assignTask',
         SEND_MONEY: 'sendMoney',
         CREATE_REPORT: 'createReport',
     },

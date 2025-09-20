@@ -4,8 +4,6 @@ import type {OnyxEntry} from 'react-native-onyx';
 import {AttachmentContext} from '@components/AttachmentContext';
 import Checkbox from '@components/Checkbox';
 import Hoverable from '@components/Hoverable';
-import Icon from '@components/Icon';
-import * as Expensicons from '@components/Icon/Expensicons';
 import MenuItem from '@components/MenuItem';
 import MenuItemWithTopDescription from '@components/MenuItemWithTopDescription';
 import OfflineWithFeedback from '@components/OfflineWithFeedback';
@@ -98,16 +96,6 @@ function TaskView({report, parentReport, action}: TaskViewProps) {
                     <Hoverable>
                         {(hovered) => (
                             <PressableWithSecondaryInteraction
-                                onPress={callFunctionIfActionIsAllowed((e) => {
-                                    if (isDisableInteractive) {
-                                        return;
-                                    }
-                                    if (e && e.type === 'click') {
-                                        (e.currentTarget as HTMLElement).blur();
-                                    }
-
-                                    Navigation.navigate(ROUTES.TASK_TITLE.getRoute(report?.reportID, Navigation.getReportRHPActiveRoute()));
-                                })}
                                 style={({pressed}) => [
                                     styles.ph5,
                                     styles.pv2,
@@ -144,15 +132,6 @@ function TaskView({report, parentReport, action}: TaskViewProps) {
                                             <View style={[styles.flexRow, styles.flex1]}>
                                                 <RenderHTML html={taskTitle} />
                                             </View>
-                                            {!isDisableInteractive && (
-                                                <View style={styles.taskRightIconContainer}>
-                                                    <Icon
-                                                        additionalStyles={[styles.alignItemsCenter]}
-                                                        src={Expensicons.ArrowRight}
-                                                        fill={StyleUtils.getIconFillColor(getButtonState(hovered, pressed, false, disableState))}
-                                                    />
-                                                </View>
-                                            )}
                                         </View>
                                     </OfflineWithFeedback>
                                 )}
@@ -183,8 +162,7 @@ function TaskView({report, parentReport, action}: TaskViewProps) {
                                 iconType={CONST.ICON_TYPE_AVATAR}
                                 avatarSize={CONST.AVATAR_SIZE.SMALLER}
                                 titleStyle={styles.assigneeTextStyle}
-                                onPress={() => Navigation.navigate(ROUTES.TASK_ASSIGNEE.getRoute(report?.reportID, Navigation.getReportRHPActiveRoute()))}
-                                shouldShowRightIcon={!isDisableInteractive}
+                                shouldShowRightIcon={false}
                                 disabled={disableState}
                                 wrapperStyle={[styles.pv2]}
                                 isSmallAvatarSubscriptMenu
@@ -196,8 +174,7 @@ function TaskView({report, parentReport, action}: TaskViewProps) {
                         ) : (
                             <MenuItemWithTopDescription
                                 description={translate('task.assignee')}
-                                onPress={() => Navigation.navigate(ROUTES.TASK_ASSIGNEE.getRoute(report?.reportID, Navigation.getReportRHPActiveRoute()))}
-                                shouldShowRightIcon={!isDisableInteractive}
+                                shouldShowRightIcon={false}
                                 disabled={disableState}
                                 wrapperStyle={[styles.pv2]}
                                 shouldGreyOutWhenDisabled={false}
