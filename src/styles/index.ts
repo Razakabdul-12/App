@@ -4276,15 +4276,6 @@ const staticStyles = (theme: ThemeColors) =>
             height: 'auto',
         },
 
-        mergeTransactionReceiptImage: {
-            overflow: 'hidden',
-            borderWidth: 1,
-            borderColor: theme.border,
-            borderRadius: variables.componentBorderRadiusNormal,
-            aspectRatio: 16 / 9,
-            height: 180,
-            maxWidth: '100%',
-        },
 
         pdfErrorPlaceholder: {
             overflow: 'hidden',
@@ -4317,12 +4308,6 @@ const staticStyles = (theme: ThemeColors) =>
             borderColor: theme.highlightBG,
             borderWidth: 2,
             borderRadius: '50%',
-        },
-
-        mergeTransactionReceiptThumbnail: {
-            backgroundColor: theme.highlightBG,
-            borderRadius: variables.componentBorderRadiusLarge,
-            padding: 20,
         },
 
         mapViewContainer: {
@@ -4936,11 +4921,6 @@ const staticStyles = (theme: ThemeColors) =>
             ...borders.br4,
             ...flex.alignItemsCenter,
             ...flex.justifyContentCenter,
-        },
-
-        emptyStateTransactionMergeIllustration: {
-            width: 180,
-            height: 220,
         },
 
         pendingStateCardIllustration: {

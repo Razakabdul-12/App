@@ -1867,43 +1867,17 @@ const ROUTES = {
 
     TRANSACTION_RECEIPT: {
         route: 'r/:reportID/transaction/:transactionID/receipt/:action?/:iouType?',
-        getRoute: (reportID: string | undefined, transactionID: string | undefined, readonly = false, mergeTransactionID?: string) => {
+        getRoute: (reportID: string | undefined, transactionID: string | undefined, readonly = false) => {
             if (!reportID) {
                 Log.warn('Invalid reportID is used to build the TRANSACTION_RECEIPT route');
             }
             if (!transactionID) {
                 Log.warn('Invalid transactionID is used to build the TRANSACTION_RECEIPT route');
             }
-            return `r/${reportID}/transaction/${transactionID}/receipt?readonly=${readonly}${
-                mergeTransactionID ? `&mergeTransactionID=${mergeTransactionID}` : ''
-            }` as const;
+            return `r/${reportID}/transaction/${transactionID}/receipt?readonly=${readonly}` as const;
         },
     },
 
-    MERGE_TRANSACTION_LIST_PAGE: {
-        route: 'r/:transactionID/merge',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (transactionID: string | undefined, backTo?: string) => getUrlWithBackToParam(`r/${transactionID}/merge` as const, backTo),
-    },
-    MERGE_TRANSACTION_RECEIPT_PAGE: {
-        route: 'r/:transactionID/merge/receipt',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (transactionID: string, backTo?: string) => getUrlWithBackToParam(`r/${transactionID}/merge/receipt` as const, backTo),
-    },
-    MERGE_TRANSACTION_DETAILS_PAGE: {
-        route: 'r/:transactionID/merge/details',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (transactionID: string, backTo?: string) => getUrlWithBackToParam(`r/${transactionID}/merge/details` as const, backTo),
-    },
-    MERGE_TRANSACTION_CONFIRMATION_PAGE: {
-        route: 'r/:transactionID/merge/confirmation',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (transactionID: string, backTo?: string) => getUrlWithBackToParam(`r/${transactionID}/merge/confirmation` as const, backTo),
-    },
     POLICY_ACCOUNTING_XERO_IMPORT: {
         route: 'workspaces/:policyID/accounting/xero/import',
         getRoute: (policyID: string) => `workspaces/${policyID}/accounting/xero/import` as const,

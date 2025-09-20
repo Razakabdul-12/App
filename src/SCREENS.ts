@@ -176,7 +176,6 @@ const SCREENS = {
         DEBUG: 'Debug',
         ADD_UNREPORTED_EXPENSE: 'AddUnreportedExpense',
         REPORT_CHANGE_APPROVER: 'Report_Change_Approver',
-        MERGE_TRANSACTION: 'MergeTransaction',
     },
     PUBLIC_CONSOLE_DEBUG: 'Console_Debug',
     SIGN_IN_WITH_APPLE_DESKTOP: 'AppleSignInDesktop',
@@ -232,13 +231,6 @@ const SCREENS = {
         STEP_DISTANCE_MAP: 'Money_Request_Step_Distance_Map',
         STEP_DISTANCE_MANUAL: 'Money_Request_Step_Distance_Manual',
         RECEIPT_PREVIEW: 'Money_Request_Receipt_preview',
-    },
-
-    MERGE_TRANSACTION: {
-        LIST_PAGE: 'Merge_Transaction_List_Page',
-        RECEIPT_PAGE: 'Merge_Transaction_Receipt_Page',
-        DETAILS_PAGE: 'Merge_Transaction_Details_Page',
-        CONFIRMATION_PAGE: 'Merge_Transaction_Confirmation_Page',
     },
 
     SETTINGS_CATEGORIES: {

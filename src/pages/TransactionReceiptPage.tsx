@@ -5,7 +5,6 @@ import usePermissions from '@hooks/usePermissions';
 import {navigateToStartStepIfScanFileCannotBeRead} from '@libs/actions/IOU';
 import {openReport} from '@libs/actions/Report';
 import getReceiptFilenameFromTransaction from '@libs/getReceiptFilenameFromTransaction';
-import {getReceiptFileName} from '@libs/MergeTransactionUtils';
 import Navigation from '@libs/Navigation/Navigation';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {AuthScreensParamList} from '@libs/Navigation/types';
@@ -32,22 +31,12 @@ function TransactionReceipt({route}: TransactionReceiptProps) {
     const [reportMetadata = CONST.DEFAULT_REPORT_METADATA] = useOnyx(`${ONYXKEYS.COLLECTION.REPORT_METADATA}${reportID}`, {canBeMissing: true});
     const {isBetaEnabled} = usePermissions();
 
-    const mergeTransactionID = 'mergeTransactionID' in route.params ? route.params.mergeTransactionID : undefined;
-    const [mergeTransaction] = useOnyx(`${ONYXKEYS.COLLECTION.MERGE_TRANSACTION}${mergeTransactionID}`, {canBeMissing: true});
-
     const isDraftTransaction = !!action;
 
     // Determine which transaction to use based on the scenario
     let transaction;
     if (isDraftTransaction) {
         transaction = transactionDraft;
-    } else if (mergeTransactionID && mergeTransaction && transactionMain) {
-        // If we have a merge transaction, we need to use the receipt from the merge transaction
-        transaction = {
-            ...transactionMain,
-            receipt: mergeTransaction.receipt,
-            filename: getReceiptFileName(mergeTransaction.receipt),
-        };
     } else {
         transaction = transactionMain;
     }

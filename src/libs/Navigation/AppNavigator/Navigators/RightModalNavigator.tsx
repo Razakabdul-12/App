@@ -8,7 +8,6 @@ import {expandedRHPProgress, WideRHPContext} from '@components/WideRHPContextPro
 import useResponsiveLayout from '@hooks/useResponsiveLayout';
 import useThemeStyles from '@hooks/useThemeStyles';
 import {clearTwoFactorAuthData} from '@libs/actions/TwoFactorAuthActions';
-import hideKeyboardOnSwipe from '@libs/Navigation/AppNavigator/hideKeyboardOnSwipe';
 import * as ModalStackNavigators from '@libs/Navigation/AppNavigator/ModalStackNavigators';
 import useRHPScreenOptions from '@libs/Navigation/AppNavigator/useRHPScreenOptions';
 import createPlatformStackNavigator from '@libs/Navigation/PlatformStackNavigation/createPlatformStackNavigator';
@@ -150,10 +149,6 @@ function RightModalNavigator({navigation, route}: RightModalNavigatorProps) {
                         <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.REFERRAL}
                             component={ModalStackNavigators.ReferralModalStackNavigator}
-                        />
-                        <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.MERGE_TRANSACTION}
-                            component={ModalStackNavigators.MergeTransactionStackNavigator}
                         />
                         <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.SEARCH_REPORT}

@@ -40,7 +40,6 @@ import {
     isHoldCreator,
     isInvoiceReport as isInvoiceReportUtils,
     isIOUReport as isIOUReportUtils,
-    isMoneyRequestReportEligibleForMerge,
     isOpenReport as isOpenReportUtils,
     isPayer as isPayerUtils,
     isProcessingReport as isProcessingReportUtils,
@@ -530,40 +529,6 @@ function isReopenAction(report: Report, policy?: Policy): boolean {
     return true;
 }
 
-/**
- * Checks whether the supplied report supports merging transactions from it.
- */
-function isMergeAction(parentReport: Report, reportTransactions: Transaction[], policy?: Policy): boolean {
-    // Do not show merge action if there are multiple transactions
-    if (reportTransactions.length !== 1) {
-        return false;
-    }
-
-    // Temporary disable merge action for IOU reports
-    // See: https://github.com/Expensify/App/issues/70329#issuecomment-3277062003
-    if (isIOUReportUtils(parentReport)) {
-        return false;
-    }
-
-    const isAnyReceiptBeingScanned = reportTransactions?.some((transaction) => isReceiptBeingScanned(transaction));
-
-    if (isAnyReceiptBeingScanned) {
-        return false;
-    }
-
-    if (isSelfDMReportUtils(parentReport)) {
-        return true;
-    }
-
-    if (hasOnlyNonReimbursableTransactions(parentReport.reportID) && isSubmitAndClose(policy) && isInstantSubmitEnabled(policy)) {
-        return false;
-    }
-
-    const isAdmin = policy?.role === CONST.POLICY.ROLE.ADMIN;
-
-    return isMoneyRequestReportEligibleForMerge(parentReport.reportID, isAdmin);
-}
-
 function isRemoveHoldAction(report: Report, chatReport: OnyxEntry<Report>, reportTransactions: Transaction[], reportActions?: ReportAction[], policy?: Policy): boolean {
     const isReportOnHold = reportTransactions.some(isOnHoldTransactionUtils);
 
@@ -673,10 +638,6 @@ function getSecondaryReportActions({
         options.push(CONST.REPORT.SECONDARY_ACTIONS.SPLIT);
     }
 
-    if (isMergeAction(report, reportTransactions, policy)) {
-        options.push(CONST.REPORT.SECONDARY_ACTIONS.MERGE);
-    }
-
     options.push(CONST.REPORT.SECONDARY_ACTIONS.EXPORT);
 
     options.push(CONST.REPORT.SECONDARY_ACTIONS.DOWNLOAD_PDF);
@@ -758,10 +719,6 @@ function getSecondaryTransactionThreadActions(
         options.push(CONST.REPORT.TRANSACTION_SECONDARY_ACTIONS.SPLIT);
     }
 
-    if (isMergeAction(parentReport, [reportTransaction], policy)) {
-        options.push(CONST.REPORT.TRANSACTION_SECONDARY_ACTIONS.MERGE);
-    }
-
     options.push(CONST.REPORT.TRANSACTION_SECONDARY_ACTIONS.VIEW_DETAILS);
 
     if (isDeleteAction(parentReport, [reportTransaction], reportActions ?? [])) {
@@ -770,4 +727,4 @@ function getSecondaryTransactionThreadActions(
 
     return options;
 }
-export {getSecondaryReportActions, getSecondaryTransactionThreadActions, isDeleteAction, isMergeAction, getSecondaryExportReportActions, isSplitAction};
+export {getSecondaryReportActions, getSecondaryTransactionThreadActions, isDeleteAction, getSecondaryExportReportActions, isSplitAction};

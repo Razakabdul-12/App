@@ -59,8 +59,6 @@ type MoneyRequestReceiptViewProps = {
     /** Updated transaction to show in duplicate & merge transaction flow  */
     updatedTransaction?: OnyxEntry<OnyxTypes.Transaction>;
 
-    /** Merge transaction ID to show in merge transaction flow */
-    mergeTransactionID?: string;
 };
 
 const receiptImageViolationNames: OnyxTypes.ViolationName[] = [
@@ -74,7 +72,7 @@ const receiptImageViolationNames: OnyxTypes.ViolationName[] = [
 
 const receiptFieldViolationNames: OnyxTypes.ViolationName[] = [CONST.VIOLATIONS.MODIFIED_AMOUNT, CONST.VIOLATIONS.MODIFIED_DATE];
 
-function MoneyRequestReceiptView({allReports, report, readonly = false, updatedTransaction, mergeTransactionID}: MoneyRequestReceiptViewProps) {
+function MoneyRequestReceiptView({allReports, report, readonly = false, updatedTransaction}: MoneyRequestReceiptViewProps) {
     const styles = useThemeStyles();
     const {translate} = useLocalize();
     const {shouldUseNarrowLayout} = useResponsiveLayout();
@@ -267,7 +265,6 @@ function MoneyRequestReceiptView({allReports, report, readonly = false, updatedT
                                 transaction={updatedTransaction ?? transaction}
                                 enablePreviewModal
                                 readonly={readonly || !canEditReceipt}
-                                mergeTransactionID={mergeTransactionID}
                             />
                         </View>
                     )}

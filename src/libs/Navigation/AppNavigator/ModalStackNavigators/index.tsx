@@ -16,7 +16,6 @@ import type {
     DebugParamList,
     EditRequestNavigatorParamList,
     FlagCommentNavigatorParamList,
-    MergeTransactionNavigatorParamList,
     MoneyRequestNavigatorParamList,
     NewChatNavigatorParamList,
     NewReportWorkspaceSelectionNavigatorParamList,
@@ -607,13 +606,6 @@ const ReferralModalStackNavigator = createModalStackNavigator<ReferralDetailsNav
     [SCREENS.REFERRAL_DETAILS]: () => require<ReactComponentModule>('../../../../pages/ReferralDetailsPage').default,
 });
 
-const MergeTransactionStackNavigator = createModalStackNavigator<MergeTransactionNavigatorParamList>({
-    [SCREENS.MERGE_TRANSACTION.LIST_PAGE]: () => require<ReactComponentModule>('../../../../pages/TransactionMerge/MergeTransactionsListPage').default,
-    [SCREENS.MERGE_TRANSACTION.RECEIPT_PAGE]: () => require<ReactComponentModule>('../../../../pages/TransactionMerge/ReceiptReviewPage').default,
-    [SCREENS.MERGE_TRANSACTION.DETAILS_PAGE]: () => require<ReactComponentModule>('../../../../pages/TransactionMerge/DetailsReviewPage').default,
-    [SCREENS.MERGE_TRANSACTION.CONFIRMATION_PAGE]: () => require<ReactComponentModule>('../../../../pages/TransactionMerge/ConfirmationPage').default,
-});
-
 const SearchReportModalStackNavigator = createModalStackNavigator<SearchReportParamList>({
     [SCREENS.SEARCH.REPORT_RHP]: () => require<ReactComponentModule>('../../../../pages/home/ReportScreen').default,
     [SCREENS.SEARCH.MONEY_REQUEST_REPORT_HOLD_TRANSACTIONS]: () => require<ReactComponentModule>('../../../../pages/Search/SearchHoldReasonPage').default,
@@ -725,5 +717,4 @@ export {
     WorkspaceConfirmationModalStackNavigator,
     ConsoleModalStackNavigator,
     AddUnreportedExpenseModalStackNavigator,
-    MergeTransactionStackNavigator,
 };

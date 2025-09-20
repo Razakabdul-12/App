@@ -1344,24 +1344,7 @@ type ReferralDetailsNavigatorParamList = {
     };
 };
 
-type MergeTransactionNavigatorParamList = {
-    [SCREENS.MERGE_TRANSACTION.LIST_PAGE]: {
-        transactionID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.MERGE_TRANSACTION.RECEIPT_PAGE]: {
-        transactionID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.MERGE_TRANSACTION.DETAILS_PAGE]: {
-        transactionID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.MERGE_TRANSACTION.CONFIRMATION_PAGE]: {
-        transactionID: string;
-        backTo?: Routes;
-    };
-};
+
 
 type RightModalNavigatorParamList = {
     [SCREENS.RIGHT_MODAL.SETTINGS]: NavigatorScreenParams<SettingsNavigatorParamList>;
@@ -1397,7 +1380,6 @@ type RightModalNavigatorParamList = {
     [SCREENS.MONEY_REQUEST.SPLIT_EXPENSE_EDIT]: NavigatorScreenParams<SplitExpenseParamList>;
     [SCREENS.RIGHT_MODAL.ADD_UNREPORTED_EXPENSE]: NavigatorScreenParams<{reportId: string | undefined}>;
     [SCREENS.RIGHT_MODAL.REPORT_CHANGE_APPROVER]: NavigatorScreenParams<ReportChangeApproverParamList>;
-    [SCREENS.RIGHT_MODAL.MERGE_TRANSACTION]: NavigatorScreenParams<MergeTransactionNavigatorParamList>;
 };
 
 type ReportsSplitNavigatorParamList = {
@@ -1659,7 +1641,6 @@ type AttachmentModalScreensParamList = {
         readonly?: string;
         action?: IOUAction;
         iouType?: IOUType;
-        mergeTransactionID?: string;
     };
     [SCREENS.MONEY_REQUEST.RECEIPT_PREVIEW]: AttachmentModalContainerModalProps & {
         reportID: string;
@@ -1917,6 +1898,5 @@ export type {
     WorkspacesTabNavigatorName,
     ReportChangeApproverParamList,
     TestToolsModalModalNavigatorParamList,
-    MergeTransactionNavigatorParamList,
     AttachmentModalScreensParamList,
 };

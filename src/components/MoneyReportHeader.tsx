@@ -20,7 +20,6 @@ import useTheme from '@hooks/useTheme';
 import useThemeStyles from '@hooks/useThemeStyles';
 import useTransactionsAndViolationsForReport from '@hooks/useTransactionsAndViolationsForReport';
 import useTransactionViolations from '@hooks/useTransactionViolations';
-import {setupMergeTransactionData} from '@libs/actions/MergeTransaction';
 import {turnOffMobileSelectionMode} from '@libs/actions/MobileSelectionMode';
 import {
     createTransactionThreadReport,
@@ -1031,20 +1030,6 @@ function MoneyReportHeader({
 
                 const currentTransaction = transactions.at(0);
                 initSplitExpense(currentTransaction);
-            },
-        },
-        [CONST.REPORT.SECONDARY_ACTIONS.MERGE]: {
-            text: translate('common.merge'),
-            icon: Expensicons.ArrowCollapse,
-            value: CONST.REPORT.SECONDARY_ACTIONS.MERGE,
-            onSelected: () => {
-                const currentTransaction = transactions.at(0);
-                if (!currentTransaction) {
-                    return;
-                }
-
-                setupMergeTransactionData(currentTransaction.transactionID, {targetTransactionID: currentTransaction.transactionID});
-                Navigation.navigate(ROUTES.MERGE_TRANSACTION_LIST_PAGE.getRoute(currentTransaction.transactionID, Navigation.getActiveRoute()));
             },
         },
         [CONST.REPORT.SECONDARY_ACTIONS.CHANGE_WORKSPACE]: {

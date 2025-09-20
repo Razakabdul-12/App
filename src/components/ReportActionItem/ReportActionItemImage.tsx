@@ -58,9 +58,6 @@ type ReportActionItemImageProps = {
     /** Whether the receipt is not editable */
     readonly?: boolean;
 
-    /** Merge transaction ID to show in merge transaction flow */
-    mergeTransactionID?: string;
-
     /** Callback to be called on pressing the image */
     onPress?: () => void;
 
@@ -87,7 +84,6 @@ function ReportActionItemImage({
     isSingleImage = true,
     readonly = false,
     shouldMapHaveBorderRadius,
-    mergeTransactionID,
     onPress,
     shouldUseFullHeight,
 }: ReportActionItemImageProps) {
@@ -157,8 +153,7 @@ function ReportActionItemImage({
                                 ROUTES.TRANSACTION_RECEIPT.getRoute(
                                     transactionThreadReport?.reportID ?? report?.reportID,
                                     transaction?.transactionID,
-                                    readonly,
-                                    mergeTransactionID,
+                                    readonly
                                 ),
                             )
                         }
