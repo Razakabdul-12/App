@@ -26,9 +26,7 @@ import {
 } from '@libs/CardUtils';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {SettingsNavigatorParamList} from '@libs/Navigation/types';
-import {isCollectPolicy} from '@libs/PolicyUtils';
 import Navigation from '@navigation/Navigation';
-import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 import AccessOrNotFoundWrapper from '@pages/workspace/AccessOrNotFoundWrapper';
 import variables from '@styles/variables';
 import {updateSelectedFeed} from '@userActions/Card';
@@ -59,7 +57,6 @@ function WorkspaceCompanyCardFeedSelectorPage({route}: WorkspaceCompanyCardFeedS
     const [lastSelectedFeed] = useOnyx(`${ONYXKEYS.COLLECTION.LAST_SELECTED_FEED}${policyID}`, {canBeMissing: true});
     const selectedFeed = getSelectedFeed(lastSelectedFeed, cardFeeds);
     const companyFeeds = getCompanyFeeds(cardFeeds);
-    const isCollect = isCollectPolicy(policy);
 
     const feeds: CardFeedListItem[] = Object.entries(companyFeeds).map(([key, feedSettings]) => {
         const feed = key as CompanyCardFeed;
@@ -96,10 +93,6 @@ function WorkspaceCompanyCardFeedSelectorPage({route}: WorkspaceCompanyCardFeedS
 
     const onAddCardsPress = () => {
         clearAddNewCardFlow();
-        if (isCollect && feeds.length === 1) {
-            navigateToSubscription(ROUTES.WORKSPACE_COMPANY_CARDS_SELECT_FEED.getRoute(policyID));
-            return;
-        }
         Navigation.navigate(ROUTES.WORKSPACE_COMPANY_CARDS_ADD_NEW.getRoute(policyID));
     };
 

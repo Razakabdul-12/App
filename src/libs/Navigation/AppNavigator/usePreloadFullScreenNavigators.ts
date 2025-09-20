@@ -1,20 +1,15 @@
-import type {NavigationRoute} from '@react-navigation/native';
 import {useFocusEffect, useNavigation, useRoute} from '@react-navigation/native';
 import {useCallback, useMemo, useRef} from 'react';
-import type {ValueOf} from 'type-fest';
 import NAVIGATION_TABS from '@components/Navigation/NavigationTabBar/NAVIGATION_TABS';
 import useIsAuthenticated from '@hooks/useIsAuthenticated';
 import useOnyx from '@hooks/useOnyx';
-import useSubscriptionPlan from '@hooks/useSubscriptionPlan';
 import {isAnonymousUser} from '@libs/actions/Session';
 import getAccountTabScreenToOpen from '@libs/Navigation/helpers/getAccountTabScreenToOpen';
 import {getWorkspacesTabStateFromSessionStorage} from '@libs/Navigation/helpers/lastVisitedTabPathUtils';
 import {TAB_TO_FULLSCREEN} from '@libs/Navigation/linkingConfig/RELATIONS';
-import Navigation from '@libs/Navigation/Navigation';
 import type {PlatformStackNavigationProp} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {AuthScreensParamList, FullScreenName, SearchFullscreenNavigatorParamList} from '@libs/Navigation/types';
 import {buildCannedSearchQuery, buildSearchQueryJSON, buildSearchQueryString} from '@libs/SearchQueryUtils';
-import type CONST from '@src/CONST';
 import NAVIGATORS from '@src/NAVIGATORS';
 import ONYXKEYS from '@src/ONYXKEYS';
 import SCREENS from '@src/SCREENS';
@@ -54,8 +49,8 @@ function preloadReportsTab(navigation: PlatformStackNavigationProp<AuthScreensPa
     navigation.preload(NAVIGATORS.SEARCH_FULLSCREEN_NAVIGATOR, {screen: SCREENS.SEARCH.ROOT, params: {q: buildCannedSearchQuery()}});
 }
 
-function preloadAccountTab(navigation: PlatformStackNavigationProp<AuthScreensParamList>, subscriptionPlan: ValueOf<typeof CONST.POLICY.TYPE> | null) {
-    const accountTabPayload = getAccountTabScreenToOpen(subscriptionPlan);
+function preloadAccountTab(navigation: PlatformStackNavigationProp<AuthScreensParamList>) {
+    const accountTabPayload = getAccountTabScreenToOpen();
     navigation.preload(NAVIGATORS.SETTINGS_SPLIT_NAVIGATOR, accountTabPayload);
 }
 
@@ -63,7 +58,7 @@ function preloadInboxTab(navigation: PlatformStackNavigationProp<AuthScreensPara
     navigation.preload(NAVIGATORS.REPORTS_SPLIT_NAVIGATOR, {screen: SCREENS.HOME});
 }
 
-function preloadTab(tabName: string, navigation: PlatformStackNavigationProp<AuthScreensParamList>, subscriptionPlan: ValueOf<typeof CONST.POLICY.TYPE> | null) {
+function preloadTab(tabName: string, navigation: PlatformStackNavigationProp<AuthScreensParamList>) {
     switch (tabName) {
         case NAVIGATION_TABS.WORKSPACES:
             preloadWorkspacesTab(navigation);
@@ -72,7 +67,7 @@ function preloadTab(tabName: string, navigation: PlatformStackNavigationProp<Aut
             preloadReportsTab(navigation);
             return;
         case NAVIGATION_TABS.SETTINGS:
-            preloadAccountTab(navigation, subscriptionPlan);
+            preloadAccountTab(navigation);
             return;
         case NAVIGATION_TABS.HOME:
             preloadInboxTab(navigation);
@@ -80,15 +75,6 @@ function preloadTab(tabName: string, navigation: PlatformStackNavigationProp<Aut
         default:
             return undefined;
     }
-}
-
-function isPreloadedRouteSubscriptionScreen(preloadedRoute: NavigationRoute<AuthScreensParamList, keyof AuthScreensParamList>) {
-    return (
-        preloadedRoute.name === NAVIGATORS.SETTINGS_SPLIT_NAVIGATOR &&
-        preloadedRoute.params &&
-        `screen` in preloadedRoute.params &&
-        preloadedRoute.params?.screen === SCREENS.SETTINGS.SUBSCRIPTION.ROOT
-    );
 }
 /**
  * Hook that preloads all fullscreen navigators except the current one.
@@ -99,24 +85,9 @@ function usePreloadFullScreenNavigators() {
     const route = useRoute();
     const state = navigation.getState();
     const preloadedRoutes = useMemo(() => state.preloadedRoutes, [state]);
-    const subscriptionPlan = useSubscriptionPlan();
     const isAuthenticated = useIsAuthenticated();
     const hasPreloadedRef = useRef(false);
     const [isSingleNewDotEntry = false] = useOnyx(ONYXKEYS.HYBRID_APP, {selector: (hybridApp) => hybridApp?.isSingleNewDotEntry, canBeMissing: true});
-
-    const hasSubscriptionPlanTurnedOff = useMemo(() => {
-        return !subscriptionPlan && preloadedRoutes.some(isPreloadedRouteSubscriptionScreen);
-    }, [subscriptionPlan, preloadedRoutes]);
-
-    useFocusEffect(
-        useCallback(() => {
-            if (!hasSubscriptionPlanTurnedOff) {
-                return;
-            }
-            navigation.reset({...navigation.getState(), preloadedRoutes: preloadedRoutes.filter((preloadedRoute) => preloadedRoute.name !== NAVIGATORS.SETTINGS_SPLIT_NAVIGATOR)});
-            Navigation.isNavigationReady().then(() => setTimeout(() => preloadAccountTab(navigation, subscriptionPlan), TIMING_TO_CALL_PRELOAD));
-        }, [hasSubscriptionPlanTurnedOff, navigation, preloadedRoutes, subscriptionPlan]),
-    );
 
     useFocusEffect(
         useCallback(() => {
@@ -130,10 +101,10 @@ function usePreloadFullScreenNavigators() {
                     const isRouteAlreadyPreloaded = preloadedRoutes.some((preloadedRoute) => TAB_TO_FULLSCREEN[tabName].includes(preloadedRoute.name as FullScreenName));
                     return !isCurrentTab && !isRouteAlreadyPreloaded;
                 }).forEach((tabName) => {
-                    preloadTab(tabName, navigation, subscriptionPlan);
+                    preloadTab(tabName, navigation);
                 });
             }, TIMING_TO_CALL_PRELOAD);
-        }, [isAuthenticated, isSingleNewDotEntry, route.name, preloadedRoutes, navigation, subscriptionPlan]),
+        }, [isAuthenticated, isSingleNewDotEntry, route.name, preloadedRoutes, navigation]),
     );
 }
 

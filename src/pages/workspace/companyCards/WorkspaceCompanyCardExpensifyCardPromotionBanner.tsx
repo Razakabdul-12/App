@@ -10,7 +10,8 @@ import useTheme from '@hooks/useTheme';
 import useThemeStyles from '@hooks/useThemeStyles';
 import {enableExpensifyCard} from '@libs/actions/Policy/Policy';
 import {navigateToExpensifyCardPage} from '@libs/PolicyUtils';
-import BillingBanner from '@pages/settings/Subscription/CardSection/BillingBanner/BillingBanner';
+import Text from '@components/Text';
+import variables from '@styles/variables';
 import type {Policy} from '@src/types/onyx';
 
 type WorkspaceCompanyCardExpensifyCardPromotionBannerProps = {
@@ -55,15 +56,17 @@ function WorkspaceCompanyCardExpensifyCardPromotionBanner({policy}: WorkspaceCom
 
     return (
         <View style={[styles.ph4, styles.mb4]}>
-            <BillingBanner
-                icon={CreditCardsNewGreen}
-                title={translate('workspace.moreFeatures.companyCards.expensifyCardBannerTitle')}
-                titleStyle={StyleUtils.getTextColorStyle(theme.text)}
-                subtitle={translate('workspace.moreFeatures.companyCards.expensifyCardBannerSubtitle')}
-                subtitleStyle={[styles.mt1, styles.textLabel]}
-                style={[styles.borderRadiusComponentLarge]}
-                rightComponent={rightComponent}
-            />
+            <View style={[styles.flexRow, styles.flexWrap, styles.alignItemsCenter, styles.gap3, styles.pv4, styles.ph5, styles.borderRadiusComponentLarge, styles.hoveredComponentBG]}>
+                <CreditCardsNewGreen
+                    width={variables.menuIconSize}
+                    height={variables.menuIconSize}
+                />
+                <View style={[styles.flex1, styles.justifyContentCenter]}>
+                    <Text style={StyleUtils.getTextColorStyle(theme.text)}>{translate('workspace.moreFeatures.companyCards.expensifyCardBannerTitle')}</Text>
+                    <Text style={[styles.mt1, styles.textLabel]}>{translate('workspace.moreFeatures.companyCards.expensifyCardBannerSubtitle')}</Text>
+                </View>
+                {rightComponent}
+            </View>
         </View>
     );
 }

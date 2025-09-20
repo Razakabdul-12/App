@@ -7,8 +7,7 @@ import useThemeStyles from '@hooks/useThemeStyles';
 import {updateQuickbooksOnlineSyncClasses} from '@libs/actions/connections/QuickbooksOnline';
 import {getLatestErrorField} from '@libs/ErrorUtils';
 import Navigation from '@libs/Navigation/Navigation';
-import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
-import {isControlPolicy, settingsPendingAction} from '@libs/PolicyUtils';
+import {settingsPendingAction} from '@libs/PolicyUtils';
 import type {WithPolicyProps} from '@pages/workspace/withPolicy';
 import withPolicyConnections from '@pages/workspace/withPolicyConnections';
 import {clearQBOErrorField} from '@userActions/Policy/Policy';
@@ -46,14 +45,11 @@ function QuickbooksClassesDisplayedAsPage({policy}: WithPolicyProps) {
     const selectDisplayedAs = useCallback(
         (row: CardListItem) => {
             if (row.value !== qboConfig?.syncClasses) {
-                if (row.value === CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD && !isControlPolicy(policy)) {
-                    return;
-                }
                 updateQuickbooksOnlineSyncClasses(policyID, row.value, qboConfig?.syncClasses);
             }
             Navigation.goBack(ROUTES.POLICY_ACCOUNTING_QUICKBOOKS_ONLINE_CLASSES.getRoute(policyID));
         },
-        [qboConfig?.syncClasses, policyID, policy],
+        [qboConfig?.syncClasses, policyID],
     );
 
     return (

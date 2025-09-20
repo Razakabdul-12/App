@@ -20,11 +20,10 @@ import {formatDefaultTaxRateText, formatRequireReceiptsOverText, getCategoryAppr
 import {convertToDisplayString} from '@libs/CurrencyUtils';
 import {getLatestErrorMessageField} from '@libs/ErrorUtils';
 import Navigation from '@libs/Navigation/Navigation';
-import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import {isDisablingOrDeletingLastEnabledCategory} from '@libs/OptionsListUtils';
 import {getPersonalDetailByEmail} from '@libs/PersonalDetailsUtils';
-import {getWorkflowApprovalsUnavailable, isControlPolicy} from '@libs/PolicyUtils';
+import {getWorkflowApprovalsUnavailable} from '@libs/PolicyUtils';
 import type {SettingsNavigatorParamList} from '@navigation/types';
 import NotFoundPage from '@pages/ErrorPage/NotFoundPage';
 import AccessOrNotFoundWrapper from '@pages/workspace/AccessOrNotFoundWrapper';
@@ -218,14 +217,6 @@ function CategorySettingsPage({
                             title={policyCategory['GL Code']}
                             description={translate('workspace.categories.glCode')}
                             onPress={() => {
-                                if (!isControlPolicy(policy)) {
-                                    navigateToSubscription(
-                                        isQuickSettingsFlow
-                                            ? ROUTES.SETTINGS_CATEGORY_GL_CODE.getRoute(policyID, policyCategory.name, backTo)
-                                            : ROUTES.WORKSPACE_CATEGORY_GL_CODE.getRoute(policyID, policyCategory.name),
-                                    );
-                                    return;
-                                }
                                 Navigation.navigate(
                                     isQuickSettingsFlow
                                         ? ROUTES.SETTINGS_CATEGORY_GL_CODE.getRoute(policyID, policyCategory.name, backTo)
@@ -240,10 +231,6 @@ function CategorySettingsPage({
                             title={policyCategory['Payroll Code']}
                             description={translate('workspace.categories.payrollCode')}
                             onPress={() => {
-                                if (!isControlPolicy(policy)) {
-                                    navigateToSubscription(ROUTES.WORKSPACE_CATEGORY_PAYROLL_CODE.getRoute(policyID, policyCategory.name));
-                                    return;
-                                }
                                 Navigation.navigate(
                                     isQuickSettingsFlow
                                         ? ROUTES.SETTINGS_CATEGORY_PAYROLL_CODE.getRoute(policyID, policyCategory.name, backTo)

@@ -1,5 +1,5 @@
 import {useRoute} from '@react-navigation/native';
-import React, {memo, useMemo} from 'react';
+import React, {memo} from 'react';
 import {View} from 'react-native';
 import type {OnyxEntry} from 'react-native-onyx';
 import Button from '@components/Button';
@@ -20,14 +20,12 @@ import HelpButton from '@components/SidePanel/HelpComponents/HelpButton';
 import TaskHeaderActionButton from '@components/TaskHeaderActionButton';
 import Text from '@components/Text';
 import Tooltip from '@components/Tooltip';
-import useHasTeam2025Pricing from '@hooks/useHasTeam2025Pricing';
 import useLoadingBarVisibility from '@hooks/useLoadingBarVisibility';
 import useLocalize from '@hooks/useLocalize';
 import useOnyx from '@hooks/useOnyx';
 import usePolicy from '@hooks/usePolicy';
 import useReportIsArchived from '@hooks/useReportIsArchived';
 import useResponsiveLayout from '@hooks/useResponsiveLayout';
-import useSubscriptionPlan from '@hooks/useSubscriptionPlan';
 import useTheme from '@hooks/useTheme';
 import useThemeStyles from '@hooks/useThemeStyles';
 import FS from '@libs/Fullstory';
@@ -64,9 +62,7 @@ import {
     shouldDisableDetailPage as shouldDisableDetailPageReportUtils,
     shouldReportShowSubscript,
 } from '@libs/ReportUtils';
-import {shouldShowDiscountBanner} from '@libs/SubscriptionUtils';
 import EarlyDiscountBanner from '@pages/settings/Subscription/CardSection/BillingBanner/EarlyDiscountBanner';
-import FreeTrial from '@pages/settings/Subscription/FreeTrial';
 import {joinRoom} from '@userActions/Report';
 import {callFunctionIfActionIsAllowed} from '@userActions/Session';
 import {deleteTask} from '@userActions/Task';
@@ -104,8 +100,6 @@ function HeaderView({report, parentReportAction, onNavigationMenuButtonClicked, 
     const policy = usePolicy(report?.policyID);
     const [personalDetails] = useOnyx(ONYXKEYS.PERSONAL_DETAILS_LIST, {canBeMissing: true});
     const shouldShowLoadingBar = useLoadingBarVisibility();
-    const [firstDayFreeTrial] = useOnyx(ONYXKEYS.NVP_FIRST_DAY_FREE_TRIAL, {canBeMissing: true});
-    const [lastDayFreeTrial] = useOnyx(ONYXKEYS.NVP_LAST_DAY_FREE_TRIAL, {canBeMissing: true});
     const [reportNameValuePairs] = useOnyx(`${ONYXKEYS.COLLECTION.REPORT_NAME_VALUE_PAIRS}${report?.reportID}`, {canBeMissing: true});
     const [reportMetadata] = useOnyx(`${ONYXKEYS.COLLECTION.REPORT_METADATA}${report?.reportID}`, {canBeMissing: true});
     const isReportArchived = isArchivedReport(reportNameValuePairs);
@@ -139,8 +133,6 @@ function HeaderView({report, parentReportAction, onNavigationMenuButtonClicked, 
     const policyName = getPolicyName({report, returnEmptyIfNotFound: true});
     const policyDescription = getPolicyDescriptionText(policy);
     const isPersonalExpenseChat = isPolicyExpenseChat && isCurrentUserSubmitter(report);
-    const hasTeam2025Pricing = useHasTeam2025Pricing();
-    const subscriptionPlan = useSubscriptionPlan();
     const displayNamesFSClass = FS.getChatFSClass(personalDetails, report);
 
     const shouldShowSubtitle = () => {
@@ -183,15 +175,6 @@ function HeaderView({report, parentReportAction, onNavigationMenuButtonClicked, 
         );
     };
 
-    // If the onboarding report is directly loaded, shouldShowDiscountBanner can return wrong value as it is not
-    // linked to the react lifecycle directly. Wait for trial dates to load, before calculating.
-    const shouldShowDiscount = useMemo(
-        () => shouldShowDiscountBanner(hasTeam2025Pricing, subscriptionPlan) && !isReportArchived,
-        // eslint-disable-next-line react-compiler/react-compiler
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [firstDayFreeTrial, lastDayFreeTrial, hasTeam2025Pricing, reportNameValuePairs, subscriptionPlan],
-    );
-
     const shouldShowSubscript = shouldReportShowSubscript(report, isReportArchived);
     const defaultSubscriptSize = isExpenseRequest(report) ? CONST.AVATAR_SIZE.SMALL_NORMAL : CONST.AVATAR_SIZE.DEFAULT;
     const brickRoadIndicator = hasReportNameError(report) ? CONST.BRICK_ROAD_INDICATOR_STATUS.ERROR : '';
@@ -206,7 +189,6 @@ function HeaderView({report, parentReportAction, onNavigationMenuButtonClicked, 
     const isChatUsedForOnboarding = isChatUsedForOnboardingReportUtils(report, onboardingPurposeSelected);
     const shouldShowRegisterForWebinar = introSelected?.companySize === CONST.ONBOARDING_COMPANY_SIZE.MICRO && (isChatUsedForOnboarding || (isAdminRoom(report) && !isChatThread));
     const shouldShowOnBoardingHelpDropdownButton = shouldShowRegisterForWebinar && !isReportArchived;
-    const shouldShowEarlyDiscountBanner = shouldShowDiscount && isChatUsedForOnboarding;
 
     const onboardingHelpDropdownButton = (
         <OnboardingHelpDropdownButton
@@ -329,11 +311,6 @@ function HeaderView({report, parentReportAction, onNavigationMenuButtonClicked, 
                                 </PressableWithoutFeedback>
                                 <View style={[styles.reportOptions, styles.flexRow, styles.alignItemsCenter, styles.gap2]}>
                                     {shouldShowOnBoardingHelpDropdownButton && !shouldUseNarrowLayout && onboardingHelpDropdownButton}
-                                    {!shouldUseNarrowLayout && !shouldShowDiscount && isChatUsedForOnboarding && (
-                                        <FreeTrial
-                                            pressable
-                                        />
-                                    )}
                                     {!shouldUseNarrowLayout && isOpenTaskReport(report, parentReportAction) && <TaskHeaderActionButton report={report} />}
                                     {!isParentReportLoading && canJoin && !shouldUseNarrowLayout && joinButton}
                                 </View>
@@ -359,15 +336,8 @@ function HeaderView({report, parentReportAction, onNavigationMenuButtonClicked, 
                 </View>
                 {!isParentReportLoading && !isLoading && canJoin && shouldUseNarrowLayout && <View style={[styles.ph5, styles.pb2]}>{joinButton}</View>}
                 <View style={shouldShowOnBoardingHelpDropdownButton && [styles.flexRow, styles.alignItemsCenter, styles.gap1, styles.ph5]}>
-                    {!shouldShowEarlyDiscountBanner && shouldShowOnBoardingHelpDropdownButton && shouldUseNarrowLayout && (
+                    {shouldShowOnBoardingHelpDropdownButton && shouldUseNarrowLayout && (
                         <View style={[styles.flex1, styles.pb3]}>{onboardingHelpDropdownButton}</View>
-                    )}
-                    {!isLoading && !shouldShowDiscount && isChatUsedForOnboarding && shouldUseNarrowLayout && (
-                        <FreeTrial
-                            pressable
-                            addSpacing
-                            inARow={shouldShowOnBoardingHelpDropdownButton}
-                        />
                     )}
                 </View>
                 {!!report && shouldUseNarrowLayout && isOpenTaskReport(report, parentReportAction) && (
@@ -379,12 +349,6 @@ function HeaderView({report, parentReportAction, onNavigationMenuButtonClicked, 
                 )}
                 <LoadingBar shouldShow={shouldShowLoadingBar && shouldUseNarrowLayout} />
             </View>
-            {shouldShowEarlyDiscountBanner && (
-                <EarlyDiscountBanner
-                    onboardingHelpDropdownButton={shouldUseNarrowLayout && shouldShowOnBoardingHelpDropdownButton ? onboardingHelpDropdownButton : undefined}
-                    isSubscriptionPage={false}
-                />
-            )}
         </>
     );
 }

@@ -164,18 +164,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                             path: ROUTES.SETTINGS_LANGUAGE,
                             exact: true,
                         },
-                        [SCREENS.SETTINGS.SUBSCRIPTION.ADD_PAYMENT_CARD]: {
-                            path: ROUTES.SETTINGS_SUBSCRIPTION_ADD_PAYMENT_CARD,
-                            exact: true,
-                        },
-                        [SCREENS.SETTINGS.SUBSCRIPTION.CHANGE_BILLING_CURRENCY]: {
-                            path: ROUTES.SETTINGS_SUBSCRIPTION_CHANGE_BILLING_CURRENCY,
-                            exact: true,
-                        },
-                        [SCREENS.SETTINGS.SUBSCRIPTION.CHANGE_PAYMENT_CURRENCY]: {
-                            path: ROUTES.SETTINGS_SUBSCRIPTION_CHANGE_PAYMENT_CURRENCY,
-                            exact: true,
-                        },
                         [SCREENS.SETTINGS.ADD_PAYMENT_CARD_CHANGE_CURRENCY]: {
                             path: ROUTES.SETTINGS_CHANGE_CURRENCY,
                             exact: true,
@@ -333,27 +321,9 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.SETTINGS.PROFILE.STATUS_CLEAR_AFTER_TIME]: {
                             path: ROUTES.SETTINGS_STATUS_CLEAR_AFTER_TIME,
                         },
-                        [SCREENS.SETTINGS.SUBSCRIPTION.SETTINGS_DETAILS]: {
-                            path: ROUTES.SETTINGS_SUBSCRIPTION_SETTINGS_DETAILS,
-                        },
                         [SCREENS.SETTINGS.PROFILE.VACATION_DELEGATE]: {
                             path: ROUTES.SETTINGS_VACATION_DELEGATE,
                             exact: true,
-                        },
-                        [SCREENS.SETTINGS.SUBSCRIPTION.SIZE]: {
-                            path: ROUTES.SETTINGS_SUBSCRIPTION_SIZE.route,
-                            parse: {
-                                canChangeSize: Number,
-                            },
-                        },
-                        [SCREENS.SETTINGS.SUBSCRIPTION.DISABLE_AUTO_RENEW_SURVEY]: {
-                            path: ROUTES.SETTINGS_SUBSCRIPTION_DISABLE_AUTO_RENEW_SURVEY,
-                        },
-                        [SCREENS.SETTINGS.SUBSCRIPTION.REQUEST_EARLY_CANCELLATION]: {
-                            path: ROUTES.SETTINGS_SUBSCRIPTION_REQUEST_EARLY_CANCELLATION,
-                        },
-                        [SCREENS.SETTINGS.SUBSCRIPTION.SUBSCRIPTION_DOWNGRADE_BLOCKED]: {
-                            path: ROUTES.SETTINGS_SUBSCRIPTION_DOWNGRADE_BLOCKED.route,
                         },
                         [SCREENS.WORKSPACE.CURRENCY]: {
                             path: ROUTES.WORKSPACE_OVERVIEW_CURRENCY.route,
@@ -1322,7 +1292,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                     path: ROUTES.SETTINGS_PREFERENCES,
                     // exact: true,
                 },
-                [SCREENS.SETTINGS.SUBSCRIPTION.ROOT]: ROUTES.SETTINGS_SUBSCRIPTION.route,
             },
         },
 

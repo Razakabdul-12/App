@@ -49,10 +49,6 @@ function getSettingsMessage(status: IndicatorStatus | undefined): TranslationPat
             return 'debug.indicatorStatus.theresAProblemWithAWorkspace';
         case CONST.INDICATOR_STATUS.HAS_REIMBURSEMENT_ACCOUNT_ERRORS:
             return 'debug.indicatorStatus.theresAProblemWithYourReimbursementAccount';
-        case CONST.INDICATOR_STATUS.HAS_SUBSCRIPTION_ERRORS:
-            return 'debug.indicatorStatus.theresABillingProblemWithYourSubscription';
-        case CONST.INDICATOR_STATUS.HAS_SUBSCRIPTION_INFO:
-            return 'debug.indicatorStatus.yourSubscriptionHasBeenSuccessfullyRenewed';
         case CONST.INDICATOR_STATUS.HAS_SYNC_ERRORS:
             return 'debug.indicatorStatus.theresWasAProblemDuringAWorkspaceConnectionSync';
         case CONST.INDICATOR_STATUS.HAS_USER_WALLET_ERRORS:
@@ -83,10 +79,6 @@ function getSettingsRoute(status: IndicatorStatus | undefined, reimbursementAcco
                 reimbursementAccount?.achData?.policyID,
                 getReimbursementAccountRouteForCurrentStep(reimbursementAccount?.achData?.currentStep ?? CONST.BANK_ACCOUNT.STEP.BANK_ACCOUNT),
             );
-        case CONST.INDICATOR_STATUS.HAS_SUBSCRIPTION_ERRORS:
-            return ROUTES.SETTINGS_SUBSCRIPTION.route;
-        case CONST.INDICATOR_STATUS.HAS_SUBSCRIPTION_INFO:
-            return ROUTES.SETTINGS_SUBSCRIPTION.route;
         case CONST.INDICATOR_STATUS.HAS_SYNC_ERRORS:
             return ROUTES.WORKSPACE_ACCOUNTING.getRoute(policyIDWithErrors);
         case CONST.INDICATOR_STATUS.HAS_USER_WALLET_ERRORS:

@@ -717,7 +717,7 @@ function PureReportActionItem({
                     text: 'subscription.cardSection.addCardButton',
                     key: `${action.reportActionID}-actionableAddPaymentCard-submit`,
                     onPress: () => {
-                        Navigation.navigate(ROUTES.SETTINGS_SUBSCRIPTION_ADD_PAYMENT_CARD);
+                        Navigation.navigate(ROUTES.SETTINGS_WALLET);
                     },
                     isPrimary: true,
                 },

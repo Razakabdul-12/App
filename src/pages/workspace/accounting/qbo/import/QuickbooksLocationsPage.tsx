@@ -9,7 +9,6 @@ import useThemeStyles from '@hooks/useThemeStyles';
 import * as QuickbooksOnline from '@libs/actions/connections/QuickbooksOnline';
 import * as ErrorUtils from '@libs/ErrorUtils';
 import Navigation from '@libs/Navigation/Navigation';
-import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 import * as PolicyUtils from '@libs/PolicyUtils';
 import {shouldShowLocationsLineItemsRestriction, shouldSwitchLocationsToReportFields} from '@pages/workspace/accounting/qbo/utils';
 import type {WithPolicyProps} from '@pages/workspace/withPolicy';
@@ -32,12 +31,9 @@ function QuickbooksLocationsPage({policy}: WithPolicyProps) {
 
     const updateQuickbooksOnlineSyncLocations = useCallback(
         (settingValue: IntegrationEntityMap) => {
-            if (settingValue === CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD && !PolicyUtils.isControlPolicy(policy)) {
-                return;
-            }
             QuickbooksOnline.updateQuickbooksOnlineSyncLocations(policyID, settingValue, qboConfig?.syncLocations);
         },
-        [policy, policyID, qboConfig?.syncLocations],
+        [policyID, qboConfig?.syncLocations],
     );
     // If we previously selected tags but now we have the line items restriction, we need to switch to report fields
     useEffect(() => {

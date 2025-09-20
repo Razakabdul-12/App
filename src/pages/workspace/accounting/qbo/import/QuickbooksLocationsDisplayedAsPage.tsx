@@ -7,8 +7,7 @@ import useThemeStyles from '@hooks/useThemeStyles';
 import {updateQuickbooksOnlineSyncLocations} from '@libs/actions/connections/QuickbooksOnline';
 import {getLatestErrorField} from '@libs/ErrorUtils';
 import Navigation from '@libs/Navigation/Navigation';
-import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
-import {isControlPolicy, settingsPendingAction} from '@libs/PolicyUtils';
+import {settingsPendingAction} from '@libs/PolicyUtils';
 import type {WithPolicyProps} from '@pages/workspace/withPolicy';
 import withPolicyConnections from '@pages/workspace/withPolicyConnections';
 import {clearQBOErrorField} from '@userActions/Policy/Policy';
@@ -53,14 +52,11 @@ function QuickbooksLocationsDisplayedAsPage({policy}: WithPolicyProps) {
     const selectDisplayedAs = useCallback(
         (row: CardListItem) => {
             if (row.value !== qboConfig?.syncLocations) {
-                if (row.value === CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD && !isControlPolicy(policy)) {
-                    return;
-                }
                 updateQuickbooksOnlineSyncLocations(policyID, row.value, qboConfig?.syncLocations);
             }
             Navigation.goBack(ROUTES.POLICY_ACCOUNTING_QUICKBOOKS_ONLINE_LOCATIONS.getRoute(policyID));
         },
-        [qboConfig?.syncLocations, policyID, policy],
+        [qboConfig?.syncLocations, policyID],
     );
 
     return (

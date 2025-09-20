@@ -28,7 +28,7 @@ type CurrencySelectorProps = {
     onBlur?: () => void;
 
     /** object to get route details from */
-    currencySelectorRoute?: typeof ROUTES.SETTINGS_SUBSCRIPTION_CHANGE_PAYMENT_CURRENCY | typeof ROUTES.SETTINGS_CHANGE_CURRENCY;
+    currencySelectorRoute?: typeof ROUTES.SETTINGS_CHANGE_CURRENCY;
 };
 
 function CurrencySelector(

@@ -16,11 +16,12 @@ import useTheme from '@hooks/useTheme';
 import useThemeStyles from '@hooks/useThemeStyles';
 import OpenWorkspacePlanPage from '@libs/actions/Policy/Plan';
 import Navigation from '@navigation/Navigation';
-import type {PersonalPolicyTypeExcludedProps} from '@pages/settings/Subscription/SubscriptionPlan/SubscriptionPlanCard';
 import CONST from '@src/CONST';
 import AccessOrNotFoundWrapper from './AccessOrNotFoundWrapper';
 import withPolicy from './withPolicy';
 import type {WithPolicyProps} from './withPolicy';
+
+type PolicyTypeWithoutPersonal = Exclude<ValueOf<typeof CONST.POLICY.TYPE>, typeof CONST.POLICY.TYPE.PERSONAL>;
 
 type WorkspacePlanTypeItem = {
     value: ValueOf<typeof CONST.POLICY.TYPE>;
@@ -50,8 +51,8 @@ function WorkspaceOverviewPlanTypePage({policy}: WithPolicyProps) {
         .filter((type) => type !== CONST.POLICY.TYPE.PERSONAL)
         .map<WorkspacePlanTypeItem>((policyType) => ({
             value: policyType,
-            text: translate(`workspace.planTypePage.planTypes.${policyType as PersonalPolicyTypeExcludedProps}.label`),
-            alternateText: translate(`workspace.planTypePage.planTypes.${policyType as PersonalPolicyTypeExcludedProps}.description`),
+            text: translate(`workspace.planTypePage.planTypes.${policyType as PolicyTypeWithoutPersonal}.label`),
+            alternateText: translate(`workspace.planTypePage.planTypes.${policyType as PolicyTypeWithoutPersonal}.description`),
             keyForList: policyType,
             isSelected: policyType === currentPlan,
         }))
@@ -69,11 +70,6 @@ function WorkspaceOverviewPlanTypePage({policy}: WithPolicyProps) {
         ) : null;
 
     const handleUpdatePlan = () => {
-        if (policyID && policy?.type === CONST.POLICY.TYPE.TEAM && currentPlan === CONST.POLICY.TYPE.CORPORATE) {
-            navigateToSubscription(Navigation.getActiveRoute());
-            return;
-        }
-
         if (policy?.type === currentPlan) {
             Navigation.goBack();
         }

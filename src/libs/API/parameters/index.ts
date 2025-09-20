@@ -209,7 +209,6 @@ export type {default as AddBillingCardAndRequestWorkspaceOwnerChangeParams} from
 export type {default as SetPolicyTaxesEnabledParams} from './SetPolicyTaxesEnabledParams';
 export type {default as DeletePolicyTaxesParams} from './DeletePolicyTaxesParams';
 export type {default as UpdatePolicyTaxValueParams} from './UpdatePolicyTaxValueParams';
-export type {default as AddSubscriptionPaymentCardParams} from './AddSubscriptionPaymentCardParams';
 export type {default as SetPolicyCustomTaxNameParams} from './SetPolicyCustomTaxNameParams';
 export type {default as SetPolicyForeignCurrencyDefaultParams} from './SetPolicyForeignCurrencyDefaultParams';
 export type {default as SetPolicyCurrencyDefaultParams} from './SetPolicyCurrencyDefaultParams';
@@ -235,11 +234,7 @@ export type {default as MarkAsCashParams} from './MarkAsCashParams';
 export type {default as MergeDuplicatesParams} from './MergeDuplicatesParams';
 export type {default as MergeTransactionParams} from './MergeTransactionParams';
 export type {default as ResolveDuplicatesParams} from './ResolveDuplicatesParams';
-export type {default as UpdateSubscriptionTypeParams} from './UpdateSubscriptionTypeParams';
 export type {default as SignUpUserParams} from './SignUpUserParams';
-export type {default as UpdateSubscriptionAutoRenewParams} from './UpdateSubscriptionAutoRenewParams';
-export type {default as UpdateSubscriptionAddNewUsersAutomaticallyParams} from './UpdateSubscriptionAddNewUsersAutomaticallyParams';
-export type {default as UpdateSubscriptionSizeParams} from './UpdateSubscriptionSizeParams';
 export type {default as ReportExportParams} from './ReportExportParams';
 export type {default as MarkAsExportedParams} from './MarkAsExportedParams';
 export type {default as UpgradeToCorporateParams} from './UpgradeToCorporateParams';
@@ -255,7 +250,6 @@ export type {default as OpenPolicyExpensifyCardsPageParams} from './OpenPolicyEx
 export type {default as OpenPolicyEditCardLimitTypePageParams} from './OpenPolicyEditCardLimitTypePageParams';
 export type {default as RequestExpensifyCardLimitIncreaseParams} from './RequestExpensifyCardLimitIncreaseParams';
 export type {default as UpdateNetSuiteGenericTypeParams} from './UpdateNetSuiteGenericTypeParams';
-export type {default as CancelBillingSubscriptionParams} from './CancelBillingSubscriptionParams';
 export type {default as UpdateNetSuiteCustomFormIDParams} from './UpdateNetSuiteCustomFormIDParams';
 export type {default as UpdateSageIntacctGenericTypeParams} from './UpdateSageIntacctGenericTypeParams';
 export type {default as UpdateNetSuiteCustomersJobsParams} from './UpdateNetSuiteCustomersJobsParams';

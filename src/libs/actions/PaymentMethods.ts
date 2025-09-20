@@ -17,9 +17,7 @@ import type {
 import {READ_COMMANDS, WRITE_COMMANDS} from '@libs/API/types';
 import * as CardUtils from '@libs/CardUtils';
 import GoogleTagManager from '@libs/GoogleTagManager';
-import Log from '@libs/Log';
 import Navigation from '@libs/Navigation/Navigation';
-import {getCardForSubscriptionBilling} from '@libs/SubscriptionUtils';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import type {Route} from '@src/ROUTES';
@@ -213,73 +211,6 @@ function addPaymentCard(accountID: number, params: PaymentCardParams) {
  * Calls the API to add a new card.
  *
  */
-function addSubscriptionPaymentCard(
-    accountID: number,
-    cardData: {
-        cardNumber: string;
-        cardYear: string;
-        cardMonth: string;
-        cardCVV: string;
-        addressName: string;
-        addressZip: string;
-        currency: ValueOf<typeof CONST.PAYMENT_CARD_CURRENCY>;
-    },
-) {
-    const {cardNumber, cardYear, cardMonth, cardCVV, addressName, addressZip, currency} = cardData;
-
-    const parameters: AddPaymentCardParams = {
-        cardNumber,
-        cardYear,
-        cardMonth,
-        cardCVV,
-        addressName,
-        addressZip,
-        currency,
-        isP2PDebitCard: false,
-        shouldClaimEarlyDiscountOffer: true,
-    };
-
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.FORMS.ADD_PAYMENT_CARD_FORM,
-            value: {isLoading: true},
-        },
-    ];
-
-    const successData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.FORMS.ADD_PAYMENT_CARD_FORM,
-            value: {isLoading: false},
-        },
-    ];
-
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.FORMS.ADD_PAYMENT_CARD_FORM,
-            value: {isLoading: false},
-        },
-    ];
-
-    if (CONST.SCA_CURRENCIES.has(currency)) {
-        addPaymentCardSCA(parameters, {optimisticData, successData, failureData});
-    } else {
-        // eslint-disable-next-line rulesdir/no-multiple-api-calls
-        API.write(WRITE_COMMANDS.ADD_PAYMENT_CARD, parameters, {
-            optimisticData,
-            successData,
-            failureData,
-        });
-    }
-    if (getCardForSubscriptionBilling()) {
-        Log.info(`[GTM] Not logging ${CONST.ANALYTICS.EVENT.PAID_ADOPTION} because a card was already added`);
-    } else {
-        GoogleTagManager.publishEvent(CONST.ANALYTICS.EVENT.PAID_ADOPTION, accountID);
-    }
-}
-
 /**
  * Calls the API to add a new SCA (GBP or EUR) card.
  * Updates verify3dsSubscription Onyx key with a new authentication link for 3DS.
@@ -306,14 +237,6 @@ function clearPaymentCardFormErrorAndSubmit() {
         [INPUT_IDS.ACCEPT_TERMS]: '',
         [INPUT_IDS.CURRENCY]: CONST.PAYMENT_CARD_CURRENCY.USD,
     });
-}
-
-/**
- * Clear 3ds flow - when verification will be finished
- *
- */
-function clearPaymentCard3dsVerification() {
-    Onyx.set(ONYXKEYS.VERIFY_3DS_SUBSCRIPTION, '');
 }
 
 /**
@@ -586,7 +509,6 @@ export {
     makeDefaultPaymentMethod,
     kycWallRef,
     continueSetup,
-    addSubscriptionPaymentCard,
     clearPaymentCardFormErrorAndSubmit,
     dismissSuccessfulTransferBalancePage,
     transferWalletBalance,
@@ -599,7 +521,6 @@ export {
     clearAddPaymentMethodError,
     clearWalletError,
     setPaymentMethodCurrency,
-    clearPaymentCard3dsVerification,
     clearWalletTermsError,
     verifySetupIntent,
     addPaymentCardSCA,

@@ -10,13 +10,12 @@ import {updateXeroMappings} from '@libs/actions/connections/Xero';
 import {clearXeroErrorField} from '@libs/actions/Policy/Policy';
 import {getLatestErrorField} from '@libs/ErrorUtils';
 import Navigation from '@libs/Navigation/Navigation';
-import {isControlPolicy, settingsPendingAction} from '@libs/PolicyUtils';
+import {settingsPendingAction} from '@libs/PolicyUtils';
 import type {WithPolicyProps} from '@pages/workspace/withPolicy';
 import withPolicyConnections from '@pages/workspace/withPolicyConnections';
 import CONST from '@src/CONST';
 import type {TranslationPaths} from '@src/languages/types';
 import ROUTES from '@src/ROUTES';
-import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 
 type RouteParams = {
     categoryId?: string;
@@ -61,9 +60,6 @@ function XeroMapTrackingCategoryConfigurationPage({policy}: WithPolicyProps) {
     const updateMapping = useCallback(
         (option: {value: string}) => {
             if (option.value !== currentTrackingCategoryValue) {
-                if (option.value === CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.REPORT_FIELD && !isControlPolicy(policy)) {
-                    return;
-                }
                 if (!policyID) {
                     return;
                 }

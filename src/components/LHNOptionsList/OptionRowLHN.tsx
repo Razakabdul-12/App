@@ -38,7 +38,6 @@ import {
 } from '@libs/ReportUtils';
 import TextWithEmojiFragment from '@pages/home/report/comment/TextWithEmojiFragment';
 import {showContextMenu} from '@pages/home/report/ContextMenu/ReportActionContextMenu';
-import FreeTrial from '@pages/settings/Subscription/FreeTrial';
 import variables from '@styles/variables';
 import Timing from '@userActions/Timing';
 import CONST from '@src/CONST';
@@ -297,7 +296,6 @@ function OptionRowLHN({
                                                     }
                                                     testID={testID}
                                                 />
-                                                {isChatUsedForOnboarding && <FreeTrial badgeStyles={[styles.mnh0, styles.pl2, styles.pr2, styles.ml1, styles.flexShrink1]} />}
                                                 {isStatusVisible && (
                                                     <Tooltip
                                                         text={statusContent}

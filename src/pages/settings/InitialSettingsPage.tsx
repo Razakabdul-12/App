@@ -24,17 +24,14 @@ import useLocalize from '@hooks/useLocalize';
 import useNetwork from '@hooks/useNetwork';
 import useOnyx from '@hooks/useOnyx';
 import usePrevious from '@hooks/usePrevious';
-import usePrivateSubscription from '@hooks/usePrivateSubscription';
 import useResponsiveLayout from '@hooks/useResponsiveLayout';
 import useSingleExecution from '@hooks/useSingleExecution';
-import useSubscriptionPlan from '@hooks/useSubscriptionPlan';
 import useTheme from '@hooks/useTheme';
 import useThemeStyles from '@hooks/useThemeStyles';
 import {checkIfFeedConnectionIsBroken} from '@libs/CardUtils';
 import {convertToDisplayString} from '@libs/CurrencyUtils';
 import useIsSidebarRouteActive from '@libs/Navigation/helpers/useIsSidebarRouteActive';
 import Navigation from '@libs/Navigation/Navigation';
-import {getFreeTrialText, hasSubscriptionRedDotError} from '@libs/SubscriptionUtils';
 import {getProfilePageBrickRoadIndicator} from '@libs/UserUtils';
 import type SETTINGS_TO_RHP from '@navigation/linkingConfig/RELATIONS/SETTINGS_TO_RHP';
 import {showContextMenu} from '@pages/home/report/ContextMenu/ReportActionContextMenu';
@@ -90,7 +87,6 @@ function InitialSettingsPage({currentUserPersonalDetails}: InitialSettingsPagePr
     const [vacationDelegate] = useOnyx(ONYXKEYS.NVP_PRIVATE_VACATION_DELEGATE, {canBeMissing: true});
     const [allCards] = useOnyx(ONYXKEYS.CARD_LIST, {canBeMissing: true});
     const [policies] = useOnyx(ONYXKEYS.COLLECTION.POLICY, {canBeMissing: true});
-    const [stripeCustomerId] = useOnyx(ONYXKEYS.NVP_PRIVATE_STRIPE_CUSTOMER_ID, {canBeMissing: true});
     const [session] = useOnyx(ONYXKEYS.SESSION, {canBeMissing: false});
 
     const {shouldUseNarrowLayout} = useResponsiveLayout();
@@ -105,13 +101,9 @@ function InitialSettingsPage({currentUserPersonalDetails}: InitialSettingsPagePr
     const isScreenFocused = useIsSidebarRouteActive(NAVIGATORS.SETTINGS_SPLIT_NAVIGATOR, shouldUseNarrowLayout);
     const hasActivatedWallet = ([CONST.WALLET.TIER_NAME.GOLD, CONST.WALLET.TIER_NAME.PLATINUM] as string[]).includes(userWallet?.tierName ?? '');
 
-    const privateSubscription = usePrivateSubscription();
-    const subscriptionPlan = useSubscriptionPlan();
     const previousUserPersonalDetails = usePrevious(currentUserPersonalDetails);
 
     const shouldLogout = useRef(false);
-
-    const freeTrialText = getFreeTrialText(policies);
 
     const shouldDisplayLHB = !shouldUseNarrowLayout;
 
@@ -191,18 +183,6 @@ function InitialSettingsPage({currentUserPersonalDetails}: InitialSettingsPagePr
             },
         ];
 
-        if (subscriptionPlan) {
-            items.splice(1, 0, {
-                translationKey: 'allSettingsScreen.subscription',
-                icon: Expensicons.CreditCard,
-                screenName: SCREENS.SETTINGS.SUBSCRIPTION.ROOT,
-                brickRoadIndicator: !!privateSubscription?.errors || hasSubscriptionRedDotError(stripeCustomerId) ? CONST.BRICK_ROAD_INDICATOR_STATUS.ERROR : undefined,
-                badgeText: freeTrialText,
-                badgeStyle: freeTrialText ? styles.badgeSuccess : undefined,
-                action: () => Navigation.navigate(ROUTES.SETTINGS_SUBSCRIPTION.route),
-            });
-        }
-
         return {
             sectionStyle: styles.accountSettingsSectionContainer,
             sectionTranslationKey: 'initialSettingsPage.account',
@@ -216,12 +196,7 @@ function InitialSettingsPage({currentUserPersonalDetails}: InitialSettingsPagePr
         walletBrickRoadIndicator,
         hasActivatedWallet,
         userWallet?.currentBalance,
-        subscriptionPlan,
         styles.accountSettingsSectionContainer,
-        styles.badgeSuccess,
-        privateSubscription?.errors,
-        stripeCustomerId,
-        freeTrialText,
     ]);
 
     /**

@@ -17,8 +17,7 @@ import {assignReportToMe} from '@libs/actions/IOU';
 import Navigation from '@libs/Navigation/Navigation';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {ReportChangeApproverParamList} from '@libs/Navigation/types';
-import {isControlPolicy, isPolicyAdmin} from '@libs/PolicyUtils';
-import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
+import {isPolicyAdmin} from '@libs/PolicyUtils';
 import {isAllowedToApproveExpenseReport, isMoneyRequestReport, isMoneyRequestReportPendingDeletion} from '@libs/ReportUtils';
 import CONST from '@src/CONST';
 import ROUTES from '@src/ROUTES';
@@ -52,16 +51,12 @@ function ReportChangeApproverPage({report, policy, isLoadingReportData}: ReportC
             return;
         }
         if (selectedApproverType === APPROVER_TYPE.ADD_APPROVER) {
-            if (policy && !isControlPolicy(policy)) {
-                navigateToSubscription(ROUTES.REPORT_CHANGE_APPROVER_ADD_APPROVER.getRoute(report.reportID));
-                return;
-            }
             Navigation.navigate(ROUTES.REPORT_CHANGE_APPROVER_ADD_APPROVER.getRoute(report.reportID));
             return;
         }
         assignReportToMe(report, currentUserDetails.accountID);
         Navigation.goBack(ROUTES.REPORT_WITH_ID.getRoute(reportID));
-    }, [selectedApproverType, report, currentUserDetails.accountID, reportID, policy]);
+    }, [selectedApproverType, report, currentUserDetails.accountID, reportID]);
 
     const sections = useMemo(() => {
         const data: Array<ListItem<ApproverType>> = [

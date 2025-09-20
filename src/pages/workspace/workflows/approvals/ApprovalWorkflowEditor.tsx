@@ -4,7 +4,6 @@ import React, {forwardRef, useCallback, useMemo} from 'react';
 import {View} from 'react-native';
 // eslint-disable-next-line no-restricted-imports
 import type {ScrollView as ScrollViewRN} from 'react-native';
-import type {OnyxEntry} from 'react-native-onyx';
 import * as Expensicons from '@components/Icon/Expensicons';
 import MenuItem from '@components/MenuItem';
 import MenuItemWithTopDescription from '@components/MenuItemWithTopDescription';
@@ -14,12 +13,10 @@ import Text from '@components/Text';
 import useLocalize from '@hooks/useLocalize';
 import useThemeStyles from '@hooks/useThemeStyles';
 import Navigation from '@libs/Navigation/Navigation';
-import navigateToSubscription from '@navigation/helpers/navigateToSubscription';
 import {sortAlphabetically} from '@libs/OptionsListUtils';
-import {isControlPolicy} from '@libs/PolicyUtils';
 import CONST from '@src/CONST';
 import ROUTES from '@src/ROUTES';
-import type {ApprovalWorkflowOnyx, Policy} from '@src/types/onyx';
+import type {ApprovalWorkflowOnyx} from '@src/types/onyx';
 import type {Approver} from '@src/types/onyx/ApprovalWorkflow';
 import type {PendingAction} from '@src/types/onyx/OnyxCommon';
 
@@ -30,14 +27,11 @@ type ApprovalWorkflowEditorProps = {
     /** Function to remove the approval workflow */
     removeApprovalWorkflow?: () => void;
 
-    /** The policy for the current route */
-    policy: OnyxEntry<Policy>;
-
     /** The policy ID */
     policyID: string;
 };
 
-function ApprovalWorkflowEditor({approvalWorkflow, removeApprovalWorkflow, policy, policyID}: ApprovalWorkflowEditorProps, ref: ForwardedRef<ScrollViewRN>) {
+function ApprovalWorkflowEditor({approvalWorkflow, removeApprovalWorkflow, policyID}: ApprovalWorkflowEditorProps, ref: ForwardedRef<ScrollViewRN>) {
     const styles = useThemeStyles();
     const {translate, toLocaleOrdinal, localeCompare} = useLocalize();
     const approverCount = approvalWorkflow.approvers.length;
@@ -110,14 +104,9 @@ function ApprovalWorkflowEditor({approvalWorkflow, removeApprovalWorkflow, polic
         [approvalWorkflow.action, policyID],
     );
 
-    // User should be allowed to add additional approver only if they upgraded to Control Plan, otherwise redirected to the Upgrade Page
     const addAdditionalApprover = useCallback(() => {
-        if (!isControlPolicy(policy) && approverCount > 0) {
-            navigateToSubscription(Navigation.getActiveRoute());
-            return;
-        }
         Navigation.navigate(ROUTES.WORKSPACE_WORKFLOWS_APPROVALS_APPROVER.getRoute(policyID, approverCount, ROUTES.WORKSPACE_WORKFLOWS_APPROVALS_NEW.getRoute(policyID)));
-    }, [approverCount, policy, policyID]);
+    }, [approverCount, policyID]);
 
     return (
         <ScrollView

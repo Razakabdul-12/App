@@ -128,8 +128,6 @@ const getMockForStatus = (status: IndicatorStatus, isAdmin = true) =>
                       }
                     : undefined,
         },
-        [ONYXKEYS.SUBSCRIPTION_RETRY_BILLING_STATUS_SUCCESSFUL]: status === CONST.INDICATOR_STATUS.HAS_SUBSCRIPTION_INFO,
-        [ONYXKEYS.SUBSCRIPTION_RETRY_BILLING_STATUS_FAILED]: status === CONST.INDICATOR_STATUS.HAS_SUBSCRIPTION_ERRORS,
     }) as OnyxMultiSetInput;
 
 type TestCase = {
@@ -177,12 +175,6 @@ const TEST_CASES: TestCase[] = [
         policyIDWithErrors: undefined,
     },
     {
-        name: 'has subscription errors',
-        indicatorColor: defaultTheme.danger,
-        status: CONST.INDICATOR_STATUS.HAS_SUBSCRIPTION_ERRORS,
-        policyIDWithErrors: undefined,
-    },
-    {
         name: 'has reimbursement account errors',
         indicatorColor: defaultTheme.danger,
         status: CONST.INDICATOR_STATUS.HAS_REIMBURSEMENT_ACCOUNT_ERRORS,
@@ -204,12 +196,6 @@ const TEST_CASES: TestCase[] = [
         name: 'has login list info',
         indicatorColor: defaultTheme.success,
         status: CONST.INDICATOR_STATUS.HAS_LOGIN_LIST_INFO,
-        policyIDWithErrors: undefined,
-    },
-    {
-        name: 'has subscription info',
-        indicatorColor: defaultTheme.success,
-        status: CONST.INDICATOR_STATUS.HAS_SUBSCRIPTION_INFO,
         policyIDWithErrors: undefined,
     },
 ];

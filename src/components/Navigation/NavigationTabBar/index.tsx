@@ -18,7 +18,6 @@ import useResponsiveLayout from '@hooks/useResponsiveLayout';
 import useSearchTypeMenuSections from '@hooks/useSearchTypeMenuSections';
 import {useSidebarOrderedReports} from '@hooks/useSidebarOrderedReports';
 import useStyleUtils from '@hooks/useStyleUtils';
-import useSubscriptionPlan from '@hooks/useSubscriptionPlan';
 import useTheme from '@hooks/useTheme';
 import useThemeStyles from '@hooks/useThemeStyles';
 import useWorkspacesTabIndicatorStatus from '@hooks/useWorkspacesTabIndicatorStatus';
@@ -78,7 +77,6 @@ function NavigationTabBar({selectedTab, isTooltipAllowed = false, isTopLevelBar 
     const [workspacesTabState, setWorkspacesTabState] = useState(initialNavigationRouteState.workspacesTabState);
     const params = workspacesTabState?.routes?.at(0)?.params as WorkspaceSplitNavigatorParamList[typeof SCREENS.WORKSPACE.INITIAL];
     const {typeMenuSections} = useSearchTypeMenuSections();
-    const subscriptionPlan = useSubscriptionPlan();
 
     const [lastViewedPolicy] = useOnyx(
         ONYXKEYS.COLLECTION.POLICY,
@@ -170,10 +168,10 @@ function NavigationTabBar({selectedTab, isTooltipAllowed = false, isTopLevelBar 
                 navigationRef.dispatch({type: CONST.NAVIGATION.ACTION_TYPE.PUSH, payload: {name: NAVIGATORS.SETTINGS_SPLIT_NAVIGATOR}});
                 return;
             }
-            const accountTabPayload = getAccountTabScreenToOpen(subscriptionPlan);
+            const accountTabPayload = getAccountTabScreenToOpen();
             navigationRef.dispatch(StackActions.push(NAVIGATORS.SETTINGS_SPLIT_NAVIGATOR, accountTabPayload));
         });
-    }, [selectedTab, subscriptionPlan]);
+    }, [selectedTab]);
 
     /**
      * The settings tab is related to SettingsSplitNavigator and WorkspaceSplitNavigator.

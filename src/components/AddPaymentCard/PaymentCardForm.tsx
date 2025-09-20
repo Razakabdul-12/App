@@ -38,7 +38,7 @@ type PaymentCardFormProps = {
     /** Custom content to display in the header before card form */
     headerContent?: ReactNode;
     /** object to get currency route details from */
-    currencySelectorRoute?: typeof ROUTES.SETTINGS_SUBSCRIPTION_CHANGE_PAYMENT_CURRENCY;
+    currencySelectorRoute?: typeof ROUTES.SETTINGS_CHANGE_CURRENCY;
 };
 
 function IAcceptTheLabel() {
