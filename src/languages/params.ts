@@ -886,11 +886,6 @@ type WorkflowSettingsParam = {workflowSettingLink: string};
 
 type IndividualExpenseRulesSubtitleParams = {
     categoriesPageLink: string;
-    tagsPageLink: string;
-};
-
-type BillableDefaultDescriptionParams = {
-    tagsPageLink: string;
 };
 
 type WorkspaceShareNoteParams = {
@@ -1218,7 +1213,6 @@ export type {
     WorkflowSettingsParam,
     MovedActionParams,
     IndividualExpenseRulesSubtitleParams,
-    BillableDefaultDescriptionParams,
     WorkspaceShareNoteParams,
     RulesEnableWorkflowsParams,
     UpgradeSuccessMessageParams,

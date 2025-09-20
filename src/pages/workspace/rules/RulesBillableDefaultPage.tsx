@@ -1,11 +1,10 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import {View} from 'react-native';
 import HeaderWithBackButton from '@components/HeaderWithBackButton';
 import RenderHTML from '@components/RenderHTML';
 import ScreenWrapper from '@components/ScreenWrapper';
 import SelectionList from '@components/SelectionList';
 import SingleSelectListItem from '@components/SelectionList/SingleSelectListItem';
-import useEnvironment from '@hooks/useEnvironment';
 import useLocalize from '@hooks/useLocalize';
 import usePolicy from '@hooks/usePolicy';
 import useThemeStyles from '@hooks/useThemeStyles';
@@ -15,7 +14,6 @@ import type {SettingsNavigatorParamList} from '@libs/Navigation/types';
 import AccessOrNotFoundWrapper from '@pages/workspace/AccessOrNotFoundWrapper';
 import {setPolicyBillableMode} from '@userActions/Policy/Policy';
 import CONST from '@src/CONST';
-import ROUTES from '@src/ROUTES';
 import type SCREENS from '@src/SCREENS';
 
 type RulesBillableDefaultPageProps = PlatformStackScreenProps<SettingsNavigatorParamList, typeof SCREENS.WORKSPACE.RULES_BILLABLE_DEFAULT>;
@@ -29,8 +27,6 @@ function RulesBillableDefaultPage({
 
     const {translate} = useLocalize();
     const styles = useThemeStyles();
-    const {environmentURL} = useEnvironment();
-
     const billableModes = [
         {
             value: true,
@@ -50,14 +46,6 @@ function RulesBillableDefaultPage({
 
     const initiallyFocusedOptionKey = policy?.defaultBillable ? CONST.POLICY_BILLABLE_MODES.BILLABLE : CONST.POLICY_BILLABLE_MODES.NON_BILLABLE;
 
-    const tagsPageLink = useMemo(() => {
-        if (policy?.areTagsEnabled) {
-            return `${environmentURL}/${ROUTES.WORKSPACE_TAGS.getRoute(policyID)}`;
-        }
-
-        return `${environmentURL}/${ROUTES.WORKSPACE_MORE_FEATURES.getRoute(policyID)}`;
-    }, [environmentURL, policy?.areTagsEnabled, policyID]);
-
     return (
         <AccessOrNotFoundWrapper
             policyID={policyID}
@@ -74,7 +62,7 @@ function RulesBillableDefaultPage({
                     onBackButtonPress={() => Navigation.goBack()}
                 />
                 <View style={[styles.flexRow, styles.renderHTML, styles.mt3, styles.mh5, styles.mb5]}>
-                    <RenderHTML html={translate('workspace.rules.individualExpenseRules.billableDefaultDescription', {tagsPageLink})} />
+                    <RenderHTML html={translate('workspace.rules.individualExpenseRules.billableDefaultDescription')} />
                 </View>
                 <SelectionList
                     sections={[{data: billableModes}]}

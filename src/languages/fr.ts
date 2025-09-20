@@ -43,7 +43,6 @@ import type {
     BeginningOfChatHistoryInvoiceRoomParams,
     BeginningOfChatHistoryPolicyExpenseChatParams,
     BeginningOfChatHistoryUserRoomParams,
-    BillableDefaultDescriptionParams,
     BillingBannerCardAuthenticationRequiredParams,
     BillingBannerCardExpiredParams,
     BillingBannerCardOnDisputeParams,
@@ -5661,8 +5660,8 @@ const translations = {
         rules: {
             individualExpenseRules: {
                 title: 'Dépenses',
-                subtitle: ({categoriesPageLink, tagsPageLink}: IndividualExpenseRulesSubtitleParams) =>
-                    `<muted-text>Définissez des contrôles de dépenses et des valeurs par défaut pour chaque dépense. Vous pouvez également créer des règles pour les <a href="${categoriesPageLink}">catégories</a> et <a href="${tagsPageLink}">tags</a>.</muted-text>`,
+                subtitle: ({categoriesPageLink}: IndividualExpenseRulesSubtitleParams) =>
+                    `<muted-text>Définissez des contrôles de dépenses et des valeurs par défaut pour chaque dépense. Vous pouvez également créer des règles pour les <a href="${categoriesPageLink}">catégories</a>.</muted-text>`,
                 receiptRequiredAmount: 'Montant requis pour le reçu',
                 receiptRequiredAmountDescription: 'Exiger des reçus lorsque les dépenses dépassent ce montant, sauf si une règle de catégorie le remplace.',
                 maxExpenseAmount: 'Montant maximum de la dépense',
@@ -5686,8 +5685,8 @@ const translations = {
                 alwaysNonReimbursable: 'Jamais remboursable',
                 alwaysNonReimbursableDescription: 'Les dépenses ne sont jamais remboursées aux employés',
                 billableDefault: 'Par défaut facturable',
-                billableDefaultDescription: ({tagsPageLink}: BillableDefaultDescriptionParams) =>
-                    `<muted-text>Choisissez si les dépenses en espèces et par carte de crédit doivent être facturables par défaut. Les dépenses facturables sont activées ou désactivées dans les <a href="${tagsPageLink}">tags</a>.</muted-text>`,
+                billableDefaultDescription:
+                    '<muted-text>Choisissez si les dépenses en espèces et par carte de crédit doivent être facturables par défaut.</muted-text>',
                 billable: 'Facturable',
                 billableDescription: 'Les dépenses sont le plus souvent refacturées aux clients.',
                 nonBillable: 'Non-facturable',

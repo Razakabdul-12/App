@@ -38,7 +38,6 @@ import {
     enablePolicyWorkflows,
     openPolicyMoreFeaturesPage,
 } from '@userActions/Policy/Policy';
-import {enablePolicyTags} from '@userActions/Policy/Tag';
 import {navigateToConciergeChat} from '@userActions/Report';
 import CONST from '@src/CONST';
 import type {TranslationPaths} from '@src/languages/types';
@@ -263,21 +262,6 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
                     return;
                 }
                 enablePolicyCategories(policyID, isEnabled, policyTagLists, allTransactionViolations, true);
-            },
-        },
-        {
-            icon: Illustrations.Tag,
-            titleTranslationKey: 'workspace.moreFeatures.tags.title',
-            subtitleTranslationKey: 'workspace.moreFeatures.tags.subtitle',
-            isActive: policy?.areTagsEnabled ?? false,
-            disabled: hasAccountingConnection,
-            pendingAction: policy?.pendingFields?.areTagsEnabled,
-            disabledAction: onDisabledOrganizeSwitchPress,
-            action: (isEnabled: boolean) => {
-                if (!policyID) {
-                    return;
-                }
-                enablePolicyTags(policyID, isEnabled);
             },
         },
         {

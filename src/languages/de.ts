@@ -43,7 +43,6 @@ import type {
     BeginningOfChatHistoryInvoiceRoomParams,
     BeginningOfChatHistoryPolicyExpenseChatParams,
     BeginningOfChatHistoryUserRoomParams,
-    BillableDefaultDescriptionParams,
     BillingBannerCardAuthenticationRequiredParams,
     BillingBannerCardExpiredParams,
     BillingBannerCardOnDisputeParams,
@@ -5651,8 +5650,8 @@ const translations = {
         rules: {
             individualExpenseRules: {
                 title: 'Ausgaben',
-                subtitle: ({categoriesPageLink, tagsPageLink}: IndividualExpenseRulesSubtitleParams) =>
-                    `<muted-text>Legen Sie Ausgabenkontrollen und Standardwerte für einzelne Ausgaben fest. Sie können auch Regeln für <a href="${categoriesPageLink}">kategorien</a> und <a href="${tagsPageLink}">tags</a> erstellen.</muted-text>`,
+                subtitle: ({categoriesPageLink}: IndividualExpenseRulesSubtitleParams) =>
+                    `<muted-text>Legen Sie Ausgabenkontrollen und Standardwerte für einzelne Ausgaben fest. Sie können auch Regeln für <a href="${categoriesPageLink}">Kategorien</a> erstellen.</muted-text>`,
                 receiptRequiredAmount: 'Beleg erforderlicher Betrag',
                 receiptRequiredAmountDescription: 'Belege anfordern, wenn die Ausgaben diesen Betrag überschreiten, es sei denn, eine Kategorievorschrift hebt dies auf.',
                 maxExpenseAmount: 'Maximaler Ausgabenbetrag',
@@ -5676,8 +5675,8 @@ const translations = {
                 alwaysNonReimbursable: 'Nie erstattungsfähig',
                 alwaysNonReimbursableDescription: 'Ausgaben werden nie an Mitarbeiter zurückgezahlt',
                 billableDefault: 'Abrechnungsstandard',
-                billableDefaultDescription: ({tagsPageLink}: BillableDefaultDescriptionParams) =>
-                    `<muted-text>Wählen Sie aus, ob Bar- und Kreditkartenausgaben standardmäßig abrechnungsfähig sein sollen. Abrechnungsfähige Ausgaben werden in <a href="${tagsPageLink}">Tags</a> aktiviert oder deaktiviert.</muted-text>`,
+                billableDefaultDescription:
+                    '<muted-text>Wählen Sie aus, ob Bar- und Kreditkartenausgaben standardmäßig abrechnungsfähig sein sollen.</muted-text>',
                 billable: 'Abrechenbar',
                 billableDescription: 'Spesen werden meist an Kunden weiterberechnet.',
                 nonBillable: 'Nicht abrechenbar',

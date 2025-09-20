@@ -122,12 +122,6 @@ function BaseOnboardingInterestedFeatures({shouldUseNativeStyles}: BaseOnboardin
                 apiEndpoint: WRITE_COMMANDS.ENABLE_POLICY_EXPENSIFY_CARDS,
             },
             {
-                id: FEATURE_IDS.TAGS,
-                title: translate('workspace.moreFeatures.tags.title'),
-                icon: Illustrations.Tag,
-                apiEndpoint: WRITE_COMMANDS.ENABLE_POLICY_TAGS,
-            },
-            {
                 id: FEATURE_IDS.PER_DIEM,
                 title: translate('workspace.moreFeatures.perDiem.title'),
                 icon: Illustrations.PerDiem,

@@ -21,7 +21,6 @@ import {
     InvoiceGeneric,
     Receipt,
     Sync,
-    Tag,
     Users,
     Workflows,
 } from '@components/Icon/Expensicons';
@@ -228,16 +227,6 @@ function WorkspaceInitialPage({policyDraft, policy: policyProp, route}: Workspac
                 brickRoadIndicator: hasPolicyCategoryError ? CONST.BRICK_ROAD_INDICATOR_STATUS.ERROR : undefined,
                 screenName: SCREENS.WORKSPACE.CATEGORIES,
                 highlighted: highlightedFeature === CONST.POLICY.MORE_FEATURES.ARE_CATEGORIES_ENABLED,
-            });
-        }
-
-        if (featureStates?.[CONST.POLICY.MORE_FEATURES.ARE_TAGS_ENABLED]) {
-            protectedMenuItems.push({
-                translationKey: 'workspace.common.tags',
-                icon: Tag,
-                action: singleExecution(waitForNavigate(() => Navigation.navigate(ROUTES.WORKSPACE_TAGS.getRoute(policyID)))),
-                screenName: SCREENS.WORKSPACE.TAGS,
-                highlighted: highlightedFeature === CONST.POLICY.MORE_FEATURES.ARE_TAGS_ENABLED,
             });
         }
 

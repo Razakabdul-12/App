@@ -1,12 +1,8 @@
 import React, {useMemo} from 'react';
 import {View} from 'react-native';
-import Button from '@components/Button';
-import FixedFooter from '@components/FixedFooter';
-import {EmptyStateExpenses} from '@components/Icon/Illustrations';
 import {useSearchContext} from '@components/Search/SearchContext';
 import TagPicker from '@components/TagPicker';
 import Text from '@components/Text';
-import WorkspaceEmptyStateSection from '@components/WorkspaceEmptyStateSection';
 import useLocalize from '@hooks/useLocalize';
 import useOnyx from '@hooks/useOnyx';
 import useShowNotFoundPageInIOUStep from '@hooks/useShowNotFoundPageInIOUStep';
@@ -14,13 +10,12 @@ import useThemeStyles from '@hooks/useThemeStyles';
 import {setDraftSplitTransaction, setMoneyRequestTag, updateMoneyRequestTag} from '@libs/actions/IOU';
 import {insertTagIntoTransactionTagsString} from '@libs/IOUUtils';
 import Navigation from '@libs/Navigation/Navigation';
-import {getTagList, getTagListName, getTagLists, hasDependentTags as hasDependentTagsPolicyUtils, isPolicyAdmin} from '@libs/PolicyUtils';
+import {getTagList, getTagListName, getTagLists, hasDependentTags as hasDependentTagsPolicyUtils} from '@libs/PolicyUtils';
 import type {OptionData} from '@libs/ReportUtils';
 import {hasEnabledTags} from '@libs/TagsOptionsListUtils';
 import {getTag, getTagArrayFromName, isExpenseUnreported as isExpenseUnreportedTransactionUtils} from '@libs/TransactionUtils';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
-import ROUTES from '@src/ROUTES';
 import type SCREENS from '@src/SCREENS';
 import {isEmptyObject} from '@src/types/utils/EmptyObject';
 import StepScreenWrapper from './StepScreenWrapper';
@@ -141,33 +136,8 @@ function IOURequestStepTag({
             shouldShowNotFoundPage={shouldShowNotFoundPage}
         >
             {!shouldShowTag && (
-                <View style={[styles.flex1]}>
-                    <WorkspaceEmptyStateSection
-                        shouldStyleAsCard={false}
-                        icon={EmptyStateExpenses}
-                        title={translate('workspace.tags.emptyTags.title')}
-                        subtitle={translate('workspace.tags.emptyTags.subtitle')}
-                        containerStyle={[styles.flex1, styles.justifyContentCenter]}
-                    />
-                    {isPolicyAdmin(policy) && (
-                        <FixedFooter style={[styles.mtAuto, styles.pt5]}>
-                            <Button
-                                large
-                                success
-                                style={[styles.w100]}
-                                onPress={() =>
-                                    Navigation.navigate(
-                                        ROUTES.SETTINGS_TAGS_ROOT.getRoute(
-                                            policy?.id,
-                                            ROUTES.MONEY_REQUEST_STEP_TAG.getRoute(action, iouType, tagListIndex, transactionID, report?.reportID, backTo, reportActionID),
-                                        ),
-                                    )
-                                }
-                                text={translate('workspace.tags.editTags')}
-                                pressOnEnter
-                            />
-                        </FixedFooter>
-                    )}
+                <View style={[styles.flex1, styles.justifyContentCenter, styles.alignItemsCenter, styles.ph5]}>
+                    <Text style={[styles.textAlignCenter]}>{translate('workspace.tags.emptyTags.title')}</Text>
                 </View>
             )}
             {!!shouldShowTag && (

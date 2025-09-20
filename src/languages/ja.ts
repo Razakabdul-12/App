@@ -43,7 +43,6 @@ import type {
     BeginningOfChatHistoryInvoiceRoomParams,
     BeginningOfChatHistoryPolicyExpenseChatParams,
     BeginningOfChatHistoryUserRoomParams,
-    BillableDefaultDescriptionParams,
     BillingBannerCardAuthenticationRequiredParams,
     BillingBannerCardExpiredParams,
     BillingBannerCardOnDisputeParams,
@@ -5627,8 +5626,8 @@ const translations = {
         rules: {
             individualExpenseRules: {
                 title: '経費',
-                subtitle: ({categoriesPageLink, tagsPageLink}: IndividualExpenseRulesSubtitleParams) =>
-                    `<muted-text>個々の経費に対して支出制限とデフォルト設定を設定できます。また、<a href="${categoriesPageLink}">カテゴリ</a>と<a href="${tagsPageLink}">タグ</a>に関するルールを作成することも可能です。</muted-text>`,
+                subtitle: ({categoriesPageLink}: IndividualExpenseRulesSubtitleParams) =>
+                    `<muted-text>個々の経費に対して支出制限とデフォルト設定を設定できます。また、<a href="${categoriesPageLink}">カテゴリ</a>に関するルールを作成することも可能です。</muted-text>`,
                 receiptRequiredAmount: '領収書の必要金額',
                 receiptRequiredAmountDescription: 'カテゴリルールで上書きされない限り、この金額を超える支出には領収書が必要です。',
                 maxExpenseAmount: '最大経費額',
@@ -5652,8 +5651,8 @@ const translations = {
                 alwaysNonReimbursable: '常に精算不可',
                 alwaysNonReimbursableDescription: '経費は従業員に返金されません',
                 billableDefault: '請求可能なデフォルト',
-                billableDefaultDescription: ({tagsPageLink}: BillableDefaultDescriptionParams) =>
-                    `<muted-text>現金とクレジットカードの支出をデフォルトで請求可能にするかどうかを選択します。請求可能な支出は<a href="${tagsPageLink}">タグ</a>で有効または無効に設定されます。</muted-text>`,
+                billableDefaultDescription:
+                    '<muted-text>現金とクレジットカードの支出をデフォルトで請求可能にするかどうかを選択します。</muted-text>',
                 billable: 'ビラブル',
                 billableDescription: '経費は多くの場合、クライアントに再請求されます。',
                 nonBillable: '非請求対象',

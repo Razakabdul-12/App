@@ -54,17 +54,9 @@ function IndividualExpenseRulesSectionSubtitle({policy, translate, styles, envir
         return `${environmentURL}/${ROUTES.WORKSPACE_MORE_FEATURES.getRoute(policyID)}`;
     }, [policy?.areCategoriesEnabled, policyID, environmentURL]);
 
-    const tagsPageLink = useMemo(() => {
-        if (policy?.areTagsEnabled) {
-            return `${environmentURL}/${ROUTES.WORKSPACE_TAGS.getRoute(policyID)}`;
-        }
-
-        return `${environmentURL}/${ROUTES.WORKSPACE_MORE_FEATURES.getRoute(policyID)}`;
-    }, [policy?.areTagsEnabled, policyID, environmentURL]);
-
     return (
         <View style={[styles.flexRow, styles.renderHTML, styles.w100, styles.mt2]}>
-            <RenderHTML html={translate('workspace.rules.individualExpenseRules.subtitle', {categoriesPageLink, tagsPageLink})} />
+            <RenderHTML html={translate('workspace.rules.individualExpenseRules.subtitle', {categoriesPageLink})} />
         </View>
     );
 }
