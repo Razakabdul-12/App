@@ -138,7 +138,7 @@ const selectPaymentType = (
             return;
         }
         triggerKYCFlow(event, iouPaymentType);
-        setPersonalBankAccountContinueKYCOnSuccess(ROUTES.ENABLE_PAYMENTS);
+        setPersonalBankAccountContinueKYCOnSuccess(ROUTES.SETTINGS_WALLET);
         return;
     }
 

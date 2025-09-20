@@ -35,6 +35,7 @@ import useWindowDimensions from '@hooks/useWindowDimensions';
 import {maskCardNumber} from '@libs/CardUtils';
 import {convertToDisplayString} from '@libs/CurrencyUtils';
 import getClickedTargetLocation from '@libs/getClickedTargetLocation';
+import Growl from '@libs/Growl';
 import Navigation from '@libs/Navigation/Navigation';
 import {formatPaymentMethods, getPaymentMethodDescription} from '@libs/PaymentUtils';
 import {getDescriptionForPolicyDomainCard} from '@libs/PolicyUtils';
@@ -479,7 +480,6 @@ function WalletPage({shouldListenForResize = false}: WalletPageProps) {
                                             // To allow upgrading to a gold wallet, continue with the KYC flow after adding a bank account
                                             setPersonalBankAccountContinueKYCOnSuccess(ROUTES.SETTINGS_WALLET);
                                         }}
-                                        enablePaymentsRoute={ROUTES.SETTINGS_ENABLE_PAYMENTS}
                                         addDebitCardRoute={ROUTES.SETTINGS_ADD_DEBIT_CARD}
                                         source={hasActivatedWallet ? CONST.KYC_WALL_SOURCE.TRANSFER_BALANCE : CONST.KYC_WALL_SOURCE.ENABLE_WALLET}
                                         shouldIncludeDebitCard={hasActivatedWallet}
@@ -548,7 +548,7 @@ function WalletPage({shouldListenForResize = false}: WalletPageProps) {
                                                             Navigation.navigate(ROUTES.SETTINGS_WALLET_VERIFY_ACCOUNT);
                                                             return;
                                                         }
-                                                        Navigation.navigate(ROUTES.SETTINGS_ENABLE_PAYMENTS);
+                                                        Growl.error(translate('walletPage.walletActivationFailed'));
                                                     }}
                                                     disabled={network.isOffline}
                                                     wrapperStyle={[

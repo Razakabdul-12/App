@@ -201,13 +201,6 @@ function openInitialSettingsPage() {
     API.read(READ_COMMANDS.OPEN_INITIAL_SETTINGS_PAGE, null);
 }
 
-/**
- * Fetches data when the user opens the EnablePaymentsPage
- */
-function openEnablePaymentsPage() {
-    API.read(READ_COMMANDS.OPEN_ENABLE_PAYMENTS_PAGE, null);
-}
-
 function updateCurrentStep(currentStep: ValueOf<typeof CONST.WALLET.STEP> | null) {
     Onyx.merge(ONYXKEYS.USER_WALLET, {currentStep});
 }
@@ -326,7 +319,6 @@ function createDigitalGoogleWallet({
 export {
     openOnfidoFlow,
     openInitialSettingsPage,
-    openEnablePaymentsPage,
     setAdditionalDetailsQuestions,
     updateCurrentStep,
     answerQuestionsForWallet,

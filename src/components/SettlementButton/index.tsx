@@ -61,7 +61,6 @@ function SettlementButton({
     buttonSize = CONST.DROPDOWN_BUTTON_SIZE.MEDIUM,
     chatReportID = '',
     currency = CONST.CURRENCY.USD,
-    enablePaymentsRoute,
     iouReport,
     isDisabled = false,
     isLoading = false,
@@ -397,7 +396,7 @@ function SettlementButton({
         }
         triggerKYCFlow(event, paymentType, paymentMethod, selectedPolicy ?? (event ? lastPaymentPolicy : undefined));
         if (paymentType === CONST.IOU.PAYMENT_TYPE.EXPENSIFY || paymentType === CONST.IOU.PAYMENT_TYPE.VBBA) {
-            setPersonalBankAccountContinueKYCOnSuccess(ROUTES.ENABLE_PAYMENTS);
+            setPersonalBankAccountContinueKYCOnSuccess(ROUTES.SETTINGS_WALLET);
         }
     };
 
@@ -503,7 +502,6 @@ function SettlementButton({
     return (
         <KYCWall
             onSuccessfulKYC={(paymentType) => onPress(paymentType, undefined, undefined)}
-            enablePaymentsRoute={enablePaymentsRoute}
             addDebitCardRoute={addDebitCardRoute}
             isDisabled={isOffline}
             source={CONST.KYC_WALL_SOURCE.REPORT}

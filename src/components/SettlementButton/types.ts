@@ -1,14 +1,11 @@
 import type {StyleProp, ViewStyle} from 'react-native';
 import type {OnyxEntry} from 'react-native-onyx';
 import type {PaymentMethod} from '@components/KYCWall/types';
-import type ROUTES from '@src/ROUTES';
 import type {Route} from '@src/ROUTES';
 import type {ButtonSizeValue} from '@src/styles/utils/types';
 import type {Report} from '@src/types/onyx';
 import type {PaymentMethodType} from '@src/types/onyx/OriginalMessage';
 import type AnchorAlignment from '@src/types/utils/AnchorAlignment';
-
-type EnablePaymentsRoute = typeof ROUTES.ENABLE_PAYMENTS | typeof ROUTES.IOU_SEND_ENABLE_PAYMENTS | typeof ROUTES.SETTINGS_ENABLE_PAYMENTS;
 
 type SettlementButtonProps = {
     /** Callback to execute when this button is pressed. Receives a single payment type argument. */
@@ -19,9 +16,6 @@ type SettlementButtonProps = {
 
     /** Callback when the payment options popover is closed */
     onPaymentOptionsHide?: () => void;
-
-    /** The route to redirect if user does not have a payment method setup */
-    enablePaymentsRoute: EnablePaymentsRoute;
 
     /** Call the onPress function on main button when Enter key is pressed */
     pressOnEnter?: boolean;

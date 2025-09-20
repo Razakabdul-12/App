@@ -127,7 +127,6 @@ const SCREENS = {
             DOMAIN_CARD: 'Settings_Wallet_DomainCard',
             TRANSFER_BALANCE: 'Settings_Wallet_Transfer_Balance',
             CHOOSE_TRANSFER_ACCOUNT: 'Settings_Wallet_Choose_Transfer_Account',
-            ENABLE_PAYMENTS: 'Settings_Wallet_EnablePayments',
             CARD_ACTIVATE: 'Settings_Wallet_Card_Activate',
             REPORT_VIRTUAL_CARD_FRAUD: 'Settings_Wallet_ReportVirtualCardFraud',
             REPORT_VIRTUAL_CARD_FRAUD_CONFIRMATION: 'Settings_Wallet_ReportVirtualCardFraudConfirmation',
@@ -189,7 +188,6 @@ const SCREENS = {
         MONEY_REQUEST: 'MoneyRequest',
         NEW_TASK: 'NewTask',
         TASK_DETAILS: 'Task_Details',
-        ENABLE_PAYMENTS: 'EnablePayments',
         SPLIT_DETAILS: 'SplitDetails',
         ADD_PERSONAL_BANK_ACCOUNT: 'AddPersonalBankAccount',
         WALLET_STATEMENT: 'Wallet_Statement',
@@ -294,7 +292,6 @@ const SCREENS = {
     IOU_SEND: {
         ADD_BANK_ACCOUNT: 'IOU_Send_Add_Bank_Account',
         ADD_DEBIT_CARD: 'IOU_Send_Add_Debit_Card',
-        ENABLE_PAYMENTS: 'IOU_Send_Enable_Payments',
     },
 
     SETTINGS_CATEGORIES: {
@@ -698,7 +695,6 @@ const SCREENS = {
         ROOT: 'TestDrive_Demo_Root',
     },
 
-    ENABLE_PAYMENTS_ROOT: 'EnablePayments_Root',
     ADD_PERSONAL_BANK_ACCOUNT_ROOT: 'AddPersonalBankAccount_Root',
     REIMBURSEMENT_ACCOUNT_ROOT: 'Reimbursement_Account_Root',
     WALLET_STATEMENT_ROOT: 'WalletStatement_Root',

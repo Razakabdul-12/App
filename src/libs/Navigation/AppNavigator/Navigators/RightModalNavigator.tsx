@@ -170,10 +170,6 @@ function RightModalNavigator({navigation, route}: RightModalNavigatorProps) {
                             component={ModalStackNavigators.TaskModalStackNavigator}
                         />
                         <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.ENABLE_PAYMENTS}
-                            component={ModalStackNavigators.EnablePaymentsStackNavigator}
-                        />
-                        <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.SPLIT_DETAILS}
                             component={ModalStackNavigators.SplitDetailsModalStackNavigator}
                         />

@@ -164,7 +164,6 @@ type SettingsNavigatorParamList = {
     [SCREENS.SETTINGS.WALLET.VERIFY_ACCOUNT]: undefined;
     [SCREENS.SETTINGS.WALLET.TRANSFER_BALANCE]: undefined;
     [SCREENS.SETTINGS.WALLET.CHOOSE_TRANSFER_ACCOUNT]: undefined;
-    [SCREENS.SETTINGS.WALLET.ENABLE_PAYMENTS]: undefined;
     [SCREENS.SETTINGS.WALLET.ENABLE_GLOBAL_REIMBURSEMENTS]: {
         bankAccountID: string;
     };
@@ -1386,7 +1385,6 @@ type MoneyRequestNavigatorParamList = {
         reportID: string;
         backTo: Routes;
     };
-    [SCREENS.IOU_SEND.ENABLE_PAYMENTS]: undefined;
     [SCREENS.IOU_SEND.ADD_BANK_ACCOUNT]: undefined;
     [SCREENS.IOU_SEND.ADD_DEBIT_CARD]: undefined;
     [SCREENS.MONEY_REQUEST.STEP_DISTANCE]: {
@@ -1637,10 +1635,6 @@ type TaskDetailsNavigatorParamList = {
     };
 };
 
-type EnablePaymentsNavigatorParamList = {
-    [SCREENS.ENABLE_PAYMENTS_ROOT]: undefined;
-};
-
 type SplitDetailsNavigatorParamList = {
     [SCREENS.SPLIT_DETAILS.ROOT]: {
         reportID: string;
@@ -1795,7 +1789,6 @@ type RightModalNavigatorParamList = {
     [SCREENS.RIGHT_MODAL.WORKSPACE_DUPLICATE]: NavigatorScreenParams<WorkspaceDuplicateNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.NEW_TASK]: NavigatorScreenParams<NewTaskNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.TASK_DETAILS]: NavigatorScreenParams<TaskDetailsNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.ENABLE_PAYMENTS]: NavigatorScreenParams<EnablePaymentsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.SPLIT_DETAILS]: NavigatorScreenParams<SplitDetailsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.ADD_PERSONAL_BANK_ACCOUNT]: NavigatorScreenParams<AddPersonalBankAccountNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.WALLET_STATEMENT]: NavigatorScreenParams<WalletStatementNavigatorParamList>;
@@ -2316,7 +2309,6 @@ export type {
     DebugParamList,
     DetailsNavigatorParamList,
     EditRequestNavigatorParamList,
-    EnablePaymentsNavigatorParamList,
     ExplanationModalNavigatorParamList,
     FeatureTrainingNavigatorParamList,
     FlagCommentNavigatorParamList,

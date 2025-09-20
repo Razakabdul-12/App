@@ -28,9 +28,6 @@ type KYCWallProps = {
     /** Route for the Add Debit Card screen for a given navigation stack */
     addDebitCardRoute?: Route;
 
-    /** Route for the KYC enable payments screen for a given navigation stack */
-    enablePaymentsRoute: Route;
-
     /** Listen for window resize event on web and desktop */
     shouldListenForResize?: boolean;
 

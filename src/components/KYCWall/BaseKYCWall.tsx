@@ -9,6 +9,7 @@ import {openPersonalBankAccountSetupView} from '@libs/actions/BankAccounts';
 import {completePaymentOnboarding, savePreferredPaymentMethod} from '@libs/actions/IOU';
 import {moveIOUReportToPolicy, moveIOUReportToPolicyAndInviteSubmitter} from '@libs/actions/Report';
 import getClickedTargetLocation from '@libs/getClickedTargetLocation';
+import Growl from '@libs/Growl';
 import Log from '@libs/Log';
 import Navigation from '@libs/Navigation/Navigation';
 import {hasExpensifyPaymentMethod} from '@libs/PaymentUtils';
@@ -40,7 +41,6 @@ function KYCWall({
     },
     chatReportID = '',
     children,
-    enablePaymentsRoute,
     iouReport,
     onSelectPaymentMethod = () => {},
     onSuccessfulKYC,
@@ -57,7 +57,7 @@ function KYCWall({
     const [chatReport] = useOnyx(`${ONYXKEYS.COLLECTION.REPORT}${chatReportID}`, {canBeMissing: true});
     const [allReports] = useOnyx(ONYXKEYS.COLLECTION.REPORT, {canBeMissing: true});
 
-    const {formatPhoneNumber} = useLocalize();
+    const {formatPhoneNumber, translate} = useLocalize();
 
     const anchorRef = useRef<HTMLDivElement | View>(null);
     const transferBalanceButtonRef = useRef<HTMLDivElement | View | null>(null);
@@ -230,7 +230,7 @@ function KYCWall({
                 if (!hasActivatedWallet && !policy) {
                     Log.info('[KYC Wallet] User does not have active wallet');
 
-                    Navigation.navigate(enablePaymentsRoute);
+                    Growl.error(translate('walletPage.walletActivationFailed'));
 
                     return;
                 }
@@ -250,7 +250,6 @@ function KYCWall({
         [
             bankAccountList,
             chatReportID,
-            enablePaymentsRoute,
             fundList,
             getAnchorPosition,
             iouReport,
@@ -260,6 +259,7 @@ function KYCWall({
             shouldIncludeDebitCard,
             shouldShowAddPaymentMenu,
             source,
+            translate,
             userWallet?.tierName,
             walletTerms?.source,
         ],

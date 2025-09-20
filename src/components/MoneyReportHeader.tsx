@@ -811,7 +811,6 @@ function MoneyReportHeader({
                 chatReportID={chatReport?.reportID}
                 iouReport={moneyRequestReport}
                 onPress={confirmPayment}
-                enablePaymentsRoute={ROUTES.ENABLE_PAYMENTS}
                 shouldHidePaymentOptions={!shouldShowPayButton}
                 shouldShowApproveButton={shouldShowApproveButton}
                 shouldDisableApproveButton={shouldDisableApproveButton}
@@ -1218,7 +1217,6 @@ function MoneyReportHeader({
     const KYCMoreDropdown = (
         <KYCWall
             onSuccessfulKYC={(payment) => confirmPayment(payment)}
-            enablePaymentsRoute={ROUTES.ENABLE_PAYMENTS}
             isDisabled={isOffline}
             source={CONST.KYC_WALL_SOURCE.REPORT}
             chatReportID={chatReport?.reportID}

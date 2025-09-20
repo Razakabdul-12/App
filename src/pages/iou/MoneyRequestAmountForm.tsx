@@ -150,7 +150,6 @@ function MoneyRequestAmountForm({
                     <SettlementButton
                         pressOnEnter
                         onPress={submitAndNavigateToNextPage}
-                        enablePaymentsRoute={ROUTES.IOU_SEND_ENABLE_PAYMENTS}
                         addDebitCardRoute={ROUTES.IOU_SEND_ADD_DEBIT_CARD}
                         currency={currency ?? CONST.CURRENCY.USD}
                         policyID={policyID}

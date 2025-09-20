@@ -6,7 +6,6 @@ function VerifyAccountPage() {
     return (
         <VerifyAccountPageBase
             navigateBackTo={ROUTES.SETTINGS_WALLET}
-            navigateForwardTo={ROUTES.SETTINGS_ENABLE_PAYMENTS}
         />
     );
 }
