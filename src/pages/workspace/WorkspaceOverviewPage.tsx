@@ -1,6 +1,6 @@
 import {useFocusEffect} from '@react-navigation/native';
 import {accountIDSelector} from '@selectors/Session';
-import React, {useCallback, useContext, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import type {ImageStyle, StyleProp} from 'react-native';
 import {Image, StyleSheet, View} from 'react-native';
 import type {ValueOf} from 'type-fest';
@@ -21,14 +21,12 @@ import useDefaultFundID from '@hooks/useDefaultFundID';
 import useLocalize from '@hooks/useLocalize';
 import useNetwork from '@hooks/useNetwork';
 import useOnyx from '@hooks/useOnyx';
-import usePayAndDowngrade from '@hooks/usePayAndDowngrade';
 import usePermissions from '@hooks/usePermissions';
 import useResponsiveLayout from '@hooks/useResponsiveLayout';
 import useThemeIllustrations from '@hooks/useThemeIllustrations';
 import useThemeStyles from '@hooks/useThemeStyles';
 import {clearInviteDraft, clearWorkspaceOwnerChangeFlow, requestWorkspaceOwnerChange} from '@libs/actions/Policy/Member';
 import {
-    calculateBillNewDot,
     clearAvatarErrors,
     clearPolicyErrorField,
     deleteWorkspace,
@@ -46,7 +44,6 @@ import {getUserFriendlyWorkspaceType, goBackFromInvalidPolicy, isPolicyAdmin as 
 import {getDefaultWorkspaceAvatar} from '@libs/ReportUtils';
 import shouldRenderTransferOwnerButton from '@libs/shouldRenderTransferOwnerButton';
 import StringUtils from '@libs/StringUtils';
-import {shouldCalculateBillNewDot} from '@libs/SubscriptionUtils';
 import {getFullSizeAvatar} from '@libs/UserUtils';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
@@ -188,9 +185,7 @@ function WorkspaceOverviewPage({policyDraft, policy: policyProp, route}: Workspa
 
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-    const {setIsDeletingPaidWorkspace, isLoadingBill}: {setIsDeletingPaidWorkspace: (value: boolean) => void; isLoadingBill: boolean | undefined} = usePayAndDowngrade(setIsDeleteModalOpen);
-
-    const dropdownMenuRef = useRef<{setIsMenuVisible: (visible: boolean) => void} | null>(null);
+    const [isDeletingWorkspace, setIsDeletingWorkspace] = useState(false);
 
     const confirmDeleteAndHideModal = useCallback(() => {
         if (!policy?.id || !policyName) {
@@ -202,22 +197,10 @@ function WorkspaceOverviewPage({policyDraft, policy: policyProp, route}: Workspa
         goBackFromInvalidPolicy();
     }, [policy?.id, policyName, lastAccessedWorkspacePolicyID, defaultCardFeeds, lastPaymentMethod]);
 
-    useEffect(() => {
-        if (isLoadingBill) {
-            return;
-        }
-        dropdownMenuRef.current?.setIsMenuVisible(false);
-    }, [isLoadingBill]);
-
     const onDeleteWorkspace = useCallback(() => {
-        if (shouldCalculateBillNewDot()) {
-            setIsDeletingPaidWorkspace(true);
-            calculateBillNewDot();
-            return;
-        }
-
+        setIsDeletingWorkspace(true);
         setIsDeleteModalOpen(true);
-    }, [setIsDeletingPaidWorkspace]);
+    }, []);
 
     const handleBackButtonPress = () => {
         if (isComingFromGlobalReimbursementsFlow) {
@@ -275,9 +258,8 @@ function WorkspaceOverviewPage({policyDraft, policy: policyProp, route}: Workspa
                 text: translate('common.delete'),
                 icon: Trashcan,
                 onSelected: onDeleteWorkspace,
-                disabled: isLoadingBill,
-                shouldShowLoadingSpinnerIcon: isLoadingBill,
-                shouldCloseModalOnSelect: !shouldCalculateBillNewDot(),
+                disabled: isDeletingWorkspace,
+                shouldShowLoadingSpinnerIcon: isDeletingWorkspace,
             });
         }
         const isCurrentUserAdmin = policy?.employeeList?.[currentUserPersonalDetails?.login ?? '']?.role === CONST.POLICY.ROLE.ADMIN;
@@ -293,7 +275,6 @@ function WorkspaceOverviewPage({policyDraft, policy: policyProp, route}: Workspa
         return (
             <View style={[!shouldUseNarrowLayout && styles.flexRow, !shouldUseNarrowLayout && styles.gap2]}>
                 <ButtonWithDropdownMenu
-                    ref={dropdownMenuRef}
                     success={false}
                     onPress={() => {}}
                     shouldAlwaysShowDropdownMenu
@@ -504,11 +485,15 @@ function WorkspaceOverviewPage({policyDraft, policy: policyProp, route}: Workspa
                         title={translate('workspace.common.delete')}
                         isVisible={isDeleteModalOpen}
                         onConfirm={confirmDeleteAndHideModal}
-                        onCancel={() => setIsDeleteModalOpen(false)}
+                        onCancel={() => {
+                            setIsDeleteModalOpen(false);
+                            setIsDeletingWorkspace(false);
+                        }}
                         prompt={hasCardFeedOrExpensifyCard ? translate('workspace.common.deleteWithCardsConfirmation') : translate('workspace.common.deleteConfirmation')}
                         confirmText={translate('common.delete')}
                         cancelText={translate('common.cancel')}
                         danger
+                        onModalHide={() => setIsDeletingWorkspace(false)}
                     />
                 </View>
             )}

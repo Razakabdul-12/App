@@ -1,5 +1,5 @@
 import {Str} from 'expensify-common';
-import React, {useEffect, useRef} from 'react';
+import React, {useRef} from 'react';
 import {View} from 'react-native';
 import type {StyleProp, ViewStyle} from 'react-native';
 import Animated from 'react-native-reanimated';
@@ -73,14 +73,8 @@ type WorkspacesListRowProps = WithCurrentUserPersonalDetailsProps & {
     /** Is default policy */
     isDefault?: boolean;
 
-    /** Whether the bill is loading */
-    isLoadingBill?: boolean;
-
     /** Whether the list item is highlighted */
     shouldAnimateInHighlight?: boolean;
-
-    /** Function to reset loading spinner icon index */
-    resetLoadingSpinnerIconIndex?: () => void;
 };
 
 type BrickRoadIndicatorIconProps = {
@@ -126,8 +120,6 @@ function WorkspacesListRow({
     isJoinRequestPending,
     policyID,
     isDefault,
-    isLoadingBill,
-    resetLoadingSpinnerIconIndex,
 }: WorkspacesListRowProps) {
     const styles = useThemeStyles();
     const {translate} = useLocalize();
@@ -143,18 +135,6 @@ function WorkspacesListRow({
         highlightColor: theme.messageHighlightBG,
         backgroundColor: theme.transparent,
     });
-
-    useEffect(() => {
-        if (isLoadingBill) {
-            return;
-        }
-        resetLoadingSpinnerIconIndex?.();
-
-        if (!threeDotsMenuRef.current?.isPopupMenuVisible) {
-            return;
-        }
-        threeDotsMenuRef?.current?.hidePopoverMenu();
-    }, [isLoadingBill, resetLoadingSpinnerIconIndex]);
 
     if (layoutWidth === CONST.LAYOUT_WIDTH.NONE) {
         // To prevent layout from jumping or rendering for a split second, when

@@ -5663,6 +5663,7 @@ const translations = {
                 one: `Ti sei impegnato per 1 membro attivo sul piano Control fino alla scadenza del tuo abbonamento annuale il ${annualSubscriptionEndDate}. Puoi passare all'abbonamento a consumo e effettuare il downgrade al piano Collect a partire dal ${annualSubscriptionEndDate} disabilitando il rinnovo automatico in`,
                 other: `Hai impegnato ${count} membri attivi nel piano Control fino alla fine del tuo abbonamento annuale il ${annualSubscriptionEndDate}. Puoi passare all'abbonamento a consumo e fare il downgrade al piano Collect a partire dal ${annualSubscriptionEndDate} disabilitando il rinnovo automatico in`,
             }),
+            downgradeUnavailable: 'Il downgrade del piano del tuo spazio di lavoro non è più disponibile.',
             subscriptions: 'Abbonamenti',
         },
     },

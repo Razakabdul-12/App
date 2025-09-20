@@ -29,7 +29,6 @@ import useHandleBackButton from '@hooks/useHandleBackButton';
 import useLocalize from '@hooks/useLocalize';
 import useNetwork from '@hooks/useNetwork';
 import useOnyx from '@hooks/useOnyx';
-import usePayAndDowngrade from '@hooks/usePayAndDowngrade';
 import usePermissions from '@hooks/usePermissions';
 import useResponsiveLayout from '@hooks/useResponsiveLayout';
 import useSearchResults from '@hooks/useSearchResults';
@@ -38,7 +37,7 @@ import useTheme from '@hooks/useTheme';
 import useThemeStyles from '@hooks/useThemeStyles';
 import {isConnectionInProgress} from '@libs/actions/connections';
 import {clearWorkspaceOwnerChangeFlow, requestWorkspaceOwnerChange} from '@libs/actions/Policy/Member';
-import {calculateBillNewDot, clearDeleteWorkspaceError, clearDuplicateWorkspace, clearErrors, deleteWorkspace, leaveWorkspace, removeWorkspace} from '@libs/actions/Policy/Policy';
+import {clearDeleteWorkspaceError, clearDuplicateWorkspace, clearErrors, deleteWorkspace, leaveWorkspace, removeWorkspace} from '@libs/actions/Policy/Policy';
 import {callFunctionIfActionIsAllowed, isSupportAuthToken} from '@libs/actions/Session';
 import {filterInactiveCards} from '@libs/CardUtils';
 import interceptAnonymousUser from '@libs/interceptAnonymousUser';
@@ -49,7 +48,6 @@ import type {AuthScreensParamList} from '@libs/Navigation/types';
 import {getDefaultApprover, getPolicy, getPolicyBrickRoadIndicatorStatus, isPolicyAdmin, shouldShowPolicy} from '@libs/PolicyUtils';
 import {getDefaultWorkspaceAvatar} from '@libs/ReportUtils';
 import shouldRenderTransferOwnerButton from '@libs/shouldRenderTransferOwnerButton';
-import {shouldCalculateBillNewDot as shouldCalculateBillNewDotFn} from '@libs/SubscriptionUtils';
 import type {AvatarSource} from '@libs/UserUtils';
 import colors from '@styles/theme/colors';
 import variables from '@styles/variables';
@@ -127,9 +125,6 @@ function WorkspacesListPage() {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [policyIDToDelete, setPolicyIDToDelete] = useState<string>();
     const [policyNameToDelete, setPolicyNameToDelete] = useState<string>();
-    const {setIsDeletingPaidWorkspace, isLoadingBill}: {setIsDeletingPaidWorkspace: (value: boolean) => void; isLoadingBill: boolean | undefined} = usePayAndDowngrade(setIsDeleteModalOpen);
-
-    const [loadingSpinnerIconIndex, setLoadingSpinnerIconIndex] = useState<number | null>(null);
 
     const isLessThanMediumScreen = isMediumScreenWidth || shouldUseNarrowLayout;
 
@@ -168,12 +163,6 @@ function WorkspacesListPage() {
         deleteWorkspace(policyIDToDelete, policyNameToDelete, lastAccessedWorkspacePolicyID, defaultCardFeeds, lastPaymentMethod);
         setIsDeleteModalOpen(false);
     };
-
-    const shouldCalculateBillNewDot: boolean = shouldCalculateBillNewDotFn();
-
-    const resetLoadingSpinnerIconIndex = useCallback(() => {
-        setLoadingSpinnerIconIndex(null);
-    }, []);
 
     const startChangeOwnershipFlow = useCallback(
         (policyID: string | undefined) => {
@@ -264,12 +253,7 @@ function WorkspacesListPage() {
                 threeDotsMenuItems.push({
                     icon: Expensicons.Trashcan,
                     text: translate('workspace.common.delete'),
-                    shouldShowLoadingSpinnerIcon: loadingSpinnerIconIndex === index,
                     onSelected: () => {
-                        if (loadingSpinnerIconIndex !== null) {
-                            return;
-                        }
-
                         if (isSupportalAction) {
                             setIsSupportalActionRestrictedModalOpen(true);
                             return;
@@ -277,18 +261,8 @@ function WorkspacesListPage() {
 
                         setPolicyIDToDelete(item.policyID);
                         setPolicyNameToDelete(item.title);
-
-                        if (shouldCalculateBillNewDot) {
-                            setIsDeletingPaidWorkspace(true);
-                            calculateBillNewDot();
-                            setLoadingSpinnerIconIndex(index);
-                            return;
-                        }
-
                         setIsDeleteModalOpen(true);
                     },
-                    shouldKeepModalOpen: shouldCalculateBillNewDot,
-                    shouldCallAfterModalHide: !shouldCalculateBillNewDot,
                 });
             }
 
@@ -332,8 +306,6 @@ function WorkspacesListPage() {
                                 shouldDisableThreeDotsMenu={item.disabled}
                                 style={[item.pendingAction === CONST.RED_BRICK_ROAD_PENDING_ACTION.DELETE ? styles.offlineFeedback.deleted : {}]}
                                 isDefault={isDefault}
-                                isLoadingBill={isLoadingBill}
-                                resetLoadingSpinnerIconIndex={resetLoadingSpinnerIconIndex}
                             />
                         )}
                     </PressableWithoutFeedback>
@@ -354,14 +326,9 @@ function WorkspacesListPage() {
             styles.mh5,
             styles.hoveredComponentBG,
             styles.offlineFeedback.deleted,
-            loadingSpinnerIconIndex,
-            shouldCalculateBillNewDot,
             isSupportalAction,
-            setIsDeletingPaidWorkspace,
             startChangeOwnershipFlow,
             isLessThanMediumScreen,
-            isLoadingBill,
-            resetLoadingSpinnerIconIndex,
         ],
     );
 

@@ -600,8 +600,6 @@ const SCREENS = {
         DISTANCE_RATE_TAX_RECLAIMABLE_ON_EDIT: 'Distance_Rate_Tax_Reclaimable_On_Edit',
         DISTANCE_RATE_TAX_RATE_EDIT: 'Distance_Rate_Tax_Rate_Edit',
         UPGRADE: 'Workspace_Upgrade',
-        DOWNGRADE: 'Workspace_Downgrade',
-        PAY_AND_DOWNGRADE: 'Workspace_Pay_And_Downgrade',
         RULES: 'Policy_Rules',
         REPORTS_DEFAULT_TITLE: 'Reports_Default_Title',
         RULES_AUTO_APPROVE_REPORTS_UNDER: 'Rules_Auto_Approve_Reports_Under',

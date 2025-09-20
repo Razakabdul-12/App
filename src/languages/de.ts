@@ -5655,6 +5655,7 @@ const translations = {
                 one: `Sie haben sich verpflichtet, bis zum Ende Ihres Jahresabonnements am ${annualSubscriptionEndDate} 1 aktives Mitglied im Control-Plan zu haben. Sie können zu einem nutzungsbasierten Abonnement wechseln und ab dem ${annualSubscriptionEndDate} auf den Collect-Plan herabstufen, indem Sie die automatische Verlängerung deaktivieren.`,
                 other: `Sie haben sich zu ${count} aktiven Mitgliedern im Control-Plan verpflichtet, bis Ihr Jahresabonnement am ${annualSubscriptionEndDate} endet. Sie können zu einem nutzungsbasierten Abonnement wechseln und ab dem ${annualSubscriptionEndDate} auf den Collect-Plan herabstufen, indem Sie die automatische Verlängerung deaktivieren in`,
             }),
+            downgradeUnavailable: 'Das Herabstufen Ihres Workspace-Plans ist nicht mehr verfügbar.',
             subscriptions: 'Abonnements',
         },
     },

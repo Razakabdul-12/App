@@ -5630,6 +5630,7 @@ const translations = {
                 one: `あなたは、年間サブスクリプションが終了する${annualSubscriptionEndDate}まで、Controlプランの1人のアクティブメンバーにコミットしています。自動更新を無効にすることで、${annualSubscriptionEndDate}から従量課金制のサブスクリプションに切り替え、Collectプランにダウングレードすることができます。`,
                 other: `あなたは、年間サブスクリプションが${annualSubscriptionEndDate}に終了するまで、Controlプランで${count}人のアクティブメンバーにコミットしています。自動更新を無効にすることで、${annualSubscriptionEndDate}から従量課金制のサブスクリプションに切り替え、Collectプランにダウングレードすることができます。`,
             }),
+            downgradeUnavailable: 'ワークスペースプランのダウングレードは利用できなくなりました。',
             subscriptions: 'サブスクリプション',
         },
     },

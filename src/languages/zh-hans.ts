@@ -5552,6 +5552,7 @@ const translations = {
                 one: `您已承诺在您的年度订阅到期日${annualSubscriptionEndDate}之前，在控制计划中保留1名活跃成员。您可以选择按使用付费的订阅方式，并在${annualSubscriptionEndDate}之后通过禁用自动续订降级到Collect计划。`,
                 other: `您已承诺在控制计划中拥有 ${count} 名活跃成员，直到您的年度订阅在 ${annualSubscriptionEndDate} 结束。您可以通过在 ${annualSubscriptionEndDate} 开始禁用自动续订来切换到按使用付费订阅并降级到 Collect 计划。`,
             }),
+            downgradeUnavailable: '工作区计划的降级已不再提供。',
             subscriptions: '订阅',
         },
     },

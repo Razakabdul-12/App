@@ -539,19 +539,6 @@ const ONYXKEYS = {
     /** Onyx updates that should be stored after sequential queue is flushed */
     QUEUE_FLUSHED_DATA: 'queueFlushedData',
 
-    /** Set when we are loading bill when downgrade */
-    IS_LOADING_BILL_WHEN_DOWNGRADE: 'isLoadingBillWhenDowngrade',
-
-    /**
-     * Determines whether billing is required when the user downgrades their plan.
-     * If true, the "Pay & Downgrade" RHP will be displayed to guide the user
-     * through the payment process before downgrading.
-     */
-    SHOULD_BILL_WHEN_DOWNGRADING: 'shouldBillWhenDowngrading',
-
-    /** Billing receipt details */
-    BILLING_RECEIPT_DETAILS: 'billingReceiptDetails',
-
     /** Set when user tries to connect VBBA but workspace currency is unsupported and is forced to change
      * This is later used to redirect user directly back to the VBBA flow */
     IS_FORCED_TO_CHANGE_CURRENCY: 'isForcedToChangeCurrency',
@@ -1212,9 +1199,6 @@ type OnyxValuesMapping = {
     [ONYXKEYS.NVP_DISMISSED_PRODUCT_TRAINING]: OnyxTypes.DismissedProductTraining;
     [ONYXKEYS.CORPAY_ONBOARDING_FIELDS]: OnyxTypes.CorpayOnboardingFields;
     [ONYXKEYS.LAST_FULL_RECONNECT_TIME]: string;
-    [ONYXKEYS.IS_LOADING_BILL_WHEN_DOWNGRADE]: boolean | undefined;
-    [ONYXKEYS.SHOULD_BILL_WHEN_DOWNGRADING]: boolean | undefined;
-    [ONYXKEYS.BILLING_RECEIPT_DETAILS]: OnyxTypes.BillingReceiptDetails;
     [ONYXKEYS.NVP_SIDE_PANEL]: OnyxTypes.SidePanel;
     [ONYXKEYS.NVP_DISMISSED_REJECT_USE_EXPLANATION]: boolean;
     [ONYXKEYS.NVP_PRIVATE_VACATION_DELEGATE]: OnyxTypes.VacationDelegate;

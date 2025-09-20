@@ -166,15 +166,6 @@ Onyx.connect({
     waitForCollectionCallback: true,
 });
 
-// Indicates if downgrading the current subscription plan is allowed for the user.
-let canDowngrade = false;
-Onyx.connect({
-    key: ONYXKEYS.ACCOUNT,
-    callback: (val) => {
-        canDowngrade = val?.canDowngrade ?? false;
-    },
-});
-
 let introSelected: OnyxEntry<IntroSelected>;
 Onyx.connect({
     key: ONYXKEYS.NVP_INTRO_SELECTED,
@@ -581,10 +572,6 @@ function shouldRestrictUserBillableActions(policyID: string): boolean {
     return false;
 }
 
-function shouldCalculateBillNewDot(): boolean {
-    return canDowngrade && getOwnedPaidPolicies(allPolicies, currentUserAccountID).length === 1;
-}
-
 function checkIfHasTeam2025Pricing() {
     if (hasManualTeam2025Pricing) {
         return true;
@@ -692,7 +679,6 @@ export {
     shouldShowPreTrialBillingBanner,
     shouldShowDiscountBanner,
     getEarlyDiscountInfo,
-    shouldCalculateBillNewDot,
     getSubscriptionPlanInfo,
     getSubscriptionPrice,
 };

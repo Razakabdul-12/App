@@ -42,7 +42,6 @@ function SubscriptionPlanCardActionButton({subscriptionPlan, isFromComparisonMod
     const hasTeam2025Pricing = useHasTeam2025Pricing();
     const currentUserAccountID = getCurrentUserAccountID();
     const [policies] = useOnyx(ONYXKEYS.COLLECTION.POLICY, {canBeMissing: false});
-    const [account] = useOnyx(ONYXKEYS.ACCOUNT, {canBeMissing: false});
     const privateSubscription = usePrivateSubscription();
     const isAnnual = privateSubscription?.type === CONST.SUBSCRIPTION.TYPE.ANNUAL;
     const ownerPolicies = useMemo(() => getOwnedPaidPolicies(policies, currentUserAccountID), [policies, currentUserAccountID]);
@@ -62,16 +61,6 @@ function SubscriptionPlanCardActionButton({subscriptionPlan, isFromComparisonMod
         if (!ownerPolicies.length) {
             return;
         }
-        if (planType === CONST.POLICY.TYPE.TEAM && privateSubscription?.type === CONST.SUBSCRIPTION.TYPE.ANNUAL && !account?.canDowngrade) {
-            Navigation.navigate(ROUTES.SETTINGS_SUBSCRIPTION_DOWNGRADE_BLOCKED.getRoute(Navigation.getActiveRoute()));
-            return;
-        }
-
-        if (planType === CONST.POLICY.TYPE.TEAM) {
-            Navigation.navigate(ROUTES.WORKSPACE_DOWNGRADE.getRoute(policy?.id, Navigation.getActiveRoute()));
-            return;
-        }
-
         if (planType === CONST.POLICY.TYPE.CORPORATE) {
             if (canPerformUpgrade && !!policy?.id) {
                 upgradeToCorporate(policy.id);
@@ -92,16 +81,7 @@ function SubscriptionPlanCardActionButton({subscriptionPlan, isFromComparisonMod
 
     if (subscriptionPlan === CONST.POLICY.TYPE.TEAM) {
         if (isFromComparisonModal) {
-            if (isSelected) {
-                return currentPlanLabel;
-            }
-            return (
-                <Button
-                    text={translate('subscription.yourPlan.downgrade')}
-                    style={style}
-                    onPress={() => handlePlanPress(CONST.POLICY.TYPE.TEAM)}
-                />
-            );
+            return isSelected ? currentPlanLabel : null;
         }
         if (hasTeam2025Pricing) {
             return <AddMembersButton />;

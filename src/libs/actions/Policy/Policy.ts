@@ -14,7 +14,6 @@ import type {
     DeleteWorkspaceAvatarParams,
     DeleteWorkspaceParams,
     DisablePolicyBillableModeParams,
-    DowngradeToTeamParams,
     DuplicateWorkspaceParams,
     EnablePolicyAutoApprovalOptionsParams,
     EnablePolicyAutoReimbursementLimitParams,
@@ -62,7 +61,7 @@ import type {
 import type SetPolicyCashExpenseModeParams from '@libs/API/parameters/SetPolicyCashExpenseModeParams';
 import type UpdatePolicyMembersCustomFieldsParams from '@libs/API/parameters/UpdatePolicyMembersCustomFieldsParams';
 import type {ApiRequestCommandParameters} from '@libs/API/types';
-import {READ_COMMANDS, SIDE_EFFECT_REQUEST_COMMANDS, WRITE_COMMANDS} from '@libs/API/types';
+import {READ_COMMANDS, WRITE_COMMANDS} from '@libs/API/types';
 import type {CustomRNImageManipulatorResult} from '@libs/cropOrRotateImage/types';
 import * as CurrencyUtils from '@libs/CurrencyUtils';
 import DateUtils from '@libs/DateUtils';
@@ -4312,49 +4311,6 @@ function upgradeToCorporate(policyID: string, featureName?: string) {
     API.write(WRITE_COMMANDS.UPGRADE_TO_CORPORATE, parameters, {optimisticData, successData, failureData});
 }
 
-function downgradeToTeam(policyID: string) {
-    // This will be fixed as part of https://github.com/Expensify/Expensify/issues/507850
-    // eslint-disable-next-line deprecation/deprecation
-    const policy = getPolicy(policyID);
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `policy_${policyID}`,
-            value: {
-                isPendingDowngrade: true,
-                type: CONST.POLICY.TYPE.TEAM,
-                isAttendeeTrackingEnabled: null,
-            },
-        },
-    ];
-
-    const successData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `policy_${policyID}`,
-            value: {
-                isPendingDowngrade: false,
-            },
-        },
-    ];
-
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `policy_${policyID}`,
-            value: {
-                isPendingDowngrade: false,
-                type: policy?.type,
-                isAttendeeTrackingEnabled: policy?.isAttendeeTrackingEnabled,
-            },
-        },
-    ];
-
-    const parameters: DowngradeToTeamParams = {policyID};
-
-    API.write(WRITE_COMMANDS.DOWNGRADE_TO_TEAM, parameters, {optimisticData, successData, failureData});
-}
-
 function setWorkspaceDefaultSpendCategory(policyID: string, groupID: string, category: string) {
     // This will be fixed as part of https://github.com/Expensify/Expensify/issues/507850
     // eslint-disable-next-line deprecation/deprecation
@@ -5832,77 +5788,6 @@ function clearGetAccessiblePoliciesErrors() {
 /**
  * Call the API to calculate the bill for the new dot
  */
-function calculateBillNewDot() {
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.IS_LOADING_BILL_WHEN_DOWNGRADE,
-            value: true,
-        },
-    ];
-    const successData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.IS_LOADING_BILL_WHEN_DOWNGRADE,
-            value: false,
-        },
-    ];
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.IS_LOADING_BILL_WHEN_DOWNGRADE,
-            value: false,
-        },
-    ];
-
-    // eslint-disable-next-line rulesdir/no-api-side-effects-method
-    API.makeRequestWithSideEffects(SIDE_EFFECT_REQUEST_COMMANDS.CALCULATE_BILL_NEW_DOT, null, {
-        optimisticData,
-        successData,
-        failureData,
-    });
-}
-
-/**
- * Call the API to pay and downgrade
- */
-function payAndDowngrade() {
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.BILLING_RECEIPT_DETAILS,
-            value: {
-                errors: null,
-                isLoading: true,
-            },
-        },
-    ];
-    const successData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.BILLING_RECEIPT_DETAILS,
-            value: {
-                isLoading: false,
-            },
-        },
-    ];
-
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.BILLING_RECEIPT_DETAILS,
-            value: {
-                isLoading: false,
-            },
-        },
-    ];
-    API.write(WRITE_COMMANDS.PAY_AND_DOWNGRADE, null, {optimisticData, successData, failureData});
-}
-
-function clearBillingReceiptDetailsErrors() {
-    Onyx.merge(ONYXKEYS.BILLING_RECEIPT_DETAILS, {errors: null});
-}
-
 function setIsForcedToChangeCurrency(value: boolean) {
     Onyx.set(ONYXKEYS.IS_FORCED_TO_CHANGE_CURRENCY, value);
 }
@@ -6085,13 +5970,9 @@ export {
     verifySetupIntentAndRequestPolicyOwnerChange,
     updateInvoiceCompanyName,
     updateInvoiceCompanyWebsite,
-    downgradeToTeam,
     getAccessiblePolicies,
     clearGetAccessiblePoliciesErrors,
-    calculateBillNewDot,
-    payAndDowngrade,
     openDuplicatePolicyPage,
-    clearBillingReceiptDetailsErrors,
     clearQuickbooksOnlineAutoSyncErrorField,
     setIsForcedToChangeCurrency,
     duplicateWorkspace,

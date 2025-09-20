@@ -5658,6 +5658,7 @@ const translations = {
                 one: `Je hebt je gecommitteerd aan 1 actief lid op het Control-plan tot je jaarlijkse abonnement eindigt op ${annualSubscriptionEndDate}. Je kunt overstappen naar een pay-per-use abonnement en downgraden naar het Collect-plan vanaf ${annualSubscriptionEndDate} door automatisch verlengen uit te schakelen in`,
                 other: `Je hebt je gecommitteerd aan ${count} actieve leden op het Control-plan tot je jaarlijkse abonnement eindigt op ${annualSubscriptionEndDate}. Je kunt overstappen naar een pay-per-use-abonnement en downgraden naar het Collect-plan vanaf ${annualSubscriptionEndDate} door automatisch verlengen uit te schakelen in`,
             }),
+            downgradeUnavailable: 'Het downgraden van je werkruimteplan is niet meer beschikbaar.',
             subscriptions: 'Abonnementen',
         },
     },

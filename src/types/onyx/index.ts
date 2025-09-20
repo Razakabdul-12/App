@@ -9,7 +9,6 @@ import type BankAccount from './BankAccount';
 import type Beta from './Beta';
 import type BetaConfiguration from './BetaConfiguration';
 import type BillingGraceEndPeriod from './BillingGraceEndPeriod';
-import type BillingReceiptDetails from './BillingReceiptDetails';
 import type BillingStatus from './BillingStatus';
 import type BlockedFromConcierge from './BlockedFromConcierge';
 import type CancellationDetails from './CancellationDetails';
@@ -270,7 +269,6 @@ export type {
     OutstandingReportsByPolicyIDDerivedValue,
     ValidateUserAndGetAccessiblePolicies,
     VacationDelegate,
-    BillingReceiptDetails,
     ExportTemplate,
     HybridApp,
 };

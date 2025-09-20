@@ -1,4 +1,3 @@
-import {format} from 'date-fns';
 import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import type {ValueOf} from 'type-fest';
@@ -13,12 +12,10 @@ import SingleSelectListItem from '@components/SelectionList/SingleSelectListItem
 import Text from '@components/Text';
 import TextLink from '@components/TextLink';
 import useLocalize from '@hooks/useLocalize';
-import usePrivateSubscription from '@hooks/usePrivateSubscription';
 import useTheme from '@hooks/useTheme';
 import useThemeStyles from '@hooks/useThemeStyles';
 import OpenWorkspacePlanPage from '@libs/actions/Policy/Plan';
 import Navigation from '@navigation/Navigation';
-import CardSectionUtils from '@pages/settings/Subscription/CardSection/utils';
 import type {PersonalPolicyTypeExcludedProps} from '@pages/settings/Subscription/SubscriptionPlan/SubscriptionPlanCard';
 import CONST from '@src/CONST';
 import ROUTES from '@src/ROUTES';
@@ -39,8 +36,6 @@ function WorkspaceOverviewPlanTypePage({policy}: WithPolicyProps) {
     const {translate} = useLocalize();
     const theme = useTheme();
     const styles = useThemeStyles();
-    const privateSubscription = usePrivateSubscription();
-
     useEffect(() => {
         if (!policyID) {
             return;
@@ -64,11 +59,7 @@ function WorkspaceOverviewPlanTypePage({policy}: WithPolicyProps) {
         .reverse();
 
     const isControl = policy?.type === CONST.POLICY.TYPE.CORPORATE;
-    const isAnnual = privateSubscription?.type === CONST.SUBSCRIPTION.TYPE.ANNUAL;
-    const autoRenewalDate = privateSubscription?.endDate ? format(privateSubscription.endDate, CONST.DATE.MONTH_DAY_YEAR_ORDINAL_FORMAT) : CardSectionUtils.getNextBillingDate();
-
-    /** If user has the annual Control plan and their first billing cycle is completed, they cannot downgrade the Workspace plan to Collect. */
-    const isPlanTypeLocked = isControl && isAnnual && !policy.canDowngrade;
+    const isPlanTypeLocked = isControl;
 
     const lockedIcon = (option: WorkspacePlanTypeItem) =>
         option.value === policy?.type ? (
@@ -81,11 +72,6 @@ function WorkspaceOverviewPlanTypePage({policy}: WithPolicyProps) {
     const handleUpdatePlan = () => {
         if (policyID && policy?.type === CONST.POLICY.TYPE.TEAM && currentPlan === CONST.POLICY.TYPE.CORPORATE) {
             Navigation.navigate(ROUTES.WORKSPACE_UPGRADE.getRoute(policyID));
-            return;
-        }
-
-        if (policyID && policy?.type === CONST.POLICY.TYPE.CORPORATE && currentPlan === CONST.POLICY.TYPE.TEAM) {
-            Navigation.navigate(ROUTES.WORKSPACE_DOWNGRADE.getRoute(policyID));
             return;
         }
 
@@ -113,14 +99,7 @@ function WorkspaceOverviewPlanTypePage({policy}: WithPolicyProps) {
                     <>
                         {isPlanTypeLocked ? (
                             <Text style={[styles.mh5, styles.mv3]}>
-                                {translate('workspace.planTypePage.lockedPlanDescription', {
-                                    count: privateSubscription?.userCount ?? 1,
-                                    annualSubscriptionEndDate: autoRenewalDate,
-                                })}{' '}
-                                <TextLink onPress={() => Navigation.navigate(ROUTES.SETTINGS_SUBSCRIPTION.getRoute(Navigation.getActiveRoute()))}>
-                                    {translate('workspace.planTypePage.subscriptions')}
-                                </TextLink>
-                                .
+                                {translate('workspace.planTypePage.downgradeUnavailable')}
                             </Text>
                         ) : (
                             <Text style={[styles.mh5, styles.mv3]}>

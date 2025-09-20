@@ -5647,6 +5647,7 @@ const translations = {
                 one: `Zobowiązałeś się do 1 aktywnego członka w planie Control do zakończenia rocznej subskrypcji w dniu ${annualSubscriptionEndDate}. Możesz przejść na subskrypcję płatną za użycie i obniżyć do planu Collect od ${annualSubscriptionEndDate}, wyłączając automatyczne odnawianie w`,
                 other: `Zobowiązałeś się do ${count} aktywnych członków w planie Control do momentu zakończenia rocznej subskrypcji w dniu ${annualSubscriptionEndDate}. Możesz przejść na subskrypcję płatną za użycie i zmienić na plan Collect od ${annualSubscriptionEndDate}, wyłączając automatyczne odnawianie w`,
             }),
+            downgradeUnavailable: 'Obniżenie planu przestrzeni roboczej nie jest już dostępne.',
             subscriptions: 'Subskrypcje',
         },
     },

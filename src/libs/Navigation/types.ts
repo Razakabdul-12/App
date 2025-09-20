@@ -267,13 +267,6 @@ type SettingsNavigatorParamList = {
         backTo?: Routes;
         categoryId?: string;
     };
-    [SCREENS.WORKSPACE.DOWNGRADE]: {
-        policyID?: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.PAY_AND_DOWNGRADE]: {
-        policyID?: string;
-    };
     [SCREENS.WORKSPACE.CATEGORIES_SETTINGS]: {
         policyID: string;
         backTo?: Routes;

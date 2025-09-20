@@ -5663,6 +5663,7 @@ const translations = {
                 one: `Vous vous êtes engagé à avoir 1 membre actif sur le plan Control jusqu'à la fin de votre abonnement annuel le ${annualSubscriptionEndDate}. Vous pouvez passer à un abonnement à l'utilisation et rétrograder vers le plan Collect à partir du ${annualSubscriptionEndDate} en désactivant le renouvellement automatique dans`,
                 other: `Vous vous êtes engagé à avoir ${count} membres actifs sur le plan Control jusqu'à la fin de votre abonnement annuel le ${annualSubscriptionEndDate}. Vous pouvez passer à l'abonnement à l'utilisation et rétrograder au plan Collect à partir du ${annualSubscriptionEndDate} en désactivant le renouvellement automatique dans`,
             }),
+            downgradeUnavailable: 'La rétrogradation du plan de votre espace de travail n’est plus disponible.',
             subscriptions: 'Abonnements',
         },
     },

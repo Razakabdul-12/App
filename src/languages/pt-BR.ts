@@ -5658,6 +5658,7 @@ const translations = {
                 one: `Você se comprometeu com 1 membro ativo no plano Control até que sua assinatura anual termine em ${annualSubscriptionEndDate}. Você pode mudar para a assinatura de pagamento por uso e fazer downgrade para o plano Collect a partir de ${annualSubscriptionEndDate} desativando a renovação automática em`,
                 other: `Você se comprometeu com ${count} membros ativos no plano Control até que sua assinatura anual termine em ${annualSubscriptionEndDate}. Você pode mudar para a assinatura de pagamento por uso e fazer downgrade para o plano Collect a partir de ${annualSubscriptionEndDate} desativando a renovação automática em`,
             }),
+            downgradeUnavailable: 'O downgrade do plano do seu espaço de trabalho não está mais disponível.',
             subscriptions: 'Assinaturas',
         },
     },

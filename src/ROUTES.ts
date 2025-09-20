@@ -1635,18 +1635,6 @@ const ROUTES = {
             // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
             getUrlWithBackToParam(policyID ? (`workspaces/${policyID}/upgrade/${encodeURIComponent(featureName ?? '')}` as const) : (`workspaces/upgrade` as const), backTo),
     },
-    WORKSPACE_DOWNGRADE: {
-        route: 'workspaces/:policyID?/downgrade/',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (policyID?: string, backTo?: string) => getUrlWithBackToParam(policyID ? (`workspaces/${policyID}/downgrade/` as const) : (`workspaces/downgrade` as const), backTo),
-    },
-    WORKSPACE_PAY_AND_DOWNGRADE: {
-        route: 'workspaces/pay-and-downgrade/',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (backTo?: string) => getUrlWithBackToParam(`workspaces/pay-and-downgrade` as const, backTo),
-    },
     WORKSPACE_CATEGORIES_SETTINGS: {
         route: 'workspaces/:policyID/categories/settings',
         getRoute: (policyID: string) => `workspaces/${policyID}/categories/settings` as const,
