@@ -2952,7 +2952,6 @@ const CONST = {
             ARE_WORKFLOWS_ENABLED: 'areWorkflowsEnabled',
             ARE_CONNECTIONS_ENABLED: 'areConnectionsEnabled',
             ARE_COMPANY_CARDS_ENABLED: 'areCompanyCardsEnabled',
-            ARE_EXPENSIFY_CARDS_ENABLED: 'areExpensifyCardsEnabled',
             ARE_TAXES_ENABLED: 'tax',
             ARE_RULES_ENABLED: 'areRulesEnabled',
             IS_ATTENDEE_TRACKING_ENABLED: 'isAttendeeTrackingEnabled',
@@ -6985,7 +6984,6 @@ const FEATURE_IDS = {
     ACCOUNTING: 'accounting',
     COMPANY_CARDS: 'company-cards',
     WORKFLOWS: 'workflows',
-    EXPENSIFY_CARD: 'expensify-card',
 };
 
 const TASK_TO_FEATURE: Record<string, string> = {

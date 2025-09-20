@@ -204,56 +204,8 @@ type ExpensifyCardDetails = {
 /** Record of Expensify cards, indexed by cardID */
 type CardList = Record<string, Card>;
 
-/** Issue new card flow steps */
-type IssueNewCardStep = ValueOf<typeof CONST.EXPENSIFY_CARD.STEP>;
-
 /** Card spending limit type */
 type CardLimitType = ValueOf<typeof CONST.EXPENSIFY_CARD.LIMIT_TYPES>;
-
-/** Data required to be sent to issue a new card */
-type IssueNewCardData = {
-    /** The email address of the cardholder */
-    assigneeEmail: string;
-
-    /** Card type */
-    cardType: ValueOf<typeof CONST.EXPENSIFY_CARD.CARD_TYPE>;
-
-    /** Card spending limit type */
-    limitType: CardLimitType;
-
-    /** Card spending limit */
-    limit: number;
-
-    /** Name of the card */
-    cardTitle: string;
-
-    /** Currency of the card */
-    currency: string;
-};
-
-/** Model of Issue new card flow */
-type IssueNewCard = {
-    /** The current step of the flow */
-    currentStep: IssueNewCardStep;
-
-    /** Data required to be sent to issue a new card */
-    data: IssueNewCardData;
-
-    /** Whether the user is editing step */
-    isEditing: boolean;
-
-    /** Whether the changing assignee is disabled. E.g., The assignee is auto selected from workspace members page */
-    isChangeAssigneeDisabled: boolean;
-
-    /** Whether the request is being processed */
-    isLoading?: boolean;
-
-    /** Error message */
-    errors?: OnyxCommon.Errors;
-
-    /** Whether the request was successful */
-    isSuccessful?: boolean;
-};
 
 /** List of Expensify cards */
 type WorkspaceCardsList = Record<string, Card> & {
@@ -265,4 +217,4 @@ type WorkspaceCardsList = Record<string, Card> & {
 type FilteredCardList = Record<string, string>;
 
 export default Card;
-export type {ExpensifyCardDetails, CardList, IssueNewCard, IssueNewCardStep, IssueNewCardData, WorkspaceCardsList, CardLimitType, FilteredCardList, ProvisioningCardData};
+export type {ExpensifyCardDetails, CardList, WorkspaceCardsList, CardLimitType, FilteredCardList, ProvisioningCardData};

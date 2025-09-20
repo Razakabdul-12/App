@@ -16,12 +16,10 @@ import type {
     DisablePolicyBillableModeParams,
     EnablePolicyCompanyCardsParams,
     EnablePolicyConnectionsParams,
-    EnablePolicyExpensifyCardsParams,
     EnablePolicyWorkflowsParams,
     LeavePolicyParams,
     OpenDraftWorkspaceRequestParams,
     OpenPolicyEditCardLimitTypePageParams,
-    OpenPolicyExpensifyCardsPageParams,
     OpenPolicyInitialPageParams,
     OpenPolicyMoreFeaturesPageParams,
     OpenPolicyProfilePageParams,
@@ -29,7 +27,6 @@ import type {
     OpenPolicyWorkflowsPageParams,
     OpenWorkspaceInvitePageParams,
     OpenWorkspaceParams,
-    RequestExpensifyCardLimitIncreaseParams,
     SetPolicyBillableModeParams,
     SetPolicyDefaultReportTitleParams,
     SetPolicyPreventMemberCreatedTitleParams,
@@ -63,7 +60,7 @@ import * as NumberUtils from '@libs/NumberUtils';
 import * as PersonalDetailsUtils from '@libs/PersonalDetailsUtils';
 import * as PhoneNumber from '@libs/PhoneNumber';
 import * as PolicyUtils from '@libs/PolicyUtils';
-import {getMemberAccountIDsForWorkspace, goBackWhenEnableFeature, isControlPolicy, navigateToExpensifyCardPage} from '@libs/PolicyUtils';
+import {getMemberAccountIDsForWorkspace, goBackWhenEnableFeature, isControlPolicy} from '@libs/PolicyUtils';
 import * as ReportUtils from '@libs/ReportUtils';
 import type {PolicySelector} from '@pages/home/sidebar/FloatingActionButtonAndPopover';
 import type {Feature} from '@pages/OnboardingInterestedFeatures/types';
@@ -2550,47 +2547,6 @@ function openPolicyTaxesPage(policyID: string) {
     API.read(READ_COMMANDS.OPEN_POLICY_TAXES_PAGE, params);
 }
 
-function openPolicyExpensifyCardsPage(policyID: string, workspaceAccountID: number) {
-    const authToken = NetworkStore.getAuthToken();
-
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.PRIVATE_EXPENSIFY_CARD_SETTINGS}${workspaceAccountID}`,
-            value: {
-                isLoading: true,
-            },
-        },
-    ];
-
-    const successData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.PRIVATE_EXPENSIFY_CARD_SETTINGS}${workspaceAccountID}`,
-            value: {
-                isLoading: false,
-            },
-        },
-    ];
-
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.PRIVATE_EXPENSIFY_CARD_SETTINGS}${workspaceAccountID}`,
-            value: {
-                isLoading: false,
-            },
-        },
-    ];
-
-    const params: OpenPolicyExpensifyCardsPageParams = {
-        policyID,
-        authToken,
-    };
-
-    API.read(READ_COMMANDS.OPEN_POLICY_EXPENSIFY_CARDS_PAGE, params, {optimisticData, successData, failureData});
-}
-
 function openPolicyEditCardLimitTypePage(policyID: string, cardID: number) {
     const authToken = NetworkStore.getAuthToken();
 
@@ -2626,21 +2582,6 @@ function openDraftWorkspaceRequest(policyID: string) {
     const params: OpenDraftWorkspaceRequestParams = {policyID};
 
     API.read(READ_COMMANDS.OPEN_DRAFT_WORKSPACE_REQUEST, params);
-}
-
-function requestExpensifyCardLimitIncrease(settlementBankAccountID?: number) {
-    if (!settlementBankAccountID) {
-        return;
-    }
-
-    const authToken = NetworkStore.getAuthToken();
-
-    const params: RequestExpensifyCardLimitIncreaseParams = {
-        authToken,
-        settlementBankAccountID,
-    };
-
-    API.write(WRITE_COMMANDS.REQUEST_EXPENSIFY_CARD_LIMIT_INCREASE, params);
 }
 
 function updateMemberCustomField(policyID: string, login: string, customFieldType: CustomFieldType, value: string) {
@@ -3237,63 +3178,6 @@ function enablePolicyConnections(policyID: string, enabled: boolean) {
 /** Save the preferred export method for a policy */
 function savePreferredExportMethod(policyID: string, exportMethod: ReportExportType) {
     Onyx.merge(`${ONYXKEYS.LAST_EXPORT_METHOD}`, {[policyID]: exportMethod});
-}
-
-function enableExpensifyCard(policyID: string, enabled: boolean, shouldNavigateToExpensifyCardPage = false) {
-    const authToken = NetworkStore.getAuthToken();
-    if (!authToken) {
-        return;
-    }
-    const onyxData: OnyxData = {
-        optimisticData: [
-            {
-                onyxMethod: Onyx.METHOD.MERGE,
-                key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-                value: {
-                    areExpensifyCardsEnabled: enabled,
-                    pendingFields: {
-                        areExpensifyCardsEnabled: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE,
-                    },
-                },
-            },
-        ],
-        successData: [
-            {
-                onyxMethod: Onyx.METHOD.MERGE,
-                key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-                value: {
-                    pendingFields: {
-                        areExpensifyCardsEnabled: null,
-                    },
-                },
-            },
-        ],
-        failureData: [
-            {
-                onyxMethod: Onyx.METHOD.MERGE,
-                key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-                value: {
-                    areExpensifyCardsEnabled: !enabled,
-                    pendingFields: {
-                        areExpensifyCardsEnabled: null,
-                    },
-                },
-            },
-        ],
-    };
-
-    const parameters: EnablePolicyExpensifyCardsParams = {authToken, policyID, enabled};
-
-    API.writeWithNoDuplicatesEnableFeatureConflicts(WRITE_COMMANDS.ENABLE_POLICY_EXPENSIFY_CARDS, parameters, onyxData);
-
-    if (enabled && shouldNavigateToExpensifyCardPage) {
-        navigateToExpensifyCardPage(policyID);
-        return;
-    }
-
-    if (enabled && getIsNarrowLayout()) {
-        goBackWhenEnableFeature(policyID);
-    }
 }
 
 function enableCompanyCards(policyID: string, enabled: boolean, shouldGoBack = true) {
@@ -4610,13 +4494,10 @@ export {
     createDraftWorkspace,
     savePreferredExportMethod,
     buildPolicyData,
-    enableExpensifyCard,
     createPolicyExpenseChats,
     upgradeToCorporate,
-    openPolicyExpensifyCardsPage,
     updateMemberCustomField,
     openPolicyEditCardLimitTypePage,
-    requestExpensifyCardLimitIncrease,
     getAdminPolicies,
     getAdminPoliciesConnectedToNetSuite,
     getAdminPoliciesConnectedToSageIntacct,

@@ -8,28 +8,20 @@ import ScrollView from '@components/ScrollView';
 import Section from '@components/Section';
 import Text from '@components/Text';
 import useCardFeeds from '@hooks/useCardFeeds';
-import useDefaultFundID from '@hooks/useDefaultFundID';
 import useLocalize from '@hooks/useLocalize';
 import useNetwork from '@hooks/useNetwork';
 import useOnyx from '@hooks/useOnyx';
 import useResponsiveLayout from '@hooks/useResponsiveLayout';
 import useStyleUtils from '@hooks/useStyleUtils';
 import useThemeStyles from '@hooks/useThemeStyles';
-import {filterInactiveCards, getAllCardsForWorkspace, getCompanyFeeds, isSmartLimitEnabled as isSmartLimitEnabledUtil} from '@libs/CardUtils';
+import {getCompanyFeeds} from '@libs/CardUtils';
 import {getLatestErrorField} from '@libs/ErrorUtils';
 import Navigation from '@libs/Navigation/Navigation';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {WorkspaceSplitNavigatorParamList} from '@libs/Navigation/types';
 import { hasAccountingConnections, isControlPolicy} from '@libs/PolicyUtils';
 import {enablePolicyCategories} from '@userActions/Policy/Category';
-import {
-    clearPolicyErrorField,
-    enableCompanyCards,
-    enableExpensifyCard,
-    enablePolicyConnections,
-    enablePolicyWorkflows,
-    openPolicyMoreFeaturesPage,
-} from '@userActions/Policy/Policy';
+import {clearPolicyErrorField, enableCompanyCards, enablePolicyConnections, enablePolicyWorkflows, openPolicyMoreFeaturesPage} from '@userActions/Policy/Policy';
 import {navigateToConciergeChat} from '@userActions/Report';
 import CONST from '@src/CONST';
 import type {TranslationPaths} from '@src/languages/types';
@@ -73,28 +65,14 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
     const hasAccountingConnection = hasAccountingConnections(policy);
     const isAccountingEnabled = !!policy?.areConnectionsEnabled || !isEmptyObject(policy?.connections);
     const policyID = policy?.id;
-    const workspaceAccountID = policy?.workspaceAccountID ?? CONST.DEFAULT_NUMBER_ID;
-    const [cardsList] = useOnyx(`${ONYXKEYS.COLLECTION.WORKSPACE_CARDS_LIST}${workspaceAccountID.toString()}_${CONST.EXPENSIFY_CARD.BANK}`, {
-        selector: filterInactiveCards,
-        canBeMissing: true,
-    });
     const [cardFeeds] = useCardFeeds(policyID);
     const [isOrganizeWarningModalOpen, setIsOrganizeWarningModalOpen] = useState(false);
     const [isIntegrateWarningModalOpen, setIsIntegrateWarningModalOpen] = useState(false);
-    const [isDisableExpensifyCardWarningModalOpen, setIsDisableExpensifyCardWarningModalOpen] = useState(false);
     const [isDisableCompanyCardsWarningModalOpen, setIsDisableCompanyCardsWarningModalOpen] = useState(false);
-    const [isDisableWorkflowWarningModalOpen, setIsDisableWorkflowWarningModalOpen] = useState(false);
 
-
-    const [cardList] = useOnyx(`${ONYXKEYS.COLLECTION.WORKSPACE_CARDS_LIST}`, {canBeMissing: true});
-    const workspaceCards = getAllCardsForWorkspace(workspaceAccountID, cardList, cardFeeds);
-    const isSmartLimitEnabled = isSmartLimitEnabledUtil(workspaceCards);
 
     const [allTransactionViolations] = useOnyx(ONYXKEYS.COLLECTION.TRANSACTION_VIOLATIONS, {canBeMissing: true});
     const [policyTagLists] = useOnyx(`${ONYXKEYS.COLLECTION.POLICY_TAGS}${policy?.id}`, {canBeMissing: true});
-    const defaultFundID = useDefaultFundID(policyID);
-    const [cardSettings] = useOnyx(`${ONYXKEYS.COLLECTION.PRIVATE_EXPENSIFY_CARD_SETTINGS}${defaultFundID}`, {canBeMissing: true});
-    const paymentBankAccountID = cardSettings?.paymentBankAccountID;
 
     const onDisabledOrganizeSwitchPress = useCallback(() => {
         if (!hasAccountingConnection) {
@@ -103,34 +81,7 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
         setIsOrganizeWarningModalOpen(true);
     }, [hasAccountingConnection]);
 
-    const onDisabledWorkflowPress = useCallback(() => {
-        if (!isSmartLimitEnabled) {
-            return;
-        }
-        setIsDisableWorkflowWarningModalOpen(true);
-    }, [isSmartLimitEnabled]);
-
     const spendItems: Item[] = [
-        {
-            icon: Illustrations.HandCard,
-            titleTranslationKey: 'workspace.moreFeatures.expensifyCard.title',
-            subtitleTranslationKey: 'workspace.moreFeatures.expensifyCard.subtitle',
-            isActive: policy?.areExpensifyCardsEnabled ?? false,
-            pendingAction: policy?.pendingFields?.areExpensifyCardsEnabled,
-            disabled: (!!policy?.areExpensifyCardsEnabled && !!paymentBankAccountID) || !isEmptyObject(cardsList),
-            action: (isEnabled: boolean) => {
-                if (!policyID) {
-                    return;
-                }
-                enableExpensifyCard(policyID, isEnabled);
-            },
-            disabledAction: () => {
-                setIsDisableExpensifyCardWarningModalOpen(true);
-            },
-        },
-    ];
-
-    spendItems.push({
         icon: Illustrations.CompanyCard,
         titleTranslationKey: 'workspace.moreFeatures.companyCards.title',
         subtitleTranslationKey: 'workspace.moreFeatures.companyCards.subtitle',
@@ -146,7 +97,7 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
         disabledAction: () => {
             setIsDisableCompanyCardsWarningModalOpen(true);
         },
-    });
+    }];
 
     const manageItems: Item[] = [
         {
@@ -161,8 +112,6 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
                 }
                 enablePolicyWorkflows(policyID, isEnabled);
             },
-            disabled: isSmartLimitEnabled,
-            disabledAction: onDisabledWorkflowPress,
         },
     ];
 
@@ -377,18 +326,6 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
                     cancelText={translate('common.cancel')}
                 />
                 <ConfirmModal
-                    title={translate('workspace.moreFeatures.expensifyCard.disableCardTitle')}
-                    isVisible={isDisableExpensifyCardWarningModalOpen}
-                    onConfirm={() => {
-                        setIsDisableExpensifyCardWarningModalOpen(false);
-                        navigateToConciergeChat();
-                    }}
-                    onCancel={() => setIsDisableExpensifyCardWarningModalOpen(false)}
-                    prompt={translate('workspace.moreFeatures.expensifyCard.disableCardPrompt')}
-                    confirmText={translate('workspace.moreFeatures.expensifyCard.disableCardButton')}
-                    cancelText={translate('common.cancel')}
-                />
-                <ConfirmModal
                     title={translate('workspace.moreFeatures.companyCards.disableCardTitle')}
                     isVisible={isDisableCompanyCardsWarningModalOpen}
                     onConfirm={() => {
@@ -398,18 +335,6 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
                     onCancel={() => setIsDisableCompanyCardsWarningModalOpen(false)}
                     prompt={translate('workspace.moreFeatures.companyCards.disableCardPrompt')}
                     confirmText={translate('workspace.moreFeatures.companyCards.disableCardButton')}
-                    cancelText={translate('common.cancel')}
-                />
-                <ConfirmModal
-                    title={translate('workspace.moreFeatures.workflowWarningModal.featureEnabledTitle')}
-                    isVisible={isDisableWorkflowWarningModalOpen}
-                    onConfirm={() => {
-                        setIsDisableWorkflowWarningModalOpen(false);
-                        Navigation.navigate(ROUTES.WORKSPACE_EXPENSIFY_CARD.getRoute(policyID));
-                    }}
-                    onCancel={() => setIsDisableWorkflowWarningModalOpen(false)}
-                    prompt={translate('workspace.moreFeatures.workflowWarningModal.featureEnabledText')}
-                    confirmText={translate('workspace.moreFeatures.workflowWarningModal.confirmText')}
                     cancelText={translate('common.cancel')}
                 />
             </ScreenWrapper>

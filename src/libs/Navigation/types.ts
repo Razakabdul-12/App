@@ -753,23 +753,6 @@ type SettingsNavigatorParamList = {
         bank: string;
         backTo?: Routes;
     };
-    [SCREENS.WORKSPACE.EXPENSIFY_CARD_ISSUE_NEW]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.EXPENSIFY_CARD_BANK_ACCOUNT]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.EXPENSIFY_CARD_SETTINGS]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.EXPENSIFY_CARD_SETTINGS_ACCOUNT]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.EXPENSIFY_CARD_SETTINGS_FREQUENCY]: {
-        policyID: string;
-    };
     [SCREENS.WORKSPACE.COMPANY_CARDS_SETTINGS]: {
         policyID: string;
     };
@@ -783,46 +766,6 @@ type SettingsNavigatorParamList = {
     };
     [SCREENS.WORKSPACE.COMPANY_CARDS_SETTINGS_STATEMENT_CLOSE_DATE]: {
         policyID: string;
-    };
-    [SCREENS.WORKSPACE.EXPENSIFY_CARD_DETAILS]: {
-        policyID: string;
-        cardID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.EXPENSIFY_CARD_NAME]: {
-        policyID: string;
-        cardID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.EXPENSIFY_CARD_LIMIT]: {
-        policyID: string;
-        cardID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.EXPENSIFY_CARD_LIMIT_TYPE]: {
-        policyID: string;
-        cardID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.EXPENSIFY_CARD.EXPENSIFY_CARD_DETAILS]: {
-        policyID: string;
-        cardID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.EXPENSIFY_CARD.EXPENSIFY_CARD_NAME]: {
-        policyID: string;
-        cardID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.EXPENSIFY_CARD.EXPENSIFY_CARD_LIMIT]: {
-        policyID: string;
-        cardID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.EXPENSIFY_CARD.EXPENSIFY_CARD_LIMIT_TYPE]: {
-        policyID: string;
-        cardID: string;
-        backTo?: Routes;
     };
  
    
@@ -1458,7 +1401,6 @@ type RightModalNavigatorParamList = {
     [SCREENS.RIGHT_MODAL.REPORT_CHANGE_WORKSPACE]: NavigatorScreenParams<ReportChangeWorkspaceNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.REPORT_SETTINGS]: NavigatorScreenParams<ReportSettingsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.SETTINGS_CATEGORIES]: NavigatorScreenParams<SettingsNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.EXPENSIFY_CARD]: NavigatorScreenParams<SettingsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.DOMAIN_CARD]: NavigatorScreenParams<SettingsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.REPORT_DESCRIPTION]: NavigatorScreenParams<ReportDescriptionNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.PARTICIPANTS]: NavigatorScreenParams<ParticipantsNavigatorParamList>;
@@ -1518,9 +1460,6 @@ type WorkspaceSplitNavigatorParamList = {
     [SCREENS.WORKSPACE.PROFILE]: {
         policyID: string;
         backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.EXPENSIFY_CARD]: {
-        policyID: string;
     };
     [SCREENS.WORKSPACE.COMPANY_CARDS]: {
         policyID: string;
@@ -1597,9 +1536,6 @@ type WorkspaceSplitNavigatorParamList = {
         policyID: string;
     };
     [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_LOCATIONS_DISPLAYED_AS]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.EXPENSIFY_CARD]: {
         policyID: string;
     };
 };
