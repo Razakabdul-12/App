@@ -32,9 +32,6 @@ function QuickbooksLocationsPage({policy}: WithPolicyProps) {
     const updateQuickbooksOnlineSyncLocations = useCallback(
         (settingValue: IntegrationEntityMap) => {
             if (settingValue === CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD && !PolicyUtils.isControlPolicy(policy)) {
-                Navigation.navigate(
-                    ROUTES.WORKSPACE_UPGRADE.getRoute(policyID, CONST.REPORT_FIELDS_FEATURE.qbo.locations, ROUTES.POLICY_ACCOUNTING_QUICKBOOKS_ONLINE_LOCATIONS.getRoute(policyID)),
-                );
                 return;
             }
             QuickbooksOnline.updateQuickbooksOnlineSyncLocations(policyID, settingValue, qboConfig?.syncLocations);

@@ -441,34 +441,6 @@ type SettingsNavigatorParamList = {
     [SCREENS.WORKSPACE.TAXES_SETTINGS_WORKSPACE_CURRENCY_DEFAULT]: {
         policyID: string;
     };
-    [SCREENS.WORKSPACE.REPORT_FIELDS_CREATE]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.REPORT_FIELDS_LIST_VALUES]: {
-        policyID: string;
-        reportFieldID?: string;
-    };
-    [SCREENS.WORKSPACE.REPORT_FIELDS_ADD_VALUE]: {
-        policyID: string;
-        reportFieldID?: string;
-    };
-    [SCREENS.WORKSPACE.REPORT_FIELDS_VALUE_SETTINGS]: {
-        policyID: string;
-        valueIndex: number;
-        reportFieldID?: string;
-    };
-    [SCREENS.WORKSPACE.REPORT_FIELDS_EDIT_VALUE]: {
-        policyID: string;
-        valueIndex: number;
-    };
-    [SCREENS.WORKSPACE.REPORT_FIELDS_SETTINGS]: {
-        policyID: string;
-        reportFieldID: string;
-    };
-    [SCREENS.WORKSPACE.REPORT_FIELDS_EDIT_INITIAL_VALUE]: {
-        policyID: string;
-        reportFieldID: string;
-    };
     [SCREENS.WORKSPACE.MEMBER_DETAILS]: {
         policyID: string;
         accountID: string;
@@ -1023,9 +995,6 @@ type SettingsNavigatorParamList = {
         policyID: string;
         cardID: string;
         backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.REPORTS_DEFAULT_TITLE]: {
-        policyID: string;
     };
     [SCREENS.WORKSPACE.RULES_AUTO_APPROVE_REPORTS_UNDER]: {
         policyID: string;
@@ -1864,9 +1833,6 @@ type WorkspaceSplitNavigatorParamList = {
         backTo?: Routes;
     };
     [SCREENS.WORKSPACE.TAXES]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.REPORTS]: {
         policyID: string;
     };
     [SCREENS.WORKSPACE.DISTANCE_RATES]: {

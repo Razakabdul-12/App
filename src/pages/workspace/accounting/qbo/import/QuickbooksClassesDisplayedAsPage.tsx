@@ -46,9 +46,6 @@ function QuickbooksClassesDisplayedAsPage({policy}: WithPolicyProps) {
         (row: CardListItem) => {
             if (row.value !== qboConfig?.syncClasses) {
                 if (row.value === CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD && !isControlPolicy(policy)) {
-                    Navigation.navigate(
-                        ROUTES.WORKSPACE_UPGRADE.getRoute(policyID, CONST.REPORT_FIELDS_FEATURE.qbo.classes, ROUTES.POLICY_ACCOUNTING_QUICKBOOKS_ONLINE_CLASSES.getRoute(policyID)),
-                    );
                     return;
                 }
                 updateQuickbooksOnlineSyncClasses(policyID, row.value, qboConfig?.syncClasses);

@@ -14,12 +14,9 @@ type Props = {
     afterUpgradeAcknowledged: () => void;
     /** Whether is categorizing the expense */
     isCategorizing?: boolean;
-    /** Whether is adding an unreported expense to a report */
-    isReporting?: boolean;
-    isDistanceRateUpgrade?: boolean;
 };
 
-function UpgradeConfirmation({policyName, afterUpgradeAcknowledged, isReporting, isCategorizing, isDistanceRateUpgrade}: Props) {
+function UpgradeConfirmation({policyName, afterUpgradeAcknowledged, isCategorizing, isDistanceRateUpgrade}: Props) {
     const {translate} = useLocalize();
     const styles = useThemeStyles();
     const {environmentURL} = useEnvironment();
@@ -35,7 +32,7 @@ function UpgradeConfirmation({policyName, afterUpgradeAcknowledged, isReporting,
     }, [updateSubscriptionLink]);
 
     const description = useMemo(() => {
-        if (isCategorizing ?? isReporting) {
+        if (isCategorizing) {
             return <Text style={[styles.textAlignCenter, styles.w100]}>{translate('workspace.upgrade.completed.categorizeMessage')}</Text>;
         }
 
@@ -48,14 +45,14 @@ function UpgradeConfirmation({policyName, afterUpgradeAcknowledged, isReporting,
                 <RenderHTML html={translate('workspace.upgrade.completed.successMessage', {policyName, subscriptionLink})} />
             </View>
         );
-    }, [isDistanceRateUpgrade, isCategorizing, isReporting, policyName, styles.renderHTML, styles.textAlignCenter, styles.w100, translate, subscriptionLink]);
+    }, [isDistanceRateUpgrade, isCategorizing, isTravelUpgrade, policyName, styles.renderHTML, styles.textAlignCenter, styles.w100, translate, subscriptionLink]);
 
     const heading = useMemo(() => {
-        if (isCategorizing ?? isReporting) {
+        if (isCategorizing) {
             return translate('workspace.upgrade.completed.createdWorkspace');
         }
         return translate('workspace.upgrade.completed.headline');
-    }, [isCategorizing, isReporting, translate]);
+    }, [isCategorizing, translate]);
 
     return (
         <ConfirmationPage

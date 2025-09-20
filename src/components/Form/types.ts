@@ -78,13 +78,12 @@ type ValidInputs =
     | typeof TimeModalPicker
     | typeof OnboardingCurrencyPicker;
 
-type ValueTypeKey = 'string' | 'boolean' | 'date' | 'country' | 'reportFields' | 'disabledListValues' | 'entityChart';
+type ValueTypeKey = 'string' | 'boolean' | 'date' | 'country' | 'disabledListValues' | 'entityChart';
 type ValueTypeMap = {
     string: string;
     boolean: boolean;
     date: Date;
     country: Country | '';
-    reportFields: string[];
     disabledListValues: boolean[];
     entityChart: FileObject[];
 };

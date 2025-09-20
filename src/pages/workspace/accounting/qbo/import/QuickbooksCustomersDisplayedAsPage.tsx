@@ -46,9 +46,6 @@ function QuickbooksCustomersDisplayedAsPage({policy}: WithPolicyProps) {
         (row: CardListItem) => {
             if (row.value !== qboConfig?.syncCustomers) {
                 if (row.value === CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD && !isControlPolicy(policy)) {
-                    Navigation.navigate(
-                        ROUTES.WORKSPACE_UPGRADE.getRoute(policyID, CONST.REPORT_FIELDS_FEATURE.qbo.customers, ROUTES.POLICY_ACCOUNTING_QUICKBOOKS_ONLINE_CUSTOMERS.getRoute(policyID)),
-                    );
                     return;
                 }
                 updateQuickbooksOnlineSyncCustomers(policyID, row.value, qboConfig?.syncCustomers);

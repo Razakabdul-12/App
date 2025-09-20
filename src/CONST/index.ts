@@ -2955,7 +2955,6 @@ const CONST = {
             ARE_TAGS_ENABLED: 'areTagsEnabled',
             ARE_DISTANCE_RATES_ENABLED: 'areDistanceRatesEnabled',
             ARE_WORKFLOWS_ENABLED: 'areWorkflowsEnabled',
-            ARE_REPORT_FIELDS_ENABLED: 'areReportFieldsEnabled',
             ARE_CONNECTIONS_ENABLED: 'areConnectionsEnabled',
             ARE_COMPANY_CARDS_ENABLED: 'areCompanyCardsEnabled',
             ARE_EXPENSIFY_CARDS_ENABLED: 'areExpensifyCardsEnabled',
@@ -3722,7 +3721,6 @@ const CONST = {
     LEGAL_NAMES_CHARACTER_LIMIT: 150,
     LOGIN_CHARACTER_LIMIT: 254,
     CATEGORY_NAME_LIMIT: 256,
-    WORKSPACE_REPORT_FIELD_POLICY_MAX_LENGTH: 256,
     REPORT_NAME_LIMIT: 100,
     TITLE_CHARACTER_LIMIT: 100,
     TASK_TITLE_CHARACTER_LIMIT: 10000,
@@ -6718,32 +6716,13 @@ const CONST = {
         ILLUSTRATION: 'illustration',
         VIDEO: 'video',
     },
-    REPORT_FIELDS_FEATURE: {
-        qbo: {
-            classes: 'report-fields-qbo-classes',
-            customers: 'report-fields-qbo-customers',
-            locations: 'report-fields-qbo-locations',
-        },
-        xero: {
-            mapping: 'report-fields-mapping',
-        },
-    },
     DEFAULT_REPORT_METADATA: {isLoadingInitialReportActions: true},
     UPGRADE_PATHS: {
         CATEGORIES: 'categories',
-        REPORTS: 'reports',
         DISTANCE_RATES: 'distance-rates',
     },
     get UPGRADE_FEATURE_INTRO_MAPPING() {
         return {
-            reportFields: {
-                id: 'reportFields' as const,
-                alias: 'report-fields',
-                name: 'Report Fields',
-                title: 'workspace.upgrade.reportFields.title' as const,
-                description: 'workspace.upgrade.reportFields.description' as const,
-                icon: 'Pencil',
-            },
             policyPreventMemberChangingTitle: {
                 id: 'policyPreventMemberChangingTitle' as const,
                 alias: 'policy-prevent-member-changing-title',

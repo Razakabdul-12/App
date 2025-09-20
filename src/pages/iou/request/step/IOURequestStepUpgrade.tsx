@@ -47,7 +47,6 @@ function IOURequestStepUpgrade({
     const policyDataRef = useRef<CreateWorkspaceParams | null>(null);
     const isDistanceRateUpgrade = upgradePath === CONST.UPGRADE_PATHS.DISTANCE_RATES;
     const isCategorizing = upgradePath === CONST.UPGRADE_PATHS.CATEGORIES;
-    const isReporting = upgradePath === CONST.UPGRADE_PATHS.REPORTS;
 
     const feature = useMemo(
         () =>
@@ -103,7 +102,7 @@ function IOURequestStepUpgrade({
     }, [isDistanceRateUpgrade, transaction?.participants, personalDetails]);
 
     const onUpgrade = useCallback(() => {
-        if (isCategorizing || isReporting) {
+        if (isCategorizing) {
             setShowConfirmationForm(true);
             return;
         }
@@ -118,7 +117,7 @@ function IOURequestStepUpgrade({
         });
         setIsUpgraded(true);
         policyDataRef.current = policyData;
-    }, [isCategorizing, isReporting, currentUserPersonalDetails?.localCurrencyCode, isDistanceRateUpgrade, adminParticipant]);
+    }, [isCategorizing, currentUserPersonalDetails?.localCurrencyCode, isDistanceRateUpgrade, adminParticipant]);
 
     const [session] = useOnyx(ONYXKEYS.SESSION, {canBeMissing: false});
 
@@ -157,7 +156,6 @@ function IOURequestStepUpgrade({
                             afterUpgradeAcknowledged={afterUpgradeAcknowledged}
                             policyName={createdPolicyName}
                             isCategorizing={isCategorizing}
-                            isReporting={isReporting}
                             isDistanceRateUpgrade={isDistanceRateUpgrade}
                         />
                     )}

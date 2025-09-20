@@ -5,7 +5,6 @@ import * as API from '@libs/API';
 import type {RemovePolicyConnectionParams, SyncPolicyToQuickbooksDesktopParams, UpdateManyPolicyConnectionConfigurationsParams} from '@libs/API/parameters';
 import {READ_COMMANDS, WRITE_COMMANDS} from '@libs/API/types';
 import * as ErrorUtils from '@libs/ErrorUtils';
-import * as PolicyUtils from '@libs/PolicyUtils';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import type {ConnectionName, Connections, PolicyConnectionName, PolicyConnectionSyncProgress} from '@src/types/onyx/Policy';
@@ -47,42 +46,6 @@ function removePolicyConnection(policy: Policy, connectionName: PolicyConnection
 
     const successData: OnyxUpdate[] = [];
     const failureData: OnyxUpdate[] = [];
-    const supportedConnections: PolicyConnectionName[] = [CONST.POLICY.CONNECTIONS.NAME.QBO, CONST.POLICY.CONNECTIONS.NAME.XERO];
-
-    if (PolicyUtils.isCollectPolicy(policy) && supportedConnections.includes(connectionName)) {
-        optimisticData.push({
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-            value: {
-                areReportFieldsEnabled: false,
-                pendingFields: {
-                    areReportFieldsEnabled: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE,
-                },
-            },
-        });
-
-        successData.push({
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-            value: {
-                pendingFields: {
-                    areReportFieldsEnabled: null,
-                },
-            },
-        });
-
-        failureData.push({
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-            value: {
-                areReportFieldsEnabled: policy?.areReportFieldsEnabled,
-                pendingFields: {
-                    areReportFieldsEnabled: null,
-                },
-            },
-        });
-    }
-
     const parameters: RemovePolicyConnectionParams = {
         policyID,
         connectionName,

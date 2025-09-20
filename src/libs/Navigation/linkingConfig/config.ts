@@ -852,27 +852,7 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.WORKSPACE.TAXES_SETTINGS_WORKSPACE_CURRENCY_DEFAULT]: {
                             path: ROUTES.WORKSPACE_TAXES_SETTINGS_WORKSPACE_CURRENCY_DEFAULT.route,
                         },
-                        [SCREENS.WORKSPACE.REPORT_FIELDS_CREATE]: {
-                            path: ROUTES.WORKSPACE_CREATE_REPORT_FIELD.route,
-                        },
-                        [SCREENS.WORKSPACE.REPORT_FIELDS_LIST_VALUES]: {
-                            path: ROUTES.WORKSPACE_REPORT_FIELDS_LIST_VALUES.route,
-                        },
-                        [SCREENS.WORKSPACE.REPORT_FIELDS_ADD_VALUE]: {
-                            path: ROUTES.WORKSPACE_REPORT_FIELDS_ADD_VALUE.route,
-                        },
-                        [SCREENS.WORKSPACE.REPORT_FIELDS_VALUE_SETTINGS]: {
-                            path: ROUTES.WORKSPACE_REPORT_FIELDS_VALUE_SETTINGS.route,
-                        },
-                        [SCREENS.WORKSPACE.REPORT_FIELDS_EDIT_VALUE]: {
-                            path: ROUTES.WORKSPACE_REPORT_FIELDS_EDIT_VALUE.route,
-                        },
-                        [SCREENS.WORKSPACE.REPORT_FIELDS_SETTINGS]: {
-                            path: ROUTES.WORKSPACE_REPORT_FIELDS_SETTINGS.route,
-                        },
-                        [SCREENS.WORKSPACE.REPORT_FIELDS_EDIT_INITIAL_VALUE]: {
-                            path: ROUTES.WORKSPACE_EDIT_REPORT_FIELDS_INITIAL_VALUE.route,
-                        },
+                 
                         [SCREENS.WORKSPACE.WORKFLOWS_CONNECT_EXISTING_BANK_ACCOUNT]: {
                             path: ROUTES.WORKSPACE_WORKFLOWS_CONNECT_EXISTING_BANK_ACCOUNT.route,
                             exact: true,
@@ -903,9 +883,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         },
                         [SCREENS.WORKSPACE.TAX_VALUE]: {
                             path: ROUTES.WORKSPACE_TAX_VALUE.route,
-                        },
-                        [SCREENS.WORKSPACE.REPORTS_DEFAULT_TITLE]: {
-                            path: ROUTES.REPORTS_DEFAULT_TITLE.route,
                         },
                         [SCREENS.WORKSPACE.RULES_AUTO_APPROVE_REPORTS_UNDER]: {
                             path: ROUTES.RULES_AUTO_APPROVE_REPORTS_UNDER.route,
@@ -1637,9 +1614,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                 },
                 [SCREENS.WORKSPACE.TAXES]: {
                     path: ROUTES.WORKSPACE_TAXES.route,
-                },
-                [SCREENS.WORKSPACE.REPORTS]: {
-                    path: ROUTES.WORKSPACE_REPORTS.route,
                 },
                 [SCREENS.WORKSPACE.DISTANCE_RATES]: {
                     path: ROUTES.WORKSPACE_DISTANCE_RATES.route,

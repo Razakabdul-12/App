@@ -16,7 +16,7 @@ import {canModifyPlan, getPerDiemCustomUnit, isControlPolicy} from '@libs/Policy
 import NotFoundPage from '@pages/ErrorPage/NotFoundPage';
 import {enablePerDiem} from '@userActions/Policy/PerDiem';
 import CONST from '@src/CONST';
-import {enableCompanyCards, enablePolicyReportFields, enablePolicyRules, setPolicyPreventMemberCreatedTitle, upgradeToCorporate} from '@src/libs/actions/Policy/Policy';
+import {enableCompanyCards, enablePolicyRules, setPolicyPreventMemberCreatedTitle, upgradeToCorporate} from '@src/libs/actions/Policy/Policy';
 import ONYXKEYS from '@src/ONYXKEYS';
 import ROUTES from '@src/ROUTES';
 import type SCREENS from '@src/SCREENS';
@@ -26,16 +26,7 @@ import UpgradeIntro from './UpgradeIntro';
 type WorkspaceUpgradePageProps = PlatformStackScreenProps<SettingsNavigatorParamList, typeof SCREENS.WORKSPACE.UPGRADE>;
 
 function getFeatureNameAlias(featureName: string) {
-    switch (featureName) {
-        case CONST.REPORT_FIELDS_FEATURE.qbo.classes:
-        case CONST.REPORT_FIELDS_FEATURE.qbo.customers:
-        case CONST.REPORT_FIELDS_FEATURE.qbo.locations:
-        case CONST.REPORT_FIELDS_FEATURE.xero.mapping:
-            return CONST.UPGRADE_FEATURE_INTRO_MAPPING.reportFields.alias;
-        default: {
-            return featureName;
-        }
-    }
+    return featureName;
 }
 
 function WorkspaceUpgradePage({route}: WorkspaceUpgradePageProps) {
@@ -53,14 +44,12 @@ function WorkspaceUpgradePage({route}: WorkspaceUpgradePageProps) {
     );
     const {translate} = useLocalize();
     const [policy] = useOnyx(`${ONYXKEYS.COLLECTION.POLICY}${policyID}`, {canBeMissing: true});
-    const qboConfig = policy?.connections?.quickbooksOnline?.config;
     const {isOffline} = useNetwork();
 
     const canPerformUpgrade = useMemo(() => canModifyPlan(policyID), [policyID]);
     const isUpgraded = useMemo(() => isControlPolicy(policy), [policy]);
 
     const perDiemCustomUnit = getPerDiemCustomUnit(policy);
-    const categoryId = route.params?.categoryId;
 
     const goBack = useCallback(() => {
         if ((!feature && featureNameAlias !== CONST.UPGRADE_FEATURE_INTRO_MAPPING.policyPreventMemberChangingTitle.alias) || !policyID) {
@@ -74,18 +63,6 @@ function WorkspaceUpgradePage({route}: WorkspaceUpgradePageProps) {
                     Navigation.navigate(route.params.backTo);
                 }
                 return;
-            case CONST.UPGRADE_FEATURE_INTRO_MAPPING.reportFields.id:
-                switch (route.params.featureName) {
-                    case CONST.UPGRADE_FEATURE_INTRO_MAPPING.reportFields.alias:
-                        return Navigation.goBack(ROUTES.WORKSPACE_REPORTS.getRoute(policyID));
-                    default: {
-                        Navigation.goBack();
-                        if (route.params.backTo) {
-                            Navigation.navigate(route.params.backTo);
-                        }
-                        return;
-                    }
-                }
             case CONST.UPGRADE_FEATURE_INTRO_MAPPING.companyCards.id:
                 Navigation.navigate(ROUTES.WORKSPACE_COMPANY_CARDS_ADD_NEW.getRoute(policyID, ROUTES.WORKSPACE_COMPANY_CARDS_SELECT_FEED.getRoute(policyID)));
                 return;
@@ -116,34 +93,6 @@ function WorkspaceUpgradePage({route}: WorkspaceUpgradePageProps) {
             return;
         }
         switch (feature.id) {
-            case CONST.UPGRADE_FEATURE_INTRO_MAPPING.reportFields.id:
-                switch (route.params.featureName) {
-                    case CONST.REPORT_FIELDS_FEATURE.qbo.classes:
-                        updateQuickbooksOnlineSyncClasses(policyID, CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD, qboConfig?.syncClasses);
-                        break;
-                    case CONST.REPORT_FIELDS_FEATURE.qbo.customers:
-                        updateQuickbooksOnlineSyncCustomers(policyID, CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD, qboConfig?.syncCustomers);
-                        break;
-                    case CONST.REPORT_FIELDS_FEATURE.qbo.locations:
-                        updateQuickbooksOnlineSyncLocations(policyID, CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD, qboConfig?.syncLocations);
-                        break;
-                    case CONST.REPORT_FIELDS_FEATURE.xero.mapping: {
-                        const {trackingCategories} = policy?.connections?.xero?.data ?? {};
-                        const currentTrackingCategory = trackingCategories?.find((category) => category.id === categoryId);
-                        const {mappings} = policy?.connections?.xero?.config ?? {};
-                        const currentTrackingCategoryValue = currentTrackingCategory ? (mappings?.[`${CONST.XERO_CONFIG.TRACKING_CATEGORY_PREFIX}${currentTrackingCategory.id}`] ?? '') : '';
-                        updateXeroMappings(
-                            policyID,
-                            categoryId ? {[`${CONST.XERO_CONFIG.TRACKING_CATEGORY_PREFIX}${categoryId}`]: CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.REPORT_FIELD} : {},
-                            categoryId ? {[`${CONST.XERO_CONFIG.TRACKING_CATEGORY_PREFIX}${categoryId}`]: currentTrackingCategoryValue} : {},
-                        );
-                        break;
-                    }
-                    default: {
-                        enablePolicyReportFields(policyID, true);
-                    }
-                }
-                break;
             case CONST.UPGRADE_FEATURE_INTRO_MAPPING.rules.id:
                 enablePolicyRules(policyID, true, false);
                 break;
@@ -155,19 +104,7 @@ function WorkspaceUpgradePage({route}: WorkspaceUpgradePageProps) {
                 break;
             default:
         }
-    }, [
-        categoryId,
-        feature,
-        perDiemCustomUnit?.customUnitID,
-        policy?.connections?.xero?.config,
-        policy?.connections?.xero?.data,
-        policyID,
-        qboConfig?.syncClasses,
-        qboConfig?.syncCustomers,
-        qboConfig?.syncLocations,
-        route.params?.featureName,
-        featureNameAlias,
-    ]);
+    }, [feature, perDiemCustomUnit?.customUnitID, policyID, featureNameAlias]);
 
     useFocusEffect(
         useCallback(() => {

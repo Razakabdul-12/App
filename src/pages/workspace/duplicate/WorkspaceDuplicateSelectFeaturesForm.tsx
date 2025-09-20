@@ -12,7 +12,6 @@ import usePolicy from '@hooks/usePolicy';
 import useThemeStyles from '@hooks/useThemeStyles';
 import {readFileAsync} from '@libs/fileDownload/FileUtils';
 import {getDistanceRateCustomUnit, getMemberAccountIDsForWorkspace, getPerDiemCustomUnit, isCollectPolicy} from '@libs/PolicyUtils';
-import {getReportFieldsByPolicyID} from '@libs/ReportUtils';
 import Navigation from '@navigation/Navigation';
 import {duplicateWorkspace as duplicateWorkspaceAction, openDuplicatePolicyPage} from '@userActions/Policy/Policy';
 import CONST from '@src/CONST';
@@ -42,7 +41,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
     const [policyCategories] = useOnyx(`${ONYXKEYS.COLLECTION.POLICY_CATEGORIES}${policyID}`, {canBeMissing: true});
     const categoriesCount = Object.keys(policyCategories ?? {}).length;
     const [selectedItems, setSelectedItems] = useState<string[]>([]);
-    const reportFields = Object.keys(getReportFieldsByPolicyID(policyID)).length ?? 0;
     const customUnits = getPerDiemCustomUnit(policy);
     const customUnitRates: Record<string, Rate> = customUnits?.rates ?? {};
     const allRates = Object.values(customUnitRates)?.length;
@@ -84,13 +82,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
                       translation: translate('workspace.common.members'),
                       value: 'members',
                       alternateText: totalMembers ? `${totalMembers} ${translate('workspace.common.members').toLowerCase()}` : undefined,
-                  }
-                : undefined,
-            reportFields > 0
-                ? {
-                      translation: translate('workspace.common.reports'),
-                      value: 'reports',
-                      alternateText: reportFields ? `${reportFields} ${translate('workspace.common.reportFields').toLowerCase()}` : undefined,
                   }
                 : undefined,
             connectedIntegration && connectedIntegration?.length > 0
@@ -159,7 +150,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
         translate,
         formattedAddress,
         totalMembers,
-        reportFields,
         connectedIntegration,
         totalTags,
         categoriesCount,
@@ -201,7 +191,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
             policyCategories: selectedItems.includes('categories') ? policyCategories : undefined,
             parts: {
                 people: selectedItems.includes('members'),
-                reports: selectedItems.includes('reports'),
                 connections: selectedItems.includes('accounting'),
                 categories: selectedItems.includes('categories'),
                 tags: selectedItems.includes('tags'),

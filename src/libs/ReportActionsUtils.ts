@@ -15,7 +15,6 @@ import ONYXKEYS from '@src/ONYXKEYS';
 import ROUTES from '@src/ROUTES';
 import type {Card, OnyxInputOrEntry, OriginalMessageIOU, Policy, PrivatePersonalDetails} from '@src/types/onyx';
 import type {JoinWorkspaceResolution, OriginalMessageChangeLog, OriginalMessageExportIntegration} from '@src/types/onyx/OriginalMessage';
-import type {PolicyReportFieldType} from '@src/types/onyx/Policy';
 import type Report from '@src/types/onyx/Report';
 import type ReportAction from '@src/types/onyx/ReportAction';
 import type {Message, OldDotReportAction, OriginalMessage, ReportActions} from '@src/types/onyx/ReportAction';
@@ -36,7 +35,6 @@ import {getPolicy, isPolicyAdmin as isPolicyAdminPolicyUtils} from './PolicyUtil
 import type {getReportName, OptimisticIOUReportAction, PartialReportAction} from './ReportUtils';
 import StringUtils from './StringUtils';
 import {isOnHoldByTransactionID} from './TransactionUtils';
-import {getReportFieldTypeTranslationKey} from './WorkspaceReportFieldUtils';
 
 type LastVisibleMessage = {
     lastMessageText: string;
@@ -2390,77 +2388,6 @@ function getWorkspaceCustomUnitRateDeletedMessage(action: ReportAction): string 
     return getReportActionText(action);
 }
 
-function getWorkspaceReportFieldAddMessage(action: ReportAction): string {
-    const {fieldName, fieldType} = getOriginalMessage(action as ReportAction<typeof CONST.REPORT.ACTIONS.TYPE.POLICY_CHANGE_LOG.ADD_CATEGORY>) ?? {};
-
-    if (fieldName && fieldType) {
-        return translateLocal('workspaceActions.addedReportField', {
-            fieldName,
-            fieldType: translateLocal(getReportFieldTypeTranslationKey(fieldType as PolicyReportFieldType)).toLowerCase(),
-        });
-    }
-
-    return getReportActionText(action);
-}
-
-function getWorkspaceReportFieldUpdateMessage(action: ReportAction): string {
-    const {updateType, fieldName, defaultValue, optionName, allEnabled, optionEnabled, toggledOptionsCount} =
-        getOriginalMessage(action as ReportAction<typeof CONST.REPORT.ACTIONS.TYPE.POLICY_CHANGE_LOG.UPDATE_REPORT_FIELD>) ?? {};
-
-    if (updateType === 'updatedDefaultValue' && fieldName && defaultValue) {
-        return translateLocal('workspaceActions.updateReportFieldDefaultValue', {
-            fieldName,
-            defaultValue,
-        });
-    }
-
-    if (updateType === 'addedOption' && fieldName && optionName) {
-        return translateLocal('workspaceActions.addedReportFieldOption', {
-            fieldName,
-            optionName,
-        });
-    }
-
-    if (updateType === 'changedOptionDisabled' && fieldName && optionName) {
-        return translateLocal('workspaceActions.updateReportFieldOptionDisabled', {
-            fieldName,
-            optionName,
-            optionEnabled: !!optionEnabled,
-        });
-    }
-
-    if (updateType === 'updatedAllDisabled' && fieldName && optionName) {
-        return translateLocal('workspaceActions.updateReportFieldAllOptionsDisabled', {
-            fieldName,
-            optionName,
-            allEnabled: !!allEnabled,
-            toggledOptionsCount,
-        });
-    }
-
-    if (updateType === 'removedOption' && fieldName && optionName) {
-        return translateLocal('workspaceActions.removedReportFieldOption', {
-            fieldName,
-            optionName,
-        });
-    }
-
-    return getReportActionText(action);
-}
-
-function getWorkspaceReportFieldDeleteMessage(action: ReportAction): string {
-    const {fieldType, fieldName} = getOriginalMessage(action as ReportAction<typeof CONST.REPORT.ACTIONS.TYPE.POLICY_CHANGE_LOG.ADD_CATEGORY>) ?? {};
-
-    if (fieldType && fieldName) {
-        return translateLocal('workspaceActions.deleteReportField', {
-            fieldName,
-            fieldType: translateLocal(getReportFieldTypeTranslationKey(fieldType as PolicyReportFieldType)).toLowerCase(),
-        });
-    }
-
-    return getReportActionText(action);
-}
-
 function getWorkspaceUpdateFieldMessage(action: ReportAction): string {
     const {newValue, oldValue, updatedField} = getOriginalMessage(action as ReportAction<typeof CONST.REPORT.ACTIONS.TYPE.POLICY_CHANGE_LOG.UPDATE_FIELD>) ?? {};
 
@@ -3070,12 +2997,9 @@ export {
     getPolicyChangeLogDefaultBillableMessage,
     getPolicyChangeLogDefaultTitleEnforcedMessage,
     getWorkspaceDescriptionUpdatedMessage,
-    getWorkspaceReportFieldAddMessage,
     getWorkspaceCustomUnitRateAddedMessage,
     getSendMoneyFlowAction,
     getWorkspaceTagUpdateMessage,
-    getWorkspaceReportFieldUpdateMessage,
-    getWorkspaceReportFieldDeleteMessage,
     getUpdatedAuditRateMessage,
     getUpdatedManualApprovalThresholdMessage,
     getWorkspaceCustomUnitRateDeletedMessage,

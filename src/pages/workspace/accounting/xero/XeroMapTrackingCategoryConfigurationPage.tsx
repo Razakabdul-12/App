@@ -7,7 +7,7 @@ import Text from '@components/Text';
 import useLocalize from '@hooks/useLocalize';
 import useThemeStyles from '@hooks/useThemeStyles';
 import {updateXeroMappings} from '@libs/actions/connections/Xero';
-import {clearXeroErrorField, enablePolicyReportFields} from '@libs/actions/Policy/Policy';
+import {clearXeroErrorField} from '@libs/actions/Policy/Policy';
 import {getLatestErrorField} from '@libs/ErrorUtils';
 import Navigation from '@libs/Navigation/Navigation';
 import {isControlPolicy, settingsPendingAction} from '@libs/PolicyUtils';
@@ -36,9 +36,6 @@ function XeroMapTrackingCategoryConfigurationPage({policy}: WithPolicyProps) {
 
     const currentTrackingCategory = trackingCategories?.find((category) => category.id === categoryId);
     const currentTrackingCategoryValue = currentTrackingCategory ? (mappings?.[`${CONST.XERO_CONFIG.TRACKING_CATEGORY_PREFIX}${currentTrackingCategory.id}`] ?? '') : '';
-    const reportFieldTrackingCategories = Object.entries(mappings ?? {}).filter(
-        ([key, value]) => key.startsWith(CONST.XERO_CONFIG.TRACKING_CATEGORY_PREFIX) && value === CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.REPORT_FIELD,
-    );
 
     const optionsList = useMemo(
         () =>
@@ -64,12 +61,6 @@ function XeroMapTrackingCategoryConfigurationPage({policy}: WithPolicyProps) {
         (option: {value: string}) => {
             if (option.value !== currentTrackingCategoryValue) {
                 if (option.value === CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.REPORT_FIELD && !isControlPolicy(policy)) {
-                    const backToRoute = ROUTES.WORKSPACE_UPGRADE.getRoute(
-                        policyID,
-                        `${CONST.REPORT_FIELDS_FEATURE.xero.mapping}`,
-                        ROUTES.POLICY_ACCOUNTING_XERO_TRACKING_CATEGORIES.getRoute(policyID),
-                    );
-                    Navigation.navigate(`${backToRoute}&categoryId=${categoryId}`);
                     return;
                 }
                 if (!policyID) {
@@ -80,16 +71,10 @@ function XeroMapTrackingCategoryConfigurationPage({policy}: WithPolicyProps) {
                     categoryId ? {[`${CONST.XERO_CONFIG.TRACKING_CATEGORY_PREFIX}${categoryId}`]: option.value} : {},
                     categoryId ? {[`${CONST.XERO_CONFIG.TRACKING_CATEGORY_PREFIX}${categoryId}`]: currentTrackingCategoryValue} : {},
                 );
-                if (!reportFieldTrackingCategories.length && option.value === CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.REPORT_FIELD) {
-                    enablePolicyReportFields(policyID, true);
-                }
-                if (reportFieldTrackingCategories.length === 1 && currentTrackingCategoryValue === CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.REPORT_FIELD) {
-                    enablePolicyReportFields(policyID, false);
-                }
             }
             Navigation.goBack(ROUTES.POLICY_ACCOUNTING_XERO_TRACKING_CATEGORIES.getRoute(policyID));
         },
-        [categoryId, currentTrackingCategoryValue, reportFieldTrackingCategories, policy, policyID],
+        [categoryId, currentTrackingCategoryValue, policy, policyID],
     );
 
     return (
