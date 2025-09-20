@@ -3755,7 +3755,6 @@ const CONST = {
     REPORT_DETAILS_MENU_ITEM: {
         MEMBERS: 'member',
         INVITE: 'invite',
-        SETTINGS: 'settings',
         LEAVE_ROOM: 'leaveRoom',
         DOWNLOAD_CSV: 'downloadCSV',
         DOWNLOAD_PDF: 'downloadPDF',

@@ -883,29 +883,6 @@ type ReportChangeWorkspaceNavigatorParamList = {
     };
 };
 
-type ReportSettingsNavigatorParamList = {
-    [SCREENS.REPORT_SETTINGS.ROOT]: {
-        reportID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.REPORT_SETTINGS.NAME]: {
-        reportID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.REPORT_SETTINGS.NOTIFICATION_PREFERENCES]: {
-        reportID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.REPORT_SETTINGS.WRITE_CAPABILITY]: {
-        reportID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.REPORT_SETTINGS.VISIBILITY]: {
-        reportID: string;
-        backTo?: Routes;
-    };
-};
-
 type ReportDescriptionNavigatorParamList = {
     [SCREENS.REPORT_DESCRIPTION_ROOT]: {
         reportID: string;
@@ -1356,7 +1333,6 @@ type RightModalNavigatorParamList = {
     [SCREENS.RIGHT_MODAL.NEW_REPORT_WORKSPACE_SELECTION]: NavigatorScreenParams<NewReportWorkspaceSelectionNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.REPORT_DETAILS]: NavigatorScreenParams<ReportDetailsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.REPORT_CHANGE_WORKSPACE]: NavigatorScreenParams<ReportChangeWorkspaceNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.REPORT_SETTINGS]: NavigatorScreenParams<ReportSettingsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.SETTINGS_CATEGORIES]: NavigatorScreenParams<SettingsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.EXPENSIFY_CARD]: NavigatorScreenParams<SettingsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.REPORT_DESCRIPTION]: NavigatorScreenParams<ReportDescriptionNavigatorParamList>;
@@ -1862,7 +1838,6 @@ export type {
     ReportDescriptionNavigatorParamList,
     ReportDetailsNavigatorParamList,
     ReportChangeWorkspaceNavigatorParamList,
-    ReportSettingsNavigatorParamList,
     ReportsSplitNavigatorParamList,
     RestrictedActionParamList,
     ShareNavigatorParamList,

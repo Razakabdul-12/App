@@ -69,7 +69,6 @@ import {
     isExpenseReport as isExpenseReportUtil,
     isFinancialReportsForBusinesses as isFinancialReportsForBusinessesUtil,
     isGroupChat as isGroupChatUtil,
-    isHiddenForCurrentUser,
     isInvoiceReport as isInvoiceReportUtil,
     isInvoiceRoom as isInvoiceRoomUtil,
     isMoneyRequestReport as isMoneyRequestReportUtil,
@@ -317,10 +316,6 @@ function ReportDetailsPage({policy, report, route, reportMetadata}: ReportDetail
         roomDescription = translate('newRoomPage.roomName');
     }
 
-    const shouldShowNotificationPref = !isMoneyRequestReport && !isHiddenForCurrentUser(report);
-    const shouldShowWriteCapability = !isMoneyRequestReport;
-    const shouldShowMenuItem = shouldShowNotificationPref || shouldShowWriteCapability || (!!report?.visibility && report.chatType !== CONST.REPORT.CHAT_TYPE.INVOICE);
-
     const menuItems: ReportDetailsPageMenuItem[] = useMemo(() => {
         const items: ReportDetailsPageMenuItem[] = [];
 
@@ -369,19 +364,6 @@ function ReportDetailsPage({policy, report, route, reportMetadata}: ReportDetail
                 shouldShowRightIcon: true,
                 action: () => {
                     Navigation.navigate(ROUTES.ROOM_INVITE.getRoute(report?.reportID));
-                },
-            });
-        }
-
-        if (shouldShowMenuItem) {
-            items.push({
-                key: CONST.REPORT_DETAILS_MENU_ITEM.SETTINGS,
-                translationKey: 'common.settings',
-                icon: Expensicons.Gear,
-                isAnonymousAction: false,
-                shouldShowRightIcon: true,
-                action: () => {
-                    Navigation.navigate(ROUTES.REPORT_SETTINGS.getRoute(report?.reportID, backTo));
                 },
             });
         }
@@ -502,7 +484,6 @@ function ReportDetailsPage({policy, report, route, reportMetadata}: ReportDetail
         isSystemChat,
         activeChatMembers.length,
         isPolicyExpenseChat,
-        shouldShowMenuItem,
         isTrackExpenseReport,
         isDeletedParentAction,
         isMoneyRequestReport,
@@ -671,17 +652,13 @@ function ReportDetailsPage({policy, report, route, reportMetadata}: ReportDetail
         >
             <View style={[styles.flex1, !shouldDisableRename && styles.mt3]}>
                 <MenuItemWithTopDescription
-                    shouldShowRightIcon={!shouldDisableRename}
-                    interactive={!shouldDisableRename}
                     title={StringUtils.lineBreaksToSpaces(reportName)}
                     titleStyle={styles.newKansasLarge}
                     titleContainerStyle={shouldDisableRename && styles.alignItemsCenter}
-                    shouldCheckActionAllowedOnPress={false}
                     description={!shouldDisableRename ? roomDescription : ''}
                     furtherDetails={chatRoomSubtitle && !isGroupChat ? additionalRoomDetails : ''}
                     furtherDetailsNumberOfLines={isPolicyExpenseChat ? 0 : undefined}
                     furtherDetailsStyle={isPolicyExpenseChat ? [styles.textAlignCenter, styles.breakWord] : undefined}
-                    onPress={() => Navigation.navigate(ROUTES.REPORT_SETTINGS_NAME.getRoute(report.reportID, backTo))}
                     numberOfLinesTitle={isThread ? 2 : 0}
                     shouldBreakWord
                 />

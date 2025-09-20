@@ -26,7 +26,6 @@ import type {
     ReportChangeWorkspaceNavigatorParamList,
     ReportDescriptionNavigatorParamList,
     ReportDetailsNavigatorParamList,
-    ReportSettingsNavigatorParamList,
     RoomMembersNavigatorParamList,
     SearchAdvancedFiltersParamList,
     SearchReportParamList,
@@ -190,14 +189,6 @@ const ReportChangeWorkspaceModalStackNavigator = createModalStackNavigator<Repor
 const ReportChangeApproverModalStackNavigator = createModalStackNavigator<ReportChangeApproverParamList>({
     [SCREENS.REPORT_CHANGE_APPROVER.ROOT]: () => require<ReactComponentModule>('../../../../pages/ReportChangeApproverPage').default,
     [SCREENS.REPORT_CHANGE_APPROVER.ADD_APPROVER]: () => require<ReactComponentModule>('../../../../pages/ReportAddApproverPage').default,
-});
-
-const ReportSettingsModalStackNavigator = createModalStackNavigator<ReportSettingsNavigatorParamList>({
-    [SCREENS.REPORT_SETTINGS.ROOT]: () => require<ReactComponentModule>('../../../../pages/settings/Report/ReportSettingsPage').default,
-    [SCREENS.REPORT_SETTINGS.NAME]: () => require<ReactComponentModule>('../../../../pages/settings/Report/NamePage').default,
-    [SCREENS.REPORT_SETTINGS.NOTIFICATION_PREFERENCES]: () => require<ReactComponentModule>('../../../../pages/settings/Report/NotificationPreferencePage').default,
-    [SCREENS.REPORT_SETTINGS.WRITE_CAPABILITY]: () => require<ReactComponentModule>('../../../../pages/settings/Report/WriteCapabilityPage').default,
-    [SCREENS.REPORT_SETTINGS.VISIBILITY]: () => require<ReactComponentModule>('../../../../pages/settings/Report/VisibilityPage').default,
 });
 
 const WorkspaceConfirmationModalStackNavigator = createModalStackNavigator<WorkspaceConfirmationNavigatorParamList>({
@@ -698,7 +689,6 @@ export {
     ReportChangeWorkspaceModalStackNavigator,
     ReportChangeApproverModalStackNavigator,
     ReportParticipantsModalStackNavigator,
-    ReportSettingsModalStackNavigator,
     RoomMembersModalStackNavigator,
     SettingsModalStackNavigator,
     TwoFactorAuthenticatorStackNavigator,

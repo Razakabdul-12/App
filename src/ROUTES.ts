@@ -441,36 +441,6 @@ const ROUTES = {
         // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
         getRoute: (reportID: string, backTo?: string) => getUrlWithBackToParam(`r/${reportID}/change-workspace` as const, backTo),
     },
-    REPORT_SETTINGS: {
-        route: 'r/:reportID/settings',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (reportID: string, backTo?: string) => getUrlWithBackToParam(`r/${reportID}/settings` as const, backTo),
-    },
-    REPORT_SETTINGS_NAME: {
-        route: 'r/:reportID/settings/name',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (reportID: string, backTo?: string) => getUrlWithBackToParam(`r/${reportID}/settings/name` as const, backTo),
-    },
-    REPORT_SETTINGS_NOTIFICATION_PREFERENCES: {
-        route: 'r/:reportID/settings/notification-preferences',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (reportID: string, backTo?: string) => getUrlWithBackToParam(`r/${reportID}/settings/notification-preferences` as const, backTo),
-    },
-    REPORT_SETTINGS_WRITE_CAPABILITY: {
-        route: 'r/:reportID/settings/who-can-post',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (reportID: string, backTo?: string) => getUrlWithBackToParam(`r/${reportID}/settings/who-can-post` as const, backTo),
-    },
-    REPORT_SETTINGS_VISIBILITY: {
-        route: 'r/:reportID/settings/visibility',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (reportID: string, backTo?: string) => getUrlWithBackToParam(`r/${reportID}/settings/visibility` as const, backTo),
-    },
     REPORT_CHANGE_APPROVER: {
         route: 'r/:reportID/change-approver',
 

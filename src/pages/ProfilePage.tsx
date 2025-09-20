@@ -23,14 +23,7 @@ import useThemeStyles from '@hooks/useThemeStyles';
 import Navigation from '@libs/Navigation/Navigation';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import {getDisplayNameOrDefault, getPhoneNumber} from '@libs/PersonalDetailsUtils';
-import {
-    findSelfDMReportID,
-    getChatByParticipants,
-    getReportNotificationPreference,
-    hasAutomatedExpensifyAccountIDs,
-    isConciergeChatReport,
-    isHiddenForCurrentUser as isReportHiddenForCurrentUser,
-} from '@libs/ReportUtils';
+import {findSelfDMReportID, getChatByParticipants, hasAutomatedExpensifyAccountIDs, isConciergeChatReport} from '@libs/ReportUtils';
 import {generateAccountID} from '@libs/UserUtils';
 import {isValidAccountRoute} from '@libs/ValidationUtils';
 import type {ProfileNavigatorParamList} from '@navigation/types';
@@ -139,12 +132,6 @@ function ProfilePage({route}: ProfilePageProps) {
 
     const navigateBackTo = route?.params?.backTo;
 
-    const notificationPreferenceValue = getReportNotificationPreference(report);
-
-    const shouldShowNotificationPreference = !isEmptyObject(report) && !isCurrentUser && !isReportHiddenForCurrentUser(notificationPreferenceValue);
-    const notificationPreference = shouldShowNotificationPreference
-        ? translate(`notificationPreferencesPage.notificationPreferences.${notificationPreferenceValue}` as TranslationPaths)
-        : '';
     const isConcierge = isConciergeChatReport(report);
 
     // eslint-disable-next-line rulesdir/prefer-early-return
@@ -251,14 +238,6 @@ function ProfilePage({route}: ProfilePageProps) {
                                 title={translate('common.editYourProfile')}
                                 icon={Expensicons.Pencil}
                                 onPress={() => Navigation.navigate(ROUTES.SETTINGS_PROFILE.getRoute(Navigation.getActiveRoute()))}
-                            />
-                        )}
-                        {shouldShowNotificationPreference && (
-                            <MenuItemWithTopDescription
-                                shouldShowRightIcon
-                                title={notificationPreference}
-                                description={translate('notificationPreferencesPage.label')}
-                                onPress={() => Navigation.navigate(ROUTES.REPORT_SETTINGS_NOTIFICATION_PREFERENCES.getRoute(report.reportID, navigateBackTo))}
                             />
                         )}
                         {isConcierge && !!guideCalendarLink && (

@@ -151,7 +151,6 @@ const SCREENS = {
         REPORT_DETAILS: 'Report_Details',
         REPORT_CHANGE_WORKSPACE: 'ReportChangeWorkspace',
         WORKSPACE_CONFIRMATION: 'Workspace_Confirmation',
-        REPORT_SETTINGS: 'Report_Settings',
         REPORT_DESCRIPTION: 'Report_Description',
         PARTICIPANTS: 'Participants',
         MONEY_REQUEST: 'MoneyRequest',
@@ -249,13 +248,6 @@ const SCREENS = {
         EXPENSIFY_CARD_NAME: 'Expensify_Card_Name',
         EXPENSIFY_CARD_LIMIT: 'Expensify_Card_Limit',
         EXPENSIFY_CARD_LIMIT_TYPE: 'Expensify_Card_Limit_Type',
-    },
-    REPORT_SETTINGS: {
-        ROOT: 'Report_Settings_Root',
-        NAME: 'Report_Settings_Name',
-        NOTIFICATION_PREFERENCES: 'Report_Settings_Notification_Preferences',
-        WRITE_CAPABILITY: 'Report_Settings_Write_Capability',
-        VISIBILITY: 'Report_Settings_Visibility',
     },
 
     NEW_REPORT_WORKSPACE_SELECTION: {

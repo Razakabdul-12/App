@@ -47,13 +47,10 @@ import type {
     UpdateCommentParams,
     UpdateGroupChatAvatarParams,
     UpdateGroupChatMemberRolesParams,
-    UpdatePolicyRoomNameParams,
     UpdateReportNotificationPreferenceParams,
-    UpdateReportWriteCapabilityParams,
     UpdateRoomDescriptionParams,
 } from '@libs/API/parameters';
 import type ExportReportCSVParams from '@libs/API/parameters/ExportReportCSVParams';
-import type UpdateRoomVisibilityParams from '@libs/API/parameters/UpdateRoomVisibilityParams';
 import {READ_COMMANDS, WRITE_COMMANDS} from '@libs/API/types';
 import * as ApiUtils from '@libs/ApiUtils';
 import * as CollectionUtils from '@libs/CollectionUtils';
@@ -107,7 +104,6 @@ import {
     buildOptimisticGroupChatReport,
     buildOptimisticIOUReportAction,
     buildOptimisticMovedReportAction,
-    buildOptimisticRenamedRoomReportAction,
     buildOptimisticReportPreview,
     buildOptimisticRoomDescriptionUpdatedReportAction,
     buildOptimisticSelfDMReport,
@@ -204,7 +200,7 @@ import type {
 import type {Decision} from '@src/types/onyx/OriginalMessage';
 import type {Timezone} from '@src/types/onyx/PersonalDetails';
 import type {ConnectionName} from '@src/types/onyx/Policy';
-import type {NotificationPreference, Participants, Participant as ReportParticipant, RoomVisibility, WriteCapability} from '@src/types/onyx/Report';
+import type {NotificationPreference, Participants, Participant as ReportParticipant} from '@src/types/onyx/Report';
 import type {Message, ReportActions} from '@src/types/onyx/ReportAction';
 import {isEmptyObject} from '@src/types/utils/EmptyObject';
 import {clearByKey} from './CachedPDFPaths';
@@ -2243,32 +2239,6 @@ function updateNotificationPreference(
     API.write(WRITE_COMMANDS.UPDATE_REPORT_NOTIFICATION_PREFERENCE, parameters, {optimisticData, failureData});
 }
 
-function updateRoomVisibility(reportID: string, previousValue: RoomVisibility | undefined, newValue: RoomVisibility) {
-    if (previousValue === newValue) {
-        return;
-    }
-
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT}${reportID}`,
-            value: {visibility: newValue},
-        },
-    ];
-
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT}${reportID}`,
-            value: {visibility: previousValue},
-        },
-    ];
-
-    const parameters: UpdateRoomVisibilityParams = {reportID, visibility: newValue};
-
-    API.write(WRITE_COMMANDS.UPDATE_ROOM_VISIBILITY, parameters, {optimisticData, failureData});
-}
-
 /**
  * This will subscribe to an existing thread, or create a new one and then subscribe to it if necessary
  *
@@ -2632,32 +2602,6 @@ function updateDescription(reportID: string, currentDescription: string, newMark
     const parameters: UpdateRoomDescriptionParams = {reportID, description: parsedDescription, reportActionID: optimisticDescriptionUpdatedReportAction.reportActionID};
 
     API.write(WRITE_COMMANDS.UPDATE_ROOM_DESCRIPTION, parameters, {optimisticData, failureData, successData});
-}
-
-function updateWriteCapability(report: Report, newValue: WriteCapability) {
-    // No change needed
-    if (report.writeCapability === newValue) {
-        return;
-    }
-
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT}${report.reportID}`,
-            value: {writeCapability: newValue},
-        },
-    ];
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT}${report.reportID}`,
-            value: {writeCapability: report.writeCapability},
-        },
-    ];
-
-    const parameters: UpdateReportWriteCapabilityParams = {reportID: report.reportID, writeCapability: newValue};
-
-    API.write(WRITE_COMMANDS.UPDATE_REPORT_WRITE_CAPABILITY, parameters, {optimisticData, failureData});
 }
 
 /**
@@ -3044,83 +2988,6 @@ function clearCreateChatError(report: OnyxEntry<Report>) {
     }
 
     navigateToConciergeChatAndDeleteReport(report?.reportID, undefined, true);
-}
-
-/**
- * @param policyRoomReport The policy room report
- * @param policyRoomName The updated name for the policy room
- */
-function updatePolicyRoomName(policyRoomReport: Report, policyRoomName: string) {
-    const reportID = policyRoomReport.reportID;
-    const previousName = policyRoomReport.reportName;
-
-    // No change needed
-    if (previousName === policyRoomName) {
-        return;
-    }
-
-    const optimisticRenamedAction = buildOptimisticRenamedRoomReportAction(policyRoomName, previousName ?? '');
-
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT}${reportID}`,
-            value: {
-                reportName: policyRoomName,
-                pendingFields: {
-                    reportName: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE,
-                },
-                errorFields: {
-                    reportName: null,
-                },
-            },
-        },
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT_ACTIONS}${reportID}`,
-            value: {
-                [optimisticRenamedAction.reportActionID]: optimisticRenamedAction,
-            },
-        },
-    ];
-    const successData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT}${reportID}`,
-            value: {
-                pendingFields: {
-                    reportName: null,
-                },
-            },
-        },
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT_ACTIONS}${reportID}`,
-            value: {[optimisticRenamedAction.reportActionID]: {pendingAction: null}},
-        },
-    ];
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT}${reportID}`,
-            value: {
-                reportName: previousName,
-            },
-        },
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT_ACTIONS}${reportID}`,
-            value: {[optimisticRenamedAction.reportActionID]: null},
-        },
-    ];
-
-    const parameters: UpdatePolicyRoomNameParams = {
-        reportID,
-        policyRoomName,
-        renamedRoomReportActionID: optimisticRenamedAction.reportActionID,
-    };
-
-    API.write(WRITE_COMMANDS.UPDATE_POLICY_ROOM_NAME, parameters, {optimisticData, successData, failureData});
 }
 
 /**
@@ -6022,11 +5889,8 @@ export {
     updateLastVisitTime,
     updateLoadingInitialReportAction,
     updateNotificationPreference,
-    updatePolicyRoomName,
     updateReportField,
     updateReportName,
-    updateRoomVisibility,
-    updateWriteCapability,
     deleteAppReport,
     getOptimisticChatReport,
     saveReportDraft,

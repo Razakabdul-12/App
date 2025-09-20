@@ -779,25 +779,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.REPORT_CHANGE_WORKSPACE.ROOT]: ROUTES.REPORT_WITH_ID_CHANGE_WORKSPACE.route,
                     },
                 },
-                [SCREENS.RIGHT_MODAL.REPORT_SETTINGS]: {
-                    screens: {
-                        [SCREENS.REPORT_SETTINGS.ROOT]: {
-                            path: ROUTES.REPORT_SETTINGS.route,
-                        },
-                        [SCREENS.REPORT_SETTINGS.NAME]: {
-                            path: ROUTES.REPORT_SETTINGS_NAME.route,
-                        },
-                        [SCREENS.REPORT_SETTINGS.NOTIFICATION_PREFERENCES]: {
-                            path: ROUTES.REPORT_SETTINGS_NOTIFICATION_PREFERENCES.route,
-                        },
-                        [SCREENS.REPORT_SETTINGS.WRITE_CAPABILITY]: {
-                            path: ROUTES.REPORT_SETTINGS_WRITE_CAPABILITY.route,
-                        },
-                        [SCREENS.REPORT_SETTINGS.VISIBILITY]: {
-                            path: ROUTES.REPORT_SETTINGS_VISIBILITY.route,
-                        },
-                    },
-                },
                 [SCREENS.RIGHT_MODAL.SETTINGS_CATEGORIES]: {
                     screens: {
                         [SCREENS.SETTINGS_CATEGORIES.SETTINGS_CATEGORY_SETTINGS]: {

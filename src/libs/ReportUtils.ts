@@ -5617,29 +5617,6 @@ function navigateToDetailsPage(report: OnyxEntry<Report>, backTo?: string, shoul
     }
 }
 
-/**
- * Go back to the details page of a given report
- */
-function goBackToDetailsPage(report: OnyxEntry<Report>, backTo?: string, shouldGoBackToDetailsPage = false) {
-    const isOneOnOneChatReport = isOneOnOneChat(report);
-    const participantAccountID = getParticipantsAccountIDsForDisplay(report);
-
-    if (isOneOnOneChatReport) {
-        Navigation.goBack(ROUTES.PROFILE.getRoute(participantAccountID.at(0), backTo));
-        return;
-    }
-
-    if (report?.reportID) {
-        if (shouldGoBackToDetailsPage) {
-            Navigation.goBack(ROUTES.REPORT_WITH_ID_DETAILS.getRoute(report.reportID, backTo));
-        } else {
-            Navigation.goBack(ROUTES.REPORT_SETTINGS.getRoute(report.reportID, backTo));
-        }
-    } else {
-        Log.warn('Missing reportID during navigation back to the details page');
-    }
-}
-
 function navigateBackOnDeleteTransaction(backRoute: Route | undefined, isFromRHP?: boolean) {
     if (!backRoute) {
         return;
@@ -7223,48 +7200,6 @@ function buildOptimisticCreatedReportAction(emailCreatingAction: string, created
         automatic: false,
         avatar: getCurrentUserAvatar(),
         created,
-        shouldShow: true,
-    };
-}
-
-/**
- * Returns the necessary reportAction onyx data to indicate that the room has been renamed
- */
-function buildOptimisticRenamedRoomReportAction(newName: string, oldName: string): OptimisticRenamedReportAction {
-    const now = DateUtils.getDBTime();
-    return {
-        reportActionID: rand64(),
-        actionName: CONST.REPORT.ACTIONS.TYPE.RENAMED,
-        pendingAction: CONST.RED_BRICK_ROAD_PENDING_ACTION.ADD,
-        actorAccountID: currentUserAccountID,
-        message: [
-            {
-                type: CONST.REPORT.MESSAGE.TYPE.TEXT,
-                style: 'strong',
-                text: 'You',
-            },
-            {
-                type: CONST.REPORT.MESSAGE.TYPE.TEXT,
-                style: 'normal',
-                text: ` renamed this report. New title is '${newName}' (previously '${oldName}').`,
-            },
-        ],
-        person: [
-            {
-                type: CONST.REPORT.MESSAGE.TYPE.TEXT,
-                style: 'strong',
-                text: getCurrentUserDisplayNameOrEmail(),
-            },
-        ],
-        originalMessage: {
-            oldName,
-            newName,
-            html: `Room renamed to ${newName}`,
-            lastModified: now,
-        },
-        automatic: false,
-        avatar: getCurrentUserAvatar(),
-        created: now,
         shouldShow: true,
     };
 }
@@ -9204,21 +9139,6 @@ function shouldDisableRename(report: OnyxEntry<Report>, isReportArchived = false
     }
 
     return false;
-}
-
-/**
- * @param policy - the workspace the report is on, null if the user isn't a member of the workspace
- */
-function canEditWriteCapability(report: OnyxEntry<Report>, policy: OnyxEntry<Policy>, isReportArchived = false): boolean {
-    return isPolicyAdminPolicyUtils(policy) && !isAdminRoom(report) && !isReportArchived && !isThread(report) && !isInvoiceRoom(report) && !isPolicyExpenseChat(report);
-}
-
-/**
- * @param policy - the workspace the room is on, null if the user isn't a member of the workspace
- * @param isReportArchived - whether the workspace room is archived
- */
-function canEditRoomVisibility(policy: OnyxEntry<Policy>, isReportArchived: boolean): boolean {
-    return !isReportArchived && isPolicyAdminPolicyUtils(policy);
 }
 
 /**
@@ -11592,7 +11512,6 @@ export {
     buildOptimisticMoneyRequestEntities,
     buildOptimisticMovedReportAction,
     buildOptimisticChangePolicyReportAction,
-    buildOptimisticRenamedRoomReportAction,
     buildOptimisticRoomDescriptionUpdatedReportAction,
     buildOptimisticReportPreview,
     buildOptimisticActionableTrackExpenseWhisper,
@@ -11628,8 +11547,6 @@ export {
     canEditPolicyDescription,
     canEditReportAction,
     canEditReportDescription,
-    canEditRoomVisibility,
-    canEditWriteCapability,
     canFlagReportAction,
     isNonAdminOrOwnerOfPolicyExpenseChat,
     canJoinChat,
@@ -11727,7 +11644,6 @@ export {
     getWhisperDisplayNames,
     getWorkspaceChats,
     getWorkspaceIcon,
-    goBackToDetailsPage,
     getInvoicePayerName,
     getInvoicesChatName,
     getPayeeName,
