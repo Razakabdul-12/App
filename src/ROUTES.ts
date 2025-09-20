@@ -1819,45 +1819,7 @@ const ROUTES = {
         route: 'workspaces/:policyID/company-cards/settings/statement-close-date',
         getRoute: (policyID: string) => `workspaces/${policyID}/company-cards/settings/statement-close-date` as const,
     },
-    WORKSPACE_DISTANCE_RATES: {
-        route: 'workspaces/:policyID/distance-rates',
-        getRoute: (policyID: string | undefined) => {
-            if (!policyID) {
-                Log.warn('Invalid policyID is used to build the WORKSPACE_DISTANCE_RATES route');
-            }
-            return `workspaces/${policyID}/distance-rates` as const;
-        },
-    },
-    WORKSPACE_CREATE_DISTANCE_RATE: {
-        route: 'workspaces/:policyID/distance-rates/new',
-        getRoute: (policyID: string, transactionID?: string, reportID?: string) =>
-            `workspaces/${policyID}/distance-rates/new${transactionID ? `?transactionID=${transactionID}` : ''}${reportID ? `&reportID=${reportID}` : ''}` as const,
-    },
-    WORKSPACE_DISTANCE_RATES_SETTINGS: {
-        route: 'workspaces/:policyID/distance-rates/settings',
-        getRoute: (policyID: string) => `workspaces/${policyID}/distance-rates/settings` as const,
-    },
-    WORKSPACE_DISTANCE_RATE_DETAILS: {
-        route: 'workspaces/:policyID/distance-rates/:rateID',
-        getRoute: (policyID: string, rateID: string) => `workspaces/${policyID}/distance-rates/${rateID}` as const,
-    },
-    WORKSPACE_DISTANCE_RATE_EDIT: {
-        route: 'workspaces/:policyID/distance-rates/:rateID/edit',
-        getRoute: (policyID: string, rateID: string) => `workspaces/${policyID}/distance-rates/${rateID}/edit` as const,
-    },
-    WORKSPACE_DISTANCE_RATE_NAME_EDIT: {
-        route: 'workspaces/:policyID/distance-rates/:rateID/name/edit',
-        getRoute: (policyID: string, rateID: string) => `workspaces/${policyID}/distance-rates/${rateID}/name/edit` as const,
-    },
-    WORKSPACE_DISTANCE_RATE_TAX_RECLAIMABLE_ON_EDIT: {
-        route: 'workspaces/:policyID/distance-rates/:rateID/tax-reclaimable/edit',
-        getRoute: (policyID: string, rateID: string) => `workspaces/${policyID}/distance-rates/${rateID}/tax-reclaimable/edit` as const,
-    },
-    WORKSPACE_DISTANCE_RATE_TAX_RATE_EDIT: {
-        route: 'workspaces/:policyID/distance-rates/:rateID/tax-rate/edit',
-        getRoute: (policyID: string, rateID: string) => `workspaces/${policyID}/distance-rates/${rateID}/tax-rate/edit` as const,
-    },
-  
+
 
     // Referral program promotion
     REFERRAL_DETAILS_MODAL: {

@@ -67,7 +67,7 @@ function getSettingsMessage(status: IndicatorStatus | undefined): TranslationPat
 function getSettingsRoute(status: IndicatorStatus | undefined, reimbursementAccount: OnyxEntry<ReimbursementAccount>, policyIDWithErrors = ''): Route | undefined {
     switch (status) {
         case CONST.INDICATOR_STATUS.HAS_CUSTOM_UNITS_ERROR:
-            return ROUTES.WORKSPACE_DISTANCE_RATES.getRoute(policyIDWithErrors);
+            return ROUTES.WORKSPACE_INITIAL.getRoute(policyIDWithErrors);
         case CONST.INDICATOR_STATUS.HAS_EMPLOYEE_LIST_ERROR:
             return ROUTES.WORKSPACE_MEMBERS.getRoute(policyIDWithErrors);
         case CONST.INDICATOR_STATUS.HAS_LOGIN_LIST_ERROR:

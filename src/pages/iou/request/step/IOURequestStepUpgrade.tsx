@@ -13,7 +13,6 @@ import useLocalize from '@hooks/useLocalize';
 import useNetwork from '@hooks/useNetwork';
 import useOnyx from '@hooks/useOnyx';
 import useThemeStyles from '@hooks/useThemeStyles';
-import {setTransactionReport} from '@libs/actions/Transaction';
 import type CreateWorkspaceParams from '@libs/API/parameters/CreateWorkspaceParams';
 import Navigation from '@libs/Navigation/Navigation';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
@@ -46,97 +45,9 @@ function IOURequestStepUpgrade({
     const [isUpgraded, setIsUpgraded] = useState(false);
     const [showConfirmationForm, setShowConfirmationForm] = useState(false);
     const policyDataRef = useRef<CreateWorkspaceParams | null>(null);
-    const isDistanceRateUpgrade = upgradePath === CONST.UPGRADE_PATHS.DISTANCE_RATES;
     const isCategorizing = upgradePath === CONST.UPGRADE_PATHS.CATEGORIES;
 
-    const upgradeContent = useMemo(() => {
-        switch (upgradePath) {
-            case CONST.UPGRADE_PATHS.DISTANCE_RATES:
-                return {
-                    title: translate('workspace.upgrade.distanceRates.title'),
-                    description: translate('workspace.upgrade.distanceRates.description'),
-                };
-            case CONST.UPGRADE_PATHS.CATEGORIES:
-                return {
-                    title: translate('workspace.upgrade.categories.title'),
-                    description: translate('workspace.upgrade.categories.description'),
-                };
-            case CONST.UPGRADE_PATHS.REPORTS:
-                return {
-                    title: translate('workspace.upgrade.reportFields.title'),
-                    description: translate('workspace.upgrade.reportFields.description'),
-                };
-            default:
-                return {
-                    title: translate('workspace.upgrade.upgradeToUnlock'),
-                    description: translate('workspace.upgrade.commonFeatures.note'),
-                };
-        }
-    }, [translate, upgradePath]);
-
-    const afterUpgradeAcknowledged = useCallback(() => {
-        const expenseReportID = policyDataRef.current?.expenseChatReportID ?? reportID;
-        const policyID = policyDataRef.current?.policyID;
-        if (shouldSubmitExpense) {
-            setMoneyRequestParticipants(transactionID, [
-                {
-                    selected: true,
-                    accountID: 0,
-                    isPolicyExpenseChat: true,
-                    reportID: expenseReportID,
-                    policyID: policyDataRef.current?.policyID,
-                    searchText: policyDataRef.current?.policyName,
-                },
-            ]);
-        }
-        Navigation.goBack();
-
-        switch (upgradePath) {
-            case CONST.UPGRADE_PATHS.DISTANCE_RATES: {
-                if (!policyID || !reportID) {
-                    return;
-                }
-                setTransactionReport(transactionID, {reportID: expenseReportID}, true);
-                // Let the confirmation step decide the distance rate because policy data is not fully available at this step
-                setCustomUnitRateID(transactionID, '-1');
-                Navigation.setParams({reportID: expenseReportID});
-                Navigation.navigate(ROUTES.WORKSPACE_CREATE_DISTANCE_RATE.getRoute(policyID, transactionID, expenseReportID));
-                break;
-            }
-            case CONST.UPGRADE_PATHS.CATEGORIES:
-                Navigation.navigate(ROUTES.MONEY_REQUEST_STEP_CATEGORY.getRoute(action, CONST.IOU.TYPE.SUBMIT, transactionID, reportID, ROUTES.REPORT_WITH_ID.getRoute(reportID)));
-                break;
-            default:
-        }
-    }, [action, reportID, shouldSubmitExpense, transactionID, upgradePath]);
-
-    const adminParticipant = useMemo(() => {
-        const participant = transaction?.participants?.[0];
-        if (!isDistanceRateUpgrade || !participant?.accountID) {
-            return;
-        }
-
-        return getParticipantsOption(participant, personalDetails);
-    }, [isDistanceRateUpgrade, transaction?.participants, personalDetails]);
-
-    const onUpgrade = useCallback(() => {
-        if (isCategorizing) {
-            setShowConfirmationForm(true);
-            return;
-        }
-        const policyData = Policy.createWorkspace({
-            policyOwnerEmail: undefined,
-            policyName: undefined,
-            policyID: undefined,
-            engagementChoice: CONST.ONBOARDING_CHOICES.TRACK_WORKSPACE,
-            currency: currentUserPersonalDetails?.localCurrencyCode ?? '',
-            areDistanceRatesEnabled: isDistanceRateUpgrade,
-            adminParticipant,
-        });
-        setIsUpgraded(true);
-        policyDataRef.current = policyData;
-    }, [isCategorizing, currentUserPersonalDetails?.localCurrencyCode, isDistanceRateUpgrade, adminParticipant]);
-
+   
     const [session] = useOnyx(ONYXKEYS.SESSION, {canBeMissing: false});
 
     const onWorkspaceConfirmationSubmit = (params: WorkspaceConfirmationSubmitFunctionParams) => {

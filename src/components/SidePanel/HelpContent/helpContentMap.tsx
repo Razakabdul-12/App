@@ -746,55 +746,7 @@ const helpContentMap: HelpContent = {
                                 </View>
                             ),
                         },
-                        'distance-rates': {
-                            content: ({styles}: {styles: ThemeStyles}) => (
-                                <View>
-                                    <Text style={[styles.textHeadlineH1, styles.mv4]}>Distance Rates</Text>
-                                    <Text style={[styles.textNormal]}>
-                                        Distance rates make it easy to pay employees when they use their personal vehicles for work. You can set different rates for different vehicle types
-                                        or travel situations. Just make sure at least one rate is active when this feature is turned on.
-                                    </Text>
-
-                                    <BulletList
-                                        styles={styles}
-                                        items={[
-                                            <Text style={styles.textNormal}>
-                                                <Text style={[styles.textNormal]}>
-                                                    <Text style={styles.textBold}>How to set up rates</Text>: Under{' '}
-                                                    <Text style={styles.textBold}>Workspaces &gt; [Workspace Name] &gt; Distance rates</Text> and choose{' '}
-                                                    <Text style={styles.textBold}>Add rate</Text>. Enter how much you’ll reimburse per mile or kilometer and click{' '}
-                                                    <Text style={styles.textBold}>Save</Text>.
-                                                </Text>
-                                            </Text>,
-                                            <Text style={styles.textNormal}>
-                                                <Text style={[styles.textNormal]}>
-                                                    <Text style={styles.textBold}>Multiple rate options</Text>: Customize rates for personal cars, company vehicles, or different types of
-                                                    trips.
-                                                </Text>
-                                            </Text>,
-                                            <Text style={styles.textNormal}>
-                                                <Text style={[styles.textNormal]}>
-                                                    <Text style={styles.textBold}>Managing your rates</Text>: To save time, you can turn rates on or off, update amounts, or manage them in
-                                                    bulk.
-                                                </Text>
-                                            </Text>,
-                                        ]}
-                                    />
-
-                                    <Text style={[styles.textNormal]}>
-                                        You can learn more about managing distance rates here ➡️{' '}
-                                        <TextLink
-                                            href="https://help.expensify.com/articles/new-expensify/workspaces/Set-distance-rates"
-                                            style={styles.link}
-                                        >
-                                            Set Distance Rates
-                                        </TextLink>
-                                        .
-                                    </Text>
-                                </View>
-                            ),
-                        },
-                        workflows: {
+                                                workflows: {
                             content: ({styles}: {styles: ThemeStyles}) => (
                                 <View>
                                     <Text style={[styles.textHeadlineH1, styles.mv4]}>Workflows</Text>
@@ -1307,8 +1259,7 @@ const helpContentMap: HelpContent = {
                     <Text style={[styles.textNormal]}>Link your workspace with QuickBooks Online, Xero, NetSuite, or Sage Intacct to sync expenses like a pro.</Text>
                     <Text style={[styles.textHeadlineH2, styles.mv4]}>Enhance your workspace with extra features</Text>
                     <Text style={[styles.textNormal]}>
-                        Under <Text style={styles.textBold}>More Features</Text>, enable extras like the Expensify Card, distance rates, custom categories and tags, and company card
-                        connections.
+                        Under <Text style={styles.textBold}>More Features</Text>, enable extras like the Expensify Card, custom categories and tags, and company card connections.
                     </Text>
 
                     <Text style={[styles.textNormal]}>

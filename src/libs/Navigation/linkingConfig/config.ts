@@ -759,27 +759,7 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.WORKSPACE.CATEGORY_REQUIRE_RECEIPTS_OVER]: {
                             path: ROUTES.WORKSPACE_CATEGORY_REQUIRE_RECEIPTS_OVER.route,
                         },
-                        [SCREENS.WORKSPACE.CREATE_DISTANCE_RATE]: {
-                            path: ROUTES.WORKSPACE_CREATE_DISTANCE_RATE.route,
-                        },
-                        [SCREENS.WORKSPACE.DISTANCE_RATES_SETTINGS]: {
-                            path: ROUTES.WORKSPACE_DISTANCE_RATES_SETTINGS.route,
-                        },
-                        [SCREENS.WORKSPACE.DISTANCE_RATE_DETAILS]: {
-                            path: ROUTES.WORKSPACE_DISTANCE_RATE_DETAILS.route,
-                        },
-                        [SCREENS.WORKSPACE.DISTANCE_RATE_EDIT]: {
-                            path: ROUTES.WORKSPACE_DISTANCE_RATE_EDIT.route,
-                        },
-                        [SCREENS.WORKSPACE.DISTANCE_RATE_NAME_EDIT]: {
-                            path: ROUTES.WORKSPACE_DISTANCE_RATE_NAME_EDIT.route,
-                        },
-                        [SCREENS.WORKSPACE.DISTANCE_RATE_TAX_RECLAIMABLE_ON_EDIT]: {
-                            path: ROUTES.WORKSPACE_DISTANCE_RATE_TAX_RECLAIMABLE_ON_EDIT.route,
-                        },
-                        [SCREENS.WORKSPACE.DISTANCE_RATE_TAX_RATE_EDIT]: {
-                            path: ROUTES.WORKSPACE_DISTANCE_RATE_TAX_RATE_EDIT.route,
-                        },
+                    
                       
                         [SCREENS.WORKSPACE.WORKFLOWS_CONNECT_EXISTING_BANK_ACCOUNT]: {
                             path: ROUTES.WORKSPACE_WORKFLOWS_CONNECT_EXISTING_BANK_ACCOUNT.route,
@@ -1409,9 +1389,7 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                     path: ROUTES.WORKSPACE_MORE_FEATURES.route,
                 },
               
-                [SCREENS.WORKSPACE.DISTANCE_RATES]: {
-                    path: ROUTES.WORKSPACE_DISTANCE_RATES.route,
-                },
+           
             },
         },
 

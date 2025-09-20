@@ -2949,7 +2949,6 @@ const CONST = {
         MORE_FEATURES: {
             ARE_CATEGORIES_ENABLED: 'areCategoriesEnabled',
             ARE_TAGS_ENABLED: 'areTagsEnabled',
-            ARE_DISTANCE_RATES_ENABLED: 'areDistanceRatesEnabled',
             ARE_WORKFLOWS_ENABLED: 'areWorkflowsEnabled',
             ARE_CONNECTIONS_ENABLED: 'areConnectionsEnabled',
             ARE_COMPANY_CARDS_ENABLED: 'areCompanyCardsEnabled',
@@ -6714,7 +6713,6 @@ const CONST = {
     DEFAULT_REPORT_METADATA: {isLoadingInitialReportActions: true},
     UPGRADE_PATHS: {
         CATEGORIES: 'categories',
-        DISTANCE_RATES: 'distance-rates',
     },
     REPORT_FIELD_TYPES: {
         TEXT: 'text',
@@ -6987,7 +6985,6 @@ const FEATURE_IDS = {
     ACCOUNTING: 'accounting',
     COMPANY_CARDS: 'company-cards',
     WORKFLOWS: 'workflows',
-    DISTANCE_RATES: 'distance-rates',
     EXPENSIFY_CARD: 'expensify-card',
 };
 

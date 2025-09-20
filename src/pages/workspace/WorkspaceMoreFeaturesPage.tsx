@@ -20,9 +20,8 @@ import {getLatestErrorField} from '@libs/ErrorUtils';
 import Navigation from '@libs/Navigation/Navigation';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {WorkspaceSplitNavigatorParamList} from '@libs/Navigation/types';
-import {getDistanceRateCustomUnit, hasAccountingConnections, isControlPolicy} from '@libs/PolicyUtils';
+import { hasAccountingConnections, isControlPolicy} from '@libs/PolicyUtils';
 import {enablePolicyCategories} from '@userActions/Policy/Category';
-import {enablePolicyDistanceRates} from '@userActions/Policy/DistanceRate';
 import {
     clearPolicyErrorField,
     enableCompanyCards,
@@ -86,7 +85,6 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
     const [isDisableCompanyCardsWarningModalOpen, setIsDisableCompanyCardsWarningModalOpen] = useState(false);
     const [isDisableWorkflowWarningModalOpen, setIsDisableWorkflowWarningModalOpen] = useState(false);
 
-    const distanceRateCustomUnit = getDistanceRateCustomUnit(policy);
 
     const [cardList] = useOnyx(`${ONYXKEYS.COLLECTION.WORKSPACE_CARDS_LIST}`, {canBeMissing: true});
     const workspaceCards = getAllCardsForWorkspace(workspaceAccountID, cardList, cardFeeds);
@@ -113,19 +111,6 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
     }, [isSmartLimitEnabled]);
 
     const spendItems: Item[] = [
-        {
-            icon: Illustrations.Car,
-            titleTranslationKey: 'workspace.moreFeatures.distanceRates.title',
-            subtitleTranslationKey: 'workspace.moreFeatures.distanceRates.subtitle',
-            isActive: policy?.areDistanceRatesEnabled ?? false,
-            pendingAction: policy?.pendingFields?.areDistanceRatesEnabled,
-            action: (isEnabled: boolean) => {
-                if (!policyID) {
-                    return;
-                }
-                enablePolicyDistanceRates(policyID, isEnabled, distanceRateCustomUnit);
-            },
-        },
         {
             icon: Illustrations.HandCard,
             titleTranslationKey: 'workspace.moreFeatures.expensifyCard.title',
