@@ -58,9 +58,6 @@ type ReportActionItemImageProps = {
     /** Whether the receipt is not editable */
     readonly?: boolean;
 
-    /** whether or not this report is from review duplicates */
-    isFromReviewDuplicates?: boolean;
-
     /** Merge transaction ID to show in merge transaction flow */
     mergeTransactionID?: string;
 
@@ -90,7 +87,6 @@ function ReportActionItemImage({
     isSingleImage = true,
     readonly = false,
     shouldMapHaveBorderRadius,
-    isFromReviewDuplicates = false,
     mergeTransactionID,
     onPress,
     shouldUseFullHeight,
@@ -162,7 +158,6 @@ function ReportActionItemImage({
                                     transactionThreadReport?.reportID ?? report?.reportID,
                                     transaction?.transactionID,
                                     readonly,
-                                    isFromReviewDuplicates,
                                     mergeTransactionID,
                                 ),
                             )

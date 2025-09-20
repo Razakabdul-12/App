@@ -1,5 +1,4 @@
 import {format, isValid, parse} from 'date-fns';
-import {deepEqual} from 'fast-equals';
 import lodashDeepClone from 'lodash/cloneDeep';
 import lodashHas from 'lodash/has';
 import lodashSet from 'lodash/set';
@@ -9,7 +8,6 @@ import type {ValueOf} from 'type-fest';
 import type {UnreportedExpenseListItemType} from '@components/SelectionList/types';
 import {getPolicyCategoriesData} from '@libs/actions/Policy/Category';
 import {getPolicyTagsData} from '@libs/actions/Policy/Tag';
-import type {MergeDuplicatesParams} from '@libs/API/parameters';
 import {getCategoryDefaultTaxRate} from '@libs/CategoryUtils';
 import {convertToBackendAmount, getCurrencyDecimals} from '@libs/CurrencyUtils';
 import DateUtils from '@libs/DateUtils';
@@ -53,7 +51,6 @@ import type {
     Policy,
     RecentWaypoint,
     Report,
-    ReviewDuplicates,
     TaxRate,
     TaxRates,
     Transaction,
@@ -1468,17 +1465,6 @@ function getTaxName(policy: OnyxEntry<Policy>, transaction: OnyxEntry<Transactio
     return Object.values(transformedTaxRates(policy, transaction)).find((taxRate) => taxRate.code === (transaction?.taxCode ?? defaultTaxCode))?.modifiedName;
 }
 
-type FieldsToCompare = Record<string, Array<keyof Transaction>>;
-type FieldsToChange = {
-    category?: Array<string | undefined>;
-    merchant?: Array<string | undefined>;
-    tag?: Array<string | undefined>;
-    description?: Array<Comment | undefined>;
-    taxCode?: Array<string | undefined>;
-    billable?: Array<boolean | undefined>;
-    reimbursable?: Array<boolean | undefined>;
-};
-
 /**
  * Extracts a set of valid duplicate transaction IDs associated with a given transaction,
  * excluding:
@@ -1629,180 +1615,6 @@ function removeSettledAndApprovedTransactions(transactions: Array<OnyxEntry<Tran
     return transactions.filter((transaction) => !!transaction && !isSettled(transaction?.reportID) && !isReportIDApproved(transaction?.reportID)) as Transaction[];
 }
 
-/**
- * This function compares fields of duplicate transactions and determines which fields should be kept and which should be changed.
- *
- * @returns An object with two properties: 'keep' and 'change'.
- * 'keep' is an object where each key is a field name and the value is the value of that field in the transaction that should be kept.
- * 'change' is an object where each key is a field name and the value is an array of different values of that field in the duplicate transactions.
- *
- * The function works as follows:
- * 1. It fetches the transaction violations for the given transaction ID.
- * 2. It finds the duplicate transactions.
- * 3. It creates two empty objects, 'keep' and 'change'.
- * 4. It defines the fields to compare in the transactions.
- * 5. It iterates over the fields to compare. For each field:
- *    - If the field is 'description', it checks if all comments are equal, exist, or are empty. If so, it keeps the first transaction's comment. Otherwise, it finds the different values and adds them to 'change'.
- *    - For other fields, it checks if all fields are equal. If so, it keeps the first transaction's field value. Otherwise, it finds the different values and adds them to 'change'.
- * 6. It returns the 'keep' and 'change' objects.
- */
-
-function compareDuplicateTransactionFields(
-    reviewingTransaction?: OnyxEntry<Transaction>,
-    duplicates?: Array<OnyxEntry<Transaction>>,
-    reportID?: string | undefined,
-    selectedTransactionID?: string,
-): {keep: Partial<ReviewDuplicates>; change: FieldsToChange} {
-    const reviewingTransactionID = reviewingTransaction?.transactionID;
-    if (!reviewingTransactionID || !reportID) {
-        return {change: {}, keep: {}};
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const keep: Record<string, any> = {};
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const change: Record<string, any[]> = {};
-    if (!reviewingTransactionID || !reportID) {
-        return {keep, change};
-    }
-    const transactions = removeSettledAndApprovedTransactions([reviewingTransaction, ...(duplicates ?? [])]);
-
-    const fieldsToCompare: FieldsToCompare = {
-        merchant: ['modifiedMerchant', 'merchant'],
-        category: ['category'],
-        tag: ['tag'],
-        description: ['comment'],
-        taxCode: ['taxCode'],
-        billable: ['billable'],
-        reimbursable: ['reimbursable'],
-    };
-
-    // Helper function thats create an array of different values for a given key in the transactions
-    function getDifferentValues(items: Array<OnyxEntry<Transaction>>, keys: Array<keyof Transaction>) {
-        return [
-            ...new Set(
-                items
-                    .map((item) => {
-                        // Prioritize modifiedMerchant over merchant
-                        if (keys.includes('modifiedMerchant' as keyof Transaction) && keys.includes('merchant' as keyof Transaction)) {
-                            // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-                            return getMerchant(item);
-                        }
-                        return keys.map((key) => item?.[key]);
-                    })
-                    .flat(),
-            ),
-        ];
-    }
-
-    // Helper function to check if all comments are equal
-    function areAllCommentsEqual(items: Array<OnyxEntry<Transaction>>, firstTransaction: OnyxEntry<Transaction>) {
-        return items.every((item) => deepEqual(getDescription(item), getDescription(firstTransaction)));
-    }
-
-    // Helper function to check if all fields are equal for a given key
-    function areAllFieldsEqual(items: Array<OnyxEntry<Transaction>>, keyExtractor: (item: OnyxEntry<Transaction>) => string) {
-        const firstTransaction = transactions.at(0);
-        return items.every((item) => keyExtractor(item) === keyExtractor(firstTransaction));
-    }
-
-    // Helper function to process changes
-    function processChanges(fieldName: string, items: Array<OnyxEntry<Transaction>>, keys: Array<keyof Transaction>) {
-        const differentValues = getDifferentValues(items, keys);
-        if (differentValues.length > 0) {
-            change[fieldName] = differentValues;
-        }
-    }
-
-    // The comment object needs to be stored only when selecting a specific transaction to keep.
-    // It contains details such as 'customUnit' and 'waypoints,' which remain unchanged during the review steps
-    // but are essential for displaying complete information on the confirmation page.
-    if (selectedTransactionID) {
-        const selectedTransaction = transactions.find((t) => t?.transactionID === selectedTransactionID);
-        keep.comment = selectedTransaction?.comment ?? {};
-    }
-
-    for (const fieldName in fieldsToCompare) {
-        if (Object.prototype.hasOwnProperty.call(fieldsToCompare, fieldName)) {
-            const keys = fieldsToCompare[fieldName];
-            const firstTransaction = transactions.at(0);
-            const isFirstTransactionCommentEmptyObject = typeof firstTransaction?.comment === 'object' && firstTransaction?.comment?.comment === '';
-            const report = allReports?.[`${ONYXKEYS.COLLECTION.REPORT}${reportID}`];
-            // This will be fixed as part of https://github.com/Expensify/Expensify/issues/507850
-            // eslint-disable-next-line deprecation/deprecation
-            const policy = getPolicy(report?.policyID);
-
-            const areAllFieldsEqualForKey = areAllFieldsEqual(transactions, (item) => keys.map((key) => item?.[key]).join('|'));
-            if (fieldName === 'description') {
-                const allCommentsAreEqual = areAllCommentsEqual(transactions, firstTransaction);
-                const allCommentsAreEmpty = isFirstTransactionCommentEmptyObject && transactions.every((item) => getDescription(item) === '');
-                if (allCommentsAreEqual || allCommentsAreEmpty) {
-                    keep[fieldName] = firstTransaction?.comment?.comment ?? firstTransaction?.comment;
-                } else {
-                    processChanges(fieldName, transactions, keys);
-                }
-            } else if (fieldName === 'merchant') {
-                if (areAllFieldsEqual(transactions, getMerchant)) {
-                    keep[fieldName] = getMerchant(firstTransaction);
-                } else {
-                    processChanges(fieldName, transactions, keys);
-                }
-            } else if (fieldName === 'taxCode') {
-                const differentValues = getDifferentValues(transactions, keys);
-                const validTaxes = differentValues?.filter((taxID) => {
-                    const tax = getTaxByID(policy, (taxID as string) ?? '');
-                    return tax?.name && !tax.isDisabled && tax.pendingAction !== CONST.RED_BRICK_ROAD_PENDING_ACTION.DELETE;
-                });
-
-                if (!areAllFieldsEqualForKey && validTaxes.length > 1) {
-                    change[fieldName] = validTaxes;
-                } else if (areAllFieldsEqualForKey) {
-                    keep[fieldName] = firstTransaction?.[keys[0]] ?? firstTransaction?.[keys[1]];
-                }
-            } else if (fieldName === 'category') {
-                const differentValues = getDifferentValues(transactions, keys);
-                const policyCategories = report?.policyID ? getPolicyCategoriesData(report.policyID) : {};
-                const availableCategories = Object.values(policyCategories)
-                    .filter((category) => differentValues.includes(category.name) && category.enabled && category.pendingAction !== CONST.RED_BRICK_ROAD_PENDING_ACTION.DELETE)
-                    .map((e) => e.name);
-
-                if (!areAllFieldsEqualForKey && policy?.areCategoriesEnabled && (availableCategories.length > 1 || (availableCategories.length === 1 && differentValues.includes('')))) {
-                    change[fieldName] = [...availableCategories, ...(differentValues.includes('') ? [''] : [])];
-                } else if (areAllFieldsEqualForKey) {
-                    keep[fieldName] = firstTransaction?.[keys[0]] ?? firstTransaction?.[keys[1]];
-                }
-            } else if (fieldName === 'tag') {
-                const policyTags = report?.policyID ? getPolicyTagsData(report?.policyID) : {};
-                const isMultiLevelTags = isMultiLevelTagsPolicyUtils(policyTags);
-                if (isMultiLevelTags) {
-                    if (areAllFieldsEqualForKey || !policy?.areTagsEnabled) {
-                        keep[fieldName] = firstTransaction?.[keys[0]] ?? firstTransaction?.[keys[1]];
-                    } else {
-                        processChanges(fieldName, transactions, keys);
-                    }
-                } else {
-                    const differentValues = getDifferentValues(transactions, keys);
-                    const policyTagsObj = Object.values(Object.values(policyTags).at(0)?.tags ?? {});
-                    const availableTags = policyTagsObj
-                        .filter((tag) => differentValues.includes(tag.name) && tag.enabled && tag.pendingAction !== CONST.RED_BRICK_ROAD_PENDING_ACTION.DELETE)
-                        .map((e) => e.name);
-                    if (!areAllFieldsEqualForKey && policy?.areTagsEnabled && (availableTags.length > 1 || (availableTags.length === 1 && differentValues.includes('')))) {
-                        change[fieldName] = [...availableTags, ...(differentValues.includes('') ? [''] : [])];
-                    } else if (areAllFieldsEqualForKey) {
-                        keep[fieldName] = firstTransaction?.[keys[0]] ?? firstTransaction?.[keys[1]];
-                    }
-                }
-            } else if (areAllFieldsEqualForKey) {
-                keep[fieldName] = firstTransaction?.[keys[0]] ?? firstTransaction?.[keys[1]];
-            } else {
-                processChanges(fieldName, transactions, keys);
-            }
-        }
-    }
-
-    return {keep, change};
-}
-
 function getTransactionID(threadReportID?: string): string | undefined {
     if (!threadReportID) {
         return;
@@ -1812,41 +1624,6 @@ function getTransactionID(threadReportID?: string): string | undefined {
     const IOUTransactionID = isMoneyRequestAction(parentReportAction) ? getOriginalMessage(parentReportAction)?.IOUTransactionID : undefined;
 
     return IOUTransactionID;
-}
-
-function buildNewTransactionAfterReviewingDuplicates(reviewDuplicateTransaction: OnyxEntry<ReviewDuplicates>): Partial<Transaction> {
-    const originalTransaction = allTransactions?.[`${ONYXKEYS.COLLECTION.TRANSACTION}${reviewDuplicateTransaction?.transactionID}`] ?? undefined;
-    const {duplicates, ...restReviewDuplicateTransaction} = reviewDuplicateTransaction ?? {};
-
-    return {
-        ...originalTransaction,
-        ...restReviewDuplicateTransaction,
-        modifiedMerchant: reviewDuplicateTransaction?.merchant,
-        merchant: reviewDuplicateTransaction?.merchant,
-        comment: {...reviewDuplicateTransaction?.comment, comment: reviewDuplicateTransaction?.description},
-    };
-}
-
-function buildMergeDuplicatesParams(
-    reviewDuplicates: OnyxEntry<ReviewDuplicates>,
-    duplicatedTransactions: Array<OnyxEntry<Transaction>>,
-    originalTransaction: Partial<Transaction>,
-): MergeDuplicatesParams {
-    return {
-        amount: -getAmount(originalTransaction as OnyxEntry<Transaction>, true),
-        reportID: originalTransaction?.reportID,
-        receiptID: originalTransaction?.receipt?.receiptID ?? CONST.DEFAULT_NUMBER_ID,
-        currency: getCurrency(originalTransaction as OnyxEntry<Transaction>),
-        created: getFormattedCreated(originalTransaction as OnyxEntry<Transaction>),
-        transactionID: reviewDuplicates?.transactionID,
-        transactionIDList: removeSettledAndApprovedTransactions(duplicatedTransactions ?? []).map((transaction) => transaction.transactionID),
-        billable: reviewDuplicates?.billable ?? false,
-        reimbursable: reviewDuplicates?.reimbursable ?? false,
-        category: reviewDuplicates?.category ?? '',
-        tag: reviewDuplicates?.tag ?? '',
-        merchant: reviewDuplicates?.merchant ?? '',
-        comment: reviewDuplicates?.description ?? '',
-    };
 }
 
 function getCategoryTaxCodeAndAmount(category: string, transaction: OnyxEntry<Transaction>, policy: OnyxEntry<Policy>) {
@@ -2040,10 +1817,7 @@ export {
     hasWarningTypeViolation,
     isCustomUnitRateIDForP2P,
     getRateID,
-    compareDuplicateTransactionFields,
     getTransactionID,
-    buildNewTransactionAfterReviewingDuplicates,
-    buildMergeDuplicatesParams,
     getReimbursable,
     isPayAtEndExpense,
     removeSettledAndApprovedTransactions,

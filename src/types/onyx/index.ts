@@ -94,7 +94,6 @@ import type {ReportFieldsViolations, ReportViolationName} from './ReportViolatio
 import type ReportViolations from './ReportViolation';
 import type Request from './Request';
 import type Response from './Response';
-import type ReviewDuplicates from './ReviewDuplicates';
 import type {SaveSearch} from './SaveSearch';
 import type ScreenShareRequest from './ScreenShareRequest';
 import type SearchResults from './SearchResults';
@@ -240,7 +239,6 @@ export type {
     PolicyJoinMember,
     CapturedLogs,
     SearchResults,
-    ReviewDuplicates,
     PrivateSubscription,
     BillingGraceEndPeriod,
     StripeCustomerID,

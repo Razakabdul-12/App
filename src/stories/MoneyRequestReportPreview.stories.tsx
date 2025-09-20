@@ -12,7 +12,6 @@ import getMoneyRequestReportPreviewStyle from '@styles/utils/getMoneyRequestRepo
 // eslint-disable-next-line no-restricted-imports
 import sizing from '@styles/utils/sizing';
 import CONST from '@src/CONST';
-import SCREENS from '@src/SCREENS';
 import type {Transaction} from '@src/types/onyx';
 import {actionR14932} from '../../__mocks__/reportData/actions';
 import personalDetails from '../../__mocks__/reportData/personalDetails';
@@ -46,12 +45,9 @@ const mockRenderItem: ListRenderItem<Transaction> = ({item}) => (
         transactionRawAmount={item.amount}
         violations={item.errors ? violationsR14932 : []}
         offlineWithFeedbackOnClose={() => undefined}
-        navigateToReviewFields={() => undefined}
         isBillSplit={false}
-        areThereDuplicates={false}
         sessionAccountID={11111111}
         walletTermsErrors={undefined}
-        routeName={SCREENS.TRANSACTION_DUPLICATE.REVIEW}
         shouldHideOnDelete={false}
         transactionPreviewWidth={303}
         containerStyles={[sizing.h100]}

@@ -43,7 +43,6 @@ import {
     allHavePendingRTERViolation,
     getTransactionViolations,
     hasPendingRTERViolation as hasPendingRTERViolationTransactionUtils,
-    isDuplicate,
     isOnHold as isOnHoldTransactionUtils,
     isPending,
     isScanning,
@@ -253,28 +252,6 @@ function isRemoveHoldAction(report: Report, chatReport: OnyxEntry<Report>, repor
     return isHolder;
 }
 
-function isReviewDuplicatesAction(report: Report, reportTransactions: Transaction[]) {
-    const hasDuplicates = reportTransactions.some((transaction) => isDuplicate(transaction, true));
-
-    if (!hasDuplicates) {
-        return false;
-    }
-
-    const isReportApprover = isReportManager(report);
-    const isReportSubmitter = isCurrentUserSubmitter(report);
-    const isProcessingReport = isProcessingReportUtils(report);
-    const isReportOpen = isOpenReportUtils(report);
-
-    const isSubmitterOrApprover = isReportSubmitter || isReportApprover;
-    const isReportActive = isReportOpen || isProcessingReport;
-
-    if (isSubmitterOrApprover && isReportActive) {
-        return true;
-    }
-
-    return false;
-}
-
 function isMarkAsCashAction(report: Report, reportTransactions: Transaction[], violations: OnyxCollection<TransactionViolation[]>, policy?: Policy) {
     const isOneExpenseReport = isExpenseReportUtils(report) && reportTransactions.length === 1;
 
@@ -388,10 +365,6 @@ function getReportPrimaryAction(params: GetReportPrimaryActionParams): ValueOf<t
         return CONST.REPORT.PRIMARY_ACTIONS.MARK_AS_CASH;
     }
 
-    if (isReviewDuplicatesAction(report, reportTransactions)) {
-        return CONST.REPORT.PRIMARY_ACTIONS.REVIEW_DUPLICATES;
-    }
-
     if (isApproveAction(report, reportTransactions, policy)) {
         return CONST.REPORT.PRIMARY_ACTIONS.APPROVE;
     }
@@ -454,10 +427,6 @@ function getTransactionThreadPrimaryAction(
         return CONST.REPORT.TRANSACTION_PRIMARY_ACTIONS.REMOVE_HOLD;
     }
 
-    if (isReviewDuplicatesAction(parentReport, [reportTransaction])) {
-        return CONST.REPORT.TRANSACTION_PRIMARY_ACTIONS.REVIEW_DUPLICATES;
-    }
-
     if (isMarkAsCashActionForTransaction(parentReport, violations, policy)) {
         return CONST.REPORT.TRANSACTION_PRIMARY_ACTIONS.MARK_AS_CASH;
     }
@@ -474,5 +443,4 @@ export {
     isMarkAsResolvedAction,
     isMarkAsResolvedReportAction,
     getAllExpensesToHoldIfApplicable,
-    isReviewDuplicatesAction,
 };

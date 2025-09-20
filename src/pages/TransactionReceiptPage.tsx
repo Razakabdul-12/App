@@ -33,7 +33,6 @@ function TransactionReceipt({route}: TransactionReceiptProps) {
     const {isBetaEnabled} = usePermissions();
 
     const mergeTransactionID = 'mergeTransactionID' in route.params ? route.params.mergeTransactionID : undefined;
-    const isFromReviewDuplicates = 'isFromReviewDuplicates' in route.params ? route.params.isFromReviewDuplicates === 'true' : undefined;
     const [mergeTransaction] = useOnyx(`${ONYXKEYS.COLLECTION.MERGE_TRANSACTION}${mergeTransactionID}`, {canBeMissing: true});
 
     const isDraftTransaction = !!action;
@@ -112,7 +111,7 @@ function TransactionReceipt({route}: TransactionReceiptProps) {
 
     // eslint-disable-next-line rulesdir/no-negated-variables
     const shouldShowNotFoundPage =
-        isTrackExpenseReport || isDraftTransaction || transaction?.reportID === CONST.REPORT.SPLIT_REPORT_ID || isFromReviewDuplicates
+        isTrackExpenseReport || isDraftTransaction || transaction?.reportID === CONST.REPORT.SPLIT_REPORT_ID
             ? !transaction
             : moneyRequestReportID !== transaction?.reportID;
 

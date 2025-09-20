@@ -36,7 +36,6 @@ import type {
     Report,
     ReportAction,
     ReportNextStep,
-    ReviewDuplicates,
     Transaction,
     TransactionViolation,
     TransactionViolations,
@@ -491,16 +490,6 @@ function dismissDuplicateTransactionViolation(transactionIDs: string[], dismisse
         successData,
         failureData,
     });
-}
-
-function setReviewDuplicatesKey(values: Partial<ReviewDuplicates>) {
-    Onyx.merge(`${ONYXKEYS.REVIEW_DUPLICATES}`, {
-        ...values,
-    });
-}
-
-function abandonReviewDuplicateTransactions() {
-    Onyx.set(ONYXKEYS.REVIEW_DUPLICATES, null);
 }
 
 function clearError(transactionID: string) {
@@ -1203,8 +1192,6 @@ export {
     dismissDuplicateTransactionViolation,
     getDraftTransactions,
     generateTransactionID,
-    setReviewDuplicatesKey,
-    abandonReviewDuplicateTransactions,
     openDraftDistanceExpense,
     getRecentWaypoints,
     sanitizeRecentWaypoints,

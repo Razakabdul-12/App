@@ -1,4 +1,3 @@
-import type {NavigatorScreenParams} from '@react-navigation/native';
 import React, {useCallback, useContext, useMemo, useRef} from 'react';
 // We use Animated for all functionality related to wide RHP to make it easier
 // to interact with react-navigation components (e.g., CardContainer, interpolator), which also use Animated.
@@ -8,7 +7,6 @@ import NoDropZone from '@components/DragAndDrop/NoDropZone';
 import {expandedRHPProgress, WideRHPContext} from '@components/WideRHPContextProvider';
 import useResponsiveLayout from '@hooks/useResponsiveLayout';
 import useThemeStyles from '@hooks/useThemeStyles';
-import {abandonReviewDuplicateTransactions} from '@libs/actions/Transaction';
 import {clearTwoFactorAuthData} from '@libs/actions/TwoFactorAuthActions';
 import hideKeyboardOnSwipe from '@libs/Navigation/AppNavigator/hideKeyboardOnSwipe';
 import * as ModalStackNavigators from '@libs/Navigation/AppNavigator/ModalStackNavigators';
@@ -33,26 +31,6 @@ function RightModalNavigator({navigation, route}: RightModalNavigatorProps) {
     const screenOptions = useRHPScreenOptions();
     const {shouldRenderSecondaryOverlay, secondOverlayProgress, dismissToWideReport} = useContext(WideRHPContext);
 
-    const screenListeners = useMemo(
-        () => ({
-            blur: () => {
-                const rhpParams = navigation.getState().routes.find((innerRoute) => innerRoute.name === NAVIGATORS.RIGHT_MODAL_NAVIGATOR)?.params as
-                    | NavigatorScreenParams<RightModalNavigatorParamList>
-                    | undefined;
-
-                if (rhpParams?.screen === SCREENS.RIGHT_MODAL.TRANSACTION_DUPLICATE || route.params?.screen !== SCREENS.RIGHT_MODAL.TRANSACTION_DUPLICATE) {
-                    return;
-                }
-                // Delay clearing review duplicate data till the RHP is completely closed
-                // to avoid not found showing briefly in confirmation page when RHP is closing
-                InteractionManager.runAfterInteractions(() => {
-                    abandonReviewDuplicateTransactions();
-                });
-            },
-        }),
-        [navigation, route],
-    );
-
     const handleOverlayPress = useCallback(() => {
         if (isExecutingRef.current) {
             return;
@@ -71,11 +49,7 @@ function RightModalNavigator({navigation, route}: RightModalNavigatorProps) {
                 {/* This one is to limit the outer Animated.View and allow the background to be pressable */}
                 {/* Without it, the transparent half of the narrow format RHP card would cover the pressable part of the overlay */}
                 <Animated.View style={styles.animatedRHPNavigatorContainer(shouldUseNarrowLayout, expandedRHPProgress)}>
-                    <Stack.Navigator
-                        screenOptions={screenOptions}
-                        screenListeners={screenListeners}
-                        id={NAVIGATORS.RIGHT_MODAL_NAVIGATOR}
-                    >
+                    <Stack.Navigator screenOptions={screenOptions} id={NAVIGATORS.RIGHT_MODAL_NAVIGATOR}>
                         <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.SETTINGS}
                             component={ModalStackNavigators.SettingsModalStackNavigator}
@@ -176,10 +150,6 @@ function RightModalNavigator({navigation, route}: RightModalNavigatorProps) {
                         <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.REFERRAL}
                             component={ModalStackNavigators.ReferralModalStackNavigator}
-                        />
-                        <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.TRANSACTION_DUPLICATE}
-                            component={ModalStackNavigators.TransactionDuplicateStackNavigator}
                         />
                         <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.MERGE_TRANSACTION}

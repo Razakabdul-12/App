@@ -1,7 +1,6 @@
 import truncate from 'lodash/truncate';
 import React, {useMemo} from 'react';
 import {View} from 'react-native';
-import Button from '@components/Button';
 import Icon from '@components/Icon';
 import {DotIndicator, Folder, Tag} from '@components/Icon/Expensicons';
 import OfflineWithFeedback from '@components/OfflineWithFeedback';
@@ -47,14 +46,11 @@ function TransactionPreviewContent({
     containerStyles,
     transactionPreviewWidth,
     isBillSplit,
-    areThereDuplicates,
     sessionAccountID,
     walletTermsErrors,
     reportPreviewAction,
     shouldHideOnDelete = true,
     shouldShowPayerAndReceiver,
-    navigateToReviewFields,
-    isReviewDuplicateTransactionPage = false,
 }: TransactionPreviewContentProps) {
     const theme = useTheme();
     const styles = useThemeStyles();
@@ -85,10 +81,9 @@ function TransactionPreviewContent({
         () =>
             createTransactionPreviewConditionals({
                 ...transactionPreviewCommonArguments,
-                areThereDuplicates,
                 isReportAPolicyExpenseChat,
             }),
-        [areThereDuplicates, transactionPreviewCommonArguments, isReportAPolicyExpenseChat],
+        [transactionPreviewCommonArguments, isReportAPolicyExpenseChat],
     );
 
     const {shouldShowRBR, shouldShowMerchant, shouldShowSplitShare, shouldShowTag, shouldShowCategory, shouldShowSkeleton, shouldShowDescription} = conditionals;
@@ -364,14 +359,6 @@ function TransactionPreviewContent({
                                 )}
                             </View>
                         </View>
-                    )}
-                    {isReviewDuplicateTransactionPage && !isIOUSettled && !isApproved && !isCardTransaction && areThereDuplicates && (
-                        <Button
-                            text={translate('violations.keepThisOne')}
-                            success
-                            style={[styles.ph4, styles.pb4]}
-                            onPress={navigateToReviewFields}
-                        />
                     )}
                 </View>
             </OfflineWithFeedback>

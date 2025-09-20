@@ -78,9 +78,6 @@ type TransactionPreviewContentProps = {
     /** Handles the UI response and data clean-up when the transaction goes offline. */
     offlineWithFeedbackOnClose: () => void;
 
-    /** Navigates the user to a separate view or component for reviewing or editing transaction fields. */
-    navigateToReviewFields: () => void;
-
     /** Whether the transaction is whisper. */
     isWhisper?: boolean;
 
@@ -121,14 +118,8 @@ type TransactionPreviewContentProps = {
     /** Optional details about people involved in the transaction */
     personalDetails?: PersonalDetailsList;
 
-    /** Indicates whether the transaction consists of duplicates */
-    areThereDuplicates: boolean;
-
     /** Session account ID */
     sessionAccountID?: number;
-
-    /** Name of the route where the transaction preview is being displayed */
-    routeName: string;
 
     /** Determine whether to hide the component's children if deletion is pending */
     shouldHideOnDelete?: boolean;
@@ -139,8 +130,6 @@ type TransactionPreviewContentProps = {
     /** Whether to show payer/receiver data in the preview */
     shouldShowPayerAndReceiver?: boolean;
 
-    /** Is this component used during duplicate review flow */
-    isReviewDuplicateTransactionPage?: boolean;
 };
 
 export type {TransactionPreviewContentProps, TransactionPreviewProps, TransactionPreviewStyleType};

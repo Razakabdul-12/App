@@ -2,16 +2,12 @@ import truncate from 'lodash/truncate';
 import type {OnyxEntry, OnyxInputValue} from 'react-native-onyx';
 import CONST from '@src/CONST';
 import type {TranslationPaths} from '@src/languages/types';
-import ROUTES from '@src/ROUTES';
 import type * as OnyxTypes from '@src/types/onyx';
 import {isEmptyObject} from '@src/types/utils/EmptyObject';
 import {getCurrentUserAccountID} from './actions/Report';
-import {abandonReviewDuplicateTransactions, setReviewDuplicatesKey} from './actions/Transaction';
 import {isCategoryMissing} from './CategoryUtils';
 import {convertToDisplayString} from './CurrencyUtils';
 import DateUtils from './DateUtils';
-import type {PlatformStackRouteProp} from './Navigation/PlatformStackNavigation/types';
-import type {TransactionDuplicateNavigatorParamList} from './Navigation/types';
 import {getOriginalMessage, isMessageDeleted, isMoneyRequestAction} from './ReportActionsUtils';
 import {
     hasActionWithErrorsForTransaction,
@@ -26,7 +22,6 @@ import {
 import type {TransactionDetails} from './ReportUtils';
 import StringUtils from './StringUtils';
 import {
-    compareDuplicateTransactionFields,
     getAmount,
     getFormattedCreated,
     getOriginalTransactionWithSplitInfo,
@@ -73,49 +68,6 @@ function getIOUPayerAndReceiver(managerID: number, ownerAccountID: number, perso
         to: personalDetails ? personalDetails[toID] : emptyPersonalDetails,
     };
 }
-
-const getReviewNavigationRoute = (
-    route: PlatformStackRouteProp<TransactionDuplicateNavigatorParamList, 'Transaction_Duplicate_Review'>,
-    transaction: OnyxEntry<OnyxTypes.Transaction>,
-    duplicates: Array<OnyxEntry<OnyxTypes.Transaction>>,
-) => {
-    const backTo = route.params.backTo;
-
-    // Clear the draft before selecting a different expense to prevent merging fields from the previous expense
-    // (e.g., category, tag, tax) that may be not enabled/available in the new expense's policy.
-    abandonReviewDuplicateTransactions();
-    const comparisonResult = compareDuplicateTransactionFields(transaction, duplicates, transaction?.reportID, transaction?.transactionID);
-    setReviewDuplicatesKey({
-        ...comparisonResult.keep,
-        duplicates: duplicates.map((duplicate) => duplicate?.transactionID).filter(Boolean) as string[],
-        transactionID: transaction?.transactionID,
-        reportID: transaction?.reportID,
-    });
-
-    if (comparisonResult.change.merchant) {
-        return ROUTES.TRANSACTION_DUPLICATE_REVIEW_MERCHANT_PAGE.getRoute(route.params?.threadReportID, backTo);
-    }
-    if (comparisonResult.change.category) {
-        return ROUTES.TRANSACTION_DUPLICATE_REVIEW_CATEGORY_PAGE.getRoute(route.params?.threadReportID, backTo);
-    }
-    if (comparisonResult.change.tag) {
-        return ROUTES.TRANSACTION_DUPLICATE_REVIEW_TAG_PAGE.getRoute(route.params?.threadReportID, backTo);
-    }
-    if (comparisonResult.change.description) {
-        return ROUTES.TRANSACTION_DUPLICATE_REVIEW_DESCRIPTION_PAGE.getRoute(route.params?.threadReportID, backTo);
-    }
-    if (comparisonResult.change.taxCode) {
-        return ROUTES.TRANSACTION_DUPLICATE_REVIEW_TAX_CODE_PAGE.getRoute(route.params?.threadReportID, backTo);
-    }
-    if (comparisonResult.change.billable) {
-        return ROUTES.TRANSACTION_DUPLICATE_REVIEW_BILLABLE_PAGE.getRoute(route.params?.threadReportID, backTo);
-    }
-    if (comparisonResult.change.reimbursable) {
-        return ROUTES.TRANSACTION_DUPLICATE_REVIEW_REIMBURSABLE_PAGE.getRoute(route.params?.threadReportID, backTo);
-    }
-
-    return ROUTES.TRANSACTION_DUPLICATE_CONFIRMATION_PAGE.getRoute(route.params?.threadReportID, backTo);
-};
 
 type TranslationPathOrText = {
     translationPath?: TranslationPaths;
@@ -316,7 +268,6 @@ function createTransactionPreviewConditionals({
     transactionDetails,
     isBillSplit,
     isReportAPolicyExpenseChat,
-    areThereDuplicates,
 }: {
     iouReport: OnyxInputValue<OnyxTypes.Report> | undefined;
     transaction: OnyxEntry<OnyxTypes.Transaction> | undefined;
@@ -325,7 +276,6 @@ function createTransactionPreviewConditionals({
     transactionDetails: Partial<TransactionDetails>;
     isBillSplit: boolean;
     isReportAPolicyExpenseChat: boolean;
-    areThereDuplicates: boolean;
 }) {
     const {amount: requestAmount, comment: requestComment, merchant, tag, category} = transactionDetails;
 
@@ -362,8 +312,6 @@ function createTransactionPreviewConditionals({
     const hasReportViolationsOrActionErrors = (isReportOwner(iouReport) && hasReportViolations(iouReport?.reportID)) || hasActionWithErrorsForTransaction(iouReport?.reportID, transaction);
     const shouldShowRBR = hasAnyViolations || hasErrorOrOnHold || hasReportViolationsOrActionErrors || hasReceiptError(transaction);
 
-    // When there are no settled transactions in duplicates, show the "Keep this one" button
-    const shouldShowKeepButton = areThereDuplicates;
     const participantAccountIDs = isMoneyRequestAction(action) && isBillSplit ? (getOriginalMessage(action)?.participantAccountIDs ?? []) : [];
     const shouldShowSplitShare = isBillSplit && !!requestAmount && requestAmount > 0 && participantAccountIDs.includes(getCurrentUserAccountID());
     /*
@@ -384,7 +332,6 @@ function createTransactionPreviewConditionals({
         shouldShowTag,
         shouldShowRBR,
         shouldShowCategory,
-        shouldShowKeepButton,
         shouldShowSplitShare,
         shouldShowMerchant,
         shouldShowDescription,
@@ -392,7 +339,6 @@ function createTransactionPreviewConditionals({
 }
 
 export {
-    getReviewNavigationRoute,
     getIOUPayerAndReceiver,
     getTransactionPreviewTextAndTranslationPaths,
     createTransactionPreviewConditionals,

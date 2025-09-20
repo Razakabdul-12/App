@@ -166,7 +166,6 @@ const SCREENS = {
         ROOM_INVITE: 'RoomInvite',
         REFERRAL: 'Referral',
         PROCESS_MONEY_REQUEST_HOLD: 'ProcessMoneyRequestHold',
-        TRANSACTION_DUPLICATE: 'TransactionDuplicate',
         SEARCH_REPORT: 'SearchReport',
         SEARCH_ADVANCED_FILTERS: 'SearchAdvancedFilters',
         SEARCH_SAVED_SEARCH: 'SearchSavedSearch',
@@ -233,18 +232,6 @@ const SCREENS = {
         STEP_DISTANCE_MAP: 'Money_Request_Step_Distance_Map',
         STEP_DISTANCE_MANUAL: 'Money_Request_Step_Distance_Manual',
         RECEIPT_PREVIEW: 'Money_Request_Receipt_preview',
-    },
-
-    TRANSACTION_DUPLICATE: {
-        REVIEW: 'Transaction_Duplicate_Review',
-        MERCHANT: 'Transaction_Duplicate_Merchant',
-        CATEGORY: 'Transaction_Duplicate_Category',
-        TAG: 'Transaction_Duplicate_Tag',
-        DESCRIPTION: 'Transaction_Duplicate_Description',
-        TAX_CODE: 'Transaction_Duplicate_Tax_Code',
-        REIMBURSABLE: 'Transaction_Duplicate_Reimbursable',
-        BILLABLE: 'Transaction_Duplicate_Billable',
-        CONFIRMATION: 'Transaction_Duplicate_Confirmation',
     },
 
     MERGE_TRANSACTION: {

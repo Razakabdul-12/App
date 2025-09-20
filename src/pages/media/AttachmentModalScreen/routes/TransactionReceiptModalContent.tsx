@@ -19,7 +19,7 @@ import ROUTES from '@src/ROUTES';
 import type SCREENS from '@src/SCREENS';
 
 function TransactionReceiptModalContent({navigation, route}: AttachmentModalScreenProps<typeof SCREENS.TRANSACTION_RECEIPT>) {
-    const {reportID = '', transactionID = '', action, iouType, readonly: readonlyProp, isFromReviewDuplicates: isFromReviewDuplicatesProp} = route.params;
+    const {reportID = '', transactionID = '', action, iouType, readonly: readonlyProp} = route.params;
     const {isBetaEnabled} = usePermissions();
 
     const [report] = useOnyx(`${ONYXKEYS.COLLECTION.REPORT}${reportID}`, {canBeMissing: true});
@@ -33,7 +33,6 @@ function TransactionReceiptModalContent({navigation, route}: AttachmentModalScre
 
     const isLocalFile = receiptURIs.isLocalFile;
     const readonly = readonlyProp === 'true';
-    const isFromReviewDuplicates = isFromReviewDuplicatesProp === 'true';
     const imageSource = isDraftTransaction ? transactionDraft?.receipt?.source : tryResolveUrlFromApiRoot(receiptURIs.image ?? '');
 
     const parentReportAction = getReportAction(report?.parentReportID, report?.parentReportActionID);
@@ -93,7 +92,7 @@ function TransactionReceiptModalContent({navigation, route}: AttachmentModalScre
 
     // eslint-disable-next-line rulesdir/no-negated-variables
     const shouldShowNotFoundPage =
-        isTrackExpenseReportValue || isDraftTransaction || transaction?.reportID === CONST.REPORT.SPLIT_REPORT_ID || isFromReviewDuplicates
+        isTrackExpenseReportValue || isDraftTransaction || transaction?.reportID === CONST.REPORT.SPLIT_REPORT_ID
             ? !transaction
             : moneyRequestReportID !== transaction?.reportID;
 

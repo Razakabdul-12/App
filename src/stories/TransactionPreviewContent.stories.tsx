@@ -8,7 +8,6 @@ import type {TransactionPreviewContentProps} from '@components/ReportActionItem/
 import ThemeProvider from '@components/ThemeProvider';
 import ThemeStylesProvider from '@components/ThemeStylesProvider';
 import CONST from '@src/CONST';
-import SCREENS from '@src/SCREENS';
 import type {PendingAction} from '@src/types/onyx/OnyxCommon';
 import {actionR14932} from '../../__mocks__/reportData/actions';
 import personalDetails from '../../__mocks__/reportData/personalDetails';
@@ -33,11 +32,9 @@ const actionWithModifiedPendingAction = (pendingAction: PendingAction) => ({...a
 
 const disabledProperties = [
     'onPreviewPressed',
-    'navigateToReviewFields',
     'offlineWithFeedbackOnClose',
     'containerStyles',
     'showContextMenu',
-    'routeName',
     'sessionAccountID',
     'isHovered',
     'isWhisper',
@@ -107,13 +104,10 @@ const story: Meta<typeof TransactionPreviewContent> = {
         transaction: transactionR14932,
         violations: [],
         offlineWithFeedbackOnClose(): void {},
-        navigateToReviewFields: () => undefined,
         containerStyles: [],
         isBillSplit: false,
-        areThereDuplicates: false,
         sessionAccountID: 11111111,
         walletTermsErrors: undefined,
-        routeName: SCREENS.TRANSACTION_DUPLICATE.REVIEW,
         shouldHideOnDelete: false,
         transactionPreviewWidth: 303,
     },
@@ -144,58 +138,9 @@ function Template(props: TransactionPreviewContentProps) {
 const Default: TransactionPreviewStory = Template.bind({});
 const NoMerchant: TransactionPreviewStory = Template.bind({});
 const CategoriesAndTag: TransactionPreviewStory = Template.bind({});
-const KeepButtonCategoriesAndTag: TransactionPreviewStory = Template.bind({});
-const KeepButtonRBRCategoriesAndTag: TransactionPreviewStory = Template.bind({});
-const KeepButtonSplitRBRCategoriesAndTag: TransactionPreviewStory = Template.bind({});
-const DeletedKeepButtonSplitRBRCategoriesAndTag: TransactionPreviewStory = Template.bind({});
-const KeepButtonIOURbrCategoriesAndTag: TransactionPreviewStory = Template.bind({});
-
-const storiesTransactionData = {category: 'Grocery stores', tag: 'Food', merchant: 'Acme'};
-
-NoMerchant.args = {
-    ...Default.args,
-    transaction: modifiedTransaction({}),
-};
-
-CategoriesAndTag.args = {
-    ...Default.args,
-    transaction: modifiedTransaction(storiesTransactionData),
-};
-
-KeepButtonCategoriesAndTag.args = {
-    ...CategoriesAndTag.args,
-    areThereDuplicates: true,
-};
-
-KeepButtonRBRCategoriesAndTag.args = {
-    ...KeepButtonCategoriesAndTag.args,
-    violations: violationsR14932,
-    transaction: modifiedTransaction({...storiesTransactionData, hold: true}),
-};
-
-KeepButtonSplitRBRCategoriesAndTag.args = {
-    ...KeepButtonRBRCategoriesAndTag.args,
-    isBillSplit: true,
-};
-
-KeepButtonIOURbrCategoriesAndTag.args = {
-    ...KeepButtonRBRCategoriesAndTag.args,
-    report: iouReportWithModifiedType(CONST.REPORT.TYPE.IOU),
-};
-
-DeletedKeepButtonSplitRBRCategoriesAndTag.args = {
-    ...KeepButtonSplitRBRCategoriesAndTag.args,
-    action: actionWithModifiedPendingAction(CONST.RED_BRICK_ROAD_PENDING_ACTION.DELETE),
-};
-
 export default story;
 export {
     Default,
     NoMerchant,
     CategoriesAndTag,
-    KeepButtonCategoriesAndTag,
-    KeepButtonRBRCategoriesAndTag,
-    KeepButtonIOURbrCategoriesAndTag,
-    KeepButtonSplitRBRCategoriesAndTag,
-    DeletedKeepButtonSplitRBRCategoriesAndTag,
 };

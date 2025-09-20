@@ -1120,14 +1120,12 @@ const CONST = {
             PAY: 'pay',
             EXPORT_TO_ACCOUNTING: 'exportToAccounting',
             REMOVE_HOLD: 'removeHold',
-            REVIEW_DUPLICATES: 'reviewDuplicates',
             MARK_AS_CASH: 'markAsCash',
             MARK_AS_RESOLVED: 'markAsResolved',
             ADD_EXPENSE: 'addExpense',
         },
         TRANSACTION_PRIMARY_ACTIONS: {
             REMOVE_HOLD: 'removeHold',
-            REVIEW_DUPLICATES: 'reviewDuplicates',
             MARK_AS_CASH: 'markAsCash',
             MARK_AS_RESOLVED: 'markAsResolved',
         },
@@ -5486,8 +5484,6 @@ const CONST = {
         BROKEN_CARD_CONNECTION_530: 'brokenCardConnection530',
         SEVEN_DAY_HOLD: 'sevenDayHold',
     },
-    REVIEW_DUPLICATES_ORDER: ['merchant', 'category', 'tag', 'description', 'taxCode', 'billable', 'reimbursable'],
-
     REPORT_VIOLATIONS: {
         FIELD_REQUIRED: 'fieldRequired',
         RBR_MESSAGE_MAX_CHARACTERS_FOR_PREVIEW: 40,

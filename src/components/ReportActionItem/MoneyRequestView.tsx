@@ -95,9 +95,6 @@ type MoneyRequestViewProps = {
     /** Whether we should show Money Request with disabled all fields */
     readonly?: boolean;
 
-    /** whether this report is from review duplicates */
-    isFromReviewDuplicates?: boolean;
-
     /** Updated transaction to show in duplicate & merge transaction flow  */
     updatedTransaction?: OnyxEntry<OnyxTypes.Transaction>;
 
@@ -112,7 +109,6 @@ function MoneyRequestView({
     shouldShowAnimatedBackground,
     readonly = false,
     updatedTransaction,
-    isFromReviewDuplicates = false,
     mergeTransactionID,
 }: MoneyRequestViewProps) {
     const styles = useThemeStyles();
@@ -572,7 +568,6 @@ function MoneyRequestView({
                     report={report}
                     readonly={readonly}
                     updatedTransaction={updatedTransaction}
-                    isFromReviewDuplicates={isFromReviewDuplicates}
                     mergeTransactionID={mergeTransactionID}
                 />
                 {isCustomUnitOutOfPolicy && isPerDiemRequest && (

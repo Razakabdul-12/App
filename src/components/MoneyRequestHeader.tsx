@@ -198,18 +198,6 @@ function MoneyRequestHeader({report, parentReportAction, policy, onBackButtonPre
                 text={translate('iou.reject.markAsResolved')}
             />
         ),
-        [CONST.REPORT.TRANSACTION_PRIMARY_ACTIONS.REVIEW_DUPLICATES]: (
-            <Button
-                success
-                text={translate('iou.reviewDuplicates')}
-                onPress={() => {
-                    if (!reportID) {
-                        return;
-                    }
-                    Navigation.navigate(ROUTES.TRANSACTION_DUPLICATE_REVIEW_PAGE.getRoute(reportID, Navigation.getReportRHPActiveRoute()));
-                }}
-            />
-        ),
         [CONST.REPORT.TRANSACTION_PRIMARY_ACTIONS.MARK_AS_CASH]: (
             <Button
                 success

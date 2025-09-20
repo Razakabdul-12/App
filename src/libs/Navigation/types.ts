@@ -1344,41 +1344,6 @@ type ReferralDetailsNavigatorParamList = {
     };
 };
 
-type TransactionDuplicateNavigatorParamList = {
-    [SCREENS.TRANSACTION_DUPLICATE.REVIEW]: {
-        threadReportID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.TRANSACTION_DUPLICATE.MERCHANT]: {
-        threadReportID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.TRANSACTION_DUPLICATE.CATEGORY]: {
-        threadReportID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.TRANSACTION_DUPLICATE.TAG]: {
-        threadReportID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.TRANSACTION_DUPLICATE.DESCRIPTION]: {
-        threadReportID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.TRANSACTION_DUPLICATE.TAX_CODE]: {
-        threadReportID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.TRANSACTION_DUPLICATE.BILLABLE]: {
-        threadReportID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.TRANSACTION_DUPLICATE.REIMBURSABLE]: {
-        threadReportID: string;
-        backTo?: Routes;
-    };
-};
-
 type MergeTransactionNavigatorParamList = {
     [SCREENS.MERGE_TRANSACTION.LIST_PAGE]: {
         transactionID: string;
@@ -1423,7 +1388,6 @@ type RightModalNavigatorParamList = {
     [SCREENS.RIGHT_MODAL.EDIT_REQUEST]: NavigatorScreenParams<EditRequestNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.SIGN_IN]: NavigatorScreenParams<SignInNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.REFERRAL]: NavigatorScreenParams<ReferralDetailsNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.TRANSACTION_DUPLICATE]: NavigatorScreenParams<TransactionDuplicateNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.SEARCH_REPORT]: NavigatorScreenParams<SearchReportParamList>;
     [SCREENS.RIGHT_MODAL.RESTRICTED_ACTION]: NavigatorScreenParams<RestrictedActionParamList>;
     [SCREENS.RIGHT_MODAL.SEARCH_ADVANCED_FILTERS]: NavigatorScreenParams<SearchAdvancedFiltersParamList>;
@@ -1693,7 +1657,6 @@ type AttachmentModalScreensParamList = {
         reportID: string;
         transactionID: string;
         readonly?: string;
-        isFromReviewDuplicates?: string;
         action?: IOUAction;
         iouType?: IOUType;
         mergeTransactionID?: string;
@@ -1940,7 +1903,6 @@ export type {
     StackNavigationAction,
     State,
     StateOrRoute,
-    TransactionDuplicateNavigatorParamList,
     WalletStatementNavigatorParamList,
     WorkspaceSplitNavigatorParamList,
     MigratedUserModalNavigatorParamList,
