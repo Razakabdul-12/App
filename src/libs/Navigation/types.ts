@@ -116,9 +116,6 @@ type SettingsNavigatorParamList = {
     [SCREENS.SETTINGS.PREFERENCES.LANGUAGE]: undefined;
     [SCREENS.SETTINGS.PREFERENCES.THEME]: undefined;
     [SCREENS.SETTINGS.CLOSE]: undefined;
-    [SCREENS.SETTINGS.LOCK.LOCK_ACCOUNT]: undefined;
-    [SCREENS.SETTINGS.LOCK.UNLOCK_ACCOUNT]: undefined;
-    [SCREENS.SETTINGS.LOCK.FAILED_TO_LOCK_ACCOUNT]: undefined;
     [SCREENS.SETTINGS.CONSOLE]: {
         backTo: Routes;
     };
@@ -813,9 +810,6 @@ type SettingsNavigatorParamList = {
         cardID: string;
         backTo?: Routes;
     };
- 
-   
-    };
 } & ReimbursementAccountNavigatorParamList;
 
 type TwoFactorAuthNavigatorParamList = {
@@ -1440,6 +1434,8 @@ type RightModalNavigatorParamList = {
     [SCREENS.RIGHT_MODAL.ADD_UNREPORTED_EXPENSE]: NavigatorScreenParams<{reportId: string | undefined}>;
     [SCREENS.RIGHT_MODAL.REPORT_CHANGE_APPROVER]: NavigatorScreenParams<ReportChangeApproverParamList>;
     [SCREENS.RIGHT_MODAL.MERGE_TRANSACTION]: NavigatorScreenParams<MergeTransactionNavigatorParamList>;
+};
+
 type ReportsSplitNavigatorParamList = {
     [SCREENS.HOME]: undefined;
     [SCREENS.REPORT]: {

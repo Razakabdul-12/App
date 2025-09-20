@@ -1691,27 +1691,6 @@ const translations = {
         defaultContact: 'Méthode de contact par défaut :',
         enterYourDefaultContactMethod: 'Veuillez entrer votre méthode de contact par défaut pour clôturer votre compte.',
     },
-    lockAccountPage: {
-        reportSuspiciousActivity: 'Signaler une activité suspecte',
-        lockAccount: 'Verrouiller le compte',
-        unlockAccount: 'Déverrouiller le compte',
-        compromisedDescription:
-            "Vous remarquez quelque chose d'inhabituel ? Signalez-le pour verrouiller immédiatement votre compte, bloquer les transactions Expensify Card et empêcher toute modification.",
-        domainAdminsDescription: "Pour les administrateurs de domaine : cela suspend aussi l'activité de la carte Expensify et les actions d'administration sur vos domaines.",
-        areYouSure: 'Êtes-vous sûr de vouloir verrouiller votre compte Expensify ?',
-        ourTeamWill: "Notre équipe enquêtera et supprimera tout accès non autorisé. Pour retrouver l'accès, vous devrez collaborer avec Concierge.",
-    },
-    failedToLockAccountPage: {
-        failedToLockAccount: 'Échec du verrouillage du compte',
-        failedToLockAccountDescription: `Nous n'avons pas pu verrouiller votre compte. Veuillez discuter avec Concierge pour résoudre ce problème.`,
-        chatWithConcierge: 'Discuter avec Concierge',
-    },
-    unlockAccountPage: {
-        accountLocked: 'Compte verrouillé',
-        yourAccountIsLocked: 'Votre compte est verrouillé',
-        chatToConciergeToUnlock: 'Discutez avec Concierge pour résoudre les problèmes de sécurité et débloquer votre compte.',
-        chatWithConcierge: 'Discuter avec Concierge',
-    },
     passwordPage: {
         changePassword: 'Changer le mot de passe',
         changingYourPasswordPrompt: 'Changer votre mot de passe mettra à jour votre mot de passe pour vos comptes Expensify.com et New Expensify.',

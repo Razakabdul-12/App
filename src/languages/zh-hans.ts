@@ -1664,26 +1664,6 @@ const translations = {
         defaultContact: '默认联系方式：',
         enterYourDefaultContactMethod: '请输入您的默认联系方式以关闭您的账户。',
     },
-    lockAccountPage: {
-        reportSuspiciousActivity: '报告可疑活动',
-        lockAccount: '锁定账户',
-        unlockAccount: '解锁账户',
-        compromisedDescription: '发现您的账户有异常? 报告后将立即锁定账户, 阻止新的Expensify卡交易, 并防止任何账户更改。',
-        domainAdminsDescription: '对于域管理员: 这也会暂停您域中所有Expensify卡活动和管理员操作。',
-        areYouSure: '您确定要锁定您的Expensify账户吗?',
-        ourTeamWill: '我们的团队将调查并移除任何未经授权的访问。若要恢复访问权限, 您需与Concierge协作。',
-    },
-    failedToLockAccountPage: {
-        failedToLockAccount: '无法锁定账户',
-        failedToLockAccountDescription: `我们无法锁定您的账户。请与Concierge聊天以解决此问题。`,
-        chatWithConcierge: '与Concierge聊天',
-    },
-    unlockAccountPage: {
-        accountLocked: '账户已锁定',
-        yourAccountIsLocked: '您的账户已被锁定',
-        chatToConciergeToUnlock: '与Concierge聊天以解决安全问题并解锁您的账户。',
-        chatWithConcierge: '与Concierge聊天',
-    },
     passwordPage: {
         changePassword: '更改密码',
         changingYourPasswordPrompt: '更改密码将同时更新您在 Expensify.com 和 New Expensify 账户的密码。',

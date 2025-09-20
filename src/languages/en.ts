@@ -1672,27 +1672,6 @@ const translations = {
         defaultContact: 'Default contact method:',
         enterYourDefaultContactMethod: 'Please enter your default contact method to close your account.',
     },
-    lockAccountPage: {
-        reportSuspiciousActivity: 'Report suspicious activity',
-        lockAccount: 'Lock account',
-        unlockAccount: 'Unlock account',
-        compromisedDescription:
-            'Notice something off with your account? Reporting it will immediately lock your account, block new Expensify Card transactions, and prevent any account changes.',
-        domainAdminsDescription: 'For domain admins: This also pauses all Expensify Card activity and admin actions across your domain(s).',
-        areYouSure: 'Are you sure you want to lock your Expensify account?',
-        ourTeamWill: "Our team will investigate and remove any unauthorized access. To regain access, you'll need to work with Concierge.",
-    },
-    failedToLockAccountPage: {
-        failedToLockAccount: 'Failed to lock account',
-        failedToLockAccountDescription: `We couldn't lock your account. Please chat with Concierge to resolve this problem.`,
-        chatWithConcierge: 'Chat with Concierge',
-    },
-    unlockAccountPage: {
-        accountLocked: 'Account locked',
-        yourAccountIsLocked: 'Your account is locked',
-        chatToConciergeToUnlock: 'Chat with Concierge to resolve security concerns and unlock your account.',
-        chatWithConcierge: 'Chat with Concierge',
-    },
     passwordPage: {
         changePassword: 'Change password',
         changingYourPasswordPrompt: 'Changing your password will update your password for both your Expensify.com and New Expensify accounts.',

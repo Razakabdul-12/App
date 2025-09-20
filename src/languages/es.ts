@@ -1667,27 +1667,6 @@ const translations = {
         defaultContact: 'Método de contacto predeterminado:',
         enterYourDefaultContactMethod: 'Por favor, introduce tu método de contacto predeterminado para cerrar tu cuenta.',
     },
-    lockAccountPage: {
-        reportSuspiciousActivity: 'Informar de actividad sospechosa',
-        lockAccount: 'Bloquear cuenta',
-        unlockAccount: 'Desbloquear cuenta',
-        compromisedDescription:
-            '¿Notas algo extraño en tu cuenta? Informarlo bloqueará tu cuenta de inmediato, detendrá nuevas transacciones con la Tarjeta Expensify y evitará cualquier cambio en la cuenta.',
-        domainAdminsDescription: 'Para administradores de dominio: Esto también detiene toda la actividad de la Tarjeta Expensify y las acciones administrativas en tus dominios.',
-        areYouSure: '¿Estás seguro de que deseas bloquear tu cuenta de Expensify?',
-        ourTeamWill: 'Nuestro equipo investigará y eliminará cualquier acceso no autorizado. Para recuperar el acceso, tendrás que trabajar con Concierge.',
-    },
-    failedToLockAccountPage: {
-        failedToLockAccount: 'No se pudo bloquear la cuenta',
-        failedToLockAccountDescription: 'No pudimos bloquear tu cuenta. Por favor, chatea con Concierge para resolver este problema.',
-        chatWithConcierge: 'Chatear con Concierge',
-    },
-    unlockAccountPage: {
-        accountLocked: 'Cuenta bloqueada',
-        yourAccountIsLocked: 'Tu cuenta está bloqueada',
-        chatToConciergeToUnlock: 'Chatea con Concierge para resolver los problemas de seguridad y desbloquear tu cuenta.',
-        chatWithConcierge: 'Chatear con Concierge',
-    },
     passwordPage: {
         changePassword: 'Cambiar contraseña',
         changingYourPasswordPrompt: 'El cambio de contraseña va a afectar tanto a la cuenta de Expensify.com como la de New Expensify.',

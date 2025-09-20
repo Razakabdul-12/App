@@ -1040,7 +1040,6 @@ const SIDE_EFFECT_REQUEST_COMMANDS = {
     LOG_OUT: 'LogOut',
     CREATE_DIGITAL_WALLET: 'CreateDigitalWallet',
     VERIFY_TEST_DRIVE_RECIPIENT: 'VerifyTestDriveRecipient',
-    LOCK_ACCOUNT: 'LockAccount',
     SET_VACATION_DELEGATE: 'SetVacationDelegate',
 } as const;
 
@@ -1063,7 +1062,6 @@ type SideEffectRequestCommandParameters = {
     [SIDE_EFFECT_REQUEST_COMMANDS.ACTIVATE_PHYSICAL_EXPENSIFY_CARD]: Parameters.ActivatePhysicalExpensifyCardParams;
     [SIDE_EFFECT_REQUEST_COMMANDS.CREATE_DIGITAL_WALLET]: Parameters.CreateDigitalWalletParams;
     [SIDE_EFFECT_REQUEST_COMMANDS.VERIFY_TEST_DRIVE_RECIPIENT]: Parameters.VerifyTestDriveRecipientParams;
-    [SIDE_EFFECT_REQUEST_COMMANDS.LOCK_ACCOUNT]: Parameters.LockAccountParams;
     [SIDE_EFFECT_REQUEST_COMMANDS.SET_VACATION_DELEGATE]: Parameters.SetVacationDelegateParams;
 };
 

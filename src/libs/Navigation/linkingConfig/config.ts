@@ -180,18 +180,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                             path: ROUTES.SETTINGS_CLOSE,
                             exact: true,
                         },
-                        [SCREENS.SETTINGS.LOCK.LOCK_ACCOUNT]: {
-                            path: ROUTES.SETTINGS_LOCK_ACCOUNT,
-                            exact: true,
-                        },
-                        [SCREENS.SETTINGS.LOCK.UNLOCK_ACCOUNT]: {
-                            path: ROUTES.SETTINGS_UNLOCK_ACCOUNT,
-                            exact: true,
-                        },
-                        [SCREENS.SETTINGS.LOCK.FAILED_TO_LOCK_ACCOUNT]: {
-                            path: ROUTES.SETTINGS_FAILED_TO_LOCK_ACCOUNT,
-                            exact: true,
-                        },
                         [SCREENS.SETTINGS.WALLET.VERIFY_ACCOUNT]: {
                             path: ROUTES.SETTINGS_WALLET_VERIFY_ACCOUNT,
                             exact: true,

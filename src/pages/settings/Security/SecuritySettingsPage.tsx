@@ -15,7 +15,6 @@ import useLocalize from '@hooks/useLocalize';
 import useOnyx from '@hooks/useOnyx';
 import useResponsiveLayout from '@hooks/useResponsiveLayout';
 import useThemeStyles from '@hooks/useThemeStyles';
-import useWaitForNavigation from '@hooks/useWaitForNavigation';
 import Navigation from '@libs/Navigation/Navigation';
 import CONST from '@src/CONST';
 import type {TranslationPaths} from '@src/languages/types';
@@ -35,7 +34,6 @@ type BaseMenuItemType = {
 function SecuritySettingsPage() {
     const styles = useThemeStyles();
     const {translate} = useLocalize();
-    const waitForNavigate = useWaitForNavigation();
     const {shouldUseNarrowLayout} = useResponsiveLayout();
     const [account] = useOnyx(ONYXKEYS.ACCOUNT, {canBeMissing: true});
     const isUserValidated = account?.validated;
@@ -65,20 +63,6 @@ function SecuritySettingsPage() {
                 },
             },
         ];
-
-        if (isAccountLocked) {
-            baseMenuItems.push({
-                translationKey: 'lockAccountPage.unlockAccount',
-                icon: Expensicons.UserLock,
-                action: waitForNavigate(() => Navigation.navigate(ROUTES.SETTINGS_UNLOCK_ACCOUNT)),
-            });
-        } else {
-            baseMenuItems.push({
-                translationKey: 'lockAccountPage.reportSuspiciousActivity',
-                icon: Expensicons.UserLock,
-                action: waitForNavigate(() => Navigation.navigate(ROUTES.SETTINGS_LOCK_ACCOUNT)),
-            });
-        }
 
         baseMenuItems.push({
             translationKey: 'closeAccountPage.closeAccount',
@@ -111,7 +95,6 @@ function SecuritySettingsPage() {
         isUserValidated,
         showDelegateNoAccessModal,
         showLockedAccountModal,
-        waitForNavigate,
         translate,
         styles.sectionMenuItemTopDescription,
     ]);

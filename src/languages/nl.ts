@@ -1685,26 +1685,6 @@ const translations = {
         defaultContact: 'Standaard contactmethode:',
         enterYourDefaultContactMethod: 'Voer uw standaard contactmethode in om uw account te sluiten.',
     },
-    lockAccountPage: {
-        reportSuspiciousActivity: 'Verdachte activiteit melden',
-        lockAccount: 'Account vergrendelen',
-        unlockAccount: 'Account ontgrendelen',
-        compromisedDescription: 'Merk je iets vreemds op aan je account? Meld het en je account wordt meteen vergrendeld, kaarttransacties geblokkeerd en wijzigingen voorkomen.',
-        domainAdminsDescription: 'Voor domeinbeheerders: dit pauzeert ook alle Expensify Card-activiteiten en beheerdersacties in je domein(en).',
-        areYouSure: 'Weet je zeker dat je je Expensify-account wilt vergrendelen?',
-        ourTeamWill: 'Ons team onderzoekt het en verwijdert ongeautoriseerde toegang. Om weer toegang te krijgen, moet je met Concierge samenwerken.',
-    },
-    failedToLockAccountPage: {
-        failedToLockAccount: 'Kan account niet vergrendelen',
-        failedToLockAccountDescription: `We konden uw account niet vergrendelen. Neem contact op met Concierge om dit probleem op te lossen.`,
-        chatWithConcierge: 'Chat met Concierge',
-    },
-    unlockAccountPage: {
-        accountLocked: 'Account vergrendeld',
-        yourAccountIsLocked: 'Je account is vergrendeld',
-        chatToConciergeToUnlock: 'Chat met Concierge om beveiligingsproblemen op te lossen en je account te ontgrendelen.',
-        chatWithConcierge: 'Chat met Concierge',
-    },
     passwordPage: {
         changePassword: 'Wachtwoord wijzigen',
         changingYourPasswordPrompt: 'Het wijzigen van je wachtwoord zal je wachtwoord voor zowel je Expensify.com als je New Expensify accounts bijwerken.',

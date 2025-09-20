@@ -25,7 +25,6 @@ import type {
     UpdateThemeParams,
     ValidateSecondaryLoginParams,
 } from '@libs/API/parameters';
-import type LockAccountParams from '@libs/API/parameters/LockAccountParams';
 import {READ_COMMANDS, SIDE_EFFECT_REQUEST_COMMANDS, WRITE_COMMANDS} from '@libs/API/types';
 import DateUtils from '@libs/DateUtils';
 import * as ErrorUtils from '@libs/ErrorUtils';
@@ -1412,53 +1411,6 @@ function setShouldBlockTransactionThreadReportCreation(shouldBlockTransactionThr
     Onyx.merge(ONYXKEYS.ACCOUNT, {shouldBlockTransactionThreadReportCreation});
 }
 
-function lockAccount() {
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.ACCOUNT,
-            value: {
-                isLoading: true,
-                lockAccount: {
-                    errors: null,
-                },
-            },
-        },
-    ];
-
-    const successData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.ACCOUNT,
-            value: {
-                isLoading: false,
-                lockAccount: {
-                    errors: null,
-                },
-            },
-        },
-    ];
-
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.ACCOUNT,
-            value: {
-                isLoading: false,
-                errors: ErrorUtils.getMicroSecondOnyxErrorWithTranslationKey('failedToLockAccountPage.failedToLockAccountDescription'),
-            },
-        },
-    ];
-
-    const params: LockAccountParams = {
-        accountID: currentUserAccountID,
-    };
-
-    // We need to know if this command fails so that we can navigate the user to a failure page.
-    // eslint-disable-next-line rulesdir/no-api-side-effects-method
-    return API.makeRequestWithSideEffects(SIDE_EFFECT_REQUEST_COMMANDS.LOCK_ACCOUNT, params, {optimisticData, successData, failureData});
-}
-
 export {
     closeAccount,
     dismissReferralBanner,
@@ -1497,5 +1449,4 @@ export {
     setIsDebugModeEnabled,
     setShouldBlockTransactionThreadReportCreation,
     resetValidateActionCodeSent,
-    lockAccount,
 };

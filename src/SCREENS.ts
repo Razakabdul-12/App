@@ -132,11 +132,6 @@ const SCREENS = {
             CARDS_DIGITAL_DETAILS_UPDATE_ADDRESS: 'Settings_Wallet_Cards_Digital_Details_Update_Address',
             ENABLE_GLOBAL_REIMBURSEMENTS: 'Settings_Wallet_Enable_Global_Reimbursements',
         },
-        LOCK: {
-            LOCK_ACCOUNT: 'Settings_Lock_LockAccount',
-            UNLOCK_ACCOUNT: 'Settings_Lock_UnlockAccount',
-            FAILED_TO_LOCK_ACCOUNT: 'Settings_Lock_FailedToLockAccount',
-        },
     },
     TWO_FACTOR_AUTH: {
         ROOT: 'Settings_TwoFactorAuth_Root',

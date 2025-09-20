@@ -1683,26 +1683,6 @@ const translations = {
         defaultContact: 'デフォルトの連絡方法:',
         enterYourDefaultContactMethod: 'アカウントを閉じるために、デフォルトの連絡方法を入力してください。',
     },
-    lockAccountPage: {
-        reportSuspiciousActivity: '疑わしい活動を報告',
-        lockAccount: 'アカウントをロックする',
-        unlockAccount: 'アカウントをアンロック',
-        compromisedDescription: 'アカウントに不安を感じましたか？報告すると、すぐにアカウントがロックされ、Expensifyカードの新しい取引が停止され、変更も防止されます。',
-        domainAdminsDescription: 'ドメイン管理者へ：これにより、ドメイン全体のExpensifyカード活動と管理操作も一時停止されます。',
-        areYouSure: '本当にExpensifyアカウントをロックしますか？',
-        ourTeamWill: 'チームが調査を行い、不正アクセスを削除します。アクセスを回復するには、Conciergeと連携する必要があります。',
-    },
-    failedToLockAccountPage: {
-        failedToLockAccount: 'アカウントのロックに失敗しました',
-        failedToLockAccountDescription: `アカウントをロックできませんでした。この問題を解決するためにConciergeとチャットしてください。`,
-        chatWithConcierge: 'Conciergeとチャットする',
-    },
-    unlockAccountPage: {
-        accountLocked: 'アカウントがロックされました',
-        yourAccountIsLocked: 'あなたのアカウントはロックされています',
-        chatToConciergeToUnlock: 'Conciergeとチャットしてセキュリティの懸念を解決し、アカウントのロックを解除してください。',
-        chatWithConcierge: 'Conciergeとチャットする',
-    },
     passwordPage: {
         changePassword: 'パスワードを変更する',
         changingYourPasswordPrompt: 'パスワードを変更すると、Expensify.com と New Expensify の両方のアカウントのパスワードが更新されます。',
