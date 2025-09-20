@@ -3386,9 +3386,7 @@ const translations = {
             perDiem: 'Per diem',
             travel: '旅行',
             members: '成员',
-            accounting: '会计',
-            receiptPartners: '收据合作伙伴',
-            rules: '规则',
+            accounting: '会计',            rules: '规则',
             displayedAs: '显示为',
             plan: '计划',
             profile: '概述',
@@ -3478,41 +3476,7 @@ const translations = {
             viewTransactions: '查看交易记录',
             policyExpenseChatName: ({displayName}: PolicyExpenseChatNameParams) => `${displayName}的费用`,
             deepDiveExpensifyCard: `<muted-text-label>Expensify 卡交易将自动导出到与<a href="${CONST.DEEP_DIVE_EXPENSIFY_CARD}">我们集成</a>创建的 “Expensify 卡责任账户”。</muted-text-label>`,
-        },
-        receiptPartners: {
-            connect: '立即连接',
-            uber: {
-                subtitle: '自动化整个组织的差旅和送餐费用。',
-                sendInvites: '邀请成员',
-                sendInvitesDescription: '这些工作区成员还没有 Uber for Business 账户。取消选择您此时不希望邀请的成员。',
-                confirmInvite: '确认邀请',
-                manageInvites: '管理邀请',
-                confirm: '确认',
-                allSet: '全部设置完毕',
-                readyToRoll: '您已准备就绪',
-                takeBusinessRideMessage: '进行商务出行，您的Uber收据将导入到Expensify。出发吧！',
-                all: '全部',
-                linked: '已关联',
-                outstanding: '待处理',
-                status: {
-                    resend: '重新发送',
-                    invite: '邀请',
-                    [CONST.POLICY.RECEIPT_PARTNERS.UBER_EMPLOYEE_STATUS.LINKED]: '已关联',
-                    [CONST.POLICY.RECEIPT_PARTNERS.UBER_EMPLOYEE_STATUS.LINKED_PENDING_APPROVAL]: '待处理',
-                    [CONST.POLICY.RECEIPT_PARTNERS.UBER_EMPLOYEE_STATUS.SUSPENDED]: '已暂停',
-                },
-                invitationFailure: '邀请成员加入Uber for Business失败',
-                autoRemove: '邀请新工作区成员加入 Uber for Business',
-                autoInvite: '停用已从 Uber for Business 移除的工作区成员',
-                bannerTitle: 'Expensify + Uber 商务版',
-                bannerDescription: '连接 Uber for Business，以自动化整个组织的旅行和送餐费用。',
-                emptyContent: {
-                    title: '没有可显示的成员',
-                    subtitle: '我们到处寻找，但一无所获。',
-                },
-            },
-        },
-        perDiem: {
+        },        perDiem: {
             subtitle: '设置每日津贴标准以控制员工的日常支出。',
             amount: '金额',
             deleteRates: () => ({
@@ -4605,24 +4569,12 @@ const translations = {
             connections: {
                 title: '会计',
                 subtitle: '同步您的会计科目表及更多内容。',
-            },
-            receiptPartners: {
-                title: '收据合作伙伴',
-                subtitle: '自动导入收据。',
-            },
-            connectionsWarningModal: {
+            },            connectionsWarningModal: {
                 featureEnabledTitle: '慢着...',
                 featureEnabledText: '要启用或禁用此功能，您需要更改会计导入设置。',
                 disconnectText: '要禁用会计功能，您需要从工作区断开会计连接。',
                 manageSettings: '管理设置',
-            },
-            receiptPartnersWarningModal: {
-                featureEnabledTitle: '断开Uber连接',
-                disconnectText: '要禁用此功能，请先断开Uber for Business集成。',
-                description: '您确定要断开此集成吗？',
-                confirmText: '明白了',
-            },
-            workflowWarningModal: {
+            },            workflowWarningModal: {
                 featureEnabledTitle: '慢着...',
                 featureEnabledText: '此工作区的Expensify卡片依赖审批工作流程来定义其智能限额。\n\n请在禁用工作流程之前更改任何具有智能限额的卡片的限额类型。',
                 confirmText: '前往Expensify卡片',

@@ -699,27 +699,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.WORKSPACE.INVITE_MESSAGE_ROLE]: {
                             path: ROUTES.WORKSPACE_INVITE_MESSAGE_ROLE.route,
                         },
-                        [SCREENS.WORKSPACE.RECEIPT_PARTNERS_INVITE]: {
-                            path: ROUTES.WORKSPACE_RECEIPT_PARTNERS_INVITE.route,
-                        },
-
-                        [SCREENS.WORKSPACE.RECEIPT_PARTNERS_INVITE_EDIT]: {
-                            path: ROUTES.WORKSPACE_RECEIPT_PARTNERS_INVITE_EDIT.route,
-                            screens: {
-                                [CONST.TAB.RECEIPT_PARTNERS.ALL]: {
-                                    path: ROUTES.WORKSPACE_RECEIPT_PARTNERS_INVITE_EDIT_ALL,
-                                    exact: true,
-                                },
-                                [CONST.TAB.RECEIPT_PARTNERS.LINKED]: {
-                                    path: ROUTES.WORKSPACE_RECEIPT_PARTNERS_INVITE_EDIT_LINKED,
-                                    exact: true,
-                                },
-                                [CONST.TAB.RECEIPT_PARTNERS.OUTSTANDING]: {
-                                    path: ROUTES.WORKSPACE_RECEIPT_PARTNERS_INVITE_EDIT_OUTSTANDING,
-                                    exact: true,
-                                },
-                            },
-                        },
                         [SCREENS.WORKSPACE.CATEGORY_SETTINGS]: {
                             path: ROUTES.WORKSPACE_CATEGORY_SETTINGS.route,
                         },
@@ -1643,9 +1622,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                 },
                 [SCREENS.WORKSPACE.PER_DIEM]: {
                     path: ROUTES.WORKSPACE_PER_DIEM.route,
-                },
-                [SCREENS.WORKSPACE.RECEIPT_PARTNERS]: {
-                    path: ROUTES.WORKSPACE_RECEIPT_PARTNERS.route,
                 },
                 [SCREENS.WORKSPACE.WORKFLOWS]: {
                     path: ROUTES.WORKSPACE_WORKFLOWS.route,

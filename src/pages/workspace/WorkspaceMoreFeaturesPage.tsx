@@ -9,11 +9,9 @@ import Section from '@components/Section';
 import Text from '@components/Text';
 import useCardFeeds from '@hooks/useCardFeeds';
 import useDefaultFundID from '@hooks/useDefaultFundID';
-import useIsPolicyConnectedToUberReceiptPartner from '@hooks/useIsPolicyConnectedToUberReceiptPartner';
 import useLocalize from '@hooks/useLocalize';
 import useNetwork from '@hooks/useNetwork';
 import useOnyx from '@hooks/useOnyx';
-import usePermissions from '@hooks/usePermissions';
 import useResponsiveLayout from '@hooks/useResponsiveLayout';
 import useStyleUtils from '@hooks/useStyleUtils';
 import useThemeStyles from '@hooks/useThemeStyles';
@@ -31,7 +29,6 @@ import {
     enableCompanyCards,
     enableExpensifyCard,
     enablePolicyConnections,
-    enablePolicyReceiptPartners,
     enablePolicyRules,
     enablePolicyTaxes,
     enablePolicyWorkflows,
@@ -78,7 +75,6 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
     const StyleUtils = useStyleUtils();
     const {shouldUseNarrowLayout} = useResponsiveLayout();
     const {translate} = useLocalize();
-    const {isBetaEnabled} = usePermissions();
     const hasAccountingConnection = hasAccountingConnections(policy);
     const isAccountingEnabled = !!policy?.areConnectionsEnabled || !isEmptyObject(policy?.connections);
     const isSyncTaxEnabled =
@@ -91,11 +87,9 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
         selector: filterInactiveCards,
         canBeMissing: true,
     });
-    const isUberConnected = useIsPolicyConnectedToUberReceiptPartner({policyID});
     const [cardFeeds] = useCardFeeds(policyID);
     const [isOrganizeWarningModalOpen, setIsOrganizeWarningModalOpen] = useState(false);
     const [isIntegrateWarningModalOpen, setIsIntegrateWarningModalOpen] = useState(false);
-    const [isReceiptPartnersWarningModalOpen, setIsReceiptPartnersWarningModalOpen] = useState(false);
     const [isDisableExpensifyCardWarningModalOpen, setIsDisableExpensifyCardWarningModalOpen] = useState(false);
     const [isDisableCompanyCardsWarningModalOpen, setIsDisableCompanyCardsWarningModalOpen] = useState(false);
     const [isDisableWorkflowWarningModalOpen, setIsDisableWorkflowWarningModalOpen] = useState(false);
@@ -310,36 +304,6 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
         },
     ];
 
-    if (isBetaEnabled(CONST.BETAS.UBER_FOR_BUSINESS)) {
-        integrateItems.push({
-            icon: Illustrations.ReceiptPartners,
-            titleTranslationKey: 'workspace.moreFeatures.receiptPartners.title',
-            subtitleTranslationKey: 'workspace.moreFeatures.receiptPartners.subtitle',
-            isActive: policy?.receiptPartners?.enabled ?? false,
-            pendingAction: policy?.receiptPartners?.pendingFields?.enabled,
-            disabledAction: () => {
-                if (!isUberConnected) {
-                    return;
-                }
-                setIsReceiptPartnersWarningModalOpen(true);
-            },
-            action: (isEnabled: boolean) => {
-                if (!policyID) {
-                    return;
-                }
-                enablePolicyReceiptPartners(policyID, isEnabled);
-            },
-            disabled: isUberConnected,
-            errors: getLatestErrorField(policy ?? {}, CONST.POLICY.MORE_FEATURES.ARE_RECEIPT_PARTNERS_ENABLED),
-            onCloseError: () => {
-                if (!policyID) {
-                    return;
-                }
-                clearPolicyErrorField(policyID, CONST.POLICY.MORE_FEATURES.ARE_RECEIPT_PARTNERS_ENABLED);
-            },
-        });
-    }
-
     const sections: SectionObject[] = [
         {
             titleTranslationKey: 'workspace.moreFeatures.integrateSection.title',
@@ -501,23 +465,6 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
                     confirmText={translate('workspace.moreFeatures.connectionsWarningModal.manageSettings')}
                     cancelText={translate('common.cancel')}
                 />
-                {isBetaEnabled(CONST.BETAS.UBER_FOR_BUSINESS) && (
-                    <ConfirmModal
-                        title={translate('workspace.moreFeatures.receiptPartnersWarningModal.featureEnabledTitle')}
-                        onConfirm={() => {
-                            if (!policyID) {
-                                return;
-                            }
-                            setIsReceiptPartnersWarningModalOpen(false);
-                            // TODO: Navigate to Receipt Partners settings page when it exists
-                            // Navigation.navigate(ROUTES.POLICY_RECEIPT_PARTNERS.getRoute(policyID));
-                        }}
-                        isVisible={isReceiptPartnersWarningModalOpen}
-                        prompt={translate('workspace.moreFeatures.receiptPartnersWarningModal.disconnectText')}
-                        confirmText={translate('workspace.moreFeatures.receiptPartnersWarningModal.confirmText')}
-                        shouldShowCancelButton={false}
-                    />
-                )}
                 <ConfirmModal
                     title={translate('workspace.moreFeatures.expensifyCard.disableCardTitle')}
                     isVisible={isDisableExpensifyCardWarningModalOpen}

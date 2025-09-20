@@ -119,61 +119,6 @@ type CompanyAddress = {
     country: Country | '';
 };
 
-/**
- * Uber Receipt Partner
- */
-type UberReceiptPartner = {
-    /**
-     * form data for uber partner
-     */
-    connectFormData: string;
-    /**
-     * auto invite for uber connection
-     */
-    autoInvite?: boolean;
-    /**
-     * auto remove for uber connection
-     */
-    autoRemove?: boolean;
-    /**
-     * Whether uber is enabled for user
-     */
-    enabled?: boolean;
-    /**
-     * organization id for connected uber
-     */
-    organizationID?: string;
-
-    /**
-     * Mapping of workspace member email to Uber employee status
-     */
-    employees?: Record<
-        string,
-        {
-            /**
-             * status of the employee
-             */
-            status?: string;
-        }
-    >;
-    /**
-     * Collection of errors coming from BE
-     */
-    errors?: OnyxCommon.Errors;
-    /**
-     * Collection of form field errors
-     */
-    errorFields?: OnyxCommon.ErrorFields;
-};
-
-/** Policy Receipt partners */
-type ReceiptPartners = OnyxCommon.OnyxValueWithOfflineFeedback<
-    {
-        /** Whether receipt partners are enabled */
-        enabled?: boolean;
-    } & Record<string, OnyxCommon.OnyxValueWithOfflineFeedback<UberReceiptPartner>>
->;
-
 /** Policy disabled fields */
 type DisabledFields = {
     /** Whether the default billable field is disabled */
@@ -1824,11 +1769,6 @@ type Policy = OnyxCommon.OnyxValueWithOfflineFeedback<
         /** Whether new transactions need to be categorized */
         requiresCategory?: boolean;
 
-        /**
-         * Policy Receipt Partners
-         */
-        receiptPartners?: ReceiptPartners;
-
         /** Whether the workspace has multiple levels of tags enabled */
         hasMultipleTagLists?: boolean;
 
@@ -2019,7 +1959,6 @@ export type {
     Connections,
     SageIntacctOfflineStateKeys,
     ConnectionName,
-    UberReceiptPartner,
     AllConnectionName,
     Tenant,
     Account,

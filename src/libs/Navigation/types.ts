@@ -1807,20 +1807,6 @@ type WorkspaceSplitNavigatorParamList = {
     [SCREENS.WORKSPACE.COMPANY_CARDS]: {
         policyID: string;
     };
-    [SCREENS.WORKSPACE.RECEIPT_PARTNERS]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.RECEIPT_PARTNERS_INVITE]: {
-        policyID: string;
-        integration: string;
-        backTo?: Routes;
-    };
-
-    [SCREENS.WORKSPACE.RECEIPT_PARTNERS_INVITE_EDIT]: {
-        policyID: string;
-        integration: string;
-        backTo?: Routes;
-    };
     [SCREENS.WORKSPACE.COMPANY_CARDS_ADD_NEW]: {
         policyID: string;
         backTo?: Routes;

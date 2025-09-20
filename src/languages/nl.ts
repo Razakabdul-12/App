@@ -3439,9 +3439,7 @@ const translations = {
             perDiem: 'Per diem',
             travel: 'Reis',
             members: 'Leden',
-            accounting: 'Boekhouding',
-            receiptPartners: 'Bonnetjespartners',
-            rules: 'Regels',
+            accounting: 'Boekhouding',            rules: 'Regels',
             displayedAs: 'Weergegeven als',
             plan: 'Plan',
             profile: 'Overzicht',
@@ -3531,41 +3529,7 @@ const translations = {
             viewTransactions: 'Transacties bekijken',
             policyExpenseChatName: ({displayName}: PolicyExpenseChatNameParams) => `Uitgaven van ${displayName}`,
             deepDiveExpensifyCard: `<muted-text-label>Expensify Card transacties worden automatisch geëxporteerd naar een “Expensify Card Liability Account” die is aangemaakt met <a href="${CONST.DEEP_DIVE_EXPENSIFY_CARD}">onze integratie</a>.</muted-text-label>`,
-        },
-        receiptPartners: {
-            connect: 'Maak nu verbinding',
-            uber: {
-                subtitle: 'Automatiseer reis- en maaltijdbezorgkosten binnen uw organisatie.',
-                sendInvites: 'Leden uitnodigen',
-                sendInvitesDescription: 'Deze workspace-leden hebben nog geen Uber for Business-account. Deselecteer alle leden die u op dit moment niet wilt uitnodigen.',
-                confirmInvite: 'Uitnodiging bevestigen',
-                manageInvites: 'Beheer uitnodigingen',
-                confirm: 'Bevestigen',
-                allSet: 'Alles klaar',
-                readyToRoll: 'Je bent klaar om te beginnen',
-                takeBusinessRideMessage: 'Neem een zakelijke rit en je Uber-bonnetjes worden geïmporteerd in Expensify. Laten we gaan!',
-                all: 'Alle',
-                linked: 'Gekoppeld',
-                outstanding: 'Openstaand',
-                status: {
-                    resend: 'Opnieuw verzenden',
-                    invite: 'Uitnodigen',
-                    [CONST.POLICY.RECEIPT_PARTNERS.UBER_EMPLOYEE_STATUS.LINKED]: 'Gekoppeld',
-                    [CONST.POLICY.RECEIPT_PARTNERS.UBER_EMPLOYEE_STATUS.LINKED_PENDING_APPROVAL]: 'In behandeling',
-                    [CONST.POLICY.RECEIPT_PARTNERS.UBER_EMPLOYEE_STATUS.SUSPENDED]: 'Opgeschort',
-                },
-                invitationFailure: 'Kon leden niet uitnodigen voor Uber for Business',
-                autoRemove: 'Nodig nieuwe werkruimteleden uit voor Uber for Business',
-                autoInvite: 'Deactiveer verwijderde werkruimteleden van Uber for Business',
-                bannerTitle: 'Expensify + Uber voor bedrijven',
-                bannerDescription: 'Sluit Uber for Business aan om de kosten voor reizen en maaltijdbezorging binnen uw organisatie te automatiseren.',
-                emptyContent: {
-                    title: 'Geen leden om weer te geven',
-                    subtitle: 'We hebben overal gezocht en niets gevonden.',
-                },
-            },
-        },
-        perDiem: {
+        },        perDiem: {
             subtitle: 'Stel dagvergoedingen in om de dagelijkse uitgaven van werknemers te beheersen.',
             amount: 'Bedrag',
             deleteRates: () => ({
@@ -4695,24 +4659,12 @@ const translations = {
             connections: {
                 title: 'Boekhouding',
                 subtitle: 'Synchroniseer uw rekeningschema en meer.',
-            },
-            receiptPartners: {
-                title: 'Bonnetjespartners',
-                subtitle: 'Automatisch bonnetjes importeren.',
-            },
-            connectionsWarningModal: {
+            },            connectionsWarningModal: {
                 featureEnabledTitle: 'Niet zo snel...',
                 featureEnabledText: 'Om deze functie in of uit te schakelen, moet je je boekhoudimportinstellingen wijzigen.',
                 disconnectText: 'Om boekhouding uit te schakelen, moet je de boekhoudkoppeling van je werkruimte loskoppelen.',
                 manageSettings: 'Instellingen beheren',
-            },
-            receiptPartnersWarningModal: {
-                featureEnabledTitle: 'Uber verbreken',
-                disconnectText: 'Om deze functie uit te schakelen, verbreek eerst de Uber for Business integratie.',
-                description: 'Weet u zeker dat u deze integratie wilt verbreken?',
-                confirmText: 'Begrepen',
-            },
-            workflowWarningModal: {
+            },            workflowWarningModal: {
                 featureEnabledTitle: 'Niet zo snel...',
                 featureEnabledText:
                     'Expensify-kaarten in deze werkruimte zijn afhankelijk van goedkeuringsworkflows om hun Smart Limits te definiëren.\n\nWijzig de limiettypen van alle kaarten met Smart Limits voordat u workflows uitschakelt.',

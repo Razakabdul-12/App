@@ -3436,9 +3436,7 @@ const translations = {
             perDiem: 'Per diem',
             travel: 'Viagem',
             members: 'Membros',
-            accounting: 'Contabilidade',
-            receiptPartners: 'Parceiros de recibos',
-            rules: 'Regras',
+            accounting: 'Contabilidade',            rules: 'Regras',
             displayedAs: 'Exibido como',
             plan: 'Plano',
             profile: 'Visão geral',
@@ -3528,41 +3526,7 @@ const translations = {
             viewTransactions: 'Ver transações',
             policyExpenseChatName: ({displayName}: PolicyExpenseChatNameParams) => `Despesas de ${displayName}`,
             deepDiveExpensifyCard: `<muted-text-label>As transações do cartão Expensify serão exportadas automaticamente para uma “Conta de responsabilidade do cartão Expensify” criada com <a href="${CONST.DEEP_DIVE_EXPENSIFY_CARD}">nossa integração</a>.</muted-text-label>`,
-        },
-        receiptPartners: {
-            connect: 'Conecte-se agora',
-            uber: {
-                subtitle: 'Automatize despesas de viagens e entrega de refeições em toda a sua organização.',
-                sendInvites: 'Convidar membros',
-                sendInvitesDescription: 'Esses membros do workspace ainda não têm uma conta do Uber for Business. Desmarque quaisquer membros que você não deseja convidar neste momento.',
-                confirmInvite: 'Confirmar convite',
-                manageInvites: 'Gerenciar convites',
-                confirm: 'Confirmar',
-                allSet: 'Tudo pronto',
-                readyToRoll: 'Você está pronto para começar',
-                takeBusinessRideMessage: 'Faça uma viagem de negócios e seus recibos do Uber serão importados para o Expensify. Vamos lá!',
-                all: 'Todos',
-                linked: 'Vinculado',
-                outstanding: 'Pendente',
-                status: {
-                    resend: 'Reenviar',
-                    invite: 'Convidar',
-                    [CONST.POLICY.RECEIPT_PARTNERS.UBER_EMPLOYEE_STATUS.LINKED]: 'Vinculado',
-                    [CONST.POLICY.RECEIPT_PARTNERS.UBER_EMPLOYEE_STATUS.LINKED_PENDING_APPROVAL]: 'Pendente',
-                    [CONST.POLICY.RECEIPT_PARTNERS.UBER_EMPLOYEE_STATUS.SUSPENDED]: 'Suspenso',
-                },
-                invitationFailure: 'Falha ao convidar membros para o Uber for Business',
-                autoRemove: 'Convidar novos membros do espaço de trabalho para o Uber for Business',
-                autoInvite: 'Desativar membros removidos do espaço de trabalho do Uber for Business',
-                bannerTitle: 'Expensify + Uber para empresas',
-                bannerDescription: 'Conecte o Uber for Business para automatizar despesas de viagens e entrega de refeições em toda a sua organização.',
-                emptyContent: {
-                    title: 'Nenhum membro para exibir',
-                    subtitle: 'Procuramos em todos os lugares e não encontramos nada.',
-                },
-            },
-        },
-        perDiem: {
+        },        perDiem: {
             subtitle: 'Defina taxas de diárias para controlar os gastos diários dos funcionários.',
             amount: 'Quantia',
             deleteRates: () => ({
@@ -4689,24 +4653,12 @@ const translations = {
             connections: {
                 title: 'Contabilidade',
                 subtitle: 'Sincronize seu plano de contas e mais.',
-            },
-            receiptPartners: {
-                title: 'Parceiros de recibos',
-                subtitle: 'Importar recibos automaticamente.',
-            },
-            connectionsWarningModal: {
+            },            connectionsWarningModal: {
                 featureEnabledTitle: 'Não tão rápido...',
                 featureEnabledText: 'Para ativar ou desativar este recurso, você precisará alterar suas configurações de importação de contabilidade.',
                 disconnectText: 'Para desativar a contabilidade, você precisará desconectar sua conexão contábil do seu espaço de trabalho.',
                 manageSettings: 'Gerenciar configurações',
-            },
-            receiptPartnersWarningModal: {
-                featureEnabledTitle: 'Desconectar Uber',
-                disconnectText: 'Para desativar este recurso, desconecte primeiro a integração do Uber for Business.',
-                description: 'Tem certeza de que deseja desconectar esta integração?',
-                confirmText: 'Entendi',
-            },
-            workflowWarningModal: {
+            },            workflowWarningModal: {
                 featureEnabledTitle: 'Não tão rápido...',
                 featureEnabledText:
                     'Os Cartões Expensify neste espaço de trabalho dependem de fluxos de aprovação para definir seus Limites Inteligentes.\n\nPor favor, altere os tipos de limite de quaisquer cartões com Limites Inteligentes antes de desativar os fluxos de trabalho.',

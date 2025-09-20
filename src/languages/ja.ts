@@ -3432,9 +3432,7 @@ const translations = {
             perDiem: 'Per diem',
             travel: '旅行',
             members: 'メンバー',
-            accounting: '会計',
-            receiptPartners: 'レシートパートナー',
-            rules: 'ルール',
+            accounting: '会計',            rules: 'ルール',
             displayedAs: '表示される内容',
             plan: '計画',
             profile: '概要',
@@ -3524,41 +3522,7 @@ const translations = {
             viewTransactions: '取引を表示',
             policyExpenseChatName: ({displayName}: PolicyExpenseChatNameParams) => `${displayName}の経費`,
             deepDiveExpensifyCard: `<muted-text-label>Expensify Cardの取引は、<a href="${CONST.DEEP_DIVE_EXPENSIFY_CARD}">弊社の統合</a>で作成された 「Expensify Card Liability Account 」に自動的にエクスポートされます。</muted-text-label>`,
-        },
-        receiptPartners: {
-            connect: '今すぐ接続',
-            uber: {
-                subtitle: '組織全体で出張費や食事の配達費を自動化します。',
-                sendInvites: 'メンバーを招待',
-                sendInvitesDescription: 'これらのワークスペースメンバーはまだUber for Businessアカウントを持っていません。現在招待したくないメンバーの選択を解除してください。',
-                confirmInvite: '招待を確認',
-                manageInvites: '招待を管理する',
-                confirm: '確認',
-                allSet: '設定完了',
-                readyToRoll: '準備完了です',
-                takeBusinessRideMessage: 'ビジネス利用でUberに乗車すると、レシートがExpensifyに自動的にインポートされます。出発しましょう！',
-                all: 'すべて',
-                linked: 'リンク済み',
-                outstanding: '未処理',
-                status: {
-                    resend: '再送信',
-                    invite: '招待',
-                    [CONST.POLICY.RECEIPT_PARTNERS.UBER_EMPLOYEE_STATUS.LINKED]: 'リンク済み',
-                    [CONST.POLICY.RECEIPT_PARTNERS.UBER_EMPLOYEE_STATUS.LINKED_PENDING_APPROVAL]: '保留中',
-                    [CONST.POLICY.RECEIPT_PARTNERS.UBER_EMPLOYEE_STATUS.SUSPENDED]: '停止中',
-                },
-                invitationFailure: 'Uber for Businessへのメンバー招待に失敗しました',
-                autoRemove: 'Uber for Business に新しいワークスペースメンバーを招待する',
-                autoInvite: 'Uber for Business から削除されたワークスペースメンバーを非アクティブ化する',
-                bannerTitle: 'Expensify + ビジネス向け Uber',
-                bannerDescription: 'Uber for Business を接続すると、組織全体の出張費や食事の配達費を自動化できます。',
-                emptyContent: {
-                    title: '表示するメンバーがいません',
-                    subtitle: 'あらゆる場所を探しましたが、何も見つかりませんでした。',
-                },
-            },
-        },
-        perDiem: {
+        },        perDiem: {
             subtitle: '日当料金を設定して、従業員の1日の支出を管理します。',
             amount: '金額',
             deleteRates: () => ({
@@ -4672,24 +4636,12 @@ const translations = {
             connections: {
                 title: '会計',
                 subtitle: '勘定科目表などを同期します。',
-            },
-            receiptPartners: {
-                title: 'レシートパートナー',
-                subtitle: 'レシートを自動的にインポート',
-            },
-            connectionsWarningModal: {
+            },            connectionsWarningModal: {
                 featureEnabledTitle: 'ちょっと待ってください…',
                 featureEnabledText: 'この機能を有効または無効にするには、会計インポート設定を変更する必要があります。',
                 disconnectText: '会計を無効にするには、ワークスペースから会計接続を切断する必要があります。',
                 manageSettings: '設定を管理',
-            },
-            receiptPartnersWarningModal: {
-                featureEnabledTitle: 'Uberを切断',
-                disconnectText: 'この機能を無効にするには、まずUber for Business統合を切断してください。',
-                description: 'この統合を切断してもよろしいですか?',
-                confirmText: '了解',
-            },
-            workflowWarningModal: {
+            },            workflowWarningModal: {
                 featureEnabledTitle: 'ちょっと待ってください…',
                 featureEnabledText:
                     'このワークスペースのExpensifyカードは、承認ワークフローに依存してスマートリミットを定義しています。\n\nワークフローを無効にする前に、スマートリミットが設定されているカードのリミットタイプを変更してください。',

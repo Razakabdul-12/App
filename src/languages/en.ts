@@ -3414,9 +3414,7 @@ const translations = {
             perDiem: 'Per diem',
             travel: 'Travel',
             members: 'Members',
-            accounting: 'Accounting',
-            receiptPartners: 'Receipt partners',
-            rules: 'Rules',
+            accounting: 'Accounting',            rules: 'Rules',
             displayedAs: 'Displayed as',
             plan: 'Plan',
             profile: 'Overview',
@@ -3506,41 +3504,7 @@ const translations = {
             viewTransactions: 'View transactions',
             policyExpenseChatName: ({displayName}: PolicyExpenseChatNameParams) => `${displayName}'s expenses`,
             deepDiveExpensifyCard: `<muted-text-label>Expensify Card transactions will automatically export to an "Expensify Card Liability Account" created with <a href="${CONST.DEEP_DIVE_EXPENSIFY_CARD}">our integration</a>.</muted-text-label>`,
-        },
-        receiptPartners: {
-            connect: 'Connect now',
-            uber: {
-                subtitle: 'Automate travel and meal delivery expenses across your organization.',
-                sendInvites: 'Send invites',
-                sendInvitesDescription: "These workspace members don't have an Uber for Business account yet. Unselect any members you do not wish to invite at this time.",
-                confirmInvite: 'Confirm invite',
-                manageInvites: 'Manage invites',
-                confirm: 'Confirm',
-                allSet: 'All set',
-                readyToRoll: "You're ready to roll",
-                takeBusinessRideMessage: 'Take a business ride and your Uber receipts will import into Expensify. Scoot!',
-                all: 'All',
-                linked: 'Linked',
-                outstanding: 'Outstanding',
-                status: {
-                    resend: 'Resend',
-                    invite: 'Invite',
-                    [CONST.POLICY.RECEIPT_PARTNERS.UBER_EMPLOYEE_STATUS.LINKED]: 'Linked',
-                    [CONST.POLICY.RECEIPT_PARTNERS.UBER_EMPLOYEE_STATUS.LINKED_PENDING_APPROVAL]: 'Pending',
-                    [CONST.POLICY.RECEIPT_PARTNERS.UBER_EMPLOYEE_STATUS.SUSPENDED]: 'Suspended',
-                },
-                invitationFailure: 'Failed to invite members to Uber for Business',
-                autoRemove: 'Invite new workspace members to Uber for Business',
-                autoInvite: 'Deactivate removed workspace members from Uber for Business',
-                bannerTitle: 'Expensify + Uber for Business',
-                bannerDescription: 'Connect Uber for Business to automate travel and meal delivery expenses across your organization.',
-                emptyContent: {
-                    title: 'No members to display',
-                    subtitle: 'We looked everywhere and couldn’t find anything.',
-                },
-            },
-        },
-        perDiem: {
+        },        perDiem: {
             subtitle: 'Set per diem rates to control daily employee spend. ',
             amount: 'Amount',
             deleteRates: () => ({
@@ -4659,24 +4623,12 @@ const translations = {
             connections: {
                 title: 'Accounting',
                 subtitle: 'Sync your chart of accounts and more.',
-            },
-            receiptPartners: {
-                title: 'Receipt partners',
-                subtitle: 'Automatically import receipts.',
-            },
-            connectionsWarningModal: {
+            },            connectionsWarningModal: {
                 featureEnabledTitle: 'Not so fast...',
                 featureEnabledText: "To enable or disable this feature, you'll need to change your accounting import settings.",
                 disconnectText: "To disable accounting, you'll need to disconnect your accounting connection from your workspace.",
                 manageSettings: 'Manage settings',
-            },
-            receiptPartnersWarningModal: {
-                featureEnabledTitle: 'Disconnect Uber',
-                disconnectText: 'To disable this feature, please disconnect the Uber for Business integration first.',
-                description: 'Are you sure you want to disconnect this integration?',
-                confirmText: 'Got it',
-            },
-            workflowWarningModal: {
+            },            workflowWarningModal: {
                 featureEnabledTitle: 'Not so fast...',
                 featureEnabledText:
                     'Expensify Cards in this workspace rely on approval workflows to define their Smart Limits.\n\nPlease change the limit types of any cards with Smart Limits before disabling workflows.',

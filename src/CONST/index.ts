@@ -2957,7 +2957,6 @@ const CONST = {
             ARE_WORKFLOWS_ENABLED: 'areWorkflowsEnabled',
             ARE_REPORT_FIELDS_ENABLED: 'areReportFieldsEnabled',
             ARE_CONNECTIONS_ENABLED: 'areConnectionsEnabled',
-            ARE_RECEIPT_PARTNERS_ENABLED: 'receiptPartners',
             ARE_COMPANY_CARDS_ENABLED: 'areCompanyCardsEnabled',
             ARE_EXPENSIFY_CARDS_ENABLED: 'areExpensifyCardsEnabled',
             ARE_TAXES_ENABLED: 'tax',
@@ -3015,21 +3014,6 @@ const CONST = {
             GAMBLING: 'gambling',
             TOBACCO: 'tobacco',
             ADULT_ENTERTAINMENT: 'adultEntertainment',
-        },
-        RECEIPT_PARTNERS: {
-            NAME: {UBER: 'uber'},
-            NAME_USER_FRIENDLY: {
-                uber: 'Uber for Business',
-            },
-            UBER_EMPLOYEE_STATUS: {
-                CREATED: 'CREATED',
-                INVITED: 'INVITED',
-                LINKED_PENDING_APPROVAL: 'LINKED_PENDING_APPROVAL',
-                LINKED: 'LINKED',
-                SUSPENDED: 'SUSPENDED',
-                DELETED: 'DELETED',
-                NONE: 'NONE',
-            },
         },
         CONNECTIONS: {
             NAME: {
@@ -5242,12 +5226,6 @@ const CONST = {
             NAVIGATOR_ID: 'ShareNavigatorID',
             SHARE: 'ShareTab',
             SUBMIT: 'SubmitTab',
-        },
-        RECEIPT_PARTNERS: {
-            NAVIGATOR_ID: 'ReceiptPartnersID',
-            ALL: 'ReceiptPartnersAllTab',
-            LINKED: 'ReceiptPartnersLinkedTab',
-            OUTSTANDING: 'ReceiptPartnersOutstandingTab',
         },
     },
     TAB_REQUEST: {
