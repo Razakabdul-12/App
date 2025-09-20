@@ -1,16 +1,13 @@
-import lodashDropRightWhile from 'lodash/dropRightWhile';
-import lodashMapKeys from 'lodash/mapKeys';
-import type {NullishDeep, OnyxCollection, OnyxUpdate} from 'react-native-onyx';
+import type {OnyxCollection, OnyxUpdate} from 'react-native-onyx';
 import Onyx from 'react-native-onyx';
 import * as API from '@libs/API';
 import type {CreateWorkspaceApprovalParams, RemoveWorkspaceApprovalParams, UpdateWorkspaceApprovalParams} from '@libs/API/parameters';
 import {WRITE_COMMANDS} from '@libs/API/types';
 import {getDefaultApprover} from '@libs/PolicyUtils';
-import {calculateApprovers, convertApprovalWorkflowToPolicyEmployees} from '@libs/WorkflowUtils';
+import {convertApprovalWorkflowToPolicyEmployees} from '@libs/WorkflowUtils';
 import CONST from '@src/CONST';
-import type {TranslationPaths} from '@src/languages/types';
 import ONYXKEYS from '@src/ONYXKEYS';
-import type {ApprovalWorkflowOnyx, PersonalDetailsList, Policy} from '@src/types/onyx';
+import type {Policy} from '@src/types/onyx';
 import type {Approver, Member} from '@src/types/onyx/ApprovalWorkflow';
 import type ApprovalWorkflow from '@src/types/onyx/ApprovalWorkflow';
 import {isEmptyObject} from '@src/types/utils/EmptyObject';
@@ -29,26 +26,6 @@ Onyx.connect({
         authToken = value?.authToken;
     },
 });
-
-let personalDetailsByEmail: PersonalDetailsList = {};
-Onyx.connect({
-    key: ONYXKEYS.PERSONAL_DETAILS_LIST,
-    callback: (personalDetails) => {
-        personalDetailsByEmail = lodashMapKeys(personalDetails, (value, key) => value?.login ?? key);
-    },
-});
-
-type SetApprovalWorkflowApproverParams = {
-    approver: Approver;
-    approverIndex: number;
-    policyID: string;
-    currentApprovalWorkflow: ApprovalWorkflowOnyx | undefined;
-};
-
-type ClearApprovalWorkflowApproverParams = {
-    approverIndex: number;
-    currentApprovalWorkflow: ApprovalWorkflowOnyx | undefined;
-};
 
 function createApprovalWorkflow(policyID: string, approvalWorkflow: ApprovalWorkflow) {
     const policy = allPolicies?.[`${ONYXKEYS.COLLECTION.POLICY}${policyID}`];
@@ -233,124 +210,8 @@ function removeApprovalWorkflow(policyID: string, approvalWorkflow: ApprovalWork
     API.write(WRITE_COMMANDS.REMOVE_WORKSPACE_APPROVAL, parameters, {optimisticData, failureData, successData});
 }
 
-/** Set the members of the approval workflow that is currently edited */
-function setApprovalWorkflowMembers(members: Member[]) {
-    Onyx.merge(ONYXKEYS.APPROVAL_WORKFLOW, {members, errors: null});
-}
-
-/**
- * Set the approver at the specified index in the approval workflow that is currently edited
- * @param approver - The new approver to set
- * @param approverIndex - The index of the approver to set
- * @param policyID - The ID of the policy
- */
-function setApprovalWorkflowApprover({approver, approverIndex, policyID, currentApprovalWorkflow}: SetApprovalWorkflowApproverParams) {
-    const policy = allPolicies?.[`${ONYXKEYS.COLLECTION.POLICY}${policyID}`];
-
-    if (!currentApprovalWorkflow || !policy?.employeeList) {
-        return;
-    }
-
-    const approvers: Array<Approver | undefined> = [...currentApprovalWorkflow.approvers];
-    approvers[approverIndex] = approver;
-
-    // Check if the approver forwards to other approvers and add them to the list
-    if (policy.employeeList[approver.email]?.forwardsTo) {
-        const additionalApprovers = calculateApprovers({employees: policy.employeeList, firstEmail: approver.email, personalDetailsByEmail});
-        approvers.splice(approverIndex, approvers.length, ...additionalApprovers);
-    }
-
-    // Always clear the additional approver error when an approver is added
-    const errors: Record<string, TranslationPaths | null> = {additionalApprover: null};
-
-    // Check for circular references (approver forwards to themselves) and reset other errors
-    const updatedApprovers = approvers.map((existingApprover, index) => {
-        if (!existingApprover) {
-            return;
-        }
-
-        const hasCircularReference = approvers.slice(0, index).some((previousApprover) => existingApprover.email === previousApprover?.email);
-        if (hasCircularReference) {
-            errors[`approver-${index}`] = 'workflowsPage.approverCircularReference';
-        } else {
-            errors[`approver-${index}`] = null;
-        }
-
-        return {
-            ...existingApprover,
-            isCircularReference: hasCircularReference,
-        };
-    });
-
-    Onyx.merge(ONYXKEYS.APPROVAL_WORKFLOW, {approvers: updatedApprovers, errors});
-}
-
-/** Clear one approver at the specified index in the approval workflow that is currently edited */
-function clearApprovalWorkflowApprover({approverIndex, currentApprovalWorkflow}: ClearApprovalWorkflowApproverParams) {
-    if (!currentApprovalWorkflow) {
-        return;
-    }
-
-    const approvers: Array<Approver | undefined> = [...currentApprovalWorkflow.approvers];
-    approvers[approverIndex] = undefined;
-
-    Onyx.merge(ONYXKEYS.APPROVAL_WORKFLOW, {approvers: lodashDropRightWhile(approvers, (approver) => !approver), errors: null});
-}
-
-/** Clear all approvers of the approval workflow that is currently edited */
-function clearApprovalWorkflowApprovers() {
-    Onyx.merge(ONYXKEYS.APPROVAL_WORKFLOW, {approvers: []});
-}
-
-function setApprovalWorkflow(approvalWorkflow: NullishDeep<ApprovalWorkflowOnyx>) {
-    Onyx.set(ONYXKEYS.APPROVAL_WORKFLOW, approvalWorkflow);
-}
-
-function clearApprovalWorkflow() {
-    Onyx.set(ONYXKEYS.APPROVAL_WORKFLOW, null);
-}
-
-type ApprovalWorkflowOnyxValidated = Omit<ApprovalWorkflowOnyx, 'approvers'> & {approvers: Approver[]};
-
-/**
- * Validates the approval workflow and sets the errors on the approval workflow
- * @param approvalWorkflow the approval workflow to validate
- * @returns true if the approval workflow is valid, false otherwise
- */
-function validateApprovalWorkflow(approvalWorkflow: ApprovalWorkflowOnyx): approvalWorkflow is ApprovalWorkflowOnyxValidated {
-    const errors: Record<string, TranslationPaths> = {};
-
-    approvalWorkflow.approvers.forEach((approver, approverIndex) => {
-        if (!approver) {
-            errors[`approver-${approverIndex}`] = 'common.error.fieldRequired';
-        }
-
-        if (approver?.isCircularReference) {
-            errors[`approver-${approverIndex}`] = 'workflowsPage.approverCircularReference';
-        }
-    });
-
-    if (!approvalWorkflow.members.length && !approvalWorkflow.isDefault) {
-        errors.members = 'common.error.fieldRequired';
-    }
-
-    if (!approvalWorkflow.approvers.length) {
-        errors.additionalApprover = 'common.error.fieldRequired';
-    }
-
-    Onyx.merge(ONYXKEYS.APPROVAL_WORKFLOW, {errors});
-    return isEmptyObject(errors);
-}
-
 export {
     createApprovalWorkflow,
     updateApprovalWorkflow,
     removeApprovalWorkflow,
-    setApprovalWorkflowMembers,
-    setApprovalWorkflowApprover,
-    setApprovalWorkflow,
-    clearApprovalWorkflowApprover,
-    clearApprovalWorkflowApprovers,
-    clearApprovalWorkflow,
-    validateApprovalWorkflow,
 };

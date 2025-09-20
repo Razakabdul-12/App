@@ -6,18 +6,7 @@ import type {ValueOf} from 'type-fest';
 import FullPageNotFoundView from '@components/BlockingViews/FullPageNotFoundView';
 import HeaderWithBackButton from '@components/HeaderWithBackButton';
 import HighlightableMenuItem from '@components/HighlightableMenuItem';
-import {
-    Building,
-    Car,
-    CreditCard,
-    ExpensifyAppIcon,
-    ExpensifyCard,
-    Folder,
-    Gear,
-    Sync,
-    Users,
-    Workflows,
-} from '@components/Icon/Expensicons';
+import {Building, Car, CreditCard, ExpensifyAppIcon, ExpensifyCard, Folder, Gear, Sync, Users} from '@components/Icon/Expensicons';
 import MenuItem from '@components/MenuItem';
 import NavigationTabBar from '@components/Navigation/NavigationTabBar';
 import NAVIGATION_TABS from '@components/Navigation/NavigationTabBar/NAVIGATION_TABS';
@@ -126,7 +115,6 @@ function WorkspaceInitialPage({policyDraft, policy: policyProp, route}: Workspac
     const shouldDisplayLHB = !shouldUseNarrowLayout;
     const policyFeatureStates = useMemo(
         () => ({
-            [CONST.POLICY.MORE_FEATURES.ARE_WORKFLOWS_ENABLED]: policy?.areWorkflowsEnabled,
             [CONST.POLICY.MORE_FEATURES.ARE_CATEGORIES_ENABLED]: policy?.areCategoriesEnabled,
             [CONST.POLICY.MORE_FEATURES.ARE_TAGS_ENABLED]: policy?.areTagsEnabled,
             [CONST.POLICY.MORE_FEATURES.ARE_COMPANY_CARDS_ENABLED]: policy?.areCompanyCardsEnabled,
@@ -192,19 +180,6 @@ function WorkspaceInitialPage({policyDraft, policy: policyProp, route}: Workspac
         }
 
      
-        if (featureStates?.[CONST.POLICY.MORE_FEATURES.ARE_WORKFLOWS_ENABLED]) {
-            protectedMenuItems.push({
-                translationKey: 'workspace.common.workflows',
-                icon: Workflows,
-                action: singleExecution(waitForNavigate(() => Navigation.navigate(ROUTES.WORKSPACE_WORKFLOWS.getRoute(policyID)))),
-                screenName: SCREENS.WORKSPACE.WORKFLOWS,
-                brickRoadIndicator: !isEmptyObject(policy?.errorFields?.reimburser ?? {}) ? CONST.BRICK_ROAD_INDICATOR_STATUS.ERROR : undefined,
-                highlighted: highlightedFeature === CONST.POLICY.MORE_FEATURES.ARE_WORKFLOWS_ENABLED,
-            });
-        }
-
-     
-
         if (featureStates?.[CONST.POLICY.MORE_FEATURES.ARE_EXPENSIFY_CARDS_ENABLED]) {
             protectedMenuItems.push({
                 translationKey: 'workspace.common.expensifyCard',

@@ -16,7 +16,7 @@ import {areSettingsInErrorFields, settingsPendingAction} from '@libs/PolicyUtils
 import Navigation from '@navigation/Navigation';
 import type {WithPolicyConnectionsProps} from '@pages/workspace/withPolicyConnections';
 import withPolicyConnections from '@pages/workspace/withPolicyConnections';
-import ToggleSettingOptionRow from '@pages/workspace/workflows/ToggleSettingsOptionRow';
+import ToggleSettingOptionRow from '@pages/ToggleSettingOptionRow';
 import {clearQBOErrorField} from '@userActions/Policy/Policy';
 import CONST from '@src/CONST';
 import ROUTES from '@src/ROUTES';

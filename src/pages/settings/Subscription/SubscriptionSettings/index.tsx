@@ -31,7 +31,7 @@ import {getSubscriptionPrice} from '@libs/SubscriptionUtils';
 import Navigation from '@navigation/Navigation';
 import NotFoundPage from '@pages/ErrorPage/NotFoundPage';
 import {formatSubscriptionEndDate} from '@pages/settings/Subscription/utils';
-import ToggleSettingOptionRow from '@pages/workspace/workflows/ToggleSettingsOptionRow';
+import ToggleSettingOptionRow from '@pages/ToggleSettingOptionRow';
 import variables from '@styles/variables';
 import {navigateToConciergeChat} from '@userActions/Report';
 import {clearUpdateSubscriptionSizeError, requestTaxExempt, updateSubscriptionAddNewUsersAutomatically, updateSubscriptionAutoRenew, updateSubscriptionType} from '@userActions/Subscription';

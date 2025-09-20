@@ -294,7 +294,6 @@ import type {
     WeSentYouMagicSignInLinkParams,
     WorkEmailMergingBlockedParams,
     WorkEmailResendCodeParams,
-    WorkflowSettingsParam,
     WorkspaceLockedPlanTypeParams,
     WorkspaceMemberList,
     WorkspaceMembersCountParams,
@@ -1205,7 +1204,7 @@ const translations = {
         submitAmount: ({amount}: RequestAmountParams) => `Verstuur ${amount}`,
         expenseAmount: ({formattedAmount, comment}: RequestedAmountMessageParams) => `${formattedAmount}${comment ? `voor ${comment}` : ''}`,
         submitted: ({memo}: SubmittedWithMemoParams) => `ingediend${memo ? `, zegt ${memo}` : ''}`,
-        automaticallySubmitted: `ingediend via <a href="${CONST.SELECT_WORKFLOWS_HELP_URL}">vertraging indieningen</a>`,
+        automaticallySubmitted: 'automatisch ingediend',
         trackedAmount: ({formattedAmount, comment}: RequestedAmountMessageParams) => `volgt ${formattedAmount}${comment ? `voor ${comment}` : ''}`,
         splitAmount: ({amount}: SplitAmountParams) => `splitsen ${amount}`,
         didSplitAmount: ({formattedAmount, comment}: DidSplitAmountMessageParams) => `split ${formattedAmount}${comment ? `voor ${comment}` : ''}`,
@@ -1347,7 +1346,7 @@ const translations = {
             title: 'Je hebt dit rapport verplaatst!',
             description: 'Controleer deze items dubbel, aangezien ze de neiging hebben te veranderen bij het verplaatsen van rapporten naar een nieuwe werkruimte.',
             reCategorize: '<strong>Her-categoriseer eventuele uitgaven</strong> om te voldoen aan de werkruimteregels.',
-            workflows: 'Dit rapport kan nu onderworpen zijn aan een ander <strong>goedkeuringsproces.</strong>',
+            workflows: 'Dit rapport kan nu naar een <strong>andere goedkeurder</strong> worden gestuurd.',
         },
         changeWorkspace: 'Werkruimte wijzigen',
         set: 'set',
@@ -1414,8 +1413,7 @@ const translations = {
         changeApprover: {
             title: 'Goedkeurder wijzigen',
             subtitle: 'Kies een optie om de goedkeurder voor dit rapport te wijzigen.',
-            description: ({workflowSettingLink}: WorkflowSettingsParam) =>
-                `U kunt de goedkeurder ook permanent wijzigen voor alle rapporten in uw <a href="${workflowSettingLink}">workflow-instellingen</a>.`,
+            description: 'Je kunt de goedkeurder ook permanent wijzigen in de instellingen van je workspace.',
             changedApproverMessage: ({managerID}: ChangedApproverMessageParams) => `wijzigde de goedkeurder naar <mention-user accountID="${managerID}"/>`,
             actions: {
                 addApprover: 'Goedkeurder toevoegen',
@@ -1955,8 +1953,8 @@ const translations = {
             `<strong>${name1}</strong> keurt al rapporten goed voor <strong>${name2}</strong>. Kies alstublieft een andere goedkeurder om een circulaire workflow te voorkomen.`,
         emptyContent: {
             title: 'Geen leden om weer te geven',
-            expensesFromSubtitle: 'Alle werkruimteleden maken al deel uit van een bestaand goedkeuringsproces.',
-            approverSubtitle: 'Alle goedkeurders behoren tot een bestaand werkstroom.',
+            expensesFromSubtitle: 'Alle werkruimteleden hebben al een toegewezen goedkeurder.',
+            approverSubtitle: 'Alle beschikbare goedkeurders zijn al toegewezen.',
         },
     },
     workflowsDelayedSubmissionPage: {

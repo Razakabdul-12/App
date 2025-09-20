@@ -294,7 +294,6 @@ import type {
     WeSentYouMagicSignInLinkParams,
     WorkEmailMergingBlockedParams,
     WorkEmailResendCodeParams,
-    WorkflowSettingsParam,
     WorkspaceLockedPlanTypeParams,
     WorkspaceMemberList,
     WorkspaceMembersCountParams,
@@ -1203,7 +1202,7 @@ const translations = {
         submitAmount: ({amount}: RequestAmountParams) => `Zatwierdź ${amount}`,
         expenseAmount: ({formattedAmount, comment}: RequestedAmountMessageParams) => `${formattedAmount}${comment ? `dla ${comment}` : ''}`,
         submitted: ({memo}: SubmittedWithMemoParams) => `przesłano${memo ? `, mówiąc ${memo}` : ''}`,
-        automaticallySubmitted: `przesłane za pomocą <a href="${CONST.SELECT_WORKFLOWS_HELP_URL}">opóźnij zgłoszenia</a>`,
+        automaticallySubmitted: 'zostało wysłane automatycznie',
         trackedAmount: ({formattedAmount, comment}: RequestedAmountMessageParams) => `śledzenie ${formattedAmount}${comment ? `dla ${comment}` : ''}`,
         splitAmount: ({amount}: SplitAmountParams) => `podziel ${amount}`,
         didSplitAmount: ({formattedAmount, comment}: DidSplitAmountMessageParams) => `podziel ${formattedAmount}${comment ? `dla ${comment}` : ''}`,
@@ -1344,7 +1343,7 @@ const translations = {
             title: 'Przeniosłeś ten raport!',
             description: 'Sprawdź te elementy, które mają tendencję do zmiany podczas przenoszenia raportów do nowego obszaru roboczego.',
             reCategorize: '<strong>Przeklasyfikuj wszelkie wydatki</strong>, aby były zgodne z zasadami przestrzeni roboczej.',
-            workflows: 'Ten raport może teraz podlegać innemu <strong>procesowi zatwierdzania.</strong>',
+            workflows: 'Ten raport może teraz trafić do innego <strong>zatwierdzającego</strong>.',
         },
         changeWorkspace: 'Zmień przestrzeń roboczą',
         set: 'set',
@@ -1411,8 +1410,7 @@ const translations = {
         changeApprover: {
             title: 'Zmień zatwierdzającego',
             subtitle: 'Wybierz opcję, aby zmienić zatwierdzającego dla tego raportu.',
-            description: ({workflowSettingLink}: WorkflowSettingsParam) =>
-                `Możesz również trwale zmienić zatwierdzającego dla wszystkich raportów w swoich <a href="${workflowSettingLink}">ustawieniach przepływu pracy</a>.`,
+            description: 'Możesz też trwale zmienić osobę zatwierdzającą w ustawieniach swojego workspace.',
             changedApproverMessage: ({managerID}: ChangedApproverMessageParams) => `zmieniono zatwierdzającego na <mention-user accountID="${managerID}"/>`,
             actions: {
                 addApprover: 'Dodaj zatwierdzającego',
@@ -1952,8 +1950,8 @@ const translations = {
             `<strong>${name1}</strong> już zatwierdza raporty do <strong>${name2}</strong>. Proszę wybrać innego zatwierdzającego, aby uniknąć cyklicznego przepływu pracy.`,
         emptyContent: {
             title: 'Brak członków do wyświetlenia',
-            expensesFromSubtitle: 'Wszyscy członkowie przestrzeni roboczej już należą do istniejącego procesu zatwierdzania.',
-            approverSubtitle: 'Wszyscy zatwierdzający należą do istniejącego przepływu pracy.',
+            expensesFromSubtitle: 'Wszyscy członkowie przestrzeni roboczej mają już przypisanego zatwierdzającego.',
+            approverSubtitle: 'Wszyscy dostępni zatwierdzający są już przydzieleni.',
         },
     },
     workflowsDelayedSubmissionPage: {

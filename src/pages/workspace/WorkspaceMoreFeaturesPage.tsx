@@ -15,21 +15,14 @@ import useOnyx from '@hooks/useOnyx';
 import useResponsiveLayout from '@hooks/useResponsiveLayout';
 import useStyleUtils from '@hooks/useStyleUtils';
 import useThemeStyles from '@hooks/useThemeStyles';
-import {filterInactiveCards, getAllCardsForWorkspace, getCompanyFeeds, isSmartLimitEnabled as isSmartLimitEnabledUtil} from '@libs/CardUtils';
+import {filterInactiveCards, getAllCardsForWorkspace, getCompanyFeeds} from '@libs/CardUtils';
 import {getLatestErrorField} from '@libs/ErrorUtils';
 import Navigation from '@libs/Navigation/Navigation';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {WorkspaceSplitNavigatorParamList} from '@libs/Navigation/types';
 import { hasAccountingConnections, isControlPolicy} from '@libs/PolicyUtils';
 import {enablePolicyCategories} from '@userActions/Policy/Category';
-import {
-    clearPolicyErrorField,
-    enableCompanyCards,
-    enableExpensifyCard,
-    enablePolicyConnections,
-    enablePolicyWorkflows,
-    openPolicyMoreFeaturesPage,
-} from '@userActions/Policy/Policy';
+import {clearPolicyErrorField, enableCompanyCards, enableExpensifyCard, enablePolicyConnections, openPolicyMoreFeaturesPage} from '@userActions/Policy/Policy';
 import {navigateToConciergeChat} from '@userActions/Report';
 import CONST from '@src/CONST';
 import type {TranslationPaths} from '@src/languages/types';
@@ -42,7 +35,7 @@ import type IconAsset from '@src/types/utils/IconAsset';
 import AccessOrNotFoundWrapper from './AccessOrNotFoundWrapper';
 import type {WithPolicyAndFullscreenLoadingProps} from './withPolicyAndFullscreenLoading';
 import withPolicyAndFullscreenLoading from './withPolicyAndFullscreenLoading';
-import ToggleSettingOptionRow from './workflows/ToggleSettingsOptionRow';
+import ToggleSettingOptionRow from '/ToggleSettingOptionRow';
 
 type WorkspaceMoreFeaturesPageProps = WithPolicyAndFullscreenLoadingProps & PlatformStackScreenProps<WorkspaceSplitNavigatorParamList, typeof SCREENS.WORKSPACE.MORE_FEATURES>;
 
@@ -83,13 +76,10 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
     const [isIntegrateWarningModalOpen, setIsIntegrateWarningModalOpen] = useState(false);
     const [isDisableExpensifyCardWarningModalOpen, setIsDisableExpensifyCardWarningModalOpen] = useState(false);
     const [isDisableCompanyCardsWarningModalOpen, setIsDisableCompanyCardsWarningModalOpen] = useState(false);
-    const [isDisableWorkflowWarningModalOpen, setIsDisableWorkflowWarningModalOpen] = useState(false);
 
 
     const [cardList] = useOnyx(`${ONYXKEYS.COLLECTION.WORKSPACE_CARDS_LIST}`, {canBeMissing: true});
     const workspaceCards = getAllCardsForWorkspace(workspaceAccountID, cardList, cardFeeds);
-    const isSmartLimitEnabled = isSmartLimitEnabledUtil(workspaceCards);
-
     const [allTransactionViolations] = useOnyx(ONYXKEYS.COLLECTION.TRANSACTION_VIOLATIONS, {canBeMissing: true});
     const [policyTagLists] = useOnyx(`${ONYXKEYS.COLLECTION.POLICY_TAGS}${policy?.id}`, {canBeMissing: true});
     const defaultFundID = useDefaultFundID(policyID);
@@ -102,13 +92,6 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
         }
         setIsOrganizeWarningModalOpen(true);
     }, [hasAccountingConnection]);
-
-    const onDisabledWorkflowPress = useCallback(() => {
-        if (!isSmartLimitEnabled) {
-            return;
-        }
-        setIsDisableWorkflowWarningModalOpen(true);
-    }, [isSmartLimitEnabled]);
 
     const spendItems: Item[] = [
         {
@@ -147,24 +130,6 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
             setIsDisableCompanyCardsWarningModalOpen(true);
         },
     });
-
-    const manageItems: Item[] = [
-        {
-            icon: Illustrations.Workflows,
-            titleTranslationKey: 'workspace.moreFeatures.workflows.title',
-            subtitleTranslationKey: 'workspace.moreFeatures.workflows.subtitle',
-            isActive: policy?.areWorkflowsEnabled ?? false,
-            pendingAction: policy?.pendingFields?.areWorkflowsEnabled,
-            action: (isEnabled: boolean) => {
-                if (!policyID) {
-                    return;
-                }
-                enablePolicyWorkflows(policyID, isEnabled);
-            },
-            disabled: isSmartLimitEnabled,
-            disabledAction: onDisabledWorkflowPress,
-        },
-    ];
 
     const organizeItems: Item[] = [
         {
@@ -225,11 +190,6 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
             titleTranslationKey: 'workspace.moreFeatures.organizeSection.title',
             subtitleTranslationKey: 'workspace.moreFeatures.organizeSection.subtitle',
             items: organizeItems,
-        },
-        {
-            titleTranslationKey: 'workspace.moreFeatures.manageSection.title',
-            subtitleTranslationKey: 'workspace.moreFeatures.manageSection.subtitle',
-            items: manageItems,
         },
         {
             titleTranslationKey: 'workspace.moreFeatures.spendSection.title',
@@ -398,18 +358,6 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
                     onCancel={() => setIsDisableCompanyCardsWarningModalOpen(false)}
                     prompt={translate('workspace.moreFeatures.companyCards.disableCardPrompt')}
                     confirmText={translate('workspace.moreFeatures.companyCards.disableCardButton')}
-                    cancelText={translate('common.cancel')}
-                />
-                <ConfirmModal
-                    title={translate('workspace.moreFeatures.workflowWarningModal.featureEnabledTitle')}
-                    isVisible={isDisableWorkflowWarningModalOpen}
-                    onConfirm={() => {
-                        setIsDisableWorkflowWarningModalOpen(false);
-                        Navigation.navigate(ROUTES.WORKSPACE_EXPENSIFY_CARD.getRoute(policyID));
-                    }}
-                    onCancel={() => setIsDisableWorkflowWarningModalOpen(false)}
-                    prompt={translate('workspace.moreFeatures.workflowWarningModal.featureEnabledText')}
-                    confirmText={translate('workspace.moreFeatures.workflowWarningModal.confirmText')}
                     cancelText={translate('common.cancel')}
                 />
             </ScreenWrapper>

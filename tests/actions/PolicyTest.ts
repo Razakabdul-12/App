@@ -521,38 +521,6 @@ describe('actions/Policy', () => {
         });
     });
 
-    describe('disableWorkflows', () => {
-        it('disableWorkflow should reset autoReportingFrequency to INSTANT', async () => {
-            const autoReporting = true;
-            const autoReportingFrequency = CONST.POLICY.AUTO_REPORTING_FREQUENCIES.MONTHLY;
-            // Given that a policy has autoReporting initially set to true and autoReportingFrequency set to monthly.
-            const fakePolicy: PolicyType = {
-                ...createRandomPolicy(0, CONST.POLICY.TYPE.TEAM),
-                autoReporting,
-                autoReportingFrequency,
-            };
-            await Onyx.set(`${ONYXKEYS.COLLECTION.POLICY}${fakePolicy.id}`, fakePolicy);
-
-            // When workflows are disabled for the policy
-            Policy.enablePolicyWorkflows(fakePolicy.id, false);
-            await waitForBatchedUpdates();
-
-            const policy: OnyxEntry<PolicyType> = await new Promise((resolve) => {
-                const connection = Onyx.connect({
-                    key: `${ONYXKEYS.COLLECTION.POLICY}${fakePolicy.id}`,
-                    callback: (workspace) => {
-                        Onyx.disconnect(connection);
-                        resolve(workspace);
-                    },
-                });
-            });
-
-            // Then the policy autoReportingFrequency should revert to "INSTANT"
-            expect(policy?.autoReporting).toBe(false);
-            expect(policy?.autoReportingFrequency).toBe(CONST.POLICY.AUTO_REPORTING_FREQUENCIES.INSTANT);
-        });
-    });
-
     describe('deleteWorkspace', () => {
         it('should apply failure data when deleteWorkspace fails', async () => {
             // Given a policy
@@ -856,32 +824,4 @@ describe('actions/Policy', () => {
         });
     });
 
-    describe('enablePolicyWorkflows', () => {
-        it('should update delayed submission to instant when disabling the workflows feature', async () => {
-            (fetch as MockFetch)?.pause?.();
-            Onyx.set(ONYXKEYS.SESSION, {email: ESH_EMAIL, accountID: ESH_ACCOUNT_ID});
-            const fakePolicy: PolicyType = {
-                ...createRandomPolicy(0, CONST.POLICY.TYPE.TEAM),
-                areWorkflowsEnabled: true,
-                autoReporting: true,
-                autoReportingFrequency: CONST.POLICY.AUTO_REPORTING_FREQUENCIES.IMMEDIATE,
-            };
-            Onyx.set(`${ONYXKEYS.COLLECTION.POLICY}${fakePolicy.id}`, fakePolicy);
-            await waitForBatchedUpdates();
-
-            // Disable the workflow feature
-            Policy.enablePolicyWorkflows(fakePolicy.id, false);
-            await waitForBatchedUpdates();
-
-            await TestHelper.getOnyxData({
-                key: `${ONYXKEYS.COLLECTION.POLICY}${fakePolicy.id}`,
-                waitForCollectionCallback: false,
-                callback: (policy) => {
-                    // Check if the autoReportingFrequency is updated to instant
-                    expect(policy?.areWorkflowsEnabled).toBeFalsy();
-                    expect(policy?.autoReportingFrequency).toBe(CONST.POLICY.AUTO_REPORTING_FREQUENCIES.INSTANT);
-                },
-            });
-        });
-    });
 });

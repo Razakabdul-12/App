@@ -294,7 +294,6 @@ import type {
     WeSentYouMagicSignInLinkParams,
     WorkEmailMergingBlockedParams,
     WorkEmailResendCodeParams,
-    WorkflowSettingsParam,
     WorkspaceLockedPlanTypeParams,
     WorkspaceMemberList,
     WorkspaceMembersCountParams,
@@ -1209,7 +1208,7 @@ const translations = {
         submitAmount: ({amount}: RequestAmountParams) => `Einreichen ${amount}`,
         expenseAmount: ({formattedAmount, comment}: RequestedAmountMessageParams) => `${formattedAmount}${comment ? `für ${comment}` : ''}`,
         submitted: ({memo}: SubmittedWithMemoParams) => `eingereicht${memo ? `, sagte ${memo}` : ''}`,
-        automaticallySubmitted: `über <a href="${CONST.SELECT_WORKFLOWS_HELP_URL}">verzögerte Einreichungen</a> eingereicht`,
+        automaticallySubmitted: 'automatisch eingereicht',
         trackedAmount: ({formattedAmount, comment}: RequestedAmountMessageParams) => `tracking ${formattedAmount}${comment ? `für ${comment}` : ''}`,
         splitAmount: ({amount}: SplitAmountParams) => `teilen ${amount}`,
         didSplitAmount: ({formattedAmount, comment}: DidSplitAmountMessageParams) => `split ${formattedAmount}${comment ? `für ${comment}` : ''}`,
@@ -1352,7 +1351,7 @@ const translations = {
             title: 'Du hast diesen Bericht verschoben!',
             description: 'Überprüfen Sie diese Punkte, die sich beim Verschieben von Berichten in einen neuen Arbeitsbereich ändern können.',
             reCategorize: '<strong>Kategorisieren Sie alle Ausgaben neu</strong>, um den Arbeitsbereichsregeln zu entsprechen.',
-            workflows: 'Dieser Bericht kann nun einem anderen <strong>Genehmigungsworkflow</strong> unterliegen.',
+            workflows: 'Dieser Bericht wird möglicherweise an einen <strong>anderen Genehmiger</strong> weitergeleitet.',
         },
         changeWorkspace: 'Arbeitsbereich ändern',
         set: 'set',
@@ -1420,8 +1419,7 @@ const translations = {
         changeApprover: {
             title: 'Genehmiger ändern',
             subtitle: 'Wählen Sie eine Option, um den Genehmiger für diesen Bericht zu ändern.',
-            description: ({workflowSettingLink}: WorkflowSettingsParam) =>
-                `Sie können den Genehmiger auch dauerhaft für alle Berichte in Ihren <a href="${workflowSettingLink}">Workflow-Einstellungen</a> ändern.`,
+            description: 'Sie können den Genehmiger auch dauerhaft in den Workspace-Einstellungen ändern.',
             changedApproverMessage: ({managerID}: ChangedApproverMessageParams) => `änderte den Genehmiger zu <mention-user accountID="${managerID}"/>`,
             actions: {
                 addApprover: 'Genehmiger hinzufügen',
@@ -1965,8 +1963,8 @@ const translations = {
             `<strong>${name1}</strong> genehmigt bereits Berichte an <strong>${name2}</strong>. Bitte wählen Sie einen anderen Genehmiger, um einen zirkulären Arbeitsablauf zu vermeiden.`,
         emptyContent: {
             title: 'Keine Mitglieder zum Anzeigen',
-            expensesFromSubtitle: 'Alle Arbeitsbereichsmitglieder gehören bereits zu einem bestehenden Genehmigungsworkflow.',
-            approverSubtitle: 'Alle Genehmigenden gehören zu einem bestehenden Workflow.',
+            expensesFromSubtitle: 'Alle Arbeitsbereichsmitglieder haben bereits einen zugewiesenen Genehmiger.',
+            approverSubtitle: 'Alle verfügbaren Genehmigenden sind bereits zugewiesen.',
         },
     },
     workflowsDelayedSubmissionPage: {

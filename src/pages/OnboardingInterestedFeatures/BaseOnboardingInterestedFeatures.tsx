@@ -90,14 +90,6 @@ function BaseOnboardingInterestedFeatures({shouldUseNativeStyles}: BaseOnboardin
                 apiEndpoint: WRITE_COMMANDS.ENABLE_POLICY_COMPANY_CARDS,
             },
             {
-                id: FEATURE_IDS.WORKFLOWS,
-                title: translate('workspace.moreFeatures.workflows.title'),
-                icon: Illustrations.Workflows,
-                enabledByDefault: true,
-                apiEndpoint: WRITE_COMMANDS.ENABLE_POLICY_WORKFLOWS,
-            },
-           
-            {
                 id: FEATURE_IDS.EXPENSIFY_CARD,
                 title: translate('workspace.moreFeatures.expensifyCard.title'),
                 icon: Illustrations.HandCard,

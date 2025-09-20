@@ -48,7 +48,7 @@ import {
     updateSplitExpenseAmountField,
 } from '@libs/actions/IOU';
 import initOnyxDerivedValues from '@libs/actions/OnyxDerived';
-import {createWorkspace, deleteWorkspace, generatePolicyID, setWorkspaceApprovalMode} from '@libs/actions/Policy/Policy';
+import {createWorkspace, deleteWorkspace, generatePolicyID} from '@libs/actions/Policy/Policy';
 import {addComment, createNewReport, deleteReport, notifyNewAction, openReport} from '@libs/actions/Report';
 import {clearAllRelatedReportActionErrors} from '@libs/actions/ReportActions';
 import {subscribeToUserEvents} from '@libs/actions/User';
@@ -4327,23 +4327,24 @@ describe('actions/IOU', () => {
             const merchant = 'NASDAQ';
             let expenseReport: OnyxEntry<Report>;
             let chatReport: OnyxEntry<Report>;
-            return waitForBatchedUpdates()
-                .then(() => {
-                    const policyID = generatePolicyID();
-                    createWorkspace({
-                        policyOwnerEmail: CARLOS_EMAIL,
-                        makeMeAdmin: true,
-                        policyName: "Carlos's Workspace",
-                        policyID,
-                    });
+        let policyID: string;
+        return waitForBatchedUpdates()
+            .then(() => {
+                policyID = generatePolicyID();
+                createWorkspace({
+                    policyOwnerEmail: CARLOS_EMAIL,
+                    makeMeAdmin: true,
+                    policyName: "Carlos's Workspace",
+                    policyID,
+                });
 
-                    // Change the approval mode for the policy since default is Submit and Close
-                    setWorkspaceApprovalMode(policyID, CARLOS_EMAIL, CONST.POLICY.APPROVAL_MODE.BASIC);
-                    return waitForBatchedUpdates();
-                })
-                .then(
-                    () =>
-                        new Promise<void>((resolve) => {
+                return waitForBatchedUpdates();
+            })
+            .then(() => Onyx.merge(`${ONYXKEYS.COLLECTION.POLICY}${policyID}`, {approvalMode: CONST.POLICY.APPROVAL_MODE.BASIC}))
+            .then(() => waitForBatchedUpdates())
+            .then(
+                () =>
+                    new Promise<void>((resolve) => {
                             const connection = Onyx.connect({
                                 key: ONYXKEYS.COLLECTION.REPORT,
                                 waitForCollectionCallback: true,
@@ -6852,8 +6853,8 @@ describe('actions/IOU', () => {
                     policyID,
                 });
 
-                // Change the approval mode for the policy since default is Submit and Close
-                setWorkspaceApprovalMode(policyID, CARLOS_EMAIL, CONST.POLICY.APPROVAL_MODE.BASIC);
+                await waitForBatchedUpdates();
+                await Onyx.merge(`${ONYXKEYS.COLLECTION.POLICY}${policyID}`, {approvalMode: CONST.POLICY.APPROVAL_MODE.BASIC});
                 await waitForBatchedUpdates();
                 await getOnyxData({
                     key: ONYXKEYS.COLLECTION.REPORT,
@@ -6952,8 +6953,8 @@ describe('actions/IOU', () => {
                     policyID,
                 });
 
-                // Change the approval mode for the policy since default is Submit and Close
-                setWorkspaceApprovalMode(policyID, RORY_EMAIL, CONST.POLICY.APPROVAL_MODE.BASIC);
+                await waitForBatchedUpdates();
+                await Onyx.merge(`${ONYXKEYS.COLLECTION.POLICY}${policyID}`, {approvalMode: CONST.POLICY.APPROVAL_MODE.BASIC});
                 await waitForBatchedUpdates();
                 await getOnyxData({
                     key: ONYXKEYS.COLLECTION.REPORT,

@@ -294,7 +294,6 @@ import type {
     WeSentYouMagicSignInLinkParams,
     WorkEmailMergingBlockedParams,
     WorkEmailResendCodeParams,
-    WorkflowSettingsParam,
     WorkspaceLockedPlanTypeParams,
     WorkspaceMemberList,
     WorkspaceMembersCountParams,
@@ -1205,7 +1204,7 @@ const translations = {
         submitAmount: ({amount}: RequestAmountParams) => `Enviar ${amount}`,
         expenseAmount: ({formattedAmount, comment}: RequestedAmountMessageParams) => `${formattedAmount}${comment ? `para ${comment}` : ''}`,
         submitted: ({memo}: SubmittedWithMemoParams) => `enviado${memo ? `, dizendo ${memo}` : ''}`,
-        automaticallySubmitted: `enviado via <a href="${CONST.SELECT_WORKFLOWS_HELP_URL}">adiar envios</a>`,
+        automaticallySubmitted: 'enviado automaticamente',
         trackedAmount: ({formattedAmount, comment}: RequestedAmountMessageParams) => `rastreamento ${formattedAmount}${comment ? `para ${comment}` : ''}`,
         splitAmount: ({amount}: SplitAmountParams) => `dividir ${amount}`,
         didSplitAmount: ({formattedAmount, comment}: DidSplitAmountMessageParams) => `dividir ${formattedAmount}${comment ? `para ${comment}` : ''}`,
@@ -1345,7 +1344,7 @@ const translations = {
             title: 'Você moveu este relatório!',
             description: 'Verifique novamente esses itens, que tendem a mudar ao mover relatórios para um novo espaço de trabalho.',
             reCategorize: '<strong>Recategorize quaisquer despesas</strong> para cumprir as regras do espaço de trabalho.',
-            workflows: 'Este relatório pode agora estar sujeito a um <strong>fluxo de aprovação</strong> diferente.',
+            workflows: 'Este relatório agora pode ser encaminhado para um <strong>aprovador diferente</strong>.',
         },
         changeWorkspace: 'Alterar espaço de trabalho',
         set: 'set',
@@ -1412,8 +1411,7 @@ const translations = {
         changeApprover: {
             title: 'Alterar aprovador',
             subtitle: 'Escolha uma opção para alterar o aprovador deste relatório.',
-            description: ({workflowSettingLink}: WorkflowSettingsParam) =>
-                `Você também pode alterar o aprovador permanentemente para todos os relatórios em suas <a href="${workflowSettingLink}">configurações de fluxo de trabalho</a>.`,
+            description: 'Você também pode alterar o aprovador de forma permanente nas configurações do seu workspace.',
             changedApproverMessage: ({managerID}: ChangedApproverMessageParams) => `alterou o aprovador para <mention-user accountID="${managerID}"/>`,
             actions: {
                 addApprover: 'Adicionar aprovador',
@@ -1954,8 +1952,8 @@ const translations = {
             `<strong>${name1}</strong> já aprova relatórios para <strong>${name2}</strong>. Por favor, escolha um aprovador diferente para evitar um fluxo de trabalho circular.`,
         emptyContent: {
             title: 'Nenhum membro para exibir',
-            expensesFromSubtitle: 'Todos os membros do espaço de trabalho já pertencem a um fluxo de aprovação existente.',
-            approverSubtitle: 'Todos os aprovadores pertencem a um fluxo de trabalho existente.',
+            expensesFromSubtitle: 'Todos os membros do workspace já têm um aprovador atribuído.',
+            approverSubtitle: 'Todos os aprovadores disponíveis já foram atribuídos.',
         },
     },
     workflowsDelayedSubmissionPage: {

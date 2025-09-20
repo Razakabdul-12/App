@@ -1405,61 +1405,6 @@ const ROUTES = {
         route: 'workspaces/:policyID/settings/currency',
         getRoute: (policyID: string) => `workspaces/${policyID}/settings/currency` as const,
     },
-    WORKSPACE_WORKFLOWS: {
-        route: 'workspaces/:policyID/workflows',
-        getRoute: (policyID: string | undefined) => {
-            if (!policyID) {
-                Log.warn('Invalid policyID is used to build the WORKSPACE_WORKFLOWS route');
-            }
-            return `workspaces/${policyID}/workflows` as const;
-        },
-    },
-    WORKSPACE_WORKFLOWS_CONNECT_EXISTING_BANK_ACCOUNT: {
-        route: 'workspaces/:policyID/workflows/connect-account',
-        getRoute: (policyID: string) => `workspaces/${policyID}/workflows/connect-account` as const,
-    },
-    WORKSPACE_WORKFLOWS_APPROVALS_NEW: {
-        route: 'workspaces/:policyID/workflows/approvals/new',
-        getRoute: (policyID: string) => `workspaces/${policyID}/workflows/approvals/new` as const,
-    },
-    WORKSPACE_WORKFLOWS_APPROVALS_EDIT: {
-        route: 'workspaces/:policyID/workflows/approvals/:firstApproverEmail/edit',
-        getRoute: (policyID: string, firstApproverEmail: string) => `workspaces/${policyID}/workflows/approvals/${encodeURIComponent(firstApproverEmail)}/edit` as const,
-    },
-    WORKSPACE_WORKFLOWS_APPROVALS_EXPENSES_FROM: {
-        route: 'workspaces/:policyID/workflows/approvals/expenses-from',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (policyID: string, backTo?: string) => getUrlWithBackToParam(`workspaces/${policyID}/workflows/approvals/expenses-from` as const, backTo),
-    },
-    WORKSPACE_WORKFLOWS_APPROVALS_APPROVER: {
-        route: 'workspaces/:policyID/workflows/approvals/approver',
-        getRoute: (policyID: string, approverIndex: number, backTo?: string) =>
-            // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-            getUrlWithBackToParam(`workspaces/${policyID}/workflows/approvals/approver?approverIndex=${approverIndex}` as const, backTo),
-    },
-    WORKSPACE_WORKFLOWS_PAYER: {
-        route: 'workspaces/:policyID/workflows/payer',
-        getRoute: (policyId: string) => `workspaces/${policyId}/workflows/payer` as const,
-    },
-    WORKSPACE_WORKFLOWS_AUTOREPORTING_FREQUENCY: {
-        route: 'workspaces/:policyID/workflows/auto-reporting-frequency',
-        getRoute: (policyID: string | undefined) => {
-            if (!policyID) {
-                Log.warn('Invalid policyID is used to build the WORKSPACE_WORKFLOWS_AUTOREPORTING_FREQUENCY route');
-            }
-            return `workspaces/${policyID}/workflows/auto-reporting-frequency` as const;
-        },
-    },
-    WORKSPACE_WORKFLOWS_AUTOREPORTING_MONTHLY_OFFSET: {
-        route: 'workspaces/:policyID/workflows/auto-reporting-frequency/monthly-offset',
-        getRoute: (policyID: string | undefined) => {
-            if (!policyID) {
-                Log.warn('Invalid policyID is used to build the WORKSPACE_WORKFLOWS_AUTOREPORTING_MONTHLY_OFFSET route');
-            }
-            return `workspaces/${policyID}/workflows/auto-reporting-frequency/monthly-offset` as const;
-        },
-    },
     WORKSPACE_MEMBERS: {
         route: 'workspaces/:policyID/members',
         getRoute: (policyID: string | undefined) => {

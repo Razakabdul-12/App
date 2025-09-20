@@ -4,7 +4,7 @@ import type {MenuItemProps} from '@components/MenuItem';
 import type {OfflineWithFeedbackProps} from '@components/OfflineWithFeedback';
 import type {SelectorType} from '@components/SelectionScreen';
 import type {SubStepProps} from '@hooks/useSubStep/types';
-import type {ToggleSettingOptionRowProps} from '@pages/workspace/workflows/ToggleSettingsOptionRow';
+import type {ToggleSettingOptionRowProps} from '@pages/ToggleSettingOptionRow';
 import type CONST from '@src/CONST';
 import type {NetSuiteCustomFieldForm} from '@src/types/form';
 import type {Policy} from '@src/types/onyx';
