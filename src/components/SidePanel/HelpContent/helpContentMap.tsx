@@ -962,47 +962,7 @@ const helpContentMap: HelpContent = {
                                 </View>
                             ),
                         },
-                        'per-diem': {
-                            content: ({styles}: {styles: ThemeStyles}) => (
-                                <View>
-                                    <Text style={[styles.textHeadlineH1, styles.mv4]}>Per Diem Settings</Text>
-                                    <Text style={[styles.textNormal]}>
-                                        Per diem makes it easy to cover travel or recurring allowances with fixed daily rates—no need to track every coffee or cab ride. Employees just pick a
-                                        rate and submit. You can create rates manually or import them from a spreadsheet.
-                                    </Text>
-
-                                    <BulletList
-                                        styles={styles}
-                                        items={[
-                                            <Text style={styles.textNormal}>
-                                                <Text style={[styles.textNormal]}>
-                                                    <Text style={styles.textBold}>Set up rates</Text>: Create daily rates for different locations, meal types, or travel needs. Just enter the
-                                                    amount, and you’re done!
-                                                </Text>
-                                            </Text>,
-                                            <Text style={styles.textNormal}>
-                                                <Text style={[styles.textNormal]}>
-                                                    <Text style={styles.textBold}>Default categories</Text>: Assign a default category to keep all your per diem expenses organized and your
-                                                    accounting on track.
-                                                </Text>
-                                            </Text>,
-                                        ]}
-                                    />
-
-                                    <Text style={[styles.textNormal]}>
-                                        Learn more about setting up per diem rates here ➡️{' '}
-                                        <TextLink
-                                            href="https://help.expensify.com/articles/new-expensify/workspaces/Configure-Per-Diem-in-a-workspace"
-                                            style={styles.link}
-                                        >
-                                            Per Diem Settings
-                                        </TextLink>
-                                        .
-                                    </Text>
-                                </View>
-                            ),
-                        },
-                  
+                      
                         members: {
                             content: ({styles}: {styles: ThemeStyles}) => (
                                 <View>

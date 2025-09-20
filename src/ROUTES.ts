@@ -1857,50 +1857,7 @@ const ROUTES = {
         route: 'workspaces/:policyID/distance-rates/:rateID/tax-rate/edit',
         getRoute: (policyID: string, rateID: string) => `workspaces/${policyID}/distance-rates/${rateID}/tax-rate/edit` as const,
     },
-    WORKSPACE_PER_DIEM: {
-        route: 'workspaces/:policyID/per-diem',
-        getRoute: (policyID: string | undefined, backTo?: string) => {
-            if (!policyID) {
-                Log.warn('Invalid policyID is used to build the WORKSPACE_PER_DIEM route');
-            }
-
-            // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-            return getUrlWithBackToParam(`workspaces/${policyID}/per-diem`, backTo);
-        },
-    },
   
-    WORKSPACE_PER_DIEM_IMPORT: {
-        route: 'workspaces/:policyID/per-diem/import',
-        getRoute: (policyID: string) => `workspaces/${policyID}/per-diem/import` as const,
-    },
-    WORKSPACE_PER_DIEM_IMPORTED: {
-        route: 'workspaces/:policyID/per-diem/imported',
-        getRoute: (policyID: string) => `workspaces/${policyID}/per-diem/imported` as const,
-    },
-    WORKSPACE_PER_DIEM_SETTINGS: {
-        route: 'workspaces/:policyID/per-diem/settings',
-        getRoute: (policyID: string) => `workspaces/${policyID}/per-diem/settings` as const,
-    },
-    WORKSPACE_PER_DIEM_DETAILS: {
-        route: 'workspaces/:policyID/per-diem/details/:rateID/:subRateID',
-        getRoute: (policyID: string, rateID: string, subRateID: string) => `workspaces/${policyID}/per-diem/details/${rateID}/${subRateID}` as const,
-    },
-    WORKSPACE_PER_DIEM_EDIT_DESTINATION: {
-        route: 'workspaces/:policyID/per-diem/edit/destination/:rateID/:subRateID',
-        getRoute: (policyID: string, rateID: string, subRateID: string) => `workspaces/${policyID}/per-diem/edit/destination/${rateID}/${subRateID}` as const,
-    },
-    WORKSPACE_PER_DIEM_EDIT_SUBRATE: {
-        route: 'workspaces/:policyID/per-diem/edit/subrate/:rateID/:subRateID',
-        getRoute: (policyID: string, rateID: string, subRateID: string) => `workspaces/${policyID}/per-diem/edit/subrate/${rateID}/${subRateID}` as const,
-    },
-    WORKSPACE_PER_DIEM_EDIT_AMOUNT: {
-        route: 'workspaces/:policyID/per-diem/edit/amount/:rateID/:subRateID',
-        getRoute: (policyID: string, rateID: string, subRateID: string) => `workspaces/${policyID}/per-diem/edit/amount/${rateID}/${subRateID}` as const,
-    },
-    WORKSPACE_PER_DIEM_EDIT_CURRENCY: {
-        route: 'workspaces/:policyID/per-diem/edit/currency/:rateID/:subRateID',
-        getRoute: (policyID: string, rateID: string, subRateID: string) => `workspaces/${policyID}/per-diem/edit/currency/${rateID}/${subRateID}` as const,
-    },
 
     // Referral program promotion
     REFERRAL_DETAILS_MODAL: {

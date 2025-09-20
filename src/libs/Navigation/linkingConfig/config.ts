@@ -797,30 +797,7 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.SETTINGS.SHARE_CODE]: {
                             path: ROUTES.SETTINGS_SHARE_CODE,
                         },
-                        [SCREENS.WORKSPACE.PER_DIEM_IMPORT]: {
-                            path: ROUTES.WORKSPACE_PER_DIEM_IMPORT.route,
-                        },
-                        [SCREENS.WORKSPACE.PER_DIEM_IMPORTED]: {
-                            path: ROUTES.WORKSPACE_PER_DIEM_IMPORTED.route,
-                        },
-                        [SCREENS.WORKSPACE.PER_DIEM_SETTINGS]: {
-                            path: ROUTES.WORKSPACE_PER_DIEM_SETTINGS.route,
-                        },
-                        [SCREENS.WORKSPACE.PER_DIEM_DETAILS]: {
-                            path: ROUTES.WORKSPACE_PER_DIEM_DETAILS.route,
-                        },
-                        [SCREENS.WORKSPACE.PER_DIEM_EDIT_DESTINATION]: {
-                            path: ROUTES.WORKSPACE_PER_DIEM_EDIT_DESTINATION.route,
-                        },
-                        [SCREENS.WORKSPACE.PER_DIEM_EDIT_SUBRATE]: {
-                            path: ROUTES.WORKSPACE_PER_DIEM_EDIT_SUBRATE.route,
-                        },
-                        [SCREENS.WORKSPACE.PER_DIEM_EDIT_AMOUNT]: {
-                            path: ROUTES.WORKSPACE_PER_DIEM_EDIT_AMOUNT.route,
-                        },
-                        [SCREENS.WORKSPACE.PER_DIEM_EDIT_CURRENCY]: {
-                            path: ROUTES.WORKSPACE_PER_DIEM_EDIT_CURRENCY.route,
-                        },
+                   
                     },
                 },
                 [SCREENS.RIGHT_MODAL.TWO_FACTOR_AUTH]: {
@@ -1415,9 +1392,7 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                 [SCREENS.WORKSPACE.COMPANY_CARDS]: {
                     path: ROUTES.WORKSPACE_COMPANY_CARDS.route,
                 },
-                [SCREENS.WORKSPACE.PER_DIEM]: {
-                    path: ROUTES.WORKSPACE_PER_DIEM.route,
-                },
+           
                 [SCREENS.WORKSPACE.WORKFLOWS]: {
                     path: ROUTES.WORKSPACE_WORKFLOWS.route,
                 },

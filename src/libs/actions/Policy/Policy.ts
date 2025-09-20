@@ -4483,19 +4483,10 @@ function setIsComingFromGlobalReimbursementsFlow(value: boolean) {
 
 function updateFeature(
     request: {
-        endpoint: EnablePolicyFeatureCommand | typeof WRITE_COMMANDS.TOGGLE_POLICY_PER_DIEM;
-        parameters: ApiRequestCommandParameters[EnablePolicyFeatureCommand | typeof WRITE_COMMANDS.TOGGLE_POLICY_PER_DIEM];
+        endpoint: EnablePolicyFeatureCommand;
+        parameters: ApiRequestCommandParameters[EnablePolicyFeatureCommand];
     },
-    policyID: string,
 ) {
-    if (request.endpoint === WRITE_COMMANDS.TOGGLE_POLICY_PER_DIEM) {
-        API.write(WRITE_COMMANDS.TOGGLE_POLICY_PER_DIEM, {
-            policyID,
-            enabled: request.parameters.enabled,
-            customUnitID: generateCustomUnitID(),
-        });
-        return;
-    }
     // eslint-disable-next-line rulesdir/no-multiple-api-calls
     API.writeWithNoDuplicatesEnableFeatureConflicts(request.endpoint, request.parameters);
 }
@@ -4504,8 +4495,8 @@ function updateInterestedFeatures(features: Feature[], policyID: string, type: s
     let shouldUpgradeToCorporate = false;
 
     const requests: Array<{
-        endpoint: EnablePolicyFeatureCommand | typeof WRITE_COMMANDS.TOGGLE_POLICY_PER_DIEM;
-        parameters: ApiRequestCommandParameters[EnablePolicyFeatureCommand | typeof WRITE_COMMANDS.TOGGLE_POLICY_PER_DIEM];
+        endpoint: EnablePolicyFeatureCommand;
+        parameters: ApiRequestCommandParameters[EnablePolicyFeatureCommand];
     }> = [];
 
     features.forEach((feature) => {
@@ -4540,7 +4531,7 @@ function updateInterestedFeatures(features: Feature[], policyID: string, type: s
     }
 
     requests.forEach((request) => {
-        updateFeature(request, policyID);
+        updateFeature(request);
     });
 }
 

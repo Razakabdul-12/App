@@ -2,9 +2,7 @@ import React, {useImperativeHandle, useRef} from 'react';
 import type {ForwardedRef} from 'react';
 import {ActivityIndicator, InteractionManager, View} from 'react-native';
 import FullPageOfflineBlockingView from '@components/BlockingViews/FullPageOfflineBlockingView';
-import Button from '@components/Button';
 import DestinationPicker from '@components/DestinationPicker';
-import FixedFooter from '@components/FixedFooter';
 import * as Illustrations from '@components/Icon/Illustrations';
 import ScreenWrapper from '@components/ScreenWrapper';
 import type {ListItem, SelectionListHandle} from '@components/SelectionList/types';
@@ -156,22 +154,6 @@ function IOURequestStepDestination({
                             subtitle={translate('workspace.perDiem.emptyList.subtitle')}
                             containerStyle={[styles.flex1, styles.justifyContentCenter]}
                         />
-                        {isPolicyAdmin(policy) && !!policy?.areCategoriesEnabled && (
-                            <FixedFooter style={[styles.mtAuto, styles.pt5]}>
-                                <Button
-                                    large
-                                    success
-                                    style={[styles.w100]}
-                                    onPress={() => {
-                                        InteractionManager.runAfterInteractions(() => {
-                                            Navigation.navigate(ROUTES.WORKSPACE_PER_DIEM.getRoute(policy.id, Navigation.getActiveRoute()));
-                                        });
-                                    }}
-                                    text={translate('workspace.perDiem.editPerDiemRates')}
-                                    pressOnEnter
-                                />
-                            </FixedFooter>
-                        )}
                     </View>
                 )}
                 {!shouldShowEmptyState && !isLoading && !shouldShowOfflineView && !!policy?.id && (
