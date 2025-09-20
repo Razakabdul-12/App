@@ -17,7 +17,6 @@ import OfflineWithFeedback from '@components/OfflineWithFeedback';
 import Section from '@components/Section';
 import useCardFeeds from '@hooks/useCardFeeds';
 import useCurrentUserPersonalDetails from '@hooks/useCurrentUserPersonalDetails';
-import useDefaultFundID from '@hooks/useDefaultFundID';
 import useLocalize from '@hooks/useLocalize';
 import useNetwork from '@hooks/useNetwork';
 import useOnyx from '@hooks/useOnyx';
@@ -35,7 +34,6 @@ import {
     setIsComingFromGlobalReimbursementsFlow,
     updateWorkspaceAvatar,
 } from '@libs/actions/Policy/Policy';
-import {filterInactiveCards} from '@libs/CardUtils';
 import {getLatestErrorField} from '@libs/ErrorUtils';
 import Navigation from '@libs/Navigation/Navigation';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
@@ -75,9 +73,7 @@ function WorkspaceOverviewPage({policyDraft, policy: policyProp, route}: Workspa
 
     // When we create a new workspace, the policy prop will be empty on the first render. Therefore, we have to use policyDraft until policy has been set in Onyx.
     const policy = policyDraft?.id ? policyDraft : policyProp;
-    const defaultFundID = useDefaultFundID(policy?.id);
-    const [cardSettings] = useOnyx(`${ONYXKEYS.COLLECTION.PRIVATE_EXPENSIFY_CARD_SETTINGS}${defaultFundID}`, {canBeMissing: true});
-    const isBankAccountVerified = !!cardSettings?.paymentBankAccountID;
+    const isBankAccountVerified = false;
 
     const isPolicyAdmin = isPolicyAdminPolicyUtils(policy);
     const outputCurrency = policy?.outputCurrency ?? '';
@@ -87,13 +83,7 @@ function WorkspaceOverviewPage({policyDraft, policy: policyProp, route}: Workspa
     // We need this to update translation for deleting a workspace when it has third party card feeds or expensify card assigned.
     const workspaceAccountID = policy?.workspaceAccountID ?? CONST.DEFAULT_NUMBER_ID;
     const [cardFeeds, , defaultCardFeeds] = useCardFeeds(policy?.id);
-    const [cardsList] = useOnyx(`${ONYXKEYS.COLLECTION.WORKSPACE_CARDS_LIST}${workspaceAccountID}_${CONST.EXPENSIFY_CARD.BANK}`, {
-        selector: filterInactiveCards,
-        canBeMissing: true,
-    });
-    const hasCardFeedOrExpensifyCard =
-        // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-        !isEmptyObject(cardFeeds) || !isEmptyObject(cardsList) || ((policy?.areExpensifyCardsEnabled || policy?.areCompanyCardsEnabled) && policy?.workspaceAccountID);
+    const hasCardFeed = !isEmptyObject(cardFeeds) || (policy?.areCompanyCardsEnabled && policy?.workspaceAccountID);
 
     const [street1, street2] = (policy?.address?.addressStreet ?? '').split('\n');
     const formattedAddress =
@@ -465,7 +455,7 @@ function WorkspaceOverviewPage({policyDraft, policy: policyProp, route}: Workspa
                             setIsDeleteModalOpen(false);
                             setIsDeletingWorkspace(false);
                         }}
-                        prompt={hasCardFeedOrExpensifyCard ? translate('workspace.common.deleteWithCardsConfirmation') : translate('workspace.common.deleteConfirmation')}
+                        prompt={hasCardFeed ? translate('workspace.common.deleteWithCardsConfirmation') : translate('workspace.common.deleteConfirmation')}
                         confirmText={translate('common.delete')}
                         cancelText={translate('common.cancel')}
                         danger

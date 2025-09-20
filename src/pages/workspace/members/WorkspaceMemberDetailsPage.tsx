@@ -18,7 +18,6 @@ import ScrollView from '@components/ScrollView';
 import Text from '@components/Text';
 import useCardFeeds from '@hooks/useCardFeeds';
 import useCurrentUserPersonalDetails from '@hooks/useCurrentUserPersonalDetails';
-import useExpensifyCardFeeds from '@hooks/useExpensifyCardFeeds';
 import useLocalize from '@hooks/useLocalize';
 import useOnyx from '@hooks/useOnyx';
 import usePrevious from '@hooks/usePrevious';
@@ -27,8 +26,7 @@ import useThemeIllustrations from '@hooks/useThemeIllustrations';
 import useThemeStyles from '@hooks/useThemeStyles';
 import {setPolicyPreventSelfApproval} from '@libs/actions/Policy/Policy';
 import {removeApprovalWorkflow as removeApprovalWorkflowAction, updateApprovalWorkflow} from '@libs/actions/Workflow';
-import {getAllCardsForWorkspace, getCardFeedIcon, getCompanyFeeds, getPlaidInstitutionIconUrl, isExpensifyCardFullySetUp, lastFourNumbersFromCardName, maskCardNumber} from '@libs/CardUtils';
-import {convertToDisplayString} from '@libs/CurrencyUtils';
+import {getAllCardsForWorkspace, getCardFeedIcon, getCompanyFeeds, getPlaidInstitutionIconUrl, lastFourNumbersFromCardName, maskCardNumber} from '@libs/CardUtils';
 import navigateAfterInteraction from '@libs/Navigation/navigateAfterInteraction';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import {getDisplayNameOrDefault, getPhoneNumber} from '@libs/PersonalDetailsUtils';
@@ -44,7 +42,6 @@ import withPolicyAndFullscreenLoading from '@pages/workspace/withPolicyAndFullsc
 import type {ListItemType} from '@pages/workspace/WorkspaceMemberRoleSelectionModal';
 import WorkspaceMemberDetailsRoleSelectionModal from '@pages/workspace/WorkspaceMemberRoleSelectionModal';
 import variables from '@styles/variables';
-import {setIssueNewCardStepAndData} from '@userActions/Card';
 import {
     clearWorkspaceOwnerChangeFlow,
     isApprover as isApproverUserAction,
@@ -81,7 +78,6 @@ function WorkspaceMemberDetailsPage({personalDetails, policy, route}: WorkspaceM
     const [cardList] = useOnyx(`${ONYXKEYS.COLLECTION.WORKSPACE_CARDS_LIST}`, {canBeMissing: true});
     const [customCardNames] = useOnyx(ONYXKEYS.NVP_EXPENSIFY_COMPANY_CARDS_CUSTOM_NAMES, {canBeMissing: true});
     const [fundList] = useOnyx(ONYXKEYS.FUND_LIST, {canBeMissing: true});
-    const expensifyCardSettings = useExpensifyCardFeeds(policyID);
 
     const [isRemoveMemberConfirmModalVisible, setIsRemoveMemberConfirmModalVisible] = useState(false);
     const [isRoleSelectionModalVisible, setIsRoleSelectionModalVisible] = useState(false);
@@ -99,8 +95,8 @@ function WorkspaceMemberDetailsPage({personalDetails, policy, route}: WorkspaceM
     const isCurrentUserOwner = policy?.owner === currentUserPersonalDetails?.login;
     const ownerDetails = useMemo(() => personalDetails?.[policy?.ownerAccountID ?? CONST.DEFAULT_NUMBER_ID] ?? ({} as PersonalDetails), [personalDetails, policy?.ownerAccountID]);
     const policyOwnerDisplayName = formatPhoneNumber(getDisplayNameOrDefault(ownerDetails)) ?? policy?.owner ?? '';
-    const hasMultipleFeeds = Object.keys(getCompanyFeeds(cardFeeds, false, true)).length > 0;
-    const workspaceCards = getAllCardsForWorkspace(workspaceAccountID, cardList, cardFeeds, expensifyCardSettings);
+    const hasCompanyCardFeeds = Object.keys(getCompanyFeeds(cardFeeds, false, true)).length > 0;
+    const workspaceCards = getAllCardsForWorkspace(workspaceAccountID, cardList, cardFeeds);
     const isSMSLogin = Str.isSMSLogin(memberLogin);
     const phoneNumber = getPhoneNumber(details);
     const {isAccountLocked, showLockedAccountModal} = useContext(LockedAccountContext);
@@ -123,7 +119,7 @@ function WorkspaceMemberDetailsPage({personalDetails, policy, route}: WorkspaceM
         if (!workspaceCards) {
             return [];
         }
-        return Object.values(workspaceCards ?? {}).filter((card) => card.accountID === accountID);
+        return Object.values(workspaceCards ?? {}).filter((card) => card.accountID === accountID && card.bank !== CONST.EXPENSIFY_CARD.BANK);
     }, [accountID, workspaceCards]);
 
     const confirmModalPrompt = useMemo(() => {
@@ -224,10 +220,6 @@ function WorkspaceMemberDetailsPage({personalDetails, policy, route}: WorkspaceM
 
     const navigateToDetails = useCallback(
         (card: MemberCard) => {
-            if (card.bank === CONST.EXPENSIFY_CARD.BANK) {
-                Navigation.navigate(ROUTES.WORKSPACE_EXPENSIFY_CARD_DETAILS.getRoute(policyID, card.cardID.toString(), Navigation.getActiveRoute()));
-                return;
-            }
             Navigation.navigate(ROUTES.WORKSPACE_COMPANY_CARD_DETAILS.getRoute(policyID, card.cardID.toString(), card.bank, Navigation.getActiveRoute()));
         },
         [policyID],
@@ -239,23 +231,10 @@ function WorkspaceMemberDetailsPage({personalDetails, policy, route}: WorkspaceM
             return;
         }
 
-        if (hasMultipleFeeds) {
+        if (hasCompanyCardFeeds) {
             Navigation.navigate(ROUTES.WORKSPACE_MEMBER_NEW_CARD.getRoute(policyID, accountID));
-            return;
         }
-        const activeRoute = Navigation.getActiveRoute();
-
-        setIssueNewCardStepAndData({
-            step: CONST.EXPENSIFY_CARD.STEP.CARD_TYPE,
-            data: {
-                assigneeEmail: memberLogin,
-            },
-            isEditing: false,
-            isChangeAssigneeDisabled: true,
-            policyID,
-        });
-        Navigation.navigate(ROUTES.WORKSPACE_EXPENSIFY_CARD_ISSUE_NEW.getRoute(policyID, activeRoute));
-    }, [accountID, hasMultipleFeeds, memberLogin, policyID, isAccountLocked, showLockedAccountModal]);
+    }, [accountID, hasCompanyCardFeeds, policyID, isAccountLocked, showLockedAccountModal]);
 
     const openRoleSelectionModal = useCallback(() => {
         setIsRoleSelectionModalVisible(true);
@@ -283,7 +262,7 @@ function WorkspaceMemberDetailsPage({personalDetails, policy, route}: WorkspaceM
         return <NotFoundPage />;
     }
 
-    const shouldShowCardsSection = Object.values(expensifyCardSettings ?? {}).some((cardSettings) => isExpensifyCardFullySetUp(policy, cardSettings)) || hasMultipleFeeds;
+    const shouldShowCardsSection = memberCards.length > 0 || hasCompanyCardFeeds;
 
     return (
         <AccessOrNotFoundWrapper
@@ -423,7 +402,6 @@ function WorkspaceMemberDetailsPage({personalDetails, policy, route}: WorkspaceM
                                                         maskCardNumber(memberCard?.cardName ?? '', memberCard.bank)
                                                     }
                                                     description={memberCard?.lastFourPAN ?? lastFourNumbersFromCardName(memberCard?.cardName)}
-                                                    badgeText={memberCard.bank === CONST.EXPENSIFY_CARD.BANK ? convertToDisplayString(memberCard.nameValuePairs?.unapprovedExpenseLimit) : ''}
                                                     icon={getCardFeedIcon(memberCard.bank as CompanyCardFeed, illustrations)}
                                                     plaidUrl={plaidUrl}
                                                     displayInDefaultIconColor
@@ -440,11 +418,13 @@ function WorkspaceMemberDetailsPage({personalDetails, policy, route}: WorkspaceM
                                             </OfflineWithFeedback>
                                         );
                                     })}
-                                    <MenuItem
-                                        title={translate('workspace.expensifyCard.newCard')}
-                                        icon={Expensicons.Plus}
-                                        onPress={handleIssueNewCard}
-                                    />
+                                    {hasCompanyCardFeeds && (
+                                        <MenuItem
+                                            title={translate('workspace.companyCards.assignCard')}
+                                            icon={Expensicons.Plus}
+                                            onPress={handleIssueNewCard}
+                                        />
+                                    )}
                                 </>
                             )}
                         </View>

@@ -574,33 +574,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.WORKSPACE.COMPANY_CARD_EXPORT]: {
                             path: ROUTES.WORKSPACE_COMPANY_CARD_EXPORT.route,
                         },
-                        [SCREENS.WORKSPACE.EXPENSIFY_CARD_LIMIT]: {
-                            path: ROUTES.WORKSPACE_EXPENSIFY_CARD_LIMIT.route,
-                        },
-                        [SCREENS.WORKSPACE.EXPENSIFY_CARD_ISSUE_NEW]: {
-                            path: ROUTES.WORKSPACE_EXPENSIFY_CARD_ISSUE_NEW.route,
-                        },
-                        [SCREENS.WORKSPACE.EXPENSIFY_CARD_NAME]: {
-                            path: ROUTES.WORKSPACE_EXPENSIFY_CARD_NAME.route,
-                        },
-                        [SCREENS.WORKSPACE.EXPENSIFY_CARD_LIMIT_TYPE]: {
-                            path: ROUTES.WORKSPACE_EXPENSIFY_CARD_LIMIT_TYPE.route,
-                        },
-                        [SCREENS.WORKSPACE.EXPENSIFY_CARD_BANK_ACCOUNT]: {
-                            path: ROUTES.WORKSPACE_EXPENSIFY_CARD_BANK_ACCOUNT.route,
-                        },
-                        [SCREENS.WORKSPACE.EXPENSIFY_CARD_SETTINGS]: {
-                            path: ROUTES.WORKSPACE_EXPENSIFY_CARD_SETTINGS.route,
-                        },
-                        [SCREENS.WORKSPACE.EXPENSIFY_CARD_SETTINGS_FREQUENCY]: {
-                            path: ROUTES.WORKSPACE_EXPENSIFY_CARD_SETTINGS_FREQUENCY.route,
-                        },
-                        [SCREENS.WORKSPACE.EXPENSIFY_CARD_SETTINGS_ACCOUNT]: {
-                            path: ROUTES.WORKSPACE_EXPENSIFY_CARD_SETTINGS_ACCOUNT.route,
-                        },
-                        [SCREENS.WORKSPACE.EXPENSIFY_CARD_SELECT_FEED]: {
-                            path: ROUTES.WORKSPACE_EXPENSIFY_CARD_SELECT_FEED.route,
-                        },
                         [SCREENS.WORKSPACE.COMPANY_CARDS_SETTINGS]: {
                             path: ROUTES.WORKSPACE_COMPANY_CARDS_SETTINGS.route,
                         },
@@ -609,9 +582,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         },
                         [SCREENS.WORKSPACE.COMPANY_CARDS_SETTINGS_STATEMENT_CLOSE_DATE]: {
                             path: ROUTES.WORKSPACE_COMPANY_CARDS_SETTINGS_STATEMENT_CLOSE_DATE.route,
-                        },
-                        [SCREENS.WORKSPACE.EXPENSIFY_CARD_DETAILS]: {
-                            path: ROUTES.WORKSPACE_EXPENSIFY_CARD_DETAILS.route,
                         },
                         [SCREENS.WORKSPACE.COMPANY_CARDS_ADD_NEW]: {
                             path: ROUTES.WORKSPACE_COMPANY_CARDS_ADD_NEW.route,
@@ -804,22 +774,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         },
                         [SCREENS.SETTINGS_CATEGORIES.SETTINGS_CATEGORY_GL_CODE]: {
                             path: ROUTES.SETTINGS_CATEGORY_GL_CODE.route,
-                        },
-                    },
-                },
-                [SCREENS.RIGHT_MODAL.EXPENSIFY_CARD]: {
-                    screens: {
-                        [SCREENS.EXPENSIFY_CARD.EXPENSIFY_CARD_DETAILS]: {
-                            path: ROUTES.EXPENSIFY_CARD_DETAILS.route,
-                        },
-                        [SCREENS.EXPENSIFY_CARD.EXPENSIFY_CARD_NAME]: {
-                            path: ROUTES.EXPENSIFY_CARD_NAME.route,
-                        },
-                        [SCREENS.EXPENSIFY_CARD.EXPENSIFY_CARD_LIMIT]: {
-                            path: ROUTES.EXPENSIFY_CARD_LIMIT.route,
-                        },
-                        [SCREENS.EXPENSIFY_CARD.EXPENSIFY_CARD_LIMIT_TYPE]: {
-                            path: ROUTES.EXPENSIFY_CARD_LIMIT_TYPE.route,
                         },
                     },
                 },
@@ -1225,9 +1179,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                     path: ROUTES.WORKSPACE_INITIAL.route,
                 },
                 [SCREENS.WORKSPACE.PROFILE]: ROUTES.WORKSPACE_OVERVIEW.route,
-                [SCREENS.WORKSPACE.EXPENSIFY_CARD]: {
-                    path: ROUTES.WORKSPACE_EXPENSIFY_CARD.route,
-                },
                 [SCREENS.WORKSPACE.COMPANY_CARDS]: {
                     path: ROUTES.WORKSPACE_COMPANY_CARDS.route,
                 },

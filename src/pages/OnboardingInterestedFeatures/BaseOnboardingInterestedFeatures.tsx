@@ -97,13 +97,6 @@ function BaseOnboardingInterestedFeatures({shouldUseNativeStyles}: BaseOnboardin
                 apiEndpoint: WRITE_COMMANDS.ENABLE_POLICY_WORKFLOWS,
             },
            
-            {
-                id: FEATURE_IDS.EXPENSIFY_CARD,
-                title: translate('workspace.moreFeatures.expensifyCard.title'),
-                icon: Illustrations.HandCard,
-                apiEndpoint: WRITE_COMMANDS.ENABLE_POLICY_EXPENSIFY_CARDS,
-            },
-           
         ];
     }, [translate, userReportedIntegration]);
 

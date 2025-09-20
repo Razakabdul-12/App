@@ -13,10 +13,9 @@ import type BillingStatus from './BillingStatus';
 import type BlockedFromConcierge from './BlockedFromConcierge';
 import type CancellationDetails from './CancellationDetails';
 import type Card from './Card';
-import type {CardList, IssueNewCard, ProvisioningCardData, WorkspaceCardsList} from './Card';
+import type {CardList, ProvisioningCardData, WorkspaceCardsList} from './Card';
 import type CardFeeds from './CardFeeds';
 import type {AddNewCompanyCardFeed, CompanyCardFeed, FundID} from './CardFeeds';
-import type CardOnWaitlist from './CardOnWaitlist';
 import type {CapturedLogs, Log} from './Console';
 import type {CorpayFields, CorpayFormField} from './CorpayFields';
 import type {CorpayOnboardingFields} from './CorpayOnboardingFields';
@@ -28,7 +27,6 @@ import type {OutstandingReportsByPolicyIDDerivedValue, ReportAttributesDerivedVa
 import type DismissedProductTraining from './DismissedProductTraining';
 import type DismissedReferralBanners from './DismissedReferralBanners';
 import type Download from './Download';
-import type ExpensifyCardBankAccountMetadata from './ExpensifyCardBankAccountMetadata';
 import type ExpensifyCardSettings from './ExpensifyCardSettings';
 import type ExportTemplate from './ExportTemplate';
 import type FrequentlyUsedEmoji from './FrequentlyUsedEmoji';
@@ -133,7 +131,6 @@ export type {
     BlockedFromConcierge,
     Card,
     CardList,
-    CardOnWaitlist,
     ProvisioningCardData,
     Credentials,
     CorpayOnboardingFields,
@@ -144,13 +141,11 @@ export type {
     Download,
     WorkspaceCardsList,
     ExpensifyCardSettings,
-    ExpensifyCardBankAccountMetadata,
     FrequentlyUsedEmoji,
     Fund,
     FundID,
     FundList,
     IntroSelected,
-    IssueNewCard,
     AddNewCompanyCardFeed,
     CompanyCardFeed,
     LastExportMethod,

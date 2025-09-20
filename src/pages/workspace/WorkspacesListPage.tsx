@@ -142,7 +142,7 @@ function WorkspacesListPage() {
         !isEmptyObject(cardFeeds) ||
         !isEmptyObject(cardsList) ||
         // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-        ((policyToDelete?.areExpensifyCardsEnabled || policyToDelete?.areCompanyCardsEnabled) && policyToDelete?.workspaceAccountID);
+        (policyToDelete?.areCompanyCardsEnabled && policyToDelete?.workspaceAccountID);
 
     const isSupportalAction = isSupportAuthToken();
 

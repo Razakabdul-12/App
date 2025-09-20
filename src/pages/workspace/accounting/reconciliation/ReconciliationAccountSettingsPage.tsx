@@ -3,19 +3,14 @@ import ConnectionLayout from '@components/ConnectionLayout';
 import SelectionList from '@components/SelectionList';
 import SingleSelectListItem from '@components/SelectionList/SingleSelectListItem';
 import Text from '@components/Text';
-import TextLink from '@components/TextLink';
-import useDefaultFundID from '@hooks/useDefaultFundID';
 import useLocalize from '@hooks/useLocalize';
 import useOnyx from '@hooks/useOnyx';
 import useThemeStyles from '@hooks/useThemeStyles';
 import {getConnectionNameFromRouteParam} from '@libs/AccountingUtils';
-import {getLastFourDigits} from '@libs/BankAccountUtils';
 import {getEligibleBankAccountsForCard} from '@libs/CardUtils';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
-import {getDomainNameForPolicy} from '@libs/PolicyUtils';
 import Navigation from '@navigation/Navigation';
 import type {SettingsNavigatorParamList} from '@navigation/types';
-import {updateSettlementAccount} from '@userActions/Card';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import ROUTES from '@src/ROUTES';
@@ -37,17 +32,9 @@ function ReconciliationAccountSettingsPage({route}: ReconciliationAccountSetting
     const {translate} = useLocalize();
 
     const connectionName = getConnectionNameFromRouteParam(connection);
-    const defaultFundID = useDefaultFundID(policyID);
-
     const [bankAccountList] = useOnyx(ONYXKEYS.BANK_ACCOUNT_LIST, {canBeMissing: true});
-    const [cardSettings] = useOnyx(`${ONYXKEYS.COLLECTION.PRIVATE_EXPENSIFY_CARD_SETTINGS}${defaultFundID}`, {canBeMissing: true});
-    const paymentBankAccountID = cardSettings?.paymentBankAccountID;
+    const paymentBankAccountID = undefined;
 
-    const selectedBankAccount = useMemo(() => bankAccountList?.[paymentBankAccountID?.toString() ?? ''], [paymentBankAccountID, bankAccountList]);
-    const bankAccountNumber = useMemo(() => selectedBankAccount?.accountData?.accountNumber ?? '', [selectedBankAccount]);
-    const settlementAccountEnding = getLastFourDigits(bankAccountNumber);
-
-    const domainName = cardSettings?.domainName ?? getDomainNameForPolicy(policyID);
 
     const sections = useMemo(() => {
         if (!bankAccountList || isEmptyObject(bankAccountList)) {
@@ -69,7 +56,6 @@ function ReconciliationAccountSettingsPage({route}: ReconciliationAccountSetting
     }, [policyID, backTo, connection]);
 
     const selectBankAccount = (newBankAccountID?: number) => {
-        updateSettlementAccount(domainName, defaultFundID, policyID, newBankAccountID, paymentBankAccountID);
         goBack();
     };
 
@@ -86,14 +72,6 @@ function ReconciliationAccountSettingsPage({route}: ReconciliationAccountSetting
             onBackButtonPress={goBack}
         >
             <Text style={[styles.textNormal, styles.mb5, styles.ph5]}>{translate('workspace.accounting.chooseReconciliationAccount.chooseBankAccount')}</Text>
-            <Text style={[styles.textNormal, styles.mb6, styles.ph5]}>
-                {translate('workspace.accounting.chooseReconciliationAccount.accountMatches')}
-                <TextLink onPress={() => Navigation.navigate(ROUTES.WORKSPACE_EXPENSIFY_CARD_SETTINGS_ACCOUNT.getRoute(policyID, Navigation.getActiveRoute()))}>
-                    {translate('workspace.accounting.chooseReconciliationAccount.settlementAccount')}
-                </TextLink>
-                {translate('workspace.accounting.chooseReconciliationAccount.reconciliationWorks', {lastFourPAN: settlementAccountEnding})}
-            </Text>
-
             <SelectionList
                 sections={sections}
                 onSelectRow={({value}) => selectBankAccount(value)}
