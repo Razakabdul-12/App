@@ -127,13 +127,6 @@ function BaseOnboardingInterestedFeatures({shouldUseNativeStyles}: BaseOnboardin
                 icon: Illustrations.Tag,
                 apiEndpoint: WRITE_COMMANDS.ENABLE_POLICY_TAGS,
             },
-            {
-                id: FEATURE_IDS.PER_DIEM,
-                title: translate('workspace.moreFeatures.perDiem.title'),
-                icon: Illustrations.PerDiem,
-                apiEndpoint: WRITE_COMMANDS.TOGGLE_POLICY_PER_DIEM,
-                requiresUpdate: true,
-            },
         ];
     }, [translate, userReportedIntegration]);
 

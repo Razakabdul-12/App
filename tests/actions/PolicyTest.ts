@@ -275,7 +275,6 @@ describe('actions/Policy', () => {
                     categories: true,
                     tags: true,
                     taxes: true,
-                    perDiem: true,
                     reimbursements: true,
                     expenses: true,
                     customUnits: true,
@@ -308,7 +307,6 @@ describe('actions/Policy', () => {
             expect(policy?.areWorkflowsEnabled).toBe(true);
             expect(policy?.areDistanceRatesEnabled).toBe(true);
             expect(policy?.areInvoicesEnabled).toBe(true);
-            expect(policy?.arePerDiemRatesEnabled).toBe(true);
             expect(policy?.approvalMode).toBe(fakePolicy.approvalMode);
             expect(policy?.approver).toBe(fakePolicy.approver);
             expect(policy?.isPolicyExpenseChatEnabled).toBe(fakePolicy.isPolicyExpenseChatEnabled);

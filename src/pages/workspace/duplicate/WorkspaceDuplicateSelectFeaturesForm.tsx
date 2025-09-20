@@ -11,14 +11,13 @@ import useOnyx from '@hooks/useOnyx';
 import usePolicy from '@hooks/usePolicy';
 import useThemeStyles from '@hooks/useThemeStyles';
 import {readFileAsync} from '@libs/fileDownload/FileUtils';
-import {getDistanceRateCustomUnit, getMemberAccountIDsForWorkspace, getPerDiemCustomUnit, isCollectPolicy} from '@libs/PolicyUtils';
+import {getDistanceRateCustomUnit, getMemberAccountIDsForWorkspace, isCollectPolicy} from '@libs/PolicyUtils';
 import {getReportFieldsByPolicyID} from '@libs/ReportUtils';
 import Navigation from '@navigation/Navigation';
 import {duplicateWorkspace as duplicateWorkspaceAction, openDuplicatePolicyPage} from '@userActions/Policy/Policy';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import ROUTES from '@src/ROUTES';
-import type {Rate} from '@src/types/onyx/Policy';
 import {isEmptyObject} from '@src/types/utils/EmptyObject';
 import {getAllValidConnectedIntegration, getWorkflowRules, getWorkspaceRules} from './utils';
 
@@ -43,9 +42,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
     const categoriesCount = Object.keys(policyCategories ?? {}).length;
     const [selectedItems, setSelectedItems] = useState<string[]>([]);
     const reportFields = Object.keys(getReportFieldsByPolicyID(policyID)).length ?? 0;
-    const customUnits = getPerDiemCustomUnit(policy);
-    const customUnitRates: Record<string, Rate> = customUnits?.rates ?? {};
-    const allRates = Object.values(customUnitRates)?.length;
     const [bankAccountList] = useOnyx(ONYXKEYS.BANK_ACCOUNT_LIST, {canBeMissing: true});
 
     const accountingIntegrations = Object.values(CONST.POLICY.CONNECTIONS.NAME);
@@ -150,13 +146,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
                       alternateText: ratesCount ? `${ratesCount} ${translate('iou.rates').toLowerCase()}` : undefined,
                   }
                 : undefined,
-            allRates > 0
-                ? {
-                      translation: translate('workspace.common.perDiem'),
-                      value: 'perDiem',
-                      alternateText: allRates ? `${allRates} ${translate('workspace.common.perDiem').toLowerCase()}` : undefined,
-                  }
-                : undefined,
             // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
             (bankAccountList && Object.keys(bankAccountList).length) || !!invoiceCompany
                 ? {
@@ -180,7 +169,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
         taxesLength,
         ratesCount,
         isCollect,
-        allRates,
         bankAccountList,
         invoiceCompany,
     ]);
@@ -222,7 +210,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
                 categories: selectedItems.includes('categories'),
                 tags: selectedItems.includes('tags'),
                 taxes: selectedItems.includes('taxes'),
-                perDiem: selectedItems.includes('perDiem'),
                 reimbursements: selectedItems.includes('invoices'),
                 expenses: selectedItems.includes('rules'),
                 customUnits: selectedItems.includes('distanceRates'),

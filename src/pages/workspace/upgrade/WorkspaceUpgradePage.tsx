@@ -12,9 +12,8 @@ import {updateXeroMappings} from '@libs/actions/connections/Xero';
 import Navigation from '@libs/Navigation/Navigation';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {SettingsNavigatorParamList} from '@libs/Navigation/types';
-import {canModifyPlan, getPerDiemCustomUnit, isControlPolicy} from '@libs/PolicyUtils';
+import {canModifyPlan, isControlPolicy} from '@libs/PolicyUtils';
 import NotFoundPage from '@pages/ErrorPage/NotFoundPage';
-import {enablePerDiem} from '@userActions/Policy/PerDiem';
 import CONST from '@src/CONST';
 import {enableCompanyCards, enablePolicyReportFields, enablePolicyRules, setPolicyPreventMemberCreatedTitle, upgradeToCorporate} from '@src/libs/actions/Policy/Policy';
 import ONYXKEYS from '@src/ONYXKEYS';
@@ -59,7 +58,6 @@ function WorkspaceUpgradePage({route}: WorkspaceUpgradePageProps) {
     const canPerformUpgrade = useMemo(() => canModifyPlan(policyID), [policyID]);
     const isUpgraded = useMemo(() => isControlPolicy(policy), [policy]);
 
-    const perDiemCustomUnit = getPerDiemCustomUnit(policy);
     const categoryId = route.params?.categoryId;
 
     const goBack = useCallback(() => {
@@ -90,7 +88,6 @@ function WorkspaceUpgradePage({route}: WorkspaceUpgradePageProps) {
                 Navigation.navigate(ROUTES.WORKSPACE_COMPANY_CARDS_ADD_NEW.getRoute(policyID, ROUTES.WORKSPACE_COMPANY_CARDS_SELECT_FEED.getRoute(policyID)));
                 return;
             case CONST.UPGRADE_FEATURE_INTRO_MAPPING.rules.id:
-            case CONST.UPGRADE_FEATURE_INTRO_MAPPING.perDiem.id:
                 return Navigation.goBack(ROUTES.WORKSPACE_MORE_FEATURES.getRoute(policyID));
             default:
                 return route.params.backTo ? Navigation.goBack(route.params.backTo) : Navigation.goBack();
@@ -150,15 +147,11 @@ function WorkspaceUpgradePage({route}: WorkspaceUpgradePageProps) {
             case CONST.UPGRADE_FEATURE_INTRO_MAPPING.companyCards.id:
                 enableCompanyCards(policyID, true, false);
                 break;
-            case CONST.UPGRADE_FEATURE_INTRO_MAPPING.perDiem.id:
-                enablePerDiem(policyID, true, perDiemCustomUnit?.customUnitID, false);
-                break;
             default:
         }
     }, [
         categoryId,
         feature,
-        perDiemCustomUnit?.customUnitID,
         policy?.connections?.xero?.config,
         policy?.connections?.xero?.data,
         policyID,
