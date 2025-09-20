@@ -17,7 +17,6 @@ export type {default as BeginSignInParams} from './BeginSignInParams';
 export type {default as CloseAccountParams} from './CloseAccountParams';
 export type {default as CloseSidePanelParams} from './CloseSidePanelParams';
 export type {default as ConnectBankAccountParams} from './ConnectBankAccountParams';
-export type {default as OpenDuplicatePolicyPageParams} from './OpenDuplicatePolicyPageParams';
 export type {default as ConnectPolicyToAccountingIntegrationParams} from './ConnectPolicyToAccountingIntegrationParams';
 export type {default as OpenPolicyProfilePageParams} from './OpenPolicyProfilePageParams';
 export type {default as OpenPolicyInitialPageParams} from './OpenPolicyInitialPageParams';
@@ -82,7 +81,6 @@ export type {default as SignInWithSupportAuthTokenParams} from './SignInWithSupp
 export type {default as UnlinkLoginParams} from './UnlinkLoginParams';
 export type {default as UpdateAutomaticTimezoneParams} from './UpdateAutomaticTimezoneParams';
 export type {default as UpdateChatPriorityModeParams} from './UpdateChatPriorityModeParams';
-export type {default as DuplicateWorkspaceParams} from './DuplicateWorkspaceParams';
 export type {default as UpdateDateOfBirthParams} from './UpdateDateOfBirthParams';
 export type {default as UpdateDisplayNameParams} from './UpdateDisplayNameParams';
 export type {default as UpdateChatNameParams} from './UpdateChatNameParams';

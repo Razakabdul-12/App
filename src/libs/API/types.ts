@@ -145,7 +145,6 @@ const WRITE_COMMANDS = {
     UPDATE_WORKSPACE_DESCRIPTION: 'UpdateWorkspaceDescription',
     UPDATE_WORKSPACE_MEMBERS_ROLE: 'UpdateWorkspaceMembersRole',
     CREATE_WORKSPACE: 'CreateWorkspace',
-    DUPLICATE_POLICY: 'DuplicatePolicy',
     CREATE_WORKSPACE_FROM_IOU_PAYMENT: 'CreateWorkspaceFromIOUPayment',
     UPDATE_POLICY_MEMBERS_CUSTOM_FIELDS: 'UpdatePolicyMembersCustomFields',
     SET_WORKSPACE_CATEGORIES_ENABLED: 'SetWorkspaceCategoriesEnabled',
@@ -850,7 +849,6 @@ type WriteCommandParameters = {
     [WRITE_COMMANDS.SEND_INVOICE]: Parameters.SendInvoiceParams;
     [WRITE_COMMANDS.PAY_INVOICE]: Parameters.PayInvoiceParams;
     [WRITE_COMMANDS.MARK_AS_CASH]: Parameters.MarkAsCashParams;
-    [WRITE_COMMANDS.DUPLICATE_POLICY]: Parameters.DuplicateWorkspaceParams;
     [WRITE_COMMANDS.MERGE_DUPLICATES]: Parameters.MergeDuplicatesParams;
     [WRITE_COMMANDS.RESOLVE_DUPLICATES]: Parameters.ResolveDuplicatesParams;
     [WRITE_COMMANDS.MERGE_TRANSACTION]: Parameters.MergeTransactionParams;
@@ -1098,7 +1096,6 @@ const READ_COMMANDS = {
     OPEN_POLICY_MORE_FEATURES_PAGE: 'OpenPolicyMoreFeaturesPage',
     OPEN_POLICY_ACCOUNTING_PAGE: 'OpenPolicyAccountingPage',
     OPEN_POLICY_PROFILE_PAGE: 'OpenPolicyProfilePage',
-    OPEN_DUPLICATE_POLICY_PAGE: 'OpenDuplicatePolicyPage',
     OPEN_POLICY_INITIAL_PAGE: 'OpenPolicyInitialPage',
     OPEN_SUBSCRIPTION_PAGE: 'OpenSubscriptionPage',
     OPEN_DRAFT_DISTANCE_EXPENSE: 'OpenDraftDistanceExpense',
@@ -1174,7 +1171,6 @@ type ReadCommandParameters = {
     [READ_COMMANDS.OPEN_ASSIGN_FEED_CARD_PAGE]: Parameters.OpenPolicyCompanyCardsFeedParams;
     [READ_COMMANDS.OPEN_POLICY_EDIT_CARD_LIMIT_TYPE_PAGE]: Parameters.OpenPolicyEditCardLimitTypePageParams;
     [READ_COMMANDS.OPEN_POLICY_PROFILE_PAGE]: Parameters.OpenPolicyProfilePageParams;
-    [READ_COMMANDS.OPEN_DUPLICATE_POLICY_PAGE]: Parameters.OpenDuplicatePolicyPageParams;
     [READ_COMMANDS.OPEN_POLICY_INITIAL_PAGE]: Parameters.OpenPolicyInitialPageParams;
     [READ_COMMANDS.OPEN_POLICY_RECEIPT_PARTNERS_PAGE]: Parameters.OpenPolicyReceiptPartnersPageParams;
     [READ_COMMANDS.OPEN_SUBSCRIPTION_PAGE]: null;
