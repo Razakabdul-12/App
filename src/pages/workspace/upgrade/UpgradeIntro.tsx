@@ -30,12 +30,11 @@ type Props = {
     onUpgrade: () => void;
     /** Whether is categorizing the expense */
     isCategorizing?: boolean;
-    isDistanceRateUpgrade?: boolean;
     policyID?: string;
     backTo?: Route;
 };
 
-function UpgradeIntro({feature, onUpgrade, buttonDisabled, loading, isCategorizing, isDistanceRateUpgrade, policyID, backTo}: Props) {
+function UpgradeIntro({feature, onUpgrade, buttonDisabled, loading, isCategorizing, policyID, backTo}: Props) {
     const styles = useThemeStyles();
     const {isExtraSmallScreenWidth} = useResponsiveLayout();
     const {translate} = useLocalize();
@@ -48,10 +47,10 @@ function UpgradeIntro({feature, onUpgrade, buttonDisabled, loading, isCategorizi
         const upgradeCurrency = Object.hasOwn(CONST.SUBSCRIPTION_PRICES, preferredCurrency) ? preferredCurrency : CONST.PAYMENT_CARD_CURRENCY.USD;
         return `${convertToShortDisplayString(
             // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-            CONST.SUBSCRIPTION_PRICES[upgradeCurrency][isCategorizing || isDistanceRateUpgrade ? CONST.POLICY.TYPE.TEAM : CONST.POLICY.TYPE.CORPORATE][CONST.SUBSCRIPTION.TYPE.ANNUAL],
+            CONST.SUBSCRIPTION_PRICES[upgradeCurrency][isCategorizing ? CONST.POLICY.TYPE.TEAM : CONST.POLICY.TYPE.CORPORATE][CONST.SUBSCRIPTION.TYPE.ANNUAL],
             upgradeCurrency,
         )} `;
-    }, [preferredCurrency, isCategorizing, isDistanceRateUpgrade]);
+    }, [preferredCurrency, isCategorizing]);
 
     const subscriptionLink = useMemo(() => {
         if (!subscriptionPlan) {
@@ -68,7 +67,7 @@ function UpgradeIntro({feature, onUpgrade, buttonDisabled, loading, isCategorizi
      * The "isCategorizing" flag is set to true when the user accesses the "Categorize" option in the Self-DM whisper.
      * In such scenarios, a separate Categories upgrade UI is displayed.
      */
-    if (!feature || (!isCategorizing && !isDistanceRateUpgrade && !policyID)) {
+    if (!feature || (!isCategorizing && !policyID)) {
         return (
             <GenericFeaturesView
                 onUpgrade={onUpgrade}

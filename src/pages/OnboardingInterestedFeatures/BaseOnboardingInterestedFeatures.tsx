@@ -110,12 +110,6 @@ function BaseOnboardingInterestedFeatures({shouldUseNativeStyles}: BaseOnboardin
                 requiresUpdate: true,
             },
             {
-                id: FEATURE_IDS.DISTANCE_RATES,
-                title: translate('workspace.moreFeatures.distanceRates.title'),
-                icon: Illustrations.Car,
-                apiEndpoint: WRITE_COMMANDS.ENABLE_POLICY_DISTANCE_RATES,
-            },
-            {
                 id: FEATURE_IDS.EXPENSIFY_CARD,
                 title: translate('workspace.moreFeatures.expensifyCard.title'),
                 icon: Illustrations.HandCard,

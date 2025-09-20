@@ -17,10 +17,9 @@ type Props = {
     /** Whether is adding an unreported expense to a report */
     isReporting?: boolean;
     isTravelUpgrade?: boolean;
-    isDistanceRateUpgrade?: boolean;
 };
 
-function UpgradeConfirmation({policyName, afterUpgradeAcknowledged, isReporting, isCategorizing, isTravelUpgrade, isDistanceRateUpgrade}: Props) {
+function UpgradeConfirmation({policyName, afterUpgradeAcknowledged, isReporting, isCategorizing, isTravelUpgrade}: Props) {
     const {translate} = useLocalize();
     const styles = useThemeStyles();
     const {environmentURL} = useEnvironment();
@@ -44,16 +43,12 @@ function UpgradeConfirmation({policyName, afterUpgradeAcknowledged, isReporting,
             return <Text style={[styles.textAlignCenter, styles.w100]}>{translate('workspace.upgrade.completed.travelMessage')}</Text>;
         }
 
-        if (isDistanceRateUpgrade) {
-            return <Text style={[styles.textAlignCenter, styles.w100]}>{translate('workspace.upgrade.completed.distanceRateMessage')}</Text>;
-        }
-
         return (
             <View style={[styles.renderHTML, styles.w100]}>
                 <RenderHTML html={translate('workspace.upgrade.completed.successMessage', {policyName, subscriptionLink})} />
             </View>
         );
-    }, [isDistanceRateUpgrade, isCategorizing, isReporting, isTravelUpgrade, policyName, styles.renderHTML, styles.textAlignCenter, styles.w100, translate, subscriptionLink]);
+    }, [isCategorizing, isReporting, isTravelUpgrade, policyName, styles.renderHTML, styles.textAlignCenter, styles.w100, translate, subscriptionLink]);
 
     const heading = useMemo(() => {
         if (isCategorizing ?? isReporting) {

@@ -10,15 +10,13 @@ import useLocalize from '@hooks/useLocalize';
 import useNetwork from '@hooks/useNetwork';
 import useOnyx from '@hooks/useOnyx';
 import useThemeStyles from '@hooks/useThemeStyles';
-import {setTransactionReport} from '@libs/actions/Transaction';
 import type CreateWorkspaceParams from '@libs/API/parameters/CreateWorkspaceParams';
 import Navigation from '@libs/Navigation/Navigation';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {MoneyRequestNavigatorParamList} from '@libs/Navigation/types';
-import {getParticipantsOption} from '@libs/OptionsListUtils';
 import UpgradeConfirmation from '@pages/workspace/upgrade/UpgradeConfirmation';
 import UpgradeIntro from '@pages/workspace/upgrade/UpgradeIntro';
-import {setCustomUnitRateID, setMoneyRequestParticipants} from '@userActions/IOU';
+import {setMoneyRequestParticipants} from '@userActions/IOU';
 import CONST from '@src/CONST';
 import * as Policy from '@src/libs/actions/Policy/Policy';
 import ONYXKEYS from '@src/ONYXKEYS';
@@ -45,7 +43,6 @@ function IOURequestStepUpgrade({
     const [showConfirmationForm, setShowConfirmationForm] = useState(false);
     const [createdPolicyName, setCreatedPolicyName] = useState('');
     const policyDataRef = useRef<CreateWorkspaceParams | null>(null);
-    const isDistanceRateUpgrade = upgradePath === CONST.UPGRADE_PATHS.DISTANCE_RATES;
     const isCategorizing = upgradePath === CONST.UPGRADE_PATHS.CATEGORIES;
     const isReporting = upgradePath === CONST.UPGRADE_PATHS.REPORTS;
 
@@ -75,32 +72,12 @@ function IOURequestStepUpgrade({
         Navigation.goBack();
 
         switch (upgradePath) {
-            case CONST.UPGRADE_PATHS.DISTANCE_RATES: {
-                if (!policyID || !reportID) {
-                    return;
-                }
-                setTransactionReport(transactionID, {reportID: expenseReportID}, true);
-                // Let the confirmation step decide the distance rate because policy data is not fully available at this step
-                setCustomUnitRateID(transactionID, '-1');
-                Navigation.setParams({reportID: expenseReportID});
-                Navigation.navigate(ROUTES.WORKSPACE_CREATE_DISTANCE_RATE.getRoute(policyID, transactionID, expenseReportID));
-                break;
-            }
             case CONST.UPGRADE_PATHS.CATEGORIES:
                 Navigation.navigate(ROUTES.MONEY_REQUEST_STEP_CATEGORY.getRoute(action, CONST.IOU.TYPE.SUBMIT, transactionID, reportID, ROUTES.REPORT_WITH_ID.getRoute(reportID)));
                 break;
             default:
         }
     }, [action, reportID, shouldSubmitExpense, transactionID, upgradePath]);
-
-    const adminParticipant = useMemo(() => {
-        const participant = transaction?.participants?.[0];
-        if (!isDistanceRateUpgrade || !participant?.accountID) {
-            return;
-        }
-
-        return getParticipantsOption(participant, personalDetails);
-    }, [isDistanceRateUpgrade, transaction?.participants, personalDetails]);
 
     const onUpgrade = useCallback(() => {
         if (isCategorizing || isReporting) {
@@ -113,12 +90,10 @@ function IOURequestStepUpgrade({
             policyID: undefined,
             engagementChoice: CONST.ONBOARDING_CHOICES.TRACK_WORKSPACE,
             currency: currentUserPersonalDetails?.localCurrencyCode ?? '',
-            areDistanceRatesEnabled: isDistanceRateUpgrade,
-            adminParticipant,
         });
         setIsUpgraded(true);
         policyDataRef.current = policyData;
-    }, [isCategorizing, isReporting, currentUserPersonalDetails?.localCurrencyCode, isDistanceRateUpgrade, adminParticipant]);
+    }, [isCategorizing, isReporting, currentUserPersonalDetails?.localCurrencyCode]);
 
     const [session] = useOnyx(ONYXKEYS.SESSION, {canBeMissing: false});
 
@@ -158,7 +133,6 @@ function IOURequestStepUpgrade({
                             policyName={createdPolicyName}
                             isCategorizing={isCategorizing}
                             isReporting={isReporting}
-                            isDistanceRateUpgrade={isDistanceRateUpgrade}
                         />
                     )}
                     {!isUpgraded && (
@@ -168,7 +142,6 @@ function IOURequestStepUpgrade({
                             buttonDisabled={isOffline}
                             loading={false}
                             isCategorizing={isCategorizing}
-                            isDistanceRateUpgrade={isDistanceRateUpgrade}
                         />
                     )}
                 </ScrollView>

@@ -2972,7 +2972,6 @@ const CONST = {
         MORE_FEATURES: {
             ARE_CATEGORIES_ENABLED: 'areCategoriesEnabled',
             ARE_TAGS_ENABLED: 'areTagsEnabled',
-            ARE_DISTANCE_RATES_ENABLED: 'areDistanceRatesEnabled',
             ARE_WORKFLOWS_ENABLED: 'areWorkflowsEnabled',
             ARE_REPORT_FIELDS_ENABLED: 'areReportFieldsEnabled',
             ARE_CONNECTIONS_ENABLED: 'areConnectionsEnabled',
@@ -6825,7 +6824,6 @@ const CONST = {
     UPGRADE_PATHS: {
         CATEGORIES: 'categories',
         REPORTS: 'reports',
-        DISTANCE_RATES: 'distance-rates',
     },
     get UPGRADE_FEATURE_INTRO_MAPPING() {
         return {
@@ -6954,14 +6952,6 @@ const CONST = {
                 title: 'workspace.upgrade.travel.title' as const,
                 description: 'workspace.upgrade.travel.description' as const,
                 icon: 'Luggage',
-            },
-            distanceRates: {
-                id: 'distanceRates' as const,
-                alias: 'distance-rates',
-                name: 'Distance Rates',
-                title: 'workspace.upgrade.distanceRates.title' as const,
-                description: 'workspace.upgrade.distanceRates.description' as const,
-                icon: 'CarIce',
             },
         };
     },
@@ -7281,7 +7271,6 @@ const FEATURE_IDS = {
     INVOICES: 'invoices',
     RULES: 'rules',
     PER_DIEM: 'per-diem',
-    DISTANCE_RATES: 'distance-rates',
     EXPENSIFY_CARD: 'expensify-card',
 };
 

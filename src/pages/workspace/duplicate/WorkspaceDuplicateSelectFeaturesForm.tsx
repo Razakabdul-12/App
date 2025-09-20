@@ -52,7 +52,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
     const connectedIntegration = getAllValidConnectedIntegration(policy, accountingIntegrations);
 
     const customUnit = getDistanceRateCustomUnit(policy);
-    const ratesCount = Object.keys(customUnit?.rates ?? {}).length;
     const invoiceCompany =
         policy?.invoice?.companyName && policy?.invoice?.companyWebsite
             ? `${policy?.invoice?.companyName}, ${policy?.invoice?.companyWebsite}`
@@ -143,13 +142,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
                           : undefined,
                   }
                 : undefined,
-            ratesCount > 0
-                ? {
-                      translation: translate('workspace.common.distanceRates'),
-                      value: 'distanceRates',
-                      alternateText: ratesCount ? `${ratesCount} ${translate('iou.rates').toLowerCase()}` : undefined,
-                  }
-                : undefined,
             allRates > 0
                 ? {
                       translation: translate('workspace.common.perDiem'),
@@ -178,7 +170,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
         totalTags,
         categoriesCount,
         taxesLength,
-        ratesCount,
         isCollect,
         allRates,
         bankAccountList,
@@ -225,7 +216,7 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
                 perDiem: selectedItems.includes('perDiem'),
                 reimbursements: selectedItems.includes('invoices'),
                 expenses: selectedItems.includes('rules'),
-                customUnits: selectedItems.includes('distanceRates'),
+                customUnits: false,
                 invoices: selectedItems.includes('invoices'),
                 exportLayouts: selectedItems.includes('workflows'),
             },

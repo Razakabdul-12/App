@@ -321,26 +321,6 @@ type SettingsNavigatorParamList = {
         policyID: string;
         backTo?: Routes;
     };
-    [SCREENS.WORKSPACE.DISTANCE_RATE_DETAILS]: {
-        policyID: string;
-        rateID: string;
-    };
-    [SCREENS.WORKSPACE.DISTANCE_RATE_EDIT]: {
-        policyID: string;
-        rateID: string;
-    };
-    [SCREENS.WORKSPACE.DISTANCE_RATE_NAME_EDIT]: {
-        policyID: string;
-        rateID: string;
-    };
-    [SCREENS.WORKSPACE.DISTANCE_RATE_TAX_RECLAIMABLE_ON_EDIT]: {
-        policyID: string;
-        rateID: string;
-    };
-    [SCREENS.WORKSPACE.DISTANCE_RATE_TAX_RATE_EDIT]: {
-        policyID: string;
-        rateID: string;
-    };
     [SCREENS.WORKSPACE.TAGS_SETTINGS]: {
         policyID: string;
         backTo?: Routes;
@@ -519,14 +499,6 @@ type SettingsNavigatorParamList = {
         accountID: number;
         error: ValueOf<typeof CONST.POLICY.OWNERSHIP_ERRORS>;
         backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.CREATE_DISTANCE_RATE]: {
-        policyID: string;
-        transactionID?: string;
-        reportID?: string;
-    };
-    [SCREENS.WORKSPACE.DISTANCE_RATES_SETTINGS]: {
-        policyID: string;
     };
     [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_IMPORT]: {
         policyID: string;
@@ -2018,9 +1990,6 @@ type WorkspaceSplitNavigatorParamList = {
         policyID: string;
     };
     [SCREENS.WORKSPACE.REPORTS]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.DISTANCE_RATES]: {
         policyID: string;
     };
     [SCREENS.WORKSPACE.ACCOUNTING.ROOT]: {
