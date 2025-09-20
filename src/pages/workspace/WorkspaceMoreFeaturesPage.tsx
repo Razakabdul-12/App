@@ -81,38 +81,9 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
         setIsOrganizeWarningModalOpen(true);
     }, [hasAccountingConnection]);
 
-    const spendItems: Item[] = [
-        icon: Illustrations.CompanyCard,
-        titleTranslationKey: 'workspace.moreFeatures.companyCards.title',
-        subtitleTranslationKey: 'workspace.moreFeatures.companyCards.subtitle',
-        isActive: policy?.areCompanyCardsEnabled ?? false,
-        pendingAction: policy?.pendingFields?.areCompanyCardsEnabled,
-        disabled: !isEmptyObject(getCompanyFeeds(cardFeeds)),
-        action: (isEnabled: boolean) => {
-            if (!policyID) {
-                return;
-            }
-            enableCompanyCards(policyID, isEnabled, true);
-        },
-        disabledAction: () => {
-            setIsDisableCompanyCardsWarningModalOpen(true);
-        },
-    }];
 
     const manageItems: Item[] = [
-        {
-            icon: Illustrations.Workflows,
-            titleTranslationKey: 'workspace.moreFeatures.workflows.title',
-            subtitleTranslationKey: 'workspace.moreFeatures.workflows.subtitle',
-            isActive: policy?.areWorkflowsEnabled ?? false,
-            pendingAction: policy?.pendingFields?.areWorkflowsEnabled,
-            action: (isEnabled: boolean) => {
-                if (!policyID) {
-                    return;
-                }
-                enablePolicyWorkflows(policyID, isEnabled);
-            },
-        },
+       
     ];
 
     const organizeItems: Item[] = [
@@ -180,11 +151,7 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
             subtitleTranslationKey: 'workspace.moreFeatures.manageSection.subtitle',
             items: manageItems,
         },
-        {
-            titleTranslationKey: 'workspace.moreFeatures.spendSection.title',
-            subtitleTranslationKey: 'workspace.moreFeatures.spendSection.subtitle',
-            items: spendItems,
-        },
+       
     ];
 
     const renderItem = useCallback(
