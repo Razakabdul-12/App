@@ -23,7 +23,7 @@ import {
     isReimbursementDirectionInformationRequiredAction,
     isThreadParentMessage,
 } from '@libs/ReportActionsUtils';
-import {getIOUReportActionDisplayMessage, getReportName, hasMissingInvoiceBankAccount, isSettled} from '@libs/ReportUtils';
+import {getIOUReportActionDisplayMessage, getReportName} from '@libs/ReportUtils';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import ROUTES from '@src/ROUTES';
@@ -163,31 +163,11 @@ function ReportActionItemMessage({action, displayAsGroup, reportID, style, isHid
         return shouldWrapInText ? <Text style={styles.ltr}>{reportActionItemFragments}</Text> : reportActionItemFragments;
     };
 
-    const openWorkspaceInvoicesPage = () => {
-        const policyID = report?.policyID;
-
-        if (!policyID) {
-            return;
-        }
-
-        Navigation.navigate(ROUTES.WORKSPACE_INVOICES.getRoute(policyID));
-    };
-
-    const shouldShowAddBankAccountButton = action.actionName === CONST.REPORT.ACTIONS.TYPE.IOU && hasMissingInvoiceBankAccount(reportID) && !isSettled(reportID);
-
     return (
         <View style={[styles.chatItemMessage, style]}>
             {!isHidden ? (
                 <>
                     {renderReportActionItemFragments(isApprovedOrSubmittedReportAction)}
-                    {shouldShowAddBankAccountButton && (
-                        <Button
-                            style={[styles.mt2, styles.alignSelfStart]}
-                            success
-                            text={translate('bankAccount.addBankAccount')}
-                            onPress={openWorkspaceInvoicesPage}
-                        />
-                    )}
                 </>
             ) : (
                 <Text style={[styles.textLabelSupporting, styles.lh20]}>{translate('moderation.flaggedContent')}</Text>

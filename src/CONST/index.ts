@@ -2960,7 +2960,6 @@ const CONST = {
             ARE_RECEIPT_PARTNERS_ENABLED: 'receiptPartners',
             ARE_COMPANY_CARDS_ENABLED: 'areCompanyCardsEnabled',
             ARE_EXPENSIFY_CARDS_ENABLED: 'areExpensifyCardsEnabled',
-            ARE_INVOICES_ENABLED: 'areInvoicesEnabled',
             ARE_TAXES_ENABLED: 'tax',
             ARE_RULES_ENABLED: 'areRulesEnabled',
             ARE_PER_DIEM_RATES_ENABLED: 'arePerDiemRatesEnabled',
@@ -6998,7 +6997,6 @@ const CONST = {
         IS_UNREAD_WITH_MENTION: 'isUnreadWithMention',
         IS_WAITING_FOR_ASSIGNEE_TO_COMPLETE_ACTION: 'isWaitingForAssigneeToCompleteAction',
         HAS_CHILD_REPORT_AWAITING_ACTION: 'hasChildReportAwaitingAction',
-        HAS_MISSING_INVOICE_BANK_ACCOUNT: 'hasMissingInvoiceBankAccount',
     },
 
     RBR_REASONS: {
@@ -7162,7 +7160,6 @@ const FEATURE_IDS = {
     COMPANY_CARDS: 'company-cards',
     TAGS: 'tags',
     WORKFLOWS: 'workflows',
-    INVOICES: 'invoices',
     RULES: 'rules',
     PER_DIEM: 'per-diem',
     DISTANCE_RATES: 'distance-rates',

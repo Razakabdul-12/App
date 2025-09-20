@@ -21,7 +21,6 @@ import type {
     EnablePolicyCompanyCardsParams,
     EnablePolicyConnectionsParams,
     EnablePolicyExpensifyCardsParams,
-    EnablePolicyInvoicingParams,
     EnablePolicyReportFieldsParams,
     EnablePolicyTaxesParams,
     EnablePolicyWorkflowsParams,
@@ -2541,7 +2540,6 @@ function buildDuplicatePolicyData(policy: Policy, options: DuplicatePolicyDataOp
     const isCategoriesOptionSelected = parts?.categories;
     const isTaxesOptionSelected = parts?.taxes;
     const isTagsOptionSelected = parts?.tags;
-    const isInvoicesOptionSelected = parts?.invoices;
     const isCustomUnitsOptionSelected = parts?.customUnits;
     const isRulesOptionSelected = parts?.expenses;
     const isWorkflowsOptionSelected = parts?.exportLayouts;
@@ -2566,7 +2564,6 @@ function buildDuplicatePolicyData(policy: Policy, options: DuplicatePolicyDataOp
                 areCategoriesEnabled: isCategoriesOptionSelected,
                 areTagsEnabled: isTagsOptionSelected,
                 areDistanceRatesEnabled: isCustomUnitsOptionSelected,
-                areInvoicesEnabled: isInvoicesOptionSelected,
                 areRulesEnabled: isRulesOptionSelected,
                 areWorkflowsEnabled: isWorkflowsOptionSelected,
                 areReportFieldsEnabled: isReportsOptionSelected,
@@ -4334,54 +4331,6 @@ function enableDistanceRequestTax(policyID: string, customUnitName: string, cust
         }),
     };
     API.write(WRITE_COMMANDS.ENABLE_DISTANCE_REQUEST_TAX, params, onyxData);
-}
-
-function enablePolicyInvoicing(policyID: string, enabled: boolean) {
-    const onyxData: OnyxData = {
-        optimisticData: [
-            {
-                onyxMethod: Onyx.METHOD.MERGE,
-                key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-                value: {
-                    areInvoicesEnabled: enabled,
-                    pendingFields: {
-                        areInvoicesEnabled: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE,
-                    },
-                },
-            },
-        ],
-        successData: [
-            {
-                onyxMethod: Onyx.METHOD.MERGE,
-                key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-                value: {
-                    pendingFields: {
-                        areInvoicesEnabled: null,
-                    },
-                },
-            },
-        ],
-        failureData: [
-            {
-                onyxMethod: Onyx.METHOD.MERGE,
-                key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-                value: {
-                    areInvoicesEnabled: !enabled,
-                    pendingFields: {
-                        areInvoicesEnabled: null,
-                    },
-                },
-            },
-        ],
-    };
-
-    const parameters: EnablePolicyInvoicingParams = {policyID, enabled};
-
-    API.writeWithNoDuplicatesEnableFeatureConflicts(WRITE_COMMANDS.ENABLE_POLICY_INVOICING, parameters, onyxData);
-
-    if (enabled && getIsNarrowLayout()) {
-        goBackWhenEnableFeature(policyID);
-    }
 }
 
 function openPolicyMoreFeaturesPage(policyID: string) {
@@ -6343,7 +6292,6 @@ export {
     enablePolicyTaxes,
     enablePolicyWorkflows,
     enableDistanceRequestTax,
-    enablePolicyInvoicing,
     openPolicyMoreFeaturesPage,
     openPolicyProfilePage,
     openPolicyInitialPage,

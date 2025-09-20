@@ -1531,27 +1531,6 @@ const ROUTES = {
             return `workspaces/${policyID}/workflows/auto-reporting-frequency/monthly-offset` as const;
         },
     },
-    WORKSPACE_INVOICES: {
-        route: 'workspaces/:policyID/invoices',
-        getRoute: (policyID: string | undefined) => {
-            if (!policyID) {
-                Log.warn('Invalid policyID is used to build the WORKSPACE_INVOICES route');
-            }
-            return `workspaces/${policyID}/invoices` as const;
-        },
-    },
-    WORKSPACE_INVOICES_VERIFY_ACCOUNT: {
-        route: `workspaces/:policyID/invoices/${VERIFY_ACCOUNT}`,
-        getRoute: (policyID: string) => `workspaces/${policyID}/invoices/${VERIFY_ACCOUNT}` as const,
-    },
-    WORKSPACE_INVOICES_COMPANY_NAME: {
-        route: 'workspaces/:policyID/invoices/company-name',
-        getRoute: (policyID: string) => `workspaces/${policyID}/invoices/company-name` as const,
-    },
-    WORKSPACE_INVOICES_COMPANY_WEBSITE: {
-        route: 'workspaces/:policyID/invoices/company-website',
-        getRoute: (policyID: string) => `workspaces/${policyID}/invoices/company-website` as const,
-    },
     WORKSPACE_MEMBERS: {
         route: 'workspaces/:policyID/members',
         getRoute: (policyID: string | undefined) => {

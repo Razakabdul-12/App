@@ -31,7 +31,6 @@ import {
     enableCompanyCards,
     enableExpensifyCard,
     enablePolicyConnections,
-    enablePolicyInvoicing,
     enablePolicyReceiptPartners,
     enablePolicyRules,
     enablePolicyTaxes,
@@ -233,22 +232,6 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
         },
     ];
 
-    const earnItems: Item[] = [
-        {
-            icon: Illustrations.InvoiceBlue,
-            titleTranslationKey: 'workspace.moreFeatures.invoices.title',
-            subtitleTranslationKey: 'workspace.moreFeatures.invoices.subtitle',
-            isActive: policy?.areInvoicesEnabled ?? false,
-            pendingAction: policy?.pendingFields?.areInvoicesEnabled,
-            action: (isEnabled: boolean) => {
-                if (!policyID) {
-                    return;
-                }
-                enablePolicyInvoicing(policyID, isEnabled);
-            },
-        },
-    ];
-
     const organizeItems: Item[] = [
         {
             icon: Illustrations.FolderOpen,
@@ -377,11 +360,6 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
             titleTranslationKey: 'workspace.moreFeatures.spendSection.title',
             subtitleTranslationKey: 'workspace.moreFeatures.spendSection.subtitle',
             items: spendItems,
-        },
-        {
-            titleTranslationKey: 'workspace.moreFeatures.earnSection.title',
-            subtitleTranslationKey: 'workspace.moreFeatures.earnSection.subtitle',
-            items: earnItems,
         },
     ];
 

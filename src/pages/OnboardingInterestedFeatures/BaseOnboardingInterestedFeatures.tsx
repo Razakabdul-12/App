@@ -97,12 +97,6 @@ function BaseOnboardingInterestedFeatures({shouldUseNativeStyles}: BaseOnboardin
                 apiEndpoint: WRITE_COMMANDS.ENABLE_POLICY_WORKFLOWS,
             },
             {
-                id: FEATURE_IDS.INVOICES,
-                title: translate('workspace.moreFeatures.invoices.title'),
-                icon: Illustrations.InvoiceBlue,
-                apiEndpoint: WRITE_COMMANDS.ENABLE_POLICY_INVOICING,
-            },
-            {
                 id: FEATURE_IDS.RULES,
                 title: translate('workspace.moreFeatures.rules.title'),
                 icon: Illustrations.Rules,

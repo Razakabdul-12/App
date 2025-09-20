@@ -273,16 +273,14 @@ describe('actions/Policy', () => {
                     reports: true,
                     connections: true,
                     categories: true,
-                    tags: true,
-                    taxes: true,
-                    perDiem: true,
-                    reimbursements: true,
-                    expenses: true,
-                    customUnits: true,
-                    invoices: true,
-                    exportLayouts: true,
-                },
-            };
+                tags: true,
+                taxes: true,
+                perDiem: true,
+                expenses: true,
+                customUnits: true,
+                exportLayouts: true,
+            },
+        };
 
             Policy.duplicateWorkspace(fakePolicy, options);
             await waitForBatchedUpdates();
@@ -307,7 +305,6 @@ describe('actions/Policy', () => {
             expect(policy?.owner).toBe(fakePolicy.owner);
             expect(policy?.areWorkflowsEnabled).toBe(true);
             expect(policy?.areDistanceRatesEnabled).toBe(true);
-            expect(policy?.areInvoicesEnabled).toBe(true);
             expect(policy?.arePerDiemRatesEnabled).toBe(true);
             expect(policy?.approvalMode).toBe(fakePolicy.approvalMode);
             expect(policy?.approver).toBe(fakePolicy.approver);

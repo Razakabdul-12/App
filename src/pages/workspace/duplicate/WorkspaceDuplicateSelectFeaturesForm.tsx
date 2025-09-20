@@ -46,17 +46,11 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
     const customUnits = getPerDiemCustomUnit(policy);
     const customUnitRates: Record<string, Rate> = customUnits?.rates ?? {};
     const allRates = Object.values(customUnitRates)?.length;
-    const [bankAccountList] = useOnyx(ONYXKEYS.BANK_ACCOUNT_LIST, {canBeMissing: true});
-
     const accountingIntegrations = Object.values(CONST.POLICY.CONNECTIONS.NAME);
     const connectedIntegration = getAllValidConnectedIntegration(policy, accountingIntegrations);
 
     const customUnit = getDistanceRateCustomUnit(policy);
     const ratesCount = Object.keys(customUnit?.rates ?? {}).length;
-    const invoiceCompany =
-        policy?.invoice?.companyName && policy?.invoice?.companyWebsite
-            ? `${policy?.invoice?.companyName}, ${policy?.invoice?.companyWebsite}`
-            : (policy?.invoice?.companyName ?? policy?.invoice?.companyWebsite ?? '');
 
     const totalTags = useMemo(() => {
         if (!policyTags) {
@@ -157,14 +151,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
                       alternateText: allRates ? `${allRates} ${translate('workspace.common.perDiem').toLowerCase()}` : undefined,
                   }
                 : undefined,
-            // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-            (bankAccountList && Object.keys(bankAccountList).length) || !!invoiceCompany
-                ? {
-                      translation: translate('workspace.common.invoices'),
-                      value: 'invoices',
-                      alternateText: bankAccountList ? `${Object.keys(bankAccountList).length} ${translate('common.bankAccounts').toLowerCase()}, ${invoiceCompany}` : invoiceCompany,
-                  }
-                : undefined,
         ];
 
         return result.filter((item): item is NonNullable<typeof item> => !!item);
@@ -181,8 +167,6 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
         ratesCount,
         isCollect,
         allRates,
-        bankAccountList,
-        invoiceCompany,
     ]);
 
     const listData: ListItem[] = useMemo(() => {
@@ -223,10 +207,8 @@ function WorkspaceDuplicateSelectFeaturesForm({policyID}: WorkspaceDuplicateForm
                 tags: selectedItems.includes('tags'),
                 taxes: selectedItems.includes('taxes'),
                 perDiem: selectedItems.includes('perDiem'),
-                reimbursements: selectedItems.includes('invoices'),
                 expenses: selectedItems.includes('rules'),
                 customUnits: selectedItems.includes('distanceRates'),
-                invoices: selectedItems.includes('invoices'),
                 exportLayouts: selectedItems.includes('workflows'),
             },
             file: duplicatedWorkspaceAvatar,

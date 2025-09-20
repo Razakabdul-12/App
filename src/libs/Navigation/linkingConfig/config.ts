@@ -606,16 +606,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.WORKSPACE.SHARE]: {
                             path: ROUTES.WORKSPACE_OVERVIEW_SHARE.route,
                         },
-                        [SCREENS.WORKSPACE.INVOICES_COMPANY_NAME]: {
-                            path: ROUTES.WORKSPACE_INVOICES_COMPANY_NAME.route,
-                        },
-                        [SCREENS.WORKSPACE.INVOICES_COMPANY_WEBSITE]: {
-                            path: ROUTES.WORKSPACE_INVOICES_COMPANY_WEBSITE.route,
-                        },
-                        [SCREENS.WORKSPACE.INVOICES_VERIFY_ACCOUNT]: {
-                            path: ROUTES.WORKSPACE_INVOICES_VERIFY_ACCOUNT.route,
-                            exact: true,
-                        },
                         [SCREENS.WORKSPACE.COMPANY_CARDS_SELECT_FEED]: {
                             path: ROUTES.WORKSPACE_COMPANY_CARDS_SELECT_FEED.route,
                         },
@@ -1659,9 +1649,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                 },
                 [SCREENS.WORKSPACE.WORKFLOWS]: {
                     path: ROUTES.WORKSPACE_WORKFLOWS.route,
-                },
-                [SCREENS.WORKSPACE.INVOICES]: {
-                    path: ROUTES.WORKSPACE_INVOICES.route,
                 },
                 [SCREENS.WORKSPACE.MEMBERS]: {
                     path: ROUTES.WORKSPACE_MEMBERS.route,
