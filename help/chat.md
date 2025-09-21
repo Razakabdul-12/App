@@ -113,21 +113,7 @@ To flag a message:
 ## Tutorials
 
 ### [Create Room] How do I create a chat room?
-To create a chat room:
-
-1. Press the **+** button and select **Start Chat**.
-2. Choose the **#Room** tab.
-3. Enter a name for the room (ensure it's unique within the workspace).
-4. Optionally, add a description.
-5. Select **Workspace** to assign the room to a workspace.
-6. Choose **Who can post** to set posting permissions (all members or only admins).
-7. Set **Visibility** to determine room accessibility:
-   - **Public**: Viewable by anyone (ideal for conferences).
-   - **Private**: Only invited individuals can find it.
-   - **Workspace**: Accessible by all workspace members.
-8. Press **Create room** to finalize the setup.
-
-*Note: Anyone, including those outside the workspace, can be invited to private or restricted rooms.*
+Room creation is now managed by workspace administrators. Reach out to an admin if you need a new room for your team.
 
 ### [Invite Members] How do I invite members to a chat group or room?
 Invite members using one of the following methods:
@@ -150,31 +136,13 @@ Invite members using one of the following methods:
 *Note*: These options are only for groups or rooms, not for private 1-on-1 chats.
 
 ### [Start a Private Chat] How do I start a private 1-on-1 chat?
-To start a private 1-on-1 chat:
-
-1. Press the **+** button and select **Start Chat**.
-2. Enter the name, email, or phone number of the person you want to chat with.
-3. Select their name to start a new chat with them.
-
-*Note: You cannot add more people to a private chat. To include additional participants, create a group chat.*
+Manual creation of new 1-on-1 chats is no longer available. Respond to existing messages in your Inbox or ask an admin to connect you with a new participant.
 
 ### [Start a Group Chat] How do I start a group chat?
-To start a group chat:
-
-1. Press the **+** button and select **Start Chat**.
-2. Enter the names, emails, or phone numbers of the participants and select **Add to group** for each.
-3. Press **Next** and update the group image or name if desired.
-   - **Name**: Select **Group Name**, enter the new name, and save.
-   - **Image**: Select the profile image, upload a new image, and adjust as needed.
-4. Press **Start group** to create the chat.
+Workspace administrators now control group chat creation. Contact an admin if you need a new space for team discussions.
 
 ### [Direct Message] How do I send a direct message?
-To send a direct message:
-
-1. Press **New Message**.
-2. Enter the recipient's email or phone.
-3. Type and send your message.
-4. Attach files using the attachment icon.
+Open the existing conversation in your Inbox, type your message, and press send. If you don't have an active thread with someone, request that they reach out or ask an admin to start the chat on your behalf.
 
 ### [Send and Format Messages] How do I send and format chat messages?
 To send and format chat messages:

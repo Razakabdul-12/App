@@ -15,7 +15,10 @@ import RenderHTML from './RenderHTML';
 import Tooltip from './Tooltip';
 
 type ReferralProgramCTAProps = {
-    referralContentType: typeof CONST.REFERRAL_PROGRAM.CONTENT_TYPES.SUBMIT_EXPENSE | typeof CONST.REFERRAL_PROGRAM.CONTENT_TYPES.START_CHAT;
+    referralContentType:
+        | typeof CONST.REFERRAL_PROGRAM.CONTENT_TYPES.SUBMIT_EXPENSE
+        | typeof CONST.REFERRAL_PROGRAM.CONTENT_TYPES.REFER_FRIEND
+        | typeof CONST.REFERRAL_PROGRAM.CONTENT_TYPES.SHARE_CODE;
     style?: StyleProp<ViewStyle>;
     onDismiss?: () => void;
 };
