@@ -157,9 +157,6 @@ function getOnboardingAdaptedState(state: PartialState<NavigationState>): Partia
 
     const routes = [];
     routes.push({name: onboardingRoute.name === SCREENS.ONBOARDING.WORKSPACES ? SCREENS.ONBOARDING.PERSONAL_DETAILS : SCREENS.ONBOARDING.PURPOSE});
-    if (onboardingRoute.name === SCREENS.ONBOARDING.INTERESTED_FEATURES) {
-        routes.push({name: SCREENS.ONBOARDING.EMPLOYEES});
-    }
     routes.push(onboardingRoute);
 
     return getRoutesWithIndex(routes);

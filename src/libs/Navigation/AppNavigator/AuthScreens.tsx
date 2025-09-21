@@ -230,7 +230,6 @@ function AuthScreens() {
     const [account] = useOnyx(ONYXKEYS.ACCOUNT, {
         canBeMissing: true,
     });
-    const [onboardingCompanySize] = useOnyx(ONYXKEYS.ONBOARDING_COMPANY_SIZE, {canBeMissing: true});
     const modal = useRef<OnyxTypes.Modal>({});
     const {isOnboardingCompleted} = useOnboardingFlowRouter();
     const [isOnboardingLoading] = useOnyx(ONYXKEYS.NVP_ONBOARDING, {canBeMissing: true, selector: (value) => !!value?.isLoading});
@@ -254,11 +253,11 @@ function AuthScreens() {
     const shouldRenderOnboardingExclusively = useMemo(() => {
         return (
             !CONFIG.IS_HYBRID_APP &&
-         
+
             isOnboardingCompleted === true &&
             (!!isOnboardingLoading || !!prevIsOnboardingLoading)
         );
-    }, [onboardingCompanySize, isOnboardingCompleted, isOnboardingLoading, prevIsOnboardingLoading]);
+    }, [isOnboardingCompleted, isOnboardingLoading, prevIsOnboardingLoading]);
 
     useEffect(() => {
         NavBarManager.setButtonStyle(theme.navigationBarButtonsStyle);

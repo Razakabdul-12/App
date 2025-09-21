@@ -17,7 +17,6 @@ import Animations from '@libs/Navigation/PlatformStackNavigation/navigationOptio
 import type {PlatformStackNavigationOptions} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {OnboardingModalNavigatorParamList} from '@libs/Navigation/types';
 import OnboardingRefManager from '@libs/OnboardingRefManager';
-import OnboardingEmployees from '@pages/OnboardingEmployees';
 import OnboardingPersonalDetails from '@pages/OnboardingPersonalDetails';
 import OnboardingPurpose from '@pages/OnboardingPurpose';
 import OnboardingWorkEmail from '@pages/OnboardingWorkEmail';
@@ -138,11 +137,6 @@ function OnboardingModalNavigator() {
                                 name={SCREENS.ONBOARDING.WORKSPACES}
                                 component={OnboardingWorkspaces}
                             />
-                            <Stack.Screen
-                                name={SCREENS.ONBOARDING.EMPLOYEES}
-                                component={OnboardingEmployees}
-                            />
-                          
                             <Stack.Screen
                                 name={SCREENS.ONBOARDING.WORKSPACE_OPTIONAL}
                                 component={OnboardingWorkspaceOptional}

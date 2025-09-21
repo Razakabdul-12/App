@@ -103,7 +103,6 @@ function NavigationRoot({authenticated, lastVisitedPath, initialUrl, onReady}: N
     });
     const [hasNonPersonalPolicy] = useOnyx(ONYXKEYS.HAS_NON_PERSONAL_POLICY, {canBeMissing: true});
     const [currentOnboardingPurposeSelected] = useOnyx(ONYXKEYS.ONBOARDING_PURPOSE_SELECTED, {canBeMissing: true});
-    const [currentOnboardingCompanySize] = useOnyx(ONYXKEYS.ONBOARDING_COMPANY_SIZE, {canBeMissing: true});
     const [onboardingInitialPath] = useOnyx(ONYXKEYS.ONBOARDING_LAST_VISITED_PATH, {canBeMissing: true});
 
     const previousAuthenticated = usePrevious(authenticated);
@@ -137,7 +136,6 @@ function NavigationRoot({authenticated, lastVisitedPath, initialUrl, onReady}: N
                     isUserFromPublicDomain: !!account.isFromPublicDomain,
                     hasAccessiblePolicies: !!account.hasAccessibleDomainPolicies,
                     currentOnboardingPurposeSelected,
-                    currentOnboardingCompanySize,
                     onboardingInitialPath,
                 }),
                 linkingConfig.config,

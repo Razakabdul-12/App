@@ -3214,7 +3214,6 @@ function doneCheckingPublicRoom() {
 function openReportFromDeepLink(
     url: string,
     currentOnboardingPurposeSelected: OnyxEntry<OnboardingPurpose>,
-    currentOnboardingCompanySize: OnyxEntry<OnboardingCompanySize>,
     onboardingInitialPath: OnyxEntry<string>,
     reports: OnyxCollection<Report>,
     isAuthenticated: boolean,
@@ -3350,7 +3349,6 @@ function openReportFromDeepLink(
                                     hasAccessiblePolicies: !!account?.hasAccessibleDomainPolicies,
                                     isUserFromPublicDomain: !!account?.isFromPublicDomain,
                                     currentOnboardingPurposeSelected,
-                                    currentOnboardingCompanySize,
                                     onboardingInitialPath,
                                 }),
                             onCompleted: handleDeeplinkNavigation,

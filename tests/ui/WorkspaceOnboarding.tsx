@@ -65,7 +65,7 @@ describe('OnboardingWorkspaces Page', () => {
         jest.clearAllMocks();
     });
 
-    it('should navigate to Onboarding employee page when skip is pressed and user is routed app via SMB', async () => {
+    it('should navigate to Onboarding interested features page when skip is pressed and user is routed app via SMB', async () => {
         await TestHelper.signInWithTestUser();
 
         await act(async () => {
@@ -91,14 +91,14 @@ describe('OnboardingWorkspaces Page', () => {
         fireEvent.press(skipButton, mockEvent);
 
         await waitFor(() => {
-            expect(navigate).toHaveBeenCalledWith(ROUTES.ONBOARDING_EMPLOYEES.getRoute());
+            expect(navigate).toHaveBeenCalledWith(ROUTES.ONBOARDING_INTERESTED_FEATURES.getRoute());
         });
 
         unmount();
         await waitForBatchedUpdatesWithAct();
     });
 
-    it('should navigate to Onboarding accounting page when skip is pressed and user is routed app via VSB', async () => {
+    it('should navigate to Onboarding interested features page when skip is pressed and user is routed app via VSB', async () => {
         await TestHelper.signInWithTestUser();
 
         await act(async () => {
@@ -124,7 +124,7 @@ describe('OnboardingWorkspaces Page', () => {
         fireEvent.press(skipButton, mockEvent);
 
         await waitFor(() => {
-            expect(navigate).toHaveBeenCalledWith(ROUTES.ONBOARDING_ACCOUNTING.getRoute());
+            expect(navigate).toHaveBeenCalledWith(ROUTES.ONBOARDING_INTERESTED_FEATURES.getRoute());
         });
 
         unmount();

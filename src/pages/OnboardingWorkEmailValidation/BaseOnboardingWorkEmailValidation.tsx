@@ -55,7 +55,7 @@ function BaseOnboardingWorkEmailValidation({shouldUseNativeStyles}: BaseOnboardi
         }
 
         if (isSmb) {
-            Navigation.navigate(ROUTES.ONBOARDING_EMPLOYEES.getRoute(), {forceReplace: true});
+            Navigation.navigate(ROUTES.ONBOARDING_INTERESTED_FEATURES.getRoute(), {forceReplace: true});
             return;
         }
 

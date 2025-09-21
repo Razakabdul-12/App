@@ -20,7 +20,7 @@ import OnboardingRefManager from '@libs/OnboardingRefManager';
 import type {TOnboardingRef} from '@libs/OnboardingRefManager';
 import variables from '@styles/variables';
 import {completeOnboarding} from '@userActions/Report';
-import {setOnboardingErrorMessage, setOnboardingPurposeSelected} from '@userActions/Welcome';
+import {setOnboardingCompanySize, setOnboardingErrorMessage, setOnboardingPurposeSelected} from '@userActions/Welcome';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import ROUTES from '@src/ROUTES';
@@ -58,8 +58,10 @@ function BaseOnboardingPurpose({shouldUseNativeStyles, shouldEnableMaxHeight, ro
 
     const theme = useTheme();
     const [onboardingErrorMessage, onboardingErrorMessageResult] = useOnyx(ONYXKEYS.ONBOARDING_ERROR_MESSAGE, {canBeMissing: true});
+    const [onboardingValues] = useOnyx(ONYXKEYS.NVP_ONBOARDING, {canBeMissing: true});
     const [onboardingPolicyID] = useOnyx(ONYXKEYS.ONBOARDING_POLICY_ID, {canBeMissing: true});
     const [onboardingAdminsChatReportID] = useOnyx(ONYXKEYS.ONBOARDING_ADMINS_CHAT_REPORT_ID, {canBeMissing: true});
+    const [onboardingCompanySize] = useOnyx(ONYXKEYS.ONBOARDING_COMPANY_SIZE, {canBeMissing: true});
     const [personalDetailsForm] = useOnyx(ONYXKEYS.FORMS.ONBOARDING_PERSONAL_DETAILS_FORM, {canBeMissing: true});
 
     const paddingHorizontal = onboardingIsMediumOrLargerScreenWidth ? styles.ph8 : styles.ph5;
@@ -84,7 +86,14 @@ function BaseOnboardingPurpose({shouldUseNativeStyles, shouldEnableMaxHeight, ro
                 setOnboardingPurposeSelected(choice);
                 setOnboardingErrorMessage('');
                 if (choice === CONST.ONBOARDING_CHOICES.MANAGE_TEAM) {
-                    Navigation.navigate(ROUTES.ONBOARDING_EMPLOYEES.getRoute(route.params?.backTo));
+                    if (!onboardingCompanySize) {
+                        const defaultCompanySize =
+                            onboardingValues?.signupQualifier === CONST.ONBOARDING_SIGNUP_QUALIFIERS.SMB
+                                ? CONST.ONBOARDING_COMPANY_SIZE.SMALL
+                                : CONST.ONBOARDING_COMPANY_SIZE.MICRO;
+                        setOnboardingCompanySize(defaultCompanySize);
+                    }
+                    Navigation.navigate(ROUTES.ONBOARDING_INTERESTED_FEATURES.getRoute(route.params?.backTo));
                     return;
                 }
 
