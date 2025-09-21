@@ -47,7 +47,7 @@ Once booked, everything else is automated.
 
 **4. Workspace policy and accounting sync**
 - Expenses follow your workspace’s rules for categories, tags, and GL codes.
-- If you’ve connected an accounting tool like **QuickBooks** or **Xero**, expenses sync automatically after approval or reimbursement.
+- If you’ve connected an accounting tool like **QuickBooks**, expenses sync automatically after approval or reimbursement.
 
 ---
 

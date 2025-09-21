@@ -31,7 +31,7 @@ If you don’t already have an account, sign up at [new.expensify.com](https://n
 For small businesses, we recommend the **Control Plan** because:
 - It supports high-volume expense submissions.
 - It enforces compliance controls.
-- It integrates with QuickBooks Online and Xero.
+- It integrates with QuickBooks Online.
 
 ## Set Up a Control Workspace
 1. Go to Settings > Workspace.
@@ -48,7 +48,6 @@ Sync Expensify with your accounting software for real-time financial tracking:
 1. Navigate to **Settings > Workspace > [Workspace Name] > Accounting**.
 2. Select your accounting system and follow the setup prompts:
      - [QuickBooks Online](https://help.expensify.com/articles/expensify-classic/integrations/accounting-integrations/QuickBooks-Online)
-     - [Xero](https://help.expensify.com/articles/expensify-classic/integrations/accounting-integrations/Xero)
 
 ---
 

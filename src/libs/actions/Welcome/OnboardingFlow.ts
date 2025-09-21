@@ -249,9 +249,7 @@ const getOnboardingMessages = (hasIntroSelected = false, locale?: Locale) => {
     const addAccountingIntegrationTask: OnboardingTask = {
         type: CONST.ONBOARDING_TASK_TYPE.ADD_ACCOUNTING_INTEGRATION,
         autoCompleted: false,
-        mediaAttributes: {
-            [`${CONST.CLOUDFRONT_URL}/${CONST.connectionsVideoPaths[CONST.ONBOARDING_ACCOUNTING_MAPPING.xero]}`]: `data-expensify-thumbnail-url="${CONST.CLOUDFRONT_URL}/images/walkthrough-connect_to_xero.png" data-expensify-width="1920" data-expensify-height="1080"`,
-        },
+        mediaAttributes: {},
         title: ({integrationName, workspaceAccountingLink}) => translate(resolvedLocale, 'onboarding.tasks.addAccountingIntegrationTask.title', {integrationName, workspaceAccountingLink}),
         description: ({integrationName, workspaceAccountingLink}) =>
             translate(resolvedLocale, 'onboarding.tasks.addAccountingIntegrationTask.description', {integrationName, workspaceAccountingLink}),

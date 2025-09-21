@@ -1691,14 +1691,7 @@ const translations = {
         copy: '复制',
         disable: '禁用',
         enableTwoFactorAuth: '启用双重身份验证',
-        pleaseEnableTwoFactorAuth: '请启用双因素认证。',
-        twoFactorAuthIsRequiredDescription: '出于安全考虑，Xero 需要双重身份验证才能连接集成。',
-        twoFactorAuthIsRequiredForAdminsHeader: '需要双重身份验证',
-        twoFactorAuthIsRequiredForAdminsTitle: '请启用双重身份验证',
-        twoFactorAuthIsRequiredForAdminsDescription: '您的Xero会计连接需要使用双重身份验证。要继续使用Expensify，请启用它。',
-        twoFactorAuthCannotDisable: '无法禁用双重身份验证',
-        twoFactorAuthRequired: '您的Xero连接需要双因素认证（2FA），且无法禁用。',
-    },
+        pleaseEnableTwoFactorAuth: '请启用双因素认证。',        twoFactorAuthCannotDisable: '无法禁用双重身份验证',    },
     recoveryCodeForm: {
         error: {
             pleaseFillRecoveryCode: '请输入您的恢复代码',
@@ -3572,90 +3565,7 @@ const translations = {
             joinNow: '立即加入',
             askToJoin: '请求加入',
         },
-        xero: {
-            organization: 'Xero 组织',
-            organizationDescription: '选择您想要从中导入数据的Xero组织。',
-            importDescription: '选择从Xero导入到Expensify的编码配置。',
-            accountsDescription: '您的Xero会计科目表将作为类别导入到Expensify中。',
-            accountsSwitchTitle: '选择将新账户导入为启用或禁用的类别。',
-            accountsSwitchDescription: '启用的类别将在成员创建费用时可供选择。',
-            trackingCategories: '跟踪类别',
-            trackingCategoriesDescription: '选择如何在Expensify中处理Xero跟踪类别。',
-            mapTrackingCategoryTo: ({categoryName}: CategoryNameParams) => `将 Xero ${categoryName} 映射到`,
-            mapTrackingCategoryToDescription: ({categoryName}: CategoryNameParams) => `选择将 ${categoryName} 映射到 Xero 的位置。`,
-            customers: '重新向客户开账单',
-            customersDescription: '选择是否在Expensify中重新向客户开账单。您的Xero客户联系人可以被标记到费用中，并将作为销售发票导出到Xero。',
-            taxesDescription: '选择如何在Expensify中处理Xero税款。',
-            notImported: '未导入',
-            notConfigured: '未配置',
-            trackingCategoriesOptions: {
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.DEFAULT]: 'Xero 联系人默认值',
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.TAG]: '标签',
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.REPORT_FIELD]: '报告字段',
-            },
-            exportDescription: '配置如何将Expensify数据导出到Xero。',
-            purchaseBill: '采购账单',
-            exportDeepDiveCompanyCard: '导出的费用将作为银行交易发布到下面的Xero银行账户，交易日期将与您的银行对账单上的日期相匹配。',
-            bankTransactions: '银行交易',
-            xeroBankAccount: 'Xero 银行账户',
-            xeroBankAccountDescription: '选择将费用发布为银行交易的位置。',
-            exportExpensesDescription: '报告将导出为采购账单，并带有以下选择的日期和状态。',
-            purchaseBillDate: '购买账单日期',
-            exportInvoices: '将发票导出为',
-            salesInvoice: '销售发票',
-            exportInvoicesDescription: '销售发票始终显示发票发送的日期。',
-            advancedConfig: {
-                autoSyncDescription: 'Expensify将每天自动与Xero同步。',
-                purchaseBillStatusTitle: '购买账单状态',
-                reimbursedReportsDescription: '每当使用 Expensify ACH 支付报告时，相应的账单付款将在下面的 Xero 账户中创建。',
-                xeroBillPaymentAccount: 'Xero账单支付账户',
-                xeroInvoiceCollectionAccount: 'Xero发票收款账户',
-                xeroBillPaymentAccountDescription: '选择支付账单的账户，我们将在Xero中创建付款。',
-                invoiceAccountSelectorDescription: '选择接收发票付款的账户，我们将在Xero中创建付款。',
-            },
-            exportDate: {
-                label: '购买账单日期',
-                description: '导出报告到Xero时使用此日期。',
-                values: {
-                    [CONST.XERO_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: '最后报销日期',
-                        description: '报告中最近费用的日期。',
-                    },
-                    [CONST.XERO_EXPORT_DATE.REPORT_EXPORTED]: {
-                        label: '导出日期',
-                        description: '报告导出到Xero的日期。',
-                    },
-                    [CONST.XERO_EXPORT_DATE.REPORT_SUBMITTED]: {
-                        label: '提交日期',
-                        description: '报告提交审批的日期。',
-                    },
-                },
-            },
-            invoiceStatus: {
-                label: '购买账单状态',
-                description: '将此状态用于导出采购账单到Xero。',
-                values: {
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.DRAFT]: '草稿',
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.AWAITING_APPROVAL]: '等待批准',
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.AWAITING_PAYMENT]: '等待付款',
-                },
-            },
-            noAccountsFound: '未找到账户',
-            noAccountsFoundDescription: '请在Xero中添加账户并再次同步连接',
-            accountingMethods: {
-                label: '何时导出',
-                description: '选择何时导出费用：',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '应计',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '现金',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '自付费用将在最终批准时导出',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '自付费用将在支付时导出',
-                },
-            },
-        },
-        type: {
+type: {
             free: '免费',
             control: '控制',
             collect: '收集',
@@ -3938,9 +3848,7 @@ const translations = {
                 cardNumber: '卡号',
                 cardholder: '持卡人',
                 cardName: '卡片名称',
-                integrationExport: ({integration, type}: IntegrationExportParams) => (integration && type ? `${integration} ${type.toLowerCase()} 导出` : `${integration} 导出`),
-                integrationExportTitleXero: ({integration}: IntegrationExportParams) => `选择应导出交易的${integration}账户。`,
-                integrationExportTitle: ({integration, exportPageLink}: IntegrationExportParams) =>
+                integrationExport: ({integration, type}: IntegrationExportParams) => (integration && type ? `${integration} ${type.toLowerCase()} 导出` : `${integration} 导出`),                integrationExportTitle: ({integration, exportPageLink}: IntegrationExportParams) =>
                     `选择应导出交易的${integration}账户。选择不同的<a href="${exportPageLink}">导出选项</a>，更改可用账户。`,
                 lastUpdated: '最后更新',
                 transactionStartDate: '交易开始日期',
@@ -4014,379 +3922,6 @@ const translations = {
                 subtitle: '为支出设置自定义字段。',
             },
             connections: {
-                title: '会计',
-                subtitle: '同步您的会计科目表及更多内容。',
-            },            connectionsWarningModal: {
-                featureEnabledTitle: '慢着...',
-                featureEnabledText: '要启用或禁用此功能，您需要更改会计导入设置。',
-                disconnectText: '要禁用会计功能，您需要从工作区断开会计连接。',
-                manageSettings: '管理设置',
-            },            workflowWarningModal: {
-                featureEnabledTitle: '慢着...',
-                featureEnabledText: '此工作区的Expensify卡片依赖审批工作流程来定义其智能限额。\n\n请在禁用工作流程之前更改任何具有智能限额的卡片的限额类型。',
-                confirmText: '前往Expensify卡片',
-            },
-            rules: {
-                title: '规则',
-                subtitle: '需要收据，标记高消费等。',
-            },
-        },
-        reports: {
-            reportsCustomTitleExamples: '示例：',
-            customReportNamesSubtitle: `<muted-text>使用我们<a href="${CONST.CUSTOM_REPORT_NAME_HELP_URL}">丰富的公式</a>自定义报告标题。</muted-text>`,
-            customNameTitle: '默认报告标题',
-            customNameDescription: `使用我们的<a href="${CONST.CUSTOM_REPORT_NAME_HELP_URL}">丰富公式</a>，为费用报告选择自定义名称。`,
-            customNameInputLabel: '名称',
-            customNameEmailPhoneExample: '成员的电子邮件或电话：{report:submit:from}',
-            customNameStartDateExample: '报告开始日期：{report:startdate}',
-            customNameWorkspaceNameExample: '工作区名称：{report:workspacename}',
-            customNameReportIDExample: '报告 ID: {report:id}',
-            customNameTotalExample: '总计：{report:total}。',
-            preventMembersFromChangingCustomNamesTitle: '禁止成员更改自定义报告名称',
-        },
-        reportFields: {
-            addField: '添加字段',
-            delete: '删除字段',
-            deleteFields: '删除字段',
-            findReportField: '查找报告字段',
-            deleteConfirmation: '您确定要删除此报告字段吗？',
-            deleteFieldsConfirmation: '您确定要删除这些报告字段吗？',
-            emptyReportFields: {
-                title: '您尚未创建任何报告字段',
-                subtitle: '在报告中添加一个自定义字段（文本、日期或下拉菜单）。',
-            },
-            subtitle: '报告字段适用于所有支出，当您希望提示输入额外信息时，它们会很有帮助。',
-            disableReportFields: '禁用报告字段',
-            disableReportFieldsConfirmation: '您确定吗？文本和日期字段将被删除，列表将被禁用。',
-            importedFromAccountingSoftware: '以下报告字段是从您的系统中导入的',
-            textType: '文本',
-            dateType: '日期',
-            dropdownType: '列表',
-            textAlternateText: '添加一个字段用于自由文本输入。',
-            dateAlternateText: '添加日历以选择日期。',
-            dropdownAlternateText: '添加一个选项列表供选择。',
-            nameInputSubtitle: '为报告字段选择一个名称。',
-            typeInputSubtitle: '选择要使用的报告字段类型。',
-            initialValueInputSubtitle: '输入一个起始值以显示在报告字段中。',
-            listValuesInputSubtitle: '这些值将出现在您的报告字段下拉菜单中。成员可以选择启用的值。',
-            listInputSubtitle: '这些值将出现在您的报告字段列表中。成员可以选择启用的值。',
-            deleteValue: '删除值',
-            deleteValues: '删除值',
-            disableValue: '禁用值',
-            disableValues: '禁用值',
-            enableValue: '启用值',
-            enableValues: '启用值',
-            emptyReportFieldsValues: {
-                title: '您尚未创建任何列表值',
-                subtitle: '在报告中添加自定义值。',
-            },
-            deleteValuePrompt: '您确定要删除此列表值吗？',
-            deleteValuesPrompt: '您确定要删除这些列表值吗？',
-            listValueRequiredError: '请输入列表值名称',
-            existingListValueError: '已存在具有此名称的列表值',
-            editValue: '编辑值',
-            listValues: '列出值',
-            addValue: '增加价值',
-            existingReportFieldNameError: '具有此名称的报表字段已存在',
-            reportFieldNameRequiredError: '请输入报告字段名称',
-            reportFieldTypeRequiredError: '请选择报告字段类型',
-            reportFieldInitialValueRequiredError: '请选择报告字段的初始值',
-            genericFailureMessage: '更新报告字段时发生错误。请再试一次。',
-        },
-        tags: {
-            tagName: '标签名称',
-            requiresTag: '成员必须标记所有费用',
-            trackBillable: '跟踪可计费费用',
-            customTagName: '自定义标签名称',
-            enableTag: '启用标签',
-            enableTags: '启用标签',
-            requireTag: 'Require tag',
-            requireTags: '需要标签',
-            notRequireTags: '不需要',
-            disableTag: '禁用标签',
-            disableTags: '禁用标签',
-            addTag: '添加标签',
-            editTag: '编辑标签',
-            editTags: '编辑标签',
-            findTag: '查找标签',
-            subtitle: '标签提供了更详细的方法来分类费用。',
-            dependentMultiLevelTagsSubtitle: ({importSpreadsheetLink}: DependentMultiLevelTagsSubtitleParams) =>
-                `<muted-text>您使用的是<a href="${CONST.IMPORT_TAGS_EXPENSIFY_URL_DEPENDENT_TAGS}">从属标记</a>。您可以<a href="${importSpreadsheetLink}">重新导入电子表格</a>来更新标签。</muted-text>`,
-            emptyTags: {
-                title: '您尚未创建任何标签',
-                //  We need to remove the subtitle and use the below one when we remove the canUseMultiLevelTags beta
-                subtitle: '添加标签以跟踪项目、地点、部门等。',
-                subtitleHTML: `<muted-text><centered-text>导入电子表格，为跟踪项目、地点、部门等添加标签。<a href="${CONST.IMPORT_TAGS_EXPENSIFY_URL}">了解有关</a>标签文件格式的更多信息。</centered-text></muted-text>`,
-                subtitleWithAccounting: ({accountingPageURL}: EmptyTagsSubtitleWithAccountingParams) =>
-                    `<muted-text><centered-text>您的标签目前是从会计连接导入的。请前往<a href="${accountingPageURL}">会计</a>部门进行更改。</centered-text></muted-text>`,
-            },
-            deleteTag: '删除标签',
-            deleteTags: '删除标签',
-            deleteTagConfirmation: '您确定要删除此标签吗？',
-            deleteTagsConfirmation: '您确定要删除这些标签吗？',
-            deleteFailureMessage: '删除标签时发生错误，请重试',
-            tagRequiredError: '标签名称是必需的',
-            existingTagError: '具有此名称的标签已存在',
-            invalidTagNameError: '标签名称不能为0。请选择其他值。',
-            genericFailureMessage: '更新标签时发生错误，请重试。',
-            importedFromAccountingSoftware: '以下标签是从您的...导入的',
-            glCode: 'GL代码',
-            updateGLCodeFailureMessage: '更新总账代码时发生错误，请重试。',
-            tagRules: '标签规则',
-            approverDescription: '审批人',
-            importTags: '导入标签',
-            importTagsSupportingText: '使用一种或多种标签对您的费用进行编码。',
-            configureMultiLevelTags: '配置您的多级标签列表。',
-            importMultiLevelTagsSupportingText: `这是您的标签预览。如果一切看起来不错，请点击下面导入它们。`,
-            importMultiLevelTags: {
-                firstRowTitle: '每个标签列表的第一行是标题。',
-                independentTags: '这些是独立标签',
-                glAdjacentColumn: '相邻列中有一个GL代码',
-            },
-            tagLevel: {
-                singleLevel: '单级标签',
-                multiLevel: '多级标签',
-            },
-            switchSingleToMultiLevelTagWarning: {
-                title: '切换标签级别',
-                prompt1: '切换标签级别将清除所有当前标签。',
-                prompt2: '我们建议您首先',
-                prompt3: '下载备份',
-                prompt4: '通过导出您的标签。',
-                prompt5: '了解更多',
-                prompt6: '关于标签级别。',
-            },
-            importedTagsMessage: ({columnCounts}: ImportedTagsMessageParams) =>
-                `我们在您的电子表格中找到了*${columnCounts} 列*。在包含标签名称的列旁边选择*名称*。您还可以在设置标签状态的列旁边选择*启用*。`,
-            cannotDeleteOrDisableAllTags: {
-                title: '无法删除或禁用所有标签',
-                description: `由于您的工作区需要标签，至少必须启用一个标签。`,
-            },
-            cannotMakeAllTagsOptional: {
-                title: '无法将所有标签设为可选',
-                description: `至少需要保留一个标签为必填项，因为您的工作区设置要求使用标签。`,
-            },
-            tagCount: () => ({
-                one: '1 标签',
-                other: (count: number) => `${count} 个标签`,
-            }),
-        },
-        taxes: {
-            subtitle: '添加税种名称、税率，并设置默认值。',
-            addRate: '添加费率',
-            workspaceDefault: '工作区默认货币',
-            foreignDefault: '外币默认值',
-            customTaxName: '自定义税名',
-            value: '值',
-            taxReclaimableOn: '可退税的',
-            taxRate: '税率',
-            findTaxRate: '查找税率',
-            error: {
-                taxRateAlreadyExists: '此税名已被使用',
-                taxCodeAlreadyExists: '此税码已被使用',
-                valuePercentageRange: '请输入0到100之间的有效百分比',
-                customNameRequired: '自定义税名是必需的',
-                deleteFailureMessage: '删除税率时发生错误。请重试或向Concierge寻求帮助。',
-                updateFailureMessage: '更新税率时发生错误。请重试或向Concierge寻求帮助。',
-                createFailureMessage: '创建税率时发生错误。请重试或向Concierge寻求帮助。',
-                updateTaxClaimableFailureMessage: '可报销部分必须小于距离费率金额',
-            },
-            deleteTaxConfirmation: '您确定要删除此税项吗？',
-            deleteMultipleTaxConfirmation: ({taxAmount}: TaxAmountParams) => `您确定要删除 ${taxAmount} 税款吗？`,
-            actions: {
-                delete: '删除费率',
-                deleteMultiple: '删除费率',
-                enable: '启用费率',
-                disable: '禁用费率',
-                enableTaxRates: () => ({
-                    one: '启用费率',
-                    other: '启用费率',
-                }),
-                disableTaxRates: () => ({
-                    one: '禁用费率',
-                    other: '禁用费率',
-                }),
-            },
-            importedFromAccountingSoftware: '以下税费是从您的',
-            taxCode: '税码',
-            updateTaxCodeFailureMessage: '更新税码时发生错误，请重试',
-        },
-        duplicateWorkspace: {
-            title: '命名您的新工作区',
-            selectFeatures: '选择要复制的功能',
-            whichFeatures: '您想要将哪些功能复制到您的新工作区？',
-            confirmDuplicate: '\n\n您想继续吗？',
-            categories: '类别和您的自动分类规则',
-            reimbursementAccount: '报销账户',
-            delayedSubmission: '延迟提交',
-            welcomeNote: '请开始使用我的新工作区',
-            confirmTitle: ({newWorkspaceName, totalMembers}: {newWorkspaceName?: string; totalMembers?: number}) =>
-                `您即将创建并与原始工作区中的 ${totalMembers ?? 0} 名成员共享 ${newWorkspaceName ?? ''}。`,
-        },
-        emptyWorkspace: {
-            title: '您没有任何工作区',
-            subtitle: '跟踪收据、报销费用、管理差旅、发送发票等。',
-            createAWorkspaceCTA: '开始使用',
-            features: {
-                trackAndCollect: '跟踪并收集收据',
-                reimbursements: '报销员工',
-                companyCards: '管理公司卡片',
-            },
-            notFound: '未找到工作区',
-            description: '聊天室是一个与多人讨论和合作的好地方。要开始协作，请创建或加入一个工作区。',
-        },
-        new: {
-            newWorkspace: '新工作区',
-            getTheExpensifyCardAndMore: '获取Expensify卡及更多内容',
-            confirmWorkspace: '确认工作区',
-            myGroupWorkspace: ({workspaceNumber}: {workspaceNumber?: number}) => `我的群组工作区${workspaceNumber ? ` ${workspaceNumber}` : ''}`,
-            workspaceName: ({userName, workspaceNumber}: NewWorkspaceNameParams) => `${userName}的工作区${workspaceNumber ? ` ${workspaceNumber}` : ''}`,
-        },
-        people: {
-            genericFailureMessage: '从工作区移除成员时发生错误，请重试。',
-            removeMembersPrompt: ({memberName}: {memberName: string}) => ({
-                one: `您确定要移除${memberName}吗？`,
-                other: '您确定要移除这些成员吗？',
-            }),
-            removeMembersWarningPrompt: ({memberName, ownerName}: RemoveMembersWarningPrompt) =>
-                `${memberName} 是此工作区的审批人。当您取消与他们共享此工作区时，我们将用工作区所有者 ${ownerName} 替换他们在审批流程中的角色。`,
-            removeMembersTitle: () => ({
-                one: '移除成员',
-                other: '移除成员',
-            }),
-            findMember: '查找成员',
-            removeWorkspaceMemberButtonTitle: '从工作区移除',
-            removeGroupMemberButtonTitle: '从群组中移除',
-            removeRoomMemberButtonTitle: '从聊天中移除',
-            removeMemberPrompt: ({memberName}: RemoveMemberPromptParams) => `您确定要移除${memberName}吗？`,
-            removeMemberTitle: '移除成员',
-            transferOwner: '转移所有者',
-            makeMember: '成为成员',
-            makeAdmin: '设为管理员',
-            makeAuditor: '创建审计员',
-            selectAll: '全选',
-            error: {
-                genericAdd: '添加此工作区成员时出现问题。',
-                cannotRemove: '您无法移除自己或工作区所有者',
-                genericRemove: '移除该工作区成员时出现问题。',
-            },
-            addedWithPrimary: '一些成员已使用他们的主要登录信息添加。',
-            invitedBySecondaryLogin: ({secondaryLogin}: SecondaryLoginParams) => `由次要登录 ${secondaryLogin} 添加。`,
-            workspaceMembersCount: ({count}: WorkspaceMembersCountParams) => `工作区成员总数：${count}`,
-            importMembers: '导入成员',
-        },
-        card: {
-            getStartedIssuing: '通过申请您的第一张虚拟或实体卡来开始。',
-            issueCard: '发卡',
-            issueNewCard: {
-                whoNeedsCard: '谁需要一张卡？',
-                findMember: '查找成员',
-                chooseCardType: '选择卡类型',
-                physicalCard: '实体卡',
-                physicalCardDescription: '非常适合经常消费的人',
-                virtualCard: '虚拟卡',
-                virtualCardDescription: '即时且灵活',
-                chooseLimitType: '选择限制类型',
-                smartLimit: '智能限额',
-                smartLimitDescription: '在需要批准之前花费不超过某个金额',
-                monthly: '每月',
-                monthlyDescription: '每月花费不超过一定金额',
-                fixedAmount: '固定金额',
-                fixedAmountDescription: '仅限一次性支出至某个金额',
-                setLimit: '设置限制',
-                cardLimitError: '请输入小于 $21,474,836 的金额',
-                giveItName: '给它起个名字',
-                giveItNameInstruction: '使其足够独特，以便与其他卡片区分开来。具体的使用案例更佳！',
-                cardName: '卡片名称',
-                letsDoubleCheck: '让我们仔细检查一下，确保一切正常。',
-                willBeReady: '此卡将立即可用。',
-                cardholder: '持卡人',
-                cardType: '卡类型',
-                limit: '限制',
-                limitType: '限制类型',
-                name: '名称',
-                disabledApprovalForSmartLimitError: '请在<strong>工作流程 > 添加审批</strong>中启用审批，然后再设置智能限制',
-            },
-            deactivateCardModal: {
-                deactivate: '停用',
-                deactivateCard: '停用卡片',
-                deactivateConfirmation: '停用此卡将拒绝所有未来的交易，并且无法撤销。',
-            },
-        },
-        accounting: {
-            settings: '设置',
-            title: '连接',
-            subtitle: '连接到您的会计系统，以使用您的科目表对交易进行编码，自动匹配付款，并保持您的财务同步。',
-            qbd: 'QuickBooks Desktop',
-            xero: 'Xero',
-            sap: 'SAP',
-            oracle: 'Oracle',
-            microsoftDynamics: 'Microsoft Dynamics',
-            talkYourOnboardingSpecialist: '与您的设置专家聊天。',
-            talkYourAccountManager: '与您的客户经理聊天。',
-            talkToConcierge: '与Concierge聊天。',
-            needAnotherAccounting: '需要其他会计软件吗？',
-            connectionName: ({connectionName}: ConnectionNameParams) => {
-                switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                        return 'Xero';
-
-                    default: {
-                        return '';
-                    }
-                }
-            },
-            errorODIntegration: '在 Expensify Classic 中设置的连接出现错误。',
-            goToODToFix: '请前往 Expensify Classic 解决此问题。',
-            goToODToSettings: '请前往 Expensify Classic 管理您的设置。',
-            setup: '连接',
-            lastSync: ({relativeDate}: LastSyncAccountingParams) => `上次同步时间为${relativeDate}`,
-            notSync: '未同步',
-            import: '导入',
-            export: '导出',
-            advanced: '高级',
-            other: '其他',
-            syncNow: '立即同步',
-            disconnect: '断开连接',
-            reinstall: '重新安装连接器',
-            disconnectTitle: ({connectionName}: OptionalParam<ConnectionNameParams> = {}) => {
-                const integrationName = connectionName && CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ? CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] : '集成';
-                return `断开 ${integrationName}`;
-            },
-            connectTitle: ({connectionName}: ConnectionNameParams) => `Connect ${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? '会计集成'}`,
-            syncError: ({connectionName}: ConnectionNameParams) => {
-                switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                        return '无法连接到Xero';
-                    case CONST.POLICY.CONNECTIONS.NAME.QBD:
-                        return '无法连接到 QuickBooks Desktop';
-                    default: {
-                        return '无法连接到集成';
-                    }
-                }
-            },
-            accounts: '科目表',
-            taxes: '税款',
-            imported: '已导入',
-            notImported: '未导入',
-            importAsCategory: '导入为类别',
-            importTypes: {
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.IMPORTED]: '已导入',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.TAG]: '导入为标签',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.DEFAULT]: '已导入',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.NOT_IMPORTED]: '未导入',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.NONE]: '未导入',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD]: '作为报告字段导入',
-            },
-            disconnectPrompt: ({connectionName}: OptionalParam<ConnectionNameParams> = {}) => {
-                const integrationName =
-                    connectionName && CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ? CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] : '此集成';
-                return `您确定要断开 ${integrationName} 吗？`;
-            },
-            connectPrompt: ({connectionName}: ConnectionNameParams) =>
-                `您确定要连接${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? '此会计集成'}吗？这将移除任何现有的会计连接。`,
-            enterCredentials: '输入您的凭证',
-            connections: {
                 syncStageName: ({stage}: SyncStageNameConnectionsParams) => {
                     switch (stage) {
                         case 'quickbooksDesktopImportCustomers':
@@ -4397,12 +3932,6 @@ const translations = {
                             return '导入账户';
                         case 'quickbooksDesktopImportClasses':
                             return '导入类别';
-                            return '导入位置';
-                            return '正在处理导入的数据';
-                            return '同步已报销报告和账单支付';
-                            return '导入税码';
-                        case 'startingImportXero':
-                            return '导入Xero数据';
                         case 'startingImportQBD':
                         case 'quickbooksDesktopImportMore':
                             return '导入 QuickBooks Desktop 数据';
@@ -4415,43 +3944,14 @@ const translations = {
                         case 'quickbooksDesktopImportSavePolicy':
                             return '导入保存策略';
                         case 'quickbooksDesktopWebConnectorReminder':
-                            return '仍在与QuickBooks同步数据... 请确保Web Connector正在运行';
-                        case 'xeroSyncStep':
-                            return '正在加载数据';
-                            return '更新类别';
-                            return '更新客户/项目';
-                            return '更新人员列表';
-                            return '更新报告字段';
+                            return '仍在与 QuickBooks 同步数据……请确保 Web Connector 正在运行';
                         case 'jobDone':
-                            return '正在等待导入的数据加载';
-                        case 'xeroSyncImportChartOfAccounts':
-                            return '同步会计科目表';
-                        case 'xeroSyncImportCategories':
-                            return '同步类别';
-                        case 'xeroSyncImportCustomers':
-                            return '同步客户';
-                        case 'xeroSyncXeroReimbursedReports':
-                            return '将Expensify报告标记为已报销';
-                        case 'xeroSyncExpensifyReimbursedReports':
-                            return '将 Xero 账单和发票标记为已支付';
-                        case 'xeroSyncImportTrackingCategories':
-                            return '同步跟踪类别';
-                        case 'xeroSyncImportBankAccounts':
-                            return '同步银行账户';
-                        case 'xeroSyncImportTaxRates':
-                            return '同步税率';
-                        case 'xeroCheckConnection':
-                            return '检查 Xero 连接';
-                        case 'xeroSyncTitle':
-                            return '正在同步 Xero 数据';
+                            return '等待导入的数据加载';
                         case 'quickbooksDesktopImportVendors':
                             return '导入供应商';
-
-
-
                         default: {
                             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-                            return `阶段的翻译缺失：${stage}`;
+                            return `缺少阶段的翻译：${stage}`;
                         }
                     }
                 },
@@ -4760,7 +4260,7 @@ const translations = {
                     pricingPage: '定价页面',
                     confirm: '您确定要降级并删除您的配置吗？',
                     warning: '此操作无法撤销。',
-                    benefit1: '会计连接（除 Xero 外）',
+                    benefit1: '会计连接',
                     benefit2: '智能费用规则',
                     benefit3: '多级审批工作流程',
                     benefit4: '增强的安全控制',
@@ -5958,7 +5458,7 @@ const translations = {
                 benefit3: '公司卡管理',
                 benefit4: '费用和差旅审批',
                 benefit5: '旅行预订和规则',
-                benefit6: 'QuickBooks/Xero 集成',
+                benefit6: 'QuickBooks 集成',
                 benefit7: '聊天关于费用、报告和房间',
                 benefit8: 'AI和人工支持',
             },

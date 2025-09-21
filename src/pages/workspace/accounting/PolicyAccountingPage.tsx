@@ -31,11 +31,8 @@ import {isAuthenticationError, isConnectionInProgress, isConnectionUnverified, r
 import {isExpensifyCardFullySetUp} from '@libs/CardUtils';
 import {
     areSettingsInErrorFields,
-    findCurrentXeroOrganization,
     getConnectedIntegration,
-    getCurrentXeroOrganizationName,
     getIntegrationLastSuccessfulDate,
-    getXeroTenants,
     hasAccountingConnections,
     hasSupportedOnlyOnOldDotIntegration,
     isControlPolicy,
@@ -100,8 +97,6 @@ function PolicyAccountingPage({policy}: PolicyAccountingPageProps) {
     const hasSyncError = shouldShowSyncError(policy, isSyncInProgress);
     const hasUnsupportedNDIntegration = !isEmptyObject(policy?.connections) && hasSupportedOnlyOnOldDotIntegration(policy);
 
-    const tenants = useMemo(() => getXeroTenants(policy), [policy]);
-    const currentXeroOrganization = findCurrentXeroOrganization(tenants, policy?.connections?.xero?.config?.tenantID);
     const shouldShowSynchronizationError = !!synchronizationError;
     const shouldShowReinstallConnectorMenuItem = shouldShowSynchronizationError && connectedIntegration === CONST.POLICY.CONNECTIONS.NAME.QBD;
     const shouldShowCardReconciliationOption = Object.values(allCardSettings ?? {})?.some((cardSetting) => isExpensifyCardFullySetUp(policy, cardSetting));
@@ -169,35 +164,6 @@ function PolicyAccountingPage({policy}: PolicyAccountingPageProps) {
         }
         setDateTimeToRelative('');
     }, [getDatetimeToRelative, successfulDate]);
-
-    const integrationSpecificMenuItems = useMemo(() => {
-        switch (connectedIntegration) {
-            case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                return !policy?.connections?.xero?.data?.tenants
-                    ? {}
-                    : {
-                          description: translate('workspace.xero.organization'),
-                          iconRight: Expensicons.ArrowRight,
-                          title: getCurrentXeroOrganizationName(policy),
-                          wrapperStyle: [styles.sectionMenuItemTopDescription],
-                          titleStyle: styles.fontWeightNormal,
-                          shouldShowRightIcon: tenants.length > 1,
-                          shouldShowDescriptionOnTop: true,
-                          onPress: () => {
-                              if (!(tenants.length > 1)) {
-                                  return;
-                              }
-                              Navigation.navigate(ROUTES.POLICY_ACCOUNTING_XERO_ORGANIZATION.getRoute(policyID, currentXeroOrganization?.id));
-                          },
-                          pendingAction: settingsPendingAction([CONST.XERO_CONFIG.TENANT_ID], policy?.connections?.xero?.config?.pendingFields),
-                          brickRoadIndicator: areSettingsInErrorFields([CONST.XERO_CONFIG.TENANT_ID], policy?.connections?.xero?.config?.errorFields)
-                              ? CONST.BRICK_ROAD_INDICATOR_STATUS.ERROR
-                              : undefined,
-                      };
-            default:
-                return undefined;
-        }
-    }, [connectedIntegration, currentXeroOrganization?.id, policy, policyID, styles.fontWeightNormal, styles.sectionMenuItemTopDescription, tenants.length, translate]);
 
     const connectionsMenuItems: MenuItemData[] = useMemo(() => {
         if (isEmptyObject(policy?.connections) && !isSyncInProgress && policyID) {
@@ -306,7 +272,7 @@ function PolicyAccountingPage({policy}: PolicyAccountingPageProps) {
             },
         ];
 
-        return [
+        const menuItems: MenuItemData[] = [
             {
                 ...iconProps,
                 interactive: false,
@@ -333,9 +299,10 @@ function PolicyAccountingPage({policy}: PolicyAccountingPageProps) {
                     />
                 ),
             },
-            ...(isEmptyObject(integrationSpecificMenuItems) || shouldShowSynchronizationError || isEmptyObject(policy?.connections) ? [] : [integrationSpecificMenuItems]),
             ...(isEmptyObject(policy?.connections) || !isConnectionVerified ? [] : configurationOptions),
         ];
+
+        return menuItems;
     }, [
         policy,
         isSyncInProgress,
@@ -353,7 +320,6 @@ function PolicyAccountingPage({policy}: PolicyAccountingPageProps) {
         synchronizationError,
         theme.spinner,
         overflowMenu,
-        integrationSpecificMenuItems,
         accountingIntegrations,
         isOffline,
         startIntegrationFlow,

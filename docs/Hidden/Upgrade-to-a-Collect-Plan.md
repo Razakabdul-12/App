@@ -12,7 +12,6 @@ The Collect plan is an enhanced version of the Free Plan and unlocks several new
 - Custom expense categories and tags
 - Multiple active expense reports at a time
 - Direct connection to Quickbooks Online
-- Direct connection to Xero (coming soon!)
 
 **The upgrade is free until June 1st!** 
 

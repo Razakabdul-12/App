@@ -19,7 +19,7 @@ Add teammates to your workspace to manage expenses and approvals in one central 
 Toggle on **Add Approvals** under **Workflows** to set a default first approver. Create custom approval flows for individual team members if needed.
 
 ## Connect your accounting system
-Link your workspace with QuickBooks Online or Xero to sync expenses like a pro.
+Link your workspace with QuickBooks Online to sync expenses like a pro.
 
 ## Enhance your workspace with extra features
 Under **More Features**, enable extras like the Expensify Card, distance rates, custom categories and tags, and company card connections.

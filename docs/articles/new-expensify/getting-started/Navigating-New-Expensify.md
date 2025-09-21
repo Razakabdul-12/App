@@ -56,7 +56,7 @@ From the **Workspaces** tab, you can:
 - **Access workspace settings** – Click on a workspace to manage its name, default currency, and icon.
 - **Manage members** – Invite or remove members, set roles, and transfer billing ownership under the **People** section.
 - **Enable features** – Turn on or off modules like Company Cards, Workflows, Tags, Distance tracking, and more via the **More features** menu.
-- **Set up accounting connections** – Integrate tools like QuickBooks or Xero under **Accounting**.
+- **Set up accounting connections** – Integrate tools like QuickBooks under **Accounting**.
 - **Edit categories and tags** – Create or disable expense categories and tags to organize expenses.
 
 **Tip:** All workspace-specific settings live under this tab, while account-level settings (including billing and subscription management) live under the **Account** tab.

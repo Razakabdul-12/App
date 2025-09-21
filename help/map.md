@@ -256,7 +256,6 @@ Lost in the app?  Let this map guide you!
             * Connections list
                 * QuickBooks Online Connect
                 * QuickBooks Desktop Connect
-                * Xero
         * More features
             * Spend
                 * Distance rates

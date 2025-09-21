@@ -26,10 +26,6 @@ Link your workspace directly to your accounting system to make expense tracking 
 - Chart of accounts sync  
 - Custom field mapping  
 
-**Xero**  
-- Auto-sync approved reports  
-- Import tracking categories  
-- Manage tax rates seamlessly  
 
 ## What Syncs Automatically
 
@@ -50,4 +46,3 @@ Link your workspace directly to your accounting system to make expense tracking 
 ## Learn More
 
 - [Connect to QuickBooks Online](https://help.expensify.com/articles/new-expensify/connections/quickbooks-online/Connect-to-QuickBooks-Online)  
-- [Connect to Xero](https://help.expensify.com/articles/new-expensify/connections/xero/Connect-to-Xero)  

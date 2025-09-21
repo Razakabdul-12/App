@@ -3,21 +3,6 @@ import type {Connections} from '@src/types/onyx/Policy';
 
 // Provide minimal connection data for tests that rely on a workspace having accounting integrations enabled.
 const connections = {
-    [CONST.POLICY.CONNECTIONS.NAME.QBO]: {
-        config: {
-            autoSync: {
-                enabled: false,
-                jobID: '',
-            },
-        },
-    },
-    [CONST.POLICY.CONNECTIONS.NAME.XERO]: {
-        config: {
-            autoSync: {
-                enabled: false,
-            },
-        },
-    },
     [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
         config: {
             autoSync: {

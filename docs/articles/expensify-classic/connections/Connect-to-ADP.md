@@ -5,7 +5,7 @@ keywords: [Expensify, ADP integration, payroll export, custom export format, exp
 ---
 
 
-Expensify’s API helps connect your account to third-party tools like Xero and even internal systems like Workday. This guide includes tips, usage examples, and common troubleshooting questions — many sourced from customers who’ve done it before.
+Expensify’s API helps connect your account to third-party tools like QuickBooks Online and even internal systems like Workday. This guide includes tips, usage examples, and common troubleshooting questions — many sourced from customers who’ve done it before.
 
 ---
 

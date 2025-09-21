@@ -33,7 +33,7 @@ You can add a list of single tags by importing them via .csv, .txt, .xls, or .xl
 
 # Automatic Import via Accounting Integration
 
-When you first connect your accounting integration (for example, QuickBooks Online, QuickBooks Desktop, or Xero), you’ll configure classes, customers, projects, department locations, etc., that automatically import into Expensify as tags.
+When you first connect your accounting integration (for example, QuickBooks Online or QuickBooks Desktop), you’ll configure classes, customers, projects, department locations, etc., that automatically import into Expensify as tags.
 
 To update your tags in Expensify, you must first update the tag in your accounting system:
 - Head to **Settings > Workspace > [Workspace Name] > Accounting**.

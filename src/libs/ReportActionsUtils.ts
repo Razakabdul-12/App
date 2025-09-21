@@ -111,11 +111,6 @@ let oldDotEnvironmentURL: string;
 getOldDotEnvironmentURL().then((url: string) => (oldDotEnvironmentURL = url));
 
 /*
- * Url to the Xero non reimbursable expenses list
- */
-const XERO_NON_REIMBURSABLE_EXPENSES_URL = 'https://go.xero.com/Bank/BankAccounts.aspx';
-
-/*
  * Url prefix to any Salesforce transaction or transaction list.
  */
 const SALESFORCE_EXPENSES_URL_PREFIX = 'https://login.salesforce.com/';
@@ -1976,9 +1971,6 @@ function getExportIntegrationActionFragments(reportAction: OnyxEntry<ReportActio
             url = nonReimbursableUrl.startsWith('https://') ? nonReimbursableUrl : '';
         } else {
             switch (label) {
-                case CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY.xero:
-                    url = XERO_NON_REIMBURSABLE_EXPENSES_URL;
-                    break;
                 case CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY.financialForce:
                     // The first three characters in a Salesforce ID is the expense type
                     url = nonReimbursableUrls.at(0)?.substring(0, SALESFORCE_EXPENSES_URL_PREFIX.length + 3) ?? '';

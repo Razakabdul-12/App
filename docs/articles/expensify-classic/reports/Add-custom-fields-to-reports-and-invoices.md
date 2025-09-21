@@ -8,7 +8,7 @@ Workspace Admins can add custom fields to reports or invoices to collect importa
 
 🔒 **Control plan required and integration limitations:**
 - Report fields are only available on the Control plan.
-- You cannot create report fields directly in Expensify if you are connected to an accounting integration (QuickBooks Online, QuickBooks Desktop, or Xero).
+- You cannot create report fields directly in Expensify if you are connected to an accounting integration (QuickBooks Online or QuickBooks Desktop).
 - Please refer to [the relevant article on this page](https://help.expensify.com/expensify-classic/hubs/connections/) for instructions on creating fields within your accounting integration. 
 
 ---
