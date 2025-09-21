@@ -70,6 +70,7 @@ describe('OnboardingPersonalDetails Page', () => {
             isSmallScreenWidth: false,
             shouldUseNarrowLayout: false,
         } as ResponsiveLayoutResult);
+        jest.spyOn(Navigation, 'isNavigationReady').mockReturnValue(Promise.resolve());
     });
 
     afterEach(async () => {
@@ -79,7 +80,7 @@ describe('OnboardingPersonalDetails Page', () => {
         jest.clearAllMocks();
     });
 
-    it('should navigate to Onboarding workspaces page when submitting form and user is routed app via VSB with unvalidated account and private domain', async () => {
+    it('should complete onboarding when submitting form and user is routed app via VSB with unvalidated account and private domain', async () => {
         await TestHelper.signInWithTestUser();
 
         // Setup account as private domain and has accessible policies
@@ -103,14 +104,14 @@ describe('OnboardingPersonalDetails Page', () => {
         fireEvent.press(screen.getByText(translateLocal('common.continue')));
 
         await waitFor(() => {
-            expect(navigate).toHaveBeenCalledWith(ROUTES.ONBOARDING_WORKSPACES.getRoute());
+            expect(navigate).toHaveBeenCalledWith(ROUTES.TEST_DRIVE_MODAL_ROOT.route);
         });
 
         unmount();
         await waitForBatchedUpdatesWithAct();
     });
 
-    it('should navigate to Onboarding workspaces page when submitting form and user is routed app via SMB with unvalidated account and private domain', async () => {
+    it('should complete onboarding when submitting form and user is routed app via SMB with unvalidated account and private domain', async () => {
         await TestHelper.signInWithTestUser();
 
         // Setup account as private domain and has accessible policies
@@ -134,7 +135,7 @@ describe('OnboardingPersonalDetails Page', () => {
         fireEvent.press(screen.getByText(translateLocal('common.continue')));
 
         await waitFor(() => {
-            expect(navigate).toHaveBeenCalledWith(ROUTES.ONBOARDING_WORKSPACES.getRoute());
+            expect(navigate).toHaveBeenCalledWith(ROUTES.TEST_DRIVE_MODAL_ROOT.route);
         });
 
         unmount();

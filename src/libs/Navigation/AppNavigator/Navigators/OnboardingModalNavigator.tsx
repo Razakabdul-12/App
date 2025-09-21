@@ -19,11 +19,6 @@ import type {OnboardingModalNavigatorParamList} from '@libs/Navigation/types';
 import OnboardingRefManager from '@libs/OnboardingRefManager';
 import OnboardingPersonalDetails from '@pages/OnboardingPersonalDetails';
 import OnboardingPurpose from '@pages/OnboardingPurpose';
-import OnboardingWorkspaceConfirmation from '@pages/OnboardingWorkspaceConfirmation';
-import OnboardingWorkspaceCurrency from '@pages/OnboardingWorkspaceCurrency';
-import OnboardingWorkspaceInvite from '@pages/OnboardingWorkspaceInvite';
-import OnboardingWorkspaceOptional from '@pages/OnboardingWorkspaceOptional';
-import OnboardingWorkspaces from '@pages/OnboardingWorkspaces';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import SCREENS from '@src/SCREENS';
@@ -37,18 +32,12 @@ function OnboardingModalNavigator() {
     const {onboardingIsMediumOrLargerScreenWidth} = useResponsiveLayout();
     const outerViewRef = React.useRef<View>(null);
     const [account, accountMetadata] = useOnyx(ONYXKEYS.ACCOUNT, {canBeMissing: true});
-    const [onboardingPurposeSelected] = useOnyx(ONYXKEYS.ONBOARDING_PURPOSE_SELECTED, {canBeMissing: true});
-    const [onboardingPolicyID] = useOnyx(ONYXKEYS.ONBOARDING_POLICY_ID, {canBeMissing: true});
     const isOnPrivateDomainAndHasAccessiblePolicies = !account?.isFromPublicDomain && account?.hasAccessibleDomainPolicies;
 
     let initialRouteName: ValueOf<typeof SCREENS.ONBOARDING> = SCREENS.ONBOARDING.PURPOSE;
 
     if (isOnPrivateDomainAndHasAccessiblePolicies) {
         initialRouteName = SCREENS.ONBOARDING.PERSONAL_DETAILS;
-    }
-
-    if (onboardingPurposeSelected === CONST.ONBOARDING_CHOICES.PERSONAL_SPEND && !!onboardingPolicyID) {
-        initialRouteName = SCREENS.ONBOARDING.WORKSPACE_INVITE;
     }
 
     const [accountID] = useOnyx(ONYXKEYS.SESSION, {
@@ -118,26 +107,6 @@ function OnboardingModalNavigator() {
                             <Stack.Screen
                                 name={SCREENS.ONBOARDING.PERSONAL_DETAILS}
                                 component={OnboardingPersonalDetails}
-                            />
-                            <Stack.Screen
-                                name={SCREENS.ONBOARDING.WORKSPACES}
-                                component={OnboardingWorkspaces}
-                            />
-                            <Stack.Screen
-                                name={SCREENS.ONBOARDING.WORKSPACE_OPTIONAL}
-                                component={OnboardingWorkspaceOptional}
-                            />
-                            <Stack.Screen
-                                name={SCREENS.ONBOARDING.WORKSPACE_CONFIRMATION}
-                                component={OnboardingWorkspaceConfirmation}
-                            />
-                            <Stack.Screen
-                                name={SCREENS.ONBOARDING.WORKSPACE_CURRENCY}
-                                component={OnboardingWorkspaceCurrency}
-                            />
-                            <Stack.Screen
-                                name={SCREENS.ONBOARDING.WORKSPACE_INVITE}
-                                component={OnboardingWorkspaceInvite}
                             />
                         </Stack.Navigator>
                     </View>
