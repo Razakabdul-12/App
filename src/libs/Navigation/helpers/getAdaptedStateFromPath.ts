@@ -149,17 +149,6 @@ function getDefaultFullScreenRoute(route?: NavigationPartialRoute) {
     return fallbackRoute;
 }
 
-function getOnboardingAdaptedState(state: PartialState<NavigationState>): PartialState<NavigationState> {
-    const onboardingRoute = state.routes.at(0);
-    if (!onboardingRoute || onboardingRoute.name === SCREENS.ONBOARDING.PURPOSE) {
-        return state;
-    }
-
-    const routes = [{name: SCREENS.ONBOARDING.PURPOSE}, onboardingRoute];
-
-    return getRoutesWithIndex(routes);
-}
-
 function getAdaptedState(state: PartialState<NavigationState<RootNavigatorParamList>>): GetAdaptedStateReturnType {
     const fullScreenRoute = state.routes.find((route) => isFullScreenName(route.name));
     const onboardingNavigator = state.routes.find((route) => route.name === NAVIGATORS.ONBOARDING_MODAL_NAVIGATOR);
@@ -192,9 +181,10 @@ function getAdaptedState(state: PartialState<NavigationState<RootNavigatorParamL
 
         // The onboarding flow consists of several screens. If we open any of the screens, the previous screens from that flow should be in the state.
         if (onboardingNavigator?.state) {
+            const onboardingRoutes = onboardingNavigator.state.routes;
             const adaptedOnboardingNavigator = {
                 ...onboardingNavigator,
-                state: getOnboardingAdaptedState(onboardingNavigator.state),
+                state: onboardingRoutes ? getRoutesWithIndex(onboardingRoutes) : onboardingNavigator.state,
             };
 
             return getRoutesWithIndex([defaultFullScreenRoute, adaptedOnboardingNavigator]);

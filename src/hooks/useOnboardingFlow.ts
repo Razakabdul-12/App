@@ -27,7 +27,6 @@ function useOnboardingFlowRouter() {
     const [onboardingValues, isOnboardingCompletedMetadata] = useOnyx(ONYXKEYS.NVP_ONBOARDING, {
         canBeMissing: true,
     });
-    const [currentOnboardingPurposeSelected] = useOnyx(ONYXKEYS.ONBOARDING_PURPOSE_SELECTED, {canBeMissing: true});
     const [onboardingInitialPath, onboardingInitialPathResult] = useOnyx(ONYXKEYS.ONBOARDING_LAST_VISITED_PATH, {canBeMissing: true});
     const isOnboardingInitialPathLoading = isLoadingOnyxValue(onboardingInitialPathResult);
 
@@ -107,7 +106,6 @@ function useOnboardingFlowRouter() {
                         onboardingValuesParam: onboardingValues,
                         isUserFromPublicDomain: !!account?.isFromPublicDomain,
                         hasAccessiblePolicies: !!account?.hasAccessibleDomainPolicies,
-                        currentOnboardingPurposeSelected,
                         onboardingInitialPath,
                     });
                 }
@@ -120,7 +118,6 @@ function useOnboardingFlowRouter() {
                     onboardingValuesParam: onboardingValues,
                     isUserFromPublicDomain: !!account?.isFromPublicDomain,
                     hasAccessiblePolicies: !!account?.hasAccessibleDomainPolicies,
-                    currentOnboardingPurposeSelected,
                     onboardingInitialPath,
                 });
             }
@@ -141,7 +138,6 @@ function useOnboardingFlowRouter() {
         account?.hasAccessibleDomainPolicies,
         currentUrl,
         isLoggingInAsNewSessionUser,
-        currentOnboardingPurposeSelected,
         onboardingInitialPath,
         isOnboardingInitialPathLoading,
         typeMenuSections,

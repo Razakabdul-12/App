@@ -2,7 +2,6 @@ import {CardStyleInterpolators} from '@react-navigation/stack';
 import {accountIDSelector} from '@selectors/Session';
 import React, {useCallback, useEffect, useMemo} from 'react';
 import {View} from 'react-native';
-import type {ValueOf} from 'type-fest';
 import NoDropZone from '@components/DragAndDrop/NoDropZone';
 import FocusTrapForScreens from '@components/FocusTrap/FocusTrapForScreen';
 import useKeyboardShortcut from '@hooks/useKeyboardShortcut';
@@ -16,9 +15,7 @@ import createPlatformStackNavigator from '@libs/Navigation/PlatformStackNavigati
 import Animations from '@libs/Navigation/PlatformStackNavigation/navigationOptions/animation';
 import type {PlatformStackNavigationOptions} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {OnboardingModalNavigatorParamList} from '@libs/Navigation/types';
-import OnboardingRefManager from '@libs/OnboardingRefManager';
 import OnboardingPersonalDetails from '@pages/OnboardingPersonalDetails';
-import OnboardingPurpose from '@pages/OnboardingPurpose';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import SCREENS from '@src/SCREENS';
@@ -31,14 +28,7 @@ function OnboardingModalNavigator() {
     const styles = useThemeStyles();
     const {onboardingIsMediumOrLargerScreenWidth} = useResponsiveLayout();
     const outerViewRef = React.useRef<View>(null);
-    const [account, accountMetadata] = useOnyx(ONYXKEYS.ACCOUNT, {canBeMissing: true});
-    const isOnPrivateDomainAndHasAccessiblePolicies = !account?.isFromPublicDomain && account?.hasAccessibleDomainPolicies;
-
-    let initialRouteName: ValueOf<typeof SCREENS.ONBOARDING> = SCREENS.ONBOARDING.PURPOSE;
-
-    if (isOnPrivateDomainAndHasAccessiblePolicies) {
-        initialRouteName = SCREENS.ONBOARDING.PERSONAL_DETAILS;
-    }
+    const [, accountMetadata] = useOnyx(ONYXKEYS.ACCOUNT, {canBeMissing: true});
 
     const [accountID] = useOnyx(ONYXKEYS.SESSION, {
         selector: accountIDSelector,
@@ -55,9 +45,7 @@ function OnboardingModalNavigator() {
         GoogleTagManager.publishEvent(CONST.ANALYTICS.EVENT.SIGN_UP, accountID);
     }, [accountID]);
 
-    const handleOuterClick = useCallback(() => {
-        OnboardingRefManager.handleOuterClick();
-    }, []);
+    const handleOuterClick = useCallback(() => {}, []);
 
     useKeyboardShortcut(CONST.KEYBOARD_SHORTCUTS.ESCAPE, handleOuterClick, {shouldBubble: true});
 
@@ -98,12 +86,8 @@ function OnboardingModalNavigator() {
                     >
                         <Stack.Navigator
                             screenOptions={defaultScreenOptions}
-                            initialRouteName={initialRouteName}
+                            initialRouteName={SCREENS.ONBOARDING.PERSONAL_DETAILS}
                         >
-                            <Stack.Screen
-                                name={SCREENS.ONBOARDING.PURPOSE}
-                                component={OnboardingPurpose}
-                            />
                             <Stack.Screen
                                 name={SCREENS.ONBOARDING.PERSONAL_DETAILS}
                                 component={OnboardingPersonalDetails}
