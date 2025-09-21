@@ -1343,12 +1343,7 @@ const ROUTES = {
         // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
         getRoute: (backTo?: string) => getUrlWithBackToParam(`onboarding/employees`, backTo),
     },
-    ONBOARDING_ACCOUNTING: {
-        route: 'onboarding/accounting',
 
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (backTo?: string) => getUrlWithBackToParam(`onboarding/accounting`, backTo),
-    },
     ONBOARDING_PURPOSE: {
         route: 'onboarding/purpose',
 
