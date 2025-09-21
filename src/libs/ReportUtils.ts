@@ -83,7 +83,7 @@ import type {AddCommentOrAttachmentParams} from './API/parameters';
 import {convertToDisplayString} from './CurrencyUtils';
 import DateUtils from './DateUtils';
 import {hasValidDraftComment} from './DraftCommentUtils';
-import {getEnvironment, getEnvironmentURL} from './Environment/Environment';
+import {getEnvironment, getEnvironmentURL, getOldDotEnvironmentURL} from './Environment/Environment';
 import type EnvironmentType from './Environment/getEnvironment/types';
 import {getMicroSecondOnyxErrorWithTranslationKey, isReceiptError} from './ErrorUtils';
 import getAttachmentDetails from './fileDownload/getAttachmentDetails';
@@ -902,6 +902,8 @@ let isAnonymousUser = false;
 
 let environmentURL: string;
 getEnvironmentURL().then((url: string) => (environmentURL = url));
+let oldDotEnvironmentURL: string;
+getOldDotEnvironmentURL().then((url: string) => (oldDotEnvironmentURL = url));
 let environment: EnvironmentType;
 getEnvironment().then((env) => {
     environment = env;
@@ -10186,7 +10188,10 @@ function prepareOnboardingOnyxData(
         workspaceMoreFeaturesLink: `${environmentURL}/${ROUTES.WORKSPACE_MORE_FEATURES.getRoute(onboardingPolicyID)}`,
         workspaceConfirmationLink: `${environmentURL}/${ROUTES.WORKSPACE_CONFIRMATION.getRoute(ROUTES.WORKSPACES_LIST.route)}`,
         testDriveURL: `${environmentURL}/${testDriveURL}`,
-        workspaceAccountingLink: `${environmentURL}/${ROUTES.POLICY_ACCOUNTING.getRoute(onboardingPolicyID)}`,
+        workspaceAccountingLink:
+            onboardingPolicyID && oldDotEnvironmentURL
+                ? `${oldDotEnvironmentURL}/policy?param=${encodeURIComponent(`{"policyID": "${onboardingPolicyID}"}`)}#connections`
+                : '',
         corporateCardLink: `${environmentURL}/${ROUTES.WORKSPACE_COMPANY_CARDS.getRoute(onboardingPolicyID)}`,
     };
 

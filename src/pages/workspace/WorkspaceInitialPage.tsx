@@ -6,7 +6,7 @@ import type {ValueOf} from 'type-fest';
 import FullPageNotFoundView from '@components/BlockingViews/FullPageNotFoundView';
 import HeaderWithBackButton from '@components/HeaderWithBackButton';
 import HighlightableMenuItem from '@components/HighlightableMenuItem';
-import {Building, Car, CreditCard, ExpensifyAppIcon, Folder, Gear, Sync, Users} from '@components/Icon/Expensicons';
+import {Building, Car, CreditCard, ExpensifyAppIcon, Folder, Gear, Users} from '@components/Icon/Expensicons';
 import MenuItem from '@components/MenuItem';
 import NavigationTabBar from '@components/Navigation/NavigationTabBar';
 import NAVIGATION_TABS from '@components/Navigation/NavigationTabBar/NAVIGATION_TABS';
@@ -25,7 +25,6 @@ import useSingleExecution from '@hooks/useSingleExecution';
 import useThemeStyles from '@hooks/useThemeStyles';
 import useWaitForNavigation from '@hooks/useWaitForNavigation';
 import {confirmReadyToOpenApp} from '@libs/actions/App';
-import {isConnectionInProgress} from '@libs/actions/connections';
 import {clearErrors, openPolicyInitialPage, removeWorkspace} from '@libs/actions/Policy/Policy';
 import {checkIfFeedConnectionIsBroken, flatAllCardsList, getCompanyFeeds} from '@libs/CardUtils';
 import Navigation from '@libs/Navigation/Navigation';
@@ -39,7 +38,6 @@ import {
     isPolicyAdmin,
     isPolicyFeatureEnabled,
     shouldShowEmployeeListError,
-    shouldShowSyncError,
 } from '@libs/PolicyUtils';
 import {getDefaultWorkspaceAvatar, getPolicyExpenseChat, getReportName, getReportOfflinePendingActionAndErrors} from '@libs/ReportUtils';
 import type WORKSPACE_TO_RHP from '@navigation/linkingConfig/RELATIONS/WORKSPACE_TO_RHP';
@@ -90,14 +88,12 @@ function WorkspaceInitialPage({policyDraft, policy: policyProp, route}: Workspac
     const hasPolicyCreationError = policy?.pendingAction === CONST.RED_BRICK_ROAD_PENDING_ACTION.ADD && !isEmptyObject(policy.errors);
     const [cardFeeds] = useCardFeeds(policy?.id);
     const [allFeedsCards] = useOnyx(`${ONYXKEYS.COLLECTION.WORKSPACE_CARDS_LIST}`, {canBeMissing: true});
-    const [connectionSyncProgress] = useOnyx(`${ONYXKEYS.COLLECTION.POLICY_CONNECTION_SYNC_PROGRESS}${policy?.id}`, {canBeMissing: true});
     const [currentUserLogin] = useOnyx(ONYXKEYS.SESSION, {selector: emailSelector, canBeMissing: false});
     const [policyCategories] = useOnyx(`${ONYXKEYS.COLLECTION.POLICY_CATEGORIES}${route.params?.policyID}`, {canBeMissing: true});
     const cardsDomainIDs = Object.values(getCompanyFeeds(cardFeeds))
         .map((data) => data.domainID)
         .filter((domainID): domainID is number => !!domainID);
     const {login, accountID} = useCurrentUserPersonalDetails();
-    const hasSyncError = shouldShowSyncError(policy, isConnectionInProgress(connectionSyncProgress, policy));
     const waitForNavigate = useWaitForNavigation();
     const {singleExecution, isExecuting} = useSingleExecution();
     const activeRoute = useNavigationState((state) => findFocusedRoute(state)?.name);
@@ -155,17 +151,6 @@ function WorkspaceInitialPage({policyDraft, policy: policyProp, route}: Workspac
     const workspaceMenuItems: WorkspaceMenuItem[] = useMemo(() => {
         const protectedMenuItems: WorkspaceMenuItem[] = [];
 
-        if (featureStates?.[CONST.POLICY.MORE_FEATURES.ARE_CONNECTIONS_ENABLED]) {
-            protectedMenuItems.push({
-                translationKey: 'workspace.common.accounting',
-                icon: Sync,
-                action: singleExecution(waitForNavigate(() => Navigation.navigate(ROUTES.POLICY_ACCOUNTING.getRoute(policyID)))),
-                brickRoadIndicator: hasSyncError ? CONST.BRICK_ROAD_INDICATOR_STATUS.ERROR : undefined,
-                screenName: SCREENS.WORKSPACE.ACCOUNTING.ROOT,
-                highlighted: highlightedFeature === CONST.POLICY.MORE_FEATURES.ARE_CONNECTIONS_ENABLED,
-            });
-        }
-
         if (featureStates?.[CONST.POLICY.MORE_FEATURES.ARE_CATEGORIES_ENABLED]) {
             protectedMenuItems.push({
                 translationKey: 'workspace.common.categories',
@@ -212,7 +197,6 @@ function WorkspaceInitialPage({policyDraft, policy: policyProp, route}: Workspac
         hasGeneralSettingsError,
         hasMembersError,
         hasPolicyCategoryError,
-        hasSyncError,
         highlightedFeature,
         policy,
         policyID,

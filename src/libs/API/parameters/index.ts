@@ -199,7 +199,6 @@ export type {default as ConvertTrackedExpenseToRequestParams} from './ConvertTra
 export type {default as ShareTrackedExpenseParams} from './ShareTrackedExpenseParams';
 export type {default as CategorizeTrackedExpenseParams} from './CategorizeTrackedExpenseParams';
 export type {default as LeavePolicyParams} from './LeavePolicyParams';
-export type {default as OpenPolicyAccountingPageParams} from './OpenPolicyAccountingPageParams';
 export type {default as DismissViolationParams} from './DismissViolationParams';
 export type {default as SearchParams} from './Search';
 export type {default as SendInvoiceParams} from './SendInvoiceParams';
