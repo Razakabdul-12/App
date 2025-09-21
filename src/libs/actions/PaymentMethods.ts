@@ -11,7 +11,6 @@ import type {
     MakeDefaultPaymentMethodParams,
     PaymentCardParams,
     SetInvoicingTransferBankAccountParams,
-    UpdateBillingCurrencyParams,
 } from '@libs/API/parameters';
 import {READ_COMMANDS, WRITE_COMMANDS} from '@libs/API/types';
 import * as CardUtils from '@libs/CardUtils';
@@ -225,15 +224,7 @@ function verifySetupIntent(accountID: number, isVerifying = true) {
     API.write(WRITE_COMMANDS.VERIFY_SETUP_INTENT, {accountID, isVerifying});
 }
 
-/**
- * Set currency for payments
- *
- */
-function setPaymentMethodCurrency(currency: ValueOf<typeof CONST.PAYMENT_CARD_CURRENCY>) {
-    Onyx.merge(ONYXKEYS.FORMS.ADD_PAYMENT_CARD_FORM, {
-        [INPUT_IDS.CURRENCY]: currency,
-    });
-}
+
 
 /**
  * Looks through each payment method to see if there is an existing error
@@ -295,54 +286,6 @@ function deletePaymentCard(fundID: number) {
 }
 
 /**
- * Call the API to change billing currency.
- *
- */
-function updateBillingCurrency(currency: ValueOf<typeof CONST.PAYMENT_CARD_CURRENCY>, cardCVV: string) {
-    const parameters: UpdateBillingCurrencyParams = {
-        cardCVV,
-        currency,
-    };
-
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.FORMS.CHANGE_BILLING_CURRENCY_FORM,
-            value: {
-                isLoading: true,
-                errors: null,
-            },
-        },
-    ];
-
-    const successData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.FORMS.CHANGE_BILLING_CURRENCY_FORM,
-            value: {
-                isLoading: false,
-            },
-        },
-    ];
-
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.FORMS.CHANGE_BILLING_CURRENCY_FORM,
-            value: {
-                isLoading: false,
-            },
-        },
-    ];
-
-    API.write(WRITE_COMMANDS.UPDATE_BILLING_CARD_CURRENCY, parameters, {
-        optimisticData,
-        successData,
-        failureData,
-    });
-}
-
-/**
  *  Sets the default bank account to use for receiving payouts from
  *
  */
@@ -395,10 +338,8 @@ export {
     continueSetup,
     clearPaymentCardFormErrorAndSubmit,
     hasPaymentMethodError,
-    updateBillingCurrency,
     clearDeletePaymentMethodError,
     clearAddPaymentMethodError,
-    setPaymentMethodCurrency,
     verifySetupIntent,
     addPaymentCardSCA,
     setInvoicingTransferBankAccount,

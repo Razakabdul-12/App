@@ -150,10 +150,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                             path: ROUTES.SETTINGS_LANGUAGE,
                             exact: true,
                         },
-                        [SCREENS.SETTINGS.ADD_PAYMENT_CARD_CHANGE_CURRENCY]: {
-                            path: ROUTES.SETTINGS_CHANGE_CURRENCY,
-                            exact: true,
-                        },
                         [SCREENS.SETTINGS.PREFERENCES.THEME]: {
                             path: ROUTES.SETTINGS_THEME,
                             exact: true,

@@ -67,7 +67,7 @@ function WorkspaceOwnerPaymentCardForm({policy}: WorkspaceOwnerPaymentCardFormPr
                 cardCVV: values.securityCode,
                 addressName: values.nameOnCard,
                 addressZip: values.addressZipCode,
-                currency: values.currency,
+                currency: values.currency ?? CONST.PAYMENT_CARD_CURRENCY.USD,
             };
             addBillingCardAndRequestPolicyOwnerChange(policyID, cardData);
         },
@@ -78,7 +78,6 @@ function WorkspaceOwnerPaymentCardForm({policy}: WorkspaceOwnerPaymentCardFormPr
         <PaymentCardForm
             shouldShowPaymentCardForm={shouldShowPaymentCardForm}
             addPaymentCard={addPaymentCard}
-            showCurrencyField
             submitButtonText={translate('workspace.changeOwner.addPaymentCardButtonText')}
             headerContent={<Text style={[styles.textHeadline, styles.mt3, styles.mb2, styles.ph5]}>{translate('workspace.changeOwner.addPaymentCardTitle')}</Text>}
             footerContent={

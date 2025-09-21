@@ -29,7 +29,7 @@ import type {Country} from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import ROUTES from '@src/ROUTES';
 import type {Route} from '@src/ROUTES';
-import type {InternationalBankAccountForm, PersonalBankAccountForm} from '@src/types/form';
+import type {PersonalBankAccountForm} from '@src/types/form';
 import type {ACHContractStepProps, BeneficialOwnersStepProps, CompanyStepProps, ReimbursementAccountForm, RequestorStepProps} from '@src/types/form/ReimbursementAccountForm';
 import type {LastPaymentMethod, LastPaymentMethodType, PersonalBankAccount} from '@src/types/onyx';
 import type PlaidBankAccount from '@src/types/onyx/PlaidBankAccount';
@@ -78,8 +78,7 @@ function clearPlaid(): Promise<void | void[]> {
 
 function clearInternationalBankAccount() {
     return clearPlaid()
-        .then(() => Onyx.set(ONYXKEYS.CORPAY_FIELDS, null))
-        .then(() => Onyx.set(ONYXKEYS.FORMS.INTERNATIONAL_BANK_ACCOUNT_FORM_DRAFT, null));
+        .then(() => Onyx.set(ONYXKEYS.CORPAY_FIELDS, null));
 }
 
 function openPlaidView() {
@@ -105,14 +104,14 @@ function openPersonalBankAccountSetupView({exitReportID, policyID, source, shoul
             Onyx.merge(ONYXKEYS.PERSONAL_BANK_ACCOUNT, {source});
         }
         if (!isUserValidated) {
-            Navigation.navigate(ROUTES.SETTINGS_CONTACT_METHOD_VERIFY_ACCOUNT.getRoute(Navigation.getActiveRoute(), ROUTES.SETTINGS_ADD_BANK_ACCOUNT.route));
+            Navigation.navigate(ROUTES.SETTINGS_CONTACT_METHOD_VERIFY_ACCOUNT.getRoute(Navigation.getActiveRoute(), ROUTES.BANK_ACCOUNT_PERSONAL));
             return;
         }
         if (shouldSetUpUSBankAccount) {
-            Navigation.navigate(ROUTES.SETTINGS_ADD_US_BANK_ACCOUNT);
+            Navigation.navigate(ROUTES.BANK_ACCOUNT_PERSONAL);
             return;
         }
-        Navigation.navigate(ROUTES.SETTINGS_ADD_BANK_ACCOUNT.getRoute(Navigation.getActiveRoute()));
+        Navigation.navigate(ROUTES.BANK_ACCOUNT_PERSONAL);
     });
 }
 
@@ -1161,41 +1160,6 @@ function validatePlaidSelection(values: FormOnyxValues<AccountFormValues>): Form
     return errorFields;
 }
 
-function fetchCorpayFields(bankCountry: string, bankCurrency?: string, isWithdrawal?: boolean, isBusinessBankAccount?: boolean) {
-    API.write(
-        WRITE_COMMANDS.GET_CORPAY_BANK_ACCOUNT_FIELDS,
-        {countryISO: bankCountry, currency: bankCurrency, isWithdrawal, isBusinessBankAccount},
-        {
-            optimisticData: [
-                {
-                    onyxMethod: Onyx.METHOD.MERGE,
-                    key: ONYXKEYS.PERSONAL_BANK_ACCOUNT,
-                    value: {
-                        isLoading: true,
-                    },
-                },
-                {
-                    onyxMethod: Onyx.METHOD.SET,
-                    key: ONYXKEYS.FORMS.INTERNATIONAL_BANK_ACCOUNT_FORM_DRAFT,
-                    value: {
-                        bankCountry,
-                        bankCurrency: bankCurrency ?? null,
-                    },
-                },
-            ],
-            finallyData: [
-                {
-                    onyxMethod: Onyx.METHOD.MERGE,
-                    key: ONYXKEYS.PERSONAL_BANK_ACCOUNT,
-                    value: {
-                        isLoading: false,
-                    },
-                },
-            ],
-        },
-    );
-}
-
 export {
     acceptACHContractForBankAccount,
     addBusinessWebsiteForDraft,
@@ -1223,7 +1187,6 @@ export {
     updateAddPersonalBankAccountDraft,
     clearPersonalBankAccountSetupType,
     validatePlaidSelection,
-    fetchCorpayFields,
     clearReimbursementAccountBankCreation,
     getCorpayBankAccountFields,
     getCorpayOnboardingFields,
