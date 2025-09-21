@@ -19,7 +19,6 @@ import type {
     DeleteCommentParams,
     ExpandURLPreviewParams,
     ExportReportPDFParams,
-    FlagCommentParams,
     GetNewerActionsParams,
     GetOlderActionsParams,
     InviteToGroupChatParams,
@@ -31,7 +30,6 @@ import type {
     MoveIOUReportToExistingPolicyParams,
     MoveIOUReportToPolicyAndInviteSubmitterParams,
     OpenReportParams,
-    OpenRoomMembersPageParams,
     ReadNewestActionParams,
     RemoveEmojiReactionParams,
     RemoveFromGroupChatParams,
@@ -3699,21 +3697,6 @@ function inviteToRoom(reportID: string, inviteeEmailsToAccountIDs: InvitedEmails
     API.write(WRITE_COMMANDS.INVITE_TO_ROOM, parameters, {optimisticData, successData, failureData});
 }
 
-function clearAddRoomMemberError(reportID: string, invitedAccountID: string) {
-    const reportMetadata = getReportMetadata(reportID);
-    Onyx.merge(`${ONYXKEYS.COLLECTION.REPORT}${reportID}`, {
-        participants: {
-            [invitedAccountID]: null,
-        },
-    });
-    Onyx.merge(`${ONYXKEYS.COLLECTION.REPORT_METADATA}${reportID}`, {
-        pendingChatMembers: reportMetadata?.pendingChatMembers?.filter((pendingChatMember) => pendingChatMember.accountID !== invitedAccountID),
-    });
-    Onyx.merge(ONYXKEYS.PERSONAL_DETAILS_LIST, {
-        [invitedAccountID]: null,
-    });
-}
-
 function updateGroupChatMemberRoles(reportID: string, accountIDList: number[], role: ValueOf<typeof CONST.REPORT.ROLE>) {
     const memberRoles: Record<number, string> = {};
     const optimisticParticipants: Record<number, Partial<ReportParticipant>> = {};
@@ -3837,136 +3820,6 @@ function removeFromGroupChat(reportID: string, accountIDList: number[]) {
     removeFromRoom(reportID, accountIDList);
 }
 
-/** Flag a comment as offensive */
-function flagComment(reportID: string | undefined, reportAction: OnyxEntry<ReportAction>, severity: string) {
-    const originalReportID = getOriginalReportID(reportID, reportAction);
-    const message = ReportActionsUtils.getReportActionMessage(reportAction);
-
-    if (!message || !reportAction) {
-        return;
-    }
-
-    let updatedDecision: Decision;
-    if (severity === CONST.MODERATION.FLAG_SEVERITY_SPAM || severity === CONST.MODERATION.FLAG_SEVERITY_INCONSIDERATE) {
-        if (!message?.moderationDecision) {
-            updatedDecision = {
-                decision: CONST.MODERATION.MODERATOR_DECISION_PENDING,
-            };
-        } else {
-            updatedDecision = message.moderationDecision;
-        }
-    } else if (severity === CONST.MODERATION.FLAG_SEVERITY_ASSAULT || severity === CONST.MODERATION.FLAG_SEVERITY_HARASSMENT) {
-        updatedDecision = {
-            decision: CONST.MODERATION.MODERATOR_DECISION_PENDING_REMOVE,
-        };
-    } else {
-        updatedDecision = {
-            decision: CONST.MODERATION.MODERATOR_DECISION_PENDING_HIDE,
-        };
-    }
-
-    const reportActionID = reportAction.reportActionID;
-
-    const shouldHideMessage = (
-        [CONST.MODERATION.FLAG_SEVERITY_HARASSMENT, CONST.MODERATION.FLAG_SEVERITY_ASSAULT, CONST.MODERATION.FLAG_SEVERITY_INTIMIDATION, CONST.MODERATION.FLAG_SEVERITY_BULLYING] as string[]
-    ).includes(severity);
-
-    const updatedMessage: Message = {
-        ...message,
-        moderationDecision: updatedDecision,
-        ...(shouldHideMessage ? {translationKey: '', type: 'COMMENT', html: '', text: '', isEdited: true} : {}),
-    };
-
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT_ACTIONS}${originalReportID}`,
-            value: {
-                [reportActionID]: {
-                    pendingAction: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE,
-                    message: [updatedMessage],
-                },
-            },
-        },
-    ];
-
-    let optimisticReport: Partial<Report> = {
-        lastMessageText: '',
-        lastVisibleActionCreated: '',
-    };
-
-    const {lastMessageText = ''} = getLastVisibleMessage(originalReportID, {
-        [reportActionID]: {...reportAction, message: [updatedMessage], pendingAction: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE},
-    } as ReportActions);
-    const report = allReports?.[`${ONYXKEYS.COLLECTION.REPORT}${originalReportID}`];
-    const canUserPerformWriteAction = canUserPerformWriteActionReportUtils(report);
-    if (lastMessageText) {
-        const lastVisibleAction = ReportActionsUtils.getLastVisibleAction(originalReportID, canUserPerformWriteAction, {
-            [reportActionID]: {...reportAction, message: [updatedMessage], pendingAction: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE},
-        } as ReportActions);
-        const lastVisibleActionCreated = lastVisibleAction?.created;
-        const lastActorAccountID = lastVisibleAction?.actorAccountID;
-        optimisticReport = {
-            lastMessageText,
-            lastVisibleActionCreated,
-            lastActorAccountID,
-        };
-    }
-
-    if (shouldHideMessage) {
-        optimisticData.push({
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT}${originalReportID}`,
-            value: optimisticReport,
-        });
-    }
-
-    const originalReport = allReports?.[`${ONYXKEYS.COLLECTION.REPORT}${originalReportID}`];
-
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT_ACTIONS}${originalReportID}`,
-            value: {
-                [reportActionID]: {
-                    ...reportAction,
-                    pendingAction: null,
-                },
-            },
-        },
-    ];
-
-    if (shouldHideMessage) {
-        failureData.push({
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT}${originalReportID}`,
-            value: originalReport,
-        });
-    }
-
-    const successData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.REPORT_ACTIONS}${originalReportID}`,
-            value: {
-                [reportActionID]: {
-                    pendingAction: null,
-                },
-            },
-        },
-    ];
-
-    const parameters: FlagCommentParams = {
-        severity,
-        reportActionID,
-        // This check is to prevent flooding Concierge with test flags
-        // If you need to test moderation responses from Concierge on dev, set this to false!
-        isDevRequest: Environment.isDevelopment(),
-    };
-
-    API.write(WRITE_COMMANDS.FLAG_COMMENT, parameters, {optimisticData, successData, failureData});
-}
-
 function completeOnboarding({
     engagementChoice,
     onboardingMessage,
@@ -4069,13 +3922,6 @@ function completeOnboarding({
     }
 
     API.write(WRITE_COMMANDS.COMPLETE_GUIDED_SETUP, parameters, {optimisticData, successData, failureData});
-}
-
-/** Loads necessary data for rendering the RoomMembersPage */
-function openRoomMembersPage(reportID: string) {
-    const parameters: OpenRoomMembersPageParams = {reportID};
-
-    API.read(READ_COMMANDS.OPEN_ROOM_MEMBERS_PAGE, parameters);
 }
 
 function searchForReports(searchInput: string, policyID?: string) {
@@ -5758,7 +5604,6 @@ export {
     broadcastUserIsLeavingRoom,
     broadcastUserIsTyping,
     buildOptimisticChangePolicyData,
-    clearAddRoomMemberError,
     clearAvatarErrors,
     clearDeleteTransactionNavigateBackUrl,
     clearIOUError,
@@ -5778,7 +5623,6 @@ export {
     exportReportToCSV,
     exportReportToPDF,
     exportToIntegration,
-    flagComment,
     getCurrentUserAccountID,
     getCurrentUserEmail,
     getMostRecentReportID,
@@ -5803,7 +5647,6 @@ export {
     notifyNewAction,
     openReport,
     openReportFromDeepLink,
-    openRoomMembersPage,
     readNewestAction,
     markAllMessagesAsRead,
     removeFromGroupChat,

@@ -89,7 +89,6 @@ import {
 import {
     canDeleteReportAction,
     canEditReportAction,
-    canFlagReportAction,
     canHoldUnholdReportAction,
     changeMoneyRequestHoldStatus,
     getChildReportNotificationPreference as getChildReportNotificationPreferenceReportUtils,
@@ -747,35 +746,6 @@ const ContextMenuActions: ContextMenuAction[] = [
             if (closePopover) {
                 hideContextMenu(false, ReportActionComposeFocusManager.focus);
             }
-        },
-        getDescription: () => {},
-    },
-    {
-        isAnonymousAction: false,
-        textTranslateKey: 'reportActionContextMenu.flagAsOffensive',
-        icon: Expensicons.Flag,
-        shouldShow: ({type, reportAction, isArchivedRoom, isChronosReport, reportID}) =>
-            type === CONST.CONTEXT_MENU_TYPES.REPORT_ACTION &&
-            canFlagReportAction(reportAction, reportID) &&
-            !isArchivedRoom &&
-            !isChronosReport &&
-            reportAction?.actorAccountID !== CONST.ACCOUNT_ID.CONCIERGE,
-        onPress: (closePopover, {reportID, reportAction}) => {
-            if (!reportID) {
-                return;
-            }
-
-            const activeRoute = Navigation.getActiveRoute();
-            if (closePopover) {
-                hideContextMenu(false, () => {
-                    KeyboardUtils.dismiss().then(() => {
-                        Navigation.navigate(ROUTES.FLAG_COMMENT.getRoute(reportID, reportAction?.reportActionID, activeRoute));
-                    });
-                });
-                return;
-            }
-
-            Navigation.navigate(ROUTES.FLAG_COMMENT.getRoute(reportID, reportAction?.reportActionID, activeRoute));
         },
         getDescription: () => {},
     },

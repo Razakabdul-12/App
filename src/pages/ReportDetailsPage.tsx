@@ -211,10 +211,9 @@ function ReportDetailsPage({policy, report, route, reportMetadata}: ReportDetail
     const isGroupChat = useMemo(() => isGroupChatUtil(report), [report]);
     const isRootGroupChat = useMemo(() => isRootGroupChatUtil(report, isReportArchived), [report, isReportArchived]);
     const isThread = useMemo(() => isThreadUtil(report), [report]);
-    const shouldOpenRoomMembersPage = isUserCreatedPolicyRoom || isChatThread || (isPolicyExpenseChat && isPolicyAdmin);
     const participants = useMemo(() => {
-        return getParticipantsList(report, personalDetails, shouldOpenRoomMembersPage);
-    }, [report, personalDetails, shouldOpenRoomMembersPage]);
+        return getParticipantsList(report, personalDetails);
+    }, [report, personalDetails]);
 
     let caseID: CaseID;
     if (isMoneyRequestReport || isInvoiceReport) {
@@ -325,47 +324,6 @@ function ReportDetailsPage({policy, report, route, reportMetadata}: ReportDetail
 
         if (isArchivedRoom) {
             return items;
-        }
-
-        // The Members page is only shown when:
-        // - The report is a thread in a chat report
-        // - The report is not a user created room with participants to show i.e. DM, Group Chat, etc
-        // - The report is a user created room and the room and the current user is a workspace member i.e. non-workspace members should not see this option.
-        if (
-            (isGroupChat ||
-                (isDefaultRoom && isChatThread && isPolicyEmployee) ||
-                (!isUserCreatedPolicyRoom && participants.length) ||
-                (isUserCreatedPolicyRoom && (isPolicyEmployee || (isChatThread && !isPublicRoomUtil(report))))) &&
-            !isConciergeChatReport(report) &&
-            !isSystemChat &&
-            activeChatMembers.length > 0
-        ) {
-            items.push({
-                key: CONST.REPORT_DETAILS_MENU_ITEM.MEMBERS,
-                translationKey: 'common.members',
-                icon: Expensicons.Users,
-                subtitle: activeChatMembers.length,
-                isAnonymousAction: false,
-                shouldShowRightIcon: true,
-                action: () => {
-                    if (shouldOpenRoomMembersPage) {
-                        Navigation.navigate(ROUTES.ROOM_MEMBERS.getRoute(report?.reportID, backTo));
-                    } else {
-                        Navigation.navigate(ROUTES.REPORT_PARTICIPANTS.getRoute(report?.reportID, backTo));
-                    }
-                },
-            });
-        } else if ((isUserCreatedPolicyRoom && (!participants.length || !isPolicyEmployee)) || ((isDefaultRoom || isPolicyExpenseChat) && isChatThread && !isPolicyEmployee)) {
-            items.push({
-                key: CONST.REPORT_DETAILS_MENU_ITEM.INVITE,
-                translationKey: 'common.invite',
-                icon: Expensicons.Users,
-                isAnonymousAction: false,
-                shouldShowRightIcon: true,
-                action: () => {
-                    Navigation.navigate(ROUTES.ROOM_INVITE.getRoute(report?.reportID));
-                },
-            });
         }
 
         if (isTrackExpenseReport && !isDeletedParentAction) {
@@ -493,7 +451,6 @@ function ReportDetailsPage({policy, report, route, reportMetadata}: ReportDetail
         shouldShowGoToWorkspace,
         shouldShowLeaveButton,
         isDebugModeEnabled,
-        shouldOpenRoomMembersPage,
         backTo,
         parentReportAction,
         iouTransactionID,
@@ -811,15 +768,12 @@ function ReportDetailsPage({policy, report, route, reportMetadata}: ReportDetail
                         <OfflineWithFeedback pendingAction={report.pendingFields?.description}>
                             <MentionReportContext.Provider value={mentionReportContextValue}>
                                 <MenuItemWithTopDescription
-                                    shouldShowRightIcon
-                                    interactive
                                     title={getReportDescription(report)}
                                     shouldRenderAsHTML
                                     shouldTruncateTitle
                                     characterLimit={100}
-                                    shouldCheckActionAllowedOnPress={false}
                                     description={translate('reportDescriptionPage.roomDescription')}
-                                    onPress={() => Navigation.navigate(ROUTES.REPORT_DESCRIPTION.getRoute(report.reportID, Navigation.getActiveRoute()))}
+                                    interactive={false}
                                 />
                             </MentionReportContext.Provider>
                         </OfflineWithFeedback>

@@ -2995,7 +2995,7 @@ function getParticipantsList(report: Report, personalDetails: OnyxEntry<Personal
 
         if (!isRoomMembersList) {
             if (!details) {
-                Log.hmmm(`[ReportParticipantsPage] no personal details found for Group chat member with accountID: ${accountID}`);
+                Log.hmmm(`[ParticipantsList] no personal details found for Group chat member with accountID: ${accountID}`);
                 return false;
             }
         } else {
@@ -3007,7 +3007,7 @@ function getParticipantsList(report: Report, personalDetails: OnyxEntry<Personal
                 details?.isOptimisticPersonalDetail && chatParticipants.some((accID) => accID !== accountID && details.login === personalDetails?.[accID]?.login);
 
             if (!details || isDuplicateOptimisticDetail) {
-                Log.hmmm(`[RoomMembersPage] no personal details found for room member with accountID: ${accountID}`);
+                Log.hmmm(`[ParticipantsList] no personal details found for room member with accountID: ${accountID}`);
                 return false;
             }
         }
@@ -8545,57 +8545,6 @@ function chatIncludesChronosWithID(reportOrID?: string | SearchReport): boolean 
 }
 
 /**
- * Can only flag if:
- *
- * - It was written by someone else and isn't a whisper
- * - It's a welcome message whisper
- * - It's an ADD_COMMENT that is not an attachment
- */
-function canFlagReportAction(reportAction: OnyxInputOrEntry<ReportAction>, reportID: string | undefined): boolean {
-    const isCurrentUserAction = reportAction?.actorAccountID === currentUserAccountID;
-    if (isWhisperAction(reportAction)) {
-        // Allow flagging whispers that are sent by other users
-        if (!isCurrentUserAction && reportAction?.actorAccountID !== CONST.ACCOUNT_ID.CONCIERGE) {
-            return true;
-        }
-
-        // Disallow flagging the rest of whisper as they are sent by us
-        return false;
-    }
-
-    let report = getReportOrDraftReport(reportID);
-
-    // If the childReportID exists in reportAction and is equal to the reportID,
-    // the report action being evaluated is the parent report action in a thread, and we should get the parent report to evaluate instead.
-    if (reportAction?.childReportID?.toString() === reportID?.toString()) {
-        report = getReportOrDraftReport(report?.parentReportID);
-    }
-
-    return !!(
-        !isCurrentUserAction &&
-        reportAction?.actionName === CONST.REPORT.ACTIONS.TYPE.ADD_COMMENT &&
-        !isDeletedAction(reportAction) &&
-        !isCreatedTaskReportAction(reportAction) &&
-        !isEmptyObject(report) &&
-        report &&
-        isAllowedToComment(report)
-    );
-}
-
-/**
- * Whether flag comment page should show
- */
-function shouldShowFlagComment(reportAction: OnyxInputOrEntry<ReportAction>, report: OnyxInputOrEntry<Report>, isReportArchived = false): boolean {
-    return (
-        canFlagReportAction(reportAction, report?.reportID) &&
-        !isArchivedNonExpenseReport(report, isReportArchived) &&
-        !chatIncludesChronos(report) &&
-        !isConciergeChatReport(report) &&
-        reportAction?.actorAccountID !== CONST.ACCOUNT_ID.CONCIERGE
-    );
-}
-
-/**
  * Performs the markdown conversion, and replaces code points > 127 with C escape sequences
  * Used for compatibility with the backend auth validator for AddComment, and to account for MD in comments
  * @returns The comment's total length as seen from the backend
@@ -11513,7 +11462,6 @@ export {
     canEditPolicyDescription,
     canEditReportAction,
     canEditReportDescription,
-    canFlagReportAction,
     isNonAdminOrOwnerOfPolicyExpenseChat,
     canJoinChat,
     canLeaveChat,
@@ -11741,7 +11689,6 @@ export {
     shouldDisplayViolationsRBRInLHN,
     shouldReportBeInOptionList,
     shouldReportShowSubscript,
-    shouldShowFlagComment,
     sortOutstandingReportsBySelected,
     getReportActionWithMissingSmartscanFields,
     shouldShowRBRForMissingSmartscanFields,

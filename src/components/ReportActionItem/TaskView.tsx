@@ -18,7 +18,6 @@ import useReportIsArchived from '@hooks/useReportIsArchived';
 import useStyleUtils from '@hooks/useStyleUtils';
 import useThemeStyles from '@hooks/useThemeStyles';
 import getButtonState from '@libs/getButtonState';
-import Navigation from '@libs/Navigation/Navigation';
 import {getPersonalDetailsForAccountIDs} from '@libs/OptionsListUtils';
 import Parser from '@libs/Parser';
 import {getDisplayNameForParticipant, getDisplayNamesWithTooltips, isCompletedTaskReport, isOpenTaskReport} from '@libs/ReportUtils';
@@ -27,7 +26,6 @@ import {isActiveTaskEditRoute} from '@libs/TaskUtils';
 import {callFunctionIfActionIsAllowed} from '@userActions/Session';
 import {canActionTask, canModifyTask, clearTaskErrors, completeTask, reopenTask, setTaskReport} from '@userActions/Task';
 import CONST from '@src/CONST';
-import ROUTES from '@src/ROUTES';
 import type {Report, ReportAction} from '@src/types/onyx';
 
 type TaskViewProps = {
@@ -143,13 +141,11 @@ function TaskView({report, parentReport, action}: TaskViewProps) {
                             shouldRenderAsHTML
                             description={translate('task.description')}
                             title={report?.description ?? ''}
-                            onPress={() => Navigation.navigate(ROUTES.REPORT_DESCRIPTION.getRoute(report?.reportID, Navigation.getReportRHPActiveRoute()))}
-                            shouldShowRightIcon={!isDisableInteractive}
                             disabled={disableState}
                             wrapperStyle={[styles.pv2, styles.taskDescriptionMenuItem]}
                             shouldGreyOutWhenDisabled={false}
                             numberOfLinesTitle={0}
-                            interactive={!isDisableInteractive}
+                            interactive={false}
                             shouldUseDefaultCursorWhenDisabled
                         />
                     </OfflineWithFeedback>

@@ -40,43 +40,6 @@ describe('tokenizedSearch', () => {
         expect(tokenizeSearchResult).toStrictEqual(searchResultList);
     });
 
-    it('InviteReportParticipantsPage', () => {
-        const tokenizeSearch = 'One Three';
-
-        const items: SelectionListApprover[] = [
-            {
-                alternateText: 'example@test.com',
-                icons: [],
-                isSelected: false,
-                keyForList: 'example@test.com',
-                login: 'example@test.com',
-                text: 'One Two Three',
-            },
-            {
-                alternateText: 'example2@test.com',
-                icons: [],
-                isSelected: false,
-                keyForList: 'example2@test.com',
-                login: 'example2@test.com',
-                text: 'Example Test',
-            },
-        ];
-
-        const searchResultList: SelectionListApprover[] = [
-            {
-                alternateText: 'example@test.com',
-                icons: [],
-                isSelected: false,
-                keyForList: 'example@test.com',
-                login: 'example@test.com',
-                text: 'One Two Three',
-            },
-        ];
-
-        const tokenizeSearchResult = tokenizedSearch(items, tokenizeSearch, (option) => [option.text ?? '', option.login ?? '']);
-        expect(tokenizeSearchResult).toStrictEqual(searchResultList);
-    });
-
     it('WorkspaceCompanyCardAccountSelectCardPage', () => {
         const tokenizeSearch = 'One Three';
 

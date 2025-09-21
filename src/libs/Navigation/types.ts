@@ -674,51 +674,6 @@ type ReportChangeWorkspaceNavigatorParamList = {
     };
 };
 
-type ReportDescriptionNavigatorParamList = {
-    [SCREENS.REPORT_DESCRIPTION_ROOT]: {
-        reportID: string;
-        backTo?: Routes;
-    };
-};
-
-type ParticipantsNavigatorParamList = {
-    [SCREENS.REPORT_PARTICIPANTS.ROOT]: {
-        reportID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.REPORT_PARTICIPANTS.INVITE]: {
-        reportID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.REPORT_PARTICIPANTS.DETAILS]: {
-        reportID: string;
-        accountID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.REPORT_PARTICIPANTS.ROLE]: {
-        reportID: string;
-        accountID: string;
-        backTo?: Routes;
-    };
-};
-
-type RoomMembersNavigatorParamList = {
-    [SCREENS.ROOM_MEMBERS.ROOT]: {
-        reportID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.ROOM_MEMBERS.INVITE]: {
-        reportID: string;
-        role?: 'accountant';
-        backTo?: Routes;
-    };
-    [SCREENS.ROOM_MEMBERS.DETAILS]: {
-        reportID: string;
-        accountID: string;
-        backTo?: Routes;
-    };
-};
-
 type MoneyRequestNavigatorParamList = {
     [SCREENS.MONEY_REQUEST.STEP_SEND_FROM]: {
         iouType: IOUType;
@@ -1047,19 +1002,11 @@ type ReimbursementAccountNavigatorParamList = {
     };
 };
 
-type ReimbursementAccountEnterSignerInfoNavigatorParamList = {
-    [SCREENS.REIMBURSEMENT_ACCOUNT_ENTER_SIGNER_INFO]: {
-        policyID: string;
-        bankAccountID: string;
-        isCompleted: string;
-    };
-};
 
-type FlagCommentNavigatorParamList = {
-    [SCREENS.FLAG_COMMENT_ROOT]: {
-        reportID: string;
-        reportActionID: string;
-        backTo?: Routes;
+type WalletStatementNavigatorParamList = {
+    [SCREENS.WALLET_STATEMENT_ROOT]: {
+        /** The statement year and month as one string, i.e. 202110 */
+        yearMonth: string;
     };
 };
 
@@ -1078,9 +1025,6 @@ type SignInNavigatorParamList = {
 
 type FeatureTrainingNavigatorParamList = {
     [SCREENS.FEATURE_TRAINING_ROOT]: undefined;
-    [SCREENS.PROCESS_MONEY_REQUEST_HOLD_ROOT]: undefined;
-    [SCREENS.AUTO_SUBMIT_ROOT]: undefined;
-    [SCREENS.CHANGE_POLICY_EDUCATIONAL_ROOT]: undefined;
 };
 
 type ReferralDetailsNavigatorParamList = {
@@ -1102,13 +1046,9 @@ type RightModalNavigatorParamList = {
     [SCREENS.RIGHT_MODAL.REPORT_DETAILS]: NavigatorScreenParams<ReportDetailsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.REPORT_CHANGE_WORKSPACE]: NavigatorScreenParams<ReportChangeWorkspaceNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.SETTINGS_CATEGORIES]: NavigatorScreenParams<SettingsNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.REPORT_DESCRIPTION]: NavigatorScreenParams<ReportDescriptionNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.PARTICIPANTS]: NavigatorScreenParams<ParticipantsNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.ROOM_MEMBERS]: NavigatorScreenParams<RoomMembersNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.MONEY_REQUEST]: NavigatorScreenParams<MoneyRequestNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.WORKSPACE_CONFIRMATION]: NavigatorScreenParams<WorkspaceConfirmationNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.ADD_PERSONAL_BANK_ACCOUNT]: NavigatorScreenParams<AddPersonalBankAccountNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.FLAG_COMMENT]: NavigatorScreenParams<FlagCommentNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.EDIT_REQUEST]: NavigatorScreenParams<EditRequestNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.SIGN_IN]: NavigatorScreenParams<SignInNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.REFERRAL]: NavigatorScreenParams<ReferralDetailsNavigatorParamList>;
@@ -1540,7 +1480,6 @@ export type {
     EditRequestNavigatorParamList,
     ExplanationModalNavigatorParamList,
     FeatureTrainingNavigatorParamList,
-    FlagCommentNavigatorParamList,
     FullScreenName,
     MoneyRequestNavigatorParamList,
     NavigationPartialRoute,
@@ -1550,21 +1489,18 @@ export type {
     NavigationRoute,
     OnboardingFlowName,
     OnboardingModalNavigatorParamList,
-    ParticipantsNavigatorParamList,
     ProfileNavigatorParamList,
     PublicScreensParamList,
     ReferralDetailsNavigatorParamList,
     ReimbursementAccountNavigatorParamList,
     ReimbursementAccountEnterSignerInfoNavigatorParamList,
     NewReportWorkspaceSelectionNavigatorParamList,
-    ReportDescriptionNavigatorParamList,
     ReportDetailsNavigatorParamList,
     ReportChangeWorkspaceNavigatorParamList,
     ReportsSplitNavigatorParamList,
     RestrictedActionParamList,
     ShareNavigatorParamList,
     RightModalNavigatorParamList,
-    RoomMembersNavigatorParamList,
     RootNavigatorParamList,
     SearchAdvancedFiltersParamList,
     SearchReportParamList,

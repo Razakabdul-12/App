@@ -1348,14 +1348,6 @@ function setNameValuePair(name: OnyxKey, value: SetNameValuePairParams['value'],
     });
 }
 
-/**
- * Dismiss the Auto-Submit explanation modal
- * @param shouldDismiss Whether the user selected "Don't show again"
- */
-function dismissASAPSubmitExplanation(shouldDismiss: boolean) {
-    Onyx.merge(ONYXKEYS.NVP_DISMISSED_ASAP_SUBMIT_EXPLANATION, shouldDismiss);
-}
-
 function requestRefund() {
     API.write(WRITE_COMMANDS.REQUEST_REFUND, null);
 }
@@ -1371,7 +1363,6 @@ function setShouldBlockTransactionThreadReportCreation(shouldBlockTransactionThr
 export {
     closeAccount,
     dismissReferralBanner,
-    dismissASAPSubmitExplanation,
     resendValidateCode,
     requestContactMethodValidateCode,
     updateNewsletterSubscription,

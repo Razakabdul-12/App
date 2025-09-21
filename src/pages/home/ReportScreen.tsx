@@ -114,10 +114,7 @@ const defaultReportMetadata = {
     isOptimisticReport: false,
 };
 
-const reportDetailScreens = [
-    ...Object.values(SCREENS.REPORT_DETAILS),
-    ...Object.values(SCREENS.REPORT_PARTICIPANTS),
-];
+const reportDetailScreens = [...Object.values(SCREENS.REPORT_DETAILS)];
 
 /**
  * Check is the report is deleted.

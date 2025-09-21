@@ -129,21 +129,22 @@ function ReportActionItemSingle({
     const showActorDetails = useCallback(() => {
         if (details.isWorkspaceActor) {
             showWorkspaceDetails(reportID);
-        } else {
-            // Show participants page IOU report preview
-            if (iouReportID && details.shouldDisplayAllActors) {
-                Navigation.navigate(ROUTES.REPORT_PARTICIPANTS.getRoute(iouReportID, Navigation.getReportRHPActiveRoute()));
-                return;
-            }
-            showUserDetails(Number(primaryAvatar.id));
+            return;
         }
-    }, [details.isWorkspaceActor, reportID, iouReportID, details.shouldDisplayAllActors, primaryAvatar.id]);
+
+        if (details.shouldDisplayAllActors) {
+            return;
+        }
+
+        showUserDetails(Number(primaryAvatar.id));
+    }, [details.isWorkspaceActor, reportID, details.shouldDisplayAllActors, primaryAvatar.id]);
 
     const shouldDisableDetailPage = useMemo(
         () =>
+            details.shouldDisplayAllActors ||
             CONST.RESTRICTED_ACCOUNT_IDS.includes(details.accountID ?? CONST.DEFAULT_NUMBER_ID) ||
             (!details.isWorkspaceActor && isOptimisticPersonalDetail(action?.delegateAccountID ? Number(action.delegateAccountID) : (details.accountID ?? CONST.DEFAULT_NUMBER_ID))),
-        [action, details.isWorkspaceActor, details.accountID],
+        [action, details.shouldDisplayAllActors, details.isWorkspaceActor, details.accountID],
     );
 
     const getBackgroundColor = () => {

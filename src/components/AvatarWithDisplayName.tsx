@@ -21,7 +21,6 @@ import {
     isChatThread,
     isExpenseReport,
     isInvoiceReport,
-    isIOUReport,
     isMoneyRequest,
     isMoneyRequestReport,
     isTrackExpenseReport,
@@ -206,11 +205,6 @@ function AvatarWithDisplayName({
 
         if (isExpenseReport(report) && report?.ownerAccountID) {
             Navigation.navigate(ROUTES.PROFILE.getRoute(report.ownerAccountID));
-            return;
-        }
-
-        if (isIOUReport(report) && report?.reportID) {
-            Navigation.navigate(ROUTES.REPORT_PARTICIPANTS.getRoute(report.reportID));
             return;
         }
 

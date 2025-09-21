@@ -41,7 +41,6 @@ export type {default as OpenPlaidBankLoginParams} from './OpenPlaidBankLoginPara
 export type {default as OpenPublicProfilePageParams} from './OpenPublicProfilePageParams';
 export type {default as OpenReimbursementAccountPageParams} from './OpenReimbursementAccountPageParams';
 export type {default as OpenReportParams} from './OpenReportParams';
-export type {default as OpenRoomMembersPageParams} from './OpenRoomMembersPageParams';
 export type {default as OpenPlaidCompanyCardLoginParams} from './OpenPlaidCompanyCardLoginParams';
 export type {default as OpenSidePanelParams} from './OpenSidePanelParams';
 export type {default as PaymentCardParams} from './PaymentCardParams';
@@ -114,7 +113,6 @@ export type {default as InviteToRoomParams} from './InviteToRoomParams';
 export type {default as InviteToGroupChatParams} from './InviteToGroupChatParams';
 export type {default as RemoveFromRoomParams} from './RemoveFromRoomParams';
 export type {default as RemoveFromGroupChatParams} from './RemoveFromGroupChatParams';
-export type {default as FlagCommentParams} from './FlagCommentParams';
 export type {default as UpdateCompanyInformationForBankAccountParams} from './UpdateCompanyInformationForBankAccountParams';
 export type {default as VerifyIdentityParams} from './VerifyIdentityParams';
 export type {default as ChronosRemoveOOOEventParams} from './ChronosRemoveOOOEventParams';

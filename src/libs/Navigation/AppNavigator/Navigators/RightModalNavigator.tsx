@@ -87,22 +87,10 @@ function RightModalNavigator({navigation, route}: RightModalNavigatorProps) {
                             component={ModalStackNavigators.ReportChangeApproverModalStackNavigator}
                         />
                         <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.REPORT_DESCRIPTION}
-                            component={ModalStackNavigators.ReportDescriptionModalStackNavigator}
-                        />
-                        <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.SETTINGS_CATEGORIES}
                             component={ModalStackNavigators.CategoriesModalStackNavigator}
                         />
-                 
-                        <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.PARTICIPANTS}
-                            component={ModalStackNavigators.ReportParticipantsModalStackNavigator}
-                        />
-                        <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.ROOM_MEMBERS}
-                            component={ModalStackNavigators.RoomMembersModalStackNavigator}
-                        />
+
                         <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.MONEY_REQUEST}
                             component={ModalStackNavigators.MoneyRequestModalStackNavigator}
@@ -115,10 +103,7 @@ function RightModalNavigator({navigation, route}: RightModalNavigatorProps) {
                             name={SCREENS.RIGHT_MODAL.ADD_PERSONAL_BANK_ACCOUNT}
                             component={ModalStackNavigators.AddPersonalBankAccountModalStackNavigator}
                         />
-                        <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.FLAG_COMMENT}
-                            component={ModalStackNavigators.FlagCommentStackNavigator}
-                        />
+                     
                         <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.EDIT_REQUEST}
                             component={ModalStackNavigators.EditRequestStackNavigator}
