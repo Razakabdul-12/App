@@ -4708,6 +4708,7 @@ const CONST = {
     REFERRAL_PROGRAM: {
         CONTENT_TYPES: {
             SUBMIT_EXPENSE: 'submitExpense',
+            START_CHAT: 'startChat',
             REFER_FRIEND: 'referralFriend',
             SHARE_CODE: 'shareCode',
         },
@@ -6345,6 +6346,7 @@ const CONST = {
         ADD_ACCOUNTING_INTEGRATION: 'addAccountingIntegration',
         CONNECT_CORPORATE_CARD: 'connectCorporateCard',
         INVITE_TEAM: 'inviteTeam',
+        START_CHAT: 'startChat',
         SPLIT_EXPENSE: 'splitExpense',
         REVIEW_WORKSPACE_SETTINGS: 'reviewWorkspaceSettings',
         INVITE_ACCOUNTANT: 'inviteAccountant',

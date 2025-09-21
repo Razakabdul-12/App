@@ -6,8 +6,8 @@ import useOnyx from './useOnyx';
 type UseDismissedReferralBannersProps = {
     referralContentType:
         | typeof CONST.REFERRAL_PROGRAM.CONTENT_TYPES.SUBMIT_EXPENSE
-        | typeof CONST.REFERRAL_PROGRAM.CONTENT_TYPES.REFER_FRIEND
-        | typeof CONST.REFERRAL_PROGRAM.CONTENT_TYPES.SHARE_CODE;
+        | typeof CONST.REFERRAL_PROGRAM.CONTENT_TYPES.START_CHAT
+        | typeof CONST.REFERRAL_PROGRAM.CONTENT_TYPES.REFER_FRIEND;
 };
 
 function useDismissedReferralBanners({referralContentType}: UseDismissedReferralBannersProps): {isDismissed: boolean; setAsDismissed: () => void} {

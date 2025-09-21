@@ -56,6 +56,7 @@ import * as PhoneNumber from '@libs/PhoneNumber';
 import * as PolicyUtils from '@libs/PolicyUtils';
 import {getMemberAccountIDsForWorkspace, goBackWhenEnableFeature, isControlPolicy} from '@libs/PolicyUtils';
 import * as ReportUtils from '@libs/ReportUtils';
+import type {PolicySelector} from '@pages/home/sidebar/FloatingActionButtonAndPopover';
 import * as PaymentMethods from '@userActions/PaymentMethods';
 import * as PersistedRequests from '@userActions/PersistedRequests';
 import {buildTaskData} from '@userActions/Task';
@@ -121,11 +122,6 @@ type WorkspaceFromIOUCreationData = {
     reportPreviewReportActionID?: string;
     adminsChatReportID: string;
 };
-
-type PolicySelector = Pick<
-    Policy,
-    'type' | 'role' | 'isPolicyExpenseChatEnabled' | 'pendingAction' | 'avatarURL' | 'name' | 'id' | 'areInvoicesEnabled'
->;
 
 type BuildPolicyDataOptions = {
     policyOwnerEmail?: string;

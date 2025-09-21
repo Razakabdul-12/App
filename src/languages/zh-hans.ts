@@ -2339,18 +2339,32 @@ const translations = {
                     '\n' +
                     `[\u7ACB\u5373\u9080\u8BF7\u60A8\u7684\u4F1A\u8BA1](${workspaceMembersLink})\u3002`,
             },
+            startChatTask: {
+                title: '\u5f00\u59cb\u804a\u5929',
+                description:
+                    '*\u901a\u8fc7\u4efb\u4f55\u4eba\u7684\u7535\u5b50\u90ae\u4ef6\u6216\u7535\u8bdd\u53f7\u7801*\u5f00\u59cb\u804a\u5929\u3002\n' +
+                    '\n' +
+                    '1. \u70b9\u51fb\u7eff\u8272\u7684 *+* \u6309\u94ae\u3002\n' +
+                    '2. \u9009\u62e9 *\u5f00\u59cb\u804a\u5929*\u3002\n' +
+                    '3. \u8f93\u5165\u7535\u5b50\u90ae\u4ef6\u6216\u7535\u8bdd\u53f7\u7801\u3002\n' +
+                    '\n' +
+                    '\u5982\u679c\u4ed6\u4eec\u5c1a\u672a\u4f7f\u7528 Expensify\uff0c\u4ed6\u4eec\u5c06\u81ea\u52a8\u88ab\u9080\u8bf7\u3002\n' +
+                    '\n' +
+                    '\u6bcf\u6b21\u804a\u5929\u4e5f\u4f1a\u8f6c\u5316\u4e3a\u4e00\u5c01\u7535\u5b50\u90ae\u4ef6\u6216\u77ed\u4fe1\uff0c\u4ed6\u4eec\u53ef\u4ee5\u76f4\u63a5\u56de\u590d\u3002',
+            },
 
             splitExpenseTask: {
                 title: '\u62c6\u5206\u652f\u51fa',
                 description:
                     '*\u4e0e\u4e00\u4e2a\u6216\u591a\u4e2a\u4eba\u62c6\u5206\u652f\u51fa*\u3002\n' +
                     '\n' +
-                    '1. \u6253\u5f00\u4e0e\u9700\u8981\u62c6\u5206\u7684\u6240\u6709\u4eba\u7684\u804a\u5929\u3002\n' +
-                    `2. \u70b9\u51fb\u6d88\u606f\u8f93\u5165\u6846\u4e2d\u7684\u7eff\u8272 ${CONST.CUSTOM_EMOJIS.GLOBAL_CREATE} \u6309\u94ae\u3002\n` +
-                    '3. \u9009\u62e9 *\u62c6\u5206\u652f\u51fa*\u3002\n' +
-                    '4. \u901a\u8fc7\u9009\u62e9 *\u624b\u52a8*\u3001*\u626b\u63cf* \u6216 *\u8ddd\u79bb* \u521b\u5efa\u652f\u51fa\u3002\n' +
+                    '1. \u70b9\u51fb\u7eff\u8272\u7684 *+* \u6309\u94ae\u3002\n' +
+                    '2. \u9009\u62e9 *\u5f00\u59cb\u804a\u5929*\u3002\n' +
+                    '3. \u8f93\u5165\u7535\u5b50\u90ae\u4ef6\u6216\u7535\u8bdd\u53f7\u7801\u3002\n' +
+                    '4. \u70b9\u51fb\u804a\u5929\u4e2d\u7684\u7070\u8272 *+* \u6309\u94ae > *\u62c6\u5206\u652f\u51fa*\u3002\n' +
+                    '5. \u901a\u8fc7\u9009\u62e9 *\u624b\u52a8*\u3001*\u626b\u63cf*\u6216 *\u8ddd\u79bb*\u521b\u5efa\u652f\u51fa\u3002\n' +
                     '\n' +
-                    '\u5982\u6709\u9700\u8981\uff0c\u968f\u610f\u6dfb\u52a0\u66f4\u591a\u8be6\u60c5\uff0c\u6216\u76f4\u63a5\u53d1\u9001\u3002\u8ba9\u6211\u4eec\u5e2e\u4f60\u62a5\u9500\uff01',
+                    '\u5982\u6709\u9700\u8981\uff0c\u968f\u610f\u6dfb\u52a0\u66f4\u591a\u8be6\u60c5\uff0c\u6216\u76f4\u63a5\u53d1\u9001\u3002\u8ba9\u6211\u4eec\u8ba9\u60a8\u83b7\u5f97\u62a5\u9500\uff01',
             },
             reviewWorkspaceSettingsTask: {
                 title: ({workspaceSettingsLink}) => `\u67e5\u770b\u60a8\u7684[\u5de5\u4f5c\u533a\u8bbe\u7f6e](${workspaceSettingsLink})`,
@@ -5407,6 +5421,11 @@ const translations = {
         transactionDate: '交易日期',
     },
     referralProgram: {
+        [CONST.REFERRAL_PROGRAM.CONTENT_TYPES.START_CHAT]: {
+            buttonText: '开始聊天，<success><strong>推荐朋友</strong></success>。',
+            header: '开始聊天，推荐朋友',
+            body: '想让你的朋友也使用Expensify吗？只需与他们开始聊天，我们会处理剩下的事情。',
+        },
         [CONST.REFERRAL_PROGRAM.CONTENT_TYPES.SUBMIT_EXPENSE]: {
             buttonText: '提交费用，<success><strong>推荐你的老板</strong></success>。',
             header: '提交报销，推荐给您的老板',

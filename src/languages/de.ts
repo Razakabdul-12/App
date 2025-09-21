@@ -2362,14 +2362,25 @@ const translations = {
                     '\n' +
                     `[Jetzt Buchhalter einladen](${workspaceMembersLink}).`,
             },
+            startChatTask: {
+                title: 'Starte einen Chat',
+                description:
+                    '*Starte einen Chat* mit jeder Person über E-Mail oder Telefonnummer.\n\n' +
+                    `1. Klicke auf den ${CONST.CUSTOM_EMOJIS.GLOBAL_CREATE}-Button.\n` +
+                    '2. Wähle *Chat starten*.\n' +
+                    '3. Gib eine E-Mail oder Telefonnummer ein.\n\n' +
+                    'Falls die Person Expensify noch nicht nutzt, wird sie automatisch eingeladen.\n\n' +
+                    'Jeder Chat wird außerdem als E-Mail oder SMS zugestellt.',
+            },
             splitExpenseTask: {
                 title: 'Teile eine Ausgabe',
                 description:
                     '*Teile Ausgaben* mit einer oder mehreren Personen.\n\n' +
-                    '1. Öffne den Chat mit allen Personen, mit denen du teilen musst.\n' +
-                    `2. Klicke auf den grünen ${CONST.CUSTOM_EMOJIS.GLOBAL_CREATE}-Button im Eingabefeld.\n` +
-                    '3. Wähle *Ausgabe teilen*.\n' +
-                    '4. Erstelle die Ausgabe, indem du *Manuell*, *Scan* oder *Entfernung* auswählst.\n\n' +
+                    `1. Klicke auf den ${CONST.CUSTOM_EMOJIS.GLOBAL_CREATE}-Button.\n` +
+                    '2. Wähle *Chat starten*.\n' +
+                    '3. Gib E-Mail-Adressen oder Telefonnummern ein.\n' +
+                    '4. Klicke im Chat auf den grauen *+*-Button > *Ausgabe teilen*.\n' +
+                    '5. Wähle *Manuell*, *Scan* oder *Entfernung*.\n\n' +
                     'Du kannst Details hinzufügen oder es direkt abschicken. Zeit, dein Geld zurückzubekommen!',
             },
             reviewWorkspaceSettingsTask: {
@@ -5504,6 +5515,11 @@ const translations = {
         transactionDate: 'Transaktionsdatum',
     },
     referralProgram: {
+        [CONST.REFERRAL_PROGRAM.CONTENT_TYPES.START_CHAT]: {
+            buttonText: 'Beginnen Sie einen Chat, <success><strong>empfehlen Sie einen Freund</strong></success>.',
+            header: 'Starte einen Chat, empfehle einen Freund weiter',
+            body: 'Möchten Sie, dass Ihre Freunde auch Expensify nutzen? Starten Sie einfach einen Chat mit ihnen und wir kümmern uns um den Rest.',
+        },
         [CONST.REFERRAL_PROGRAM.CONTENT_TYPES.SUBMIT_EXPENSE]: {
             buttonText: 'Reichen Sie eine Ausgabe ein, <success><strong>empfehlen Sie Ihren Chef</strong></success>.',
             header: 'Reichen Sie eine Ausgabe ein, verweisen Sie auf Ihren Chef.',

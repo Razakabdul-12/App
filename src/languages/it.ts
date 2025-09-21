@@ -2367,15 +2367,29 @@ const translations = {
                     '\n' +
                     `[Invita ora il tuo commercialista](${workspaceMembersLink}).`,
             },
+            startChatTask: {
+                title: 'Avvia una chat',
+                description:
+                    '*Avvia una chat* con chiunque utilizzando la loro email o numero di telefono.\n' +
+                    '\n' +
+                    `1. Clicca sul pulsante ${CONST.CUSTOM_EMOJIS.GLOBAL_CREATE}.\n` +
+                    '2. Scegli *Avvia chat*.\n' +
+                    '3. Inserisci un’email o numero di telefono.\n' +
+                    '\n' +
+                    'Se non stanno già usando Expensify, riceveranno automaticamente un invito.\n' +
+                    '\n' +
+                    'Ogni chat si trasformerà anche in un’email o messaggio a cui potranno rispondere direttamente.',
+            },
             splitExpenseTask: {
                 title: 'Dividi una spesa',
                 description:
                     '*Dividi le spese* con una o più persone.\n' +
                     '\n' +
-                    '1. Apri la chat con tutte le persone con cui devi dividere.\n' +
-                    `2. Clicca sul pulsante verde ${CONST.CUSTOM_EMOJIS.GLOBAL_CREATE} nel campo messaggi.\n` +
-                    '3. Scegli *Dividi spesa*.\n' +
-                    '4. Crea la spesa selezionando *Manuale*, *Scansione* o *Distanza*.\n' +
+                    `1. Clicca sul pulsante ${CONST.CUSTOM_EMOJIS.GLOBAL_CREATE}.\n` +
+                    '2. Scegli *Avvia chat*.\n' +
+                    '3. Inserisci email o numeri di telefono.\n' +
+                    '4. Clicca sul pulsante grigio *+* nella chat > *Dividi spesa*.\n' +
+                    '5. Crea la spesa selezionando *Manuale*, *Scansione* o *Distanza*.\n' +
                     '\n' +
                     'Puoi aggiungere altri dettagli se vuoi, oppure inviarla subito. Recuperiamo i tuoi soldi!',
             },
@@ -5509,6 +5523,11 @@ const translations = {
         transactionDate: 'Data della transazione',
     },
     referralProgram: {
+        [CONST.REFERRAL_PROGRAM.CONTENT_TYPES.START_CHAT]: {
+            buttonText: 'Avviare una chat, <success><strong>segnalare un amico</strong></success>.',
+            header: 'Inizia una chat, invita un amico',
+            body: 'Vuoi che i tuoi amici usino Expensify, anche loro? Inizia una chat con loro e ci occuperemo del resto.',
+        },
         [CONST.REFERRAL_PROGRAM.CONTENT_TYPES.SUBMIT_EXPENSE]: {
             buttonText: 'Presentate una spesa, <success><strong>riferite al vostro capo</strong></success>.',
             header: 'Invia una spesa, riferisci al tuo capo',
