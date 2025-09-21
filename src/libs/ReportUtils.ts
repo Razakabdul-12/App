@@ -1701,7 +1701,7 @@ function getBankAccountRoute(report: OnyxEntry<Report>): Route {
         return ROUTES.BANK_ACCOUNT_WITH_STEP_TO_OPEN.getRoute(report?.policyID, undefined, Navigation.getActiveRoute());
     }
 
-    return ROUTES.SETTINGS_ADD_BANK_ACCOUNT.route;
+    return ROUTES.BANK_ACCOUNT_PERSONAL;
 }
 
 /**

@@ -9,7 +9,6 @@ import type AmountTextInput from '@components/AmountTextInput';
 import type CheckboxWithLabel from '@components/CheckboxWithLabel';
 import type CountryPicker from '@components/CountryPicker';
 import type CountrySelector from '@components/CountrySelector';
-import type CurrencySelector from '@components/CurrencySelector';
 import type DatePicker from '@components/DatePicker';
 import type EmojiPickerButtonDropdown from '@components/EmojiPicker/EmojiPickerButtonDropdown';
 import type NumberWithSymbolForm from '@components/NumberWithSymbolForm';
@@ -52,7 +51,6 @@ type ValidInputs =
     | typeof Picker
     | typeof AddressSearch
     | typeof CountrySelector
-    | typeof CurrencySelector
     | typeof AmountForm
     | typeof NumberWithSymbolForm
     | typeof PercentageForm

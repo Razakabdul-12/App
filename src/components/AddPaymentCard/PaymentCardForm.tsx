@@ -4,7 +4,6 @@ import {View} from 'react-native';
 import type {ValueOf} from 'type-fest';
 import AddressSearch from '@components/AddressSearch';
 import CheckboxWithLabel from '@components/CheckboxWithLabel';
-import CurrencySelector from '@components/CurrencySelector';
 import FormProvider from '@components/Form/FormProvider';
 import InputWrapper from '@components/Form/InputWrapper';
 import type {FormInputErrors, FormOnyxValues} from '@components/Form/types';
@@ -20,7 +19,6 @@ import {getFieldRequiredErrors, isValidAddress, isValidDebitCard, isValidExpirat
 import CONST from '@src/CONST';
 import type {TranslationPaths} from '@src/languages/types';
 import ONYXKEYS from '@src/ONYXKEYS';
-import ROUTES from '@src/ROUTES';
 import INPUT_IDS from '@src/types/form/AddPaymentCardForm';
 import isLoadingOnyxValue from '@src/types/utils/isLoadingOnyxValue';
 
@@ -28,7 +26,6 @@ type PaymentCardFormProps = {
     shouldShowPaymentCardForm?: boolean;
     showAcceptTerms?: boolean;
     showAddressField?: boolean;
-    showCurrencyField?: boolean;
     showStateSelector?: boolean;
     isDebitCard?: boolean;
     addPaymentCard: (values: FormOnyxValues<typeof ONYXKEYS.FORMS.ADD_PAYMENT_CARD_FORM>, currency?: ValueOf<typeof CONST.PAYMENT_CARD_CURRENCY>) => void;
@@ -37,8 +34,6 @@ type PaymentCardFormProps = {
     footerContent?: ReactNode;
     /** Custom content to display in the header before card form */
     headerContent?: ReactNode;
-    /** object to get currency route details from */
-    currencySelectorRoute?: typeof ROUTES.SETTINGS_CHANGE_CURRENCY;
 };
 
 function IAcceptTheLabel() {
@@ -61,7 +56,6 @@ const REQUIRED_FIELDS = [
     INPUT_IDS.SECURITY_CODE,
     INPUT_IDS.ADDRESS_ZIP_CODE,
     INPUT_IDS.ADDRESS_STATE,
-    INPUT_IDS.CURRENCY,
 ];
 
 const CARD_TYPES = {
@@ -122,13 +116,11 @@ function PaymentCardForm({
     addPaymentCard,
     showAcceptTerms,
     showAddressField,
-    showCurrencyField,
     isDebitCard,
     submitButtonText,
     showStateSelector,
     footerContent,
     headerContent,
-    currencySelectorRoute,
 }: PaymentCardFormProps) {
     const styles = useThemeStyles();
     const [data, metadata] = useOnyx(ONYXKEYS.FORMS.ADD_PAYMENT_CARD_FORM, {canBeMissing: true});
@@ -181,6 +173,14 @@ function PaymentCardForm({
     }, []);
 
     const [cardNumber, setCardNumber] = useState('');
+
+    const handleSubmit = useCallback(
+        (values: FormOnyxValues<typeof ONYXKEYS.FORMS.ADD_PAYMENT_CARD_FORM>) => {
+            const currency = values.currency ?? CONST.PAYMENT_CARD_CURRENCY.USD;
+            addPaymentCard({...values, currency}, currency);
+        },
+        [addPaymentCard],
+    );
 
     const validate = (values: FormOnyxValues<typeof ONYXKEYS.FORMS.ADD_PAYMENT_CARD_FORM>): FormInputErrors<typeof ONYXKEYS.FORMS.ADD_PAYMENT_CARD_FORM> => {
         const errors = getFieldRequiredErrors(values, REQUIRED_FIELDS);
@@ -262,7 +262,7 @@ function PaymentCardForm({
             <FormProvider
                 formID={ONYXKEYS.FORMS.ADD_PAYMENT_CARD_FORM}
                 validate={validate}
-                onSubmit={addPaymentCard}
+                onSubmit={handleSubmit}
                 submitButtonText={submitButtonText}
                 scrollContextEnabled
                 style={[styles.mh5, styles.flexGrow1]}
@@ -349,16 +349,6 @@ function PaymentCardForm({
                             stateSelectorRoute={showStateSelector ? ROUTES.MONEY_REQUEST_STATE_SELECTOR : undefined}
                             InputComponent={StateSelector}
                             inputID={INPUT_IDS.ADDRESS_STATE}
-                        />
-                    </View>
-                )}
-                {!!showCurrencyField && (
-                    <View style={[styles.mt4, styles.mhn5]}>
-                        <InputWrapper
-                            currencySelectorRoute={currencySelectorRoute}
-                            value={data?.currency ?? CONST.PAYMENT_CARD_CURRENCY.USD}
-                            InputComponent={CurrencySelector}
-                            inputID={INPUT_IDS.CURRENCY}
                         />
                     </View>
                 )}

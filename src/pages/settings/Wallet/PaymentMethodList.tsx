@@ -1,4 +1,3 @@
-import {isUserValidatedSelector} from '@selectors/Account';
 import {FlashList} from '@shopify/flash-list';
 import lodashSortBy from 'lodash/sortBy';
 import type {ReactElement} from 'react';
@@ -20,13 +19,11 @@ import useThemeStyles from '@hooks/useThemeStyles';
 import {clearAddPaymentMethodError, clearDeletePaymentMethodError} from '@libs/actions/PaymentMethods';
 import {getAssignedCardSortKey, getCardFeedIcon, getPlaidInstitutionIconUrl, isExpensifyCard, lastFourNumbersFromCardName, maskCardNumber} from '@libs/CardUtils';
 import Log from '@libs/Log';
-import Navigation from '@libs/Navigation/Navigation';
 import {formatPaymentMethods} from '@libs/PaymentUtils';
 import {getDescriptionForPolicyDomainCard} from '@libs/PolicyUtils';
 import variables from '@styles/variables';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
-import ROUTES from '@src/ROUTES';
 import type {BankAccount, BankAccountList, CardList, CompanyCardFeed} from '@src/types/onyx';
 import type {BankIcon} from '@src/types/onyx/Bank';
 import type {Errors} from '@src/types/onyx/OnyxCommon';
@@ -193,10 +190,6 @@ function PaymentMethodList({
     const {isOffline} = useNetwork();
     const illustrations = useThemeIllustrations();
 
-    const [isUserValidated] = useOnyx(ONYXKEYS.ACCOUNT, {
-        selector: isUserValidatedSelector,
-        canBeMissing: true,
-    });
     const [bankAccountList = getEmptyObject<BankAccountList>(), bankAccountListResult] = useOnyx(ONYXKEYS.BANK_ACCOUNT_LIST, {canBeMissing: true});
     const [userWallet] = useOnyx(ONYXKEYS.USER_WALLET, {canBeMissing: true});
     const isLoadingBankAccountList = isLoadingOnyxValue(bankAccountListResult);
@@ -375,12 +368,8 @@ function PaymentMethodList({
     ]);
 
     const onPressItem = useCallback(() => {
-        if (!isUserValidated) {
-            Navigation.navigate(ROUTES.SETTINGS_ADD_BANK_ACCOUNT_VERIFY_ACCOUNT);
-            return;
-        }
         onAddBankAccountPress();
-    }, [isUserValidated, onAddBankAccountPress]);
+    }, [onAddBankAccountPress]);
 
     const renderListFooterComponent = useCallback(
         () => (

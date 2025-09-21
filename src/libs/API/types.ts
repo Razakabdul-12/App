@@ -172,7 +172,6 @@ const WRITE_COMMANDS = {
     UPDATE_MONEY_REQUEST_DESCRIPTION: 'UpdateMoneyRequestDescription',
     UPDATE_MONEY_REQUEST_AMOUNT_AND_CURRENCY: 'UpdateMoneyRequestAmountAndCurrency',
     HOLD_MONEY_REQUEST: 'HoldRequest',
-    UPDATE_BILLING_CARD_CURRENCY: 'UpdateBillingCardCurrency',
     UNHOLD_MONEY_REQUEST: 'UnHoldRequest',
     REQUEST_MONEY: 'RequestMoney',
     CREATE_PER_DIEM_REQUEST: 'CreatePerDiemRequest',
@@ -687,7 +686,6 @@ type WriteCommandParameters = {
     [WRITE_COMMANDS.UPDATE_MANY_POLICY_CONNECTION_CONFIGS]: Parameters.UpdateManyPolicyConnectionConfigurationsParams;
     [WRITE_COMMANDS.REMOVE_POLICY_CONNECTION]: Parameters.RemovePolicyConnectionParams;
     [WRITE_COMMANDS.DISMISS_TRACK_EXPENSE_ACTIONABLE_WHISPER]: Parameters.DismissTrackExpenseActionableWhisperParams;
-    [WRITE_COMMANDS.UPDATE_BILLING_CARD_CURRENCY]: Parameters.UpdateBillingCurrencyParams;
     [WRITE_COMMANDS.CONVERT_TRACKED_EXPENSE_TO_REQUEST]: Parameters.ConvertTrackedExpenseToRequestParams;
     [WRITE_COMMANDS.ADD_TRACKED_EXPENSE_TO_POLICY]: Parameters.AddTrackedExpenseToPolicyParams;
     [WRITE_COMMANDS.CATEGORIZE_TRACKED_EXPENSE]: Parameters.CategorizeTrackedExpenseParams;

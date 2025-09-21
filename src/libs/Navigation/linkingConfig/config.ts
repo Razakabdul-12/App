@@ -164,10 +164,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                             path: ROUTES.SETTINGS_LANGUAGE,
                             exact: true,
                         },
-                        [SCREENS.SETTINGS.ADD_PAYMENT_CARD_CHANGE_CURRENCY]: {
-                            path: ROUTES.SETTINGS_CHANGE_CURRENCY,
-                            exact: true,
-                        },
                         [SCREENS.SETTINGS.PREFERENCES.THEME]: {
                             path: ROUTES.SETTINGS_THEME,
                             exact: true,
@@ -218,18 +214,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         },
                         [SCREENS.SETTINGS.ADD_DEBIT_CARD]: {
                             path: ROUTES.SETTINGS_ADD_DEBIT_CARD,
-                            exact: true,
-                        },
-                        [SCREENS.SETTINGS.ADD_BANK_ACCOUNT]: {
-                            path: ROUTES.SETTINGS_ADD_BANK_ACCOUNT.route,
-                            exact: true,
-                        },
-                        [SCREENS.SETTINGS.ADD_BANK_ACCOUNT_VERIFY_ACCOUNT]: {
-                            path: ROUTES.SETTINGS_ADD_BANK_ACCOUNT_VERIFY_ACCOUNT,
-                            exact: true,
-                        },
-                        [SCREENS.SETTINGS.ADD_US_BANK_ACCOUNT]: {
-                            path: ROUTES.SETTINGS_ADD_US_BANK_ACCOUNT,
                             exact: true,
                         },
                         [SCREENS.SETTINGS.PROFILE.PRONOUNS]: {
