@@ -303,11 +303,10 @@ const SCREENS = {
         REPORT_FIELD: 'EditRequest_ReportField',
     },
 
-  
+
 
     ONBOARDING: {
         PERSONAL_DETAILS: 'Onboarding_Personal_Details',
-        PURPOSE: 'Onboarding_Purpose',
     },
 
     EXPLANATION_MODAL: {

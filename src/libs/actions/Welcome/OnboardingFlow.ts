@@ -34,7 +34,6 @@ type GetOnboardingInitialPathParamsType = {
     isUserFromPublicDomain: boolean;
     hasAccessiblePolicies: boolean;
     onboardingValuesParam?: Onboarding;
-    currentOnboardingPurposeSelected: OnyxEntry<OnboardingPurpose>;
     onboardingInitialPath: OnyxEntry<string>;
 };
 
@@ -98,7 +97,6 @@ function getOnboardingInitialPath(getOnboardingInitialPathParams: GetOnboardingI
         isUserFromPublicDomain,
         hasAccessiblePolicies,
         onboardingValuesParam,
-        currentOnboardingPurposeSelected,
         onboardingInitialPath = '',
     } = getOnboardingInitialPathParams;
     const legacyAccountingRoute = 'onboarding/accounting';
@@ -116,9 +114,6 @@ function getOnboardingInitialPath(getOnboardingInitialPathParams: GetOnboardingI
     const currentOnboardingValues = onboardingValuesParam ?? onboardingValues;
     const isVsb = currentOnboardingValues?.signupQualifier === CONST.ONBOARDING_SIGNUP_QUALIFIERS.VSB;
     const isSmb = currentOnboardingValues?.signupQualifier === CONST.ONBOARDING_SIGNUP_QUALIFIERS.SMB;
-    const isIndividual = currentOnboardingValues?.signupQualifier === CONST.ONBOARDING_SIGNUP_QUALIFIERS.INDIVIDUAL;
-    const isCurrentOnboardingPurposeManageTeam = currentOnboardingPurposeSelected === CONST.ONBOARDING_CHOICES.MANAGE_TEAM;
-
     if (onboardingInitialPath.includes(ROUTES.TEST_DRIVE_MODAL_ROOT.route)) {
         return `/${ROUTES.TEST_DRIVE_MODAL_ROOT.route}`;
     }
@@ -132,9 +127,6 @@ function getOnboardingInitialPath(getOnboardingInitialPathParams: GetOnboardingI
         Onyx.set(ONYXKEYS.ONBOARDING_COMPANY_SIZE, CONST.ONBOARDING_COMPANY_SIZE.SMALL);
     }
 
-    if (isIndividual) {
-        Onyx.set(ONYXKEYS.ONBOARDING_CUSTOM_CHOICES, [CONST.ONBOARDING_CHOICES.PERSONAL_SPEND, CONST.ONBOARDING_CHOICES.EMPLOYER, CONST.ONBOARDING_CHOICES.CHAT_SPLIT]);
-    }
     if (!isUserFromPublicDomain && hasAccessiblePolicies) {
         return `/${ROUTES.ONBOARDING_PERSONAL_DETAILS.route}`;
     }
@@ -148,13 +140,6 @@ function getOnboardingInitialPath(getOnboardingInitialPathParams: GetOnboardingI
 
     if (state?.routes?.at(-1)?.name !== NAVIGATORS.ONBOARDING_MODAL_NAVIGATOR) {
         return `/${ROUTES.ONBOARDING_ROOT.route}`;
-    }
-
-    if (
-        sanitizedOnboardingInitialPath.includes(ROUTES.ONBOARDING_INTERESTED_FEATURES.route) &&
-        !isCurrentOnboardingPurposeManageTeam
-    ) {
-        return `/${ROUTES.ONBOARDING_PURPOSE.route}`;
     }
 
     return sanitizedOnboardingInitialPath;

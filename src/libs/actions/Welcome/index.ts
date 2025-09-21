@@ -8,7 +8,6 @@ import Log from '@libs/Log';
 import CONFIG from '@src/CONFIG';
 import ONYXKEYS from '@src/ONYXKEYS';
 import ROUTES from '@src/ROUTES';
-import type {OnboardingPurpose} from '@src/types/onyx';
 import type Onboarding from '@src/types/onyx/Onboarding';
 import {isEmptyObject} from '@src/types/utils/EmptyObject';
 import type {GetOnboardingInitialPathParamsType, OnboardingCompanySize} from './OnboardingFlow';
@@ -84,10 +83,6 @@ function checkOnboardingDataReady() {
     }
 
     resolveOnboardingFlowStatus();
-}
-
-function setOnboardingPurposeSelected(value: OnboardingPurpose) {
-    Onyx.set(ONYXKEYS.ONBOARDING_PURPOSE_SELECTED, value ?? null);
 }
 
 function setOnboardingCompanySize(value: OnboardingCompanySize) {
@@ -216,7 +211,6 @@ export {
     onServerDataReady,
     isOnboardingFlowCompleted,
     dismissProductTraining,
-    setOnboardingPurposeSelected,
     updateOnboardingLastVisitedPath,
     resetAllChecks,
     setOnboardingAdminsChatReportID,
