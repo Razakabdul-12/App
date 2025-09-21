@@ -126,10 +126,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                     path: ROUTES.ONBOARDING_ACCOUNTING.route,
                     exact: true,
                 },
-                [SCREENS.ONBOARDING.INTERESTED_FEATURES]: {
-                    path: ROUTES.ONBOARDING_INTERESTED_FEATURES.route,
-                    exact: true,
-                },
                 [SCREENS.ONBOARDING.WORKSPACES]: {
                     path: ROUTES.ONBOARDING_WORKSPACES.route,
                     exact: true,

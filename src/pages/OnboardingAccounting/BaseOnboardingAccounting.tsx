@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {View} from 'react-native';
+import {InteractionManager, View} from 'react-native';
 import type {SvgProps} from 'react-native-svg';
 import Button from '@components/Button';
 import FixedFooter from '@components/FixedFooter';
@@ -13,18 +13,24 @@ import ScreenWrapper from '@components/ScreenWrapper';
 import ScrollView from '@components/ScrollView';
 import type {ListItem} from '@components/SelectionList/types';
 import Text from '@components/Text';
+import useCurrentUserPersonalDetails from '@hooks/useCurrentUserPersonalDetails';
 import useLocalize from '@hooks/useLocalize';
 import useNetwork from '@hooks/useNetwork';
+import useOnboardingMessages from '@hooks/useOnboardingMessages';
 import useOnyx from '@hooks/useOnyx';
+import usePermissions from '@hooks/usePermissions';
 import usePrevious from '@hooks/usePrevious';
 import useResponsiveLayout from '@hooks/useResponsiveLayout';
 import useStyleUtils from '@hooks/useStyleUtils';
 import useTheme from '@hooks/useTheme';
 import useThemeStyles from '@hooks/useThemeStyles';
 import {openOldDotLink} from '@libs/actions/Link';
+import {createWorkspace, generatePolicyID} from '@libs/actions/Policy/Policy';
+import {completeOnboarding} from '@libs/actions/Report';
 import {setOnboardingAdminsChatReportID, setOnboardingPolicyID, setOnboardingUserReportedIntegration} from '@libs/actions/Welcome';
 import Navigation from '@libs/Navigation/Navigation';
 import {waitForIdle} from '@libs/Network/SequentialQueue';
+import {navigateAfterOnboardingWithMicrotaskQueue} from '@libs/navigateAfterOnboarding';
 import {shouldOnboardingRedirectToOldDot} from '@libs/OnboardingUtils';
 import {isPaidGroupPolicy, isPolicyAdmin} from '@libs/PolicyUtils';
 import variables from '@styles/variables';
@@ -80,18 +86,23 @@ type OnboardingListItem = ListItem & {
     keyForList: OnboardingAccounting;
 };
 
-function BaseOnboardingAccounting({shouldUseNativeStyles, route}: BaseOnboardingAccountingProps) {
+function BaseOnboardingAccounting({shouldUseNativeStyles}: BaseOnboardingAccountingProps) {
     const styles = useThemeStyles();
     const theme = useTheme();
     const StyleUtils = useStyleUtils();
     const {translate} = useLocalize();
+    const {onboardingMessages} = useOnboardingMessages();
+    const currentUserPersonalDetails = useCurrentUserPersonalDetails();
+    const {isBetaEnabled} = usePermissions();
 
     // We need to use isSmallScreenWidth, see navigateAfterOnboarding function comment
     // eslint-disable-next-line rulesdir/prefer-shouldUseNarrowLayout-instead-of-isSmallScreenWidth
     const {onboardingIsMediumOrLargerScreenWidth, isSmallScreenWidth} = useResponsiveLayout();
     const [onboardingPolicyID] = useOnyx(ONYXKEYS.ONBOARDING_POLICY_ID, {canBeMissing: true});
+    const [onboardingPurposeSelected] = useOnyx(ONYXKEYS.ONBOARDING_PURPOSE_SELECTED, {canBeMissing: true});
     const [allPolicies] = useOnyx(ONYXKEYS.COLLECTION.POLICY, {canBeMissing: false});
     const [onboardingCompanySize] = useOnyx(ONYXKEYS.ONBOARDING_COMPANY_SIZE, {canBeMissing: true});
+    const [onboardingAdminsChatReportID] = useOnyx(ONYXKEYS.ONBOARDING_ADMINS_CHAT_REPORT_ID, {canBeMissing: true});
     const [session] = useOnyx(ONYXKEYS.SESSION, {canBeMissing: false});
     const [onboardingUserReportedIntegration] = useOnyx(ONYXKEYS.ONBOARDING_USER_REPORTED_INTEGRATION, {canBeMissing: true});
 
@@ -183,11 +194,76 @@ function BaseOnboardingAccounting({shouldUseNativeStyles, route}: BaseOnboarding
             return;
         }
 
+        if (!onboardingPurposeSelected || !onboardingCompanySize) {
+            return;
+        }
+
         setOnboardingUserReportedIntegration(userReportedIntegration);
 
-        // Navigate to the next onboarding step interested features with the selected integration
-        Navigation.navigate(ROUTES.ONBOARDING_INTERESTED_FEATURES.getRoute(route.params?.backTo));
-    }, [translate, userReportedIntegration, route.params?.backTo]);
+        const shouldCreateWorkspace = !onboardingPolicyID && !paidGroupPolicy;
+        const newUserReportedIntegration = userReportedIntegration ?? undefined;
+        const {adminsChatReportID, policyID} = shouldCreateWorkspace
+            ? createWorkspace({
+                  policyOwnerEmail: undefined,
+                  makeMeAdmin: true,
+                  policyName: '',
+                  policyID: generatePolicyID(),
+                  engagementChoice: CONST.ONBOARDING_CHOICES.MANAGE_TEAM,
+                  currency: currentUserPersonalDetails?.localCurrencyCode ?? '',
+                  file: undefined,
+                  shouldAddOnboardingTasks: false,
+                  companySize: onboardingCompanySize,
+                  userReportedIntegration: newUserReportedIntegration,
+              })
+            : {adminsChatReportID: onboardingAdminsChatReportID, policyID: onboardingPolicyID};
+
+        if (shouldCreateWorkspace) {
+            setOnboardingAdminsChatReportID(adminsChatReportID);
+            setOnboardingPolicyID(policyID);
+        }
+
+        completeOnboarding({
+            engagementChoice: onboardingPurposeSelected,
+            onboardingMessage: onboardingMessages[onboardingPurposeSelected],
+            adminsChatReportID,
+            onboardingPolicyID: policyID,
+            companySize: onboardingCompanySize,
+            userReportedIntegration: newUserReportedIntegration,
+            firstName: currentUserPersonalDetails?.firstName,
+            lastName: currentUserPersonalDetails?.lastName,
+            shouldSkipTestDriveModal: !!policyID && !adminsChatReportID,
+        });
+
+        if (shouldOnboardingRedirectToOldDot(onboardingCompanySize, newUserReportedIntegration)) {
+            return;
+        }
+
+        InteractionManager.runAfterInteractions(() => {
+            setOnboardingAdminsChatReportID();
+            setOnboardingPolicyID();
+        });
+
+        navigateAfterOnboardingWithMicrotaskQueue(
+            isSmallScreenWidth,
+            isBetaEnabled(CONST.BETAS.DEFAULT_ROOMS),
+            policyID,
+            adminsChatReportID,
+            (session?.email ?? '').includes('+'),
+        );
+    }, [
+        userReportedIntegration,
+        translate,
+        onboardingPurposeSelected,
+        onboardingCompanySize,
+        onboardingPolicyID,
+        paidGroupPolicy,
+        onboardingAdminsChatReportID,
+        onboardingMessages,
+        currentUserPersonalDetails,
+        isSmallScreenWidth,
+        isBetaEnabled,
+        session?.email,
+    ]);
 
     const handleIntegrationSelect = useCallback((integrationKey: OnboardingAccounting | null) => {
         setUserReportedIntegration(integrationKey);
