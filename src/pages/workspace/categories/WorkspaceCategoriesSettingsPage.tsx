@@ -16,8 +16,8 @@ import type {SettingsNavigatorParamList} from '@libs/Navigation/types';
 import {hasEnabledOptions} from '@libs/OptionsListUtils';
 import {getCurrentConnectionName} from '@libs/PolicyUtils';
 import AccessOrNotFoundWrapper from '@pages/workspace/AccessOrNotFoundWrapper';
-import type {WithPolicyConnectionsProps} from '@pages/workspace/withPolicyConnections';
-import withPolicyConnections from '@pages/workspace/withPolicyConnections';
+import withPolicy from '@pages/workspace/withPolicy';
+import type {WithPolicyProps} from '@pages/workspace/withPolicy';
 import ToggleSettingOptionRow from '@components/ToggleSettingOptionRow';
 import {setWorkspaceRequiresCategory} from '@userActions/Policy/Category';
 import {clearPolicyErrorField, setWorkspaceDefaultSpendCategory} from '@userActions/Policy/Policy';
@@ -27,7 +27,7 @@ import ROUTES from '@src/ROUTES';
 import SCREENS from '@src/SCREENS';
 import SpendCategorySelectorListItem from './SpendCategorySelectorListItem';
 
-type WorkspaceCategoriesSettingsPageProps = WithPolicyConnectionsProps &
+type WorkspaceCategoriesSettingsPageProps = WithPolicyProps &
     (
         | PlatformStackScreenProps<SettingsNavigatorParamList, typeof SCREENS.WORKSPACE.CATEGORIES_SETTINGS>
         | PlatformStackScreenProps<SettingsNavigatorParamList, typeof SCREENS.SETTINGS_CATEGORIES.SETTINGS_CATEGORIES_SETTINGS>
@@ -166,4 +166,4 @@ function WorkspaceCategoriesSettingsPage({policy, route}: WorkspaceCategoriesSet
 
 WorkspaceCategoriesSettingsPage.displayName = 'WorkspaceCategoriesSettingsPage';
 
-export default withPolicyConnections(WorkspaceCategoriesSettingsPage);
+export default withPolicy(WorkspaceCategoriesSettingsPage);

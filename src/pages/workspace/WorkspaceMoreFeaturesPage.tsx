@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {View} from 'react-native';
+import {Linking, View} from 'react-native';
 import ConfirmModal from '@components/ConfirmModal';
 import HeaderWithBackButton from '@components/HeaderWithBackButton';
 import * as Illustrations from '@components/Icon/Illustrations';
@@ -19,6 +19,7 @@ import {getLatestErrorField} from '@libs/ErrorUtils';
 import Navigation from '@libs/Navigation/Navigation';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {WorkspaceSplitNavigatorParamList} from '@libs/Navigation/types';
+import * as Environment from '@libs/Environment/Environment';
 import { hasAccountingConnections, isControlPolicy} from '@libs/PolicyUtils';
 import {enablePolicyCategories} from '@userActions/Policy/Category';
 import {clearPolicyErrorField, enableCompanyCards, enablePolicyConnections, openPolicyMoreFeaturesPage} from '@userActions/Policy/Policy';
@@ -26,7 +27,6 @@ import {navigateToConciergeChat} from '@userActions/Report';
 import CONST from '@src/CONST';
 import type {TranslationPaths} from '@src/languages/types';
 import ONYXKEYS from '@src/ONYXKEYS';
-import ROUTES from '@src/ROUTES';
 import type SCREENS from '@src/SCREENS';
 import type {Errors, PendingAction} from '@src/types/onyx/OnyxCommon';
 import {isEmptyObject} from '@src/types/utils/EmptyObject';
@@ -82,9 +82,17 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
     }, [hasAccountingConnection]);
 
 
-    const manageItems: Item[] = [
-       
-    ];
+    const openWorkspaceConnectionsSettings = useCallback(() => {
+        if (!policyID) {
+            return;
+        }
+
+        Environment.getOldDotEnvironmentURL().then((oldDotEnvironmentURL) => {
+            const param = encodeURIComponent(`{"policyID": "${policyID}"}`);
+            const url = `${oldDotEnvironmentURL}/policy?param=${param}#connections`;
+            Linking.openURL(url);
+        });
+    }, [policyID]);
 
     const organizeItems: Item[] = [
         {
@@ -261,11 +269,8 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
                 <ConfirmModal
                     title={translate('workspace.moreFeatures.connectionsWarningModal.featureEnabledTitle')}
                     onConfirm={() => {
-                        if (!policyID) {
-                            return;
-                        }
                         setIsOrganizeWarningModalOpen(false);
-                        Navigation.navigate(ROUTES.POLICY_ACCOUNTING.getRoute(policyID));
+                        openWorkspaceConnectionsSettings();
                     }}
                     onCancel={() => setIsOrganizeWarningModalOpen(false)}
                     isVisible={isOrganizeWarningModalOpen}
@@ -276,11 +281,8 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
                 <ConfirmModal
                     title={translate('workspace.moreFeatures.connectionsWarningModal.featureEnabledTitle')}
                     onConfirm={() => {
-                        if (!policyID) {
-                            return;
-                        }
                         setIsIntegrateWarningModalOpen(false);
-                        Navigation.navigate(ROUTES.POLICY_ACCOUNTING.getRoute(policyID));
+                        openWorkspaceConnectionsSettings();
                     }}
                     onCancel={() => setIsIntegrateWarningModalOpen(false)}
                     isVisible={isIntegrateWarningModalOpen}

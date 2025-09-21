@@ -215,8 +215,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                             path: ROUTES.WORKSPACE_OVERVIEW_PLAN.route,
                         },
                         
-                        [SCREENS.WORKSPACE.ACCOUNTING.CARD_RECONCILIATION]: {path: ROUTES.WORKSPACE_ACCOUNTING_CARD_RECONCILIATION.route},
-                        [SCREENS.WORKSPACE.ACCOUNTING.RECONCILIATION_ACCOUNT_SETTINGS]: {path: ROUTES.WORKSPACE_ACCOUNTING_RECONCILIATION_ACCOUNT_SETTINGS.route},
                         [SCREENS.WORKSPACE.DESCRIPTION]: {
                             path: ROUTES.WORKSPACE_OVERVIEW_DESCRIPTION.route,
                         },
@@ -760,9 +758,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
            
                 [SCREENS.WORKSPACE.MEMBERS]: {
                     path: ROUTES.WORKSPACE_MEMBERS.route,
-                },
-                [SCREENS.WORKSPACE.ACCOUNTING.ROOT]: {
-                    path: ROUTES.POLICY_ACCOUNTING.route,
                 },
                 [SCREENS.WORKSPACE.CATEGORIES]: {
                     path: ROUTES.WORKSPACE_CATEGORIES.route,

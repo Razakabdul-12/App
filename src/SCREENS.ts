@@ -236,11 +236,6 @@ const SCREENS = {
     WORKSPACES_LIST: 'Workspaces_List',
 
     WORKSPACE: {
-        ACCOUNTING: {
-            ROOT: 'Policy_Accounting',
-            CARD_RECONCILIATION: 'Policy_Accounting_Card_Reconciliation',
-            RECONCILIATION_ACCOUNT_SETTINGS: 'Policy_Accounting_Reconciliation_Account_Settings',
-        },
         INITIAL: 'Workspace_Initial',
         PROFILE: 'Workspace_Overview',
         COMPANY_CARDS: 'Workspace_CompanyCards',

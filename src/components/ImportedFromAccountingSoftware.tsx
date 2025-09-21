@@ -1,13 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
-import useEnvironment from '@hooks/useEnvironment';
 import useLocalize from '@hooks/useLocalize';
 import useStyleUtils from '@hooks/useStyleUtils';
 import useThemeStyles from '@hooks/useThemeStyles';
 import {getIntegrationIcon} from '@libs/ReportUtils';
+import * as Environment from '@libs/Environment/Environment';
 import variables from '@styles/variables';
 import CONST from '@src/CONST';
-import ROUTES from '@src/ROUTES';
 import type {ConnectionName} from '@src/types/onyx/Policy';
 import Icon from './Icon';
 import Text from './Text';
@@ -32,8 +31,20 @@ function ImportedFromAccountingSoftware({policyID, currentConnectionName, transl
     const styles = useThemeStyles();
     const StyleUtils = useStyleUtils();
     const {translate} = useLocalize();
-    const {environmentURL} = useEnvironment();
+    const [workspaceAccountingURL, setWorkspaceAccountingURL] = useState('');
     const icon = getIntegrationIcon(connectedIntegration);
+
+    useEffect(() => {
+        if (!policyID) {
+            setWorkspaceAccountingURL('');
+            return;
+        }
+
+        Environment.getOldDotEnvironmentURL().then((oldDotEnvironmentURL) => {
+            const param = encodeURIComponent(`{"policyID": "${policyID}"}`);
+            setWorkspaceAccountingURL(`${oldDotEnvironmentURL}/policy?param=${param}#connections`);
+        });
+    }, [policyID]);
 
     return (
         <View style={[styles.alignItemsCenter, styles.flexRow, styles.flexWrap]}>
@@ -43,7 +54,7 @@ function ImportedFromAccountingSoftware({policyID, currentConnectionName, transl
             />
             <TextLinkBlock
                 style={[styles.textNormal, styles.link]}
-                href={`${environmentURL}/${ROUTES.POLICY_ACCOUNTING.getRoute(policyID)}`}
+                href={workspaceAccountingURL || undefined}
                 text={`${currentConnectionName} ${translate('workspace.accounting.settings')}`}
                 prefixIcon={
                     icon ? (

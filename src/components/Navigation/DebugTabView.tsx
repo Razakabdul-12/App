@@ -74,7 +74,7 @@ function getSettingsRoute(status: IndicatorStatus | undefined, reimbursementAcco
                 getReimbursementAccountRouteForCurrentStep(reimbursementAccount?.achData?.currentStep ?? CONST.BANK_ACCOUNT.STEP.BANK_ACCOUNT),
             );
         case CONST.INDICATOR_STATUS.HAS_SYNC_ERRORS:
-            return ROUTES.WORKSPACE_ACCOUNTING.getRoute(policyIDWithErrors);
+            return ROUTES.WORKSPACE_MORE_FEATURES.getRoute(policyIDWithErrors);
         default:
             return undefined;
     }

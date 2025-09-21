@@ -286,75 +286,6 @@ type SettingsNavigatorParamList = {
         error: ValueOf<typeof CONST.POLICY.OWNERSHIP_ERRORS>;
         backTo?: Routes;
     };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_IMPORT]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_CHART_OF_ACCOUNTS]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_LOCATIONS]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_CLASSES]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_CUSTOMERS]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_TAXES]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_EXPORT]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_EXPORT_DATE_SELECT]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_EXPORT_INVOICE_ACCOUNT_SELECT]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_EXPORT_OUT_OF_POCKET_EXPENSES_ACCOUNT_SELECT]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_EXPORT_OUT_OF_POCKET_EXPENSES]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_EXPORT_OUT_OF_POCKET_EXPENSES_SELECT]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_NON_REIMBURSABLE_DEFAULT_VENDOR_SELECT]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_COMPANY_CARD_EXPENSE_ACCOUNT_SELECT]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_COMPANY_CARD_EXPENSE_ACCOUNT]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_COMPANY_CARD_EXPENSE_ACCOUNT_COMPANY_CARD_SELECT]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_EXPORT_PREFERRED_EXPORTER]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.CARD_RECONCILIATION]: {
-        policyID: string;
-        connection: ValueOf<typeof CONST.POLICY.CONNECTIONS.ROUTE>;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.RECONCILIATION_ACCOUNT_SETTINGS]: {
-        policyID: string;
-        connection: ValueOf<typeof CONST.POLICY.CONNECTIONS.ROUTE>;
-    };
     [SCREENS.TWO_FACTOR_AUTH.DISABLED]: undefined;
     [SCREENS.TWO_FACTOR_AUTH.DISABLE]: undefined;
     [SCREENS.SETTINGS.REPORT_CARD_LOST_OR_DAMAGED]: {
@@ -919,27 +850,6 @@ type WorkspaceSplitNavigatorParamList = {
         policyID: string;
     };
  
-    [SCREENS.WORKSPACE.ACCOUNTING.ROOT]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_ADVANCED]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_ACCOUNT_SELECTOR]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_INVOICE_ACCOUNT_SELECTOR]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_CLASSES_DISPLAYED_AS]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_CUSTOMERS_DISPLAYED_AS]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_ONLINE_LOCATIONS_DISPLAYED_AS]: {
-        policyID: string;
-    };
 };
 
 type OnboardingModalNavigatorParamList = {

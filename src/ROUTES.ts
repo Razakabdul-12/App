@@ -859,10 +859,6 @@ const ROUTES = {
         // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
         getRoute: (policyID: string, backTo?: string) => getUrlWithBackToParam(`workspaces/${policyID}/overview/plan` as const, backTo),
     },
-    WORKSPACE_ACCOUNTING: {
-        route: 'workspaces/:policyID/accounting',
-        getRoute: (policyID: string) => `workspaces/${policyID}/accounting` as const,
-    },
     WORKSPACE_OVERVIEW_CURRENCY: {
         route: 'workspaces/:policyID/overview/currency',
         getRoute: (policyID: string) => `workspaces/${policyID}/overview/currency` as const,
@@ -916,41 +912,6 @@ const ROUTES = {
     WORKSPACE_MEMBERS_IMPORTED_CONFIRMATION: {
         route: 'workspaces/:policyID/members/imported/confirmation',
         getRoute: (policyID: string) => `workspaces/${policyID}/members/imported/confirmation` as const,
-    },
-    POLICY_ACCOUNTING: {
-        route: 'workspaces/:policyID/accounting',
-        getRoute: (policyID: string | undefined, newConnectionName?: ConnectionName, integrationToDisconnect?: ConnectionName, shouldDisconnectIntegrationBeforeConnecting?: boolean) => {
-            if (!policyID) {
-                Log.warn('Invalid policyID is used to build the POLICY_ACCOUNTING route');
-            }
-
-            let queryParams = '';
-            if (newConnectionName) {
-                queryParams += `?newConnectionName=${newConnectionName}`;
-                if (integrationToDisconnect) {
-                    queryParams += `&integrationToDisconnect=${integrationToDisconnect}`;
-                }
-                if (shouldDisconnectIntegrationBeforeConnecting !== undefined) {
-                    queryParams += `&shouldDisconnectIntegrationBeforeConnecting=${shouldDisconnectIntegrationBeforeConnecting}`;
-                }
-            }
-            return `workspaces/${policyID}/accounting${queryParams}` as const;
-        },
-    },
-    WORKSPACE_ACCOUNTING_CARD_RECONCILIATION: {
-        route: 'workspaces/:policyID/accounting/:connection/card-reconciliation',
-        getRoute: (policyID: string, connection?: ValueOf<typeof CONST.POLICY.CONNECTIONS.ROUTE>) => `workspaces/${policyID}/accounting/${connection as string}/card-reconciliation` as const,
-    },
-    WORKSPACE_ACCOUNTING_RECONCILIATION_ACCOUNT_SETTINGS: {
-        route: 'workspaces/:policyID/accounting/:connection/card-reconciliation/account',
-        getRoute: (policyID: string | undefined, connection?: ValueOf<typeof CONST.POLICY.CONNECTIONS.ROUTE>, backTo?: string) => {
-            if (!policyID) {
-                Log.warn('Invalid policyID is used to build the WORKSPACE_ACCOUNTING_RECONCILIATION_ACCOUNT_SETTINGS route');
-            }
-
-            // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-            return getUrlWithBackToParam(`workspaces/${policyID}/accounting/${connection as string}/card-reconciliation/account` as const, backTo);
-        },
     },
     WORKSPACE_CATEGORIES: {
         route: 'workspaces/:policyID/categories',

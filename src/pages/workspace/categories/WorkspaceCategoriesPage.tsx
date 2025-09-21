@@ -24,7 +24,6 @@ import Switch from '@components/Switch';
 import Text from '@components/Text';
 import useAutoTurnSelectionModeOffWhenHasNoActiveOption from '@hooks/useAutoTurnSelectionModeOffWhenHasNoActiveOption';
 import useCleanupSelectedOptions from '@hooks/useCleanupSelectedOptions';
-import useEnvironment from '@hooks/useEnvironment';
 import useLocalize from '@hooks/useLocalize';
 import useMobileSelectionMode from '@hooks/useMobileSelectionMode';
 import useNetwork from '@hooks/useNetwork';
@@ -35,6 +34,7 @@ import useSearchBackPress from '@hooks/useSearchBackPress';
 import useSearchResults from '@hooks/useSearchResults';
 import useTheme from '@hooks/useTheme';
 import useThemeStyles from '@hooks/useThemeStyles';
+import * as Environment from '@libs/Environment/Environment';
 import {isConnectionInProgress, isConnectionUnverified} from '@libs/actions/connections';
 import {turnOffMobileSelectionMode} from '@libs/actions/MobileSelectionMode';
 import {canUseTouchScreen} from '@libs/DeviceCapabilities';
@@ -73,7 +73,6 @@ function WorkspaceCategoriesPage({route}: WorkspaceCategoriesPageProps) {
     const [isDownloadFailureModalVisible, setIsDownloadFailureModalVisible] = useState(false);
     const [deleteCategoriesConfirmModalVisible, setDeleteCategoriesConfirmModalVisible] = useState(false);
     const [isCannotDeleteOrDisableLastCategoryModalVisible, setIsCannotDeleteOrDisableLastCategoryModalVisible] = useState(false);
-    const {environmentURL} = useEnvironment();
     const policyId = route.params.policyID;
     const backTo = route.params?.backTo;
     const policy = usePolicy(policyId);
@@ -90,6 +89,7 @@ function WorkspaceCategoriesPage({route}: WorkspaceCategoriesPageProps) {
     const isQuickSettingsFlow = route.name === SCREENS.SETTINGS_CATEGORIES.SETTINGS_CATEGORIES_ROOT;
 
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+    const [workspaceAccountingURL, setWorkspaceAccountingURL] = useState('');
     const canSelectMultiple = isSmallScreenWidth ? isMobileSelectionModeEnabled : true;
 
     const fetchCategories = useCallback(() => {
@@ -461,20 +461,32 @@ function WorkspaceCategoriesPage({route}: WorkspaceCategoriesPageProps) {
             )}
         </>
     );
+    useEffect(() => {
+        if (!policyHasAccountingConnections || !policyId) {
+            setWorkspaceAccountingURL('');
+            return;
+        }
+
+        Environment.getOldDotEnvironmentURL().then((oldDotEnvironmentURL) => {
+            const param = encodeURIComponent(`{"policyID": "${policyId}"}`);
+            setWorkspaceAccountingURL(`${oldDotEnvironmentURL}/policy?param=${param}#connections`);
+        });
+    }, [policyHasAccountingConnections, policyId]);
+
     const subtitleText = useMemo(() => {
-        if (!policyHasAccountingConnections) {
+        if (!policyHasAccountingConnections || !workspaceAccountingURL) {
             return <Text style={[styles.textAlignCenter, styles.textSupporting, styles.textNormal]}>{translate('workspace.categories.emptyCategories.subtitle')}</Text>;
         }
         return (
             <View style={[styles.renderHTML]}>
                 <RenderHTML
                     html={translate('workspace.categories.emptyCategories.subtitleWithAccounting', {
-                        accountingPageURL: `${environmentURL}/${ROUTES.POLICY_ACCOUNTING.getRoute(policyId)}`,
+                        accountingPageURL: workspaceAccountingURL,
                     })}
                 />
             </View>
         );
-    }, [policyHasAccountingConnections, styles.renderHTML, styles.textAlignCenter, styles.textSupporting, styles.textNormal, translate, environmentURL, policyId]);
+    }, [policyHasAccountingConnections, styles.renderHTML, styles.textAlignCenter, styles.textSupporting, styles.textNormal, translate, workspaceAccountingURL]);
     return (
         <AccessOrNotFoundWrapper
             accessVariants={[CONST.POLICY.ACCESS_VARIANTS.ADMIN, CONST.POLICY.ACCESS_VARIANTS.PAID]}
