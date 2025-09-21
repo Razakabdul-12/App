@@ -3623,128 +3623,6 @@ const translations = {
             },
             itemsDescription: 'Escolha como lidar com itens do QuickBooks Desktop no Expensify.',
         },
-        qbo: {
-            connectedTo: 'Conectado a',
-            importDescription: 'Escolha quais configurações de codificação importar do QuickBooks Online para o Expensify.',
-            classes: 'Classes',
-            locations: 'Locais',
-            customers: 'Clientes/projetos',
-            accountsDescription: 'Seu plano de contas do QuickBooks Online será importado para o Expensify como categorias.',
-            accountsSwitchTitle: 'Escolha importar novas contas como categorias habilitadas ou desabilitadas.',
-            accountsSwitchDescription: 'As categorias ativadas estarão disponíveis para os membros selecionarem ao criar suas despesas.',
-            classesDescription: 'Escolha como lidar com as classes do QuickBooks Online no Expensify.',
-            customersDescription: 'Escolha como lidar com clientes/projetos do QuickBooks Online no Expensify.',
-            locationsDescription: 'Escolha como lidar com locais do QuickBooks Online no Expensify.',
-            taxesDescription: 'Escolha como lidar com os impostos do QuickBooks Online no Expensify.',
-            locationsLineItemsRestrictionDescription:
-                'O QuickBooks Online não suporta Localizações no nível de linha para Cheques ou Faturas de Fornecedores. Se você gostaria de ter localizações no nível de linha, certifique-se de estar usando Lançamentos Contábeis e despesas de Cartão de Crédito/Débito.',
-            taxesJournalEntrySwitchNote: 'QuickBooks Online não suporta impostos em lançamentos contábeis. Por favor, altere sua opção de exportação para fatura de fornecedor ou cheque.',
-            exportDescription: 'Configure como os dados do Expensify são exportados para o QuickBooks Online.',
-            date: 'Data de exportação',
-            exportInvoices: 'Exportar faturas para',
-            exportExpensifyCard: 'Exportar transações do Cartão Expensify como',
-            exportDate: {
-                label: 'Data de exportação',
-                description: 'Use esta data ao exportar relatórios para o QuickBooks Online.',
-                values: {
-                    [CONST.QUICKBOOKS_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: 'Data da última despesa',
-                        description: 'Data da despesa mais recente no relatório.',
-                    },
-                    [CONST.QUICKBOOKS_EXPORT_DATE.REPORT_EXPORTED]: {
-                        label: 'Data de exportação',
-                        description: 'Data em que o relatório foi exportado para o QuickBooks Online.',
-                    },
-                    [CONST.QUICKBOOKS_EXPORT_DATE.REPORT_SUBMITTED]: {
-                        label: 'Data de envio',
-                        description: 'Data em que o relatório foi enviado para aprovação.',
-                    },
-                },
-            },
-            receivable: 'Contas a receber', // This is an account name that will come directly from QBO, so I don't know why we need a translation for it. It should take whatever the name of the account is in QBO. Leaving this note for CS.
-            archive: 'Arquivo de contas a receber', // This is an account name that will come directly from QBO, so I don't know why we need a translation for it. It should take whatever the name of the account is in QBO. Leaving this note for CS.
-            exportInvoicesDescription: 'Use esta conta ao exportar faturas para o QuickBooks Online.',
-            exportCompanyCardsDescription: 'Defina como as compras com cartão corporativo são exportadas para o QuickBooks Online.',
-            vendor: 'Fornecedor',
-            defaultVendorDescription: 'Defina um fornecedor padrão que será aplicado a todas as transações de cartão de crédito ao exportar.',
-            exportOutOfPocketExpensesDescription: 'Defina como as despesas fora do bolso são exportadas para o QuickBooks Online.',
-            exportCheckDescription: 'Vamos criar um cheque detalhado para cada relatório do Expensify e enviá-lo a partir da conta bancária abaixo.',
-            exportJournalEntryDescription: 'Criaremos uma entrada de diário detalhada para cada relatório do Expensify e a postaremos na conta abaixo.',
-            exportVendorBillDescription:
-                'Criaremos uma fatura de fornecedor detalhada para cada relatório do Expensify e a adicionaremos à conta abaixo. Se este período estiver fechado, publicaremos no primeiro dia do próximo período aberto.',
-            account: 'Conta',
-            accountDescription: 'Escolha onde postar lançamentos contábeis.',
-            accountsPayable: 'Contas a pagar',
-            accountsPayableDescription: 'Escolha onde criar contas de fornecedores.',
-            bankAccount: 'Conta bancária',
-            notConfigured: 'Não configurado',
-            bankAccountDescription: 'Escolha de onde enviar os cheques.',
-            creditCardAccount: 'Conta de cartão de crédito',
-            companyCardsLocationEnabledDescription:
-                'O QuickBooks Online não oferece suporte a locais nas exportações de contas a pagar de fornecedores. Como você tem locais habilitados no seu espaço de trabalho, essa opção de exportação não está disponível.',
-            outOfPocketTaxEnabledDescription:
-                'QuickBooks Online não suporta impostos em exportações de lançamentos contábeis. Como você tem impostos ativados no seu espaço de trabalho, esta opção de exportação não está disponível.',
-            outOfPocketTaxEnabledError: 'As entradas de diário não estão disponíveis quando os impostos estão ativados. Por favor, escolha uma opção de exportação diferente.',
-            advancedConfig: {
-                autoSyncDescription: 'A Expensify sincronizará automaticamente com o QuickBooks Online todos os dias.',
-                inviteEmployees: 'Convidar funcionários',
-                inviteEmployeesDescription: 'Importar registros de funcionários do QuickBooks Online e convidar funcionários para este espaço de trabalho.',
-                createEntities: 'Auto-criar entidades',
-                createEntitiesDescription:
-                    'A Expensify criará automaticamente fornecedores no QuickBooks Online se eles ainda não existirem e criará automaticamente clientes ao exportar faturas.',
-                reimbursedReportsDescription: 'Sempre que um relatório for pago usando Expensify ACH, o pagamento correspondente da conta será criado na conta do QuickBooks Online abaixo.',
-                qboBillPaymentAccount: 'Conta de pagamento de fatura do QuickBooks',
-                qboInvoiceCollectionAccount: 'Conta de cobrança de faturas do QuickBooks',
-                accountSelectDescription: 'Escolha de onde pagar as contas e nós criaremos o pagamento no QuickBooks Online.',
-                invoiceAccountSelectorDescription: 'Escolha onde receber os pagamentos de faturas e criaremos o pagamento no QuickBooks Online.',
-            },
-            accounts: {
-                [CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.DEBIT_CARD]: 'Cartão de débito',
-                [CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD]: 'Cartão de crédito',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL]: 'Fatura do fornecedor',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY]: 'Lançamento contábil',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK]: 'Verificar',
-                [`${CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.DEBIT_CARD}Description`]:
-                    "Vamos corresponder automaticamente o nome do comerciante na transação do cartão de débito a quaisquer fornecedores correspondentes no QuickBooks. Se não existirem fornecedores, criaremos um fornecedor 'Cartão de Débito Diversos' para associação.",
-                [`${CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD}Description`]:
-                    "Vamos corresponder automaticamente o nome do comerciante na transação do cartão de crédito a qualquer fornecedor correspondente no QuickBooks. Se não existirem fornecedores, criaremos um fornecedor 'Cartão de Crédito Diversos' para associação.",
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}Description`]:
-                    'Criaremos uma fatura detalhada do fornecedor para cada relatório do Expensify com a data da última despesa e a adicionaremos à conta abaixo. Se este período estiver fechado, lançaremos no dia 1º do próximo período aberto.',
-                [`${CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.DEBIT_CARD}AccountDescription`]: 'Escolha onde exportar as transações do cartão de débito.',
-                [`${CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD}AccountDescription`]: 'Escolha onde exportar as transações do cartão de crédito.',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}AccountDescription`]: 'Escolha um fornecedor para aplicar a todas as transações de cartão de crédito.',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}Error`]:
-                    'As contas de fornecedores não estão disponíveis quando os locais estão ativados. Por favor, escolha uma opção de exportação diferente.',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK}Error`]:
-                    'Cheques estão indisponíveis quando locais estão habilitados. Por favor, escolha uma opção de exportação diferente.',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY}Error`]:
-                    'As entradas de diário não estão disponíveis quando os impostos estão ativados. Por favor, escolha uma opção de exportação diferente.',
-            },
-            exportDestinationAccountsMisconfigurationError: {
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL]: 'Escolha uma conta válida para exportação de fatura do fornecedor',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY]: 'Escolha uma conta válida para exportação de lançamento contábil',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK]: 'Escolha uma conta válida para exportação de cheques',
-            },
-            exportDestinationSetupAccountsInfo: {
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL]: 'Para usar a exportação de fatura de fornecedor, configure uma conta a pagar no QuickBooks Online.',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY]: 'Para usar a exportação de lançamentos contábeis, configure uma conta de diário no QuickBooks Online',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK]: 'Para usar a exportação de cheques, configure uma conta bancária no QuickBooks Online',
-            },
-            noAccountsFound: 'Nenhuma conta encontrada',
-            noAccountsFoundDescription: 'Adicione a conta no QuickBooks Online e sincronize a conexão novamente.',
-            accountingMethods: {
-                label: 'Quando Exportar',
-                description: 'Escolha quando exportar as despesas:',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Acumulação',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Dinheiro',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Despesas do próprio bolso serão exportadas quando aprovadas em definitivo',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Despesas do próprio bolso serão exportadas quando pagas',
-                },
-            },
-        },
         workspaceList: {
             joinNow: 'Junte-se agora',
             askToJoin: 'Pedir para participar',
@@ -4932,7 +4810,6 @@ const translations = {
             title: 'Conexões',
             subtitle:
                 'Conecte-se ao seu sistema de contabilidade para codificar transações com seu plano de contas, fazer a correspondência automática de pagamentos e manter suas finanças sincronizadas.',
-            qbo: 'QuickBooks Online',
             qbd: 'QuickBooks Desktop',
             xero: 'Xero',
             netsuite: 'NetSuite',
@@ -4946,8 +4823,6 @@ const translations = {
             needAnotherAccounting: 'Precisa de outro software de contabilidade?',
             connectionName: ({connectionName}: ConnectionNameParams) => {
                 switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.QBO:
-                        return 'QuickBooks Online';
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Xero';
                     case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
@@ -4980,8 +4855,6 @@ const translations = {
             connectTitle: ({connectionName}: ConnectionNameParams) => `Conectar ${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? 'integração contábil'}`,
             syncError: ({connectionName}: ConnectionNameParams) => {
                 switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.QBO:
-                        return 'Não é possível conectar ao QuickBooks Online';
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Não é possível conectar ao Xero';
                     case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
@@ -5018,37 +4891,23 @@ const translations = {
             connections: {
                 syncStageName: ({stage}: SyncStageNameConnectionsParams) => {
                     switch (stage) {
-                        case 'quickbooksOnlineImportCustomers':
                         case 'quickbooksDesktopImportCustomers':
                             return 'Importando clientes';
-                        case 'quickbooksOnlineImportEmployees':
                         case 'netSuiteSyncImportEmployees':
                         case 'intacctImportEmployees':
                         case 'quickbooksDesktopImportEmployees':
                             return 'Importando funcionários';
-                        case 'quickbooksOnlineImportAccounts':
                         case 'quickbooksDesktopImportAccounts':
                             return 'Importando contas';
-                        case 'quickbooksOnlineImportClasses':
                         case 'quickbooksDesktopImportClasses':
                             return 'Importando classes';
-                        case 'quickbooksOnlineImportLocations':
                             return 'Importando locais';
-                        case 'quickbooksOnlineImportProcessing':
                             return 'Processando dados importados';
-                        case 'quickbooksOnlineSyncBillPayments':
                         case 'intacctImportSyncBillPayments':
                             return 'Sincronizando relatórios reembolsados e pagamentos de contas';
-                        case 'quickbooksOnlineSyncTaxCodes':
                             return 'Importando códigos fiscais';
-                        case 'quickbooksOnlineCheckConnection':
-                            return 'Verificando a conexão com o QuickBooks Online';
-                        case 'quickbooksOnlineImportMain':
-                            return 'Importando dados do QuickBooks Online';
                         case 'startingImportXero':
                             return 'Importando dados do Xero';
-                        case 'startingImportQBO':
-                            return 'Importando dados do QuickBooks Online';
                         case 'startingImportQBD':
                         case 'quickbooksDesktopImportMore':
                             return 'Importando dados do QuickBooks Desktop';
@@ -5062,19 +4921,12 @@ const translations = {
                             return 'Importando política de salvamento';
                         case 'quickbooksDesktopWebConnectorReminder':
                             return 'Ainda sincronizando dados com o QuickBooks... Por favor, certifique-se de que o Web Connector está em execução.';
-                        case 'quickbooksOnlineSyncTitle':
-                            return 'Sincronizando dados do QuickBooks Online';
-                        case 'quickbooksOnlineSyncLoadData':
                         case 'xeroSyncStep':
                         case 'intacctImportData':
                             return 'Carregando dados';
-                        case 'quickbooksOnlineSyncApplyCategories':
                             return 'Atualizando categorias';
-                        case 'quickbooksOnlineSyncApplyCustomers':
                             return 'Atualizando clientes/projetos';
-                        case 'quickbooksOnlineSyncApplyEmployees':
                             return 'Atualizando lista de pessoas';
-                        case 'quickbooksOnlineSyncApplyClassesLocations':
                             return 'Atualizando campos do relatório';
                         case 'jobDone':
                             return 'Aguardando o carregamento dos dados importados';
@@ -5474,7 +5326,7 @@ const translations = {
                     pricingPage: 'página de preços',
                     confirm: 'Tem certeza de que deseja rebaixar e remover suas configurações?',
                     warning: 'Isso não pode ser desfeito.',
-                    benefit1: 'Conexões contábeis (exceto QuickBooks Online e Xero)',
+                    benefit1: 'Conexões contábeis (exceto Xero)',
                     benefit2: 'Regras inteligentes de despesas',
                     benefit3: 'Fluxos de aprovação em múltiplos níveis',
                     benefit4: 'Controles de segurança aprimorados',
@@ -6940,7 +6792,6 @@ const translations = {
             theresAReportWithErrors: 'Há um relatório com erros',
             theresAWorkspaceWithCustomUnitsErrors: 'Há um espaço de trabalho com erros de unidades personalizadas',
             theresAProblemWithAWorkspaceMember: 'Há um problema com um membro do espaço de trabalho',
-            theresAProblemWithAWorkspaceQBOExport: 'Houve um problema com a configuração de exportação da conexão do espaço de trabalho.',
             theresAProblemWithAContactMethod: 'Há um problema com um método de contato',
             aContactMethodRequiresVerification: 'Um método de contato requer verificação',
             theresAProblemWithAPaymentMethod: 'Há um problema com um método de pagamento',

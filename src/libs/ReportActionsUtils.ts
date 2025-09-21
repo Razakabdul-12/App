@@ -126,11 +126,6 @@ const NETSUITE_NON_REIMBURSABLE_EXPENSES_URL_PREFIX =
  */
 const SALESFORCE_EXPENSES_URL_PREFIX = 'https://login.salesforce.com/';
 
-/*
- * Url to the QBO expenses list
- */
-const QBO_EXPENSES_URL = 'https://qbo.intuit.com/app/expenses';
-
 const POLICY_CHANGE_LOG_ARRAY = new Set<ReportActionName>(Object.values(CONST.REPORT.ACTIONS.TYPE.POLICY_CHANGE_LOG));
 
 const ROOM_CHANGE_LOG_ARRAY = new Set<ReportActionName>(Object.values(CONST.REPORT.ACTIONS.TYPE.ROOM_CHANGE_LOG));
@@ -1999,7 +1994,7 @@ function getExportIntegrationActionFragments(reportAction: OnyxEntry<ReportActio
                     url = nonReimbursableUrls.at(0)?.substring(0, SALESFORCE_EXPENSES_URL_PREFIX.length + 3) ?? '';
                     break;
                 default:
-                    url = QBO_EXPENSES_URL;
+                    url = '';
             }
         }
 

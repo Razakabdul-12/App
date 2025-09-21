@@ -70,7 +70,6 @@ const chatTypes = {
 } as const;
 
 const ONBOARDING_ACCOUNTING_MAPPING = {
-    quickbooksOnline: 'QuickBooks Online',
     xero: 'Xero',
     netsuite: 'NetSuite',
     intacct: 'Sage Intacct',
@@ -82,7 +81,6 @@ const ONBOARDING_ACCOUNTING_MAPPING = {
 };
 
 const connectionsVideoPaths = {
-    [ONBOARDING_ACCOUNTING_MAPPING.quickbooksOnline]: 'videos/walkthrough-connect_to_qbo-v2.mp4',
     [ONBOARDING_ACCOUNTING_MAPPING.xero]: 'videos/walkthrough-connect_to_xero-v2.mp4',
     [ONBOARDING_ACCOUNTING_MAPPING.netsuite]: 'videos/walkthrough-connect_to_netsuite-v2.mp4',
 };
@@ -2067,8 +2065,6 @@ const CONST = {
         IMPORTED: 'IMPORTED',
         NETSUITE_DEFAULT: 'NETSUITE_DEFAULT',
     },
-    QUICKBOOKS_ONLINE: 'quickbooksOnline',
-
     QUICKBOOKS_DESKTOP_CONFIG: {
         EXPORT_DATE: 'exportDate',
         EXPORTER: 'exporter',
@@ -2193,18 +2189,6 @@ const CONST = {
         APPROVAL_MODE: {
             APPROVAL_MANUAL: 'APPROVAL_MANUAL',
         },
-    },
-
-    QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE: {
-        VENDOR_BILL: 'bill',
-        CHECK: 'check',
-        JOURNAL_ENTRY: 'journal_entry',
-    },
-
-    QUICKBOOKS_NON_REIMBURSABLE_ACCOUNT_TYPE: {
-        CREDIT_CARD: 'credit_card',
-        DEBIT_CARD: 'debit_card',
-        VENDOR_BILL: 'bill',
     },
 
     QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE: {
@@ -2484,12 +2468,6 @@ const CONST = {
         LAST_EXPENSE: 'LAST_EXPENSE',
         REPORT_EXPORTED: 'REPORT_EXPORTED',
         REPORT_SUBMITTED: 'REPORT_SUBMITTED',
-    },
-
-    QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE: {
-        CREDIT_CARD: 'credit_card',
-        DEBIT_CARD: 'debit_card',
-        VENDOR_BILL: 'bill',
     },
 
     QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE: {
@@ -2993,7 +2971,6 @@ const CONST = {
         CONNECTIONS: {
             NAME: {
                 // Here we will add other connections names when we add support for them
-                QBO: 'quickbooksOnline',
                 QBD: 'quickbooksDesktop',
                 XERO: 'xero',
                 NETSUITE: 'netsuite',
@@ -3006,7 +2983,6 @@ const CONST = {
                 GENERIC_INDIRECT_CONNECTION: 'generic_indirect_connection',
             },
             ROUTE: {
-                QBO: 'quickbooks-online',
                 XERO: 'xero',
                 NETSUITE: 'netsuite',
                 SAGE_INTACCT: 'sage-intacct',
@@ -3014,7 +2990,6 @@ const CONST = {
             },
             NAME_USER_FRIENDLY: {
                 netsuite: 'NetSuite',
-                quickbooksOnline: 'QuickBooks Online',
                 quickbooksDesktop: 'QuickBooks Desktop',
                 xero: 'Xero',
                 intacct: 'Sage Intacct',
@@ -3034,25 +3009,8 @@ const CONST = {
                     'https://help.expensify.com/articles/expensify-classic/connections/netsuite/Netsuite-Troubleshooting#expensierror-ns0109-failed-to-login-to-netsuite-please-verify-your-credentials',
             },
             SYNC_STAGE_NAME: {
-                STARTING_IMPORT_QBO: 'startingImportQBO',
                 STARTING_IMPORT_XERO: 'startingImportXero',
                 STARTING_IMPORT_QBD: 'startingImportQBD',
-                QBO_IMPORT_MAIN: 'quickbooksOnlineImportMain',
-                QBO_IMPORT_CUSTOMERS: 'quickbooksOnlineImportCustomers',
-                QBO_IMPORT_EMPLOYEES: 'quickbooksOnlineImportEmployees',
-                QBO_IMPORT_ACCOUNTS: 'quickbooksOnlineImportAccounts',
-                QBO_IMPORT_CLASSES: 'quickbooksOnlineImportClasses',
-                QBO_IMPORT_LOCATIONS: 'quickbooksOnlineImportLocations',
-                QBO_IMPORT_PROCESSING: 'quickbooksOnlineImportProcessing',
-                QBO_SYNC_PAYMENTS: 'quickbooksOnlineSyncBillPayments',
-                QBO_IMPORT_TAX_CODES: 'quickbooksOnlineSyncTaxCodes',
-                QBO_CHECK_CONNECTION: 'quickbooksOnlineCheckConnection',
-                QBO_SYNC_TITLE: 'quickbooksOnlineSyncTitle',
-                QBO_SYNC_LOAD_DATA: 'quickbooksOnlineSyncLoadData',
-                QBO_SYNC_APPLY_CATEGORIES: 'quickbooksOnlineSyncApplyCategories',
-                QBO_SYNC_APPLY_CUSTOMERS: 'quickbooksOnlineSyncApplyCustomers',
-                QBO_SYNC_APPLY_PEOPLE: 'quickbooksOnlineSyncApplyEmployees',
-                QBO_SYNC_APPLY_CLASSES_LOCATIONS: 'quickbooksOnlineSyncApplyClassesLocations',
                 QBD_IMPORT_TITLE: 'quickbooksDesktopImportTitle',
                 QBD_IMPORT_ACCOUNTS: 'quickbooksDesktopImportAccounts',
                 QBD_IMPORT_APPROVE_CERTIFICATE: 'quickbooksDesktopImportApproveCertificate',
@@ -3125,9 +3083,7 @@ const CONST = {
     },
 
     HELP_DOC_LINKS: {
-        'QuickBooks Online': 'https://help.expensify.com/articles/new-expensify/connections/quickbooks-online/Configure-Quickbooks-Online',
         'QuickBooks Desktop': '',
-        quickbooks: 'https://help.expensify.com/articles/new-expensify/connections/quickbooks-online/Configure-Quickbooks-Online',
         NetSuite: 'https://help.expensify.com/articles/new-expensify/connections/netsuite/Configure-Netsuite',
         Xero: 'https://help.expensify.com/articles/new-expensify/connections/xero/Configure-Xero',
         Intacct: 'https://help.expensify.com/articles/new-expensify/connections/sage-intacct/Configure-Sage-Intacct',
@@ -3342,12 +3298,6 @@ const CONST = {
         DEFAULT_EXPORT_TYPE: 'default',
         EXPORT_CARD_TYPES: {
             /**
-             * Name of Card NVP for QBO custom export accounts
-             */
-            NVP_QUICKBOOKS_ONLINE_EXPORT_ACCOUNT: 'quickbooks_online_export_account',
-            NVP_QUICKBOOKS_ONLINE_EXPORT_ACCOUNT_DEBIT: 'quickbooks_online_export_account_debit',
-
-            /**
              * Name of Card NVP for NetSuite custom export accounts
              */
             NVP_NETSUITE_EXPORT_ACCOUNT: 'netsuite_export_payable_account',
@@ -3383,12 +3333,6 @@ const CONST = {
             NVP_FINANCIALFORCE_EXPORT_VENDOR: 'financialforce_export_vendor',
         },
         EXPORT_CARD_POLICY_TYPES: {
-            /**
-             * Name of Card NVP for QBO custom export accounts
-             */
-            NVP_QUICKBOOKS_ONLINE_EXPORT_ACCOUNT_POLICY_ID: 'quickbooks_online_export_account_policy_id',
-            NVP_QUICKBOOKS_ONLINE_EXPORT_ACCOUNT_DEBIT_POLICY_ID: 'quickbooks_online_export_account_debit_policy_id',
-
             /**
              * Name of Card NVP for NetSuite custom export accounts
              */
@@ -6756,7 +6700,6 @@ const CONST = {
         HAS_POLICY_ERRORS: 'hasPolicyError',
         HAS_CUSTOM_UNITS_ERROR: 'hasCustomUnitsError',
         HAS_EMPLOYEE_LIST_ERROR: 'hasEmployeeListError',
-        HAS_QBO_EXPORT_ERROR: 'hasQBOExportError',
         HAS_SYNC_ERRORS: 'hasSyncError',
         HAS_REIMBURSEMENT_ACCOUNT_ERRORS: 'hasReimbursementAccountErrors',
         HAS_LOGIN_LIST_ERROR: 'hasLoginListError',

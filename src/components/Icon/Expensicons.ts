@@ -127,7 +127,6 @@ import MicrosoftDynamicsExport from '@assets/images/integrationicons/export/micr
 import NetSuiteExport from '@assets/images/integrationicons/export/netsuite-icon.svg';
 import NetSuiteOracleExport from '@assets/images/integrationicons/export/netsuite-oracle-icon.svg';
 import OracleExport from '@assets/images/integrationicons/export/oracle-icon.svg';
-import QBOExport from '@assets/images/integrationicons/export/qbo-icon.svg';
 import SageIntacctExport from '@assets/images/integrationicons/export/sage-intacct-icon.svg';
 import SapExport from '@assets/images/integrationicons/export/sap-icon.svg';
 import XeroExport from '@assets/images/integrationicons/export/xero-icon.svg';
@@ -135,8 +134,6 @@ import MicrosoftDynamicsSquare from '@assets/images/integrationicons/microsoft-d
 import NetSuiteSquare from '@assets/images/integrationicons/netsuite-icon-square.svg';
 import OracleSquare from '@assets/images/integrationicons/oracle-icon-square.svg';
 import QBDSquare from '@assets/images/integrationicons/qbd-icon-square.svg';
-import QBOCircle from '@assets/images/integrationicons/qbo-icon-circle.svg';
-import QBOSquare from '@assets/images/integrationicons/qbo-icon-square.svg';
 import SageIntacctSquare from '@assets/images/integrationicons/sage-intacct-icon-square.svg';
 import SapSquare from '@assets/images/integrationicons/sap-icon-square.svg';
 import Uber from '@assets/images/integrationicons/uber.svg';
@@ -393,7 +390,6 @@ export {
     Plus,
     Printer,
     Profile,
-    QBOSquare,
     QrCode,
     QuestionMark,
     TreasureChest,
@@ -459,7 +455,6 @@ export {
     CheckmarkCircle,
     NetSuiteSquare,
     XeroCircle,
-    QBOCircle,
     MicrosoftDynamicsSquare,
     OracleSquare,
     SapSquare,
@@ -489,7 +484,6 @@ export {
     NetSuiteExport,
     NetSuiteOracleExport,
     OracleExport,
-    QBOExport,
     SageIntacctExport,
     SapExport,
     XeroExport,

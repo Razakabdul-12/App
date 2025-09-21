@@ -42,77 +42,14 @@ function getExportMenuItem(
         currency: '',
     };
 
-    const {nonReimbursableExpensesExportDestination, nonReimbursableExpensesAccount, reimbursableExpensesExportDestination, reimbursableExpensesAccount} =
-        policy?.connections?.quickbooksOnline?.config ?? {};
     const {export: exportConfig} = policy?.connections?.intacct?.config ?? {};
     const {export: exportConfiguration} = policy?.connections?.xero?.config ?? {};
     const config = policy?.connections?.netsuite?.options?.config;
     const {bankAccounts} = policy?.connections?.xero?.data ?? {};
-    const {creditCards, bankAccounts: quickbooksOnlineBankAccounts} = policy?.connections?.quickbooksOnline?.data ?? {};
     const {creditCardAccounts} = policy?.connections?.quickbooksDesktop?.data ?? {};
     const {export: exportQBD} = policy?.connections?.quickbooksDesktop?.config ?? {};
 
     switch (connectionName) {
-        case CONST.POLICY.CONNECTIONS.NAME.QBO: {
-            const typeNonReimbursable = nonReimbursableExpensesExportDestination ? translate(`workspace.qbo.accounts.${nonReimbursableExpensesExportDestination}`) : undefined;
-            const typeReimbursable = reimbursableExpensesExportDestination ? translate(`workspace.qbo.accounts.${reimbursableExpensesExportDestination}`) : undefined;
-            const type = typeNonReimbursable ?? typeReimbursable;
-            const description = currentConnectionName && type ? translate('workspace.moreFeatures.companyCards.integrationExport', {integration: currentConnectionName, type}) : undefined;
-            let data: Account[];
-            let shouldShowMenuItem = nonReimbursableExpensesExportDestination !== CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.VENDOR_BILL;
-            let selectedAccount: Account | undefined;
-            const defaultAccount = nonReimbursableExpensesAccount?.name ?? reimbursableExpensesAccount?.name;
-            let isDefaultTitle = false;
-            let exportType: ValueOf<typeof CONST.COMPANY_CARDS.EXPORT_CARD_TYPES> | undefined;
-            const qboConfig = nonReimbursableExpensesExportDestination ?? reimbursableExpensesExportDestination;
-            switch (qboConfig) {
-                case CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY:
-                case CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK:
-                case CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL:
-                case CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD: {
-                    data = creditCards ?? [];
-                    isDefaultTitle = !!(
-                        defaultAccount &&
-                        (!companyCard?.nameValuePairs?.quickbooks_online_export_account ||
-                            companyCard?.nameValuePairs?.quickbooks_online_export_account === CONST.COMPANY_CARDS.DEFAULT_EXPORT_TYPE)
-                    );
-                    selectedAccount = (creditCards ?? []).find((currentCard) => currentCard.id === (companyCard?.nameValuePairs?.quickbooks_online_export_account ?? defaultAccount));
-                    exportType = CONST.COMPANY_CARDS.EXPORT_CARD_TYPES.NVP_QUICKBOOKS_ONLINE_EXPORT_ACCOUNT;
-                    break;
-                }
-                case CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.DEBIT_CARD: {
-                    data = quickbooksOnlineBankAccounts ?? [];
-                    isDefaultTitle = !!(
-                        defaultAccount &&
-                        (!companyCard?.nameValuePairs?.quickbooks_online_export_account_debit ||
-                            companyCard?.nameValuePairs?.quickbooks_online_export_account_debit === CONST.COMPANY_CARDS.DEFAULT_EXPORT_TYPE)
-                    );
-                    selectedAccount = (quickbooksOnlineBankAccounts ?? []).find(
-                        (bank) => bank.id === (companyCard?.nameValuePairs?.quickbooks_online_export_account_debit ?? defaultAccount),
-                    );
-                    exportType = CONST.COMPANY_CARDS.EXPORT_CARD_TYPES.NVP_QUICKBOOKS_ONLINE_EXPORT_ACCOUNT_DEBIT;
-                    break;
-                }
-                default:
-                    shouldShowMenuItem = false;
-                    data = [];
-            }
-            const resultData = data.length > 0 ? [defaultMenuItem, ...data] : data;
-
-            return {
-                description,
-                title: isDefaultTitle ? defaultCard : selectedAccount?.name,
-                exportType,
-                shouldShowMenuItem,
-                exportPageLink: ROUTES.POLICY_ACCOUNTING_QUICKBOOKS_ONLINE_EXPORT.getRoute(policyID, backTo),
-                data: resultData.map((card) => ({
-                    value: card.id,
-                    text: card.name,
-                    keyForList: card.name,
-                    isSelected: isDefaultTitle ? card.name === defaultCard : card.id === selectedAccount?.id,
-                })),
-            };
-        }
         case CONST.POLICY.CONNECTIONS.NAME.XERO: {
             const type = translate('workspace.xero.xeroBankAccount');
             const description = currentConnectionName && type ? translate('workspace.moreFeatures.companyCards.integrationExport', {integration: type}) : undefined;

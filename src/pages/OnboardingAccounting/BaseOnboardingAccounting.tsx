@@ -45,11 +45,6 @@ type Integration = {
 
 const integrations: Integration[] = [
     {
-        key: 'quickbooksOnline',
-        icon: Expensicons.QBOCircle,
-        translationKey: 'workspace.accounting.qbo',
-    },
-    {
         key: 'quickbooksDesktop',
         icon: Expensicons.QBDSquare,
         translationKey: 'workspace.accounting.qbd',

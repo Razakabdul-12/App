@@ -598,17 +598,6 @@ const helpContentMap: HelpContent = {
                                     />
 
                                     <Text style={[styles.textHeadlineH2, styles.mv4]}>Supported Integrations</Text>
-                                    <Text style={[styles.textNormal]}>
-                                        <Text style={styles.textBold}>QuickBooks Online</Text>
-                                    </Text>
-                                    <BulletList
-                                        styles={styles}
-                                        items={[
-                                            <Text style={styles.textNormal}>Real-time expense sync</Text>,
-                                            <Text style={styles.textNormal}>Category and vendor mapping</Text>,
-                                            <Text style={styles.textNormal}>Tax rate sync</Text>,
-                                        ]}
-                                    />
                                     <Text style={[styles.textNormal, styles.mt4]}>
                                         <Text style={styles.textBold}>QuickBooks Desktop</Text>
                                     </Text>
@@ -684,14 +673,6 @@ const helpContentMap: HelpContent = {
                                     <BulletList
                                         styles={styles}
                                         items={[
-                                            <Text style={styles.textNormal}>
-                                                <TextLink
-                                                    href="https://help.expensify.com/articles/new-expensify/connections/quickbooks-online/Connect-to-QuickBooks-Online"
-                                                    style={styles.link}
-                                                >
-                                                    Connect to QuickBooks Online
-                                                </TextLink>
-                                            </Text>,
                                             <Text style={styles.textNormal}>
                                                 <TextLink
                                                     href="https://help.expensify.com/articles/new-expensify/connections/xero/Connect-to-Xero"
@@ -1256,7 +1237,7 @@ const helpContentMap: HelpContent = {
                         approval flows for individual team members if needed.
                     </Text>
                     <Text style={[styles.textHeadlineH2, styles.mv4]}>Connect your accounting system</Text>
-                    <Text style={[styles.textNormal]}>Link your workspace with QuickBooks Online, Xero, NetSuite, or Sage Intacct to sync expenses like a pro.</Text>
+                    <Text style={[styles.textNormal]}>Link your workspace with QuickBooks Desktop, Xero, NetSuite, or Sage Intacct to sync expenses like a pro.</Text>
                     <Text style={[styles.textHeadlineH2, styles.mv4]}>Enhance your workspace with extra features</Text>
                     <Text style={[styles.textNormal]}>
                         Under <Text style={styles.textBold}>More Features</Text>, enable extras like the Expensify Card, custom categories and tags, and company card connections.

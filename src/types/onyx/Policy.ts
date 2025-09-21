@@ -215,26 +215,6 @@ type ConnectionLastSync = {
     isConnected?: boolean;
 };
 
-/**
- * Model of QBO credentials data.
- */
-type QBOCredentials = {
-    /**
-     * The company ID that's connected from QBO.
-     */
-    companyID: string;
-
-    /**
-     * The company name that's connected from QBO.
-     */
-    companyName: string;
-
-    /**
-     * The current scope of QBO connection.
-     */
-    scope: string;
-};
-
 /** Financial account (bank account, debit card, etc) */
 type Account = {
     /** GL code assigned to the financial account */
@@ -250,235 +230,8 @@ type Account = {
     id: string;
 };
 
-/**
- * Model of QuickBooks Online employee data
- *
- * TODO: QBO remaining comments will be handled here (https://github.com/Expensify/App/issues/43033)
- */
-type Employee = {
-    /** ID assigned to the employee */
-    id: string;
-
-    /** Employee's first name */
-    firstName?: string;
-
-    /** Employee's last name */
-    lastName?: string;
-
-    /** Employee's display name */
-    name: string;
-
-    /** Employee's e-mail */
-    email: string;
-};
-
-/**
- * Model of QuickBooks Online vendor data
- *
- * TODO: QBO remaining comments will be handled here (https://github.com/Expensify/App/issues/43033)
- */
-type Vendor = {
-    /** ID assigned to the vendor */
-    id: string;
-
-    /** Vendor's name */
-    name: string;
-
-    /** Vendor's currency */
-    currency: string;
-
-    /** Vendor's e-mail */
-    email: string;
-};
-
-/**
- * Model of QuickBooks Online tax code data
- *
- * TODO: QBO remaining comments will be handled here (https://github.com/Expensify/App/issues/43033)
- */
-type TaxCode = {
-    /** TODO: Will be handled in another issue */
-    totalTaxRateVal: string;
-
-    /** TODO: Will be handled in another issue */
-    simpleName: string;
-
-    /** TODO: Will be handled in another issue */
-    taxCodeRef: string;
-
-    /** TODO: Will be handled in another issue */
-    taxRateRefs: Record<string, string>;
-
-    /** TODO: Will be handled in another issue */
-    /** Name of the tax code */
-    name: string;
-};
-
-/**
- * Data imported from QuickBooks Online.
- *
- * TODO: QBO remaining comments will be handled here (https://github.com/Expensify/App/issues/43033)
- */
-type QBOConnectionData = {
-    /** Country code */
-    country: ValueOf<typeof CONST.COUNTRY>;
-
-    /** TODO: Will be handled in another issue */
-    edition: string;
-
-    /** TODO: Will be handled in another issue */
-    homeCurrency: string;
-
-    /** TODO: Will be handled in another issue */
-    isMultiCurrencyEnabled: boolean;
-
-    /** Collection of journal entry accounts  */
-    journalEntryAccounts: Account[];
-
-    /** Collection of bank accounts */
-    bankAccounts: Account[];
-
-    /** Collection of credit cards */
-    creditCards: Account[];
-
-    /** Collection of export destination accounts */
-    accountsReceivable: Account[];
-
-    /** TODO: Will be handled in another issue */
-    accountPayable: Account[];
-
-    /** TODO: Will be handled in another issue */
-    otherCurrentAssetAccounts: Account[];
-
-    /** TODO: Will be handled in another issue */
-    taxCodes: TaxCode[];
-
-    /** TODO: Will be handled in another issue */
-    employees: Employee[];
-
-    /** Collections of vendors */
-    vendors: Vendor[];
-};
-
 /** Sync entity names */
 type IntegrationEntityMap = ValueOf<typeof CONST.INTEGRATION_ENTITY_MAP_TYPES>;
-
-/**
- * Non reimbursable account types exported from QuickBooks Online
- *
- * TODO: QBO remaining comments will be handled here (https://github.com/Expensify/App/issues/43033)
- */
-type QBONonReimbursableExportAccountType = ValueOf<typeof CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE>;
-
-/**
- * Reimbursable account types exported from QuickBooks Online
- *
- * TODO: QBO remaining comments will be handled here (https://github.com/Expensify/App/issues/43033)
- */
-type QBOReimbursableExportAccountType = ValueOf<typeof CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE>;
-
-/**
- * User configuration for the QuickBooks Online accounting integration.
- *
- * TODO: QBO remaining comments will be handled here (https://github.com/Expensify/App/issues/43033)
- */
-type QBOConnectionConfig = OnyxCommon.OnyxValueWithOfflineFeedback<{
-    /** TODO: Will be handled in another issue */
-    realmId: string;
-
-    /** TODO: Will be handled in another issue */
-    companyName: string;
-
-    /** Configuration of automatic synchronization from QuickBooks Online to the app */
-    autoSync: {
-        /** TODO: Will be handled in another issue */
-        jobID: string;
-
-        /** Whether changes made in QuickBooks Online should be reflected into the app automatically */
-        enabled: boolean;
-    };
-
-    /** Whether employees can be invited */
-    syncPeople: boolean;
-
-    /** TODO: Will be handled in another issue */
-    syncItems: boolean;
-
-    /** TODO: Will be handled in another issue */
-    markChecksToBePrinted: boolean;
-
-    /** Defines how reimbursable expenses are exported */
-    reimbursableExpensesExportDestination: QBOReimbursableExportAccountType;
-
-    /** Defines how non reimbursable expenses are exported */
-    nonReimbursableExpensesExportDestination: QBONonReimbursableExportAccountType;
-
-    /** Default vendor of non reimbursable bill */
-    nonReimbursableBillDefaultVendor: string;
-
-    /** ID of the invoice collection account */
-    collectionAccountID?: string;
-
-    /** ID of the bill payment account */
-    reimbursementAccountID?: string;
-
-    /** Account that receives the reimbursable expenses */
-    reimbursableExpensesAccount?: Account;
-
-    /** Account that receives the non reimbursable expenses */
-    nonReimbursableExpensesAccount?: Account;
-
-    /** Account that receives the exported invoices */
-    receivableAccount?: Account;
-
-    /**
-     * Whether a default vendor will be created and applied to all credit card
-     * transactions upon import
-     */
-    autoCreateVendor: boolean;
-
-    /** TODO: Will be handled in another issue */
-    hasChosenAutoSyncOption: boolean;
-
-    /** Whether Quickbooks Online classes should be imported */
-    syncClasses: IntegrationEntityMap;
-
-    /** Whether Quickbooks Online customers should be imported */
-    syncCustomers: IntegrationEntityMap;
-
-    /** Whether Quickbooks Online locations should be imported */
-    syncLocations: IntegrationEntityMap;
-
-    /** TODO: Will be handled in another issue */
-    lastConfigurationTime: number;
-
-    /** Whether the taxes should be synchronized */
-    syncTax: boolean;
-
-    /** Whether new categories are enabled in chart of accounts */
-    enableNewCategories: boolean;
-
-    /** TODO: Will be handled in another issue */
-    errors?: OnyxCommon.Errors;
-
-    /** TODO: Will be handled in another issue */
-    exportDate: ValueOf<typeof CONST.QUICKBOOKS_EXPORT_DATE>;
-
-    /** Configuration of the export */
-    export: {
-        /** E-mail of the exporter */
-        exporter: string;
-    };
-
-    /** Collections of form field errors */
-    errorFields?: OnyxCommon.ErrorFields;
-
-    /** Credentials of the current QBO connection */
-    credentials: QBOCredentials;
-
-    /** The accounting Method for NetSuite connection config */
-    accountingMethod?: ValueOf<typeof COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD>;
-}>;
 
 /**
  * Reimbursable account types exported from QuickBooks Desktop
@@ -1375,9 +1128,6 @@ type Connection<ConnectionData, ConnectionConfig> = {
 
 /** Available integration connections */
 type Connections = {
-    /** QuickBooks Online integration connection */
-    [CONST.POLICY.CONNECTIONS.NAME.QBO]: Connection<QBOConnectionData, QBOConnectionConfig>;
-
     /** Xero integration connection */
     [CONST.POLICY.CONNECTIONS.NAME.XERO]: Connection<XeroConnectionData, XeroConnectionConfig>;
 
@@ -1962,10 +1712,7 @@ export type {
     AllConnectionName,
     Tenant,
     Account,
-    QBONonReimbursableExportAccountType,
     QBDNonReimbursableExportAccountType,
-    QBOReimbursableExportAccountType,
-    QBOConnectionConfig,
     XeroTrackingCategory,
     NetSuiteConnection,
     ConnectionLastSync,

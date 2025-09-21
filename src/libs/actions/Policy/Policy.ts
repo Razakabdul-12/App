@@ -614,13 +614,6 @@ function clearPolicyErrorField(policyID: string | undefined, fieldName: string) 
     Onyx.merge(`${ONYXKEYS.COLLECTION.POLICY}${policyID}`, {errorFields: {[fieldName]: null}});
 }
 
-function clearQBOErrorField(policyID: string | undefined, fieldName: string) {
-    if (!policyID) {
-        return;
-    }
-    Onyx.merge(`${ONYXKEYS.COLLECTION.POLICY}${policyID}`, {connections: {quickbooksOnline: {config: {errorFields: {[fieldName]: null}}}}});
-}
-
 function clearQBDErrorField(policyID: string | undefined, fieldName: string) {
     if (!policyID) {
         return;
@@ -673,10 +666,6 @@ function clearSageIntacctErrorField(policyID: string | undefined, fieldName: str
 
 function clearNetSuiteAutoSyncErrorField(policyID: string | undefined) {
     Onyx.merge(`${ONYXKEYS.COLLECTION.POLICY}${policyID}`, {connections: {netsuite: {config: {errorFields: {autoSync: null}}}}});
-}
-
-function clearQuickbooksOnlineAutoSyncErrorField(policyID: string | undefined) {
-    Onyx.merge(`${ONYXKEYS.COLLECTION.POLICY}${policyID}`, {connections: {quickbooksOnline: {config: {errorFields: {autoSync: null}}}}});
 }
 
 function setWorkspaceReimbursement({policyID, reimbursementChoice, bankAccountID, reimburserEmail}: SetWorkspaceReimbursementActionParams) {
@@ -4147,7 +4136,6 @@ export {
     openPolicyProfilePage,
     openPolicyInitialPage,
     generateCustomUnitID,
-    clearQBOErrorField,
     clearXeroErrorField,
     clearSageIntacctErrorField,
     clearNetSuiteErrorField,

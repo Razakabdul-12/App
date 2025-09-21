@@ -57,13 +57,10 @@ function removePolicyConnection(policy: Policy, connectionName: PolicyConnection
  * This method returns read command and stage in progress for a given accounting integration.
  *
  * @param policyID - ID of the policy for which the sync is needed
- * @param connectionName - Name of the connection, QBO/Xero
+ * @param connectionName - Name of the connection
  */
 function getSyncConnectionParameters(connectionName: PolicyConnectionName) {
     switch (connectionName) {
-        case CONST.POLICY.CONNECTIONS.NAME.QBO: {
-            return {readCommand: READ_COMMANDS.SYNC_POLICY_TO_QUICKBOOKS_ONLINE, stageInProgress: CONST.POLICY.CONNECTIONS.SYNC_STAGE_NAME.STARTING_IMPORT_QBO};
-        }
         case CONST.POLICY.CONNECTIONS.NAME.XERO: {
             return {readCommand: READ_COMMANDS.SYNC_POLICY_TO_XERO, stageInProgress: CONST.POLICY.CONNECTIONS.SYNC_STAGE_NAME.STARTING_IMPORT_XERO};
         }
@@ -85,7 +82,7 @@ function getSyncConnectionParameters(connectionName: PolicyConnectionName) {
  * This method helps in syncing policy to the connected accounting integration.
  *
  * @param policy - Policy for which the sync is needed
- * @param connectionName - Name of the connection, QBO/Xero
+ * @param connectionName - Name of the connection
  * @param forceDataRefresh - If true, it will trigger a full data refresh
  */
 function syncConnection(policy: Policy | undefined, connectionName: PolicyConnectionName | undefined, forceDataRefresh = false) {
@@ -291,15 +288,12 @@ function isConnectionInProgress(connectionSyncProgress: OnyxEntry<PolicyConnecti
         return false;
     }
 
-    const qboConnection = policy?.connections?.quickbooksOnline;
-
     const lastSyncProgressDate = parseISO(connectionSyncProgress?.timestamp ?? '');
     return (
-        (!!connectionSyncProgress?.stageInProgress &&
-            (connectionSyncProgress.stageInProgress !== CONST.POLICY.CONNECTIONS.SYNC_STAGE_NAME.JOB_DONE || !policy?.connections?.[connectionSyncProgress.connectionName]) &&
-            isValid(lastSyncProgressDate) &&
-            differenceInMinutes(new Date(), lastSyncProgressDate) < CONST.POLICY.CONNECTIONS.SYNC_STAGE_TIMEOUT_MINUTES) ||
-        (!!qboConnection && !qboConnection?.data && !!qboConnection?.config?.credentials)
+        !!connectionSyncProgress?.stageInProgress &&
+        (connectionSyncProgress.stageInProgress !== CONST.POLICY.CONNECTIONS.SYNC_STAGE_NAME.JOB_DONE || !policy?.connections?.[connectionSyncProgress.connectionName]) &&
+        isValid(lastSyncProgressDate) &&
+        differenceInMinutes(new Date(), lastSyncProgressDate) < CONST.POLICY.CONNECTIONS.SYNC_STAGE_TIMEOUT_MINUTES
     );
 }
 

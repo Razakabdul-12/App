@@ -3569,120 +3569,6 @@ const translations = {
             },
             itemsDescription: '选择如何在Expensify中处理QuickBooks Desktop项目。',
         },
-        qbo: {
-            connectedTo: '已连接到',
-            importDescription: '选择要从QuickBooks Online导入到Expensify的编码配置。',
-            classes: '类',
-            locations: '位置',
-            customers: '客户/项目',
-            accountsDescription: '您的 QuickBooks Online 科目表将作为类别导入到 Expensify。',
-            accountsSwitchTitle: '选择将新账户导入为启用或禁用的类别。',
-            accountsSwitchDescription: '启用的类别将在成员创建费用时可供选择。',
-            classesDescription: '选择如何在Expensify中处理QuickBooks Online类别。',
-            customersDescription: '选择如何在Expensify中处理QuickBooks Online客户/项目。',
-            locationsDescription: '选择如何在Expensify中处理QuickBooks Online位置。',
-            taxesDescription: '选择如何在Expensify中处理QuickBooks Online税款。',
-            locationsLineItemsRestrictionDescription: 'QuickBooks Online 不支持在支票或供应商账单的行级别设置位置。如果您希望在行级别设置位置，请确保您使用的是分录和信用/借记卡费用。',
-            taxesJournalEntrySwitchNote: 'QuickBooks Online 不支持日记账分录中的税款。请将您的导出选项更改为供应商账单或支票。',
-            exportDescription: '配置如何将Expensify数据导出到QuickBooks Online。',
-            date: '导出日期',
-            exportInvoices: '导出发票到',
-            exportExpensifyCard: '将 Expensify 卡交易导出为',
-            exportDate: {
-                label: '导出日期',
-                description: '在导出报告到QuickBooks Online时使用此日期。',
-                values: {
-                    [CONST.QUICKBOOKS_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: '最后报销日期',
-                        description: '报告中最近费用的日期。',
-                    },
-                    [CONST.QUICKBOOKS_EXPORT_DATE.REPORT_EXPORTED]: {
-                        label: '导出日期',
-                        description: '报告导出到QuickBooks Online的日期。',
-                    },
-                    [CONST.QUICKBOOKS_EXPORT_DATE.REPORT_SUBMITTED]: {
-                        label: '提交日期',
-                        description: '报告提交审批的日期。',
-                    },
-                },
-            },
-            receivable: '应收账款', // This is an account name that will come directly from QBO, so I don't know why we need a translation for it. It should take whatever the name of the account is in QBO. Leaving this note for CS.
-            archive: '应收账款存档', // This is an account name that will come directly from QBO, so I don't know why we need a translation for it. It should take whatever the name of the account is in QBO. Leaving this note for CS.
-            exportInvoicesDescription: '将此账户用于导出发票到QuickBooks Online。',
-            exportCompanyCardsDescription: '设置公司卡购买如何导出到QuickBooks Online。',
-            vendor: '供应商',
-            defaultVendorDescription: '设置一个默认供应商，该供应商将适用于导出时的所有信用卡交易。',
-            exportOutOfPocketExpensesDescription: '设置自付费用如何导出到QuickBooks Online。',
-            exportCheckDescription: '我们将为每个Expensify报告创建一张分项支票，并从以下银行账户发送。',
-            exportJournalEntryDescription: '我们将为每个Expensify报告创建一项分项日记账分录，并将其发布到以下账户。',
-            exportVendorBillDescription: '我们将为每个Expensify报告创建一张分项供应商账单，并将其添加到以下账户中。如果此期间已关闭，我们将发布到下一个开放期间的第一天。',
-            account: '账户',
-            accountDescription: '选择发布分录的位置。',
-            accountsPayable: '应付账款',
-            accountsPayableDescription: '选择在哪里创建供应商账单。',
-            bankAccount: '银行账户',
-            notConfigured: '未配置',
-            bankAccountDescription: '选择从哪里发送支票。',
-            creditCardAccount: '信用卡账户',
-            companyCardsLocationEnabledDescription: 'QuickBooks Online不支持供应商账单导出的地点功能。由于您在工作区启用了地点功能，此导出选项不可用。',
-            outOfPocketTaxEnabledDescription: 'QuickBooks Online不支持日记账分录导出的税项。由于您在工作区启用了税项，此导出选项不可用。',
-            outOfPocketTaxEnabledError: '启用税收时，日记分录不可用。请选择其他导出选项。',
-            advancedConfig: {
-                autoSyncDescription: 'Expensify将每天自动与QuickBooks Online同步。',
-                inviteEmployees: '邀请员工',
-                inviteEmployeesDescription: '导入 QuickBooks Online 员工记录并邀请员工加入此工作区。',
-                createEntities: '自动创建实体',
-                createEntitiesDescription: '如果供应商尚不存在，Expensify 将在 QuickBooks Online 中自动创建供应商，并在导出发票时自动创建客户。',
-                reimbursedReportsDescription: '每当使用 Expensify ACH 支付报告时，相应的账单付款将在下面的 QuickBooks Online 帐户中创建。',
-                qboBillPaymentAccount: 'QuickBooks 账单支付账户',
-                qboInvoiceCollectionAccount: 'QuickBooks 发票收款账户',
-                accountSelectDescription: '选择从哪里支付账单，我们将在 QuickBooks Online 中创建付款。',
-                invoiceAccountSelectorDescription: '选择接收发票付款的地方，我们将在QuickBooks Online中创建付款。',
-            },
-            accounts: {
-                [CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.DEBIT_CARD]: '借记卡',
-                [CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD]: '信用卡',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL]: '供应商账单',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY]: '日记条目',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK]: '检查',
-                [`${CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.DEBIT_CARD}Description`]:
-                    '我们会自动将借记卡交易中的商户名称与QuickBooks中的任何相应供应商匹配。如果不存在供应商，我们将创建一个“借记卡杂项”供应商进行关联。',
-                [`${CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD}Description`]:
-                    '我们会自动将信用卡交易中的商家名称与QuickBooks中的任何对应供应商匹配。如果没有供应商存在，我们将创建一个“信用卡杂项”供应商进行关联。',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}Description`]:
-                    '我们将为每个Expensify报告创建一份逐项列出的供应商账单，其中包含最后一笔费用的日期，并将其添加到下面的账户中。如果该期间已关闭，我们将发布到下一个开放期间的第一天。',
-                [`${CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.DEBIT_CARD}AccountDescription`]: '选择导出借记卡交易的位置。',
-                [`${CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD}AccountDescription`]: '选择导出信用卡交易的目的地。',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}AccountDescription`]: '选择一个供应商以应用于所有信用卡交易。',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}Error`]: '启用位置时，供应商账单不可用。请选择其他导出选项。',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK}Error`]: '启用位置时无法使用支票。请选择其他导出选项。',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY}Error`]: '启用税收时，日记分录不可用。请选择其他导出选项。',
-            },
-            exportDestinationAccountsMisconfigurationError: {
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL]: '选择一个有效的账户进行供应商账单导出',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY]: '选择一个有效的账户进行日记账导出',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK]: '选择一个有效的账户进行支票导出',
-            },
-            exportDestinationSetupAccountsInfo: {
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL]: '要使用供应商账单导出，请在QuickBooks Online中设置应付账款账户。',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY]: '要使用分录导出，请在QuickBooks Online中设置一个分录账户。',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK]: '要使用支票导出，请在QuickBooks Online中设置一个银行账户。',
-            },
-            noAccountsFound: '未找到账户',
-            noAccountsFoundDescription: '在 QuickBooks Online 中添加账户并再次同步连接。',
-            accountingMethods: {
-                label: '何时导出',
-                description: '选择何时导出费用：',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '应计',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '现金',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '自付费用将在最终批准时导出',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '自付费用将在支付时导出',
-                },
-            },
-        },
         workspaceList: {
             joinNow: '立即加入',
             askToJoin: '请求加入',
@@ -4847,7 +4733,6 @@ const translations = {
             settings: '设置',
             title: '连接',
             subtitle: '连接到您的会计系统，以使用您的科目表对交易进行编码，自动匹配付款，并保持您的财务同步。',
-            qbo: 'QuickBooks Online',
             qbd: 'QuickBooks Desktop',
             xero: 'Xero',
             netsuite: 'NetSuite',
@@ -4861,8 +4746,6 @@ const translations = {
             needAnotherAccounting: '需要其他会计软件吗？',
             connectionName: ({connectionName}: ConnectionNameParams) => {
                 switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.QBO:
-                        return 'QuickBooks Online';
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Xero';
                     case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
@@ -4894,8 +4777,6 @@ const translations = {
             connectTitle: ({connectionName}: ConnectionNameParams) => `Connect ${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? '会计集成'}`,
             syncError: ({connectionName}: ConnectionNameParams) => {
                 switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.QBO:
-                        return '无法连接到 QuickBooks Online';
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return '无法连接到Xero';
                     case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
@@ -4932,37 +4813,23 @@ const translations = {
             connections: {
                 syncStageName: ({stage}: SyncStageNameConnectionsParams) => {
                     switch (stage) {
-                        case 'quickbooksOnlineImportCustomers':
                         case 'quickbooksDesktopImportCustomers':
                             return '导入客户';
-                        case 'quickbooksOnlineImportEmployees':
                         case 'netSuiteSyncImportEmployees':
                         case 'intacctImportEmployees':
                         case 'quickbooksDesktopImportEmployees':
                             return '导入员工';
-                        case 'quickbooksOnlineImportAccounts':
                         case 'quickbooksDesktopImportAccounts':
                             return '导入账户';
-                        case 'quickbooksOnlineImportClasses':
                         case 'quickbooksDesktopImportClasses':
                             return '导入类别';
-                        case 'quickbooksOnlineImportLocations':
                             return '导入位置';
-                        case 'quickbooksOnlineImportProcessing':
                             return '正在处理导入的数据';
-                        case 'quickbooksOnlineSyncBillPayments':
                         case 'intacctImportSyncBillPayments':
                             return '同步已报销报告和账单支付';
-                        case 'quickbooksOnlineSyncTaxCodes':
                             return '导入税码';
-                        case 'quickbooksOnlineCheckConnection':
-                            return '检查 QuickBooks Online 连接';
-                        case 'quickbooksOnlineImportMain':
-                            return '导入 QuickBooks Online 数据';
                         case 'startingImportXero':
                             return '导入Xero数据';
-                        case 'startingImportQBO':
-                            return '导入 QuickBooks Online 数据';
                         case 'startingImportQBD':
                         case 'quickbooksDesktopImportMore':
                             return '导入 QuickBooks Desktop 数据';
@@ -4976,19 +4843,12 @@ const translations = {
                             return '导入保存策略';
                         case 'quickbooksDesktopWebConnectorReminder':
                             return '仍在与QuickBooks同步数据... 请确保Web Connector正在运行';
-                        case 'quickbooksOnlineSyncTitle':
-                            return '同步 QuickBooks Online 数据';
-                        case 'quickbooksOnlineSyncLoadData':
                         case 'xeroSyncStep':
                         case 'intacctImportData':
                             return '正在加载数据';
-                        case 'quickbooksOnlineSyncApplyCategories':
                             return '更新类别';
-                        case 'quickbooksOnlineSyncApplyCustomers':
                             return '更新客户/项目';
-                        case 'quickbooksOnlineSyncApplyEmployees':
                             return '更新人员列表';
-                        case 'quickbooksOnlineSyncApplyClassesLocations':
                             return '更新报告字段';
                         case 'jobDone':
                             return '正在等待导入的数据加载';
@@ -5377,7 +5237,7 @@ const translations = {
                     pricingPage: '定价页面',
                     confirm: '您确定要降级并删除您的配置吗？',
                     warning: '此操作无法撤销。',
-                    benefit1: '会计连接（QuickBooks Online 和 Xero 除外）',
+                    benefit1: '会计连接（除 Xero 外）',
                     benefit2: '智能费用规则',
                     benefit3: '多级审批工作流程',
                     benefit4: '增强的安全控制',
@@ -6804,7 +6664,6 @@ const translations = {
             theresAReportWithErrors: '有一个报告存在错误',
             theresAWorkspaceWithCustomUnitsErrors: '有一个工作区存在自定义单位错误',
             theresAProblemWithAWorkspaceMember: '工作区成员出现问题',
-            theresAProblemWithAWorkspaceQBOExport: '工作区连接导出设置出现问题。',
             theresAProblemWithAContactMethod: '联系方法出现问题',
             aContactMethodRequiresVerification: '一种联系方式需要验证',
             theresAProblemWithAPaymentMethod: '支付方式出现问题',

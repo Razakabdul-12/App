@@ -3618,125 +3618,6 @@ const translations = {
             },
             itemsDescription: 'ExpensifyでQuickBooks Desktopの項目をどのように処理するか選択します。',
         },
-        qbo: {
-            connectedTo: '接続済み',
-            importDescription: 'QuickBooks OnlineからExpensifyにインポートするコーディング設定を選択してください。',
-            classes: 'クラス',
-            locations: '場所',
-            customers: '顧客/プロジェクト',
-            accountsDescription: 'あなたのQuickBooks Onlineの勘定科目表は、Expensifyにカテゴリーとしてインポートされます。',
-            accountsSwitchTitle: '新しいアカウントを有効または無効なカテゴリとしてインポートすることを選択します。',
-            accountsSwitchDescription: '有効になっているカテゴリーは、メンバーが経費を作成する際に選択できるようになります。',
-            classesDescription: 'ExpensifyでQuickBooks Onlineクラスの処理方法を選択します。',
-            customersDescription: 'ExpensifyでQuickBooks Onlineの顧客/プロジェクトをどのように処理するか選択してください。',
-            locationsDescription: 'ExpensifyでQuickBooks Onlineのロケーションをどのように処理するか選択してください。',
-            taxesDescription: 'ExpensifyでQuickBooks Onlineの税金をどのように処理するか選択してください。',
-            locationsLineItemsRestrictionDescription:
-                'QuickBooks Onlineは、小切手や仕入先請求書の行レベルでの場所をサポートしていません。行レベルで場所を持ちたい場合は、仕訳帳エントリとクレジット/デビットカード経費を使用していることを確認してください。',
-            taxesJournalEntrySwitchNote: 'QuickBooks Onlineは仕訳帳の税金をサポートしていません。エクスポートオプションを仕入先請求書または小切手に変更してください。',
-            exportDescription: 'ExpensifyデータをQuickBooks Onlineにエクスポートする方法を設定します。',
-            date: 'エクスポート日付',
-            exportInvoices: '請求書をエクスポート',
-            exportExpensifyCard: 'Expensifyカードの取引をエクスポートする',
-            exportDate: {
-                label: 'エクスポート日付',
-                description: 'この日付を使用してレポートをQuickBooks Onlineにエクスポートしてください。',
-                values: {
-                    [CONST.QUICKBOOKS_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: '最後の経費の日付',
-                        description: 'レポート上の最新経費の日付。',
-                    },
-                    [CONST.QUICKBOOKS_EXPORT_DATE.REPORT_EXPORTED]: {
-                        label: 'エクスポート日付',
-                        description: 'レポートがQuickBooks Onlineにエクスポートされた日付。',
-                    },
-                    [CONST.QUICKBOOKS_EXPORT_DATE.REPORT_SUBMITTED]: {
-                        label: '提出日',
-                        description: 'レポートが承認のために提出された日付。',
-                    },
-                },
-            },
-            receivable: '売掛金', // This is an account name that will come directly from QBO, so I don't know why we need a translation for it. It should take whatever the name of the account is in QBO. Leaving this note for CS.
-            archive: '売掛金アーカイブ', // This is an account name that will come directly from QBO, so I don't know why we need a translation for it. It should take whatever the name of the account is in QBO. Leaving this note for CS.
-            exportInvoicesDescription: 'このアカウントを使用して、請求書を QuickBooks Online にエクスポートします。',
-            exportCompanyCardsDescription: '会社カードの購入をQuickBooks Onlineにエクスポートする方法を設定します。',
-            vendor: 'ベンダー',
-            defaultVendorDescription: 'エクスポート時にすべてのクレジットカード取引に適用されるデフォルトのベンダーを設定します。',
-            exportOutOfPocketExpensesDescription: '実費経費がQuickBooks Onlineにエクスポートされる方法を設定します。',
-            exportCheckDescription: '各Expensifyレポートに対して項目別の小切手を作成し、以下の銀行口座から送信します。',
-            exportJournalEntryDescription: '各Expensifyレポートに対して項目別の仕訳を作成し、以下のアカウントに投稿します。',
-            exportVendorBillDescription:
-                '私たちは、各Expensifyレポートのために項目別のベンダー請求書を作成し、以下のアカウントに追加します。この期間が閉じている場合、次の開いている期間の1日に投稿します。',
-            account: 'アカウント',
-            accountDescription: '仕訳を投稿する場所を選択してください。',
-            accountsPayable: '買掛金',
-            accountsPayableDescription: '仕入先請求書を作成する場所を選択してください。',
-            bankAccount: '銀行口座',
-            notConfigured: '未設定',
-            bankAccountDescription: '小切手の送付先を選択してください。',
-            creditCardAccount: 'クレジットカードアカウント',
-            companyCardsLocationEnabledDescription:
-                'QuickBooks Onlineは、仕入先請求書のエクスポートでロケーションをサポートしていません。ワークスペースでロケーションが有効になっているため、このエクスポートオプションは利用できません。',
-            outOfPocketTaxEnabledDescription:
-                'QuickBooks Onlineは仕訳帳エクスポートで税金をサポートしていません。ワークスペースで税金が有効になっているため、このエクスポートオプションは利用できません。',
-            outOfPocketTaxEnabledError: '税金が有効になっている場合、仕訳帳は利用できません。別のエクスポートオプションを選択してください。',
-            advancedConfig: {
-                autoSyncDescription: 'Expensifyは毎日QuickBooks Onlineと自動的に同期します。',
-                inviteEmployees: '従業員を招待する',
-                inviteEmployeesDescription: 'QuickBooks Onlineの従業員記録をインポートし、従業員をこのワークスペースに招待します。',
-                createEntities: 'エンティティを自動作成',
-                createEntitiesDescription: 'Expensifyは、QuickBooks Onlineに既に存在しない場合は自動的にベンダーを作成し、請求書をエクスポートする際に顧客を自動作成します。',
-                reimbursedReportsDescription: 'レポートがExpensify ACHを使用して支払われるたびに、対応する請求書支払いが以下のQuickBooks Onlineアカウントに作成されます。',
-                qboBillPaymentAccount: 'QuickBooks 請求書支払口座',
-                qboInvoiceCollectionAccount: 'QuickBooks 請求書回収アカウント',
-                accountSelectDescription: '請求書を支払う場所を選択すると、QuickBooks Onlineで支払いを作成します。',
-                invoiceAccountSelectorDescription: '請求書の支払いを受け取る場所を選択すると、QuickBooks Onlineで支払いを作成します。',
-            },
-            accounts: {
-                [CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.DEBIT_CARD]: 'デビットカード',
-                [CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD]: 'クレジットカード',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL]: '仕入先請求書',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY]: '仕訳帳エントリ',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK]: 'チェック',
-                [`${CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.DEBIT_CARD}Description`]:
-                    '私たちは、デビットカード取引の加盟店名をQuickBooksの対応するベンダーに自動的に一致させます。ベンダーが存在しない場合は、関連付けのために「Debit Card Misc.」ベンダーを作成します。',
-                [`${CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD}Description`]:
-                    'クレジットカード取引の加盟店名をQuickBooksの対応するベンダーに自動的に一致させます。ベンダーが存在しない場合は、関連付けのために「Credit Card Misc.」ベンダーを作成します。',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}Description`]:
-                    '私たちは、各Expensifyレポートに対して最後の経費の日付を含む項目別のベンダー請求書を作成し、以下のアカウントに追加します。この期間が閉じている場合、次の開いている期間の1日に投稿します。',
-                [`${CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.DEBIT_CARD}AccountDescription`]: 'デビットカード取引のエクスポート先を選択してください。',
-                [`${CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD}AccountDescription`]: 'クレジットカード取引のエクスポート先を選択してください。',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}AccountDescription`]: 'すべてのクレジットカード取引に適用するベンダーを選択してください。',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}Error`]:
-                    '場所が有効になっている場合、ベンダー請求書は利用できません。別のエクスポートオプションを選択してください。',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK}Error`]: '場所が有効になっている場合、小切手は利用できません。別のエクスポートオプションを選択してください。',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY}Error`]: '税金が有効になっている場合、仕訳帳は利用できません。別のエクスポートオプションを選択してください。',
-            },
-            exportDestinationAccountsMisconfigurationError: {
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL]: 'ベンダー請求書のエクスポートに有効なアカウントを選択してください。',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY]: '仕訳エクスポートのために有効なアカウントを選択してください',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK]: '小切手のエクスポート用に有効なアカウントを選択してください',
-            },
-            exportDestinationSetupAccountsInfo: {
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL]: 'ベンダー請求書エクスポートを使用するには、QuickBooks Onlineで買掛金勘定を設定してください。',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY]: '仕訳エクスポートを使用するには、QuickBooks Onlineで仕訳アカウントを設定してください。',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK]: 'チェックエクスポートを使用するには、QuickBooks Onlineで銀行口座を設定してください。',
-            },
-            noAccountsFound: 'アカウントが見つかりません',
-            noAccountsFoundDescription: 'QuickBooks Onlineにアカウントを追加し、接続を再同期してください。',
-            accountingMethods: {
-                label: 'エクスポートのタイミング',
-                description: '経費をエクスポートするタイミングを選択:',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '発生主義',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '現金',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '自己負担の経費は最終承認時にエクスポートされます。',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '自己負担の経費は支払われたときにエクスポートされます。',
-                },
-            },
-        },
         workspaceList: {
             joinNow: '今すぐ参加',
             askToJoin: '参加を依頼する',
@@ -4914,7 +4795,6 @@ const translations = {
             settings: '設定',
             title: '接続',
             subtitle: '会計システムに接続して、勘定科目表で取引をコード化し、支払いを自動マッチングし、財務を同期させましょう。',
-            qbo: 'QuickBooks Online',
             qbd: 'QuickBooks Desktop',
             xero: 'Xero',
             netsuite: 'NetSuite',
@@ -4928,8 +4808,6 @@ const translations = {
             needAnotherAccounting: '別の会計ソフトウェアが必要ですか？',
             connectionName: ({connectionName}: ConnectionNameParams) => {
                 switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.QBO:
-                        return 'QuickBooks Online';
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Xero';
                     case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
@@ -4961,8 +4839,6 @@ const translations = {
             connectTitle: ({connectionName}: ConnectionNameParams) => `${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? '会計統合'} に接続`,
             syncError: ({connectionName}: ConnectionNameParams) => {
                 switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.QBO:
-                        return 'QuickBooks Onlineに接続できません';
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Xeroに接続できません';
                     case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
@@ -4999,37 +4875,23 @@ const translations = {
             connections: {
                 syncStageName: ({stage}: SyncStageNameConnectionsParams) => {
                     switch (stage) {
-                        case 'quickbooksOnlineImportCustomers':
                         case 'quickbooksDesktopImportCustomers':
                             return '顧客のインポート';
-                        case 'quickbooksOnlineImportEmployees':
                         case 'netSuiteSyncImportEmployees':
                         case 'intacctImportEmployees':
                         case 'quickbooksDesktopImportEmployees':
                             return '従業員のインポート';
-                        case 'quickbooksOnlineImportAccounts':
                         case 'quickbooksDesktopImportAccounts':
                             return 'アカウントのインポート';
-                        case 'quickbooksOnlineImportClasses':
                         case 'quickbooksDesktopImportClasses':
                             return 'クラスのインポート';
-                        case 'quickbooksOnlineImportLocations':
                             return '場所のインポート';
-                        case 'quickbooksOnlineImportProcessing':
                             return 'インポートされたデータを処理中';
-                        case 'quickbooksOnlineSyncBillPayments':
                         case 'intacctImportSyncBillPayments':
                             return '払い戻されたレポートと請求書の支払いを同期中';
-                        case 'quickbooksOnlineSyncTaxCodes':
                             return '税コードのインポート';
-                        case 'quickbooksOnlineCheckConnection':
-                            return 'QuickBooks Online接続を確認中';
-                        case 'quickbooksOnlineImportMain':
-                            return 'QuickBooks Onlineデータのインポート';
                         case 'startingImportXero':
                             return 'Xeroデータのインポート';
-                        case 'startingImportQBO':
-                            return 'QuickBooks Onlineデータのインポート';
                         case 'startingImportQBD':
                         case 'quickbooksDesktopImportMore':
                             return 'QuickBooks Desktopデータのインポート';
@@ -5043,19 +4905,12 @@ const translations = {
                             return '保存ポリシーのインポート';
                         case 'quickbooksDesktopWebConnectorReminder':
                             return 'QuickBooksとのデータを同期中です... Web Connectorが実行中であることを確認してください';
-                        case 'quickbooksOnlineSyncTitle':
-                            return 'QuickBooks Onlineデータを同期中';
-                        case 'quickbooksOnlineSyncLoadData':
                         case 'xeroSyncStep':
                         case 'intacctImportData':
                             return 'データを読み込んでいます';
-                        case 'quickbooksOnlineSyncApplyCategories':
                             return 'カテゴリを更新中';
-                        case 'quickbooksOnlineSyncApplyCustomers':
                             return '顧客/プロジェクトの更新';
-                        case 'quickbooksOnlineSyncApplyEmployees':
                             return '人のリストを更新中';
-                        case 'quickbooksOnlineSyncApplyClassesLocations':
                             return 'レポートフィールドを更新中';
                         case 'jobDone':
                             return 'インポートされたデータの読み込みを待っています';
@@ -5448,7 +5303,7 @@ const translations = {
                     pricingPage: '価格ページ',
                     confirm: '設定を削除してダウングレードしてもよろしいですか？',
                     warning: 'これは元に戻せません。',
-                    benefit1: '会計接続（QuickBooks Online と Xero を除く）',
+                    benefit1: '会計接続（Xero を除く）',
                     benefit2: 'スマート経費ルール',
                     benefit3: 'マルチレベル承認ワークフロー',
                     benefit4: '強化されたセキュリティコントロール',
@@ -6904,7 +6759,6 @@ const translations = {
             theresAReportWithErrors: 'エラーがあるレポートがあります。',
             theresAWorkspaceWithCustomUnitsErrors: 'カスタム単位エラーがあるワークスペースがあります',
             theresAProblemWithAWorkspaceMember: 'ワークスペースメンバーに問題があります',
-            theresAProblemWithAWorkspaceQBOExport: 'ワークスペース接続のエクスポート設定に問題がありました。',
             theresAProblemWithAContactMethod: '連絡方法に問題があります',
             aContactMethodRequiresVerification: '連絡方法には確認が必要です',
             theresAProblemWithAPaymentMethod: '支払い方法に問題があります',

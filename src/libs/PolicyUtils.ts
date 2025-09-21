@@ -33,7 +33,6 @@ import type PolicyEmployee from '@src/types/onyx/PolicyEmployee';
 import type {SearchPolicy} from '@src/types/onyx/SearchResults';
 import {isEmptyObject} from '@src/types/utils/EmptyObject';
 import {hasSynchronizationErrorMessage, isAuthenticationError} from './actions/connections';
-import {shouldShowQBOReimbursableExportDestinationAccountError} from './actions/connections/QuickbooksOnline';
 import {getCurrentUserAccountID, getCurrentUserEmail} from './actions/Report';
 import {getCategoryApproverRule} from './CategoryUtils';
 import {translateLocal} from './Localize';
@@ -216,8 +215,7 @@ function getPolicyBrickRoadIndicatorStatus(policy: OnyxEntry<Policy>, isConnecti
         shouldShowEmployeeListError(policy) ||
         shouldShowCustomUnitsError(policy) ||
         shouldShowPolicyErrorFields(policy) ||
-        shouldShowSyncError(policy, isConnectionInProgress) ||
-        shouldShowQBOReimbursableExportDestinationAccountError(policy)
+        shouldShowSyncError(policy, isConnectionInProgress)
     ) {
         return CONST.BRICK_ROAD_INDICATOR_STATUS.ERROR;
     }
@@ -1462,7 +1460,6 @@ function isPreferredExporter(policy: Policy) {
         policy.connections?.intacct?.config?.export?.exporter,
         policy.connections?.netsuite?.options?.config?.exporter,
         policy.connections?.quickbooksDesktop?.config?.export?.exporter,
-        policy.connections?.quickbooksOnline?.config?.export?.exporter,
         policy.connections?.xero?.config?.export?.exporter,
     ];
 

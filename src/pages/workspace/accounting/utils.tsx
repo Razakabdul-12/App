@@ -2,7 +2,6 @@ import React from 'react';
 import type {OnyxEntry} from 'react-native-onyx';
 import ConnectToNetSuiteFlow from '@components/ConnectToNetSuiteFlow';
 import ConnectToQuickbooksDesktopFlow from '@components/ConnectToQuickbooksDesktopFlow';
-import ConnectToQuickbooksOnlineFlow from '@components/ConnectToQuickbooksOnlineFlow';
 import ConnectToSageIntacctFlow from '@components/ConnectToSageIntacctFlow';
 import ConnectToXeroFlow from '@components/ConnectToXeroFlow';
 import * as Expensicons from '@components/Icon/Expensicons';
@@ -53,58 +52,10 @@ function getAccountingIntegrationData(
     shouldDisconnectIntegrationBeforeConnecting?: boolean,
     canUseNetSuiteUSATax?: boolean,
 ): AccountingIntegration | undefined {
-    const qboConfig = policy?.connections?.quickbooksOnline?.config;
     const netsuiteConfig = policy?.connections?.netsuite?.options?.config;
     const netsuiteSelectedSubsidiary = (policy?.connections?.netsuite?.options?.data?.subsidiaryList ?? []).find((subsidiary) => subsidiary.internalID === netsuiteConfig?.subsidiaryID);
     const hasPoliciesConnectedToSageIntacct = !!getAdminPoliciesConnectedToSageIntacct().length;
     switch (connectionName) {
-        case CONST.POLICY.CONNECTIONS.NAME.QBO:
-            return {
-                title: translate('workspace.accounting.qbo'),
-                icon: Expensicons.QBOSquare,
-                setupConnectionFlow: (
-                    <ConnectToQuickbooksOnlineFlow
-                        policyID={policyID}
-                        key={key}
-                    />
-                ),
-                onImportPagePress: () => Navigation.navigate(ROUTES.POLICY_ACCOUNTING_QUICKBOOKS_ONLINE_IMPORT.getRoute(policyID)),
-                subscribedImportSettings: [
-                    CONST.QUICKBOOKS_CONFIG.ENABLE_NEW_CATEGORIES,
-                    CONST.QUICKBOOKS_CONFIG.SYNC_CLASSES,
-                    CONST.QUICKBOOKS_CONFIG.SYNC_CUSTOMERS,
-                    CONST.QUICKBOOKS_CONFIG.SYNC_LOCATIONS,
-                    CONST.QUICKBOOKS_CONFIG.SYNC_TAX,
-                ],
-                onExportPagePress: () => Navigation.navigate(ROUTES.POLICY_ACCOUNTING_QUICKBOOKS_ONLINE_EXPORT.getRoute(policyID)),
-                subscribedExportSettings: [
-                    CONST.QUICKBOOKS_CONFIG.EXPORT,
-                    CONST.QUICKBOOKS_CONFIG.EXPORT_DATE,
-                    CONST.QUICKBOOKS_CONFIG.REIMBURSABLE_EXPENSES_EXPORT_DESTINATION,
-                    CONST.QUICKBOOKS_CONFIG.REIMBURSABLE_EXPENSES_ACCOUNT,
-                    CONST.QUICKBOOKS_CONFIG.RECEIVABLE_ACCOUNT,
-                    CONST.QUICKBOOKS_CONFIG.NON_REIMBURSABLE_EXPENSES_EXPORT_DESTINATION,
-                    CONST.QUICKBOOKS_CONFIG.NON_REIMBURSABLE_EXPENSE_ACCOUNT,
-                    ...(qboConfig?.nonReimbursableExpensesExportDestination === CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.VENDOR_BILL
-                        ? [CONST.QUICKBOOKS_CONFIG.AUTO_CREATE_VENDOR]
-                        : []),
-                    ...(qboConfig?.nonReimbursableExpensesExportDestination === CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.VENDOR_BILL &&
-                    policy?.connections?.quickbooksOnline?.config?.autoCreateVendor
-                        ? [CONST.QUICKBOOKS_CONFIG.NON_REIMBURSABLE_BILL_DEFAULT_VENDOR]
-                        : []),
-                ],
-                onCardReconciliationPagePress: () => Navigation.navigate(ROUTES.WORKSPACE_ACCOUNTING_CARD_RECONCILIATION.getRoute(policyID, CONST.POLICY.CONNECTIONS.ROUTE.QBO)),
-                onAdvancedPagePress: () => Navigation.navigate(ROUTES.WORKSPACE_ACCOUNTING_QUICKBOOKS_ONLINE_ADVANCED.getRoute(policyID)),
-                subscribedAdvancedSettings: [
-                    CONST.QUICKBOOKS_CONFIG.COLLECTION_ACCOUNT_ID,
-                    CONST.QUICKBOOKS_CONFIG.AUTO_SYNC,
-                    CONST.QUICKBOOKS_CONFIG.SYNC_PEOPLE,
-                    CONST.QUICKBOOKS_CONFIG.AUTO_CREATE_VENDOR,
-                    ...(qboConfig?.collectionAccountID ? [CONST.QUICKBOOKS_CONFIG.REIMBURSEMENT_ACCOUNT_ID, CONST.QUICKBOOKS_CONFIG.COLLECTION_ACCOUNT_ID] : []),
-                ],
-                pendingFields: {...qboConfig?.pendingFields, ...policy?.connections?.quickbooksOnline?.config?.pendingFields},
-                errorFields: {...qboConfig?.errorFields, ...policy?.connections?.quickbooksOnline?.config?.errorFields},
-            };
         case CONST.POLICY.CONNECTIONS.NAME.XERO:
             return {
                 title: translate('workspace.accounting.xero'),

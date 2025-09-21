@@ -3627,128 +3627,6 @@ const translations = {
             },
             itemsDescription: 'Kies hoe u QuickBooks Desktop-items in Expensify wilt verwerken.',
         },
-        qbo: {
-            connectedTo: 'Verbonden met',
-            importDescription: 'Kies welke codeconfiguraties u wilt importeren van QuickBooks Online naar Expensify.',
-            classes: 'Klassen',
-            locations: 'Locaties',
-            customers: 'Klanten/projecten',
-            accountsDescription: 'Uw QuickBooks Online rekeningschema zal in Expensify worden geïmporteerd als categorieën.',
-            accountsSwitchTitle: 'Kies ervoor om nieuwe accounts te importeren als ingeschakelde of uitgeschakelde categorieën.',
-            accountsSwitchDescription: 'Ingeschakelde categorieën zullen beschikbaar zijn voor leden om te selecteren bij het aanmaken van hun uitgaven.',
-            classesDescription: 'Kies hoe QuickBooks Online-klassen in Expensify moeten worden behandeld.',
-            customersDescription: 'Kies hoe u QuickBooks Online klanten/projecten in Expensify wilt beheren.',
-            locationsDescription: 'Kies hoe u QuickBooks Online-locaties in Expensify wilt beheren.',
-            taxesDescription: 'Kies hoe je QuickBooks Online belastingen in Expensify wilt afhandelen.',
-            locationsLineItemsRestrictionDescription:
-                'QuickBooks Online ondersteunt geen locaties op regelniveau voor cheques of leveranciersfacturen. Als je locaties op regelniveau wilt hebben, zorg er dan voor dat je journaalposten en credit-/debetkaartuitgaven gebruikt.',
-            taxesJournalEntrySwitchNote: 'QuickBooks Online ondersteunt geen belastingen op journaalposten. Wijzig uw exportoptie naar leveranciersfactuur of cheque.',
-            exportDescription: 'Configureer hoe Expensify-gegevens worden geëxporteerd naar QuickBooks Online.',
-            date: 'Exportdatum',
-            exportInvoices: 'Facturen exporteren naar',
-            exportExpensifyCard: 'Exporteer Expensify Card-transacties als',
-            exportDate: {
-                label: 'Exportdatum',
-                description: 'Gebruik deze datum bij het exporteren van rapporten naar QuickBooks Online.',
-                values: {
-                    [CONST.QUICKBOOKS_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: 'Datum van laatste uitgave',
-                        description: 'Datum van de meest recente uitgave op het rapport.',
-                    },
-                    [CONST.QUICKBOOKS_EXPORT_DATE.REPORT_EXPORTED]: {
-                        label: 'Exportdatum',
-                        description: 'Datum waarop het rapport is geëxporteerd naar QuickBooks Online.',
-                    },
-                    [CONST.QUICKBOOKS_EXPORT_DATE.REPORT_SUBMITTED]: {
-                        label: 'Ingediende datum',
-                        description: 'Datum waarop het rapport ter goedkeuring is ingediend.',
-                    },
-                },
-            },
-            receivable: 'Debiteuren', // This is an account name that will come directly from QBO, so I don't know why we need a translation for it. It should take whatever the name of the account is in QBO. Leaving this note for CS.
-            archive: 'Archief debiteuren', // This is an account name that will come directly from QBO, so I don't know why we need a translation for it. It should take whatever the name of the account is in QBO. Leaving this note for CS.
-            exportInvoicesDescription: 'Gebruik dit account bij het exporteren van facturen naar QuickBooks Online.',
-            exportCompanyCardsDescription: 'Stel in hoe aankopen met bedrijfskaarten worden geëxporteerd naar QuickBooks Online.',
-            vendor: 'Leverancier',
-            defaultVendorDescription: 'Stel een standaard leverancier in die van toepassing zal zijn op alle creditcardtransacties bij export.',
-            exportOutOfPocketExpensesDescription: 'Stel in hoe uit eigen zak gemaakte uitgaven worden geëxporteerd naar QuickBooks Online.',
-            exportCheckDescription: 'We maken een gespecificeerde cheque voor elk Expensify-rapport en sturen deze vanaf de onderstaande bankrekening.',
-            exportJournalEntryDescription: 'We zullen een gespecificeerde journaalpost maken voor elk Expensify-rapport en deze naar de onderstaande rekening boeken.',
-            exportVendorBillDescription:
-                'We maken een gespecificeerde leveranciersfactuur voor elk Expensify-rapport en voegen deze toe aan de onderstaande rekening. Als deze periode is gesloten, boeken we naar de 1e van de volgende open periode.',
-            account: 'Account',
-            accountDescription: 'Kies waar u journaalposten wilt plaatsen.',
-            accountsPayable: 'Crediteurenadministratie',
-            accountsPayableDescription: 'Kies waar u leveranciersfacturen wilt aanmaken.',
-            bankAccount: 'Bankrekening',
-            notConfigured: 'Niet geconfigureerd',
-            bankAccountDescription: 'Kies waar u cheques vandaan wilt verzenden.',
-            creditCardAccount: 'Creditcardrekening',
-            companyCardsLocationEnabledDescription:
-                'QuickBooks Online ondersteunt geen locaties bij het exporteren van leveranciersfacturen. Aangezien je locaties hebt ingeschakeld in je werkruimte, is deze exportoptie niet beschikbaar.',
-            outOfPocketTaxEnabledDescription:
-                'QuickBooks Online ondersteunt geen belastingen op journaalpostexporten. Aangezien u belastingen heeft ingeschakeld in uw werkruimte, is deze exportoptie niet beschikbaar.',
-            outOfPocketTaxEnabledError: 'Journaalposten zijn niet beschikbaar wanneer belastingen zijn ingeschakeld. Kies een andere exportoptie.',
-            advancedConfig: {
-                autoSyncDescription: 'Expensify zal elke dag automatisch synchroniseren met QuickBooks Online.',
-                inviteEmployees: 'Medewerkers uitnodigen',
-                inviteEmployeesDescription: 'Importeer QuickBooks Online werknemersgegevens en nodig werknemers uit naar deze werkruimte.',
-                createEntities: 'Automatisch entiteiten aanmaken',
-                createEntitiesDescription:
-                    'Expensify zal automatisch leveranciers aanmaken in QuickBooks Online als ze nog niet bestaan, en automatisch klanten aanmaken bij het exporteren van facturen.',
-                reimbursedReportsDescription:
-                    'Elke keer dat een rapport wordt betaald met Expensify ACH, wordt de overeenkomstige factuurbetaling aangemaakt in het QuickBooks Online-account hieronder.',
-                qboBillPaymentAccount: 'QuickBooks-rekening voor factuurbetaling',
-                qboInvoiceCollectionAccount: 'QuickBooks factuur incasso-account',
-                accountSelectDescription: 'Kies waar u de rekeningen wilt betalen en we maken de betaling aan in QuickBooks Online.',
-                invoiceAccountSelectorDescription: 'Kies waar u factuurbetalingen wilt ontvangen en we zullen de betaling aanmaken in QuickBooks Online.',
-            },
-            accounts: {
-                [CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.DEBIT_CARD]: 'Debetkaart',
-                [CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD]: 'Creditcard',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL]: 'Leveranciersfactuur',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY]: 'Journaalboeking',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK]: 'Controleren',
-                [`${CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.DEBIT_CARD}Description`]:
-                    "We zullen automatisch de naam van de handelaar op de debetkaarttransactie koppelen aan eventuele overeenkomstige leveranciers in QuickBooks. Als er geen leveranciers bestaan, maken we een 'Debit Card Misc.' leverancier voor associatie.",
-                [`${CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD}Description`]:
-                    "We zullen automatisch de naam van de handelaar op de creditcardtransactie koppelen aan eventuele overeenkomstige leveranciers in QuickBooks. Als er geen leveranciers bestaan, maken we een 'Credit Card Misc.' leverancier voor associatie aan.",
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}Description`]:
-                    'We maken een gespecificeerde leveranciersfactuur voor elk Expensify-rapport met de datum van de laatste uitgave en voegen deze toe aan het onderstaande account. Als deze periode is afgesloten, boeken we naar de 1e van de volgende open periode.',
-                [`${CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.DEBIT_CARD}AccountDescription`]: 'Kies waar u debetkaarttransacties wilt exporteren.',
-                [`${CONST.QUICKBOOKS_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD}AccountDescription`]: 'Kies waar u creditcardtransacties wilt exporteren.',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}AccountDescription`]: 'Kies een leverancier om toe te passen op alle creditcardtransacties.',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}Error`]:
-                    'Leveranciersfacturen zijn niet beschikbaar wanneer locaties zijn ingeschakeld. Kies alstublieft een andere exportoptie.',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK}Error`]: 'Cheques zijn niet beschikbaar wanneer locaties zijn ingeschakeld. Kies een andere exportoptie.',
-                [`${CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY}Error`]:
-                    'Journaalposten zijn niet beschikbaar wanneer belastingen zijn ingeschakeld. Kies een andere exportoptie.',
-            },
-            exportDestinationAccountsMisconfigurationError: {
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL]: 'Kies een geldig account voor de export van leveranciersfacturen',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY]: 'Kies een geldig account voor journaalpostexport',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK]: 'Kies een geldig account voor het exporteren van cheques',
-            },
-            exportDestinationSetupAccountsInfo: {
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL]: 'Om de export van leveranciersfacturen te gebruiken, stel een crediteurenrekening in QuickBooks Online in.',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY]: 'Om journal entry export te gebruiken, stel een journaalrekening in QuickBooks Online in.',
-                [CONST.QUICKBOOKS_REIMBURSABLE_ACCOUNT_TYPE.CHECK]: 'Om cheque-export te gebruiken, stel een bankrekening in QuickBooks Online in.',
-            },
-            noAccountsFound: 'Geen accounts gevonden',
-            noAccountsFoundDescription: 'Voeg de account toe in QuickBooks Online en synchroniseer de verbinding opnieuw.',
-            accountingMethods: {
-                label: 'Wanneer exporteren',
-                description: 'Kies wanneer u de uitgaven wilt exporteren:',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Accrual',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Contant',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Uit eigen zak gemaakte uitgaven worden geëxporteerd wanneer ze definitief zijn goedgekeurd.',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Uit eigen zak gemaakte uitgaven worden geëxporteerd wanneer ze zijn betaald.',
-                },
-            },
-        },
         workspaceList: {
             joinNow: 'Nu lid worden',
             askToJoin: 'Vragen om deel te nemen',
@@ -4937,7 +4815,6 @@ const translations = {
             settings: 'instellingen',
             title: 'Verbindingen',
             subtitle: 'Maak verbinding met uw boekhoudsysteem om transacties te coderen met uw rekeningschema, betalingen automatisch te matchen en uw financiën synchroon te houden.',
-            qbo: 'QuickBooks Online',
             qbd: 'QuickBooks Desktop',
             xero: 'Xero',
             netsuite: 'NetSuite',
@@ -4951,8 +4828,6 @@ const translations = {
             needAnotherAccounting: 'Nog een boekhoudsoftware nodig?',
             connectionName: ({connectionName}: ConnectionNameParams) => {
                 switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.QBO:
-                        return 'QuickBooks Online';
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Xero';
                     case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
@@ -4985,8 +4860,6 @@ const translations = {
             connectTitle: ({connectionName}: ConnectionNameParams) => `Verbind ${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? 'boekhoudintegratie'}`,
             syncError: ({connectionName}: ConnectionNameParams) => {
                 switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.QBO:
-                        return 'Kan geen verbinding maken met QuickBooks Online';
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Kan geen verbinding maken met Xero';
                     case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
@@ -5023,37 +4896,23 @@ const translations = {
             connections: {
                 syncStageName: ({stage}: SyncStageNameConnectionsParams) => {
                     switch (stage) {
-                        case 'quickbooksOnlineImportCustomers':
                         case 'quickbooksDesktopImportCustomers':
                             return 'Klanten importeren';
-                        case 'quickbooksOnlineImportEmployees':
                         case 'netSuiteSyncImportEmployees':
                         case 'intacctImportEmployees':
                         case 'quickbooksDesktopImportEmployees':
                             return 'Werknemers importeren';
-                        case 'quickbooksOnlineImportAccounts':
                         case 'quickbooksDesktopImportAccounts':
                             return 'Accounts importeren';
-                        case 'quickbooksOnlineImportClasses':
                         case 'quickbooksDesktopImportClasses':
                             return 'Klassen importeren';
-                        case 'quickbooksOnlineImportLocations':
                             return 'Locaties importeren';
-                        case 'quickbooksOnlineImportProcessing':
                             return 'Geïmporteerde gegevens verwerken';
-                        case 'quickbooksOnlineSyncBillPayments':
                         case 'intacctImportSyncBillPayments':
                             return 'Gesynchroniseerde vergoede rapporten en factuurbetalingen';
-                        case 'quickbooksOnlineSyncTaxCodes':
                             return 'Belastingcodes importeren';
-                        case 'quickbooksOnlineCheckConnection':
-                            return 'Verbinding met QuickBooks Online controleren';
-                        case 'quickbooksOnlineImportMain':
-                            return 'QuickBooks Online-gegevens importeren';
                         case 'startingImportXero':
                             return 'Xero-gegevens importeren';
-                        case 'startingImportQBO':
-                            return 'QuickBooks Online-gegevens importeren';
                         case 'startingImportQBD':
                         case 'quickbooksDesktopImportMore':
                             return 'QuickBooks Desktop-gegevens importeren';
@@ -5067,19 +4926,12 @@ const translations = {
                             return 'Beleid voor importeren opslaan';
                         case 'quickbooksDesktopWebConnectorReminder':
                             return 'Nog steeds gegevens synchroniseren met QuickBooks... Zorg ervoor dat de Web Connector actief is.';
-                        case 'quickbooksOnlineSyncTitle':
-                            return 'QuickBooks Online-gegevens synchroniseren';
-                        case 'quickbooksOnlineSyncLoadData':
                         case 'xeroSyncStep':
                         case 'intacctImportData':
                             return 'Gegevens laden';
-                        case 'quickbooksOnlineSyncApplyCategories':
                             return 'Categorieën bijwerken';
-                        case 'quickbooksOnlineSyncApplyCustomers':
                             return 'Klanten/projecten bijwerken';
-                        case 'quickbooksOnlineSyncApplyEmployees':
                             return 'Lijst met personen bijwerken';
-                        case 'quickbooksOnlineSyncApplyClassesLocations':
                             return 'Rapportvelden bijwerken';
                         case 'jobDone':
                             return 'Wachten tot geïmporteerde gegevens zijn geladen';
@@ -5476,7 +5328,7 @@ const translations = {
                     pricingPage: 'prijs pagina',
                     confirm: 'Weet je zeker dat je wilt downgraden en je configuraties wilt verwijderen?',
                     warning: 'Dit kan niet ongedaan worden gemaakt.',
-                    benefit1: 'Boekhoudkoppelingen (behalve QuickBooks Online en Xero)',
+                    benefit1: 'Boekhoudkoppelingen (behalve Xero)',
                     benefit2: 'Slimme uitgavenregels',
                     benefit3: 'Meerniveau goedkeuringsworkflows',
                     benefit4: 'Verbeterde beveiligingscontroles',
@@ -6942,7 +6794,6 @@ const translations = {
             theresAReportWithErrors: 'Er is een rapport met fouten',
             theresAWorkspaceWithCustomUnitsErrors: 'Er is een werkruimte met fouten in aangepaste eenheden.',
             theresAProblemWithAWorkspaceMember: 'Er is een probleem met een werkruimte lid.',
-            theresAProblemWithAWorkspaceQBOExport: 'Er was een probleem met een exportinstelling van de werkruimteverbinding.',
             theresAProblemWithAContactMethod: 'Er is een probleem met een contactmethode',
             aContactMethodRequiresVerification: 'Een contactmethode vereist verificatie',
             theresAProblemWithAPaymentMethod: 'Er is een probleem met een betaalmethode',
