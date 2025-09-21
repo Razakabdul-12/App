@@ -172,13 +172,11 @@ import NAVIGATORS from '@src/NAVIGATORS';
 import ONYXKEYS from '@src/ONYXKEYS';
 import type {Route} from '@src/ROUTES';
 import ROUTES from '@src/ROUTES';
-import INPUT_IDS from '@src/types/form/NewRoomForm';
 import type {
     Account,
     DismissedProductTraining,
     IntroSelected,
     InvitedEmailsToAccountIDs,
-    NewGroupChatDraft,
     Onboarding,
     OnboardingPurpose,
     PersonalDetails,
@@ -468,15 +466,6 @@ registerPaginationConfig({
     },
     getItemID: (reportAction) => reportAction.reportActionID,
 });
-
-function clearGroupChat() {
-    Onyx.set(ONYXKEYS.NEW_GROUP_CHAT_DRAFT, null);
-}
-
-function startNewChat() {
-    clearGroupChat();
-    Navigation.navigate(ROUTES.NEW);
-}
 
 /** Get the private pusher channel name for a Report. */
 function getReportChannelName(reportID: string): string {
@@ -1133,9 +1122,6 @@ function openReport(
             parameters.file = avatar;
         }
 
-        InteractionManager.runAfterInteractions(() => {
-            clearGroupChat();
-        });
     }
 
     if (isFromDeepLink) {
@@ -2842,11 +2828,6 @@ function addPolicyReport(policyReport: OptimisticChatReport) {
         },
         {
             onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.FORMS.NEW_ROOM_FORM,
-            value: {isLoading: true},
-        },
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
             key: `${ONYXKEYS.COLLECTION.REPORT_METADATA}${policyReport.reportID}`,
             value: {
                 isOptimisticReport: true,
@@ -2879,11 +2860,6 @@ function addPolicyReport(policyReport: OptimisticChatReport) {
                 },
             },
         },
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.FORMS.NEW_ROOM_FORM,
-            value: {isLoading: false},
-        },
     ];
     const failureData: OnyxUpdate[] = [
         {
@@ -2894,11 +2870,6 @@ function addPolicyReport(policyReport: OptimisticChatReport) {
                     addWorkspaceRoom: getMicroSecondOnyxErrorWithTranslationKey('report.genericCreateReportFailureMessage'),
                 },
             },
-        },
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.FORMS.NEW_ROOM_FORM,
-            value: {isLoading: false},
         },
         {
             onyxMethod: Onyx.METHOD.MERGE,
@@ -4171,23 +4142,6 @@ function updateLoadingInitialReportAction(reportID: string) {
     Onyx.merge(`${ONYXKEYS.COLLECTION.REPORT_METADATA}${reportID}`, {isLoadingInitialReportActions: false});
 }
 
-function setNewRoomFormLoading(isLoading = true) {
-    Onyx.merge(`${ONYXKEYS.FORMS.NEW_ROOM_FORM}`, {isLoading});
-}
-
-function clearNewRoomFormError() {
-    return Onyx.set(ONYXKEYS.FORMS.NEW_ROOM_FORM, {
-        isLoading: false,
-        errorFields: null,
-        errors: null,
-        [INPUT_IDS.ROOM_NAME]: '',
-        [INPUT_IDS.REPORT_DESCRIPTION]: '',
-        [INPUT_IDS.POLICY_ID]: '',
-        [INPUT_IDS.WRITE_CAPABILITY]: '',
-        [INPUT_IDS.VISIBILITY]: '',
-    });
-}
-
 function resolveActionableMentionWhisper(
     reportID: string | undefined,
     reportAction: OnyxEntry<ReportAction>,
@@ -4427,10 +4381,6 @@ function dismissTrackExpenseActionableWhisper(reportID: string | undefined, repo
     };
 
     API.write(WRITE_COMMANDS.DISMISS_TRACK_EXPENSE_ACTIONABLE_WHISPER, params, {optimisticData, failureData});
-}
-
-function setGroupDraft(newGroupDraft: Partial<NewGroupChatDraft>) {
-    Onyx.merge(ONYXKEYS.NEW_GROUP_CHAT_DRAFT, newGroupDraft);
 }
 
 function exportToIntegration(reportID: string, connectionName: ConnectionName) {
@@ -5811,10 +5761,7 @@ export {
     clearAddRoomMemberError,
     clearAvatarErrors,
     clearDeleteTransactionNavigateBackUrl,
-    clearGroupChat,
     clearIOUError,
-    clearNewRoomFormError,
-    setNewRoomFormLoading,
     clearPolicyRoomNameErrors,
     clearReportFieldKeyErrors,
     completeOnboarding,
@@ -5869,11 +5816,9 @@ export {
     saveReportDraftComment,
     searchInServer,
     setDeleteTransactionNavigateBackUrl,
-    setGroupDraft,
     setIsComposerFullSize,
     shouldShowReportActionNotification,
     showReportActionNotification,
-    startNewChat,
     subscribeToNewActionEvent,
     subscribeToReportLeavingEvents,
     subscribeToReportTypingEvents,

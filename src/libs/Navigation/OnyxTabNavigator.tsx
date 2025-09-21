@@ -34,7 +34,7 @@ type OnyxTabNavigatorProps = ChildrenProps & {
     /** Callback to register the focus trap container elements of the current active tab.
      * Use this in the parent component to get the focus trap container element of the active tab,
      * then pass it to the ScreenWrapper so that only focusable elements of the active tab are included in the focus trap
-     * Check the `IOURequestStartPage.tsx` and `NewChatSelectorPage.tsx` components for example usage
+     * Check the `IOURequestStartPage.tsx` and `ShareRootPage.tsx` components for example usage
      */
     onActiveTabFocusTrapContainerElementChanged?: (containerElement: HTMLElement | null) => void;
 
@@ -216,7 +216,7 @@ function OnyxTabNavigator({
  * We should use this wrapper for each tab screen. This will help register the focus trap container element of each tab screen.
  * In the OnyxTabNavigator component, depending on the selected tab, we will further register the correct container element of the current active tab to the parent focus trap.
  * This must be used if we want to include all tabbable elements of one tab screen in the parent focus trap if that tab screen is active.
- * Example usage (check the `IOURequestStartPage.tsx` and `NewChatSelectorPage.tsx` components for more info)
+ * Example usage (check the `IOURequestStartPage.tsx` and `ShareRootPage.tsx` components for more info)
  * ```tsx
  * <OnyxTabNavigator>
  *   <Tab.Screen>

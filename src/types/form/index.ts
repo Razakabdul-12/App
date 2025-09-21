@@ -17,7 +17,6 @@ export type {MoneyRequestHoldReasonForm} from './MoneyRequestHoldReasonForm';
 export type {MoneyRequestCompanyInfoForm} from './MoneyRequestCompanyInfoForm';
 export type {NewContactMethodForm} from './NewContactMethodForm';
 export type {ChangeBillingCurrencyForm} from './ChangeBillingCurrencyForm';
-export type {NewRoomForm} from './NewRoomForm';
 export type {PersonalBankAccountForm} from './PersonalBankAccountForm';
 export type {ProfileSettingsForm} from './ProfileSettingsForm';
 export type {ReimbursementAccountForm} from './ReimbursementAccountForm';
@@ -45,7 +44,6 @@ export type {AdditionalDetailStepForm} from './AdditionalDetailStepForm';
 export type {PolicyTagNameForm} from './PolicyTagNameForm';
 export type {WorkspaceTagForm} from './WorkspaceTagForm';
 
-export type {NewChatNameForm} from './NewChatNameForm';
 export type {SageIntacctDimensionForm} from './SageIntacctDimensionsForm';
 export type {SubscriptionSizeForm} from './SubscriptionSizeForm';
 export type {SageIntactCredentialsForm} from './SageIntactCredentialsForm';

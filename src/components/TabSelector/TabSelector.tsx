@@ -47,10 +47,6 @@ function getIconTitleAndTestID(route: string, translate: LocaleContextProps['tra
             return {icon: Expensicons.Pencil, title: translate('tabSelector.manual'), testID: 'manual'};
         case CONST.TAB_REQUEST.SCAN:
             return {icon: Expensicons.ReceiptScan, title: translate('tabSelector.scan'), testID: 'scan'};
-        case CONST.TAB.NEW_CHAT:
-            return {icon: Expensicons.User, title: translate('tabSelector.chat'), testID: 'chat'};
-        case CONST.TAB.NEW_ROOM:
-            return {icon: Expensicons.Hashtag, title: translate('tabSelector.room'), testID: 'room'};
         case CONST.TAB_REQUEST.DISTANCE:
             return {icon: Expensicons.Car, title: translate('common.distance'), testID: 'distance'};
         case CONST.TAB.SHARE.SHARE:

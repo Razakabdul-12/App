@@ -752,12 +752,6 @@ type TwoFactorAuthNavigatorParamList = {
     [SCREENS.TWO_FACTOR_AUTH.DISABLED]: undefined;
 };
 
-type NewChatNavigatorParamList = {
-    [SCREENS.NEW_CHAT.ROOT]: undefined;
-    [SCREENS.NEW_CHAT.NEW_CHAT_CONFIRM]: undefined;
-    [SCREENS.NEW_CHAT.NEW_CHAT_EDIT_NAME]: undefined;
-};
-
 type DetailsNavigatorParamList = {
     [SCREENS.DETAILS_ROOT]: {
         login: string;
@@ -1238,7 +1232,6 @@ type ReferralDetailsNavigatorParamList = {
 type RightModalNavigatorParamList = {
     [SCREENS.RIGHT_MODAL.SETTINGS]: NavigatorScreenParams<SettingsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.TWO_FACTOR_AUTH]: NavigatorScreenParams<TwoFactorAuthNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.NEW_CHAT]: NavigatorScreenParams<NewChatNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.DETAILS]: NavigatorScreenParams<DetailsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.PROFILE]: NavigatorScreenParams<ProfileNavigatorParamList>;
     [SCREENS.SETTINGS.SHARE_CODE]: undefined;
@@ -1699,7 +1692,6 @@ export type {
     NavigationRoot,
     NavigationStateRoute,
     NavigationRoute,
-    NewChatNavigatorParamList,
     OnboardingFlowName,
     OnboardingModalNavigatorParamList,
     ParticipantsNavigatorParamList,

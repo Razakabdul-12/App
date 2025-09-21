@@ -33,7 +33,6 @@ import ROUTES from '@src/ROUTES';
 import type SCREENS from '@src/SCREENS';
 import type Transaction from '@src/types/onyx/Transaction';
 import getEmptyArray from '@src/types/utils/getEmptyArray';
-import NewChatSelectorPage from './NewChatSelectorPage';
 import UnreportedExpenseListItem from './UnreportedExpenseListItem';
 
 type AddUnreportedExpensePageType = PlatformStackScreenProps<AddUnreportedExpensesParamList, typeof SCREENS.ADD_UNREPORTED_EXPENSES_ROOT>;
@@ -108,7 +107,7 @@ function AddUnreportedExpense({route}: AddUnreportedExpensePageType) {
                 includeSafeAreaPaddingBottom
                 shouldShowOfflineIndicator={false}
                 shouldEnablePickerAvoiding={false}
-                testID={NewChatSelectorPage.displayName}
+                testID={AddUnreportedExpense.displayName}
                 focusTrapSettings={{active: false}}
             >
                 <HeaderWithBackButton
@@ -127,7 +126,7 @@ function AddUnreportedExpense({route}: AddUnreportedExpensePageType) {
                 includeSafeAreaPaddingBottom
                 shouldShowOfflineIndicator={false}
                 shouldEnablePickerAvoiding={false}
-                testID={NewChatSelectorPage.displayName}
+                testID={AddUnreportedExpense.displayName}
                 focusTrapSettings={{active: false}}
             >
                 <HeaderWithBackButton
@@ -170,7 +169,7 @@ function AddUnreportedExpense({route}: AddUnreportedExpensePageType) {
             includeSafeAreaPaddingBottom
             shouldShowOfflineIndicator={false}
             shouldEnablePickerAvoiding={false}
-            testID={NewChatSelectorPage.displayName}
+            testID={AddUnreportedExpense.displayName}
             focusTrapSettings={{active: false}}
         >
             <HeaderWithBackButton

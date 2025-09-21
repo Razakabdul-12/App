@@ -706,32 +706,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.REPORT_DESCRIPTION_ROOT]: ROUTES.REPORT_DESCRIPTION.route,
                     },
                 },
-                [SCREENS.RIGHT_MODAL.NEW_CHAT]: {
-                    screens: {
-                        [SCREENS.NEW_CHAT.ROOT]: {
-                            path: ROUTES.NEW,
-                            exact: true,
-                            screens: {
-                                [SCREENS.NEW_CHAT.NEW_CHAT]: {
-                                    path: ROUTES.NEW_CHAT,
-                                    exact: true,
-                                },
-                                [SCREENS.NEW_CHAT.NEW_ROOM]: {
-                                    path: ROUTES.NEW_ROOM,
-                                    exact: true,
-                                },
-                            },
-                        },
-                        [SCREENS.NEW_CHAT.NEW_CHAT_CONFIRM]: {
-                            path: ROUTES.NEW_CHAT_CONFIRM,
-                            exact: true,
-                        },
-                        [SCREENS.NEW_CHAT.NEW_CHAT_EDIT_NAME]: {
-                            path: ROUTES.NEW_CHAT_EDIT_NAME,
-                            exact: true,
-                        },
-                    },
-                },
                 [SCREENS.RIGHT_MODAL.WORKSPACE_CONFIRMATION]: {
                     screens: {
                         [SCREENS.WORKSPACE_CONFIRMATION.ROOT]: ROUTES.WORKSPACE_CONFIRMATION.route,

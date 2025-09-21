@@ -63,10 +63,6 @@ function RightModalNavigator({navigation, route}: RightModalNavigatorProps) {
                             }}
                         />
                         <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.NEW_CHAT}
-                            component={ModalStackNavigators.NewChatModalStackNavigator}
-                        />
-                        <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.PROFILE}
                             component={ModalStackNavigators.ProfileModalStackNavigator}
                         />

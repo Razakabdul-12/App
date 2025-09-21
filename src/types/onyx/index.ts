@@ -48,7 +48,6 @@ import type Login from './Login';
 import type MapboxAccessToken from './MapboxAccessToken';
 import type Modal from './Modal';
 import type Network from './Network';
-import type NewGroupChatDraft from './NewGroupChatDraft';
 import type Onboarding from './Onboarding';
 import type OnyxInputOrEntry from './OnyxInputOrEntry';
 import type {OnyxUpdateEvent, OnyxUpdatesFromServer} from './OnyxUpdatesFromServer';
@@ -213,7 +212,6 @@ export type {
     LastPaymentMethod,
     LastSelectedDistanceRates,
     InvitedEmailsToAccountIDs,
-    NewGroupChatDraft,
     Log,
     PolicyJoinMember,
     CapturedLogs,

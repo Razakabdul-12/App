@@ -132,7 +132,6 @@ const SCREENS = {
     RIGHT_MODAL: {
         SETTINGS: 'Settings',
         TWO_FACTOR_AUTH: 'TwoFactorAuth',
-        NEW_CHAT: 'NewChat',
         DETAILS: 'Details',
         PROFILE: 'Profile',
         NEW_REPORT_WORKSPACE_SELECTION: 'New_Report_Workspace_Selection',
@@ -437,14 +436,6 @@ const SCREENS = {
     EDIT_REQUEST: {
         CURRENCY: 'EditRequest_Currency',
         REPORT_FIELD: 'EditRequest_ReportField',
-    },
-
-    NEW_CHAT: {
-        ROOT: 'NewChat_Root',
-        NEW_CHAT: 'chat',
-        NEW_CHAT_CONFIRM: 'NewChat_Confirm',
-        NEW_CHAT_EDIT_NAME: 'NewChat_Edit_Name',
-        NEW_ROOM: 'room',
     },
 
     SPLIT_DETAILS: {

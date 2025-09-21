@@ -285,12 +285,6 @@ const ROUTES = {
         getRoute: (backTo?: string) => getUrlWithBackToParam('keyboard-shortcuts', backTo),
     },
 
-    NEW: 'new',
-    NEW_CHAT: 'new/chat',
-    NEW_CHAT_CONFIRM: 'new/chat/confirm',
-    NEW_CHAT_EDIT_NAME: 'new/chat/confirm/name/edit',
-    NEW_ROOM: 'new/room',
-
     NEW_REPORT_WORKSPACE_SELECTION: 'new-report-workspace-selection',
     REPORT: 'r',
     REPORT_WITH_ID: {
@@ -890,7 +884,6 @@ const ROUTES = {
     },
 
     WORKSPACE_NEW: 'workspace/new',
-    WORKSPACE_NEW_ROOM: 'workspace/new-room',
     WORKSPACE_INITIAL: {
         route: 'workspaces/:policyID',
         getRoute: (policyID: string | undefined, backTo?: string) => {

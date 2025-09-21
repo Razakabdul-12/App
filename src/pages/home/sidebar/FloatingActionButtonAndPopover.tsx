@@ -25,7 +25,7 @@ import useWindowDimensions from '@hooks/useWindowDimensions';
 import {startDistanceRequest, startMoneyRequest} from '@libs/actions/IOU';
 import {openOldDotLink} from '@libs/actions/Link';
 import {navigateToQuickAction} from '@libs/actions/QuickActionNavigation';
-import {createNewReport, startNewChat} from '@libs/actions/Report';
+import {createNewReport} from '@libs/actions/Report';
 import {isAnonymousUser} from '@libs/actions/Session';
 import {startTestDrive} from '@libs/actions/Tour';
 import getIconForAction from '@libs/getIconForAction';
@@ -481,12 +481,6 @@ function FloatingActionButtonAndPopover({onHideCreateMenu, onShowCreateMenu, isT
                   },
               ]
             : []),
-        {
-            icon: Expensicons.ChatBubble,
-            text: translate('sidebarScreen.fabNewChat'),
-            shouldCallAfterModalHide: shouldUseNarrowLayout,
-            onSelected: () => interceptAnonymousUser(startNewChat),
-        },
         ...(canSendInvoice
             ? [
                   {
@@ -586,7 +580,7 @@ function FloatingActionButtonAndPopover({onHideCreateMenu, onShowCreateMenu, isT
             />
             <FloatingActionButton
                 isTooltipAllowed={isTooltipAllowed}
-                accessibilityLabel={translate('sidebarScreen.fabNewChatExplained')}
+                accessibilityLabel={translate('common.create')}
                 role={CONST.ROLE.BUTTON}
                 isActive={isCreateMenuActive}
                 ref={fabRef}

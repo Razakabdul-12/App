@@ -287,7 +287,6 @@ function AuthScreens() {
     useEffect(() => {
         const shortcutsOverviewShortcutConfig = CONST.KEYBOARD_SHORTCUTS.SHORTCUTS;
         const searchShortcutConfig = CONST.KEYBOARD_SHORTCUTS.SEARCH;
-        const chatShortcutConfig = CONST.KEYBOARD_SHORTCUTS.NEW_CHAT;
         const markAllMessagesAsReadShortcutConfig = CONST.KEYBOARD_SHORTCUTS.MARK_ALL_MESSAGES_AS_READ;
         const isLoggingInAsNewUser = !!session?.email && SessionUtils.isLoggingInAsNewUser(currentUrl, session.email);
         // Sign out the current user if we're transitioning with a different user
@@ -407,19 +406,6 @@ function AuthScreens() {
             true,
         );
 
-        const unsubscribeChatShortcut = KeyboardShortcut.subscribe(
-            chatShortcutConfig.shortcutKey,
-            () => {
-                if (Navigation.isOnboardingFlow()) {
-                    return;
-                }
-                Modal.close(Session.callFunctionIfActionIsAllowed(() => Navigation.navigate(ROUTES.NEW)));
-            },
-            chatShortcutConfig.descriptionKey,
-            chatShortcutConfig.modifiers,
-            true,
-        );
-
         const unsubscribeMarkAllMessagesAsReadShortcut = KeyboardShortcut.subscribe(
             markAllMessagesAsReadShortcutConfig.shortcutKey,
             Report.markAllMessagesAsRead,
@@ -433,7 +419,6 @@ function AuthScreens() {
             unsubscribeOnyxModal();
             unsubscribeShortcutsOverviewShortcut();
             unsubscribeSearchShortcut();
-            unsubscribeChatShortcut();
             unsubscribeMarkAllMessagesAsReadShortcut();
             Session.cleanupSession();
         };

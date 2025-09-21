@@ -17,7 +17,6 @@ import type {
     EditRequestNavigatorParamList,
     FlagCommentNavigatorParamList,
     MoneyRequestNavigatorParamList,
-    NewChatNavigatorParamList,
     NewReportWorkspaceSelectionNavigatorParamList,
     ParticipantsNavigatorParamList,
     ProfileNavigatorParamList,
@@ -221,12 +220,6 @@ const RoomMembersModalStackNavigator = createModalStackNavigator<RoomMembersNavi
     [SCREENS.ROOM_MEMBERS.ROOT]: () => require<ReactComponentModule>('../../../../pages/RoomMembersPage').default,
     [SCREENS.ROOM_MEMBERS.INVITE]: () => require<ReactComponentModule>('../../../../pages/RoomInvitePage').default,
     [SCREENS.ROOM_MEMBERS.DETAILS]: () => require<ReactComponentModule>('../../../../pages/RoomMemberDetailsPage').default,
-});
-
-const NewChatModalStackNavigator = createModalStackNavigator<NewChatNavigatorParamList>({
-    [SCREENS.NEW_CHAT.ROOT]: () => require<ReactComponentModule>('../../../../pages/NewChatSelectorPage').default,
-    [SCREENS.NEW_CHAT.NEW_CHAT_CONFIRM]: () => require<ReactComponentModule>('../../../../pages/NewChatConfirmPage').default,
-    [SCREENS.NEW_CHAT.NEW_CHAT_EDIT_NAME]: () => require<ReactComponentModule>('../../../../pages/GroupChatNameEditPage').default,
 });
 
 const ConsoleModalStackNavigator = createModalStackNavigator<ConsoleNavigatorParamList>({
@@ -634,7 +627,6 @@ export {
     EditRequestStackNavigator,
     FlagCommentStackNavigator,
     MoneyRequestModalStackNavigator,
-    NewChatModalStackNavigator,
     ProfileModalStackNavigator,
     ReferralModalStackNavigator,
     NewReportWorkspaceSelectionModalStackNavigator,

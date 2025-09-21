@@ -774,17 +774,6 @@ const CONST = {
             },
             type: KEYBOARD_SHORTCUT_NAVIGATION_TYPE,
         },
-        NEW_CHAT: {
-            descriptionKey: 'newChat',
-            shortcutKey: 'K',
-            modifiers: ['CTRL', 'SHIFT'],
-            trigger: {
-                DEFAULT: {input: 'k', modifierFlags: keyModifierShiftControl},
-                [PLATFORM_OS_MACOS]: {input: 'k', modifierFlags: keyModifierShiftCommand},
-                [PLATFORM_IOS]: {input: 'k', modifierFlags: keyModifierShiftCommand},
-            },
-            type: KEYBOARD_SHORTCUT_NAVIGATION_TYPE,
-        },
         SHORTCUTS: {
             descriptionKey: 'openShortcutDialog',
             shortcutKey: 'J',
@@ -5200,9 +5189,6 @@ const CONST = {
     },
     TAB: {
         DEBUG_TAB_ID: 'DebugTab',
-        NEW_CHAT_TAB_ID: 'NewChatTab',
-        NEW_CHAT: 'chat',
-        NEW_ROOM: 'room',
         RECEIPT_TAB_ID: 'ReceiptTab',
         IOU_REQUEST_TYPE: 'iouRequestType',
         DISTANCE_REQUEST_TYPE: 'distanceRequestType',
