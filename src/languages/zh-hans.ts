@@ -294,7 +294,6 @@ import type {
     WeSentYouMagicSignInLinkParams,
     WorkEmailMergingBlockedParams,
     WorkEmailResendCodeParams,
-    WorkflowSettingsParam,
     WorkspaceLockedPlanTypeParams,
     WorkspaceMemberList,
     WorkspaceMembersCountParams,
@@ -1193,7 +1192,7 @@ const translations = {
         submitAmount: ({amount}: RequestAmountParams) => `提交 ${amount}`,
         expenseAmount: ({formattedAmount, comment}: RequestedAmountMessageParams) => `${formattedAmount}${comment ? `对于${comment}` : ''}`,
         submitted: ({memo}: SubmittedWithMemoParams) => `已提交${memo ? `, 备注 ${memo}` : ''}`,
-        automaticallySubmitted: `通过<a href="${CONST.SELECT_WORKFLOWS_HELP_URL}">延迟提交</a>提交`,
+        automaticallySubmitted: '已自动提交',
         trackedAmount: ({formattedAmount, comment}: RequestedAmountMessageParams) => `跟踪 ${formattedAmount}${comment ? `对于${comment}` : ''}`,
         splitAmount: ({amount}: SplitAmountParams) => `拆分 ${amount}`,
         didSplitAmount: ({formattedAmount, comment}: DidSplitAmountMessageParams) => `split ${formattedAmount}${comment ? `对于${comment}` : ''}`,
@@ -1329,7 +1328,7 @@ const translations = {
             title: '您已移动此报告！',
             description: '请仔细检查这些项目，因为在将报告移动到新工作区时，它们往往会发生变化。',
             reCategorize: '<strong>重新分类任何费用</strong>以符合工作区规则。',
-            workflows: '此报告现在可能需要遵循不同的<strong>审批流程。</strong>',
+            workflows: '此报告现在可能会发送给不同的<strong>审批人</strong>。',
         },
         changeWorkspace: '更改工作区',
         set: 'set',
@@ -1396,7 +1395,7 @@ const translations = {
         changeApprover: {
             title: '更改审批人',
             subtitle: '选择一个选项来更改此报告的审批人。',
-            description: ({workflowSettingLink}: WorkflowSettingsParam) => `<a href="${workflowSettingLink}">您也可以在[工作流设置</a>中永久更改所有报告的审批人。`,
+            description: '您也可以在工作区设置中永久更改所有报告的审批人。',
             changedApproverMessage: ({managerID}: ChangedApproverMessageParams) => `将审批人更改为 <mention-user accountID="${managerID}"/>`,
             actions: {
                 addApprover: '添加审批人',
@@ -1908,8 +1907,8 @@ const translations = {
             `<strong>${name1}</strong> 已经批准报告给 <strong>${name2}</strong>。请选择不同的审批人以避免循环工作流。`,
         emptyContent: {
             title: '没有成员可显示',
-            expensesFromSubtitle: '所有工作区成员已属于现有的审批工作流程。',
-            approverSubtitle: '所有审批者都属于现有的工作流程。',
+            expensesFromSubtitle: '所有工作区成员都已经拥有指派的审批人。',
+            approverSubtitle: '所有可用的审批人都已被指派。',
         },
     },
     workflowsDelayedSubmissionPage: {

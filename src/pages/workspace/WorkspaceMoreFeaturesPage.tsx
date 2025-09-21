@@ -21,7 +21,7 @@ import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavig
 import type {WorkspaceSplitNavigatorParamList} from '@libs/Navigation/types';
 import { hasAccountingConnections, isControlPolicy} from '@libs/PolicyUtils';
 import {enablePolicyCategories} from '@userActions/Policy/Category';
-import {clearPolicyErrorField, enableCompanyCards, enablePolicyConnections, enablePolicyWorkflows, openPolicyMoreFeaturesPage} from '@userActions/Policy/Policy';
+import {clearPolicyErrorField, enableCompanyCards, enablePolicyConnections, openPolicyMoreFeaturesPage} from '@userActions/Policy/Policy';
 import {navigateToConciergeChat} from '@userActions/Report';
 import CONST from '@src/CONST';
 import type {TranslationPaths} from '@src/languages/types';
@@ -34,7 +34,7 @@ import type IconAsset from '@src/types/utils/IconAsset';
 import AccessOrNotFoundWrapper from './AccessOrNotFoundWrapper';
 import type {WithPolicyAndFullscreenLoadingProps} from './withPolicyAndFullscreenLoading';
 import withPolicyAndFullscreenLoading from './withPolicyAndFullscreenLoading';
-import ToggleSettingOptionRow from './workflows/ToggleSettingsOptionRow';
+import ToggleSettingOptionRow from '@components/ToggleSettingOptionRow';
 
 type WorkspaceMoreFeaturesPageProps = WithPolicyAndFullscreenLoadingProps & PlatformStackScreenProps<WorkspaceSplitNavigatorParamList, typeof SCREENS.WORKSPACE.MORE_FEATURES>;
 
@@ -146,11 +146,7 @@ function WorkspaceMoreFeaturesPage({policy, route}: WorkspaceMoreFeaturesPagePro
             subtitleTranslationKey: 'workspace.moreFeatures.organizeSection.subtitle',
             items: organizeItems,
         },
-        {
-            titleTranslationKey: 'workspace.moreFeatures.manageSection.title',
-            subtitleTranslationKey: 'workspace.moreFeatures.manageSection.subtitle',
-            items: manageItems,
-        },
+   
        
     ];
 

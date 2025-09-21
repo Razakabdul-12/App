@@ -89,13 +89,7 @@ function BaseOnboardingInterestedFeatures({shouldUseNativeStyles}: BaseOnboardin
                 enabledByDefault: true,
                 apiEndpoint: WRITE_COMMANDS.ENABLE_POLICY_COMPANY_CARDS,
             },
-            {
-                id: FEATURE_IDS.WORKFLOWS,
-                title: translate('workspace.moreFeatures.workflows.title'),
-                icon: Illustrations.Workflows,
-                enabledByDefault: true,
-                apiEndpoint: WRITE_COMMANDS.ENABLE_POLICY_WORKFLOWS,
-            },
+         
            
         ];
     }, [translate, userReportedIntegration]);

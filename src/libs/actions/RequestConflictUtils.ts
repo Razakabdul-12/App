@@ -26,7 +26,6 @@ const enablePolicyFeatureCommand = [
     WRITE_COMMANDS.ENABLE_POLICY_CONNECTIONS,
     WRITE_COMMANDS.ENABLE_POLICY_CATEGORIES,
     WRITE_COMMANDS.ENABLE_POLICY_TAXES,
-    WRITE_COMMANDS.ENABLE_POLICY_WORKFLOWS,
 ] as const;
 
 type EnablePolicyFeatureCommand = TupleToUnion<typeof enablePolicyFeatureCommand>;

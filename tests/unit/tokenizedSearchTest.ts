@@ -3,7 +3,7 @@ import type {WorkspaceListItem} from '@hooks/useWorkspaceList';
 import tokenizedSearch from '@libs/tokenizedSearch';
 
 describe('tokenizedSearch', () => {
-    it('WorkspaceMembersSelectionList & WorkspaceWorkflowsPayerPage & WorkspaceWorkflowsApprovalsApproverPage & WorkspaceWorkflowsApprovalsExpensesFromPage', () => {
+    it('WorkspaceMembersSelectionList approver search', () => {
         const tokenizeSearch = 'One Three';
 
         const items: SelectionListApprover[] = [

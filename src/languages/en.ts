@@ -283,7 +283,6 @@ import type {
     WeSentYouMagicSignInLinkParams,
     WorkEmailMergingBlockedParams,
     WorkEmailResendCodeParams,
-    WorkflowSettingsParam,
     WorkspaceLockedPlanTypeParams,
     WorkspaceMemberList,
     WorkspaceMembersCountParams,
@@ -1192,7 +1191,7 @@ const translations = {
         submitAmount: ({amount}: RequestAmountParams) => `Submit ${amount}`,
         expenseAmount: ({formattedAmount, comment}: RequestedAmountMessageParams) => `${formattedAmount}${comment ? ` for ${comment}` : ''}`,
         submitted: ({memo}: SubmittedWithMemoParams) => `submitted${memo ? `, saying ${memo}` : ''}`,
-        automaticallySubmitted: `submitted via <a href="${CONST.SELECT_WORKFLOWS_HELP_URL}">delay submissions</a>`,
+        automaticallySubmitted: 'submitted automatically',
         trackedAmount: ({formattedAmount, comment}: RequestedAmountMessageParams) => `tracking ${formattedAmount}${comment ? ` for ${comment}` : ''}`,
         splitAmount: ({amount}: SplitAmountParams) => `split ${amount}`,
         didSplitAmount: ({formattedAmount, comment}: DidSplitAmountMessageParams) => `split ${formattedAmount}${comment ? ` for ${comment}` : ''}`,
@@ -1331,7 +1330,7 @@ const translations = {
             title: 'You moved this report!',
             description: 'Double-check these items, which tend to change when moving reports to a new workspace.',
             reCategorize: '<strong>Re-categorize any expenses</strong> to comply with workspace rules.',
-            workflows: 'This report may now be subject to a different <strong>approval workflow.</strong>',
+            workflows: 'This report may now route to a different <strong>approver.</strong>',
         },
         changeWorkspace: 'Change workspace',
         set: 'set',
@@ -1398,8 +1397,7 @@ const translations = {
         changeApprover: {
             title: 'Change approver',
             subtitle: 'Choose an option to change the approver for this report.',
-            description: ({workflowSettingLink}: WorkflowSettingsParam) =>
-                `You can also change the approver permanently for all reports in your <a href="${workflowSettingLink}">workflow settings</a>.`,
+            description: 'Update the approver in your workspace settings to make this change permanent for all reports.',
             changedApproverMessage: ({managerID}: ChangedApproverMessageParams) => `changed the approver to <mention-user accountID="${managerID}"/>`,
             actions: {
                 addApprover: 'Add approver',
@@ -1918,8 +1916,8 @@ const translations = {
             `<strong>${name1}</strong> already approves reports to <strong>${name2}</strong>. Please choose a different approver to avoid a circular workflow.`,
         emptyContent: {
             title: 'No members to display',
-            expensesFromSubtitle: 'All workspace members already belong to an existing approval workflow.',
-            approverSubtitle: 'All approvers belong to an existing workflow.',
+            expensesFromSubtitle: 'All workspace members already have an assigned approver.',
+            approverSubtitle: 'All eligible approvers are already assigned.',
         },
     },
     workflowsDelayedSubmissionPage: {

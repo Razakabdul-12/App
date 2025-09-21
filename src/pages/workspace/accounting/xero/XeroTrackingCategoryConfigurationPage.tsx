@@ -14,7 +14,7 @@ import {areSettingsInErrorFields, settingsPendingAction} from '@libs/PolicyUtils
 import StringUtils from '@libs/StringUtils';
 import type {WithPolicyProps} from '@pages/workspace/withPolicy';
 import withPolicyConnections from '@pages/workspace/withPolicyConnections';
-import ToggleSettingOptionRow from '@pages/workspace/workflows/ToggleSettingsOptionRow';
+import ToggleSettingOptionRow from '@components/ToggleSettingOptionRow';
 import * as Policy from '@userActions/Policy/Policy';
 import CONST from '@src/CONST';
 import type {TranslationPaths} from '@src/languages/types';

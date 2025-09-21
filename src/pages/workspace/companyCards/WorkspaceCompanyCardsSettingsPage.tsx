@@ -21,7 +21,6 @@ import Navigation from '@libs/Navigation/Navigation';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
 import type {SettingsNavigatorParamList} from '@libs/Navigation/types';
 import AccessOrNotFoundWrapper from '@pages/workspace/AccessOrNotFoundWrapper';
-import ToggleSettingOptionRow from '@pages/workspace/workflows/ToggleSettingsOptionRow';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import ROUTES from '@src/ROUTES';
@@ -136,16 +135,7 @@ function WorkspaceCompanyCardsSettingsPage({
                                 brickRoadIndicator={selectedFeedData?.errorFields?.statementPeriodEndDay ? CONST.BRICK_ROAD_INDICATOR_STATUS.ERROR : undefined}
                             />
                         </OfflineWithFeedback>
-                        <View style={[styles.mv3, styles.mh5]}>
-                            <ToggleSettingOptionRow
-                                title={translate('workspace.moreFeatures.companyCards.personal')}
-                                switchAccessibilityLabel={translate('workspace.moreFeatures.companyCards.personal')}
-                                onToggle={onToggleLiability}
-                                isActive={isPersonal}
-                                disabled={isPending}
-                            />
-                            <Text style={[styles.mutedTextLabel, styles.mt2]}>{translate('workspace.moreFeatures.companyCards.setTransactionLiabilityDescription')}</Text>
-                        </View>
+                       
                         <MenuItem
                             icon={Expensicons.Trashcan}
                             title={translate('workspace.moreFeatures.companyCards.removeCardFeed')}

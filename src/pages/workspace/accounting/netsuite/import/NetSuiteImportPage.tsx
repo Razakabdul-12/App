@@ -12,7 +12,7 @@ import {areSettingsInErrorFields, canUseTaxNetSuite, getCustomersOrJobsLabelNetS
 import {getImportCustomFieldsSettings} from '@pages/workspace/accounting/netsuite/utils';
 import withPolicyConnections from '@pages/workspace/withPolicyConnections';
 import type {WithPolicyConnectionsProps} from '@pages/workspace/withPolicyConnections';
-import ToggleSettingOptionRow from '@pages/workspace/workflows/ToggleSettingsOptionRow';
+import ToggleSettingOptionRow from '@components/ToggleSettingOptionRow';
 import {clearNetSuiteErrorField} from '@userActions/Policy/Policy';
 import CONST from '@src/CONST';
 import ROUTES from '@src/ROUTES';

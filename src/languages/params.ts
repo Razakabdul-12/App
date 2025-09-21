@@ -868,8 +868,6 @@ type WorkspaceUpgradeNoteParams = {
 
 type ChangedApproverMessageParams = {managerID: number};
 
-type WorkflowSettingsParam = {workflowSettingLink: string};
-
 type IndividualExpenseRulesSubtitleParams = {
     categoriesPageLink: string;
 };
@@ -1193,7 +1191,6 @@ export type {
     EnableContinuousReconciliationParams,
     WorkspaceUpgradeNoteParams,
     ChangedApproverMessageParams,
-    WorkflowSettingsParam,
     MovedActionParams,
     IndividualExpenseRulesSubtitleParams,
     WorkspaceShareNoteParams,

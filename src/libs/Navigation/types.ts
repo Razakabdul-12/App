@@ -138,9 +138,6 @@ type SettingsNavigatorParamList = {
         /** cardID of selected card */
         cardID: string;
     };
-    [SCREENS.WORKSPACE.WORKFLOWS_PAYER]: {
-        policyID: string;
-    };
     [SCREENS.SETTINGS.WALLET.VERIFY_ACCOUNT]: undefined;
     [SCREENS.SETTINGS.WALLET.TRANSFER_BALANCE]: undefined;
     [SCREENS.SETTINGS.WALLET.CHOOSE_TRANSFER_ACCOUNT]: undefined;
@@ -1344,35 +1341,6 @@ type WorkspaceSplitNavigatorParamList = {
         policyID: string;
         feed: string;
         backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.WORKFLOWS]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.WORKFLOWS_APPROVALS_NEW]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.WORKFLOWS_APPROVALS_EDIT]: {
-        policyID: string;
-        firstApproverEmail: string;
-    };
-    [SCREENS.WORKSPACE.WORKFLOWS_APPROVALS_EXPENSES_FROM]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.WORKFLOWS_APPROVALS_APPROVER]: {
-        policyID: string;
-        approverIndex: number;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.WORKFLOWS_AUTO_REPORTING_FREQUENCY]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.WORKFLOWS_AUTO_REPORTING_MONTHLY_OFFSET]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.WORKFLOWS_CONNECT_EXISTING_BANK_ACCOUNT]: {
-        policyID: string;
     };
     [SCREENS.WORKSPACE.MEMBERS]: {
         policyID: string;

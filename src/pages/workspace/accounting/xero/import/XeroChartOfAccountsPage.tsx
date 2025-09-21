@@ -10,7 +10,7 @@ import * as ErrorUtils from '@libs/ErrorUtils';
 import {settingsPendingAction} from '@libs/PolicyUtils';
 import type {WithPolicyProps} from '@pages/workspace/withPolicy';
 import withPolicyConnections from '@pages/workspace/withPolicyConnections';
-import ToggleSettingOptionRow from '@pages/workspace/workflows/ToggleSettingsOptionRow';
+import ToggleSettingOptionRow from '@components/ToggleSettingOptionRow';
 import variables from '@styles/variables';
 import {updateXeroEnableNewCategories} from '@userActions/connections/Xero';
 import * as Policy from '@userActions/Policy/Policy';

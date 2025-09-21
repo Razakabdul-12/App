@@ -16,7 +16,6 @@ import type {
     DisablePolicyBillableModeParams,
     EnablePolicyCompanyCardsParams,
     EnablePolicyConnectionsParams,
-    EnablePolicyWorkflowsParams,
     LeavePolicyParams,
     OpenDraftWorkspaceRequestParams,
     OpenPolicyEditCardLimitTypePageParams,
@@ -24,16 +23,12 @@ import type {
     OpenPolicyMoreFeaturesPageParams,
     OpenPolicyProfilePageParams,
     OpenPolicyTaxesPageParams,
-    OpenPolicyWorkflowsPageParams,
     OpenWorkspaceInvitePageParams,
     OpenWorkspaceParams,
     SetPolicyBillableModeParams,
     SetPolicyDefaultReportTitleParams,
     SetPolicyPreventMemberCreatedTitleParams,
     SetPolicyPreventSelfApprovalParams,
-    SetWorkspaceApprovalModeParams,
-    SetWorkspaceAutoReportingFrequencyParams,
-    SetWorkspaceAutoReportingMonthlyOffsetParams,
     SetWorkspacePayerParams,
     SetWorkspaceReimbursementParams,
     UpdateInvoiceCompanyNameParams,
@@ -564,182 +559,6 @@ function deleteWorkspace(
     if (policyID === lastAccessedWorkspacePolicyID) {
         updateLastAccessedWorkspace(undefined);
     }
-}
-
-function setWorkspaceAutoReportingFrequency(policyID: string, frequency: ValueOf<typeof CONST.POLICY.AUTO_REPORTING_FREQUENCIES>) {
-    // This will be fixed as part of https://github.com/Expensify/Expensify/issues/507850
-    // eslint-disable-next-line deprecation/deprecation
-    const policy = getPolicy(policyID);
-
-    const wasPolicyOnManualReporting = PolicyUtils.getCorrectedAutoReportingFrequency(policy) === CONST.POLICY.AUTO_REPORTING_FREQUENCIES.MANUAL;
-
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-            value: {
-                // Recall that the "daily" and "manual" frequencies don't actually exist in Onyx or the DB (see PolicyUtils.getCorrectedAutoReportingFrequency)
-                autoReportingFrequency: frequency === CONST.POLICY.AUTO_REPORTING_FREQUENCIES.MANUAL ? CONST.POLICY.AUTO_REPORTING_FREQUENCIES.IMMEDIATE : frequency,
-                pendingFields: {autoReportingFrequency: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE},
-
-                // To set the frequency to "manual", we really must set it to "immediate" with harvesting disabled
-                ...(frequency === CONST.POLICY.AUTO_REPORTING_FREQUENCIES.MANUAL && {
-                    harvesting: {
-                        enabled: false,
-                    },
-                }),
-
-                // If the policy was on manual reporting before, and now will be auto-reported,
-                // then we must re-enable harvesting
-                ...(wasPolicyOnManualReporting &&
-                    frequency !== CONST.POLICY.AUTO_REPORTING_FREQUENCIES.MANUAL && {
-                        harvesting: {
-                            enabled: true,
-                        },
-                    }),
-            },
-        },
-    ];
-
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-            value: {
-                autoReportingFrequency: policy?.autoReportingFrequency ?? null,
-                harvesting: policy?.harvesting ?? null,
-                pendingFields: {autoReportingFrequency: null},
-                errorFields: {autoReportingFrequency: ErrorUtils.getMicroSecondOnyxErrorWithTranslationKey('workflowsDelayedSubmissionPage.autoReportingFrequencyErrorMessage')},
-            },
-        },
-    ];
-
-    const successData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-            value: {
-                pendingFields: {autoReportingFrequency: null},
-            },
-        },
-    ];
-
-    const params: SetWorkspaceAutoReportingFrequencyParams = {policyID, frequency};
-    API.write(WRITE_COMMANDS.SET_WORKSPACE_AUTO_REPORTING_FREQUENCY, params, {optimisticData, failureData, successData});
-}
-
-function setWorkspaceAutoReportingMonthlyOffset(policyID: string | undefined, autoReportingOffset: number | ValueOf<typeof CONST.POLICY.AUTO_REPORTING_OFFSET>) {
-    if (!policyID) {
-        return;
-    }
-    const value = JSON.stringify({autoReportingOffset});
-    // This will be fixed as part of https://github.com/Expensify/Expensify/issues/507850
-    // eslint-disable-next-line deprecation/deprecation
-    const policy = getPolicy(policyID);
-
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-            value: {
-                autoReportingOffset,
-                pendingFields: {autoReportingOffset: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE},
-            },
-        },
-    ];
-
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-            value: {
-                autoReportingOffset: policy?.autoReportingOffset ?? null,
-                pendingFields: {autoReportingOffset: null},
-                errorFields: {autoReportingOffset: ErrorUtils.getMicroSecondOnyxErrorWithTranslationKey('workflowsDelayedSubmissionPage.monthlyOffsetErrorMessage')},
-            },
-        },
-    ];
-
-    const successData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-            value: {
-                pendingFields: {autoReportingOffset: null},
-            },
-        },
-    ];
-
-    const params: SetWorkspaceAutoReportingMonthlyOffsetParams = {policyID, value};
-    API.write(WRITE_COMMANDS.SET_WORKSPACE_AUTO_REPORTING_MONTHLY_OFFSET, params, {optimisticData, failureData, successData});
-}
-
-function setWorkspaceApprovalMode(policyID: string, approver: string, approvalMode: ValueOf<typeof CONST.POLICY.APPROVAL_MODE>) {
-    // This will be fixed as part of https://github.com/Expensify/Expensify/issues/507850
-    // eslint-disable-next-line deprecation/deprecation
-    const policy = getPolicy(policyID);
-    const updatedEmployeeList: Record<string, PolicyEmployee> = {};
-
-    if (approvalMode === CONST.POLICY.APPROVAL_MODE.OPTIONAL) {
-        Object.keys(policy?.employeeList ?? {}).forEach((employee) => {
-            updatedEmployeeList[employee] = {
-                ...policy?.employeeList?.[employee],
-                submitsTo: approver,
-                forwardsTo: '',
-            };
-        });
-    }
-
-    const value = {
-        approver,
-        approvalMode,
-    };
-
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-            value: {
-                ...value,
-                pendingFields: {approvalMode: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE},
-                employeeList: approvalMode === CONST.POLICY.APPROVAL_MODE.OPTIONAL ? updatedEmployeeList : policy?.employeeList,
-            },
-        },
-    ];
-
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-            value: {
-                approver: policy?.approver,
-                approvalMode: policy?.approvalMode,
-                pendingFields: {approvalMode: null},
-                errorFields: {approvalMode: ErrorUtils.getMicroSecondOnyxErrorWithTranslationKey('workflowsApproverPage.genericErrorMessage')},
-                employeeList: policy?.employeeList,
-            },
-        },
-    ];
-
-    const successData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-            value: {
-                pendingFields: {approvalMode: null},
-            },
-        },
-    ];
-
-    const params: SetWorkspaceApprovalModeParams = {
-        policyID,
-        value: JSON.stringify({
-            ...value,
-            // This property should now be set to false for all Collect policies
-            isAutoApprovalEnabled: false,
-        }),
-    };
-    API.write(WRITE_COMMANDS.SET_WORKSPACE_APPROVAL_MODE, params, {optimisticData, failureData, successData});
 }
 
 function setWorkspacePayer(policyID: string, reimburserEmail: string) {
@@ -2476,47 +2295,6 @@ function createDraftWorkspace(policyOwnerEmail = '', makeMeAdmin = false, policy
     return params;
 }
 
-function openPolicyWorkflowsPage(policyID: string) {
-    if (!policyID) {
-        Log.warn('openPolicyWorkflowsPage invalid params', {policyID});
-        return;
-    }
-
-    const onyxData: OnyxData = {
-        optimisticData: [
-            {
-                onyxMethod: Onyx.METHOD.MERGE,
-                key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-                value: {
-                    isLoading: true,
-                },
-            },
-        ],
-        successData: [
-            {
-                onyxMethod: Onyx.METHOD.MERGE,
-                key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-                value: {
-                    isLoading: false,
-                },
-            },
-        ],
-        failureData: [
-            {
-                onyxMethod: Onyx.METHOD.MERGE,
-                key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-                value: {
-                    isLoading: false,
-                },
-            },
-        ],
-    };
-
-    const params: OpenPolicyWorkflowsPageParams = {policyID};
-
-    API.read(READ_COMMANDS.OPEN_POLICY_WORKFLOWS_PAGE, params, onyxData);
-}
-
 /**
  * Returns the accountIDs of the members of the policy whose data is passed in the parameters
  */
@@ -3346,109 +3124,6 @@ function enablePolicyTaxes(policyID: string, enabled: boolean) {
         parameters.taxFields = JSON.stringify(defaultTaxRates);
     }
     API.writeWithNoDuplicatesEnableFeatureConflicts(WRITE_COMMANDS.ENABLE_POLICY_TAXES, parameters, onyxData);
-
-    if (enabled && getIsNarrowLayout()) {
-        goBackWhenEnableFeature(policyID);
-    }
-}
-
-function enablePolicyWorkflows(policyID: string, enabled: boolean) {
-    // This will be fixed as part of https://github.com/Expensify/Expensify/issues/507850
-    // eslint-disable-next-line deprecation/deprecation
-    const policy = getPolicy(policyID);
-    const onyxData: OnyxData = {
-        optimisticData: [
-            {
-                onyxMethod: Onyx.METHOD.MERGE,
-                key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-                value: {
-                    areWorkflowsEnabled: enabled,
-                    ...(!enabled
-                        ? {
-                              approvalMode: CONST.POLICY.APPROVAL_MODE.OPTIONAL,
-                              autoReporting: false,
-                              autoReportingFrequency: CONST.POLICY.AUTO_REPORTING_FREQUENCIES.INSTANT,
-                              harvesting: {
-                                  enabled: false,
-                              },
-                              reimbursementChoice: CONST.POLICY.REIMBURSEMENT_CHOICES.REIMBURSEMENT_NO,
-                          }
-                        : {}),
-                    pendingFields: {
-                        areWorkflowsEnabled: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE,
-                        ...(!enabled
-                            ? {
-                                  approvalMode: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE,
-                                  autoReporting: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE,
-                                  autoReportingFrequency: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE,
-                                  harvesting: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE,
-                                  reimbursementChoice: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE,
-                              }
-                            : {}),
-                    },
-                },
-            },
-        ],
-        successData: [
-            {
-                onyxMethod: Onyx.METHOD.MERGE,
-                key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-                value: {
-                    pendingFields: {
-                        areWorkflowsEnabled: null,
-                        ...(!enabled
-                            ? {
-                                  approvalMode: null,
-                                  autoReporting: null,
-                                  autoReportingFrequency: null,
-                                  harvesting: null,
-                                  reimbursementChoice: null,
-                              }
-                            : {}),
-                    },
-                },
-            },
-        ],
-        failureData: [
-            {
-                onyxMethod: Onyx.METHOD.MERGE,
-                key: `${ONYXKEYS.COLLECTION.POLICY}${policyID}`,
-                value: {
-                    areWorkflowsEnabled: !enabled,
-                    ...(!enabled
-                        ? {
-                              approvalMode: policy?.approvalMode,
-                              autoReporting: policy?.autoReporting,
-                              autoReportingFrequency: policy?.autoReportingFrequency,
-                              harvesting: policy?.harvesting,
-                              reimbursementChoice: policy?.reimbursementChoice,
-                          }
-                        : {}),
-                    pendingFields: {
-                        areWorkflowsEnabled: null,
-                        ...(!enabled
-                            ? {
-                                  approvalMode: null,
-                                  autoReporting: null,
-                                  autoReportingFrequency: null,
-                                  harvesting: null,
-                                  reimbursementChoice: null,
-                              }
-                            : {}),
-                    },
-                },
-            },
-        ],
-    };
-
-    const parameters: EnablePolicyWorkflowsParams = {policyID, enabled};
-
-    // When disabling workflows, set autoreporting back to "immediately"
-    if (!enabled) {
-        setWorkspaceAutoReportingFrequency(policyID, CONST.POLICY.AUTO_REPORTING_FREQUENCIES.INSTANT);
-    }
-
-    API.writeWithNoDuplicatesEnableFeatureConflicts(WRITE_COMMANDS.ENABLE_POLICY_WORKFLOWS, parameters, onyxData);
 
     if (enabled && getIsNarrowLayout()) {
         goBackWhenEnableFeature(policyID);
@@ -4461,17 +4136,12 @@ export {
     createDraftInitialWorkspace,
     buildOptimisticRecentlyUsedCurrencies,
     setWorkspaceInviteMessageDraft,
-    setWorkspaceApprovalMode,
-    setWorkspaceAutoReportingFrequency,
-    setWorkspaceAutoReportingMonthlyOffset,
     updateWorkspaceDescription,
     setWorkspacePayer,
     setWorkspaceReimbursement,
-    openPolicyWorkflowsPage,
     enableCompanyCards,
     enablePolicyConnections,
     enablePolicyTaxes,
-    enablePolicyWorkflows,
     enableDistanceRequestTax,
     openPolicyMoreFeaturesPage,
     openPolicyProfilePage,

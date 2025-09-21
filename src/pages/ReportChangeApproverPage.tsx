@@ -1,16 +1,13 @@
 import React, {useCallback, useMemo, useState} from 'react';
-import {View} from 'react-native';
 import type {ValueOf} from 'type-fest';
 import FormHelpMessage from '@components/FormHelpMessage';
 import HeaderWithBackButton from '@components/HeaderWithBackButton';
-import RenderHTML from '@components/RenderHTML';
 import ScreenWrapper from '@components/ScreenWrapper';
 import SelectionList from '@components/SelectionList';
 import SingleSelectListItem from '@components/SelectionList/SingleSelectListItem';
 import type {ListItem} from '@components/SelectionList/types';
 import Text from '@components/Text';
 import useCurrentUserPersonalDetails from '@hooks/useCurrentUserPersonalDetails';
-import useEnvironment from '@hooks/useEnvironment';
 import useLocalize from '@hooks/useLocalize';
 import useThemeStyles from '@hooks/useThemeStyles';
 import {assignReportToMe} from '@libs/actions/IOU';
@@ -40,7 +37,6 @@ function ReportChangeApproverPage({report, policy, isLoadingReportData}: ReportC
     const reportID = report?.reportID;
     const {translate} = useLocalize();
     const styles = useThemeStyles();
-    const {environmentURL} = useEnvironment();
     const currentUserDetails = useCurrentUserPersonalDetails();
     const [selectedApproverType, setSelectedApproverType] = useState<ApproverType>();
     const [hasError, setHasError] = useState(false);
@@ -115,9 +111,7 @@ function ReportChangeApproverPage({report, policy, isLoadingReportData}: ReportC
                 customListHeader={
                     <>
                         <Text style={[styles.ph5, styles.mb5]}>{translate('iou.changeApprover.subtitle')}</Text>
-                        <View style={[styles.ph5, styles.mb5, styles.renderHTML, styles.flexRow]}>
-                            <RenderHTML html={translate('iou.changeApprover.description', {workflowSettingLink: `${environmentURL}/${ROUTES.WORKSPACE_WORKFLOWS.getRoute(policy?.id)}`})} />
-                        </View>
+                        <Text style={[styles.ph5, styles.mb5, styles.textSupporting]}>{translate('iou.changeApprover.description')}</Text>
                     </>
                 }
             >

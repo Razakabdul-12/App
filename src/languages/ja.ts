@@ -294,7 +294,6 @@ import type {
     WeSentYouMagicSignInLinkParams,
     WorkEmailMergingBlockedParams,
     WorkEmailResendCodeParams,
-    WorkflowSettingsParam,
     WorkspaceLockedPlanTypeParams,
     WorkspaceMemberList,
     WorkspaceMembersCountParams,
@@ -1206,7 +1205,7 @@ const translations = {
         submitAmount: ({amount}: RequestAmountParams) => `${amount}を提出`,
         expenseAmount: ({formattedAmount, comment}: RequestedAmountMessageParams) => `${formattedAmount}${comment ? `${comment} のために` : ''}`,
         submitted: ({memo}: SubmittedWithMemoParams) => `提出済み${memo ? `、次のように言って ${memo}` : ''}`,
-        automaticallySubmitted: `<a href="${CONST.SELECT_WORKFLOWS_HELP_URL}">送信の遅延</a>を通じて送信されました`,
+        automaticallySubmitted: '自動的に送信されました',
         trackedAmount: ({formattedAmount, comment}: RequestedAmountMessageParams) => `tracking ${formattedAmount}${comment ? `${comment} のために` : ''}`,
         splitAmount: ({amount}: SplitAmountParams) => `${amount} を分割`,
         didSplitAmount: ({formattedAmount, comment}: DidSplitAmountMessageParams) => `split ${formattedAmount}${comment ? `${comment} のために` : ''}`,
@@ -1345,7 +1344,7 @@ const translations = {
             title: 'このレポートを移動しました！',
             description: 'レポートを新しいワークスペースに移動する際に変更される傾向があるこれらの項目を再確認してください。',
             reCategorize: '<strong>ワークスペースのルールに従うように、すべての経費を再分類してください</strong>。',
-            workflows: 'このレポートは、別の<strong>承認ワークフロー</strong>の対象になる可能性があります。',
+            workflows: 'このレポートは別の<strong>承認者</strong>に回される可能性があります。',
         },
         changeWorkspace: 'ワークスペースを変更',
         set: 'set',
@@ -1412,8 +1411,7 @@ const translations = {
         changeApprover: {
             title: '承認者を変更',
             subtitle: 'このレポートの承認者を変更するオプションを選択してください。',
-            description: ({workflowSettingLink}: WorkflowSettingsParam) =>
-                `<a href="${workflowSettingLink}">ワークフロー設定</a>で、すべてのレポートの承認者を恒久的に変更することもできます。`,
+            description: 'ワークスペースの設定で承認者を恒久的に変更できます。',
             changedApproverMessage: ({managerID}: ChangedApproverMessageParams) => `<mention-user accountID="${managerID}"/> に承認者を変更しました`,
             actions: {
                 addApprover: '承認者を追加',
@@ -1928,8 +1926,8 @@ const translations = {
             `<strong>${name1}</strong> はすでに <strong>${name2}</strong> にレポートを承認しています。循環ワークフローを避けるために、別の承認者を選んでください。`,
         emptyContent: {
             title: '表示するメンバーがいません',
-            expensesFromSubtitle: 'すべてのワークスペースメンバーは既存の承認ワークフローにすでに属しています。',
-            approverSubtitle: 'すべての承認者は既存のワークフローに属しています。',
+            expensesFromSubtitle: 'すべてのワークスペースメンバーには既に承認者が割り当てられています。',
+            approverSubtitle: '利用可能な承認者はすべて既に割り当てられています。',
         },
     },
     workflowsDelayedSubmissionPage: {

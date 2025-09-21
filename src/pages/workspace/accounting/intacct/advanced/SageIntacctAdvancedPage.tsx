@@ -12,7 +12,7 @@ import {areSettingsInErrorFields, getCurrentSageIntacctEntityName, settingsPendi
 import Navigation from '@navigation/Navigation';
 import type {WithPolicyProps} from '@pages/workspace/withPolicy';
 import withPolicy from '@pages/workspace/withPolicy';
-import ToggleSettingOptionRow from '@pages/workspace/workflows/ToggleSettingsOptionRow';
+import ToggleSettingOptionRow from '@components/ToggleSettingOptionRow';
 import {
     updateSageIntacctApprovalMode,
     updateSageIntacctImportEmployees,

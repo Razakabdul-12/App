@@ -550,12 +550,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.WORKSPACE.DESCRIPTION]: {
                             path: ROUTES.WORKSPACE_OVERVIEW_DESCRIPTION.route,
                         },
-                        [SCREENS.WORKSPACE.WORKFLOWS_AUTO_REPORTING_FREQUENCY]: {
-                            path: ROUTES.WORKSPACE_WORKFLOWS_AUTOREPORTING_FREQUENCY.route,
-                        },
-                        [SCREENS.WORKSPACE.WORKFLOWS_AUTO_REPORTING_MONTHLY_OFFSET]: {
-                            path: ROUTES.WORKSPACE_WORKFLOWS_AUTOREPORTING_MONTHLY_OFFSET.route,
-                        },
                         [SCREENS.WORKSPACE.SHARE]: {
                             path: ROUTES.WORKSPACE_OVERVIEW_SHARE.route,
                         },
@@ -604,18 +598,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         [SCREENS.WORKSPACE.MEMBERS_IMPORTED_CONFIRMATION]: {
                             path: ROUTES.WORKSPACE_MEMBERS_IMPORTED_CONFIRMATION.route,
                         },
-                        [SCREENS.WORKSPACE.WORKFLOWS_APPROVALS_NEW]: {
-                            path: ROUTES.WORKSPACE_WORKFLOWS_APPROVALS_NEW.route,
-                        },
-                        [SCREENS.WORKSPACE.WORKFLOWS_APPROVALS_EDIT]: {
-                            path: ROUTES.WORKSPACE_WORKFLOWS_APPROVALS_EDIT.route,
-                        },
-                        [SCREENS.WORKSPACE.WORKFLOWS_APPROVALS_EXPENSES_FROM]: {
-                            path: ROUTES.WORKSPACE_WORKFLOWS_APPROVALS_EXPENSES_FROM.route,
-                        },
-                        [SCREENS.WORKSPACE.WORKFLOWS_APPROVALS_APPROVER]: {
-                            path: ROUTES.WORKSPACE_WORKFLOWS_APPROVALS_APPROVER.route,
-                        },
                         [SCREENS.WORKSPACE.INVITE_MESSAGE]: {
                             path: ROUTES.WORKSPACE_INVITE_MESSAGE.route,
                         },
@@ -634,9 +616,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         },
                         [SCREENS.WORKSPACE.CATEGORIES_IMPORTED]: {
                             path: ROUTES.WORKSPACE_CATEGORIES_IMPORTED.route,
-                        },
-                        [SCREENS.WORKSPACE.WORKFLOWS_PAYER]: {
-                            path: ROUTES.WORKSPACE_WORKFLOWS_PAYER.route,
                         },
                         [SCREENS.WORKSPACE.MEMBER_DETAILS]: {
                             path: ROUTES.WORKSPACE_MEMBER_DETAILS.route,
@@ -685,10 +664,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                         },
                     
                       
-                        [SCREENS.WORKSPACE.WORKFLOWS_CONNECT_EXISTING_BANK_ACCOUNT]: {
-                            path: ROUTES.WORKSPACE_WORKFLOWS_CONNECT_EXISTING_BANK_ACCOUNT.route,
-                            exact: true,
-                        },
                         [SCREENS.REIMBURSEMENT_ACCOUNT]: {
                             path: ROUTES.BANK_ACCOUNT_WITH_STEP_TO_OPEN.route,
                             exact: true,
@@ -1183,9 +1158,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                     path: ROUTES.WORKSPACE_COMPANY_CARDS.route,
                 },
            
-                [SCREENS.WORKSPACE.WORKFLOWS]: {
-                    path: ROUTES.WORKSPACE_WORKFLOWS.route,
-                },
                 [SCREENS.WORKSPACE.MEMBERS]: {
                     path: ROUTES.WORKSPACE_MEMBERS.route,
                 },
