@@ -41,7 +41,7 @@ function OnboardingMergingAccountBlockedView({workEmail, isVsb}: OnboardingMergi
                         Navigation.navigate(ROUTES.ONBOARDING_ACCOUNTING.getRoute());
                         return;
                     }
-                    Navigation.navigate(ROUTES.ONBOARDING_PURPOSE.getRoute());
+                    Navigation.navigate(ROUTES.ONBOARDING_PERSONAL_DETAILS.getRoute());
                 }}
             />
         </>

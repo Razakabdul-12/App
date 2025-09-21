@@ -169,7 +169,19 @@ function BaseOnboardingWorkspaces({route, shouldUseNativeStyles}: BaseOnboarding
                                 Navigation.navigate(ROUTES.ONBOARDING_EMPLOYEES.getRoute(route.params?.backTo));
                                 return;
                             }
-                            Navigation.navigate(ROUTES.ONBOARDING_PURPOSE.getRoute(route.params?.backTo));
+                            completeOnboarding({
+                                engagementChoice: CONST.ONBOARDING_CHOICES.LOOKING_AROUND,
+                                onboardingMessage: onboardingMessages[CONST.ONBOARDING_CHOICES.LOOKING_AROUND],
+                                firstName: onboardingPersonalDetails?.firstName ?? '',
+                                lastName: onboardingPersonalDetails?.lastName ?? '',
+                                shouldSkipTestDriveModal: false,
+                            });
+                            setOnboardingAdminsChatReportID();
+                            setOnboardingPolicyID();
+                            navigateAfterOnboardingWithMicrotaskQueue(
+                                isSmallScreenWidth,
+                                isBetaEnabled(CONST.BETAS.DEFAULT_ROOMS),
+                            );
                         }}
                         style={[styles.mt5]}
                     />

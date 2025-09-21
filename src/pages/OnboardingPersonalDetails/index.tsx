@@ -15,6 +15,6 @@ function OnboardingPersonalDetails({...rest}: OnboardingPersonalDetailsProps) {
     );
 }
 
-OnboardingPersonalDetails.displayName = 'OnboardingPurpose';
+OnboardingPersonalDetails.displayName = 'OnboardingPersonalDetails';
 
 export default OnboardingPersonalDetails;

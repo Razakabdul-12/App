@@ -3220,6 +3220,7 @@ function openReportFromDeepLink(
     onboardingInitialPath: OnyxEntry<string>,
     reports: OnyxCollection<Report>,
     isAuthenticated: boolean,
+    introSelectedChoice?: OnboardingPurpose,
 ) {
     const reportID = getReportIDFromLink(url);
 
@@ -3354,6 +3355,7 @@ function openReportFromDeepLink(
                                     currentOnboardingPurposeSelected,
                                     currentOnboardingCompanySize,
                                     onboardingInitialPath,
+                                    introSelectedChoice,
                                 }),
                             onCompleted: handleDeeplinkNavigation,
                             onCanceled: handleDeeplinkNavigation,

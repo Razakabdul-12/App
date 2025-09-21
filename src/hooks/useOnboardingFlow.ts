@@ -31,6 +31,7 @@ function useOnboardingFlowRouter() {
     const [currentOnboardingCompanySize] = useOnyx(ONYXKEYS.ONBOARDING_COMPANY_SIZE, {canBeMissing: true});
     const [onboardingInitialPath, onboardingInitialPathResult] = useOnyx(ONYXKEYS.ONBOARDING_LAST_VISITED_PATH, {canBeMissing: true});
     const isOnboardingInitialPathLoading = isLoadingOnyxValue(onboardingInitialPathResult);
+    const [introSelected] = useOnyx(ONYXKEYS.NVP_INTRO_SELECTED, {canBeMissing: true});
 
     const [account] = useOnyx(ONYXKEYS.ACCOUNT, {canBeMissing: true});
     const [sessionEmail] = useOnyx(ONYXKEYS.SESSION, {canBeMissing: true, selector: emailSelector});
@@ -111,6 +112,7 @@ function useOnboardingFlowRouter() {
                         currentOnboardingCompanySize,
                         currentOnboardingPurposeSelected,
                         onboardingInitialPath,
+                        introSelectedChoice: introSelected?.choice,
                     });
                 }
             }
@@ -125,6 +127,7 @@ function useOnboardingFlowRouter() {
                     currentOnboardingCompanySize,
                     currentOnboardingPurposeSelected,
                     onboardingInitialPath,
+                    introSelectedChoice: introSelected?.choice,
                 });
             }
         });
@@ -149,6 +152,7 @@ function useOnboardingFlowRouter() {
         onboardingInitialPath,
         isOnboardingInitialPathLoading,
         typeMenuSections,
+        introSelected?.choice,
     ]);
 
     return {isOnboardingCompleted: hasCompletedGuidedSetupFlowSelector(onboardingValues), isHybridAppOnboardingCompleted};

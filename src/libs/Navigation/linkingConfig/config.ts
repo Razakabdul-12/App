@@ -95,7 +95,7 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
 
         [NAVIGATORS.ONBOARDING_MODAL_NAVIGATOR]: {
             // Don't set the initialRouteName, because when the user continues from the last visited onboarding page,
-            // the onboarding purpose page will be briefly visible.
+            // the previously visited screen could briefly flash.
             path: ROUTES.ONBOARDING_ROOT.route,
             screens: {
                 [SCREENS.ONBOARDING.WORK_EMAIL]: {
@@ -104,10 +104,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                 },
                 [SCREENS.ONBOARDING.WORK_EMAIL_VALIDATION]: {
                     path: ROUTES.ONBOARDING_WORK_EMAIL_VALIDATION.route,
-                    exact: true,
-                },
-                [SCREENS.ONBOARDING.PURPOSE]: {
-                    path: ROUTES.ONBOARDING_PURPOSE.route,
                     exact: true,
                 },
                 [SCREENS.ONBOARDING.PERSONAL_DETAILS]: {

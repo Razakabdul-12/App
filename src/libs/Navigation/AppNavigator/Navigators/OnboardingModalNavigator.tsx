@@ -22,7 +22,6 @@ import OnboardingEmployees from '@pages/OnboardingEmployees';
 import OnboardingInterestedFeatures from '@pages/OnboardingInterestedFeatures';
 import OnboardingPersonalDetails from '@pages/OnboardingPersonalDetails';
 import OnboardingPrivateDomain from '@pages/OnboardingPrivateDomain';
-import OnboardingPurpose from '@pages/OnboardingPurpose';
 import OnboardingWorkEmail from '@pages/OnboardingWorkEmail';
 import OnboardingWorkEmailValidation from '@pages/OnboardingWorkEmailValidation';
 import OnboardingWorkspaceConfirmation from '@pages/OnboardingWorkspaceConfirmation';
@@ -45,9 +44,10 @@ function OnboardingModalNavigator() {
     const [account, accountMetadata] = useOnyx(ONYXKEYS.ACCOUNT, {canBeMissing: true});
     const [onboardingPurposeSelected] = useOnyx(ONYXKEYS.ONBOARDING_PURPOSE_SELECTED, {canBeMissing: true});
     const [onboardingPolicyID] = useOnyx(ONYXKEYS.ONBOARDING_POLICY_ID, {canBeMissing: true});
+    const [introSelected] = useOnyx(ONYXKEYS.NVP_INTRO_SELECTED, {canBeMissing: true});
     const isOnPrivateDomainAndHasAccessiblePolicies = !account?.isFromPublicDomain && account?.hasAccessibleDomainPolicies;
 
-    let initialRouteName: ValueOf<typeof SCREENS.ONBOARDING> = SCREENS.ONBOARDING.PURPOSE;
+    let initialRouteName: ValueOf<typeof SCREENS.ONBOARDING> = SCREENS.ONBOARDING.PERSONAL_DETAILS;
 
     if (isOnPrivateDomainAndHasAccessiblePolicies) {
         initialRouteName = SCREENS.ONBOARDING.PERSONAL_DETAILS;
@@ -57,7 +57,8 @@ function OnboardingModalNavigator() {
         initialRouteName = SCREENS.ONBOARDING.WORK_EMAIL;
     }
 
-    if (onboardingPurposeSelected === CONST.ONBOARDING_CHOICES.PERSONAL_SPEND && !!onboardingPolicyID) {
+    const resolvedOnboardingPurpose = onboardingPurposeSelected ?? introSelected?.choice;
+    if (resolvedOnboardingPurpose === CONST.ONBOARDING_CHOICES.PERSONAL_SPEND && !!onboardingPolicyID) {
         initialRouteName = SCREENS.ONBOARDING.WORKSPACE_INVITE;
     }
 
@@ -121,10 +122,6 @@ function OnboardingModalNavigator() {
                             screenOptions={defaultScreenOptions}
                             initialRouteName={initialRouteName}
                         >
-                            <Stack.Screen
-                                name={SCREENS.ONBOARDING.PURPOSE}
-                                component={OnboardingPurpose}
-                            />
                             <Stack.Screen
                                 name={SCREENS.ONBOARDING.PERSONAL_DETAILS}
                                 component={OnboardingPersonalDetails}

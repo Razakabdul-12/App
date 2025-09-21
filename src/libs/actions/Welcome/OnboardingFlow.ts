@@ -37,6 +37,7 @@ type GetOnboardingInitialPathParamsType = {
     currentOnboardingPurposeSelected: OnyxEntry<OnboardingPurpose>;
     currentOnboardingCompanySize: OnyxEntry<OnboardingCompanySize>;
     onboardingInitialPath: OnyxEntry<string>;
+    introSelectedChoice?: OnboardingPurpose;
 };
 
 type OnboardingTaskLinks = Partial<{
@@ -94,6 +95,37 @@ function startOnboardingFlow(startOnboardingFlowParams: GetOnboardingInitialPath
     } as PartialState<NavigationState>);
 }
 
+function resolveOnboardingPurpose(
+    currentOnboardingPurposeSelected: OnyxEntry<OnboardingPurpose>,
+    introSelectedChoice: OnboardingPurpose | undefined,
+    signupQualifier: ValueOf<typeof CONST.ONBOARDING_SIGNUP_QUALIFIERS> | undefined,
+): OnboardingPurpose {
+    if (currentOnboardingPurposeSelected) {
+        return currentOnboardingPurposeSelected;
+    }
+
+    let resolvedPurpose: OnboardingPurpose | undefined = introSelectedChoice;
+
+    if (!resolvedPurpose) {
+        if (signupQualifier === CONST.ONBOARDING_SIGNUP_QUALIFIERS.INDIVIDUAL) {
+            resolvedPurpose = CONST.ONBOARDING_CHOICES.PERSONAL_SPEND;
+        } else if (
+            signupQualifier === CONST.ONBOARDING_SIGNUP_QUALIFIERS.SMB ||
+            signupQualifier === CONST.ONBOARDING_SIGNUP_QUALIFIERS.VSB
+        ) {
+            resolvedPurpose = CONST.ONBOARDING_CHOICES.MANAGE_TEAM;
+        }
+    }
+
+    if (!resolvedPurpose) {
+        resolvedPurpose = CONST.ONBOARDING_CHOICES.MANAGE_TEAM;
+    }
+
+    Onyx.set(ONYXKEYS.ONBOARDING_PURPOSE_SELECTED, resolvedPurpose);
+
+    return resolvedPurpose;
+}
+
 function getOnboardingInitialPath(getOnboardingInitialPathParams: GetOnboardingInitialPathParamsType): string {
     const {
         isUserFromPublicDomain,
@@ -102,28 +134,27 @@ function getOnboardingInitialPath(getOnboardingInitialPathParams: GetOnboardingI
         currentOnboardingPurposeSelected,
         currentOnboardingCompanySize,
         onboardingInitialPath = '',
+        introSelectedChoice,
     } = getOnboardingInitialPathParams;
     const state = getStateFromPath(onboardingInitialPath, linkingConfig.config);
     const currentOnboardingValues = onboardingValuesParam ?? onboardingValues;
     const isVsb = currentOnboardingValues?.signupQualifier === CONST.ONBOARDING_SIGNUP_QUALIFIERS.VSB;
     const isSmb = currentOnboardingValues?.signupQualifier === CONST.ONBOARDING_SIGNUP_QUALIFIERS.SMB;
-    const isIndividual = currentOnboardingValues?.signupQualifier === CONST.ONBOARDING_SIGNUP_QUALIFIERS.INDIVIDUAL;
-    const isCurrentOnboardingPurposeManageTeam = currentOnboardingPurposeSelected === CONST.ONBOARDING_CHOICES.MANAGE_TEAM;
+    const resolvedOnboardingPurpose = resolveOnboardingPurpose(
+        currentOnboardingPurposeSelected,
+        introSelectedChoice,
+        currentOnboardingValues?.signupQualifier,
+    );
+    const isCurrentOnboardingPurposeManageTeam = resolvedOnboardingPurpose === CONST.ONBOARDING_CHOICES.MANAGE_TEAM;
+    const isCurrentOnboardingPurposeTrackWorkspace = resolvedOnboardingPurpose === CONST.ONBOARDING_CHOICES.TRACK_WORKSPACE;
+    const isTeamFocusedPurpose = isCurrentOnboardingPurposeManageTeam || isCurrentOnboardingPurposeTrackWorkspace;
 
     if (onboardingInitialPath.includes(ROUTES.TEST_DRIVE_MODAL_ROOT.route)) {
         return `/${ROUTES.TEST_DRIVE_MODAL_ROOT.route}`;
     }
 
     if (isVsb) {
-        Onyx.set(ONYXKEYS.ONBOARDING_PURPOSE_SELECTED, CONST.ONBOARDING_CHOICES.MANAGE_TEAM);
         Onyx.set(ONYXKEYS.ONBOARDING_COMPANY_SIZE, CONST.ONBOARDING_COMPANY_SIZE.MICRO);
-    }
-    if (isSmb) {
-        Onyx.set(ONYXKEYS.ONBOARDING_PURPOSE_SELECTED, CONST.ONBOARDING_CHOICES.MANAGE_TEAM);
-    }
-
-    if (isIndividual) {
-        Onyx.set(ONYXKEYS.ONBOARDING_CUSTOM_CHOICES, [CONST.ONBOARDING_CHOICES.PERSONAL_SPEND, CONST.ONBOARDING_CHOICES.EMPLOYER, CONST.ONBOARDING_CHOICES.CHAT_SPLIT]);
     }
     if (isUserFromPublicDomain && !onboardingValuesParam?.isMergeAccountStepCompleted) {
         return `/${ROUTES.ONBOARDING_WORK_EMAIL.route}`;
@@ -144,12 +175,18 @@ function getOnboardingInitialPath(getOnboardingInitialPathParams: GetOnboardingI
         return `/${ROUTES.ONBOARDING_ROOT.route}`;
     }
 
-    if (onboardingInitialPath.includes(ROUTES.ONBOARDING_EMPLOYEES.route) && !isCurrentOnboardingPurposeManageTeam) {
-        return `/${ROUTES.ONBOARDING_PURPOSE.route}`;
+    if (onboardingInitialPath.includes(ROUTES.ONBOARDING_EMPLOYEES.route) && !isTeamFocusedPurpose) {
+        return `/${ROUTES.ONBOARDING_PERSONAL_DETAILS.route}`;
     }
 
-    if (onboardingInitialPath.includes(ROUTES.ONBOARDING_ACCOUNTING.route) && (!isCurrentOnboardingPurposeManageTeam || !currentOnboardingCompanySize)) {
-        return `/${ROUTES.ONBOARDING_PURPOSE.route}`;
+    if (onboardingInitialPath.includes(ROUTES.ONBOARDING_ACCOUNTING.route)) {
+        if (!isTeamFocusedPurpose) {
+            return `/${ROUTES.ONBOARDING_PERSONAL_DETAILS.route}`;
+        }
+
+        if (!currentOnboardingCompanySize) {
+            return `/${ROUTES.ONBOARDING_EMPLOYEES.route}`;
+        }
     }
 
     return onboardingInitialPath;
