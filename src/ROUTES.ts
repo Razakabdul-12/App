@@ -1619,12 +1619,6 @@ const ROUTES = {
         // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
         getRoute: (userReportedIntegration?: string, backTo?: string) => getUrlWithBackToParam(`onboarding/interested-features?userReportedIntegration=${userReportedIntegration}`, backTo),
     },
-    ONBOARDING_PURPOSE: {
-        route: 'onboarding/purpose',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (backTo?: string) => getUrlWithBackToParam(`onboarding/purpose`, backTo),
-    },
     ONBOARDING_WORKSPACES: {
         route: 'onboarding/join-workspaces',
 

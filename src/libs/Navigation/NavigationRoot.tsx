@@ -101,6 +101,7 @@ function NavigationRoot({authenticated, lastVisitedPath, initialUrl, onReady}: N
         selector: wasInvitedToNewDotSelector,
         canBeMissing: true,
     });
+    const [introSelected] = useOnyx(ONYXKEYS.NVP_INTRO_SELECTED, {canBeMissing: true});
     const [hasNonPersonalPolicy] = useOnyx(ONYXKEYS.HAS_NON_PERSONAL_POLICY, {canBeMissing: true});
     const [currentOnboardingPurposeSelected] = useOnyx(ONYXKEYS.ONBOARDING_PURPOSE_SELECTED, {canBeMissing: true});
     const [currentOnboardingCompanySize] = useOnyx(ONYXKEYS.ONBOARDING_COMPANY_SIZE, {canBeMissing: true});
@@ -139,6 +140,7 @@ function NavigationRoot({authenticated, lastVisitedPath, initialUrl, onReady}: N
                     currentOnboardingPurposeSelected,
                     currentOnboardingCompanySize,
                     onboardingInitialPath,
+                    introSelectedChoice: introSelected?.choice,
                 }),
                 linkingConfig.config,
             );
