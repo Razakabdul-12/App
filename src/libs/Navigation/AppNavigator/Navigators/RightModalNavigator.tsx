@@ -124,10 +124,6 @@ function RightModalNavigator({navigation, route}: RightModalNavigatorProps) {
                             component={ModalStackNavigators.AddPersonalBankAccountModalStackNavigator}
                         />
                         <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.WALLET_STATEMENT}
-                            component={ModalStackNavigators.WalletStatementStackNavigator}
-                        />
-                        <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.FLAG_COMMENT}
                             component={ModalStackNavigators.FlagCommentStackNavigator}
                         />

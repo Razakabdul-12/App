@@ -17,7 +17,6 @@ type BaseSelectionListItemRendererProps<TItem extends ListItem> = Omit<BaseListI
         singleExecution: ReturnType<typeof useSingleExecution>['singleExecution'];
         titleStyles?: StyleProp<TextStyle>;
         titleContainerStyles?: StyleProp<ViewStyle>;
-        userWalletTierName?: string | undefined;
         isUserValidated?: boolean | undefined;
         personalDetails?: OnyxEntry<PersonalDetailsList>;
         userBillingFundID?: number | undefined;
@@ -51,7 +50,6 @@ function BaseSelectionListItemRenderer<TItem extends ListItem>({
     titleContainerStyles,
     shouldUseDefaultRightHandSideCheckmark,
     canShowProductTrainingTooltip = true,
-    userWalletTierName,
     isUserValidated,
     personalDetails,
     userBillingFundID,
@@ -107,7 +105,6 @@ function BaseSelectionListItemRenderer<TItem extends ListItem>({
                 titleContainerStyles={titleContainerStyles}
                 shouldUseDefaultRightHandSideCheckmark={shouldUseDefaultRightHandSideCheckmark}
                 canShowProductTrainingTooltip={canShowProductTrainingTooltip}
-                userWalletTierName={userWalletTierName}
                 isUserValidated={isUserValidated}
                 personalDetails={personalDetails}
                 userBillingFundID={userBillingFundID}

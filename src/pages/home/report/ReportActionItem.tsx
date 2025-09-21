@@ -53,9 +53,6 @@ type ReportActionItemProps = Omit<PureReportActionItemProps, 'taskReport' | 'lin
     /** Emoji reactions for the report action */
     emojiReactions?: OnyxEntry<ReportActionReactions>;
 
-    /** User wallet tierName */
-    userWalletTierName: string | undefined;
-
     /** Linked transaction route error */
     linkedTransactionRouteError?: OnyxEntry<Errors>;
 
@@ -80,7 +77,6 @@ function ReportActionItem({
     transactions,
     draftMessage,
     emojiReactions,
-    userWalletTierName,
     isUserValidated,
     personalDetails,
     linkedTransactionRouteError,
@@ -105,7 +101,7 @@ function ReportActionItem({
     const parentReport = allReports?.[`${ONYXKEYS.COLLECTION.REPORT}${report?.parentReportID || undefined}`];
     const blockedFromConcierge = useBlockedFromConcierge();
     const targetReport = isChatThread(report) ? parentReport : report;
-    const missingPaymentMethod = getIndicatedMissingPaymentMethod(userWalletTierName, targetReport?.reportID, action, bankAccountList);
+    const missingPaymentMethod = getIndicatedMissingPaymentMethod(targetReport?.reportID, action, bankAccountList);
 
     const taskReport = originalMessage && 'taskReportID' in originalMessage ? allReports?.[`${ONYXKEYS.COLLECTION.REPORT}${originalMessage.taskReportID}`] : undefined;
     const linkedReport = originalMessage && 'linkedReportID' in originalMessage ? allReports?.[`${ONYXKEYS.COLLECTION.REPORT}${originalMessage.linkedReportID}`] : undefined;

@@ -28,8 +28,6 @@ import useResponsiveLayout from '@hooks/useResponsiveLayout';
 import useSingleExecution from '@hooks/useSingleExecution';
 import useTheme from '@hooks/useTheme';
 import useThemeStyles from '@hooks/useThemeStyles';
-import {checkIfFeedConnectionIsBroken} from '@libs/CardUtils';
-import {convertToDisplayString} from '@libs/CurrencyUtils';
 import useIsSidebarRouteActive from '@libs/Navigation/helpers/useIsSidebarRouteActive';
 import Navigation from '@libs/Navigation/Navigation';
 import {getProfilePageBrickRoadIndicator} from '@libs/UserUtils';
@@ -38,9 +36,7 @@ import {showContextMenu} from '@pages/home/report/ContextMenu/ReportActionContex
 import variables from '@styles/variables';
 import {confirmReadyToOpenApp} from '@userActions/App';
 import {openExternalLink} from '@userActions/Link';
-import {hasPaymentMethodError} from '@userActions/PaymentMethods';
 import {isSupportAuthToken, signOutAndRedirectToSignIn} from '@userActions/Session';
-import {openInitialSettingsPage} from '@userActions/Wallet';
 import CONST from '@src/CONST';
 import type {TranslationPaths} from '@src/languages/types';
 import NAVIGATORS from '@src/NAVIGATORS';
@@ -78,14 +74,9 @@ type MenuData = {
 type Menu = {sectionStyle: StyleProp<ViewStyle>; sectionTranslationKey: TranslationPaths; items: MenuData[]};
 
 function InitialSettingsPage({currentUserPersonalDetails}: InitialSettingsPageProps) {
-    const [userWallet] = useOnyx(ONYXKEYS.USER_WALLET, {canBeMissing: true});
-    const [bankAccountList] = useOnyx(ONYXKEYS.BANK_ACCOUNT_LIST, {canBeMissing: true});
-    const [fundList] = useOnyx(ONYXKEYS.FUND_LIST, {canBeMissing: true});
-    const [walletTerms] = useOnyx(ONYXKEYS.WALLET_TERMS, {canBeMissing: true});
     const [loginList] = useOnyx(ONYXKEYS.LOGIN_LIST, {canBeMissing: true});
     const [privatePersonalDetails] = useOnyx(ONYXKEYS.PRIVATE_PERSONAL_DETAILS, {canBeMissing: true});
     const [vacationDelegate] = useOnyx(ONYXKEYS.NVP_PRIVATE_VACATION_DELEGATE, {canBeMissing: true});
-    const [allCards] = useOnyx(ONYXKEYS.CARD_LIST, {canBeMissing: true});
     const [policies] = useOnyx(ONYXKEYS.COLLECTION.POLICY, {canBeMissing: true});
     const [session] = useOnyx(ONYXKEYS.SESSION, {canBeMissing: false});
 
@@ -99,17 +90,12 @@ function InitialSettingsPage({currentUserPersonalDetails}: InitialSettingsPagePr
     const focusedRouteName = useNavigationState((state) => findFocusedRoute(state)?.name);
     const emojiCode = currentUserPersonalDetails?.status?.emojiCode ?? '';
     const isScreenFocused = useIsSidebarRouteActive(NAVIGATORS.SETTINGS_SPLIT_NAVIGATOR, shouldUseNarrowLayout);
-    const hasActivatedWallet = ([CONST.WALLET.TIER_NAME.GOLD, CONST.WALLET.TIER_NAME.PLATINUM] as string[]).includes(userWallet?.tierName ?? '');
 
     const previousUserPersonalDetails = usePrevious(currentUserPersonalDetails);
 
     const shouldLogout = useRef(false);
 
     const shouldDisplayLHB = !shouldUseNarrowLayout;
-
-    const hasBrokenFeedConnection = checkIfFeedConnectionIsBroken(allCards, CONST.EXPENSIFY_CARD.BANK);
-    const walletBrickRoadIndicator =
-        hasPaymentMethodError(bankAccountList, fundList) || !isEmptyObject(userWallet?.errors) || !isEmptyObject(walletTerms?.errors) || hasBrokenFeedConnection ? 'error' : undefined;
 
     const [shouldShowSignoutConfirmModal, setShouldShowSignoutConfirmModal] = useState(false);
 
@@ -127,7 +113,6 @@ function InitialSettingsPage({currentUserPersonalDetails}: InitialSettingsPagePr
     }, [hasAccountBeenSwitched]);
 
     useEffect(() => {
-        openInitialSettingsPage();
         confirmReadyToOpenApp();
     }, []);
 
@@ -162,14 +147,6 @@ function InitialSettingsPage({currentUserPersonalDetails}: InitialSettingsPagePr
                 action: () => Navigation.navigate(ROUTES.SETTINGS_PROFILE.getRoute()),
             },
             {
-                translationKey: 'common.wallet',
-                icon: Expensicons.Wallet,
-                screenName: SCREENS.SETTINGS.WALLET.ROOT,
-                brickRoadIndicator: walletBrickRoadIndicator,
-                action: () => Navigation.navigate(ROUTES.SETTINGS_WALLET),
-                badgeText: hasActivatedWallet ? convertToDisplayString(userWallet?.currentBalance) : undefined,
-            },
-            {
                 translationKey: 'common.preferences',
                 icon: Expensicons.Gear,
                 screenName: SCREENS.SETTINGS.PREFERENCES.ROOT,
@@ -193,9 +170,6 @@ function InitialSettingsPage({currentUserPersonalDetails}: InitialSettingsPagePr
         privatePersonalDetails,
         vacationDelegate,
         session?.email,
-        walletBrickRoadIndicator,
-        hasActivatedWallet,
-        userWallet?.currentBalance,
         styles.accountSettingsSectionContainer,
     ]);
 

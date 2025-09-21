@@ -38,7 +38,6 @@ const disabledProperties = [
     'sessionAccountID',
     'isHovered',
     'isWhisper',
-    'walletTermsErrors',
     'personalDetails',
     'chatReport',
 ].reduce<Record<string, {table: {disable: boolean}}>>((disabledArgTypes, property) => {
@@ -107,7 +106,6 @@ const story: Meta<typeof TransactionPreviewContent> = {
         containerStyles: [],
         isBillSplit: false,
         sessionAccountID: 11111111,
-        walletTermsErrors: undefined,
         shouldHideOnDelete: false,
         transactionPreviewWidth: 303,
     },

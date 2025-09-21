@@ -277,20 +277,8 @@ const ONYXKEYS = {
     ONFIDO_TOKEN: 'onfidoToken',
     ONFIDO_APPLICANT_ID: 'onfidoApplicantID',
 
-    /** User's Expensify Wallet */
-    USER_WALLET: 'userWallet',
-
     /** User's metadata that will be used to segmentation */
     USER_METADATA: 'userMetadata',
-
-    /** Object containing Onfido SDK Token + applicantID */
-    WALLET_ONFIDO: 'walletOnfido',
-
-    /** Stores information about additional details form entry */
-    WALLET_ADDITIONAL_DETAILS: 'walletAdditionalDetails',
-
-    /** Object containing Wallet terms step state */
-    WALLET_TERMS: 'walletTerms',
 
     /** The user's bank accounts */
     BANK_ACCOUNT_LIST: 'bankAccountList',
@@ -302,7 +290,6 @@ const ONYXKEYS = {
     CARD_LIST: 'cardList',
 
     /** Stores information about the user's saved statements */
-    WALLET_STATEMENT: 'walletStatement',
 
     /** Stores information about the user's purchases */
     PURCHASE_LIST: 'purchaseList',
@@ -338,7 +325,6 @@ const ONYXKEYS = {
     APP_PROFILING_IN_PROGRESS: 'isProfilingInProgress',
 
     /** Stores information about active wallet transfer amount, selectedAccountID, status, etc */
-    WALLET_TRANSFER: 'walletTransfer',
 
     /** The policyID of the last workspace whose settings were accessed by the user */
     LAST_ACCESSED_WORKSPACE_POLICY_ID: 'lastAccessedWorkspacePolicyID',
@@ -740,8 +726,6 @@ const ONYXKEYS = {
         DISABLE_AUTO_RENEW_SURVEY_FORM_DRAFT: 'disableAutoRenewSurveyFormDraft',
         REQUEST_EARLY_CANCELLATION_FORM: 'requestEarlyCancellationForm',
         REQUEST_EARLY_CANCELLATION_FORM_DRAFT: 'requestEarlyCancellationFormDraft',
-        WALLET_ADDITIONAL_DETAILS: 'walletAdditionalDetails',
-        WALLET_ADDITIONAL_DETAILS_DRAFT: 'walletAdditionalDetailsDraft',
         POLICY_TAG_NAME_FORM: 'policyTagNameForm',
         POLICY_TAG_NAME_FORM_DRAFT: 'policyTagNameFormDraft',
      
@@ -845,7 +829,6 @@ type OnyxFormValuesMapping = {
     [ONYXKEYS.FORMS.PERSONAL_BANK_ACCOUNT_FORM]: FormTypes.PersonalBankAccountForm;
     [ONYXKEYS.FORMS.WORKSPACE_DESCRIPTION_FORM]: FormTypes.WorkspaceDescriptionForm;
     [ONYXKEYS.FORMS.WORKSPACE_MEMBER_CUSTOM_FIELD_FORM]: FormTypes.WorkspaceMemberCustomFieldsForm;
-    [ONYXKEYS.FORMS.WALLET_ADDITIONAL_DETAILS]: FormTypes.AdditionalDetailStepForm;
     [ONYXKEYS.FORMS.POLICY_TAG_NAME_FORM]: FormTypes.PolicyTagNameForm;
   
     [ONYXKEYS.FORMS.NEW_CHAT_NAME_FORM]: FormTypes.NewChatNameForm;
@@ -1005,14 +988,9 @@ type OnyxValuesMapping = {
     [ONYXKEYS.NVP_PRIVATE_STRIPE_CUSTOMER_ID]: OnyxTypes.StripeCustomerID;
     [ONYXKEYS.NVP_PRIVATE_BILLING_DISPUTE_PENDING]: number;
     [ONYXKEYS.NVP_PRIVATE_BILLING_STATUS]: OnyxTypes.BillingStatus;
-    [ONYXKEYS.USER_WALLET]: OnyxTypes.UserWallet;
-    [ONYXKEYS.WALLET_ONFIDO]: OnyxTypes.WalletOnfido;
-    [ONYXKEYS.WALLET_ADDITIONAL_DETAILS]: OnyxTypes.WalletAdditionalDetails;
-    [ONYXKEYS.WALLET_TERMS]: OnyxTypes.WalletTerms;
     [ONYXKEYS.BANK_ACCOUNT_LIST]: OnyxTypes.BankAccountList;
     [ONYXKEYS.FUND_LIST]: OnyxTypes.FundList;
     [ONYXKEYS.CARD_LIST]: OnyxTypes.CardList;
-    [ONYXKEYS.WALLET_STATEMENT]: OnyxTypes.WalletStatement;
     [ONYXKEYS.PURCHASE_LIST]: OnyxTypes.PurchaseList;
     [ONYXKEYS.PERSONAL_BANK_ACCOUNT]: OnyxTypes.PersonalBankAccount;
     [ONYXKEYS.REIMBURSEMENT_ACCOUNT]: OnyxTypes.ReimbursementAccount;
@@ -1026,7 +1004,6 @@ type OnyxValuesMapping = {
     [ONYXKEYS.APP_PROFILING_IN_PROGRESS]: boolean;
     [ONYXKEYS.IS_LOADING_APP]: boolean;
     [ONYXKEYS.HAS_LOADED_APP]: boolean;
-    [ONYXKEYS.WALLET_TRANSFER]: OnyxTypes.WalletTransfer;
     [ONYXKEYS.LAST_ACCESSED_WORKSPACE_POLICY_ID]: string;
     [ONYXKEYS.SHOULD_SHOW_COMPOSE_INPUT]: boolean;
     [ONYXKEYS.IS_BETA]: boolean;

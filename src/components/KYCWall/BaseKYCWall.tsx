@@ -9,14 +9,12 @@ import {openPersonalBankAccountSetupView} from '@libs/actions/BankAccounts';
 import {completePaymentOnboarding, savePreferredPaymentMethod} from '@libs/actions/IOU';
 import {moveIOUReportToPolicy, moveIOUReportToPolicyAndInviteSubmitter} from '@libs/actions/Report';
 import getClickedTargetLocation from '@libs/getClickedTargetLocation';
-import Growl from '@libs/Growl';
 import Log from '@libs/Log';
 import Navigation from '@libs/Navigation/Navigation';
 import {hasExpensifyPaymentMethod} from '@libs/PaymentUtils';
 import {getBankAccountRoute, getPolicyExpenseChat, isExpenseReport as isExpenseReportReportUtils, isIOUReport} from '@libs/ReportUtils';
 import {kycWallRef} from '@userActions/PaymentMethods';
 import {createWorkspaceFromIOUPayment} from '@userActions/Policy/Policy';
-import {setKYCWallSource} from '@userActions/Wallet';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import ROUTES from '@src/ROUTES';
@@ -34,7 +32,6 @@ const POPOVER_MENU_ANCHOR_POSITION_HORIZONTAL_OFFSET = 20;
 // to render the AddPaymentMethodMenu in the correct location.
 function KYCWall({
     addBankAccountRoute,
-    addDebitCardRoute,
     anchorAlignment = {
         horizontal: CONST.MODAL.ANCHOR_ORIGIN_HORIZONTAL.LEFT,
         vertical: CONST.MODAL.ANCHOR_ORIGIN_VERTICAL.BOTTOM,
@@ -49,8 +46,6 @@ function KYCWall({
     source,
     shouldShowPersonalBankAccountOption = false,
 }: KYCWallProps) {
-    const [userWallet] = useOnyx(ONYXKEYS.USER_WALLET, {canBeMissing: true});
-    const [walletTerms] = useOnyx(ONYXKEYS.WALLET_TERMS, {canBeMissing: true});
     const [fundList] = useOnyx(ONYXKEYS.FUND_LIST, {canBeMissing: true});
     const [bankAccountList = getEmptyObject<BankAccountList>()] = useOnyx(ONYXKEYS.BANK_ACCOUNT_LIST, {canBeMissing: true});
     const [reimbursementAccount] = useOnyx(ONYXKEYS.REIMBURSEMENT_ACCOUNT, {canBeMissing: true});
@@ -117,8 +112,6 @@ function KYCWall({
 
             if (paymentMethod === CONST.PAYMENT_METHODS.PERSONAL_BANK_ACCOUNT) {
                 openPersonalBankAccountSetupView({shouldSetUpUSBankAccount: isIOUReport(iouReport)});
-            } else if (paymentMethod === CONST.PAYMENT_METHODS.DEBIT_CARD) {
-                Navigation.navigate(addDebitCardRoute ?? ROUTES.HOME);
             } else if (paymentMethod === CONST.PAYMENT_METHODS.BUSINESS_BANK_ACCOUNT || policy) {
                 if (iouReport && isIOUReport(iouReport)) {
                     if (policy) {
@@ -158,7 +151,7 @@ function KYCWall({
                 Navigation.navigate(bankAccountRoute);
             }
         },
-        [addBankAccountRoute, addDebitCardRoute, chatReport, iouReport, onSelectPaymentMethod, formatPhoneNumber, lastPaymentMethod, allReports],
+        [addBankAccountRoute, chatReport, iouReport, onSelectPaymentMethod, formatPhoneNumber, lastPaymentMethod, allReports],
     );
 
     /**
@@ -169,13 +162,7 @@ function KYCWall({
      */
     const continueAction = useCallback(
         (event?: GestureResponderEvent | KeyboardEvent, iouPaymentType?: PaymentMethodType, paymentMethod?: PaymentMethod, policy?: Policy) => {
-            const currentSource = walletTerms?.source ?? source;
-
-            /**
-             * Set the source, so we can tailor the process according to how we got here.
-             * We do not want to set this on mount, as the source can change upon completing the flow, e.g. when upgrading the wallet to Gold.
-             */
-            setKYCWallSource(source, chatReportID);
+            const currentSource = source;
 
             if (shouldShowAddPaymentMenu) {
                 setShouldShowAddPaymentMenu(false);
@@ -223,24 +210,10 @@ function KYCWall({
 
                 return;
             }
-            if (!isExpenseReport) {
-                // Ask the user to upgrade to a gold wallet as this means they have not yet gone through our Know Your Customer (KYC) checks
-                const hasActivatedWallet = userWallet?.tierName && [CONST.WALLET.TIER_NAME.GOLD, CONST.WALLET.TIER_NAME.PLATINUM].some((name) => name === userWallet.tierName);
-
-                if (!hasActivatedWallet && !policy) {
-                    Log.info('[KYC Wallet] User does not have active wallet');
-
-                    Growl.error(translate('walletPage.walletActivationFailed'));
-
-                    return;
-                }
-
-                // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-                if (policy || (paymentMethod && (!hasActivatedWallet || paymentMethod !== CONST.PAYMENT_METHODS.PERSONAL_BANK_ACCOUNT))) {
-                    setShouldShowAddPaymentMenu(false);
-                    selectPaymentMethod(paymentMethod, policy);
-                    return;
-                }
+            if (!isExpenseReport && (policy || paymentMethod)) {
+                setShouldShowAddPaymentMenu(false);
+                selectPaymentMethod(paymentMethod, policy);
+                return;
             }
 
             Log.info('[KYC Wallet] User has valid payment method and passed KYC checks or did not need them');
@@ -260,8 +233,6 @@ function KYCWall({
             shouldShowAddPaymentMenu,
             source,
             translate,
-            userWallet?.tierName,
-            walletTerms?.source,
         ],
     );
 

@@ -22,7 +22,6 @@ function ChatListItem<TItem extends ListItem>({
     shouldSyncFocus,
     policies,
     allReports,
-    userWalletTierName,
     isUserValidated,
     personalDetails,
     userBillingFundID,
@@ -88,7 +87,6 @@ function ChatListItem<TItem extends ListItem>({
                 shouldShowDraftMessage={false}
                 policies={policies}
                 shouldShowBorder
-                userWalletTierName={userWalletTierName}
                 isUserValidated={isUserValidated}
                 personalDetails={personalDetails}
                 userBillingFundID={userBillingFundID}

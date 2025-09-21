@@ -211,7 +211,6 @@ function SearchList({
     const hasItemsBeingRemoved = prevDataLength && prevDataLength > data.length;
     const personalDetails = usePersonalDetails();
 
-    const [userWalletTierName] = useOnyx(ONYXKEYS.USER_WALLET, {selector: (wallet) => wallet?.tierName, canBeMissing: false});
     const [isUserValidated] = useOnyx(ONYXKEYS.ACCOUNT, {selector: isUserValidatedSelector, canBeMissing: true});
     const [userBillingFundID] = useOnyx(ONYXKEYS.NVP_BILLING_FUND_ID, {canBeMissing: true});
 
@@ -317,7 +316,6 @@ function SearchList({
                         isDisabled={isDisabled}
                         allReports={allReports}
                         groupBy={groupBy}
-                        userWalletTierName={userWalletTierName}
                         isUserValidated={isUserValidated}
                         personalDetails={personalDetails}
                         userBillingFundID={userBillingFundID}
@@ -348,7 +346,6 @@ function SearchList({
             columns,
             policies,
             allReports,
-            userWalletTierName,
             isUserValidated,
             personalDetails,
             userBillingFundID,

@@ -51,10 +51,6 @@ function getSettingsMessage(status: IndicatorStatus | undefined): TranslationPat
             return 'debug.indicatorStatus.theresAProblemWithYourReimbursementAccount';
         case CONST.INDICATOR_STATUS.HAS_SYNC_ERRORS:
             return 'debug.indicatorStatus.theresWasAProblemDuringAWorkspaceConnectionSync';
-        case CONST.INDICATOR_STATUS.HAS_USER_WALLET_ERRORS:
-            return 'debug.indicatorStatus.theresAProblemWithYourWallet';
-        case CONST.INDICATOR_STATUS.HAS_WALLET_TERMS_ERRORS:
-            return 'debug.indicatorStatus.theresAProblemWithYourWalletTerms';
         default:
             return undefined;
     }
@@ -71,7 +67,7 @@ function getSettingsRoute(status: IndicatorStatus | undefined, reimbursementAcco
         case CONST.INDICATOR_STATUS.HAS_LOGIN_LIST_INFO:
             return ROUTES.SETTINGS_CONTACT_METHODS.route;
         case CONST.INDICATOR_STATUS.HAS_PAYMENT_METHOD_ERROR:
-            return ROUTES.SETTINGS_WALLET;
+            return ROUTES.SETTINGS;
         case CONST.INDICATOR_STATUS.HAS_POLICY_ERRORS:
             return ROUTES.WORKSPACE_INITIAL.getRoute(policyIDWithErrors);
         case CONST.INDICATOR_STATUS.HAS_REIMBURSEMENT_ACCOUNT_ERRORS:
@@ -81,10 +77,6 @@ function getSettingsRoute(status: IndicatorStatus | undefined, reimbursementAcco
             );
         case CONST.INDICATOR_STATUS.HAS_SYNC_ERRORS:
             return ROUTES.WORKSPACE_ACCOUNTING.getRoute(policyIDWithErrors);
-        case CONST.INDICATOR_STATUS.HAS_USER_WALLET_ERRORS:
-            return ROUTES.SETTINGS_WALLET;
-        case CONST.INDICATOR_STATUS.HAS_WALLET_TERMS_ERRORS:
-            return ROUTES.SETTINGS_WALLET;
         default:
             return undefined;
     }

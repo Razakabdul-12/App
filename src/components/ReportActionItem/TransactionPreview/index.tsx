@@ -14,7 +14,6 @@ import Navigation from '@libs/Navigation/Navigation';
 import {getOriginalMessage, isMoneyRequestAction as isMoneyRequestActionReportActionsUtils} from '@libs/ReportActionsUtils';
 import {getTransactionDetails} from '@libs/ReportUtils';
 import {getOriginalTransactionWithSplitInfo, isCardTransaction} from '@libs/TransactionUtils';
-import {clearWalletTermsError} from '@userActions/PaymentMethods';
 import {clearIOUError} from '@userActions/Report';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
@@ -44,7 +43,6 @@ function TransactionPreview(props: TransactionPreviewProps) {
     const transactionID = transactionIDFromProps ?? (isMoneyRequestAction ? getOriginalMessage(action)?.IOUTransactionID : undefined);
     const [transaction] = useOnyx(`${ONYXKEYS.COLLECTION.TRANSACTION}${getNonEmptyStringOnyxID(transactionID)}`, {canBeMissing: true});
     const violations = useTransactionViolations(transaction?.transactionID);
-    const [walletTerms] = useOnyx(ONYXKEYS.WALLET_TERMS, {canBeMissing: true});
     const session = useSession();
     const chatReport = allReports?.[`${ONYXKEYS.COLLECTION.REPORT}${chatReportID}`];
     const personalDetails = usePersonalDetails();
@@ -62,7 +60,6 @@ function TransactionPreview(props: TransactionPreviewProps) {
     };
 
     const offlineWithFeedbackOnClose = useCallback(() => {
-        clearWalletTermsError();
         clearIOUError(chatReportID);
     }, [chatReportID]);
 
@@ -104,7 +101,6 @@ function TransactionPreview(props: TransactionPreviewProps) {
                     violations={violations}
                     offlineWithFeedbackOnClose={offlineWithFeedbackOnClose}
                     sessionAccountID={sessionAccountID}
-                    walletTermsErrors={walletTerms?.errors}
                 />
             </PressableWithoutFeedback>
         );
@@ -124,7 +120,6 @@ function TransactionPreview(props: TransactionPreviewProps) {
             violations={violations}
             offlineWithFeedbackOnClose={offlineWithFeedbackOnClose}
             sessionAccountID={sessionAccountID}
-            walletTermsErrors={walletTerms?.errors}
             reportPreviewAction={reportPreviewAction}
         />
     );

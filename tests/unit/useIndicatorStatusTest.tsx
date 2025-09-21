@@ -84,23 +84,6 @@ const getMockForStatus = (status: IndicatorStatus, isAdmin = true) =>
                         : undefined,
             },
         },
-        [ONYXKEYS.USER_WALLET]: {
-            bankAccountID: 12345,
-            errors:
-                status === CONST.INDICATOR_STATUS.HAS_USER_WALLET_ERRORS
-                    ? {
-                          error: 'Something went wrong',
-                      }
-                    : undefined,
-        },
-        [ONYXKEYS.WALLET_TERMS]: {
-            errors:
-                status === CONST.INDICATOR_STATUS.HAS_WALLET_TERMS_ERRORS
-                    ? {
-                          error: 'Something went wrong',
-                      }
-                    : undefined,
-        },
         [ONYXKEYS.LOGIN_LIST]: {
             // eslint-disable-next-line @typescript-eslint/naming-convention
             'johndoe12@expensify.com': {
@@ -163,12 +146,6 @@ const TEST_CASES: TestCase[] = [
         policyIDWithErrors: '4',
     },
     {
-        name: 'has user wallet errors',
-        indicatorColor: defaultTheme.danger,
-        status: CONST.INDICATOR_STATUS.HAS_USER_WALLET_ERRORS,
-        policyIDWithErrors: undefined,
-    },
-    {
         name: 'has payment method error',
         indicatorColor: defaultTheme.danger,
         status: CONST.INDICATOR_STATUS.HAS_PAYMENT_METHOD_ERROR,
@@ -184,12 +161,6 @@ const TEST_CASES: TestCase[] = [
         name: 'has login list error',
         indicatorColor: defaultTheme.danger,
         status: CONST.INDICATOR_STATUS.HAS_LOGIN_LIST_ERROR,
-        policyIDWithErrors: undefined,
-    },
-    {
-        name: 'has wallet terms errors',
-        indicatorColor: defaultTheme.danger,
-        status: CONST.INDICATOR_STATUS.HAS_WALLET_TERMS_ERRORS,
         policyIDWithErrors: undefined,
     },
     {

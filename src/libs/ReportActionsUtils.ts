@@ -2721,7 +2721,7 @@ function getCardIssuedMessage({
     const isAssigneeCurrentUser = currentUserAccountID === assigneeAccountID;
     const companyCardLink =
         shouldRenderHTML && isAssigneeCurrentUser && companyCard
-            ? `<a href='${environmentURL}/${ROUTES.SETTINGS_WALLET}'>${translateLocal('workspace.companyCards.companyCard')}</a>`
+            ? `<a href='${environmentURL}/${ROUTES.SETTINGS}'>${translateLocal('workspace.companyCards.companyCard')}</a>`
             : translateLocal('workspace.companyCards.companyCard');
     const shouldShowAddMissingDetailsMessage = !isAssigneeCurrentUser || shouldShowAddMissingDetails(reportAction?.actionName, expensifyCard);
     switch (reportAction?.actionName) {

@@ -124,30 +124,9 @@ type SettingsNavigatorParamList = {
         source: string;
         backTo: Routes;
     };
-    [SCREENS.SETTINGS.WALLET.CARDS_DIGITAL_DETAILS_UPDATE_ADDRESS]: undefined;
-    [SCREENS.SETTINGS.WALLET.REPORT_VIRTUAL_CARD_FRAUD]: {
-        /** cardID of selected card */
-        cardID: string;
-        backTo?: Routes;
+    [SCREENS.WORKSPACE.WORKFLOWS_PAYER]: {
+        policyID: string;
     };
-    [SCREENS.SETTINGS.WALLET.REPORT_VIRTUAL_CARD_FRAUD_CONFIRMATION]: {
-        /** cardID of selected card */
-        cardID: string;
-    };
-    [SCREENS.SETTINGS.WALLET.CARD_ACTIVATE]: {
-        /** cardID of selected card */
-        cardID: string;
-    };
-    [SCREENS.SETTINGS.WALLET.VERIFY_ACCOUNT]: undefined;
-    [SCREENS.SETTINGS.WALLET.TRANSFER_BALANCE]: undefined;
-    [SCREENS.SETTINGS.WALLET.CHOOSE_TRANSFER_ACCOUNT]: undefined;
-    [SCREENS.SETTINGS.WALLET.ENABLE_GLOBAL_REIMBURSEMENTS]: {
-        bankAccountID: string;
-    };
-    [SCREENS.SETTINGS.ADD_DEBIT_CARD]: undefined;
-    [SCREENS.SETTINGS.ADD_BANK_ACCOUNT]: undefined;
-    [SCREENS.SETTINGS.ADD_BANK_ACCOUNT_VERIFY_ACCOUNT]: undefined;
-    [SCREENS.SETTINGS.ADD_US_BANK_ACCOUNT]: undefined;
     [SCREENS.SETTINGS.PROFILE.STATUS]: undefined;
     [SCREENS.SETTINGS.PROFILE.STATUS_CLEAR_AFTER]: undefined;
     [SCREENS.SETTINGS.PROFILE.STATUS_CLEAR_AFTER_DATE]: undefined;
@@ -1219,13 +1198,6 @@ type ReimbursementAccountEnterSignerInfoNavigatorParamList = {
     };
 };
 
-type WalletStatementNavigatorParamList = {
-    [SCREENS.WALLET_STATEMENT_ROOT]: {
-        /** The statement year and month as one string, i.e. 202110 */
-        yearMonth: string;
-    };
-};
-
 type FlagCommentNavigatorParamList = {
     [SCREENS.FLAG_COMMENT_ROOT]: {
         reportID: string;
@@ -1281,7 +1253,6 @@ type RightModalNavigatorParamList = {
     [SCREENS.RIGHT_MODAL.WORKSPACE_CONFIRMATION]: NavigatorScreenParams<WorkspaceConfirmationNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.SPLIT_DETAILS]: NavigatorScreenParams<SplitDetailsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.ADD_PERSONAL_BANK_ACCOUNT]: NavigatorScreenParams<AddPersonalBankAccountNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.WALLET_STATEMENT]: NavigatorScreenParams<WalletStatementNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.FLAG_COMMENT]: NavigatorScreenParams<FlagCommentNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.EDIT_REQUEST]: NavigatorScreenParams<EditRequestNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.SIGN_IN]: NavigatorScreenParams<SignInNavigatorParamList>;
@@ -1316,7 +1287,6 @@ type SettingsSplitNavigatorParamList = {
     [SCREENS.SETTINGS.PROFILE.ROOT]?: {
         backTo?: Routes;
     };
-    [SCREENS.SETTINGS.WALLET.ROOT]: undefined;
     [SCREENS.SETTINGS.ABOUT]: undefined;
     [SCREENS.SETTINGS.TROUBLESHOOT]: undefined;
 };
@@ -1763,7 +1733,6 @@ export type {
     StackNavigationAction,
     State,
     StateOrRoute,
-    WalletStatementNavigatorParamList,
     WorkspaceSplitNavigatorParamList,
     MigratedUserModalNavigatorParamList,
     WorkspaceConfirmationNavigatorParamList,

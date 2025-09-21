@@ -90,9 +90,6 @@ type TransactionPreviewContentProps = {
     /** Width to use for skeleton loader of transaction preview */
     transactionPreviewWidth: TransactionPreviewStyleType['width'];
 
-    /** Records any errors related to wallet terms. */
-    walletTermsErrors: Errors | undefined;
-
     /** Represents the report linked to the transaction */
     report: OnyxEntry<Report>;
 

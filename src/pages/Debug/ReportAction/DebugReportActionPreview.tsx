@@ -19,7 +19,6 @@ type DebugReportActionPreviewProps = {
 function DebugReportActionPreview({reportAction, reportID}: DebugReportActionPreviewProps) {
     const [allReports] = useOnyx(ONYXKEYS.COLLECTION.REPORT, {canBeMissing: false});
     const [policies] = useOnyx(ONYXKEYS.COLLECTION.POLICY, {canBeMissing: false});
-    const [userWalletTierName] = useOnyx(ONYXKEYS.USER_WALLET, {selector: (wallet) => wallet?.tierName, canBeMissing: false});
     const [isUserValidated] = useOnyx(ONYXKEYS.ACCOUNT, {selector: isUserValidatedSelector, canBeMissing: true});
     const personalDetails = usePersonalDetails();
     const [userBillingFundID] = useOnyx(ONYXKEYS.NVP_BILLING_FUND_ID, {canBeMissing: true});
@@ -42,7 +41,6 @@ function DebugReportActionPreview({reportAction, reportID}: DebugReportActionPre
                 index={0}
                 isFirstVisibleReportAction={false}
                 shouldDisplayContextMenu={false}
-                userWalletTierName={userWalletTierName}
                 isUserValidated={isUserValidated}
                 personalDetails={personalDetails}
                 userBillingFundID={userBillingFundID}

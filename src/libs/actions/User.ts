@@ -12,7 +12,6 @@ import type {
     AddNewContactMethodParams,
     CloseAccountParams,
     DeleteContactMethodParams,
-    GetStatementPDFParams,
     PusherPingParams,
     RequestContactMethodValidateCodeParams,
     SetContactMethodAsDefaultParams,
@@ -1070,48 +1069,6 @@ function joinScreenShare(accessToken: string, roomName: string) {
 }
 
 /**
- * Downloads the statement PDF for the provided period
- * @param period YYYYMM format
- */
-function generateStatementPDF(period: string) {
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.WALLET_STATEMENT,
-            value: {
-                isGenerating: true,
-            },
-        },
-    ];
-    const successData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.WALLET_STATEMENT,
-            value: {
-                isGenerating: false,
-            },
-        },
-    ];
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: ONYXKEYS.WALLET_STATEMENT,
-            value: {
-                isGenerating: false,
-            },
-        },
-    ];
-
-    const parameters: GetStatementPDFParams = {period};
-
-    API.read(READ_COMMANDS.GET_STATEMENT_PDF, parameters, {
-        optimisticData,
-        successData,
-        failureData,
-    });
-}
-
-/**
  * Sets a contact method / secondary login as the user's "Default" contact method.
  */
 function setContactMethodAsDefault(newDefaultContactMethod: string, formatPhoneNumber: LocaleContextProps['formatPhoneNumber'], backTo?: string) {
@@ -1430,7 +1387,6 @@ export {
     togglePlatformMute,
     joinScreenShare,
     clearScreenShareRequest,
-    generateStatementPDF,
     updateChatPriorityMode,
     setContactMethodAsDefault,
     updateTheme,

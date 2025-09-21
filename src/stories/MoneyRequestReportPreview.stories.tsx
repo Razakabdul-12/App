@@ -47,7 +47,6 @@ const mockRenderItem: ListRenderItem<Transaction> = ({item}) => (
         offlineWithFeedbackOnClose={() => undefined}
         isBillSplit={false}
         sessionAccountID={11111111}
-        walletTermsErrors={undefined}
         shouldHideOnDelete={false}
         transactionPreviewWidth={303}
         containerStyles={[sizing.h100]}
