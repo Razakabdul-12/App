@@ -1322,7 +1322,6 @@ export {
     findCurrentXeroOrganization,
     getCurrentXeroOrganizationName,
     getXeroBankAccounts,
-    findSelectedSageVendorWithDefaultSelect,
     hasPolicyWithXeroConnection,
     getSageIntacctVendors,
     getSageIntacctNonReimbursableActiveDefaultVendor,
