@@ -125,13 +125,11 @@ import Info from '@assets/images/info.svg';
 import CircleSlash from '@assets/images/integrationicons/circle-slash.svg';
 import MicrosoftDynamicsExport from '@assets/images/integrationicons/export/microsoft-dynamics-icon.svg';
 import OracleExport from '@assets/images/integrationicons/export/oracle-icon.svg';
-import SageIntacctExport from '@assets/images/integrationicons/export/sage-intacct-icon.svg';
 import SapExport from '@assets/images/integrationicons/export/sap-icon.svg';
 import XeroExport from '@assets/images/integrationicons/export/xero-icon.svg';
 import MicrosoftDynamicsSquare from '@assets/images/integrationicons/microsoft-dynamics-icon-square.svg';
 import OracleSquare from '@assets/images/integrationicons/oracle-icon-square.svg';
 import QBDSquare from '@assets/images/integrationicons/qbd-icon-square.svg';
-import SageIntacctSquare from '@assets/images/integrationicons/sage-intacct-icon-square.svg';
 import SapSquare from '@assets/images/integrationicons/sap-icon-square.svg';
 import Uber from '@assets/images/integrationicons/uber.svg';
 import XeroCircle from '@assets/images/integrationicons/xero-icon-circle.svg';
@@ -428,7 +426,6 @@ export {
     Workflows,
     Workspace,
     XeroSquare,
-    SageIntacctSquare as IntacctSquare,
     AdvancedApprovalsSquare,
     Zoom,
     Twitter,
@@ -478,7 +475,6 @@ export {
     EmptyStateSpyPigeon,
     MicrosoftDynamicsExport,
     OracleExport,
-    SageIntacctExport,
     SapExport,
     XeroExport,
     ArrowCircleClockwise,

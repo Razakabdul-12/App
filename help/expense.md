@@ -61,7 +61,7 @@ Corporate cards integrate with Expensify Expense for automated expense tracking:
 * **Rewards** - Earn cashback on Expensify Card purchases.
 
 ### [Integrations] What accounting systems does Expensify support?
-Expensify integrates with major accounting systems, including QuickBooks Online, Xero, and Sage Intacct.
+Expensify integrates with major accounting systems, including QuickBooks Online and Xero.
 
 ### [Distance Rates] What are distance rates in Expensify?
 Distance rates are configured for mileage expenses, allowing employees to select predefined rates when logging distance-based expenses.
@@ -593,19 +593,6 @@ To configure Xero settings:
 4. Review export settings like Preferred Exporter, Export Out-of-Pocket Expenses, and Xero Bank Account.
 5. Press **Advanced** under Xero connection to set Auto-sync, Set Purchase Bill Status, Sync Reimbursed Reports, and other advanced settings.
 
-#### [Connect to Sage Intacct] How do I connect Expensify to Sage Intacct?
-To integrate with Sage Intacct:
-1. In Expensify, go to **Settings > Workspaces > [Workspace Name] > Accounting**.
-2. Press **Set up** next to Sage Intacct and enter your credentials.
-3. Press **Confirm** to finalize the setup.
-
-#### [Configure Sage Intacct] How do I configure Sage Intacct settings in Expensify?
-To configure Sage Intacct:
-1. Navigate to **Accounting settings** and select **Entity** under Sage Intacct to choose the entity.
-2. Press **Import** to set preferences for categories, expenses, and dimensions.
-3. Press **Export** to choose exporter and methods for expenses.
-4. Press **Advanced** to enable features like auto-sync.
-
 ### Exporting Data
 #### [Export Expenses] How do I export expenses to a CSV file?
 To export your expense data to a CSV file:
@@ -676,12 +663,6 @@ When an admin manually exports a report, Expensify will warn them if the report 
 - If a report has been exported and reimbursed via ACH, it will be automatically marked as paid in Xero during the next sync.
 - If a report has been exported and marked as paid in Xero, it will be automatically marked as reimbursed in Expensify during the next sync.
 - If a report has not yet been exported to Xero, it won’t be automatically exported.
-
-#### [Report Export to Sage Intacct] Why wasn't my report automatically exported to Sage Intacct?
-There are a number of factors that can cause auto-export to fail. If this happens, you will find the specific export error in the report comments for the report that failed to export. Once you’ve resolved any errors, you can manually export the report to Sage Intacct.
-
-#### [Negative Expenses to Sage Intacct] Can I export negative expenses to Sage Intacct?
-Yes, you can export negative expenses to Sage Intacct. If you are exporting out-of-pocket expenses as expense reports, then the total of each exported report cannot be negative.
 
 #### [QuickBooks Online Error Resolution] Why do I see a red dot next to my QuickBooks Online connection?
 If there is an error with your connection, you’ll see a red dot next to Accounting in the left menu. When you press Accounting, you’ll also see a red dot displayed next to the QuickBooks Online connection card. This may occur if you incorrectly enter your QuickBooks Online login information when trying to establish the connection. To resubmit your login details:
@@ -809,40 +790,3 @@ If the test deposits are not visible after two business days, it may be due to d
 - ACH Originator Name: Expensify
 
 If the issue persists, please contact Expensify Support for further assistance.
-
-### Sage Intacct Integration
-#### [Configure Sage Intacct] How do I set up and configure Sage Intacct in Expensify?
-To connect and configure Sage Intacct:
-1. **Connect to Sage Intacct**: Go to **Settings > Workspaces > [Workspace Name] > Accounting** and press **Set up** next to Sage Intacct, then enter your credentials to complete the setup.
-2. **Select Entity**: Choose the Sage Intacct entity to connect each Expensify workspace to, especially for multi-entity setups.
-3. **Import Settings**: Navigate to Accounting settings, press **Import** under Sage Intacct, and set preferences for expense types, categories, dimensions, customers/projects, and tax.
-4. **Export Settings**: Access export options under **Export**, choosing your preferred exporter and export methods for out-of-pocket and company card expenses.
-5. **Advanced Settings**: Enable auto-sync, invite employees, and configure reimbursement sync under **Advanced** settings to ensure seamless integration.
-
-#### [Frequently Asked Questions] What are common questions about using Sage Intacct with Expensify?
-Some common concerns include:
-- **Auto-sync**: Only newly approved reports will be auto-exported to Sage Intacct. Existing approved reports must be manually exported.
-- **Negative Expenses**: Negative expenses can be exported, but out-of-pocket expense reports cannot be entirely negative.
-- **Export Errors**: If auto-export fails, check report comments for specific errors and resolve them before attempting manual export.
-
-### Sage Intacct Tutorials
-#### [Configure Import Settings] How do I configure import settings for Sage Intacct?
-To configure import settings:
-1. Under Accounting settings, press **Import** for Sage Intacct.
-2. Choose how to import categories, dimensions, customers/projects, and tax.
-3. Configure expense types and chart of accounts based on how you plan to export expenses.
-4. Set up mapping for billable expenses by enabling necessary permissions in Sage Intacct.
-
-#### [Configure Export Settings] How do I configure export settings for Sage Intacct?
-To configure export settings:
-1. In Accounting settings, press **Export** under Sage Intacct.
-2. Choose the preferred exporter and export date options.
-3. Decide whether to export out-of-pocket expenses as expense reports or vendor bills.
-4. Set export preferences for company card expenses, selecting between credit card charges or vendor bills.
-
-#### [Manage Advanced Settings] How do I manage advanced settings for Sage Intacct?
-To manage advanced settings:
-1. Navigate to **Settings > Workspaces > [Workspace name] > Accounting** and press **Advanced** under Sage Intacct.
-2. Enable auto-sync for daily updates and automatic export of expenses.
-3. Use the invite employees feature to add Sage Intacct users to Expensify.
-4. Configure reimbursement sync to reflect accurate status between Expensify and Sage Intacct.

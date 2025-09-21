@@ -56,13 +56,10 @@ _**Note: A business bank account must be linked as your settlement account to co
    - If the accounts do not match, repeat the steps above to update the account.
 6. Click **Save**.
 
-If your workspace is integrated with QuickBooks Online, Xero, or Sage Intacct, complete these additional steps:
+If your workspace is integrated with QuickBooks Online or Xero, complete these additional steps:
 
 1. From the **Reconciliation Account** dropdown, select the GL account associated with your settlement account and click **Save**.
-2. *(Optional)* For Sage Intacct users:
-   - Specify cash-only or accrual-only journals.
-   - Choose **No Selection** for journals that do not apply.
-3. Navigate to the **Advanced** tab and enable **Auto-Sync**. Click **Save**.
+2. Navigate to the **Advanced** tab and enable **Auto-Sync**. Click **Save**.
 4. Go to **Settings > Workspaces**.
 5. Open the workspace linked to the integration.
 6. Click the **Connections** tab.
@@ -146,8 +143,4 @@ The filtered list will show expenses with settlement entries but no correspondin
 
 A Domain Admin can set export accounts for individual cards via:
 **Settings > Domains > [Domain Name] > Company Cards > Edit Exports**.
-
-## How can I use Expensify's Continuous Reconciliation with Sage Intacct Smart Rules, and why are there issues?
-
-Due to the highly customizable nature of Sage Intacct Smart Rules, Continuous Reconciliation may encounter conflicts, especially when Expensify attempts to create vendor accounts during the reconciliation process. To resolve this, you can temporarily disable all Smart Rules in Sage Intacct, allow Expensify to create the necessary vendor accounts, and then re-enable the Smart Rules. However, if some Smart Rules are implemented via a Sage Intacct Package and cannot be easily disabled, you may need to manually adjust the rules after account creation. This process might need to be repeated if new employees submit reports in the future. Expensify creates vendor accounts to associate reports with the email addresses that submitted them, and the "vendor" field is included in the journal entries posted via Continuous Reconciliation.
 

@@ -30,7 +30,6 @@ import type ConstantSelector from '@pages/Debug/ConstantSelector';
 import type {FileObject} from '@pages/media/AttachmentModalScreen/types';
 import type OnboardingCurrencyPicker from '@pages/OnboardingWorkspaceConfirmation/OnboardingCurrencyPicker';
 import type BusinessTypePicker from '@pages/ReimbursementAccount/USD/BusinessInfo/subSteps/TypeBusiness/BusinessTypePicker';
-import type DimensionTypeSelector from '@pages/workspace/accounting/intacct/import/DimensionTypeSelector';
 import type {Country} from '@src/CONST';
 import type {OnyxFormKey, OnyxValues} from '@src/ONYXKEYS';
 import type {Form} from '@src/types/form';
@@ -52,7 +51,6 @@ type ValidInputs =
     | typeof NumberWithSymbolForm
     | typeof PercentageForm
     | typeof BusinessTypePicker
-    | typeof DimensionTypeSelector
     | typeof StateSelector
     | typeof RoomNameInput
     | typeof ValuePicker

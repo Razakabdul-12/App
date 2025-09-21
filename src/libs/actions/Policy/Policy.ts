@@ -624,13 +624,6 @@ function clearXeroErrorField(policyID: string | undefined, fieldName: string) {
     Onyx.merge(`${ONYXKEYS.COLLECTION.POLICY}${policyID}`, {connections: {xero: {config: {errorFields: {[fieldName]: null}}}}});
 }
 
-function clearSageIntacctErrorField(policyID: string | undefined, fieldName: string) {
-    if (!policyID) {
-        return;
-    }
-    Onyx.merge(`${ONYXKEYS.COLLECTION.POLICY}${policyID}`, {connections: {intacct: {config: {errorFields: {[fieldName]: null}}}}});
-}
-
 
 
 function setWorkspaceReimbursement({policyID, reimbursementChoice, bankAccountID, reimburserEmail}: SetWorkspaceReimbursementActionParams) {
@@ -3579,10 +3572,6 @@ function getAdminPolicies(): Policy[] {
     return Object.values(allPolicies ?? {}).filter<Policy>((policy): policy is Policy => !!policy && policy.role === CONST.POLICY.ROLE.ADMIN && policy.type !== CONST.POLICY.TYPE.PERSONAL);
 }
 
-function getAdminPoliciesConnectedToSageIntacct(): Policy[] {
-    return Object.values(allPolicies ?? {}).filter<Policy>((policy): policy is Policy => !!policy && policy.role === CONST.POLICY.ROLE.ADMIN && !!policy?.connections?.intacct);
-}
-
 /**
  * Call the API to set default report title pattern for the given policy
  * @param policyID - id of the policy to apply the naming pattern to
@@ -4036,7 +4025,6 @@ export {
     openPolicyInitialPage,
     generateCustomUnitID,
     clearXeroErrorField,
-    clearSageIntacctErrorField,
     setWorkspaceCurrencyDefault,
     setForeignCurrencyDefault,
     setPolicyCustomTaxName,
@@ -4052,7 +4040,6 @@ export {
     updateMemberCustomField,
     openPolicyEditCardLimitTypePage,
     getAdminPolicies,
-    getAdminPoliciesConnectedToSageIntacct,
     hasInvoicingDetails,
     clearAllPolicies,
     setPolicyDefaultReportTitle,

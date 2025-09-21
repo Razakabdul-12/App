@@ -126,7 +126,6 @@ import type {
     IncorrectZipFormatParams,
     IndividualExpenseRulesSubtitleParams,
     InstantSummaryParams,
-    IntacctMappingTitleParams,
     IntegrationExportParams,
     IntegrationSyncFailedParams,
     InvalidPropertyParams,
@@ -3656,119 +3655,6 @@ const translations = {
                 },
             },
         },
-        sageIntacct: {
-            preferredExporter: '首选导出工具',
-            taxSolution: '税务解决方案',
-            notConfigured: '未配置',
-            exportDate: {
-                label: '导出日期',
-                description: '导出报告到 Sage Intacct 时使用此日期。',
-                values: {
-                    [CONST.SAGE_INTACCT_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: '最后报销日期',
-                        description: '报告中最近费用的日期。',
-                    },
-                    [CONST.SAGE_INTACCT_EXPORT_DATE.EXPORTED]: {
-                        label: '导出日期',
-                        description: '报告导出到 Sage Intacct 的日期。',
-                    },
-                    [CONST.SAGE_INTACCT_EXPORT_DATE.SUBMITTED]: {
-                        label: '提交日期',
-                        description: '报告提交审批的日期。',
-                    },
-                },
-            },
-            reimbursableExpenses: {
-                description: '设置自付费用如何导出到 Sage Intacct。',
-                values: {
-                    [CONST.SAGE_INTACCT_REIMBURSABLE_EXPENSE_TYPE.EXPENSE_REPORT]: '费用报告',
-                    [CONST.SAGE_INTACCT_REIMBURSABLE_EXPENSE_TYPE.VENDOR_BILL]: '供应商账单',
-                },
-            },
-            nonReimbursableExpenses: {
-                description: '设置公司卡购买如何导出到 Sage Intacct。',
-                values: {
-                    [CONST.SAGE_INTACCT_NON_REIMBURSABLE_EXPENSE_TYPE.CREDIT_CARD_CHARGE]: '信用卡',
-                    [CONST.SAGE_INTACCT_NON_REIMBURSABLE_EXPENSE_TYPE.VENDOR_BILL]: '供应商账单',
-                },
-            },
-            creditCardAccount: '信用卡账户',
-            defaultVendor: '默认供应商',
-            defaultVendorDescription: ({isReimbursable}: DefaultVendorDescriptionParams) =>
-                `设置一个默认供应商，将适用于在 Sage Intacct 中没有匹配供应商的${isReimbursable ? '' : 'non-'}可报销费用。`,
-            exportDescription: '配置如何将Expensify数据导出到Sage Intacct。',
-            exportPreferredExporterNote: '首选导出者可以是任何工作区管理员，但如果您在域设置中为单个公司卡设置不同的导出账户，则必须也是域管理员。',
-            exportPreferredExporterSubNote: '一旦设置，首选导出者将在其账户中看到可导出的报告。',
-            noAccountsFound: '未找到账户',
-            noAccountsFoundDescription: `请在 Sage Intacct 中添加账户并再次同步连接。`,
-            autoSync: '自动同步',
-            autoSyncDescription: 'Expensify将每天自动与Sage Intacct同步。',
-            inviteEmployees: '邀请员工',
-            inviteEmployeesDescription: '导入 Sage Intacct 员工记录并邀请员工加入此工作区。您的审批流程将默认设置为经理审批，并可以在成员页面上进一步配置。',
-            syncReimbursedReports: '同步已报销的报告',
-            syncReimbursedReportsDescription: '每当使用 Expensify ACH 支付报告时，相应的账单付款将在以下 Sage Intacct 账户中创建。',
-            paymentAccount: 'Sage Intacct付款账户',
-            accountingMethods: {
-                label: '何时导出',
-                description: '选择何时导出费用：',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '应计',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '现金',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '自付费用将在最终批准时导出',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '自付费用将在支付时导出',
-                },
-            },
-        },
-        intacct: {
-            sageIntacctSetup: 'Sage Intacct 设置',
-            prerequisitesTitle: '在您连接之前...',
-            downloadExpensifyPackage: '下载适用于Sage Intacct的Expensify软件包',
-            followSteps: '按照我们的操作指南中的步骤：连接到 Sage Intacct 说明书',
-            enterCredentials: '输入您的 Sage Intacct 凭证',
-            entity: '实体',
-            employeeDefault: 'Sage Intacct 员工默认值',
-            employeeDefaultDescription: '如果存在，员工的默认部门将应用于他们在 Sage Intacct 中的费用。',
-            displayedAsTagDescription: '部门将可在员工报告的每一笔费用中选择。',
-            displayedAsReportFieldDescription: '部门选择将适用于员工报告中的所有费用。',
-            toggleImportTitleFirstPart: '选择如何处理 Sage Intacct',
-            toggleImportTitleSecondPart: '在Expensify中。',
-            expenseTypes: '费用类型',
-            expenseTypesDescription: '您的 Sage Intacct 费用类型将作为类别导入到 Expensify。',
-            accountTypesDescription: '您的 Sage Intacct 科目表将作为类别导入到 Expensify 中。',
-            importTaxDescription: '从 Sage Intacct 导入采购税率。',
-            userDefinedDimensions: '用户定义的维度',
-            addUserDefinedDimension: '添加用户定义的维度',
-            integrationName: '集成名称',
-            dimensionExists: '已存在具有此名称的维度。',
-            removeDimension: '删除用户定义的维度',
-            removeDimensionPrompt: '您确定要删除此用户定义的维度吗？',
-            userDefinedDimension: '用户定义维度',
-            addAUserDefinedDimension: '添加用户定义的维度',
-            detailedInstructionsLink: '查看详细说明',
-            detailedInstructionsRestOfSentence: '关于添加用户定义的维度。',
-            userDimensionsAdded: () => ({
-                one: '1 UDD 已添加',
-                other: (count: number) => `添加了${count}个UDD`,
-            }),
-            mappingTitle: ({mappingName}: IntacctMappingTitleParams) => {
-                switch (mappingName) {
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.DEPARTMENTS:
-                        return '部门';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.CLASSES:
-                        return 'classes';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.LOCATIONS:
-                        return '地点';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.CUSTOMERS:
-                        return '客户';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.PROJECTS:
-                        return '项目（工作）';
-                    default:
-                        return 'mappings';
-                }
-            },
-        },
         type: {
             free: '免费',
             control: '控制',
@@ -4433,7 +4319,6 @@ const translations = {
             subtitle: '连接到您的会计系统，以使用您的科目表对交易进行编码，自动匹配付款，并保持您的财务同步。',
             qbd: 'QuickBooks Desktop',
             xero: 'Xero',
-            intacct: 'Sage Intacct',
             sap: 'SAP',
             oracle: 'Oracle',
             microsoftDynamics: 'Microsoft Dynamics',
@@ -4445,8 +4330,7 @@ const translations = {
                 switch (connectionName) {
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Xero';
-                    case CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT:
-                        return 'Sage Intacct';
+
                     default: {
                         return '';
                     }
@@ -4507,7 +4391,6 @@ const translations = {
                     switch (stage) {
                         case 'quickbooksDesktopImportCustomers':
                             return '导入客户';
-                        case 'intacctImportEmployees':
                         case 'quickbooksDesktopImportEmployees':
                             return '导入员工';
                         case 'quickbooksDesktopImportAccounts':
@@ -4516,7 +4399,6 @@ const translations = {
                             return '导入类别';
                             return '导入位置';
                             return '正在处理导入的数据';
-                        case 'intacctImportSyncBillPayments':
                             return '同步已报销报告和账单支付';
                             return '导入税码';
                         case 'startingImportXero':
@@ -4535,7 +4417,6 @@ const translations = {
                         case 'quickbooksDesktopWebConnectorReminder':
                             return '仍在与QuickBooks同步数据... 请确保Web Connector正在运行';
                         case 'xeroSyncStep':
-                        case 'intacctImportData':
                             return '正在加载数据';
                             return '更新类别';
                             return '更新客户/项目';
@@ -4565,12 +4446,9 @@ const translations = {
                             return '正在同步 Xero 数据';
                         case 'quickbooksDesktopImportVendors':
                             return '导入供应商';
-                        case 'intacctCheckConnection':
-                            return '检查 Sage Intacct 连接';
-                        case 'intacctImportDimensions':
-                            return '导入 Sage Intacct 维度';
-                        case 'intacctImportTitle':
-                            return '导入 Sage Intacct 数据';
+
+
+
                         default: {
                             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                             return `阶段的翻译缺失：${stage}`;
@@ -4775,11 +4653,6 @@ const translations = {
                 description: `报告字段允许您指定标题级别的详细信息，与适用于单个项目费用的标签不同。这些详细信息可以包括特定的项目名称、商务旅行信息、地点等。`,
                 onlyAvailableOnPlan: '报告字段仅在Control计划中可用，起价为',
             },
-            [CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT]: {
-                title: 'Sage Intacct',
-                description: `通过Expensify + Sage Intacct集成，享受自动同步并减少手动输入。通过用户定义的维度，以及按部门、类别、地点、客户和项目（工作）进行的费用编码，获得深入的实时财务洞察。`,
-                onlyAvailableOnPlan: '我们的 Sage Intacct 集成仅在 Control 计划中可用，起价为',
-            },
             [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
                 title: 'QuickBooks Desktop',
                 description: `通过Expensify与QuickBooks Desktop的集成，享受自动同步并减少手动输入。通过实时双向连接以及按类别、项目、客户和项目的费用编码，实现终极效率。`,
@@ -4869,7 +4742,7 @@ const translations = {
                     perMember: '每位活跃成员每月。',
                     learnMore: '了解更多',
                     pricing: '关于我们的计划和定价。',
-                    benefit1: '高级会计连接（Sage Intacct 等）',
+                    benefit1: '高级会计连接',
                     benefit2: '智能费用规则',
                     benefit3: '多级审批工作流程',
                     benefit4: '增强的安全控制',
@@ -6097,7 +5970,7 @@ const translations = {
                 benefit1: 'Collect 计划中的所有内容',
                 benefit2: '多级审批工作流程',
                 benefit3: '自定义费用规则',
-                benefit4: 'ERP 集成 (Sage Intacct, Oracle)',
+                benefit4: 'ERP 集成 (Oracle)',
                 benefit5: 'HR 集成 (Workday, Certinia)',
                 benefit6: 'SAML/SSO',
                 benefit7: '自定义洞察和报告',

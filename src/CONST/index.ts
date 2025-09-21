@@ -71,7 +71,6 @@ const chatTypes = {
 
 const ONBOARDING_ACCOUNTING_MAPPING = {
     xero: 'Xero',
-    intacct: 'Sage Intacct',
     quickbooksDesktop: 'QuickBooks Desktop',
     sap: 'SAP',
     oracle: 'Oracle',
@@ -969,10 +968,6 @@ const CONST = {
     ONFIDO_TERMS_OF_SERVICE_URL: 'https://onfido.com/terms-of-service/',
     LIST_OF_RESTRICTED_BUSINESSES:
         'https://help.expensify.com/articles/expensify-classic/bank-accounts-and-payments/bank-accounts/Connect-US-Business-Bank-Account#are-there-certain-industries-or-businesses-for-which-expensify-cannot-process-automatic-in-app-payments',
-    EXPENSIFY_PACKAGE_FOR_SAGE_INTACCT: 'https://www.expensify.com/tools/integrations/downloadPackage',
-    EXPENSIFY_PACKAGE_FOR_SAGE_INTACCT_FILE_NAME: 'ExpensifyPackageForSageIntacct',
-    SAGE_INTACCT_INSTRUCTIONS: 'https://help.expensify.com/articles/expensify-classic/integrations/accounting-integrations/Sage-Intacct',
-    HOW_TO_CONNECT_TO_SAGE_INTACCT: 'https://help.expensify.com/articles/expensify-classic/integrations/accounting-integrations/Sage-Intacct#how-to-connect-to-sage-intacct',
     PRICING: `https://www.expensify.com/pricing`,
     COMPANY_CARDS_HELP: 'https://help.expensify.com/articles/expensify-classic/connect-credit-cards/company-cards/Commercial-Card-Feeds',
     COMPANY_CARDS_MASTERCARD_COMMERCIAL_CARDS:
@@ -2142,77 +2137,16 @@ const CONST = {
         ACCOUNTING_METHOD: 'accountingMethod',
     },
 
-    SAGE_INTACCT_MAPPING_VALUE: {
-        NONE: 'NONE',
-        DEFAULT: 'DEFAULT',
-        TAG: 'TAG',
-        REPORT_FIELD: 'REPORT_FIELD',
-    },
-
-    SAGE_INTACCT_CONFIG: {
-        MAPPINGS: {
-            DEPARTMENTS: 'departments',
-            CLASSES: 'classes',
-            LOCATIONS: 'locations',
-            CUSTOMERS: 'customers',
-            PROJECTS: 'projects',
-        },
-        SYNC_ITEMS: 'syncItems',
-        TAX: 'tax',
-        TAX_SOLUTION_ID: 'taxSolutionID',
-        EXPORT: 'export',
-        EXPORT_DATE: 'exportDate',
-        NON_REIMBURSABLE_CREDIT_CARD_VENDOR: 'nonReimbursableCreditCardChargeDefaultVendor',
-        NON_REIMBURSABLE_VENDOR: 'nonReimbursableVendor',
-        REIMBURSABLE_VENDOR: 'reimbursableExpenseReportDefaultVendor',
-        NON_REIMBURSABLE_ACCOUNT: 'nonReimbursableAccount',
-        NON_REIMBURSABLE: 'nonReimbursable',
-        EXPORTER: 'exporter',
-        REIMBURSABLE: 'reimbursable',
-        AUTO_SYNC: 'autoSync',
-        AUTO_SYNC_ENABLED: 'enabled',
-        IMPORT_EMPLOYEES: 'importEmployees',
-        APPROVAL_MODE: 'approvalMode',
-        SYNC: 'sync',
-        SYNC_REIMBURSED_REPORTS: 'syncReimbursedReports',
-        REIMBURSEMENT_ACCOUNT_ID: 'reimbursementAccountID',
-        ENTITY: 'entity',
-        DIMENSION_PREFIX: 'dimension_',
-        ACCOUNTING_METHOD: 'accountingMethod',
-    },
-
-    SAGE_INTACCT: {
-        APPROVAL_MODE: {
-            APPROVAL_MANUAL: 'APPROVAL_MANUAL',
-        },
-    },
-
     QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE: {
         VENDOR_BILL: 'VENDOR_BILL',
         CHECK: 'CHECK',
         JOURNAL_ENTRY: 'JOURNAL_ENTRY',
     },
 
-    SAGE_INTACCT_REIMBURSABLE_EXPENSE_TYPE: {
-        EXPENSE_REPORT: 'EXPENSE_REPORT',
-        VENDOR_BILL: 'VENDOR_BILL',
-    },
-
-    SAGE_INTACCT_NON_REIMBURSABLE_EXPENSE_TYPE: {
-        CREDIT_CARD_CHARGE: 'CREDIT_CARD_CHARGE',
-        VENDOR_BILL: 'VENDOR_BILL',
-    },
-
     XERO_EXPORT_DATE: {
         LAST_EXPENSE: 'LAST_EXPENSE',
         REPORT_EXPORTED: 'REPORT_EXPORTED',
         REPORT_SUBMITTED: 'REPORT_SUBMITTED',
-    },
-
-    SAGE_INTACCT_EXPORT_DATE: {
-        LAST_EXPENSE: 'LAST_EXPENSE',
-        EXPORTED: 'EXPORTED',
-        SUBMITTED: 'SUBMITTED',
     },
 
     QUICKBOOKS_EXPORT_DATE: {
@@ -2724,7 +2658,6 @@ const CONST = {
                 // Here we will add other connections names when we add support for them
                 QBD: 'quickbooksDesktop',
                 XERO: 'xero',
-                SAGE_INTACCT: 'intacct',
             },
             SUPPORTED_ONLY_ON_OLDDOT: {
                 FINANCIALFORCE: 'financialForce',
@@ -2734,13 +2667,11 @@ const CONST = {
             },
             ROUTE: {
                 XERO: 'xero',
-                SAGE_INTACCT: 'sage-intacct',
                 QBD: 'quickbooks-desktop',
             },
             NAME_USER_FRIENDLY: {
                 quickbooksDesktop: 'QuickBooks Desktop',
                 xero: 'Xero',
-                intacct: 'Sage Intacct',
                 financialForce: 'FinancialForce',
                 billCom: 'Bill.com',
                 zenefits: 'Zenefits',
@@ -2749,11 +2680,8 @@ const CONST = {
                 microsoftDynamics: 'Microsoft Dynamics',
                 other: 'Other',
             },
-            CORPORATE: ['quickbooksDesktop', 'intacct', 'oracle', 'sap', 'microsoftDynamics', 'other'],
-            AUTH_HELP_LINKS: {
-                intacct:
-                    "https://help.expensify.com/articles/expensify-classic/connections/sage-intacct/Sage-Intacct-Troubleshooting#:~:text=First%20make%20sure%20that%20you,your%20company's%20Web%20Services%20authorizations.",
-            },
+            CORPORATE: ['quickbooksDesktop', 'oracle', 'sap', 'microsoftDynamics', 'other'],
+            AUTH_HELP_LINKS: {},
             SYNC_STAGE_NAME: {
                 STARTING_IMPORT_XERO: 'startingImportXero',
                 STARTING_IMPORT_QBD: 'startingImportQBD',
@@ -2780,12 +2708,6 @@ const CONST = {
                 XERO_SYNC_IMPORT_TAX_RATES: 'xeroSyncImportTaxRates',
                 XERO_CHECK_CONNECTION: 'xeroCheckConnection',
                 XERO_SYNC_TITLE: 'xeroSyncTitle',
-                SAGE_INTACCT_SYNC_CHECK_CONNECTION: 'intacctCheckConnection',
-                SAGE_INTACCT_SYNC_IMPORT_TITLE: 'intacctImportTitle',
-                SAGE_INTACCT_SYNC_IMPORT_DATA: 'intacctImportData',
-                SAGE_INTACCT_SYNC_IMPORT_EMPLOYEES: 'intacctImportEmployees',
-                SAGE_INTACCT_SYNC_IMPORT_DIMENSIONS: 'intacctImportDimensions',
-                SAGE_INTACCT_SYNC_IMPORT_SYNC_REIMBURSED_REPORTS: 'intacctImportSyncBillPayments',
             },
             SYNC_STAGE_TIMEOUT_MINUTES: 20,
         },
@@ -2811,9 +2733,7 @@ const CONST = {
     HELP_DOC_LINKS: {
         'QuickBooks Desktop': '',
         Xero: 'https://help.expensify.com/articles/new-expensify/connections/xero/Configure-Xero',
-        Intacct: 'https://help.expensify.com/articles/new-expensify/connections/sage-intacct/Configure-Sage-Intacct',
         FinancialForce: 'https://help.expensify.com/articles/expensify-classic/connections/certinia/Connect-To-Certinia',
-        'Sage Intacct': 'https://help.expensify.com/articles/new-expensify/connections/sage-intacct/Configure-Sage-Intacct',
         Certinia: 'https://help.expensify.com/articles/expensify-classic/connections/certinia/Connect-To-Certinia',
         MERGE_EXPENSES: 'https://help.expensify.com/articles/new-expensify/reports-and-expenses/Merging-expenses',
     },
@@ -3030,16 +2950,6 @@ const CONST = {
             NVP_XERO_EXPORT_BANK_ACCOUNT: 'xero_export_bank_account',
 
             /**
-             * Name of Card NVP for Intacct custom export accounts
-             */
-            NVP_INTACCT_EXPORT_CHARGE_CARD: 'intacct_export_charge_card',
-
-            /**
-             * Name of card NVP for Intacct custom vendors
-             */
-            NVP_INTACCT_EXPORT_VENDOR: 'intacct_export_vendor',
-
-            /**
              * Name of Card NVP for QuickBooks Desktop custom export accounts
              */
             NVP_QUICKBOOKS_DESKTOP_EXPORT_ACCOUNT_CREDIT: 'quickbooks_desktop_export_account_credit',
@@ -3055,16 +2965,6 @@ const CONST = {
              * Name of Card NVP for Xero custom export accounts
              */
             NVP_XERO_EXPORT_BANK_ACCOUNT_POLICY_ID: 'xero_export_bank_account_policy_id',
-
-            /**
-             * Name of Card NVP for Intacct custom export accounts
-             */
-            NVP_INTACCT_EXPORT_CHARGE_CARD_POLICY_ID: 'intacct_export_charge_card_policy_id',
-
-            /**
-             * Name of card NVP for Intacct custom vendors
-             */
-            NVP_INTACCT_EXPORT_VENDOR_POLICY_ID: 'intacct_export_vendor_policy_id',
 
             /**
              * Name of Card NVP for QuickBooks Desktop custom export accounts

@@ -62,9 +62,6 @@ function getSyncConnectionParameters(connectionName: PolicyConnectionName) {
         case CONST.POLICY.CONNECTIONS.NAME.XERO: {
             return {readCommand: READ_COMMANDS.SYNC_POLICY_TO_XERO, stageInProgress: CONST.POLICY.CONNECTIONS.SYNC_STAGE_NAME.STARTING_IMPORT_XERO};
         }
-        case CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT: {
-            return {readCommand: READ_COMMANDS.SYNC_POLICY_TO_SAGE_INTACCT, stageInProgress: CONST.POLICY.CONNECTIONS.SYNC_STAGE_NAME.SAGE_INTACCT_SYNC_CHECK_CONNECTION};
-        }
         case CONST.POLICY.CONNECTIONS.NAME.QBD: {
             return {readCommand: READ_COMMANDS.SYNC_POLICY_TO_QUICKBOOKS_DESKTOP, stageInProgress: CONST.POLICY.CONNECTIONS.SYNC_STAGE_NAME.STARTING_IMPORT_QBD};
         }
@@ -240,14 +237,7 @@ function setConnectionError(policyID: string, connectionName: PolicyConnectionNa
 }
 
 function copyExistingPolicyConnection(connectedPolicyID: string, targetPolicyID: string, connectionName: ConnectionName) {
-    let stageInProgress;
-    switch (connectionName) {
-        case CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT:
-            stageInProgress = CONST.POLICY.CONNECTIONS.SYNC_STAGE_NAME.SAGE_INTACCT_SYNC_CHECK_CONNECTION;
-            break;
-        default:
-            stageInProgress = null;
-    }
+    const stageInProgress = null;
 
     const optimisticData: OnyxUpdate[] = [
         {

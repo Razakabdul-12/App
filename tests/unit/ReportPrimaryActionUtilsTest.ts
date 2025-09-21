@@ -306,7 +306,7 @@ describe('getPrimaryAction', () => {
         await Onyx.merge(`${ONYXKEYS.COLLECTION.REPORT}${REPORT_ID}`, report);
         const policy = {
             connections: {
-                intacct: {
+                [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
                     config: {
                         export: {
                             exporter: CURRENT_USER_EMAIL,
@@ -334,7 +334,7 @@ describe('getPrimaryAction', () => {
         await Onyx.merge(`${ONYXKEYS.COLLECTION.REPORT}${REPORT_ID}`, report);
         const policy = {
             connections: {
-                intacct: {
+                [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
                     config: {
                         export: {
                             exporter: CURRENT_USER_EMAIL,
@@ -362,7 +362,7 @@ describe('getPrimaryAction', () => {
         await Onyx.merge(`${ONYXKEYS.COLLECTION.REPORT}${REPORT_ID}`, report);
         const policy = {
             connections: {
-                intacct: {
+                [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
                     config: {
                         export: {
                             exporter: CURRENT_USER_EMAIL,
@@ -737,7 +737,7 @@ describe('getTransactionThreadPrimaryAction', () => {
         await Onyx.merge(`${ONYXKEYS.COLLECTION.REPORT}${REPORT_ID}`, report);
         const policy = {
             connections: {
-                intacct: {
+                [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
                     config: {
                         export: {
                             exporter: CURRENT_USER_EMAIL,

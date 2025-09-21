@@ -22,7 +22,7 @@ Expensify offers two main subscription plans:
 | **Expense approvals**  | ✔ Single approver                            | ✔ Multiple approvers                             |
 | **ACH reimbursements** | ✔ Unlimited                                   | ✔ Unlimited                                      |
 | **Bank feed support**  | ❌ Not available                              | ✔ Card feeds and reconciliation                  |
-| **Accounting sync**    | ✔ QuickBooks Online, Xero                    | ✔ Sage Intacct, QuickBooks Desktop               |
+| **Accounting sync**    | ✔ QuickBooks Online, Xero                    | ✔ QuickBooks Desktop                             |
 | **HR & payroll sync**  | ❌ Not available                              | ✔ Gusto, Zenefits, Certinia, Workday             |
 | **Security & control** | ❌ Not available                              | ✔ SAML/SSO and admin-enforced controls           |
 

@@ -31,13 +31,6 @@ Link your workspace directly to your accounting system to make expense tracking 
 - Import tracking categories  
 - Manage tax rates seamlessly  
 
-**Sage Intacct**
-- Track departments, classes, and more  
-- Multi-currency support  
-- Advanced approval workflows
-
----
-
 ## What Syncs Automatically
 
 **From your accounting system:**

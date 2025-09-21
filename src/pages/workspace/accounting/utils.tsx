@@ -1,14 +1,12 @@
 import React from 'react';
 import type {OnyxEntry} from 'react-native-onyx';
 import ConnectToQuickbooksDesktopFlow from '@components/ConnectToQuickbooksDesktopFlow';
-import ConnectToSageIntacctFlow from '@components/ConnectToSageIntacctFlow';
 import ConnectToXeroFlow from '@components/ConnectToXeroFlow';
 import * as Expensicons from '@components/Icon/Expensicons';
 import type {LocaleContextProps} from '@components/LocaleContextProvider';
 import Text from '@components/Text';
 import TextLink from '@components/TextLink';
 import {isAuthenticationError} from '@libs/actions/connections';
-import {getAdminPoliciesConnectedToSageIntacct} from '@libs/actions/Policy/Policy';
 import getPlatform from '@libs/getPlatform';
 import {translateLocal} from '@libs/Localize';
 import Navigation from '@navigation/Navigation';
@@ -33,7 +31,6 @@ function getAccountingIntegrationData(
     integrationToDisconnect?: ConnectionName,
     shouldDisconnectIntegrationBeforeConnecting?: boolean,
 ): AccountingIntegration | undefined {
-    const hasPoliciesConnectedToSageIntacct = !!getAdminPoliciesConnectedToSageIntacct().length;
     switch (connectionName) {
         case CONST.POLICY.CONNECTIONS.NAME.XERO:
             return {
@@ -65,47 +62,6 @@ function getAccountingIntegrationData(
                 ],
                 pendingFields: policy?.connections?.xero?.config?.pendingFields,
                 errorFields: policy?.connections?.xero?.config?.errorFields,
-            };
-        case CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT:
-            return {
-                title: translate('workspace.accounting.intacct'),
-                icon: Expensicons.IntacctSquare,
-                setupConnectionFlow: (
-                    <ConnectToSageIntacctFlow
-                        policyID={policyID}
-                        key={key}
-                    />
-                ),
-                onImportPagePress: () => Navigation.navigate(ROUTES.POLICY_ACCOUNTING_SAGE_INTACCT_IMPORT.getRoute(policyID)),
-                subscribedImportSettings: [
-                    CONST.SAGE_INTACCT_CONFIG.SYNC_ITEMS,
-                    ...Object.values(CONST.SAGE_INTACCT_CONFIG.MAPPINGS),
-                    CONST.SAGE_INTACCT_CONFIG.TAX,
-                    ...(policy?.connections?.intacct?.config?.mappings?.dimensions ?? []).map((dimension) => `${CONST.SAGE_INTACCT_CONFIG.DIMENSION_PREFIX}${dimension.dimension}`),
-                ],
-                onExportPagePress: () => Navigation.navigate(ROUTES.POLICY_ACCOUNTING_SAGE_INTACCT_EXPORT.getRoute(policyID)),
-                subscribedExportSettings: [
-                    CONST.SAGE_INTACCT_CONFIG.EXPORTER,
-                    CONST.SAGE_INTACCT_CONFIG.EXPORT_DATE,
-                    CONST.SAGE_INTACCT_CONFIG.REIMBURSABLE,
-                    CONST.SAGE_INTACCT_CONFIG.REIMBURSABLE_VENDOR,
-                    CONST.SAGE_INTACCT_CONFIG.NON_REIMBURSABLE,
-                    CONST.SAGE_INTACCT_CONFIG.NON_REIMBURSABLE_ACCOUNT,
-                    policy?.connections?.intacct?.config?.export?.nonReimbursable === CONST.SAGE_INTACCT_NON_REIMBURSABLE_EXPENSE_TYPE.VENDOR_BILL
-                        ? CONST.SAGE_INTACCT_CONFIG.NON_REIMBURSABLE_VENDOR
-                        : CONST.SAGE_INTACCT_CONFIG.NON_REIMBURSABLE_CREDIT_CARD_VENDOR,
-                ],
-                onCardReconciliationPagePress: () => Navigation.navigate(ROUTES.WORKSPACE_ACCOUNTING_CARD_RECONCILIATION.getRoute(policyID, CONST.POLICY.CONNECTIONS.ROUTE.SAGE_INTACCT)),
-                onAdvancedPagePress: () => Navigation.navigate(ROUTES.POLICY_ACCOUNTING_SAGE_INTACCT_ADVANCED.getRoute(policyID)),
-                subscribedAdvancedSettings: [
-                    CONST.SAGE_INTACCT_CONFIG.AUTO_SYNC_ENABLED,
-                    CONST.SAGE_INTACCT_CONFIG.IMPORT_EMPLOYEES,
-                    CONST.SAGE_INTACCT_CONFIG.APPROVAL_MODE,
-                    CONST.SAGE_INTACCT_CONFIG.SYNC_REIMBURSED_REPORTS,
-                    CONST.SAGE_INTACCT_CONFIG.REIMBURSEMENT_ACCOUNT_ID,
-                ],
-                pendingFields: policy?.connections?.intacct?.config?.pendingFields,
-                errorFields: policy?.connections?.intacct?.config?.errorFields,
             };
         case CONST.POLICY.CONNECTIONS.NAME.QBD:
             return {

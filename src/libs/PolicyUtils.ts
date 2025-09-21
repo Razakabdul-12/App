@@ -18,8 +18,6 @@ import type {
     PolicyConnectionSyncProgress,
     PolicyFeatureName,
     Rate,
-    SageIntacctDataElement,
-    SageIntacctDataElementWithValue,
     Tenant,
 } from '@src/types/onyx/Policy';
 import type PolicyEmployee from '@src/types/onyx/PolicyEmployee';
@@ -915,55 +913,6 @@ function getIntegrationLastSuccessfulDate(
     return syncSuccessfulDate;
 }
 
-function getCurrentSageIntacctEntityName(policy: Policy | undefined, defaultNameIfNoEntity: string): string | undefined {
-    const currentEntityID = policy?.connections?.intacct?.config?.entity;
-    if (!currentEntityID) {
-        return defaultNameIfNoEntity;
-    }
-    const entities = policy?.connections?.intacct?.data?.entities;
-    return entities?.find((entity) => entity.id === currentEntityID)?.name;
-}
-
-function getSageIntacctBankAccounts(policy?: Policy, selectedBankAccountId?: string): SelectorType[] {
-    const bankAccounts = policy?.connections?.intacct?.data?.bankAccounts ?? [];
-    return (bankAccounts ?? []).map(({id, name}) => ({
-        value: id,
-        text: name,
-        keyForList: id,
-        isSelected: selectedBankAccountId === id,
-    }));
-}
-
-function getSageIntacctVendors(policy?: Policy, selectedVendorId?: string): SelectorType[] {
-    const vendors = policy?.connections?.intacct?.data?.vendors ?? [];
-    return vendors.map(({id, value}) => ({
-        value: id,
-        text: value,
-        keyForList: id,
-        isSelected: selectedVendorId === id,
-    }));
-}
-
-function getSageIntacctNonReimbursableActiveDefaultVendor(policy?: Policy): string | undefined {
-    const {
-        nonReimbursableCreditCardChargeDefaultVendor: creditCardDefaultVendor,
-        nonReimbursableVendor: expenseReportDefaultVendor,
-        nonReimbursable,
-    } = policy?.connections?.intacct?.config.export ?? {};
-
-    return nonReimbursable === CONST.SAGE_INTACCT_NON_REIMBURSABLE_EXPENSE_TYPE.CREDIT_CARD_CHARGE ? creditCardDefaultVendor : expenseReportDefaultVendor;
-}
-
-function getSageIntacctCreditCards(policy?: Policy, selectedAccount?: string): SelectorType[] {
-    const creditCards = policy?.connections?.intacct?.data?.creditCards ?? [];
-    return creditCards.map(({name}) => ({
-        value: name,
-        text: name,
-        keyForList: name,
-        isSelected: name === selectedAccount,
-    }));
-}
-
 /**
  * Sort the workspaces by their name, while keeping the selected one at the beginning.
  * @param workspace1 Details of the first workspace to be compared.
@@ -1226,7 +1175,6 @@ const getDescriptionForPolicyDomainCard = (domainName: string): string => {
 function isPreferredExporter(policy: Policy) {
     const user = getCurrentUserEmail();
     const exporters = [
-        policy.connections?.intacct?.config?.export?.exporter,
         policy.connections?.quickbooksDesktop?.config?.export?.exporter,
         policy.connections?.xero?.config?.export?.exporter,
     ];
@@ -1323,10 +1271,6 @@ export {
     getCurrentXeroOrganizationName,
     getXeroBankAccounts,
     hasPolicyWithXeroConnection,
-    getSageIntacctVendors,
-    getSageIntacctNonReimbursableActiveDefaultVendor,
-    getSageIntacctCreditCards,
-    getSageIntacctBankAccounts,
     getDistanceRateCustomUnit,
     getPerDiemCustomUnit,
     getDistanceRateCustomUnitRate,
@@ -1341,7 +1285,6 @@ export {
     getReimburserAccountID,
     isControlPolicy,
     isCollectPolicy,
-    getCurrentSageIntacctEntityName,
     hasNoPolicyOtherThanPersonalType,
     areSettingsInErrorFields,
     settingsPendingAction,

@@ -6,7 +6,7 @@ keywords: [New Expensify, expense tags, class tracking, cost center, import tags
 
 In Expensify, **tags** represent attributes like classes, projects, cost centers, locations, customers, or jobs. They help code expenses for accounting and reporting.
 
-Admins can manually create one level of tags or multiple levels of tags for a workspace, or they can be imported automatically if your workspace is connected to an accounting system like QuickBooks Online, Intacct, or Xero. Once added, tags can be enabled or disabled. Expensify also learns your tag preferences for merchants and applies them automatically.
+Admins can manually create one level of tags or multiple levels of tags for a workspace, or they can be imported automatically if your workspace is connected to an accounting system like QuickBooks Online or Xero. Once added, tags can be enabled or disabled. Expensify also learns your tag preferences for merchants and applies them automatically.
 
 ![The Tags tab]({{site.url}}/assets/images/ExpensifyHelp_R4_Tags_2.png){:width="100%"}
 

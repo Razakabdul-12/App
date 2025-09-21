@@ -10,7 +10,7 @@ Expensify's tax tracking allows you to create tax rates and codes for domestic a
 
 # Tax Tracking - Connected to an Accounting Integration
 
-If your Workspace is connected to **Xero, QuickBooks Online,** or **Sage Intacct**, follow these steps to set up tax tracking:
+If your workspace is connected to **Xero** or **QuickBooks Online**, follow these steps to set up tax tracking:
 1. Configure the tax settings in your accounting system. 
 2. Go to **Settings > Workspaces > [Workspace Name] > Accounting**.
 3. Click **Configure**.

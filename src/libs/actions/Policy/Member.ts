@@ -345,7 +345,7 @@ function resetAccountingPreferredExporter(policyID: string, loginList: string[])
     const failureData: OnyxUpdate[] = [];
     const policyKey = `${ONYXKEYS.COLLECTION.POLICY}${policyID}` as const;
     const adminLoginList = loginList.filter((login) => isUserPolicyAdmin(policy, login));
-    const connections = [CONST.POLICY.CONNECTIONS.NAME.XERO, CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT, CONST.POLICY.CONNECTIONS.NAME.QBD];
+    const connections = [CONST.POLICY.CONNECTIONS.NAME.XERO, CONST.POLICY.CONNECTIONS.NAME.QBD];
 
     if (!adminLoginList.length) {
         return {optimisticData, successData, failureData};

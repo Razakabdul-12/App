@@ -33,7 +33,6 @@ import {
     areSettingsInErrorFields,
     findCurrentXeroOrganization,
     getConnectedIntegration,
-    getCurrentSageIntacctEntityName,
     getCurrentXeroOrganizationName,
     getIntegrationLastSuccessfulDate,
     getXeroTenants,
@@ -172,7 +171,6 @@ function PolicyAccountingPage({policy}: PolicyAccountingPageProps) {
     }, [getDatetimeToRelative, successfulDate]);
 
     const integrationSpecificMenuItems = useMemo(() => {
-        const sageIntacctEntityList = policy?.connections?.intacct?.data?.entities ?? [];
         switch (connectedIntegration) {
             case CONST.POLICY.CONNECTIONS.NAME.XERO:
                 return !policy?.connections?.xero?.data?.tenants
@@ -195,26 +193,6 @@ function PolicyAccountingPage({policy}: PolicyAccountingPageProps) {
                           brickRoadIndicator: areSettingsInErrorFields([CONST.XERO_CONFIG.TENANT_ID], policy?.connections?.xero?.config?.errorFields)
                               ? CONST.BRICK_ROAD_INDICATOR_STATUS.ERROR
                               : undefined,
-                      };
-            case CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT:
-                return !sageIntacctEntityList.length
-                    ? {}
-                    : {
-                          description: translate('workspace.intacct.entity'),
-                          iconRight: Expensicons.ArrowRight,
-                          title: getCurrentSageIntacctEntityName(policy, translate('workspace.common.topLevel')),
-                          wrapperStyle: [styles.sectionMenuItemTopDescription],
-                          titleStyle: styles.fontWeightNormal,
-                          shouldShowRightIcon: true,
-                          shouldShowDescriptionOnTop: true,
-                          pendingAction: policy?.connections?.intacct?.config?.pendingFields?.entity,
-                          brickRoadIndicator: policy?.connections?.intacct?.config?.errorFields?.entity ? CONST.BRICK_ROAD_INDICATOR_STATUS.ERROR : undefined,
-                          onPress: () => {
-                              if (!sageIntacctEntityList.length) {
-                                  return;
-                              }
-                              Navigation.navigate(ROUTES.POLICY_ACCOUNTING_SAGE_INTACCT_ENTITY.getRoute(policyID));
-                          },
                       };
             default:
                 return undefined;

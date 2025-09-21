@@ -18,13 +18,6 @@ const connections = {
             },
         },
     },
-    [CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT]: {
-        config: {
-            autoSync: {
-                enabled: false,
-            },
-        },
-    },
     [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
         config: {
             autoSync: {

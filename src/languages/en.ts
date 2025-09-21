@@ -115,7 +115,6 @@ import type {
     IncorrectZipFormatParams,
     IndividualExpenseRulesSubtitleParams,
     InstantSummaryParams,
-    IntacctMappingTitleParams,
     IntegrationExportParams,
     IntegrationSyncFailedParams,
     InvalidPropertyParams,
@@ -3690,121 +3689,6 @@ const translations = {
                 },
             },
         },
-        sageIntacct: {
-            preferredExporter: 'Preferred exporter',
-            taxSolution: 'Tax solution',
-            notConfigured: 'Not configured',
-            exportDate: {
-                label: 'Export date',
-                description: 'Use this date when exporting reports to Sage Intacct.',
-                values: {
-                    [CONST.SAGE_INTACCT_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: 'Date of last expense',
-                        description: 'Date of the most recent expense on the report.',
-                    },
-                    [CONST.SAGE_INTACCT_EXPORT_DATE.EXPORTED]: {
-                        label: 'Export date',
-                        description: 'Date the report was exported to Sage Intacct.',
-                    },
-                    [CONST.SAGE_INTACCT_EXPORT_DATE.SUBMITTED]: {
-                        label: 'Submitted date',
-                        description: 'Date the report was submitted for approval.',
-                    },
-                },
-            },
-            reimbursableExpenses: {
-                description: 'Set how out-of-pocket expenses export to Sage Intacct.',
-                values: {
-                    [CONST.SAGE_INTACCT_REIMBURSABLE_EXPENSE_TYPE.EXPENSE_REPORT]: 'Expense reports',
-                    [CONST.SAGE_INTACCT_REIMBURSABLE_EXPENSE_TYPE.VENDOR_BILL]: 'Vendor bills',
-                },
-            },
-            nonReimbursableExpenses: {
-                description: 'Set how company card purchases export to Sage Intacct.',
-                values: {
-                    [CONST.SAGE_INTACCT_NON_REIMBURSABLE_EXPENSE_TYPE.CREDIT_CARD_CHARGE]: 'Credit cards',
-                    [CONST.SAGE_INTACCT_NON_REIMBURSABLE_EXPENSE_TYPE.VENDOR_BILL]: 'Vendor bills',
-                },
-            },
-            creditCardAccount: 'Credit card account',
-            defaultVendor: 'Default vendor',
-            defaultVendorDescription: ({isReimbursable}: DefaultVendorDescriptionParams) =>
-                `Set a default vendor that will apply to ${isReimbursable ? '' : 'non-'}reimbursable expenses that don't have a matching vendor in Sage Intacct.`,
-            exportDescription: 'Configure how Expensify data exports to Sage Intacct.',
-            exportPreferredExporterNote:
-                'The preferred exporter can be any workspace admin, but must also be a Domain Admin if you set different export accounts for individual company cards in Domain Settings.',
-            exportPreferredExporterSubNote: 'Once set, the preferred exporter will see reports for export in their account.',
-            noAccountsFound: 'No accounts found',
-            noAccountsFoundDescription: `Please add the account in Sage Intacct and sync the connection again`,
-            autoSync: 'Auto-sync',
-            autoSyncDescription: 'Expensify will automatically sync with Sage Intacct every day.',
-            inviteEmployees: 'Invite employees',
-            inviteEmployeesDescription:
-                'Import Sage Intacct employee records and invite employees to this workspace. Your approval workflow will default to manager approval and can be furthered configured on the Members page.',
-            syncReimbursedReports: 'Sync reimbursed reports',
-            syncReimbursedReportsDescription: 'Any time a report is paid using Expensify ACH, the corresponding bill payment will be created in the Sage Intacct account below.',
-            paymentAccount: 'Sage Intacct payment account',
-            accountingMethods: {
-                label: 'When to Export',
-                description: 'Choose when to export the expenses:',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Accrual',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Cash',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Out-of-pocket expenses will export when final approved',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Out-of-pocket expenses will export when paid',
-                },
-            },
-        },
-        intacct: {
-            sageIntacctSetup: 'Sage Intacct setup',
-            prerequisitesTitle: 'Before you connect...',
-            downloadExpensifyPackage: 'Download the Expensify package for Sage Intacct',
-            followSteps: 'Follow the steps in our How-to: Connect to Sage Intacct instructions',
-            enterCredentials: 'Enter your Sage Intacct credentials',
-            entity: 'Entity',
-            employeeDefault: 'Sage Intacct employee default',
-            employeeDefaultDescription: "The employee's default department will be applied to their expenses in Sage Intacct if one exists.",
-            displayedAsTagDescription: "Department will be selectable for each individual expense on an employee's report.",
-            displayedAsReportFieldDescription: "Department selection will apply to all expenses on an employee's report.",
-            toggleImportTitleFirstPart: 'Choose how to handle Sage Intacct ',
-            toggleImportTitleSecondPart: ' in Expensify.',
-            expenseTypes: 'Expense types',
-            expenseTypesDescription: 'Your Sage Intacct expense types will import into Expensify as categories.',
-            accountTypesDescription: 'Your Sage Intacct chart of accounts will import into Expensify as categories.',
-            importTaxDescription: 'Import purchase tax rate from Sage Intacct.',
-            userDefinedDimensions: 'User-defined dimensions',
-            addUserDefinedDimension: 'Add user-defined dimension',
-            integrationName: 'Integration name',
-            dimensionExists: 'A dimension with this name already exists.',
-            removeDimension: 'Remove user-defined dimension',
-            removeDimensionPrompt: 'Are you sure you want to remove this user-defined dimension?',
-            userDefinedDimension: 'User-defined dimension',
-            addAUserDefinedDimension: 'Add a user-defined dimension',
-            detailedInstructionsLink: 'View detailed instructions',
-            detailedInstructionsRestOfSentence: ' on adding user-defined dimensions.',
-            userDimensionsAdded: () => ({
-                one: '1 UDD added',
-                other: (count: number) => `${count} UDDs added`,
-            }),
-            mappingTitle: ({mappingName}: IntacctMappingTitleParams) => {
-                switch (mappingName) {
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.DEPARTMENTS:
-                        return 'departments';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.CLASSES:
-                        return 'classes';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.LOCATIONS:
-                        return 'locations';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.CUSTOMERS:
-                        return 'customers';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.PROJECTS:
-                        return 'projects (jobs)';
-                    default:
-                        return 'mappings';
-                }
-            },
-        },
         type: {
             free: 'Free',
             control: 'Control',
@@ -4476,7 +4360,6 @@ const translations = {
             subtitle: 'Connect to your accounting system to code transactions with your chart of accounts, auto-match payments, and keep your finances in sync.',
             qbd: 'QuickBooks Desktop',
             xero: 'Xero',
-            intacct: 'Sage Intacct',
             sap: 'SAP',
             oracle: 'Oracle',
             microsoftDynamics: 'Microsoft Dynamics',
@@ -4488,8 +4371,6 @@ const translations = {
                 switch (connectionName) {
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Xero';
-                    case CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT:
-                        return 'Sage Intacct';
                     default: {
                         return '';
                     }
@@ -4554,7 +4435,6 @@ const translations = {
                     switch (stage) {
                         case 'quickbooksDesktopImportCustomers':
                             return 'Importing customers';
-                        case 'intacctImportEmployees':
                         case 'quickbooksDesktopImportEmployees':
                             return 'Importing employees';
                         case 'quickbooksDesktopImportAccounts':
@@ -4563,8 +4443,6 @@ const translations = {
                             return 'Importing classes';
                             return 'Importing locations';
                             return 'Processing imported data';
-                        case 'intacctImportSyncBillPayments':
-                            return 'Syncing reimbursed reports and bill payments';
                             return 'Importing tax codes';
                         case 'startingImportXero':
                             return 'Importing Xero data';
@@ -4582,7 +4460,6 @@ const translations = {
                         case 'quickbooksDesktopWebConnectorReminder':
                             return 'Still syncing data with QuickBooks... Please make sure the Web Connector is running';
                         case 'xeroSyncStep':
-                        case 'intacctImportData':
                             return 'Loading data';
                             return 'Updating categories';
                             return 'Updating customers/projects';
@@ -4612,12 +4489,6 @@ const translations = {
                             return 'Syncing Xero data';
                         case 'quickbooksDesktopImportVendors':
                             return 'Importing vendors';
-                        case 'intacctCheckConnection':
-                            return 'Checking Sage Intacct connection';
-                        case 'intacctImportDimensions':
-                            return 'Importing Sage Intacct dimensions';
-                        case 'intacctImportTitle':
-                            return 'Importing Sage Intacct data';
                         default: {
                             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                             return `Translation missing for stage: ${stage}`;
@@ -4825,11 +4696,6 @@ const translations = {
                 description: `Report fields let you specify header-level details, distinct from tags that pertain to expenses on individual line items. These details can encompass specific project names, business trip information, locations, and more.`,
                 onlyAvailableOnPlan: 'Report fields are only available on the Control plan, starting at ',
             },
-            [CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT]: {
-                title: 'Sage Intacct',
-                description: `Enjoy automated syncing and reduce manual entries with the Expensify + Sage Intacct integration. Gain in-depth, real-time financial insights with user-defined dimensions, as well as expense coding by department, class, location, customer, and project (job).`,
-                onlyAvailableOnPlan: 'Our Sage Intacct integration is only available on the Control plan, starting at ',
-            },
             [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
                 title: 'QuickBooks Desktop',
                 description: `Enjoy automated syncing and reduce manual entries with the Expensify + QuickBooks Desktop integration. Gain ultimate efficiency with a realtime, two-way connection and expense coding by class, item, customer, and project.`,
@@ -4922,7 +4788,7 @@ const translations = {
                     perMember: 'per active member per month.',
                     learnMore: 'Learn more',
                     pricing: 'about our plans and pricing.',
-                    benefit1: 'Advanced accounting connections (Sage Intacct and more)',
+                    benefit1: 'Advanced accounting connections',
                     benefit2: 'Smart expense rules',
                     benefit3: 'Multi-level approval workflows',
                     benefit4: 'Enhanced security controls',
@@ -6179,7 +6045,7 @@ const translations = {
                 benefit1: 'Everything in the Collect plan',
                 benefit2: 'Multi-level approval workflows',
                 benefit3: 'Custom expense rules',
-                benefit4: 'ERP integrations (Sage Intacct, Oracle)',
+                benefit4: 'ERP integrations (Oracle)',
                 benefit5: 'HR integrations (Workday, Certinia)',
                 benefit6: 'SAML/SSO',
                 benefit7: 'Custom insights and reporting',

@@ -18,7 +18,6 @@ export type {default as OpenPolicyProfilePageParams} from './OpenPolicyProfilePa
 export type {default as OpenPolicyInitialPageParams} from './OpenPolicyInitialPageParams';
 export type {default as SyncPolicyToXeroParams} from './SyncPolicyToXeroParams';
 export type {default as UpdateXeroAccountingMethodParams} from './UpdateXeroAccountingMethodParams';
-export type {default as UpdateSageIntacctAccountingMethodParams} from './UpdateSageIntacctAccountingMethodParams';
 export type {default as SyncPolicyToQuickbooksDesktopParams} from './SyncPolicyToQuickbooksDesktopParams';
 export type {default as DeleteContactMethodParams} from './DeleteContactMethodParams';
 export type {default as DeletePaymentBankAccountParams} from './DeletePaymentBankAccountParams';
@@ -124,7 +123,6 @@ export type {default as AddMembersToWorkspaceParams} from './AddMembersToWorkspa
 export type {default as DeleteMembersFromWorkspaceParams} from './DeleteMembersFromWorkspaceParams';
 export type {default as OpenWorkspaceParams} from './OpenWorkspaceParams';
 export type {default as OpenWorkspaceViewParams} from './OpenWorkspaceViewParams';
-export type {default as ConnectPolicyToSageIntacctParams} from './ConnectPolicyToSageIntacctParams';
 export type {default as OpenWorkspaceInvitePageParams} from './OpenWorkspaceInvitePageParams';
 export type {default as OpenWorkspaceMembersPageParams} from './OpenWorkspaceMembersPageParams';
 export type {default as OpenPolicyCategoriesPageParams} from './OpenPolicyCategoriesPageParams';
@@ -222,7 +220,6 @@ export type {default as ApproveMoneyRequestOnSearchParams} from './ApproveMoneyR
 export type {default as PayMoneyRequestOnSearchParams} from './PayMoneyRequestOnSearchParams';
 export type {default as UnholdMoneyRequestOnSearchParams} from './UnholdMoneyRequestOnSearchParams';
 export type {default as OpenPolicyEditCardLimitTypePageParams} from './OpenPolicyEditCardLimitTypePageParams';
-export type {default as UpdateSageIntacctGenericTypeParams} from './UpdateSageIntacctGenericTypeParams';
 export type {default as CopyExistingPolicyConnectionParams} from './CopyExistingPolicyConnectionParams';
 export type {default as ExportSearchItemsToCSVParams} from './ExportSearchItemsToCSVParams';
 export type {default as ExportReportCSVParams} from './ExportReportCSVParams';

@@ -126,7 +126,6 @@ import type {
     IncorrectZipFormatParams,
     IndividualExpenseRulesSubtitleParams,
     InstantSummaryParams,
-    IntacctMappingTitleParams,
     IntegrationExportParams,
     IntegrationSyncFailedParams,
     InvalidPropertyParams,
@@ -3705,121 +3704,6 @@ const translations = {
                 },
             },
         },
-        sageIntacct: {
-            preferredExporter: '優先エクスポーター',
-            taxSolution: '税務ソリューション',
-            notConfigured: '未設定',
-            exportDate: {
-                label: 'エクスポート日付',
-                description: 'この日付を使用してレポートをSage Intacctにエクスポートしてください。',
-                values: {
-                    [CONST.SAGE_INTACCT_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: '最後の経費の日付',
-                        description: 'レポート上の最新経費の日付。',
-                    },
-                    [CONST.SAGE_INTACCT_EXPORT_DATE.EXPORTED]: {
-                        label: 'エクスポート日付',
-                        description: 'レポートがSage Intacctにエクスポートされた日付。',
-                    },
-                    [CONST.SAGE_INTACCT_EXPORT_DATE.SUBMITTED]: {
-                        label: '提出日',
-                        description: 'レポートが承認のために提出された日付。',
-                    },
-                },
-            },
-            reimbursableExpenses: {
-                description: '実費経費がSage Intacctにエクスポートされる方法を設定します。',
-                values: {
-                    [CONST.SAGE_INTACCT_REIMBURSABLE_EXPENSE_TYPE.EXPENSE_REPORT]: '経費報告書',
-                    [CONST.SAGE_INTACCT_REIMBURSABLE_EXPENSE_TYPE.VENDOR_BILL]: '仕入先請求書',
-                },
-            },
-            nonReimbursableExpenses: {
-                description: '会社カードの購入がSage Intacctにエクスポートされる方法を設定します。',
-                values: {
-                    [CONST.SAGE_INTACCT_NON_REIMBURSABLE_EXPENSE_TYPE.CREDIT_CARD_CHARGE]: 'クレジットカード',
-                    [CONST.SAGE_INTACCT_NON_REIMBURSABLE_EXPENSE_TYPE.VENDOR_BILL]: '仕入先請求書',
-                },
-            },
-            creditCardAccount: 'クレジットカードアカウント',
-            defaultVendor: 'デフォルトのベンダー',
-            defaultVendorDescription: ({isReimbursable}: DefaultVendorDescriptionParams) =>
-                `Sage Intacctで一致するベンダーがない${isReimbursable ? '' : 'non-'}の払い戻し可能な経費に適用されるデフォルトのベンダーを設定します。`,
-            exportDescription: 'ExpensifyデータをSage Intacctにエクスポートする方法を設定します。',
-            exportPreferredExporterNote:
-                '優先されるエクスポーターは任意のワークスペース管理者で構いませんが、ドメイン設定で個々の会社カードに異なるエクスポートアカウントを設定する場合は、ドメイン管理者である必要があります。',
-            exportPreferredExporterSubNote: '一度設定すると、優先エクスポーターは自分のアカウントでエクスポート用のレポートを確認できます。',
-            noAccountsFound: 'アカウントが見つかりません',
-            noAccountsFoundDescription: `Sage Intacctにアカウントを追加し、再度接続を同期してください。`,
-            autoSync: '自動同期',
-            autoSyncDescription: 'Expensifyは毎日自動的にSage Intacctと同期します。',
-            inviteEmployees: '従業員を招待する',
-            inviteEmployeesDescription:
-                'Sage Intacctの従業員記録をインポートし、従業員をこのワークスペースに招待します。承認ワークフローはデフォルトでマネージャー承認となり、メンバーのページでさらに設定できます。',
-            syncReimbursedReports: '払い戻されたレポートを同期する',
-            syncReimbursedReportsDescription: 'Expensify ACHを使用してレポートが支払われるたびに、対応する請求書の支払いが以下のSage Intacctアカウントに作成されます。',
-            paymentAccount: 'Sage Intacct支払いアカウント',
-            accountingMethods: {
-                label: 'エクスポートのタイミング',
-                description: '経費をエクスポートするタイミングを選択:',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '発生主義',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '現金',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '自己負担の経費は最終承認時にエクスポートされます。',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '自己負担の経費は支払われたときにエクスポートされます。',
-                },
-            },
-        },
-        intacct: {
-            sageIntacctSetup: 'Sage Intacctのセットアップ',
-            prerequisitesTitle: '接続する前に...',
-            downloadExpensifyPackage: 'Sage Intacct用のExpensifyパッケージをダウンロード',
-            followSteps: 'Sage Intacctへの接続方法については、手順に従ってください。',
-            enterCredentials: 'Sage Intacctの資格情報を入力してください',
-            entity: 'Entity',
-            employeeDefault: 'Sage Intacct 従業員デフォルト',
-            employeeDefaultDescription: '従業員のデフォルト部門は、Sage Intacct に存在する場合、その経費に適用されます。',
-            displayedAsTagDescription: '部門は、従業員のレポートの各経費ごとに選択可能になります。',
-            displayedAsReportFieldDescription: '部門の選択は、従業員のレポート上のすべての経費に適用されます。',
-            toggleImportTitleFirstPart: 'Sage Intacctの処理方法を選択',
-            toggleImportTitleSecondPart: 'in Expensify.',
-            expenseTypes: '経費タイプ',
-            expenseTypesDescription: 'あなたのSage Intacctの経費タイプは、Expensifyにカテゴリーとしてインポートされます。',
-            accountTypesDescription: 'あなたのSage Intacct勘定科目表は、Expensifyにカテゴリとしてインポートされます。',
-            importTaxDescription: 'Sage Intacctから購入税率をインポートします。',
-            userDefinedDimensions: 'ユーザー定義のディメンション',
-            addUserDefinedDimension: 'ユーザー定義のディメンションを追加',
-            integrationName: '統合名',
-            dimensionExists: 'この名前のディメンションは既に存在します。',
-            removeDimension: 'ユーザー定義のディメンションを削除',
-            removeDimensionPrompt: 'このユーザー定義ディメンションを削除してもよろしいですか？',
-            userDefinedDimension: 'ユーザー定義ディメンション',
-            addAUserDefinedDimension: 'ユーザー定義のディメンションを追加',
-            detailedInstructionsLink: '詳細な指示を表示',
-            detailedInstructionsRestOfSentence: 'ユーザー定義のディメンションを追加する際に。',
-            userDimensionsAdded: () => ({
-                one: '1 UDDが追加されました',
-                other: (count: number) => `${count} UDDsが追加されました`,
-            }),
-            mappingTitle: ({mappingName}: IntacctMappingTitleParams) => {
-                switch (mappingName) {
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.DEPARTMENTS:
-                        return '部門';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.CLASSES:
-                        return 'classes';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.LOCATIONS:
-                        return 'ロケーション';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.CUSTOMERS:
-                        return '顧客';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.PROJECTS:
-                        return 'プロジェクト（仕事）';
-                    default:
-                        return 'mappings';
-                }
-            },
-        },
         type: {
             free: '無料',
             control: 'コントロール',
@@ -4491,7 +4375,6 @@ const translations = {
             subtitle: '会計システムに接続して、勘定科目表で取引をコード化し、支払いを自動マッチングし、財務を同期させましょう。',
             qbd: 'QuickBooks Desktop',
             xero: 'Xero',
-            intacct: 'Sage Intacct',
             sap: 'SAP',
             oracle: 'Oracle',
             microsoftDynamics: 'Microsoft Dynamics',
@@ -4503,8 +4386,7 @@ const translations = {
                 switch (connectionName) {
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Xero';
-                    case CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT:
-                        return 'Sage Intacct';
+
                     default: {
                         return '';
                     }
@@ -4565,7 +4447,6 @@ const translations = {
                     switch (stage) {
                         case 'quickbooksDesktopImportCustomers':
                             return '顧客のインポート';
-                        case 'intacctImportEmployees':
                         case 'quickbooksDesktopImportEmployees':
                             return '従業員のインポート';
                         case 'quickbooksDesktopImportAccounts':
@@ -4574,7 +4455,6 @@ const translations = {
                             return 'クラスのインポート';
                             return '場所のインポート';
                             return 'インポートされたデータを処理中';
-                        case 'intacctImportSyncBillPayments':
                             return '払い戻されたレポートと請求書の支払いを同期中';
                             return '税コードのインポート';
                         case 'startingImportXero':
@@ -4593,7 +4473,6 @@ const translations = {
                         case 'quickbooksDesktopWebConnectorReminder':
                             return 'QuickBooksとのデータを同期中です... Web Connectorが実行中であることを確認してください';
                         case 'xeroSyncStep':
-                        case 'intacctImportData':
                             return 'データを読み込んでいます';
                             return 'カテゴリを更新中';
                             return '顧客/プロジェクトの更新';
@@ -4623,12 +4502,9 @@ const translations = {
                             return 'Xeroデータを同期中';
                         case 'quickbooksDesktopImportVendors':
                             return 'ベンダーのインポート';
-                        case 'intacctCheckConnection':
-                            return 'Sage Intacct接続を確認中';
-                        case 'intacctImportDimensions':
-                            return 'Sage Intacctのディメンションをインポート中';
-                        case 'intacctImportTitle':
-                            return 'Sage Intacctデータのインポート';
+
+
+
                         default: {
                             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                             return `ステージの翻訳が見つかりません: ${stage}`;
@@ -4834,11 +4710,6 @@ const translations = {
                 description: `レポートフィールドでは、個々の項目の経費に関連するタグとは異なり、ヘッダーレベルの詳細を指定できます。これらの詳細には、特定のプロジェクト名、出張情報、場所などが含まれることがあります。`,
                 onlyAvailableOnPlan: 'レポートフィールドは、Controlプランでのみ利用可能です。料金は',
             },
-            [CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT]: {
-                title: 'Sage Intacct',
-                description: `Expensify + Sage Intacct の統合で、自動同期を楽しみ、手動入力を減らしましょう。ユーザー定義のディメンションによる詳細でリアルタイムな財務インサイトを得るとともに、部門、クラス、場所、顧客、プロジェクト（ジョブ）ごとの経費コード化が可能です。`,
-                onlyAvailableOnPlan: 'Sage Intacctとの統合は、Controlプランでのみ利用可能で、料金は',
-            },
             [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
                 title: 'QuickBooks Desktop',
                 description: `Expensify + QuickBooks Desktop の統合で、自動同期を楽しみ、手動入力を減らしましょう。クラス、アイテム、顧客、プロジェクトごとの経費コード化とリアルタイムの双方向接続で、究極の効率性を実現します。`,
@@ -4931,7 +4802,7 @@ const translations = {
                     perMember: 'アクティブメンバー1人あたり月額。',
                     learnMore: '詳細を確認',
                     pricing: '私たちのプランと価格について。',
-                    benefit1: '高度な会計接続（Sage Intacct、その他）',
+                    benefit1: '高度な会計接続',
                     benefit2: 'スマート経費ルール',
                     benefit3: 'マルチレベル承認ワークフロー',
                     benefit4: '強化されたセキュリティコントロール',
@@ -6185,7 +6056,7 @@ const translations = {
                 benefit1: 'Collectプランのすべて',
                 benefit2: 'マルチレベル承認ワークフロー',
                 benefit3: 'カスタム経費ルール',
-                benefit4: 'ERP統合 (Sage Intacct, Oracle)',
+                benefit4: 'ERP統合 (Oracle)',
                 benefit5: 'HR統合（Workday、Certinia）',
                 benefit6: 'SAML/SSO',
                 benefit7: 'カスタムインサイトとレポート',

@@ -3,7 +3,7 @@ import CONST from '@src/CONST';
 import type {OnboardingCompanySize} from './actions/Welcome/OnboardingFlow';
 import getPlatform from './getPlatform';
 
-const supportedIntegrationsInNewDot = ['quickbooksDesktop', 'xero', 'intacct', 'other'] as OnboardingAccounting[];
+const supportedIntegrationsInNewDot = ['quickbooksDesktop', 'xero', 'other'] as OnboardingAccounting[];
 
 /**
  * Determines if the user should be redirected to old dot based on company size and platform

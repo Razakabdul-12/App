@@ -13,7 +13,7 @@ import Onyx from 'react-native-onyx';
 import type {SvgProps} from 'react-native-svg';
 import type {OriginalMessageChangePolicy, OriginalMessageExportIntegration, OriginalMessageModifiedExpense} from 'src/types/onyx/OriginalMessage';
 import type {SetRequired, TupleToUnion, ValueOf} from 'type-fest';
-import {FallbackAvatar, IntacctSquare, QBDSquare, SageIntacctExport, XeroExport, XeroSquare} from '@components/Icon/Expensicons';
+import {FallbackAvatar, QBDSquare, XeroExport, XeroSquare} from '@components/Icon/Expensicons';
 import * as defaultGroupAvatars from '@components/Icon/GroupDefaultAvatars';
 import * as defaultWorkspaceAvatars from '@components/Icon/WorkspaceDefaultAvatars';
 import type {LocaleContextProps} from '@components/LocaleContextProvider';
@@ -10553,7 +10553,7 @@ function prepareOnboardingOnyxData(
     }
 
     if (userReportedIntegration) {
-        const requiresControlPlan: AllConnectionName[] = [CONST.POLICY.CONNECTIONS.NAME.QBD, CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT];
+        const requiresControlPlan: AllConnectionName[] = [CONST.POLICY.CONNECTIONS.NAME.QBD];
 
         optimisticData.push({
             onyxMethod: Onyx.METHOD.MERGE,
@@ -10854,9 +10854,6 @@ function getIntegrationIcon(connectionName?: ConnectionName) {
     if (connectionName === CONST.POLICY.CONNECTIONS.NAME.XERO) {
         return XeroSquare;
     }
-    if (connectionName === CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT) {
-        return IntacctSquare;
-    }
     if (connectionName === CONST.POLICY.CONNECTIONS.NAME.QBD) {
         return QBDSquare;
     }
@@ -10870,9 +10867,6 @@ function getIntegrationExportIcon(connectionName?: ConnectionName) {
     }
     if (connectionName === CONST.POLICY.CONNECTIONS.NAME.QBD) {
         return QBDSquare;
-    }
-    if (connectionName === CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT) {
-        return SageIntacctExport;
     }
 
     return undefined;

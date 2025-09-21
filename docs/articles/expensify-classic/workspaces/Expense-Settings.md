@@ -45,7 +45,7 @@ Billable expenses refer to costs that must be rebilled to a client or vendor. To
 - **Default to billable** – Expenses are billable by default but can be marked as non-billable.
 - **Default to non-billable** – Expenses are non-billable by default but can be marked as billable.
 
-If your **Group Workspace** integrates with Xero, QuickBooks Online, or Sage Intacct, you can export billable expenses for invoicing. Configure this under the **Coding** tab in the connection settings.
+If your **Group Workspace** integrates with Xero or QuickBooks Online, you can export billable expenses for invoicing. Configure this under the **Coding** tab in the connection settings.
 
 ## eReceipts
 

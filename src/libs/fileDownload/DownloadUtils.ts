@@ -35,11 +35,10 @@ const fetchFileDownload: FileDownload = (url, fileName, successMessage = '', sho
 
     const isApiUrl = resolvedUrl.startsWith(ApiUtils.getApiRoot());
     const isAttachmentUrl = CONST.ATTACHMENT_LOCAL_URL_PREFIX.some((prefix) => resolvedUrl.startsWith(prefix));
-    const isSageUrl = url === CONST.EXPENSIFY_PACKAGE_FOR_SAGE_INTACCT;
     if (
-        // We have two file download cases that we should allow: 1. downloading attachments 2. downloading Expensify package for Sage Intacct
+        // Only allow direct download for attachments or URLs hosted by our API; open everything else in a new tab
         shouldOpenExternalLink ||
-        (!isApiUrl && !isAttachmentUrl && !isSageUrl)
+        (!isApiUrl && !isAttachmentUrl)
     ) {
         // Different origin URLs might pose a CORS issue during direct downloads.
         // Opening in a new tab avoids this limitation, letting the browser handle the download.

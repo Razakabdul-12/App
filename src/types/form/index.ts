@@ -44,9 +44,7 @@ export type {AdditionalDetailStepForm} from './AdditionalDetailStepForm';
 export type {PolicyTagNameForm} from './PolicyTagNameForm';
 export type {WorkspaceTagForm} from './WorkspaceTagForm';
 
-export type {SageIntacctDimensionForm} from './SageIntacctDimensionsForm';
 export type {SubscriptionSizeForm} from './SubscriptionSizeForm';
-export type {SageIntactCredentialsForm} from './SageIntactCredentialsForm';
 export type {SearchAdvancedFiltersForm} from './SearchAdvancedFiltersForm';
 export type {default as TextPickerModalForm} from './TextPickerModalForm';
 export type {default as Form} from './Form';

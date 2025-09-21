@@ -96,8 +96,6 @@ function CardReconciliationPage({policy, route}: CardReconciliationPageProps) {
         switch (connection) {
             case CONST.POLICY.CONNECTIONS.ROUTE.XERO:
                 return `${environmentURL}/${ROUTES.POLICY_ACCOUNTING_XERO_AUTO_SYNC.getRoute(policyID, backTo)}`;
-            case CONST.POLICY.CONNECTIONS.ROUTE.SAGE_INTACCT:
-                return `${environmentURL}/${ROUTES.POLICY_ACCOUNTING_SAGE_INTACCT_ADVANCED.getRoute(policyID)}`;
             case CONST.POLICY.CONNECTIONS.ROUTE.QBD:
                 return `${environmentURL}/${ROUTES.WORKSPACE_ACCOUNTING_QUICKBOOKS_DESKTOP_ADVANCED.getRoute(policyID, backTo)}`;
             default:

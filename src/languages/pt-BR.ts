@@ -126,7 +126,6 @@ import type {
     IncorrectZipFormatParams,
     IndividualExpenseRulesSubtitleParams,
     InstantSummaryParams,
-    IntacctMappingTitleParams,
     IntegrationExportParams,
     IntegrationSyncFailedParams,
     InvalidPropertyParams,
@@ -3712,121 +3711,6 @@ const translations = {
                 },
             },
         },
-        sageIntacct: {
-            preferredExporter: 'Exportador preferido',
-            taxSolution: 'Solução de impostos',
-            notConfigured: 'Não configurado',
-            exportDate: {
-                label: 'Data de exportação',
-                description: 'Use esta data ao exportar relatórios para Sage Intacct.',
-                values: {
-                    [CONST.SAGE_INTACCT_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: 'Data da última despesa',
-                        description: 'Data da despesa mais recente no relatório.',
-                    },
-                    [CONST.SAGE_INTACCT_EXPORT_DATE.EXPORTED]: {
-                        label: 'Data de exportação',
-                        description: 'Data em que o relatório foi exportado para Sage Intacct.',
-                    },
-                    [CONST.SAGE_INTACCT_EXPORT_DATE.SUBMITTED]: {
-                        label: 'Data de envio',
-                        description: 'Data em que o relatório foi enviado para aprovação.',
-                    },
-                },
-            },
-            reimbursableExpenses: {
-                description: 'Defina como as despesas fora do bolso são exportadas para o Sage Intacct.',
-                values: {
-                    [CONST.SAGE_INTACCT_REIMBURSABLE_EXPENSE_TYPE.EXPENSE_REPORT]: 'Relatórios de despesas',
-                    [CONST.SAGE_INTACCT_REIMBURSABLE_EXPENSE_TYPE.VENDOR_BILL]: 'Faturas de fornecedores',
-                },
-            },
-            nonReimbursableExpenses: {
-                description: 'Defina como as compras com cartão corporativo são exportadas para o Sage Intacct.',
-                values: {
-                    [CONST.SAGE_INTACCT_NON_REIMBURSABLE_EXPENSE_TYPE.CREDIT_CARD_CHARGE]: 'Cartões de crédito',
-                    [CONST.SAGE_INTACCT_NON_REIMBURSABLE_EXPENSE_TYPE.VENDOR_BILL]: 'Faturas de fornecedores',
-                },
-            },
-            creditCardAccount: 'Conta de cartão de crédito',
-            defaultVendor: 'Fornecedor padrão',
-            defaultVendorDescription: ({isReimbursable}: DefaultVendorDescriptionParams) =>
-                `Defina um fornecedor padrão que será aplicado às despesas reembolsáveis ${isReimbursable ? '' : 'não-'} que não têm um fornecedor correspondente no Sage Intacct.`,
-            exportDescription: 'Configure como os dados do Expensify são exportados para o Sage Intacct.',
-            exportPreferredExporterNote:
-                'O exportador preferido pode ser qualquer administrador do espaço de trabalho, mas também deve ser um Administrador de Domínio se você definir contas de exportação diferentes para cartões de empresa individuais nas Configurações de Domínio.',
-            exportPreferredExporterSubNote: 'Uma vez definido, o exportador preferido verá os relatórios para exportação em sua conta.',
-            noAccountsFound: 'Nenhuma conta encontrada',
-            noAccountsFoundDescription: `Por favor, adicione a conta no Sage Intacct e sincronize a conexão novamente.`,
-            autoSync: 'Auto-sync',
-            autoSyncDescription: 'Expensify irá sincronizar automaticamente com Sage Intacct todos os dias.',
-            inviteEmployees: 'Convidar funcionários',
-            inviteEmployeesDescription:
-                'Importe registros de funcionários do Sage Intacct e convide funcionários para este espaço de trabalho. Seu fluxo de aprovação será padrão para aprovação do gerente e pode ser configurado ainda mais na página de Membros.',
-            syncReimbursedReports: 'Sincronizar relatórios reembolsados',
-            syncReimbursedReportsDescription: 'Sempre que um relatório for pago usando Expensify ACH, o pagamento correspondente da fatura será criado na conta Sage Intacct abaixo.',
-            paymentAccount: 'Conta de pagamento Sage Intacct',
-            accountingMethods: {
-                label: 'Quando Exportar',
-                description: 'Escolha quando exportar as despesas:',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Acumulação',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Dinheiro',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Despesas do próprio bolso serão exportadas quando aprovadas em definitivo',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Despesas do próprio bolso serão exportadas quando pagas',
-                },
-            },
-        },
-        intacct: {
-            sageIntacctSetup: 'Configuração do Sage Intacct',
-            prerequisitesTitle: 'Antes de se conectar...',
-            downloadExpensifyPackage: 'Baixe o pacote Expensify para Sage Intacct',
-            followSteps: 'Siga os passos nas nossas instruções de Como fazer: Conectar ao Sage Intacct',
-            enterCredentials: 'Insira suas credenciais do Sage Intacct',
-            entity: 'Entity',
-            employeeDefault: 'Padrão de funcionário Sage Intacct',
-            employeeDefaultDescription: 'O departamento padrão do funcionário será aplicado às suas despesas no Sage Intacct, se existir.',
-            displayedAsTagDescription: 'O departamento será selecionável para cada despesa individual no relatório de um funcionário.',
-            displayedAsReportFieldDescription: 'A seleção de departamento será aplicada a todas as despesas no relatório de um funcionário.',
-            toggleImportTitleFirstPart: 'Escolha como lidar com o Sage Intacct',
-            toggleImportTitleSecondPart: 'in Expensify.',
-            expenseTypes: 'Tipos de despesas',
-            expenseTypesDescription: 'Seus tipos de despesas do Sage Intacct serão importados para o Expensify como categorias.',
-            accountTypesDescription: 'Seu plano de contas do Sage Intacct será importado para o Expensify como categorias.',
-            importTaxDescription: 'Importar taxa de imposto de compra do Sage Intacct.',
-            userDefinedDimensions: 'Dimensões definidas pelo usuário',
-            addUserDefinedDimension: 'Adicionar dimensão definida pelo usuário',
-            integrationName: 'Nome da integração',
-            dimensionExists: 'Uma dimensão com este nome já existe.',
-            removeDimension: 'Remover dimensão definida pelo usuário',
-            removeDimensionPrompt: 'Tem certeza de que deseja remover esta dimensão definida pelo usuário?',
-            userDefinedDimension: 'Dimensão definida pelo usuário',
-            addAUserDefinedDimension: 'Adicionar uma dimensão definida pelo usuário',
-            detailedInstructionsLink: 'Ver instruções detalhadas',
-            detailedInstructionsRestOfSentence: 'sobre a adição de dimensões definidas pelo usuário.',
-            userDimensionsAdded: () => ({
-                one: '1 UDD adicionado',
-                other: (count: number) => `${count} UDDs adicionados`,
-            }),
-            mappingTitle: ({mappingName}: IntacctMappingTitleParams) => {
-                switch (mappingName) {
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.DEPARTMENTS:
-                        return 'departamentos';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.CLASSES:
-                        return 'classes';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.LOCATIONS:
-                        return 'locais';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.CUSTOMERS:
-                        return 'clientes';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.PROJECTS:
-                        return 'projetos (trabalhos)';
-                    default:
-                        return 'mapeamentos';
-                }
-            },
-        },
         type: {
             free: 'Grátis',
             control: 'Controle',
@@ -4503,7 +4387,6 @@ const translations = {
                 'Conecte-se ao seu sistema de contabilidade para codificar transações com seu plano de contas, fazer a correspondência automática de pagamentos e manter suas finanças sincronizadas.',
             qbd: 'QuickBooks Desktop',
             xero: 'Xero',
-            intacct: 'Sage Intacct',
             sap: 'SAP',
             oracle: 'Oracle',
             microsoftDynamics: 'Microsoft Dynamics',
@@ -4515,8 +4398,7 @@ const translations = {
                 switch (connectionName) {
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Xero';
-                    case CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT:
-                        return 'Sage Intacct';
+
                     default: {
                         return '';
                     }
@@ -4578,7 +4460,6 @@ const translations = {
                     switch (stage) {
                         case 'quickbooksDesktopImportCustomers':
                             return 'Importando clientes';
-                        case 'intacctImportEmployees':
                         case 'quickbooksDesktopImportEmployees':
                             return 'Importando funcionários';
                         case 'quickbooksDesktopImportAccounts':
@@ -4587,7 +4468,6 @@ const translations = {
                             return 'Importando classes';
                             return 'Importando locais';
                             return 'Processando dados importados';
-                        case 'intacctImportSyncBillPayments':
                             return 'Sincronizando relatórios reembolsados e pagamentos de contas';
                             return 'Importando códigos fiscais';
                         case 'startingImportXero':
@@ -4606,7 +4486,6 @@ const translations = {
                         case 'quickbooksDesktopWebConnectorReminder':
                             return 'Ainda sincronizando dados com o QuickBooks... Por favor, certifique-se de que o Web Connector está em execução.';
                         case 'xeroSyncStep':
-                        case 'intacctImportData':
                             return 'Carregando dados';
                             return 'Atualizando categorias';
                             return 'Atualizando clientes/projetos';
@@ -4636,12 +4515,9 @@ const translations = {
                             return 'Sincronizando dados do Xero';
                         case 'quickbooksDesktopImportVendors':
                             return 'Importando fornecedores';
-                        case 'intacctCheckConnection':
-                            return 'Verificando conexão com Sage Intacct';
-                        case 'intacctImportDimensions':
-                            return 'Importando dimensões do Sage Intacct';
-                        case 'intacctImportTitle':
-                            return 'Importando dados do Sage Intacct';
+
+
+
                         default: {
                             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                             return `Tradução ausente para a etapa: ${stage}`;
@@ -4853,11 +4729,6 @@ const translations = {
                 description: `Os campos de relatório permitem que você especifique detalhes no nível do cabeçalho, distintos das tags que se referem a despesas em itens de linha individuais. Esses detalhes podem abranger nomes específicos de projetos, informações de viagens de negócios, locais e mais.`,
                 onlyAvailableOnPlan: 'Os campos de relatório estão disponíveis apenas no plano Control, a partir de',
             },
-            [CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT]: {
-                title: 'Sage Intacct',
-                description: `Aproveite a sincronização automática e reduza as entradas manuais com a integração Expensify + Sage Intacct. Obtenha insights financeiros detalhados e em tempo real com dimensões definidas pelo usuário, além de codificação de despesas por departamento, classe, localização, cliente e projeto (trabalho).`,
-                onlyAvailableOnPlan: 'Nossa integração com o Sage Intacct está disponível apenas no plano Control, a partir de',
-            },
             [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
                 title: 'QuickBooks Desktop',
                 description: `Aproveite a sincronização automatizada e reduza entradas manuais com a integração Expensify + QuickBooks Desktop. Obtenha eficiência máxima com uma conexão bidirecional em tempo real e codificação de despesas por classe, item, cliente e projeto.`,
@@ -4951,7 +4822,7 @@ const translations = {
                     perMember: 'por membro ativo por mês.',
                     learnMore: 'Saiba mais',
                     pricing: 'sobre nossos planos e preços.',
-                    benefit1: 'Conexões avançadas de contabilidade (Sage Intacct e mais)',
+                    benefit1: 'Conexões avançadas de contabilidade',
                     benefit2: 'Regras inteligentes de despesas',
                     benefit3: 'Fluxos de aprovação em múltiplos níveis',
                     benefit4: 'Controles de segurança aprimorados',
@@ -6214,7 +6085,7 @@ const translations = {
                 benefit1: 'Tudo no plano Collect',
                 benefit2: 'Fluxos de aprovação em múltiplos níveis',
                 benefit3: 'Regras de despesas personalizadas',
-                benefit4: 'Integrações ERP (Sage Intacct, Oracle)',
+                benefit4: 'Integrações ERP (Oracle)',
                 benefit5: 'Integrações de RH (Workday, Certinia)',
                 benefit6: 'SAML/SSO',
                 benefit7: 'Insights e relatórios personalizados',

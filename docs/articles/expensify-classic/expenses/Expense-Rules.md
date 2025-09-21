@@ -74,4 +74,3 @@ When exporting non-reimbursable expenses, the **Payee** field in the accounting 
 
 To avoid this, use **Expense Rules** to standardize vendor names before export.  
 - **Supported integrations:** QuickBooks Online, QuickBooks Desktop, Xero.  
-- **Not supported for:** Sage Intacct (due to API limitations).

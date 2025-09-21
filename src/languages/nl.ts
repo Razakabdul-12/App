@@ -126,7 +126,6 @@ import type {
     IncorrectZipFormatParams,
     IndividualExpenseRulesSubtitleParams,
     InstantSummaryParams,
-    IntacctMappingTitleParams,
     IntegrationExportParams,
     IntegrationSyncFailedParams,
     InvalidPropertyParams,
@@ -3716,122 +3715,6 @@ const translations = {
                 },
             },
         },
-        sageIntacct: {
-            preferredExporter: 'Voorkeurs-exporteur',
-            taxSolution: 'Belastingoplossing',
-            notConfigured: 'Niet geconfigureerd',
-            exportDate: {
-                label: 'Exportdatum',
-                description: 'Gebruik deze datum bij het exporteren van rapporten naar Sage Intacct.',
-                values: {
-                    [CONST.SAGE_INTACCT_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: 'Datum van laatste uitgave',
-                        description: 'Datum van de meest recente uitgave op het rapport.',
-                    },
-                    [CONST.SAGE_INTACCT_EXPORT_DATE.EXPORTED]: {
-                        label: 'Exportdatum',
-                        description: 'Datum waarop het rapport is geëxporteerd naar Sage Intacct.',
-                    },
-                    [CONST.SAGE_INTACCT_EXPORT_DATE.SUBMITTED]: {
-                        label: 'Ingediende datum',
-                        description: 'Datum waarop het rapport ter goedkeuring is ingediend.',
-                    },
-                },
-            },
-            reimbursableExpenses: {
-                description: 'Stel in hoe uit eigen zak gemaakte uitgaven worden geëxporteerd naar Sage Intacct.',
-                values: {
-                    [CONST.SAGE_INTACCT_REIMBURSABLE_EXPENSE_TYPE.EXPENSE_REPORT]: 'Onkostendeclaraties',
-                    [CONST.SAGE_INTACCT_REIMBURSABLE_EXPENSE_TYPE.VENDOR_BILL]: 'Leveranciersfacturen',
-                },
-            },
-            nonReimbursableExpenses: {
-                description: 'Stel in hoe aankopen met bedrijfskaarten worden geëxporteerd naar Sage Intacct.',
-                values: {
-                    [CONST.SAGE_INTACCT_NON_REIMBURSABLE_EXPENSE_TYPE.CREDIT_CARD_CHARGE]: 'Kredietkaarten',
-                    [CONST.SAGE_INTACCT_NON_REIMBURSABLE_EXPENSE_TYPE.VENDOR_BILL]: 'Leveranciersfacturen',
-                },
-            },
-            creditCardAccount: 'Creditcardrekening',
-            defaultVendor: 'Standaard leverancier',
-            defaultVendorDescription: ({isReimbursable}: DefaultVendorDescriptionParams) =>
-                `Stel een standaard leverancier in die van toepassing zal zijn op ${isReimbursable ? '' : 'non-'}terugbetaalbare uitgaven die geen overeenkomende leverancier hebben in Sage Intacct.`,
-            exportDescription: 'Configureer hoe Expensify-gegevens worden geëxporteerd naar Sage Intacct.',
-            exportPreferredExporterNote:
-                'De voorkeursexporteur kan elke werkruimtebeheerder zijn, maar moet ook een domeinbeheerder zijn als je verschillende exportaccounts instelt voor individuele bedrijfskaarten in Domeininstellingen.',
-            exportPreferredExporterSubNote: 'Zodra ingesteld, zal de voorkeurs-exporteur rapporten voor export in hun account zien.',
-            noAccountsFound: 'Geen accounts gevonden',
-            noAccountsFoundDescription: `Voeg het account toe in Sage Intacct en synchroniseer de verbinding opnieuw.`,
-            autoSync: 'Auto-sync',
-            autoSyncDescription: 'Expensify zal elke dag automatisch synchroniseren met Sage Intacct.',
-            inviteEmployees: 'Medewerkers uitnodigen',
-            inviteEmployeesDescription:
-                'Importeer Sage Intacct-medewerkersgegevens en nodig medewerkers uit naar deze werkruimte. Uw goedkeuringsworkflow zal standaard op goedkeuring door de manager staan en kan verder worden geconfigureerd op de Leden-pagina.',
-            syncReimbursedReports: 'Gesynchroniseerde vergoede rapporten',
-            syncReimbursedReportsDescription:
-                'Telkens wanneer een rapport wordt betaald met Expensify ACH, wordt de overeenkomstige factuurbetaling aangemaakt in het Sage Intacct-account hieronder.',
-            paymentAccount: 'Sage Intacct-betaalrekening',
-            accountingMethods: {
-                label: 'Wanneer exporteren',
-                description: 'Kies wanneer u de uitgaven wilt exporteren:',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Accrual',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Contant',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Uit eigen zak gemaakte uitgaven worden geëxporteerd wanneer ze definitief zijn goedgekeurd.',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Uit eigen zak gemaakte uitgaven worden geëxporteerd wanneer ze zijn betaald.',
-                },
-            },
-        },
-        intacct: {
-            sageIntacctSetup: 'Sage Intacct setup',
-            prerequisitesTitle: 'Voordat je verbinding maakt...',
-            downloadExpensifyPackage: 'Download het Expensify-pakket voor Sage Intacct',
-            followSteps: 'Volg de stappen in onze How-to: Connect to Sage Intacct instructies.',
-            enterCredentials: 'Voer uw Sage Intacct-inloggegevens in',
-            entity: 'Entity',
-            employeeDefault: 'Sage Intacct medewerker standaardwaarde',
-            employeeDefaultDescription: 'De standaardafdeling van de werknemer wordt toegepast op hun uitgaven in Sage Intacct indien deze bestaat.',
-            displayedAsTagDescription: 'Afdeling zal selecteerbaar zijn voor elke individuele uitgave op het rapport van een werknemer.',
-            displayedAsReportFieldDescription: 'Afdelingsselectie zal van toepassing zijn op alle uitgaven in het rapport van een werknemer.',
-            toggleImportTitleFirstPart: 'Kies hoe Sage Intacct te beheren',
-            toggleImportTitleSecondPart: 'in Expensify.',
-            expenseTypes: 'Uitgavensoorten',
-            expenseTypesDescription: 'Uw Sage Intacct-uitgavensoorten worden in Expensify geïmporteerd als categorieën.',
-            accountTypesDescription: 'Uw Sage Intacct-rekeningschema wordt in Expensify geïmporteerd als categorieën.',
-            importTaxDescription: 'Importeer aankoopbelastingtarief van Sage Intacct.',
-            userDefinedDimensions: 'Door de gebruiker gedefinieerde dimensies',
-            addUserDefinedDimension: 'Gebruikersgedefinieerde dimensie toevoegen',
-            integrationName: 'Integratienaam',
-            dimensionExists: 'Er bestaat al een dimensie met deze naam.',
-            removeDimension: 'Gebruikersgedefinieerde dimensie verwijderen',
-            removeDimensionPrompt: 'Weet je zeker dat je deze door de gebruiker gedefinieerde dimensie wilt verwijderen?',
-            userDefinedDimension: 'Door de gebruiker gedefinieerde dimensie',
-            addAUserDefinedDimension: 'Voeg een door de gebruiker gedefinieerde dimensie toe',
-            detailedInstructionsLink: 'Bekijk gedetailleerde instructies',
-            detailedInstructionsRestOfSentence: 'over het toevoegen van door de gebruiker gedefinieerde dimensies.',
-            userDimensionsAdded: () => ({
-                one: '1 UDD toegevoegd',
-                other: (count: number) => `${count} UDD's toegevoegd`,
-            }),
-            mappingTitle: ({mappingName}: IntacctMappingTitleParams) => {
-                switch (mappingName) {
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.DEPARTMENTS:
-                        return 'afdelingen';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.CLASSES:
-                        return 'classes';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.LOCATIONS:
-                        return 'locaties';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.CUSTOMERS:
-                        return 'klanten';
-                    case CONST.SAGE_INTACCT_CONFIG.MAPPINGS.PROJECTS:
-                        return 'projecten (banen)';
-                    default:
-                        return 'mappings';
-                }
-            },
-        },
         type: {
             free: 'Gratis',
             control: 'Beheer',
@@ -4506,7 +4389,6 @@ const translations = {
             subtitle: 'Maak verbinding met uw boekhoudsysteem om transacties te coderen met uw rekeningschema, betalingen automatisch te matchen en uw financiën synchroon te houden.',
             qbd: 'QuickBooks Desktop',
             xero: 'Xero',
-            intacct: 'Sage Intacct',
             sap: 'SAP',
             oracle: 'Oracle',
             microsoftDynamics: 'Microsoft Dynamics',
@@ -4518,8 +4400,7 @@ const translations = {
                 switch (connectionName) {
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Xero';
-                    case CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT:
-                        return 'Sage Intacct';
+
                     default: {
                         return '';
                     }
@@ -4581,7 +4462,6 @@ const translations = {
                     switch (stage) {
                         case 'quickbooksDesktopImportCustomers':
                             return 'Klanten importeren';
-                        case 'intacctImportEmployees':
                         case 'quickbooksDesktopImportEmployees':
                             return 'Werknemers importeren';
                         case 'quickbooksDesktopImportAccounts':
@@ -4590,7 +4470,6 @@ const translations = {
                             return 'Klassen importeren';
                             return 'Locaties importeren';
                             return 'Geïmporteerde gegevens verwerken';
-                        case 'intacctImportSyncBillPayments':
                             return 'Gesynchroniseerde vergoede rapporten en factuurbetalingen';
                             return 'Belastingcodes importeren';
                         case 'startingImportXero':
@@ -4609,7 +4488,6 @@ const translations = {
                         case 'quickbooksDesktopWebConnectorReminder':
                             return 'Nog steeds gegevens synchroniseren met QuickBooks... Zorg ervoor dat de Web Connector actief is.';
                         case 'xeroSyncStep':
-                        case 'intacctImportData':
                             return 'Gegevens laden';
                             return 'Categorieën bijwerken';
                             return 'Klanten/projecten bijwerken';
@@ -4639,12 +4517,9 @@ const translations = {
                             return 'Xero-gegevens synchroniseren';
                         case 'quickbooksDesktopImportVendors':
                             return 'Leveranciers importeren';
-                        case 'intacctCheckConnection':
-                            return 'Sage Intacct-verbinding controleren';
-                        case 'intacctImportDimensions':
-                            return 'Sage Intacct-dimensies importeren';
-                        case 'intacctImportTitle':
-                            return 'Sage Intacct-gegevens importeren';
+
+
+
                         default: {
                             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                             return `Vertaling ontbreekt voor fase: ${stage}`;
@@ -4854,11 +4729,6 @@ const translations = {
                 description: `Rapportvelden laten u header-niveau details specificeren, anders dan tags die betrekking hebben op uitgaven op individuele regelitems. Deze details kunnen specifieke projectnamen, zakenreis-informatie, locaties en meer omvatten.`,
                 onlyAvailableOnPlan: 'Rapportvelden zijn alleen beschikbaar op het Control-abonnement, beginnend bij',
             },
-            [CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT]: {
-                title: 'Sage Intacct',
-                description: `Geniet van geautomatiseerde synchronisatie en verminder handmatige invoer met de Expensify + Sage Intacct-integratie. Verkrijg diepgaande, realtime financiële inzichten met door de gebruiker gedefinieerde dimensies, evenals onkostencodering per afdeling, klasse, locatie, klant en project (taak).`,
-                onlyAvailableOnPlan: 'Onze Sage Intacct-integratie is alleen beschikbaar op het Control-abonnement, beginnend bij',
-            },
             [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
                 title: 'QuickBooks Desktop',
                 description: `Geniet van geautomatiseerde synchronisatie en verminder handmatige invoer met de Expensify + QuickBooks Desktop-integratie. Behaal ultieme efficiëntie met een realtime, tweerichtingsverbinding en uitgavecodering per klasse, item, klant en project.`,
@@ -4951,7 +4821,7 @@ const translations = {
                     perMember: 'per actief lid per maand.',
                     learnMore: 'Meer informatie',
                     pricing: 'over onze plannen en prijzen.',
-                    benefit1: 'Geavanceerde boekhoudkoppelingen (Sage Intacct en meer)',
+                    benefit1: 'Geavanceerde boekhoudkoppelingen',
                     benefit2: 'Slimme uitgavenregels',
                     benefit3: 'Meerniveau goedkeuringsworkflows',
                     benefit4: 'Verbeterde beveiligingscontroles',
@@ -6214,7 +6084,7 @@ const translations = {
                 benefit1: 'Alles in het Collect-plan',
                 benefit2: 'Meerniveau goedkeuringsworkflows',
                 benefit3: 'Aangepaste uitgavenregels',
-                benefit4: 'ERP-integraties (Sage Intacct, Oracle)',
+                benefit4: 'ERP-integraties (Oracle)',
                 benefit5: 'HR-integraties (Workday, Certinia)',
                 benefit6: 'SAML/SSO',
                 benefit7: 'Aangepaste inzichten en rapportage',
