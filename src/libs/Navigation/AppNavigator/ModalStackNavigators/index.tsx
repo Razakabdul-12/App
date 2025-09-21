@@ -32,7 +32,6 @@ import type {
     SettingsNavigatorParamList,
     ShareNavigatorParamList,
     SignInNavigatorParamList,
-    SplitDetailsNavigatorParamList,
     TwoFactorAuthNavigatorParamList,
     WorkspaceConfirmationNavigatorParamList,
 } from '@navigation/types';
@@ -160,12 +159,6 @@ const MoneyRequestModalStackNavigator = createModalStackNavigator<MoneyRequestNa
     [SCREENS.MONEY_REQUEST.STEP_DISTANCE_MAP]: () => require<ReactComponentModule>('../../../../pages/iou/request/step/IOURequestStepDistanceMap').default,
     [SCREENS.MONEY_REQUEST.STEP_DISTANCE_MANUAL]: () => require<ReactComponentModule>('../../../../pages/iou/request/step/IOURequestStepDistanceManual').default,
 });
-
-
-const SplitDetailsModalStackNavigator = createModalStackNavigator<SplitDetailsNavigatorParamList>({
-    [SCREENS.SPLIT_DETAILS.ROOT]: () => require<ReactComponentModule>('../../../../pages/iou/SplitBillDetailsPage').default,
-});
-
 const ProfileModalStackNavigator = createModalStackNavigator<ProfileNavigatorParamList>({
     [SCREENS.PROFILE_ROOT]: () => require<ReactComponentModule>('../../../../pages/ProfilePage').default,
 });
@@ -536,7 +529,6 @@ export {
     TwoFactorAuthenticatorStackNavigator,
     SignInModalStackNavigator,
     CategoriesModalStackNavigator,
-    SplitDetailsModalStackNavigator,
 
     SearchReportModalStackNavigator,
     RestrictedActionModalStackNavigator,

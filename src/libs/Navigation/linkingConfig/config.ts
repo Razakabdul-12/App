@@ -673,11 +673,6 @@ const config: LinkingOptions<RootNavigatorParamList>['config'] = {
                     },
                 },
             
-                [SCREENS.RIGHT_MODAL.SPLIT_DETAILS]: {
-                    screens: {
-                        [SCREENS.SPLIT_DETAILS.ROOT]: ROUTES.SPLIT_BILL_DETAILS.route,
-                    },
-                },
                 [SCREENS.RIGHT_MODAL.ADD_PERSONAL_BANK_ACCOUNT]: {
                     screens: {
                         [SCREENS.ADD_PERSONAL_BANK_ACCOUNT_ROOT]: ROUTES.BANK_ACCOUNT_PERSONAL,

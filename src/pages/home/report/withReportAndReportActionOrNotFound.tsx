@@ -10,7 +10,7 @@ import {openReport} from '@libs/actions/Report';
 import getComponentDisplayName from '@libs/getComponentDisplayName';
 import getNonEmptyStringOnyxID from '@libs/getNonEmptyStringOnyxID';
 import type {PlatformStackScreenProps} from '@libs/Navigation/PlatformStackNavigation/types';
-import type {FlagCommentNavigatorParamList, SplitDetailsNavigatorParamList} from '@libs/Navigation/types';
+import type {FlagCommentNavigatorParamList} from '@libs/Navigation/types';
 import {canAccessReport} from '@libs/ReportUtils';
 import NotFoundPage from '@pages/ErrorPage/NotFoundPage';
 import ONYXKEYS from '@src/ONYXKEYS';
@@ -19,8 +19,8 @@ import type * as OnyxTypes from '@src/types/onyx';
 import {isEmptyObject} from '@src/types/utils/EmptyObject';
 
 type WithReportAndReportActionOrNotFoundProps = PlatformStackScreenProps<
-    FlagCommentNavigatorParamList & SplitDetailsNavigatorParamList,
-    typeof SCREENS.FLAG_COMMENT_ROOT | typeof SCREENS.SPLIT_DETAILS.ROOT
+    FlagCommentNavigatorParamList,
+    typeof SCREENS.FLAG_COMMENT_ROOT
 > & {
     /** The report currently being looked at */
     report: OnyxTypes.Report;

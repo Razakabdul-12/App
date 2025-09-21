@@ -1035,21 +1035,6 @@ type WorkspaceConfirmationNavigatorParamList = {
     };
 };
 
-type SplitDetailsNavigatorParamList = {
-    [SCREENS.SPLIT_DETAILS.ROOT]: {
-        reportID: string;
-        reportActionID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.SPLIT_DETAILS.EDIT_REQUEST]: {
-        field: string;
-        reportID: string;
-        reportActionID: string;
-        currency: string;
-        tagIndex: string;
-    };
-};
-
 type AddPersonalBankAccountNavigatorParamList = {
     [SCREENS.ADD_PERSONAL_BANK_ACCOUNT_ROOT]: undefined;
 };
@@ -1122,7 +1107,6 @@ type RightModalNavigatorParamList = {
     [SCREENS.RIGHT_MODAL.ROOM_MEMBERS]: NavigatorScreenParams<RoomMembersNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.MONEY_REQUEST]: NavigatorScreenParams<MoneyRequestNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.WORKSPACE_CONFIRMATION]: NavigatorScreenParams<WorkspaceConfirmationNavigatorParamList>;
-    [SCREENS.RIGHT_MODAL.SPLIT_DETAILS]: NavigatorScreenParams<SplitDetailsNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.ADD_PERSONAL_BANK_ACCOUNT]: NavigatorScreenParams<AddPersonalBankAccountNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.FLAG_COMMENT]: NavigatorScreenParams<FlagCommentNavigatorParamList>;
     [SCREENS.RIGHT_MODAL.EDIT_REQUEST]: NavigatorScreenParams<EditRequestNavigatorParamList>;
@@ -1589,7 +1573,6 @@ export type {
     SettingsNavigatorParamList,
     SettingsSplitNavigatorParamList,
     SignInNavigatorParamList,
-    SplitDetailsNavigatorParamList,
     SplitNavigatorBySidebar,
     SplitNavigatorName,
     SplitNavigatorParamList,

@@ -112,10 +112,6 @@ function RightModalNavigator({navigation, route}: RightModalNavigatorProps) {
                             component={ModalStackNavigators.WorkspaceConfirmationModalStackNavigator}
                         />
                         <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.SPLIT_DETAILS}
-                            component={ModalStackNavigators.SplitDetailsModalStackNavigator}
-                        />
-                        <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.ADD_PERSONAL_BANK_ACCOUNT}
                             component={ModalStackNavigators.AddPersonalBankAccountModalStackNavigator}
                         />

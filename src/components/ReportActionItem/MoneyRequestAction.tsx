@@ -104,7 +104,6 @@ function MoneyRequestAction({
             return;
         }
         if (isSplitBillAction) {
-            Navigation.navigate(ROUTES.SPLIT_BILL_DETAILS.getRoute(chatReportID, action.reportActionID, Navigation.getReportRHPActiveRoute()));
             return;
         }
 

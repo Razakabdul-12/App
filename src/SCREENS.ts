@@ -141,7 +141,6 @@ const SCREENS = {
         REPORT_DESCRIPTION: 'Report_Description',
         PARTICIPANTS: 'Participants',
         MONEY_REQUEST: 'MoneyRequest',
-        SPLIT_DETAILS: 'SplitDetails',
         ADD_PERSONAL_BANK_ACCOUNT: 'AddPersonalBankAccount',
         FLAG_COMMENT: 'Flag_Comment',
         EDIT_REQUEST: 'EditRequest',
@@ -378,11 +377,7 @@ const SCREENS = {
         REPORT_FIELD: 'EditRequest_ReportField',
     },
 
-    SPLIT_DETAILS: {
-        ROOT: 'SplitDetails_Root',
-        EDIT_REQUEST: 'SplitDetails_Edit_Request',
-        EDIT_CURRENCY: 'SplitDetails_Edit_Currency',
-    },
+  
 
     ONBOARDING: {
         PERSONAL_DETAILS: 'Onboarding_Personal_Details',
