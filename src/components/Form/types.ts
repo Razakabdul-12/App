@@ -28,7 +28,6 @@ import type ValuePicker from '@components/ValuePicker';
 import type {ForwardedFSClassProps} from '@libs/Fullstory/types';
 import type ConstantSelector from '@pages/Debug/ConstantSelector';
 import type {FileObject} from '@pages/media/AttachmentModalScreen/types';
-import type OnboardingCurrencyPicker from '@pages/OnboardingWorkspaceConfirmation/OnboardingCurrencyPicker';
 import type BusinessTypePicker from '@pages/ReimbursementAccount/USD/BusinessInfo/subSteps/TypeBusiness/BusinessTypePicker';
 import type {Country} from '@src/CONST';
 import type {OnyxFormKey, OnyxValues} from '@src/ONYXKEYS';
@@ -65,8 +64,7 @@ type ValidInputs =
     | typeof ConstantSelector
     | typeof UploadFile
     | typeof PushRowWithModal
-    | typeof TimeModalPicker
-    | typeof OnboardingCurrencyPicker;
+    | typeof TimeModalPicker;
 
 type ValueTypeKey = 'string' | 'boolean' | 'date' | 'country' | 'disabledListValues' | 'entityChart';
 type ValueTypeMap = {

@@ -25,11 +25,10 @@ import {completeOnboarding as completeOnboardingReport} from '@userActions/Repor
 import {setOnboardingAdminsChatReportID, setOnboardingErrorMessage, setOnboardingPolicyID} from '@userActions/Welcome';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
-import ROUTES from '@src/ROUTES';
 import INPUT_IDS from '@src/types/form/DisplayNameForm';
 import type {BaseOnboardingPersonalDetailsProps} from './types';
 
-function BaseOnboardingPersonalDetails({currentUserPersonalDetails, shouldUseNativeStyles, route}: BaseOnboardingPersonalDetailsProps) {
+function BaseOnboardingPersonalDetails({currentUserPersonalDetails, shouldUseNativeStyles}: BaseOnboardingPersonalDetailsProps) {
     const styles = useThemeStyles();
     const {translate, formatPhoneNumber} = useLocalize();
     const [onboardingPurposeSelected] = useOnyx(ONYXKEYS.ONBOARDING_PURPOSE_SELECTED, {canBeMissing: true});
@@ -52,8 +51,6 @@ function BaseOnboardingPersonalDetails({currentUserPersonalDetails, shouldUseNat
     const {isBetaEnabled} = usePermissions();
 
     const isPrivateDomainAndHasAccessiblePolicies = !account?.isFromPublicDomain && !!account?.hasAccessibleDomainPolicies;
-    const isVsb = onboardingValues?.signupQualifier === CONST.ONBOARDING_SIGNUP_QUALIFIERS.VSB;
-    const isSmb = onboardingValues?.signupQualifier === CONST.ONBOARDING_SIGNUP_QUALIFIERS.SMB;
 
     useEffect(() => {
         setOnboardingErrorMessage('');
@@ -61,12 +58,10 @@ function BaseOnboardingPersonalDetails({currentUserPersonalDetails, shouldUseNat
 
     const completeOnboarding = useCallback(
         (firstName: string, lastName: string) => {
-            if (!onboardingPurposeSelected) {
-                return;
-            }
+            const engagementChoice = onboardingPurposeSelected ?? CONST.ONBOARDING_CHOICES.LOOKING_AROUND;
             completeOnboardingReport({
-                engagementChoice: onboardingPurposeSelected,
-                onboardingMessage: onboardingMessages[onboardingPurposeSelected],
+                engagementChoice,
+                onboardingMessage: onboardingMessages[engagementChoice],
                 firstName,
                 lastName,
                 adminsChatReportID: onboardingAdminsChatReportID,
@@ -91,29 +86,14 @@ function BaseOnboardingPersonalDetails({currentUserPersonalDetails, shouldUseNat
             clearPersonalDetailsDraft();
             setPersonalDetails(firstName, lastName);
 
-            if (isPrivateDomainAndHasAccessiblePolicies && (!onboardingPurposeSelected || isVsb || isSmb)) {
-                Navigation.navigate(ROUTES.ONBOARDING_WORKSPACES.getRoute(route.params?.backTo));
-                return;
-            }
-
-            if (onboardingPurposeSelected === CONST.ONBOARDING_CHOICES.PERSONAL_SPEND || onboardingPurposeSelected === CONST.ONBOARDING_CHOICES.TRACK_WORKSPACE) {
-                updateDisplayName(firstName, lastName, formatPhoneNumber, session?.accountID ?? CONST.DEFAULT_NUMBER_ID, session?.email ?? '');
-                Navigation.navigate(ROUTES.ONBOARDING_WORKSPACE.getRoute(route.params?.backTo));
-                return;
-            }
-
+            updateDisplayName(firstName, lastName, formatPhoneNumber, session?.accountID ?? CONST.DEFAULT_NUMBER_ID, session?.email ?? '');
             completeOnboarding(firstName, lastName);
         },
         [
             formatPhoneNumber,
             session?.accountID,
             session?.email,
-            isPrivateDomainAndHasAccessiblePolicies,
-            onboardingPurposeSelected,
-            isVsb,
-            isSmb,
             completeOnboarding,
-            route.params?.backTo,
         ],
     );
 

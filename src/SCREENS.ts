@@ -308,11 +308,6 @@ const SCREENS = {
     ONBOARDING: {
         PERSONAL_DETAILS: 'Onboarding_Personal_Details',
         PURPOSE: 'Onboarding_Purpose',
-        WORKSPACES: 'Onboarding_Workspaces',
-        WORKSPACE_OPTIONAL: 'Onboarding_Workspace_Optional',
-        WORKSPACE_CONFIRMATION: 'Onboarding_Workspace_Confirmation',
-        WORKSPACE_CURRENCY: 'Onboarding_Workspace_Currency',
-        WORKSPACE_INVITE: 'Onboarding_Workspace_Invite',
     },
 
     EXPLANATION_MODAL: {
