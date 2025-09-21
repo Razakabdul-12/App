@@ -135,10 +135,6 @@ function getOnboardingInitialPath(getOnboardingInitialPathParams: GetOnboardingI
     if (isIndividual) {
         Onyx.set(ONYXKEYS.ONBOARDING_CUSTOM_CHOICES, [CONST.ONBOARDING_CHOICES.PERSONAL_SPEND, CONST.ONBOARDING_CHOICES.EMPLOYER, CONST.ONBOARDING_CHOICES.CHAT_SPLIT]);
     }
-    if (isUserFromPublicDomain && !onboardingValuesParam?.isMergeAccountStepCompleted) {
-        return `/${ROUTES.ONBOARDING_WORK_EMAIL.route}`;
-    }
-
     if (!isUserFromPublicDomain && hasAccessiblePolicies) {
         return `/${ROUTES.ONBOARDING_PERSONAL_DETAILS.route}`;
     }

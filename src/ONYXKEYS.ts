@@ -720,9 +720,7 @@ const ONYXKEYS = {
         TEXT_PICKER_MODAL_FORM_DRAFT: 'textPickerModalFormDraft',
         DEBUG_DETAILS_FORM: 'debugDetailsForm',
         DEBUG_DETAILS_FORM_DRAFT: 'debugDetailsFormDraft',
-        ONBOARDING_WORK_EMAIL_FORM: 'onboardingWorkEmailForm',
-        ONBOARDING_WORK_EMAIL_FORM_DRAFT: 'onboardingWorkEmailFormDraft',
-     
+
         ENABLE_GLOBAL_REIMBURSEMENTS: 'enableGlobalReimbursementsForm',
         ENABLE_GLOBAL_REIMBURSEMENTS_DRAFT: 'enableGlobalReimbursementsFormDraft',
     },
@@ -796,7 +794,6 @@ type OnyxFormValuesMapping = {
     [ONYXKEYS.FORMS.TEXT_PICKER_MODAL_FORM]: FormTypes.TextPickerModalForm;
     [ONYXKEYS.FORMS.SEARCH_SAVED_SEARCH_RENAME_FORM]: FormTypes.SearchSavedSearchRenameForm;
     [ONYXKEYS.FORMS.DEBUG_DETAILS_FORM]: FormTypes.DebugReportForm | FormTypes.DebugReportActionForm | FormTypes.DebugTransactionForm | FormTypes.DebugTransactionViolationForm;
-    [ONYXKEYS.FORMS.ONBOARDING_WORK_EMAIL_FORM]: FormTypes.OnboardingWorkEmailForm;
     [ONYXKEYS.FORMS.ENABLE_GLOBAL_REIMBURSEMENTS]: FormTypes.EnableGlobalReimbursementsForm;
 };
 

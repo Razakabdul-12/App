@@ -281,7 +281,6 @@ const WRITE_COMMANDS = {
     SAVE_CORPAY_ONBOARDING_COMPANY_DETAILS: 'SaveCorpayOnboardingCompanyDetails',
     SAVE_CORPAY_ONBOARDING_BENEFICIAL_OWNER: 'SaveCorpayOnboardingBeneficialOwner',
     DELETE_APP_REPORT: 'DeleteAppReport',
-    ADD_WORK_EMAIL: 'AddWorkEmail',
     SAVE_CORPAY_ONBOARDING_DIRECTOR_INFORMATION: 'SaveCorpayOnboardingDirectorInformation',
     ASK_FOR_CORPAY_SIGNER_INFORMATION: 'AskForCorpaySignerInformation',
     SEND_REMINDER_FOR_CORPAY_SINGER_INFORMATION: 'SendReminderForCorpaySignerInformation',
@@ -590,7 +589,6 @@ type WriteCommandParameters = {
     // Dismiss Product Training
     [WRITE_COMMANDS.DISMISS_PRODUCT_TRAINING]: Parameters.DismissProductTrainingParams;
     [WRITE_COMMANDS.DELETE_APP_REPORT]: Parameters.DeleteAppReportParams;
-    [WRITE_COMMANDS.ADD_WORK_EMAIL]: Parameters.AddWorkEmailParams;
 
     // Change report policy
     [WRITE_COMMANDS.CHANGE_REPORT_POLICY]: Parameters.ChangeReportPolicyParams;
@@ -722,7 +720,6 @@ const SIDE_EFFECT_REQUEST_COMMANDS = {
     ACTIVATE_PHYSICAL_EXPENSIFY_CARD: 'ActivatePhysicalExpensifyCard',
     DISCONNECT_AS_DELEGATE: 'DisconnectAsDelegate',
     COMPLETE_HYBRID_APP_ONBOARDING: 'CompleteHybridAppOnboarding',
-    MERGE_INTO_ACCOUNT_AND_LOGIN: 'MergeIntoAccountAndLogIn',
 
     // PayMoneyRequestOnSearch only works online (pattern C) and we need to play the success sound only when the request is successful
     PAY_MONEY_REQUEST_ON_SEARCH: 'PayMoneyRequestOnSearch',
@@ -744,7 +741,6 @@ type SideEffectRequestCommandParameters = {
     [SIDE_EFFECT_REQUEST_COMMANDS.DISCONNECT_AS_DELEGATE]: EmptyObject;
     [SIDE_EFFECT_REQUEST_COMMANDS.COMPLETE_HYBRID_APP_ONBOARDING]: EmptyObject;
     [SIDE_EFFECT_REQUEST_COMMANDS.PAY_MONEY_REQUEST_ON_SEARCH]: Parameters.PayMoneyRequestOnSearchParams;
-    [SIDE_EFFECT_REQUEST_COMMANDS.MERGE_INTO_ACCOUNT_AND_LOGIN]: Parameters.MergeIntoAccountAndLogInParams;
     [SIDE_EFFECT_REQUEST_COMMANDS.LOG_OUT]: Parameters.LogOutParams;
     [SIDE_EFFECT_REQUEST_COMMANDS.ACTIVATE_PHYSICAL_EXPENSIFY_CARD]: Parameters.ActivatePhysicalExpensifyCardParams;
     [SIDE_EFFECT_REQUEST_COMMANDS.VERIFY_TEST_DRIVE_RECIPIENT]: Parameters.VerifyTestDriveRecipientParams;

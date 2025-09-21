@@ -1179,18 +1179,6 @@ const ROUTES = {
         // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
         getRoute: (backTo?: string) => getUrlWithBackToParam(`onboarding/join-workspaces`, backTo),
     },
-    ONBOARDING_WORK_EMAIL: {
-        route: 'onboarding/work-email',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (backTo?: string) => getUrlWithBackToParam(`onboarding/work-email`, backTo),
-    },
-    ONBOARDING_WORK_EMAIL_VALIDATION: {
-        route: 'onboarding/work-email-validation',
-
-        // eslint-disable-next-line no-restricted-syntax -- Legacy route generation
-        getRoute: (backTo?: string) => getUrlWithBackToParam(`onboarding/work-email-validation`, backTo),
-    },
     ONBOARDING_WORKSPACE: {
         route: 'onboarding/create-workspace',
 

@@ -5,7 +5,6 @@ import * as API from '@libs/API';
 import {SIDE_EFFECT_REQUEST_COMMANDS, WRITE_COMMANDS} from '@libs/API/types';
 import DateUtils from '@libs/DateUtils';
 import Log from '@libs/Log';
-import Navigation from '@libs/Navigation/Navigation';
 import CONFIG from '@src/CONFIG';
 import ONYXKEYS from '@src/ONYXKEYS';
 import ROUTES from '@src/ROUTES';
@@ -109,20 +108,6 @@ function setOnboardingPolicyID(policyID?: string) {
 
 function updateOnboardingLastVisitedPath(path: string) {
     Onyx.merge(ONYXKEYS.ONBOARDING_LAST_VISITED_PATH, path);
-}
-
-function updateOnboardingValuesAndNavigation(onboardingValues: Onboarding | undefined) {
-    Onyx.set(ONYXKEYS.NVP_ONBOARDING, {...onboardingValues, shouldValidate: undefined});
-
-    // We need to have the Onyx values updated before navigating back
-    // Because we navigate based no useEffect logic and we need to clear `shouldValidate` value before going back
-    Navigation.setNavigationActionToMicrotaskQueue(() => {
-        Navigation.goBack(ROUTES.ONBOARDING_WORK_EMAIL.getRoute());
-    });
-}
-
-function setOnboardingMergeAccountStepValue(value: boolean, skipped = false) {
-    Onyx.merge(ONYXKEYS.NVP_ONBOARDING, {isMergeAccountStepCompleted: value, isMergeAccountStepSkipped: skipped});
 }
 
 function setOnboardingTestDriveModalDismissed() {
@@ -240,7 +225,5 @@ export {
     setOnboardingErrorMessage,
     setOnboardingCompanySize,
     setSelfTourViewed,
-    setOnboardingMergeAccountStepValue,
-    updateOnboardingValuesAndNavigation,
     setOnboardingTestDriveModalDismissed,
 };

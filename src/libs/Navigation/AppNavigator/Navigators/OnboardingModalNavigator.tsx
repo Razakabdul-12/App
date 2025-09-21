@@ -19,8 +19,6 @@ import type {OnboardingModalNavigatorParamList} from '@libs/Navigation/types';
 import OnboardingRefManager from '@libs/OnboardingRefManager';
 import OnboardingPersonalDetails from '@pages/OnboardingPersonalDetails';
 import OnboardingPurpose from '@pages/OnboardingPurpose';
-import OnboardingWorkEmail from '@pages/OnboardingWorkEmail';
-import OnboardingWorkEmailValidation from '@pages/OnboardingWorkEmailValidation';
 import OnboardingWorkspaceConfirmation from '@pages/OnboardingWorkspaceConfirmation';
 import OnboardingWorkspaceCurrency from '@pages/OnboardingWorkspaceCurrency';
 import OnboardingWorkspaceInvite from '@pages/OnboardingWorkspaceInvite';
@@ -47,10 +45,6 @@ function OnboardingModalNavigator() {
 
     if (isOnPrivateDomainAndHasAccessiblePolicies) {
         initialRouteName = SCREENS.ONBOARDING.PERSONAL_DETAILS;
-    }
-
-    if (account?.isFromPublicDomain) {
-        initialRouteName = SCREENS.ONBOARDING.WORK_EMAIL;
     }
 
     if (onboardingPurposeSelected === CONST.ONBOARDING_CHOICES.PERSONAL_SPEND && !!onboardingPolicyID) {
@@ -124,14 +118,6 @@ function OnboardingModalNavigator() {
                             <Stack.Screen
                                 name={SCREENS.ONBOARDING.PERSONAL_DETAILS}
                                 component={OnboardingPersonalDetails}
-                            />
-                            <Stack.Screen
-                                name={SCREENS.ONBOARDING.WORK_EMAIL}
-                                component={OnboardingWorkEmail}
-                            />
-                            <Stack.Screen
-                                name={SCREENS.ONBOARDING.WORK_EMAIL_VALIDATION}
-                                component={OnboardingWorkEmailValidation}
                             />
                             <Stack.Screen
                                 name={SCREENS.ONBOARDING.WORKSPACES}
