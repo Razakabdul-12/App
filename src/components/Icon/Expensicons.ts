@@ -126,14 +126,11 @@ import CircleSlash from '@assets/images/integrationicons/circle-slash.svg';
 import MicrosoftDynamicsExport from '@assets/images/integrationicons/export/microsoft-dynamics-icon.svg';
 import OracleExport from '@assets/images/integrationicons/export/oracle-icon.svg';
 import SapExport from '@assets/images/integrationicons/export/sap-icon.svg';
-import XeroExport from '@assets/images/integrationicons/export/xero-icon.svg';
 import MicrosoftDynamicsSquare from '@assets/images/integrationicons/microsoft-dynamics-icon-square.svg';
 import OracleSquare from '@assets/images/integrationicons/oracle-icon-square.svg';
 import QBDSquare from '@assets/images/integrationicons/qbd-icon-square.svg';
 import SapSquare from '@assets/images/integrationicons/sap-icon-square.svg';
 import Uber from '@assets/images/integrationicons/uber.svg';
-import XeroCircle from '@assets/images/integrationicons/xero-icon-circle.svg';
-import XeroSquare from '@assets/images/integrationicons/xero-icon-square.svg';
 import InvoiceGeneric from '@assets/images/invoice-generic.svg';
 import Invoice from '@assets/images/invoice.svg';
 import Key from '@assets/images/key.svg';
@@ -425,7 +422,6 @@ export {
     Wallet,
     Workflows,
     Workspace,
-    XeroSquare,
     AdvancedApprovalsSquare,
     Zoom,
     Twitter,
@@ -447,7 +443,6 @@ export {
     Clear,
     CheckCircle,
     CheckmarkCircle,
-    XeroCircle,
     MicrosoftDynamicsSquare,
     OracleSquare,
     SapSquare,
@@ -476,6 +471,5 @@ export {
     MicrosoftDynamicsExport,
     OracleExport,
     SapExport,
-    XeroExport,
     ArrowCircleClockwise,
 };

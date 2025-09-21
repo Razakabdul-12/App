@@ -1692,12 +1692,11 @@ const translations = {
         disable: '禁用',
         enableTwoFactorAuth: '启用双重身份验证',
         pleaseEnableTwoFactorAuth: '请启用双因素认证。',
-        twoFactorAuthIsRequiredDescription: '出于安全考虑，Xero 需要双重身份验证才能连接集成。',
         twoFactorAuthIsRequiredForAdminsHeader: '需要双重身份验证',
         twoFactorAuthIsRequiredForAdminsTitle: '请启用双重身份验证',
-        twoFactorAuthIsRequiredForAdminsDescription: '您的Xero会计连接需要使用双重身份验证。要继续使用Expensify，请启用它。',
+        twoFactorAuthIsRequiredForAdminsDescription: '您的会计连接需要使用双重身份验证。要继续使用Expensify，请启用它。',
         twoFactorAuthCannotDisable: '无法禁用双重身份验证',
-        twoFactorAuthRequired: '您的Xero连接需要双因素认证（2FA），且无法禁用。',
+        twoFactorAuthRequired: '需要双因素认证（2FA），且无法禁用。',
     },
     recoveryCodeForm: {
         error: {
@@ -2276,11 +2275,7 @@ const translations = {
                     `5. \u627E\u5230 ${integrationName}\u3002\n` +
                     '6. \u70B9\u51FB *\u8FDE\u63A5*。\n' +
                     '\n' +
-                    `${
-                        integrationName && CONST.connectionsVideoPaths[integrationName]
-                            ? `[\u5E26\u6211\u5230\u4F1A\u8BA1\u9875\u9762](${workspaceAccountingLink})\u3002\n\n![\u8FDE\u63A5\u5230 ${integrationName}](${CONST.CLOUDFRONT_URL}/${CONST.connectionsVideoPaths[integrationName]})`
-                            : `[\u5E26\u6211\u5230\u4F1A\u8BA1\u9875\u9762](${workspaceAccountingLink})\u3002`
-                    }`,
+                    `[\u5E26\u6211\u5230\u4F1A\u8BA1\u9875\u9762](${workspaceAccountingLink})\u3002`,
             },
             connectCorporateCardTask: {
                 title: ({corporateCardLink}) => `\u8fde\u63a5[\u60a8\u7684\u516c\u53f8\u5361](${corporateCardLink})`,
@@ -3572,89 +3567,6 @@ const translations = {
             joinNow: '立即加入',
             askToJoin: '请求加入',
         },
-        xero: {
-            organization: 'Xero 组织',
-            organizationDescription: '选择您想要从中导入数据的Xero组织。',
-            importDescription: '选择从Xero导入到Expensify的编码配置。',
-            accountsDescription: '您的Xero会计科目表将作为类别导入到Expensify中。',
-            accountsSwitchTitle: '选择将新账户导入为启用或禁用的类别。',
-            accountsSwitchDescription: '启用的类别将在成员创建费用时可供选择。',
-            trackingCategories: '跟踪类别',
-            trackingCategoriesDescription: '选择如何在Expensify中处理Xero跟踪类别。',
-            mapTrackingCategoryTo: ({categoryName}: CategoryNameParams) => `将 Xero ${categoryName} 映射到`,
-            mapTrackingCategoryToDescription: ({categoryName}: CategoryNameParams) => `选择将 ${categoryName} 映射到 Xero 的位置。`,
-            customers: '重新向客户开账单',
-            customersDescription: '选择是否在Expensify中重新向客户开账单。您的Xero客户联系人可以被标记到费用中，并将作为销售发票导出到Xero。',
-            taxesDescription: '选择如何在Expensify中处理Xero税款。',
-            notImported: '未导入',
-            notConfigured: '未配置',
-            trackingCategoriesOptions: {
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.DEFAULT]: 'Xero 联系人默认值',
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.TAG]: '标签',
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.REPORT_FIELD]: '报告字段',
-            },
-            exportDescription: '配置如何将Expensify数据导出到Xero。',
-            purchaseBill: '采购账单',
-            exportDeepDiveCompanyCard: '导出的费用将作为银行交易发布到下面的Xero银行账户，交易日期将与您的银行对账单上的日期相匹配。',
-            bankTransactions: '银行交易',
-            xeroBankAccount: 'Xero 银行账户',
-            xeroBankAccountDescription: '选择将费用发布为银行交易的位置。',
-            exportExpensesDescription: '报告将导出为采购账单，并带有以下选择的日期和状态。',
-            purchaseBillDate: '购买账单日期',
-            exportInvoices: '将发票导出为',
-            salesInvoice: '销售发票',
-            exportInvoicesDescription: '销售发票始终显示发票发送的日期。',
-            advancedConfig: {
-                autoSyncDescription: 'Expensify将每天自动与Xero同步。',
-                purchaseBillStatusTitle: '购买账单状态',
-                reimbursedReportsDescription: '每当使用 Expensify ACH 支付报告时，相应的账单付款将在下面的 Xero 账户中创建。',
-                xeroBillPaymentAccount: 'Xero账单支付账户',
-                xeroInvoiceCollectionAccount: 'Xero发票收款账户',
-                xeroBillPaymentAccountDescription: '选择支付账单的账户，我们将在Xero中创建付款。',
-                invoiceAccountSelectorDescription: '选择接收发票付款的账户，我们将在Xero中创建付款。',
-            },
-            exportDate: {
-                label: '购买账单日期',
-                description: '导出报告到Xero时使用此日期。',
-                values: {
-                    [CONST.XERO_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: '最后报销日期',
-                        description: '报告中最近费用的日期。',
-                    },
-                    [CONST.XERO_EXPORT_DATE.REPORT_EXPORTED]: {
-                        label: '导出日期',
-                        description: '报告导出到Xero的日期。',
-                    },
-                    [CONST.XERO_EXPORT_DATE.REPORT_SUBMITTED]: {
-                        label: '提交日期',
-                        description: '报告提交审批的日期。',
-                    },
-                },
-            },
-            invoiceStatus: {
-                label: '购买账单状态',
-                description: '将此状态用于导出采购账单到Xero。',
-                values: {
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.DRAFT]: '草稿',
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.AWAITING_APPROVAL]: '等待批准',
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.AWAITING_PAYMENT]: '等待付款',
-                },
-            },
-            noAccountsFound: '未找到账户',
-            noAccountsFoundDescription: '请在Xero中添加账户并再次同步连接',
-            accountingMethods: {
-                label: '何时导出',
-                description: '选择何时导出费用：',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '应计',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '现金',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '自付费用将在最终批准时导出',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '自付费用将在支付时导出',
-                },
-            },
-        },
         type: {
             free: '免费',
             control: '控制',
@@ -3939,7 +3851,6 @@ const translations = {
                 cardholder: '持卡人',
                 cardName: '卡片名称',
                 integrationExport: ({integration, type}: IntegrationExportParams) => (integration && type ? `${integration} ${type.toLowerCase()} 导出` : `${integration} 导出`),
-                integrationExportTitleXero: ({integration}: IntegrationExportParams) => `选择应导出交易的${integration}账户。`,
                 integrationExportTitle: ({integration, exportPageLink}: IntegrationExportParams) =>
                     `选择应导出交易的${integration}账户。选择不同的<a href="${exportPageLink}">导出选项</a>，更改可用账户。`,
                 lastUpdated: '最后更新',
@@ -4318,7 +4229,6 @@ const translations = {
             title: '连接',
             subtitle: '连接到您的会计系统，以使用您的科目表对交易进行编码，自动匹配付款，并保持您的财务同步。',
             qbd: 'QuickBooks Desktop',
-            xero: 'Xero',
             sap: 'SAP',
             oracle: 'Oracle',
             microsoftDynamics: 'Microsoft Dynamics',
@@ -4328,9 +4238,6 @@ const translations = {
             needAnotherAccounting: '需要其他会计软件吗？',
             connectionName: ({connectionName}: ConnectionNameParams) => {
                 switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                        return 'Xero';
-
                     default: {
                         return '';
                     }
@@ -4356,8 +4263,6 @@ const translations = {
             connectTitle: ({connectionName}: ConnectionNameParams) => `Connect ${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? '会计集成'}`,
             syncError: ({connectionName}: ConnectionNameParams) => {
                 switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                        return '无法连接到Xero';
                     case CONST.POLICY.CONNECTIONS.NAME.QBD:
                         return '无法连接到 QuickBooks Desktop';
                     default: {
@@ -4401,8 +4306,6 @@ const translations = {
                             return '正在处理导入的数据';
                             return '同步已报销报告和账单支付';
                             return '导入税码';
-                        case 'startingImportXero':
-                            return '导入Xero数据';
                         case 'startingImportQBD':
                         case 'quickbooksDesktopImportMore':
                             return '导入 QuickBooks Desktop 数据';
@@ -4416,34 +4319,8 @@ const translations = {
                             return '导入保存策略';
                         case 'quickbooksDesktopWebConnectorReminder':
                             return '仍在与QuickBooks同步数据... 请确保Web Connector正在运行';
-                        case 'xeroSyncStep':
-                            return '正在加载数据';
-                            return '更新类别';
-                            return '更新客户/项目';
-                            return '更新人员列表';
-                            return '更新报告字段';
                         case 'jobDone':
                             return '正在等待导入的数据加载';
-                        case 'xeroSyncImportChartOfAccounts':
-                            return '同步会计科目表';
-                        case 'xeroSyncImportCategories':
-                            return '同步类别';
-                        case 'xeroSyncImportCustomers':
-                            return '同步客户';
-                        case 'xeroSyncXeroReimbursedReports':
-                            return '将Expensify报告标记为已报销';
-                        case 'xeroSyncExpensifyReimbursedReports':
-                            return '将 Xero 账单和发票标记为已支付';
-                        case 'xeroSyncImportTrackingCategories':
-                            return '同步跟踪类别';
-                        case 'xeroSyncImportBankAccounts':
-                            return '同步银行账户';
-                        case 'xeroSyncImportTaxRates':
-                            return '同步税率';
-                        case 'xeroCheckConnection':
-                            return '检查 Xero 连接';
-                        case 'xeroSyncTitle':
-                            return '正在同步 Xero 数据';
                         case 'quickbooksDesktopImportVendors':
                             return '导入供应商';
 
@@ -4760,7 +4637,7 @@ const translations = {
                     pricingPage: '定价页面',
                     confirm: '您确定要降级并删除您的配置吗？',
                     warning: '此操作无法撤销。',
-                    benefit1: '会计连接（除 Xero 外）',
+                    benefit1: '会计连接',
                     benefit2: '智能费用规则',
                     benefit3: '多级审批工作流程',
                     benefit4: '增强的安全控制',
@@ -5958,7 +5835,7 @@ const translations = {
                 benefit3: '公司卡管理',
                 benefit4: '费用和差旅审批',
                 benefit5: '旅行预订和规则',
-                benefit6: 'QuickBooks/Xero 集成',
+                benefit6: 'QuickBooks 集成',
                 benefit7: '聊天关于费用、报告和房间',
                 benefit8: 'AI和人工支持',
             },

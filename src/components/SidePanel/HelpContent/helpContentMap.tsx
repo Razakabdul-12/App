@@ -609,17 +609,6 @@ const helpContentMap: HelpContent = {
                                             <Text style={styles.textNormal}>Custom field mapping</Text>,
                                         ]}
                                     />
-                                    <Text style={[styles.textNormal, styles.mt4]}>
-                                        <Text style={styles.textBold}>Xero</Text>
-                                    </Text>
-                                    <BulletList
-                                        styles={styles}
-                                        items={[
-                                            <Text style={styles.textNormal}>Auto-sync approved reports</Text>,
-                                            <Text style={styles.textNormal}>Import tracking categories</Text>,
-                                            <Text style={styles.textNormal}>Manage tax rates seamlessly</Text>,
-                                        ]}
-                                    />
                                     <Text style={[styles.textHeadlineH2, styles.mv4]}>What Syncs Automatically</Text>
                                     <Text style={[styles.textNormal]}>
                                         <Text style={styles.textBold}>From your accounting system:</Text>
@@ -647,19 +636,6 @@ const helpContentMap: HelpContent = {
                                     />
 
                                     <Text style={[styles.textHeadlineH2, styles.mt4, styles.mb1]}>Learn More</Text>
-                                    <BulletList
-                                        styles={styles}
-                                        items={[
-                                            <Text style={styles.textNormal}>
-                                                <TextLink
-                                                    href="https://help.expensify.com/articles/new-expensify/connections/xero/Connect-to-Xero"
-                                                    style={styles.link}
-                                                >
-                                                    Connect to Xero
-                                                </TextLink>
-                                            </Text>,
-                                        ]}
-                                    />
                                 </View>
                             ),
                         },
@@ -1206,7 +1182,7 @@ const helpContentMap: HelpContent = {
                         approval flows for individual team members if needed.
                     </Text>
                     <Text style={[styles.textHeadlineH2, styles.mv4]}>Connect your accounting system</Text>
-                    <Text style={[styles.textNormal]}>Link your workspace with QuickBooks Desktop, Xero, or NetSuite to sync expenses like a pro.</Text>
+                    <Text style={[styles.textNormal]}>Link your workspace with QuickBooks Desktop or NetSuite to sync expenses like a pro.</Text>
                     <Text style={[styles.textHeadlineH2, styles.mv4]}>Enhance your workspace with extra features</Text>
                     <Text style={[styles.textNormal]}>
                         Under <Text style={styles.textBold}>More Features</Text>, enable extras like the Expensify Card, custom categories and tags, and company card connections.

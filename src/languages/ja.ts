@@ -1711,12 +1711,11 @@ const translations = {
         disable: '無効にする',
         enableTwoFactorAuth: '2要素認証を有効にする',
         pleaseEnableTwoFactorAuth: '2要素認証を有効にしてください。',
-        twoFactorAuthIsRequiredDescription: 'セキュリティ目的のため、Xeroは統合を接続するために二要素認証を必要とします。',
         twoFactorAuthIsRequiredForAdminsHeader: '二要素認証が必要です',
         twoFactorAuthIsRequiredForAdminsTitle: '2要素認証を有効にしてください',
-        twoFactorAuthIsRequiredForAdminsDescription: 'Xeroの会計接続には二要素認証の使用が必要です。Expensifyを引き続き使用するには、有効にしてください。',
+        twoFactorAuthIsRequiredForAdminsDescription: 'この会計接続には二要素認証の使用が必要です。Expensifyを引き続き使用するには、有効にしてください。',
         twoFactorAuthCannotDisable: '2FAを無効にできません',
-        twoFactorAuthRequired: 'Xeroの接続には二要素認証（2FA）が必要であり、無効にすることはできません。',
+        twoFactorAuthRequired: '二要素認証（2FA）が必要であり、無効にすることはできません。',
     },
     recoveryCodeForm: {
         error: {
@@ -2299,11 +2298,7 @@ const translations = {
                     `5. ${integrationName}\u3092\u63A2\u3057\u307E\u3059\u3002\n` +
                     '6. *\u63A5\u7D9A*\u3092\u30AF\u30EA\u30C3\u30AF\u3057\u307E\u3059\u3002\n' +
                     '\n' +
-                    `${
-                        integrationName && CONST.connectionsVideoPaths[integrationName]
-                            ? `[\u4F1A\u8A08\u306B\u79FB\u52D5\u3059\u308B](${workspaceAccountingLink}).\n\n![${integrationName}\u3068\u63A5\u7D9A\u3059\u308B](${CONST.CLOUDFRONT_URL}/${CONST.connectionsVideoPaths[integrationName]})`
-                            : `[\u4F1A\u8A08\u306B\u79FB\u52D5\u3059\u308B](${workspaceAccountingLink}).`
-                    }`,
+                    `[\u4F1A\u8A08\u306B\u79FB\u52D5\u3059\u308B](${workspaceAccountingLink}).`,
             },
             connectCorporateCardTask: {
                 title: ({corporateCardLink}) => `[\u3042\u306A\u305F\u306E\u6CD5\u4EBA\u30AB\u30FC\u30C9](${corporateCardLink})\u3092\u63A5\u7D9A\u3059\u308B`,
@@ -3621,89 +3616,6 @@ const translations = {
             joinNow: '今すぐ参加',
             askToJoin: '参加を依頼する',
         },
-        xero: {
-            organization: 'Xero組織',
-            organizationDescription: 'データをインポートしたいXero組織を選択してください。',
-            importDescription: 'XeroからExpensifyにインポートするコーディング設定を選択します。',
-            accountsDescription: 'あなたのXero勘定科目表は、Expensifyにカテゴリーとしてインポートされます。',
-            accountsSwitchTitle: '新しいアカウントを有効または無効なカテゴリとしてインポートすることを選択します。',
-            accountsSwitchDescription: '有効になっているカテゴリーは、メンバーが経費を作成する際に選択できるようになります。',
-            trackingCategories: 'トラッキングカテゴリ',
-            trackingCategoriesDescription: 'ExpensifyでXeroのトラッキングカテゴリをどのように処理するか選択してください。',
-            mapTrackingCategoryTo: ({categoryName}: CategoryNameParams) => `Xero ${categoryName} をマッピングする`,
-            mapTrackingCategoryToDescription: ({categoryName}: CategoryNameParams) => `Xeroにエクスポートする際に${categoryName}をどこにマッピングするか選択してください。`,
-            customers: '顧客への再請求',
-            customersDescription: 'Expensifyで顧客に再請求するかどうかを選択します。Xeroの顧客連絡先は経費にタグ付けでき、Xeroに売上請求書としてエクスポートされます。',
-            taxesDescription: 'ExpensifyでXeroの税金をどのように処理するか選択してください。',
-            notImported: 'インポートされていません',
-            notConfigured: '未設定',
-            trackingCategoriesOptions: {
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.DEFAULT]: 'Xero連絡先のデフォルト',
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.TAG]: 'タグ',
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.REPORT_FIELD]: 'レポートフィールド',
-            },
-            exportDescription: 'ExpensifyデータをXeroにエクスポートする方法を設定します。',
-            purchaseBill: '購入請求書',
-            exportDeepDiveCompanyCard: 'エクスポートされた経費は、以下のXero銀行口座に銀行取引として記録され、取引日付は銀行明細書の日付と一致します。',
-            bankTransactions: '銀行取引',
-            xeroBankAccount: 'Xero銀行口座',
-            xeroBankAccountDescription: '経費を銀行取引として記録する場所を選択してください。',
-            exportExpensesDescription: 'レポートは、以下で選択された日付とステータスで購入請求書としてエクスポートされます。',
-            purchaseBillDate: '購入請求書の日付',
-            exportInvoices: '請求書をエクスポート',
-            salesInvoice: '売上請求書',
-            exportInvoicesDescription: '売上請求書には、請求書が送信された日付が常に表示されます。',
-            advancedConfig: {
-                autoSyncDescription: 'Expensifyは毎日自動的にXeroと同期します。',
-                purchaseBillStatusTitle: '購入請求書のステータス',
-                reimbursedReportsDescription: 'レポートがExpensify ACHを使用して支払われるたびに、対応する請求書の支払いが以下のXeroアカウントに作成されます。',
-                xeroBillPaymentAccount: 'Xeroの請求書支払いアカウント',
-                xeroInvoiceCollectionAccount: 'Xero請求書回収アカウント',
-                xeroBillPaymentAccountDescription: '支払い元を選択すると、Xeroで支払いが作成されます。',
-                invoiceAccountSelectorDescription: '請求書の支払いを受け取る場所を選択すると、Xeroで支払いを作成します。',
-            },
-            exportDate: {
-                label: '購入請求書の日付',
-                description: 'この日付を使用してレポートをXeroにエクスポートしてください。',
-                values: {
-                    [CONST.XERO_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: '最後の経費の日付',
-                        description: 'レポート上の最新経費の日付。',
-                    },
-                    [CONST.XERO_EXPORT_DATE.REPORT_EXPORTED]: {
-                        label: 'エクスポート日付',
-                        description: 'レポートがXeroにエクスポートされた日付。',
-                    },
-                    [CONST.XERO_EXPORT_DATE.REPORT_SUBMITTED]: {
-                        label: '提出日',
-                        description: 'レポートが承認のために提出された日付。',
-                    },
-                },
-            },
-            invoiceStatus: {
-                label: '購入請求書のステータス',
-                description: 'このステータスを使用して、購入請求書をXeroにエクスポートします。',
-                values: {
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.DRAFT]: '下書き',
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.AWAITING_APPROVAL]: '承認待ち',
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.AWAITING_PAYMENT]: '支払い待ち',
-                },
-            },
-            noAccountsFound: 'アカウントが見つかりません',
-            noAccountsFoundDescription: 'Xeroにアカウントを追加し、再度接続を同期してください。',
-            accountingMethods: {
-                label: 'エクスポートのタイミング',
-                description: '経費をエクスポートするタイミングを選択:',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '発生主義',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '現金',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '自己負担の経費は最終承認時にエクスポートされます。',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '自己負担の経費は支払われたときにエクスポートされます。',
-                },
-            },
-        },
         type: {
             free: '無料',
             control: 'コントロール',
@@ -3993,7 +3905,6 @@ const translations = {
                 cardName: 'カード名',
                 integrationExport: ({integration, type}: IntegrationExportParams) =>
                     integration && type ? `${integration} ${type.toLowerCase()} エクスポート` : `${integration} エクスポート`,
-                integrationExportTitleXero: ({integration}: IntegrationExportParams) => `取引をエクスポートする${integration}アカウントを選択してください。`,
                 integrationExportTitle: ({integration, exportPageLink}: IntegrationExportParams) =>
                     `取引をエクスポートする${integration}アカウントを選択してください。利用可能なアカウントを変更するには、別の<a href="${exportPageLink}">エクスポートオプション</a>を選択します。`,
                 lastUpdated: '最終更新日',
@@ -4374,7 +4285,6 @@ const translations = {
             title: '接続',
             subtitle: '会計システムに接続して、勘定科目表で取引をコード化し、支払いを自動マッチングし、財務を同期させましょう。',
             qbd: 'QuickBooks Desktop',
-            xero: 'Xero',
             sap: 'SAP',
             oracle: 'Oracle',
             microsoftDynamics: 'Microsoft Dynamics',
@@ -4384,9 +4294,6 @@ const translations = {
             needAnotherAccounting: '別の会計ソフトウェアが必要ですか？',
             connectionName: ({connectionName}: ConnectionNameParams) => {
                 switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                        return 'Xero';
-
                     default: {
                         return '';
                     }
@@ -4412,8 +4319,6 @@ const translations = {
             connectTitle: ({connectionName}: ConnectionNameParams) => `${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? '会計統合'} に接続`,
             syncError: ({connectionName}: ConnectionNameParams) => {
                 switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                        return 'Xeroに接続できません';
                     case CONST.POLICY.CONNECTIONS.NAME.QBD:
                         return 'QuickBooks Desktopに接続できません';
                     default: {
@@ -4457,8 +4362,6 @@ const translations = {
                             return 'インポートされたデータを処理中';
                             return '払い戻されたレポートと請求書の支払いを同期中';
                             return '税コードのインポート';
-                        case 'startingImportXero':
-                            return 'Xeroデータのインポート';
                         case 'startingImportQBD':
                         case 'quickbooksDesktopImportMore':
                             return 'QuickBooks Desktopデータのインポート';
@@ -4472,34 +4375,8 @@ const translations = {
                             return '保存ポリシーのインポート';
                         case 'quickbooksDesktopWebConnectorReminder':
                             return 'QuickBooksとのデータを同期中です... Web Connectorが実行中であることを確認してください';
-                        case 'xeroSyncStep':
-                            return 'データを読み込んでいます';
-                            return 'カテゴリを更新中';
-                            return '顧客/プロジェクトの更新';
-                            return '人のリストを更新中';
-                            return 'レポートフィールドを更新中';
                         case 'jobDone':
                             return 'インポートされたデータの読み込みを待っています';
-                        case 'xeroSyncImportChartOfAccounts':
-                            return '勘定科目表を同期中';
-                        case 'xeroSyncImportCategories':
-                            return 'カテゴリを同期中';
-                        case 'xeroSyncImportCustomers':
-                            return '顧客を同期中';
-                        case 'xeroSyncXeroReimbursedReports':
-                            return 'Expensifyレポートを払い戻し済みとしてマークする';
-                        case 'xeroSyncExpensifyReimbursedReports':
-                            return 'Xeroの請求書と請求書を支払済みとしてマークする';
-                        case 'xeroSyncImportTrackingCategories':
-                            return 'トラッキングカテゴリを同期中';
-                        case 'xeroSyncImportBankAccounts':
-                            return '銀行口座の同期';
-                        case 'xeroSyncImportTaxRates':
-                            return '税率を同期中';
-                        case 'xeroCheckConnection':
-                            return 'Xero接続を確認中';
-                        case 'xeroSyncTitle':
-                            return 'Xeroデータを同期中';
                         case 'quickbooksDesktopImportVendors':
                             return 'ベンダーのインポート';
 
@@ -4820,7 +4697,7 @@ const translations = {
                     pricingPage: '価格ページ',
                     confirm: '設定を削除してダウングレードしてもよろしいですか？',
                     warning: 'これは元に戻せません。',
-                    benefit1: '会計接続（Xero を除く）',
+                    benefit1: '会計接続',
                     benefit2: 'スマート経費ルール',
                     benefit3: 'マルチレベル承認ワークフロー',
                     benefit4: '強化されたセキュリティコントロール',
@@ -6044,7 +5921,7 @@ const translations = {
                 benefit3: '法人カード管理',
                 benefit4: '経費と出張の承認',
                 benefit5: '旅行の予約とルール',
-                benefit6: 'QuickBooks/Xero 統合',
+                benefit6: 'QuickBooks 統合',
                 benefit7: '経費、レポート、ルームでチャットする',
                 benefit8: 'AIと人間のサポート',
             },

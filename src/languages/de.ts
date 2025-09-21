@@ -1723,13 +1723,12 @@ const translations = {
         disable: 'Deaktivieren',
         enableTwoFactorAuth: 'Zwei-Faktor-Authentifizierung aktivieren',
         pleaseEnableTwoFactorAuth: 'Bitte aktivieren Sie die Zwei-Faktor-Authentifizierung.',
-        twoFactorAuthIsRequiredDescription: 'Aus Sicherheitsgründen erfordert Xero eine Zwei-Faktor-Authentifizierung, um die Integration zu verbinden.',
         twoFactorAuthIsRequiredForAdminsHeader: 'Zwei-Faktor-Authentifizierung erforderlich',
         twoFactorAuthIsRequiredForAdminsTitle: 'Bitte aktivieren Sie die Zwei-Faktor-Authentifizierung',
         twoFactorAuthIsRequiredForAdminsDescription:
-            'Ihre Xero-Buchhaltungsverbindung erfordert die Verwendung der Zwei-Faktor-Authentifizierung. Um Expensify weiterhin zu nutzen, aktivieren Sie diese bitte.',
+            'Ihre Buchhaltungsverbindung erfordert die Verwendung der Zwei-Faktor-Authentifizierung. Um Expensify weiterhin zu nutzen, aktivieren Sie diese bitte.',
         twoFactorAuthCannotDisable: '2FA kann nicht deaktiviert werden.',
-        twoFactorAuthRequired: 'Die Zwei-Faktor-Authentifizierung (2FA) ist für Ihre Xero-Verbindung erforderlich und kann nicht deaktiviert werden.',
+        twoFactorAuthRequired: 'Die Zwei-Faktor-Authentifizierung (2FA) ist erforderlich und kann nicht deaktiviert werden.',
     },
     recoveryCodeForm: {
         error: {
@@ -2308,11 +2307,7 @@ const translations = {
                     `5. Finde ${integrationName}.\n` +
                     '6. Klicke auf *Verbinden*.\n' +
                     '\n' +
-                    `${
-                        integrationName && CONST.connectionsVideoPaths[integrationName]
-                            ? `[Zu Buchhaltung](${workspaceAccountingLink}).\n\n![Mit ${integrationName} verbinden](${CONST.CLOUDFRONT_URL}/${CONST.connectionsVideoPaths[integrationName]})`
-                            : `[Zu Buchhaltung](${workspaceAccountingLink}).`
-                    }`,
+                    `[Zu Buchhaltung](${workspaceAccountingLink}).`,
             },
             connectCorporateCardTask: {
                 title: ({corporateCardLink}) => `Verbinde [deine Firmenkarte](${corporateCardLink})`,
@@ -3615,91 +3610,6 @@ const translations = {
             joinNow: 'Jetzt beitreten',
             askToJoin: 'Beitreten anfragen',
         },
-        xero: {
-            organization: 'Xero-Organisation',
-            organizationDescription: 'Wählen Sie die Xero-Organisation aus, aus der Sie Daten importieren möchten.',
-            importDescription: 'Wählen Sie aus, welche Kodierungskonfigurationen von Xero nach Expensify importiert werden sollen.',
-            accountsDescription: 'Ihr Xero-Kontenplan wird in Expensify als Kategorien importiert.',
-            accountsSwitchTitle: 'Wählen Sie, ob neue Konten als aktivierte oder deaktivierte Kategorien importiert werden sollen.',
-            accountsSwitchDescription: 'Aktivierte Kategorien stehen den Mitgliedern zur Auswahl, wenn sie ihre Ausgaben erstellen.',
-            trackingCategories: 'Verfolgungskategorien',
-            trackingCategoriesDescription: 'Wählen Sie, wie Xero-Tracking-Kategorien in Expensify behandelt werden sollen.',
-            mapTrackingCategoryTo: ({categoryName}: CategoryNameParams) => `Xero ${categoryName} zuordnen zu`,
-            mapTrackingCategoryToDescription: ({categoryName}: CategoryNameParams) => `Wählen Sie, wo ${categoryName} beim Export nach Xero zugeordnet werden soll.`,
-            customers: 'Kunden erneut in Rechnung stellen',
-            customersDescription:
-                'Wählen Sie, ob Sie Kunden in Expensify erneut in Rechnung stellen möchten. Ihre Xero-Kundenkontakte können Ausgaben zugeordnet werden und werden als Verkaufsrechnung nach Xero exportiert.',
-            taxesDescription: 'Wählen Sie, wie Xero-Steuern in Expensify behandelt werden sollen.',
-            notImported: 'Nicht importiert',
-            notConfigured: 'Nicht konfiguriert',
-            trackingCategoriesOptions: {
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.DEFAULT]: 'Xero-Kontaktstandard',
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.TAG]: 'Tags',
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.REPORT_FIELD]: 'Berichtsfelder',
-            },
-            exportDescription: 'Konfigurieren Sie, wie Expensify-Daten nach Xero exportiert werden.',
-            purchaseBill: 'Kaufrechnung',
-            exportDeepDiveCompanyCard:
-                'Exportierte Ausgaben werden als Banktransaktionen auf das unten stehende Xero-Bankkonto gebucht, und die Transaktionsdaten werden mit den Daten auf Ihrem Kontoauszug übereinstimmen.',
-            bankTransactions: 'Banktransaktionen',
-            xeroBankAccount: 'Xero-Bankkonto',
-            xeroBankAccountDescription: 'Wählen Sie, wo Ausgaben als Banktransaktionen gebucht werden sollen.',
-            exportExpensesDescription: 'Berichte werden als Einkaufsrechnung mit dem unten ausgewählten Datum und Status exportiert.',
-            purchaseBillDate: 'Rechnungsdatum des Kaufs',
-            exportInvoices: 'Rechnungen exportieren als',
-            salesInvoice: 'Verkaufsrechnung',
-            exportInvoicesDescription: 'Verkaufsrechnungen zeigen immer das Datum an, an dem die Rechnung gesendet wurde.',
-            advancedConfig: {
-                autoSyncDescription: 'Expensify wird jeden Tag automatisch mit Xero synchronisieren.',
-                purchaseBillStatusTitle: 'Kaufrechnungsstatus',
-                reimbursedReportsDescription: 'Jedes Mal, wenn ein Bericht über Expensify ACH bezahlt wird, wird die entsprechende Rechnungszahlung im unten stehenden Xero-Konto erstellt.',
-                xeroBillPaymentAccount: 'Xero-Rechnungszahlungskonto',
-                xeroInvoiceCollectionAccount: 'Xero-Rechnungsinkassokonto',
-                xeroBillPaymentAccountDescription: 'Wählen Sie aus, von wo aus Sie Rechnungen bezahlen möchten, und wir erstellen die Zahlung in Xero.',
-                invoiceAccountSelectorDescription: 'Wählen Sie aus, wo Sie Rechnungszahlungen erhalten möchten, und wir erstellen die Zahlung in Xero.',
-            },
-            exportDate: {
-                label: 'Rechnungsdatum des Kaufs',
-                description: 'Verwenden Sie dieses Datum beim Exportieren von Berichten nach Xero.',
-                values: {
-                    [CONST.XERO_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: 'Datum der letzten Ausgabe',
-                        description: 'Datum der letzten Ausgabe im Bericht.',
-                    },
-                    [CONST.XERO_EXPORT_DATE.REPORT_EXPORTED]: {
-                        label: 'Exportdatum',
-                        description: 'Datum, an dem der Bericht nach Xero exportiert wurde.',
-                    },
-                    [CONST.XERO_EXPORT_DATE.REPORT_SUBMITTED]: {
-                        label: 'Eingereichtes Datum',
-                        description: 'Datum, an dem der Bericht zur Genehmigung eingereicht wurde.',
-                    },
-                },
-            },
-            invoiceStatus: {
-                label: 'Kaufrechnungsstatus',
-                description: 'Verwenden Sie diesen Status beim Exportieren von Einkaufsrechnungen nach Xero.',
-                values: {
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.DRAFT]: 'Entwurf',
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.AWAITING_APPROVAL]: 'Warten auf Genehmigung',
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.AWAITING_PAYMENT]: 'Zahlung ausstehend',
-                },
-            },
-            noAccountsFound: 'Keine Konten gefunden',
-            noAccountsFoundDescription: 'Bitte fügen Sie das Konto in Xero hinzu und synchronisieren Sie die Verbindung erneut.',
-            accountingMethods: {
-                label: 'Wann exportieren',
-                description: 'Wählen Sie, wann die Ausgaben exportiert werden sollen:',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Accrual',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Bargeld',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Auslagen werden exportiert, wenn sie endgültig genehmigt sind.',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Auslagen werden exportiert, wenn sie bezahlt sind.',
-                },
-            },
-        },
         type: {
             free: 'Kostenlos',
             control: 'Steuerung',
@@ -3993,7 +3903,6 @@ const translations = {
                 cardholder: 'Karteninhaber',
                 cardName: 'Kartenname',
                 integrationExport: ({integration, type}: IntegrationExportParams) => (integration && type ? `${integration} ${type.toLowerCase()} Export` : `${integration}-Export`),
-                integrationExportTitleXero: ({integration}: IntegrationExportParams) => `Wählen Sie das ${integration}-Konto aus, in das die Transaktionen exportiert werden sollen.`,
                 integrationExportTitle: ({integration, exportPageLink}: IntegrationExportParams) =>
                     `Wählen Sie das ${integration}-Konto aus, in das die Transaktionen exportiert werden sollen. Wählen Sie eine andere <a href="${exportPageLink}">Exportoption</a>, um die verfügbaren Konten zu ändern.`,
                 lastUpdated: 'Zuletzt aktualisiert',
@@ -4379,7 +4288,6 @@ const translations = {
             subtitle:
                 'Verbinden Sie sich mit Ihrem Buchhaltungssystem, um Transaktionen mit Ihrem Kontenplan zu kodieren, Zahlungen automatisch abzugleichen und Ihre Finanzen synchron zu halten.',
             qbd: 'QuickBooks Desktop',
-            xero: 'Xero',
             sap: 'SAP',
             oracle: 'Oracle',
             microsoftDynamics: 'Microsoft Dynamics',
@@ -4389,9 +4297,6 @@ const translations = {
             needAnotherAccounting: 'Benötigen Sie eine weitere Buchhaltungssoftware?',
             connectionName: ({connectionName}: ConnectionNameParams) => {
                 switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                        return 'Xero';
-
                     default: {
                         return '';
                     }
@@ -4418,8 +4323,6 @@ const translations = {
             connectTitle: ({connectionName}: ConnectionNameParams) => `Connect ${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? 'Buchhaltungsintegration'}`,
             syncError: ({connectionName}: ConnectionNameParams) => {
                 switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                        return 'Kann keine Verbindung zu Xero herstellen';
                     case CONST.POLICY.CONNECTIONS.NAME.QBD:
                         return 'Kann keine Verbindung zu QuickBooks Desktop herstellen';
                     default: {
@@ -4463,8 +4366,6 @@ const translations = {
                             return 'Verarbeitung importierter Daten';
                             return 'Synchronisieren von erstatteten Berichten und Rechnungszahlungen';
                             return 'Importieren von Steuercodes';
-                        case 'startingImportXero':
-                            return 'Importieren von Xero-Daten';
                         case 'startingImportQBD':
                         case 'quickbooksDesktopImportMore':
                             return 'Importieren von QuickBooks Desktop-Daten';
@@ -4478,34 +4379,8 @@ const translations = {
                             return 'Speicherungsrichtlinie importieren';
                         case 'quickbooksDesktopWebConnectorReminder':
                             return 'Daten werden weiterhin mit QuickBooks synchronisiert... Bitte stellen Sie sicher, dass der Web Connector läuft.';
-                        case 'xeroSyncStep':
-                            return 'Daten werden geladen';
-                            return 'Kategorien aktualisieren';
-                            return 'Kunden/Projekte aktualisieren';
-                            return 'Aktualisierung der Personenliste';
-                            return 'Aktualisieren von Berichtsfeldern';
                         case 'jobDone':
                             return 'Warten auf das Laden der importierten Daten';
-                        case 'xeroSyncImportChartOfAccounts':
-                            return 'Kontenplan synchronisieren';
-                        case 'xeroSyncImportCategories':
-                            return 'Kategorien synchronisieren';
-                        case 'xeroSyncImportCustomers':
-                            return 'Kunden synchronisieren';
-                        case 'xeroSyncXeroReimbursedReports':
-                            return 'Expensify-Berichte als erstattet markieren';
-                        case 'xeroSyncExpensifyReimbursedReports':
-                            return 'Xero-Rechnungen und -Rechnungen als bezahlt markieren';
-                        case 'xeroSyncImportTrackingCategories':
-                            return 'Synchronisieren von Tracking-Kategorien';
-                        case 'xeroSyncImportBankAccounts':
-                            return 'Synchronisieren von Bankkonten';
-                        case 'xeroSyncImportTaxRates':
-                            return 'Steuersätze synchronisieren';
-                        case 'xeroCheckConnection':
-                            return 'Xero-Verbindung wird überprüft';
-                        case 'xeroSyncTitle':
-                            return 'Synchronisiere Xero-Daten';
                         case 'quickbooksDesktopImportVendors':
                             return 'Importieren von Lieferanten';
 
@@ -4835,7 +4710,7 @@ const translations = {
                     pricingPage: 'Preisseite',
                     confirm: 'Möchten Sie wirklich herabstufen und Ihre Konfigurationen entfernen?',
                     warning: 'Dies kann nicht rückgängig gemacht werden.',
-                    benefit1: 'Buchhaltungsverbindungen (außer Xero)',
+                    benefit1: 'Buchhaltungsverbindungen',
                     benefit2: 'Intelligente Ausgabenregeln',
                     benefit3: 'Genehmigungsabläufe mit mehreren Ebenen',
                     benefit4: 'Erweiterte Sicherheitskontrollen',
@@ -6075,7 +5950,7 @@ const translations = {
                 benefit3: 'Verwaltung von Firmenkreditkarten',
                 benefit4: 'Spesen- und Reisegenehmigungen',
                 benefit5: 'Reisebuchung und -regeln',
-                benefit6: 'QuickBooks/Xero-Integrationen',
+                benefit6: 'QuickBooks-Integrationen',
                 benefit7: 'Chat über Ausgaben, Berichte und Räume',
                 benefit8: 'KI- und menschlicher Support',
             },

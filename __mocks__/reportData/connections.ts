@@ -11,13 +11,6 @@ const connections = {
             },
         },
     },
-    [CONST.POLICY.CONNECTIONS.NAME.XERO]: {
-        config: {
-            autoSync: {
-                enabled: false,
-            },
-        },
-    },
     [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
         config: {
             autoSync: {

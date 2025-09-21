@@ -1714,12 +1714,11 @@ const translations = {
         disable: 'Uitschakelen',
         enableTwoFactorAuth: 'Twee-factor-authenticatie inschakelen',
         pleaseEnableTwoFactorAuth: 'Schakel alsjeblieft twee-factor authenticatie in.',
-        twoFactorAuthIsRequiredDescription: 'Voor beveiligingsdoeleinden vereist Xero tweefactorauthenticatie om de integratie te verbinden.',
         twoFactorAuthIsRequiredForAdminsHeader: 'Twee-factor authenticatie vereist',
         twoFactorAuthIsRequiredForAdminsTitle: 'Schakel alsjeblieft twee-factor authenticatie in.',
-        twoFactorAuthIsRequiredForAdminsDescription: 'Uw Xero-boekhoudkoppeling vereist het gebruik van tweefactorauthenticatie. Om Expensify te blijven gebruiken, schakelt u dit in.',
+        twoFactorAuthIsRequiredForAdminsDescription: 'Uw boekhoudkoppeling vereist het gebruik van tweefactorauthenticatie. Om Expensify te blijven gebruiken, schakelt u dit in.',
         twoFactorAuthCannotDisable: 'Kan 2FA niet uitschakelen',
-        twoFactorAuthRequired: 'Twee-factor authenticatie (2FA) is vereist voor uw Xero-verbinding en kan niet worden uitgeschakeld.',
+        twoFactorAuthRequired: 'Twee-factor authenticatie (2FA) is vereist en kan niet worden uitgeschakeld.',
     },
     recoveryCodeForm: {
         error: {
@@ -2305,11 +2304,7 @@ const translations = {
                     `5. Zoek ${integrationName}.\n` +
                     '6. Klik op *Verbinden*.\n' +
                     '\n' +
-                    `${
-                        integrationName && CONST.connectionsVideoPaths[integrationName]
-                            ? `[Breng me naar boekhouding](${workspaceAccountingLink}).\n\n![Verbind met ${integrationName}](${CONST.CLOUDFRONT_URL}/${CONST.connectionsVideoPaths[integrationName]})`
-                            : `[Breng me naar boekhouding](${workspaceAccountingLink}).`
-                    }`,
+                    `[Breng me naar boekhouding](${workspaceAccountingLink}).`,
             },
             connectCorporateCardTask: {
                 title: ({corporateCardLink}) => `Verbind [uw bedrijfskaart](${corporateCardLink})`,
@@ -3630,91 +3625,6 @@ const translations = {
             joinNow: 'Nu lid worden',
             askToJoin: 'Vragen om deel te nemen',
         },
-        xero: {
-            organization: 'Xero organisatie',
-            organizationDescription: 'Kies de Xero-organisatie waarvan je gegevens wilt importeren.',
-            importDescription: 'Kies welke coderingsconfiguraties je wilt importeren van Xero naar Expensify.',
-            accountsDescription: 'Je Xero-rekeningschema wordt in Expensify geïmporteerd als categorieën.',
-            accountsSwitchTitle: 'Kies ervoor om nieuwe accounts te importeren als ingeschakelde of uitgeschakelde categorieën.',
-            accountsSwitchDescription: 'Ingeschakelde categorieën zullen beschikbaar zijn voor leden om te selecteren bij het aanmaken van hun uitgaven.',
-            trackingCategories: 'Categorieën bijhouden',
-            trackingCategoriesDescription: 'Kies hoe Xero-trackingcategorieën in Expensify moeten worden behandeld.',
-            mapTrackingCategoryTo: ({categoryName}: CategoryNameParams) => `Map Xero ${categoryName} naar`,
-            mapTrackingCategoryToDescription: ({categoryName}: CategoryNameParams) => `Kies waar u ${categoryName} wilt toewijzen bij het exporteren naar Xero.`,
-            customers: 'Klanten opnieuw factureren',
-            customersDescription:
-                'Kies of u klanten opnieuw wilt factureren in Expensify. Uw Xero-klantcontacten kunnen aan uitgaven worden gekoppeld en zullen naar Xero worden geëxporteerd als een verkoopfactuur.',
-            taxesDescription: 'Kies hoe je Xero-belastingen in Expensify wilt verwerken.',
-            notImported: 'Niet geïmporteerd',
-            notConfigured: 'Niet geconfigureerd',
-            trackingCategoriesOptions: {
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.DEFAULT]: 'Xero contact standaardinstelling',
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.TAG]: 'Tags',
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.REPORT_FIELD]: 'Rapportvelden',
-            },
-            exportDescription: 'Configureer hoe Expensify-gegevens worden geëxporteerd naar Xero.',
-            purchaseBill: 'Aankoopfactuur',
-            exportDeepDiveCompanyCard:
-                'Geëxporteerde uitgaven worden als banktransacties geboekt naar de Xero-bankrekening hieronder, en de transactiedata zullen overeenkomen met de data op uw bankafschrift.',
-            bankTransactions: 'Banktransacties',
-            xeroBankAccount: 'Xero bankrekening',
-            xeroBankAccountDescription: 'Kies waar uitgaven als banktransacties worden geboekt.',
-            exportExpensesDescription: 'Rapporten worden geëxporteerd als een inkoopfactuur met de hieronder geselecteerde datum en status.',
-            purchaseBillDate: 'Aankoopfactuurdatum',
-            exportInvoices: 'Facturen exporteren als',
-            salesInvoice: 'Verkoopfactuur',
-            exportInvoicesDescription: 'Verkoopfacturen tonen altijd de datum waarop de factuur is verzonden.',
-            advancedConfig: {
-                autoSyncDescription: 'Expensify zal elke dag automatisch synchroniseren met Xero.',
-                purchaseBillStatusTitle: 'Status van aankoopfactuur',
-                reimbursedReportsDescription: 'Elke keer dat een rapport wordt betaald met Expensify ACH, wordt de overeenkomstige factuurbetaling aangemaakt in het Xero-account hieronder.',
-                xeroBillPaymentAccount: 'Xero factuurbetalingsaccount',
-                xeroInvoiceCollectionAccount: 'Xero factuurincasso-account',
-                xeroBillPaymentAccountDescription: 'Kies waar u de rekeningen wilt betalen en wij maken de betaling aan in Xero.',
-                invoiceAccountSelectorDescription: 'Kies waar je factuurbetalingen wilt ontvangen en we maken de betaling aan in Xero.',
-            },
-            exportDate: {
-                label: 'Aankoopfactuurdatum',
-                description: 'Gebruik deze datum bij het exporteren van rapporten naar Xero.',
-                values: {
-                    [CONST.XERO_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: 'Datum van laatste uitgave',
-                        description: 'Datum van de meest recente uitgave op het rapport.',
-                    },
-                    [CONST.XERO_EXPORT_DATE.REPORT_EXPORTED]: {
-                        label: 'Exportdatum',
-                        description: 'Datum waarop het rapport naar Xero is geëxporteerd.',
-                    },
-                    [CONST.XERO_EXPORT_DATE.REPORT_SUBMITTED]: {
-                        label: 'Ingediende datum',
-                        description: 'Datum waarop het rapport ter goedkeuring is ingediend.',
-                    },
-                },
-            },
-            invoiceStatus: {
-                label: 'Status van aankoopfactuur',
-                description: 'Gebruik deze status bij het exporteren van aankoopfacturen naar Xero.',
-                values: {
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.DRAFT]: 'Conceptversie',
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.AWAITING_APPROVAL]: 'In afwachting van goedkeuring',
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.AWAITING_PAYMENT]: 'In afwachting van betaling',
-                },
-            },
-            noAccountsFound: 'Geen accounts gevonden',
-            noAccountsFoundDescription: 'Voeg alstublieft het account toe in Xero en synchroniseer de verbinding opnieuw.',
-            accountingMethods: {
-                label: 'Wanneer exporteren',
-                description: 'Kies wanneer u de uitgaven wilt exporteren:',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Accrual',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Contant',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Uit eigen zak gemaakte uitgaven worden geëxporteerd wanneer ze definitief zijn goedgekeurd.',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Uit eigen zak gemaakte uitgaven worden geëxporteerd wanneer ze zijn betaald.',
-                },
-            },
-        },
         type: {
             free: 'Gratis',
             control: 'Beheer',
@@ -4007,7 +3917,6 @@ const translations = {
                 cardholder: 'Kaart houder',
                 cardName: 'Kaartnaam',
                 integrationExport: ({integration, type}: IntegrationExportParams) => (integration && type ? `${integration} ${type.toLowerCase()} exporteren` : `${integration} exporteren`),
-                integrationExportTitleXero: ({integration}: IntegrationExportParams) => `Kies de ${integration}-account waarnaar transacties moeten worden geëxporteerd.`,
                 integrationExportTitle: ({integration, exportPageLink}: IntegrationExportParams) =>
                     `Kies de ${integration}-account waarnaar transacties moeten worden geëxporteerd. Selecteer een andere <a href="${exportPageLink}">exportoptie</a> om de beschikbare accounts te wijzigen.`,
                 lastUpdated: 'Laatst bijgewerkt',
@@ -4388,7 +4297,6 @@ const translations = {
             title: 'Verbindingen',
             subtitle: 'Maak verbinding met uw boekhoudsysteem om transacties te coderen met uw rekeningschema, betalingen automatisch te matchen en uw financiën synchroon te houden.',
             qbd: 'QuickBooks Desktop',
-            xero: 'Xero',
             sap: 'SAP',
             oracle: 'Oracle',
             microsoftDynamics: 'Microsoft Dynamics',
@@ -4398,9 +4306,6 @@ const translations = {
             needAnotherAccounting: 'Nog een boekhoudsoftware nodig?',
             connectionName: ({connectionName}: ConnectionNameParams) => {
                 switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                        return 'Xero';
-
                     default: {
                         return '';
                     }
@@ -4427,8 +4332,6 @@ const translations = {
             connectTitle: ({connectionName}: ConnectionNameParams) => `Verbind ${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? 'boekhoudintegratie'}`,
             syncError: ({connectionName}: ConnectionNameParams) => {
                 switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                        return 'Kan geen verbinding maken met Xero';
                     case CONST.POLICY.CONNECTIONS.NAME.QBD:
                         return 'Kan geen verbinding maken met QuickBooks Desktop';
                     default: {
@@ -4472,8 +4375,6 @@ const translations = {
                             return 'Geïmporteerde gegevens verwerken';
                             return 'Gesynchroniseerde vergoede rapporten en factuurbetalingen';
                             return 'Belastingcodes importeren';
-                        case 'startingImportXero':
-                            return 'Xero-gegevens importeren';
                         case 'startingImportQBD':
                         case 'quickbooksDesktopImportMore':
                             return 'QuickBooks Desktop-gegevens importeren';
@@ -4487,34 +4388,8 @@ const translations = {
                             return 'Beleid voor importeren opslaan';
                         case 'quickbooksDesktopWebConnectorReminder':
                             return 'Nog steeds gegevens synchroniseren met QuickBooks... Zorg ervoor dat de Web Connector actief is.';
-                        case 'xeroSyncStep':
-                            return 'Gegevens laden';
-                            return 'Categorieën bijwerken';
-                            return 'Klanten/projecten bijwerken';
-                            return 'Lijst met personen bijwerken';
-                            return 'Rapportvelden bijwerken';
                         case 'jobDone':
                             return 'Wachten tot geïmporteerde gegevens zijn geladen';
-                        case 'xeroSyncImportChartOfAccounts':
-                            return 'Synchroniseren van rekeningschema';
-                        case 'xeroSyncImportCategories':
-                            return 'Categorieën synchroniseren';
-                        case 'xeroSyncImportCustomers':
-                            return 'Klanten synchroniseren';
-                        case 'xeroSyncXeroReimbursedReports':
-                            return 'Expensify-rapporten markeren als vergoed';
-                        case 'xeroSyncExpensifyReimbursedReports':
-                            return 'Xero-facturen en -rekeningen als betaald markeren';
-                        case 'xeroSyncImportTrackingCategories':
-                            return 'Synchroniseren van trackingcategorieën';
-                        case 'xeroSyncImportBankAccounts':
-                            return 'Bankrekeningen synchroniseren';
-                        case 'xeroSyncImportTaxRates':
-                            return 'Belastingtarieven synchroniseren';
-                        case 'xeroCheckConnection':
-                            return 'Xero-verbinding controleren';
-                        case 'xeroSyncTitle':
-                            return 'Xero-gegevens synchroniseren';
                         case 'quickbooksDesktopImportVendors':
                             return 'Leveranciers importeren';
 
@@ -4839,7 +4714,7 @@ const translations = {
                     pricingPage: 'prijs pagina',
                     confirm: 'Weet je zeker dat je wilt downgraden en je configuraties wilt verwijderen?',
                     warning: 'Dit kan niet ongedaan worden gemaakt.',
-                    benefit1: 'Boekhoudkoppelingen (behalve Xero)',
+                    benefit1: 'Boekhoudkoppelingen',
                     benefit2: 'Slimme uitgavenregels',
                     benefit3: 'Meerniveau goedkeuringsworkflows',
                     benefit4: 'Verbeterde beveiligingscontroles',
@@ -6072,7 +5947,7 @@ const translations = {
                 benefit3: 'Beheer van bedrijfskaarten',
                 benefit4: 'Uitgaven- en reisgoedkeuringen',
                 benefit5: 'Reisreservering en regels',
-                benefit6: 'QuickBooks/Xero-integraties',
+                benefit6: 'QuickBooks-integraties',
                 benefit7: 'Chat over uitgaven, rapporten en kamers',
                 benefit8: 'AI- en menselijke ondersteuning',
             },
