@@ -838,10 +838,6 @@ type BusinessRegistrationNumberParams = {
     country: string;
 };
 
-type QBDSetupErrorBodyParams = {
-    conciergeLink: string;
-};
-
 type EmptyCategoriesSubtitleWithAccountingParams = {
     accountingPageURL: string;
 };
@@ -857,7 +853,6 @@ type SettlementAccountInfoParams = {
 
 type EnableContinuousReconciliationParams = {
     connectionName: string;
-    accountingAdvancedSettingsLink: string;
 };
 
 type WorkspaceUpgradeNoteParams = {
@@ -1181,7 +1176,6 @@ export type {
     WorkspacesListRouteParams,
     WorkspaceRouteParams,
     BusinessTaxIDParams,
-    QBDSetupErrorBodyParams,
     EmptyCategoriesSubtitleWithAccountingParams,
     EmptyTagsSubtitleWithAccountingParams,
     SettlementAccountInfoParams,

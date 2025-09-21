@@ -171,7 +171,6 @@ import type {
     PolicyDisabledReportFieldAllOptionsParams,
     PolicyDisabledReportFieldOptionParams,
     PolicyExpenseChatNameParams,
-    QBDSetupErrorBodyParams,
     RailTicketParams,
     ReconciliationWorksParams,
     RemovedFromApprovalWorkflowParams,
@@ -3447,7 +3446,8 @@ const translations = {
             viewTransactions: '查看交易记录',
             policyExpenseChatName: ({displayName}: PolicyExpenseChatNameParams) => `${displayName}的费用`,
             deepDiveExpensifyCard: `<muted-text-label>Expensify 卡交易将自动导出到与<a href="${CONST.DEEP_DIVE_EXPENSIFY_CARD}">我们集成</a>创建的 “Expensify 卡责任账户”。</muted-text-label>`,
-        },        perDiem: {
+        },
+        perDiem: {
             subtitle: '设置每日津贴标准以控制员工的日常支出。',
             amount: '金额',
             deleteRates: () => ({
@@ -3472,96 +3472,6 @@ const translations = {
             editPerDiemRates: '编辑每日津贴标准',
             editDestinationSubtitle: ({destination}: EditDestinationSubtitleParams) => `更新此目的地将更改所有${destination}的每日津贴子费率。`,
             editCurrencySubtitle: ({destination}: EditDestinationSubtitleParams) => `更新此货币将更改所有${destination}的每日津贴子费率。`,
-        },
-        qbd: {
-            exportOutOfPocketExpensesDescription: '设置自付费用如何导出到QuickBooks Desktop。',
-            exportOutOfPocketExpensesCheckToggle: '将支票标记为“稍后打印”',
-            exportDescription: '配置如何将Expensify数据导出到QuickBooks Desktop。',
-            date: '导出日期',
-            exportInvoices: '导出发票到',
-            exportExpensifyCard: '将 Expensify 卡交易导出为',
-            account: '账户',
-            accountDescription: '选择发布分录的位置。',
-            accountsPayable: '应付账款',
-            accountsPayableDescription: '选择在哪里创建供应商账单。',
-            bankAccount: '银行账户',
-            notConfigured: '未配置',
-            bankAccountDescription: '选择从哪里发送支票。',
-            creditCardAccount: '信用卡账户',
-            exportDate: {
-                label: '导出日期',
-                description: '导出报告到QuickBooks Desktop时使用此日期。',
-                values: {
-                    [CONST.QUICKBOOKS_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: '最后报销日期',
-                        description: '报告中最近费用的日期。',
-                    },
-                    [CONST.QUICKBOOKS_EXPORT_DATE.REPORT_EXPORTED]: {
-                        label: '导出日期',
-                        description: '报告导出到QuickBooks Desktop的日期。',
-                    },
-                    [CONST.QUICKBOOKS_EXPORT_DATE.REPORT_SUBMITTED]: {
-                        label: '提交日期',
-                        description: '报告提交审批的日期。',
-                    },
-                },
-            },
-            exportCheckDescription: '我们将为每个Expensify报告创建一张分项支票，并从以下银行账户发送。',
-            exportJournalEntryDescription: '我们将为每个Expensify报告创建一项分项日记账分录，并将其发布到以下账户。',
-            exportVendorBillDescription: '我们将为每个Expensify报告创建一张分项供应商账单，并将其添加到以下账户中。如果此期间已关闭，我们将发布到下一个开放期间的第一天。',
-            outOfPocketTaxEnabledDescription: 'QuickBooks Desktop 不支持日记账分录导出的税款。由于您在工作区启用了税款，此导出选项不可用。',
-            outOfPocketTaxEnabledError: '启用税收时，日记分录不可用。请选择其他导出选项。',
-            accounts: {
-                [CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD]: '信用卡',
-                [CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL]: '供应商账单',
-                [CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY]: '日记条目',
-                [CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.CHECK]: '检查',
-                [`${CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CHECK}Description`]: '我们将为每个Expensify报告创建一张分项支票，并从以下银行账户发送。',
-                [`${CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD}Description`]:
-                    '我们会自动将信用卡交易中的商家名称与QuickBooks中的任何对应供应商匹配。如果没有供应商存在，我们将创建一个“信用卡杂项”供应商进行关联。',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}Description`]:
-                    '我们将为每个Expensify报告创建一份逐项列出的供应商账单，其中包含最后一笔费用的日期，并将其添加到下面的账户中。如果该期间已关闭，我们将发布到下一个开放期间的第一天。',
-                [`${CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD}AccountDescription`]: '选择导出信用卡交易的目的地。',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}AccountDescription`]: '选择一个供应商以应用于所有信用卡交易。',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.CHECK}AccountDescription`]: '选择从哪里发送支票。',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}Error`]: '启用位置时，供应商账单不可用。请选择其他导出选项。',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.CHECK}Error`]: '启用位置时无法使用支票。请选择其他导出选项。',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY}Error`]: '启用税收时，日记分录不可用。请选择其他导出选项。',
-            },
-            noAccountsFound: '未找到账户',
-            noAccountsFoundDescription: '在 QuickBooks Desktop 中添加账户并再次同步连接',
-            qbdSetup: 'QuickBooks Desktop 设置',
-            requiredSetupDevice: {
-                title: '无法从此设备连接',
-                body1: '您需要从托管 QuickBooks Desktop 公司文件的计算机上设置此连接。',
-                body2: '一旦连接，您就可以随时随地同步和导出。',
-            },
-            setupPage: {
-                title: '打开此链接进行连接',
-                body: '要完成设置，请在运行QuickBooks Desktop的计算机上打开以下链接。',
-                setupErrorTitle: '出现错误',
-                setupErrorBody: ({conciergeLink}: QBDSetupErrorBodyParams) =>
-                    `<muted-text><centered-text>QuickBooks Desktop 连接暂时无法正常工作。请稍后再试，如果问题仍然存在，<a href="${conciergeLink}">请联系Concierge</a>。</centered-text></muted-text>`,
-            },
-            importDescription: '选择从 QuickBooks Desktop 导入到 Expensify 的编码配置。',
-            classes: '类',
-            items: '项目',
-            customers: '客户/项目',
-            exportCompanyCardsDescription: '设置公司卡购买如何导出到QuickBooks Desktop。',
-            defaultVendorDescription: '设置一个默认供应商，该供应商将适用于导出时的所有信用卡交易。',
-            accountsDescription: '您的 QuickBooks Desktop 科目表将作为类别导入到 Expensify。',
-            accountsSwitchTitle: '选择将新账户导入为启用或禁用的类别。',
-            accountsSwitchDescription: '启用的类别将在成员创建费用时可供选择。',
-            classesDescription: '选择如何在Expensify中处理QuickBooks Desktop类别。',
-            tagsDisplayedAsDescription: '行项目级别',
-            reportFieldsDisplayedAsDescription: '报告级别',
-            customersDescription: '选择如何在Expensify中处理QuickBooks Desktop客户/项目。',
-            advancedConfig: {
-                autoSyncDescription: 'Expensify将每天自动与QuickBooks Desktop同步。',
-                createEntities: '自动创建实体',
-                createEntitiesDescription: '如果供应商尚不存在，Expensify 将在 QuickBooks Desktop 中自动创建供应商。',
-            },
-            itemsDescription: '选择如何在Expensify中处理QuickBooks Desktop项目。',
         },
         workspaceList: {
             joinNow: '立即加入',
@@ -4228,7 +4138,6 @@ const translations = {
             settings: '设置',
             title: '连接',
             subtitle: '连接到您的会计系统，以使用您的科目表对交易进行编码，自动匹配付款，并保持您的财务同步。',
-            qbd: 'QuickBooks Desktop',
             sap: 'SAP',
             oracle: 'Oracle',
             microsoftDynamics: 'Microsoft Dynamics',
@@ -4261,15 +4170,7 @@ const translations = {
                 return `断开 ${integrationName}`;
             },
             connectTitle: ({connectionName}: ConnectionNameParams) => `Connect ${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? '会计集成'}`,
-            syncError: ({connectionName}: ConnectionNameParams) => {
-                switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.QBD:
-                        return '无法连接到 QuickBooks Desktop';
-                    default: {
-                        return '无法连接到集成';
-                    }
-                }
-            },
+            syncError: () => '无法连接到集成',
             accounts: '科目表',
             taxes: '税款',
             imported: '已导入',
@@ -4294,45 +4195,15 @@ const translations = {
             connections: {
                 syncStageName: ({stage}: SyncStageNameConnectionsParams) => {
                     switch (stage) {
-                        case 'quickbooksDesktopImportCustomers':
-                            return '导入客户';
-                        case 'quickbooksDesktopImportEmployees':
-                            return '导入员工';
-                        case 'quickbooksDesktopImportAccounts':
-                            return '导入账户';
-                        case 'quickbooksDesktopImportClasses':
-                            return '导入类别';
-                            return '导入位置';
-                            return '正在处理导入的数据';
-                            return '同步已报销报告和账单支付';
-                            return '导入税码';
-                        case 'startingImportQBD':
-                        case 'quickbooksDesktopImportMore':
-                            return '导入 QuickBooks Desktop 数据';
-                        case 'quickbooksDesktopImportTitle':
-                            return '导入标题';
-                        case 'quickbooksDesktopImportApproveCertificate':
-                            return '导入批准证书';
-                        case 'quickbooksDesktopImportDimensions':
-                            return '导入维度';
-                        case 'quickbooksDesktopImportSavePolicy':
-                            return '导入保存策略';
-                        case 'quickbooksDesktopWebConnectorReminder':
-                            return '仍在与QuickBooks同步数据... 请确保Web Connector正在运行';
                         case 'jobDone':
                             return '正在等待导入的数据加载';
-                        case 'quickbooksDesktopImportVendors':
-                            return '导入供应商';
-
-
-
                         default: {
                             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-                            return `阶段的翻译缺失：${stage}`;
+                            return `阶段缺少翻译：${stage}`;
                         }
                     }
                 },
-            },
+},
             preferredExporter: '首选导出工具',
             exportPreferredExporterNote: '首选导出者可以是任何工作区管理员，但如果您在域设置中为单个公司卡设置不同的导出账户，则必须也是域管理员。',
             exportPreferredExporterSubNote: '一旦设置，首选导出者将在其账户中看到可导出的报告。',
@@ -4349,8 +4220,8 @@ const translations = {
             reconciliationAccount: '对账账户',
             continuousReconciliation: '持续对账',
             saveHoursOnReconciliation: '通过让Expensify持续为您对账Expensify卡的对账单和结算，您可以在每个会计期间节省数小时的对账时间。',
-            enableContinuousReconciliation: ({accountingAdvancedSettingsLink, connectionName}: EnableContinuousReconciliationParams) =>
-                `<muted-text-label>要启用持续对账，请启用 ${connectionName} 的<a href="${accountingAdvancedSettingsLink}">自动同步</a>功能。</muted-text-label>`,
+            enableContinuousReconciliation: ({connectionName}: EnableContinuousReconciliationParams) =>
+                `<muted-text-label>要启用持续对账，请为 ${connectionName} 启用自动同步。</muted-text-label>`,
             chooseReconciliationAccount: {
                 chooseBankAccount: '选择用于对账您的 Expensify Card 支付的银行账户。',
                 accountMatches: '确保此账户与您的账户匹配',
@@ -4529,11 +4400,6 @@ const translations = {
                 title: '报告字段',
                 description: `报告字段允许您指定标题级别的详细信息，与适用于单个项目费用的标签不同。这些详细信息可以包括特定的项目名称、商务旅行信息、地点等。`,
                 onlyAvailableOnPlan: '报告字段仅在Control计划中可用，起价为',
-            },
-            [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
-                title: 'QuickBooks Desktop',
-                description: `通过Expensify与QuickBooks Desktop的集成，享受自动同步并减少手动输入。通过实时双向连接以及按类别、项目、客户和项目的费用编码，实现终极效率。`,
-                onlyAvailableOnPlan: '我们的 QuickBooks Desktop 集成仅在 Control 计划中提供，起价为',
             },
             approvals: {
                 title: '高级审批',

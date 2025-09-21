@@ -1,16 +1,14 @@
-import type {ValueOf} from 'type-fest';
-import CONST from '@src/CONST';
 import type {ConnectionName} from '@src/types/onyx/Policy';
 
-const ROUTE_NAME_MAPPING = {
-    [CONST.POLICY.CONNECTIONS.ROUTE.QBD]: CONST.POLICY.CONNECTIONS.NAME.QBD,
-};
+const ROUTE_NAME_MAPPING: Record<string, ConnectionName> = {};
 
-const NAME_ROUTE_MAPPING = {
-    [CONST.POLICY.CONNECTIONS.NAME.QBD]: CONST.POLICY.CONNECTIONS.ROUTE.QBD,
-};
+const NAME_ROUTE_MAPPING: Record<string, string> = {};
 
-function getConnectionNameFromRouteParam(routeParam: ValueOf<typeof CONST.POLICY.CONNECTIONS.ROUTE>) {
+function getConnectionNameFromRouteParam(routeParam: string | undefined) {
+    if (!routeParam) {
+        return undefined;
+    }
+
     return ROUTE_NAME_MAPPING[routeParam];
 }
 

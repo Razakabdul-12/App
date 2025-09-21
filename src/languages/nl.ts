@@ -171,7 +171,6 @@ import type {
     PolicyDisabledReportFieldAllOptionsParams,
     PolicyDisabledReportFieldOptionParams,
     PolicyExpenseChatNameParams,
-    QBDSetupErrorBodyParams,
     RailTicketParams,
     ReconciliationWorksParams,
     RemovedFromApprovalWorkflowParams,
@@ -3499,7 +3498,8 @@ const translations = {
             viewTransactions: 'Transacties bekijken',
             policyExpenseChatName: ({displayName}: PolicyExpenseChatNameParams) => `Uitgaven van ${displayName}`,
             deepDiveExpensifyCard: `<muted-text-label>Expensify Card transacties worden automatisch geëxporteerd naar een “Expensify Card Liability Account” die is aangemaakt met <a href="${CONST.DEEP_DIVE_EXPENSIFY_CARD}">onze integratie</a>.</muted-text-label>`,
-        },        perDiem: {
+        },
+        perDiem: {
             subtitle: 'Stel dagvergoedingen in om de dagelijkse uitgaven van werknemers te beheersen.',
             amount: 'Bedrag',
             deleteRates: () => ({
@@ -3525,101 +3525,6 @@ const translations = {
             editDestinationSubtitle: ({destination}: EditDestinationSubtitleParams) =>
                 `Het bijwerken van deze bestemming zal het wijzigen voor alle ${destination} dagvergoedingssubtarieven.`,
             editCurrencySubtitle: ({destination}: EditDestinationSubtitleParams) => `Het bijwerken van deze valuta zal het veranderen voor alle ${destination} dagvergoeding subtarieven.`,
-        },
-        qbd: {
-            exportOutOfPocketExpensesDescription: 'Stel in hoe uit eigen zak gemaakte uitgaven worden geëxporteerd naar QuickBooks Desktop.',
-            exportOutOfPocketExpensesCheckToggle: 'Markeer cheques als "later afdrukken"',
-            exportDescription: 'Configureer hoe Expensify-gegevens worden geëxporteerd naar QuickBooks Desktop.',
-            date: 'Exportdatum',
-            exportInvoices: 'Facturen exporteren naar',
-            exportExpensifyCard: 'Exporteer Expensify Card-transacties als',
-            account: 'Account',
-            accountDescription: 'Kies waar u journaalposten wilt plaatsen.',
-            accountsPayable: 'Crediteurenadministratie',
-            accountsPayableDescription: 'Kies waar u leveranciersfacturen wilt aanmaken.',
-            bankAccount: 'Bankrekening',
-            notConfigured: 'Niet geconfigureerd',
-            bankAccountDescription: 'Kies waar u cheques vandaan wilt verzenden.',
-            creditCardAccount: 'Creditcardrekening',
-            exportDate: {
-                label: 'Exportdatum',
-                description: 'Gebruik deze datum bij het exporteren van rapporten naar QuickBooks Desktop.',
-                values: {
-                    [CONST.QUICKBOOKS_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: 'Datum van laatste uitgave',
-                        description: 'Datum van de meest recente uitgave op het rapport.',
-                    },
-                    [CONST.QUICKBOOKS_EXPORT_DATE.REPORT_EXPORTED]: {
-                        label: 'Exportdatum',
-                        description: 'Datum waarop het rapport is geëxporteerd naar QuickBooks Desktop.',
-                    },
-                    [CONST.QUICKBOOKS_EXPORT_DATE.REPORT_SUBMITTED]: {
-                        label: 'Ingediende datum',
-                        description: 'Datum waarop het rapport ter goedkeuring is ingediend.',
-                    },
-                },
-            },
-            exportCheckDescription: 'We maken een gespecificeerde cheque voor elk Expensify-rapport en sturen deze vanaf de onderstaande bankrekening.',
-            exportJournalEntryDescription: 'We zullen een gespecificeerde journaalpost maken voor elk Expensify-rapport en deze naar de onderstaande rekening boeken.',
-            exportVendorBillDescription:
-                'We maken een gespecificeerde leveranciersfactuur voor elk Expensify-rapport en voegen deze toe aan de onderstaande rekening. Als deze periode is gesloten, boeken we naar de 1e van de volgende open periode.',
-            outOfPocketTaxEnabledDescription:
-                'QuickBooks Desktop ondersteunt geen belastingen bij het exporteren van journaalposten. Aangezien u belastingen heeft ingeschakeld in uw werkruimte, is deze exportoptie niet beschikbaar.',
-            outOfPocketTaxEnabledError: 'Journaalposten zijn niet beschikbaar wanneer belastingen zijn ingeschakeld. Kies een andere exportoptie.',
-            accounts: {
-                [CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD]: 'Creditcard',
-                [CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL]: 'Leveranciersfactuur',
-                [CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY]: 'Journaalboeking',
-                [CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.CHECK]: 'Controleren',
-                [`${CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CHECK}Description`]:
-                    'We maken een gespecificeerde cheque voor elk Expensify-rapport en sturen deze vanaf de onderstaande bankrekening.',
-                [`${CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD}Description`]:
-                    "We zullen automatisch de naam van de handelaar op de creditcardtransactie koppelen aan eventuele overeenkomstige leveranciers in QuickBooks. Als er geen leveranciers bestaan, maken we een 'Credit Card Misc.' leverancier voor associatie aan.",
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}Description`]:
-                    'We maken een gespecificeerde leveranciersfactuur voor elk Expensify-rapport met de datum van de laatste uitgave en voegen deze toe aan het onderstaande account. Als deze periode is afgesloten, boeken we naar de 1e van de volgende open periode.',
-                [`${CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD}AccountDescription`]: 'Kies waar u creditcardtransacties wilt exporteren.',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}AccountDescription`]: 'Kies een leverancier om toe te passen op alle creditcardtransacties.',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.CHECK}AccountDescription`]: 'Kies waar u cheques vandaan wilt verzenden.',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}Error`]:
-                    'Leveranciersfacturen zijn niet beschikbaar wanneer locaties zijn ingeschakeld. Kies alstublieft een andere exportoptie.',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.CHECK}Error`]: 'Cheques zijn niet beschikbaar wanneer locaties zijn ingeschakeld. Kies een andere exportoptie.',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY}Error`]:
-                    'Journaalposten zijn niet beschikbaar wanneer belastingen zijn ingeschakeld. Kies een andere exportoptie.',
-            },
-            noAccountsFound: 'Geen accounts gevonden',
-            noAccountsFoundDescription: 'Voeg het account toe in QuickBooks Desktop en synchroniseer de verbinding opnieuw.',
-            qbdSetup: 'QuickBooks Desktop setup',
-            requiredSetupDevice: {
-                title: 'Kan geen verbinding maken vanaf dit apparaat',
-                body1: 'Je moet deze verbinding instellen vanaf de computer die je QuickBooks Desktop bedrijfsbestand host.',
-                body2: 'Zodra je verbonden bent, kun je overal synchroniseren en exporteren.',
-            },
-            setupPage: {
-                title: 'Open deze link om verbinding te maken',
-                body: 'Om de installatie te voltooien, opent u de volgende link op de computer waar QuickBooks Desktop draait.',
-                setupErrorTitle: 'Er is iets misgegaan',
-                setupErrorBody: ({conciergeLink}: QBDSetupErrorBodyParams) =>
-                    `<muted-text><centered-text>De QuickBooks Desktop-verbinding werkt momenteel niet. Probeer het later nog eens of <a href="${conciergeLink}">neem contact op met Concierge</a> als het probleem zich blijft voordoen.</centered-text></muted-text>`,
-            },
-            importDescription: 'Kies welke codeconfiguraties u wilt importeren van QuickBooks Desktop naar Expensify.',
-            classes: 'Klassen',
-            items: 'Artikelen',
-            customers: 'Klanten/projecten',
-            exportCompanyCardsDescription: 'Stel in hoe aankopen met bedrijfskaarten worden geëxporteerd naar QuickBooks Desktop.',
-            defaultVendorDescription: 'Stel een standaard leverancier in die van toepassing zal zijn op alle creditcardtransacties bij export.',
-            accountsDescription: 'Uw QuickBooks Desktop-rekeningschema wordt in Expensify geïmporteerd als categorieën.',
-            accountsSwitchTitle: 'Kies ervoor om nieuwe accounts te importeren als ingeschakelde of uitgeschakelde categorieën.',
-            accountsSwitchDescription: 'Ingeschakelde categorieën zullen beschikbaar zijn voor leden om te selecteren bij het aanmaken van hun uitgaven.',
-            classesDescription: 'Kies hoe je QuickBooks Desktop-klassen in Expensify wilt beheren.',
-            tagsDisplayedAsDescription: 'Regelniveau',
-            reportFieldsDisplayedAsDescription: 'Rapportniveau',
-            customersDescription: 'Kies hoe u QuickBooks Desktop klanten/projecten in Expensify wilt beheren.',
-            advancedConfig: {
-                autoSyncDescription: 'Expensify zal elke dag automatisch synchroniseren met QuickBooks Desktop.',
-                createEntities: 'Automatisch entiteiten aanmaken',
-                createEntitiesDescription: 'Expensify zal automatisch leveranciers aanmaken in QuickBooks Desktop als ze nog niet bestaan.',
-            },
-            itemsDescription: 'Kies hoe u QuickBooks Desktop-items in Expensify wilt verwerken.',
         },
         workspaceList: {
             joinNow: 'Nu lid worden',
@@ -4296,7 +4201,6 @@ const translations = {
             settings: 'instellingen',
             title: 'Verbindingen',
             subtitle: 'Maak verbinding met uw boekhoudsysteem om transacties te coderen met uw rekeningschema, betalingen automatisch te matchen en uw financiën synchroon te houden.',
-            qbd: 'QuickBooks Desktop',
             sap: 'SAP',
             oracle: 'Oracle',
             microsoftDynamics: 'Microsoft Dynamics',
@@ -4330,15 +4234,7 @@ const translations = {
                 return `Verbreek verbinding met ${integrationName}`;
             },
             connectTitle: ({connectionName}: ConnectionNameParams) => `Verbind ${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? 'boekhoudintegratie'}`,
-            syncError: ({connectionName}: ConnectionNameParams) => {
-                switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.QBD:
-                        return 'Kan geen verbinding maken met QuickBooks Desktop';
-                    default: {
-                        return 'Kan geen verbinding maken met integratie';
-                    }
-                }
-            },
+            syncError: () => 'Kan geen verbinding maken met integratie',
             accounts: 'Rekeningschema',
             taxes: 'Belastingen',
             imported: 'Geïmporteerd',
@@ -4363,45 +4259,15 @@ const translations = {
             connections: {
                 syncStageName: ({stage}: SyncStageNameConnectionsParams) => {
                     switch (stage) {
-                        case 'quickbooksDesktopImportCustomers':
-                            return 'Klanten importeren';
-                        case 'quickbooksDesktopImportEmployees':
-                            return 'Werknemers importeren';
-                        case 'quickbooksDesktopImportAccounts':
-                            return 'Accounts importeren';
-                        case 'quickbooksDesktopImportClasses':
-                            return 'Klassen importeren';
-                            return 'Locaties importeren';
-                            return 'Geïmporteerde gegevens verwerken';
-                            return 'Gesynchroniseerde vergoede rapporten en factuurbetalingen';
-                            return 'Belastingcodes importeren';
-                        case 'startingImportQBD':
-                        case 'quickbooksDesktopImportMore':
-                            return 'QuickBooks Desktop-gegevens importeren';
-                        case 'quickbooksDesktopImportTitle':
-                            return 'Titel importeren';
-                        case 'quickbooksDesktopImportApproveCertificate':
-                            return 'Certificaat voor goedkeuring importeren';
-                        case 'quickbooksDesktopImportDimensions':
-                            return 'Dimensies importeren';
-                        case 'quickbooksDesktopImportSavePolicy':
-                            return 'Beleid voor importeren opslaan';
-                        case 'quickbooksDesktopWebConnectorReminder':
-                            return 'Nog steeds gegevens synchroniseren met QuickBooks... Zorg ervoor dat de Web Connector actief is.';
                         case 'jobDone':
                             return 'Wachten tot geïmporteerde gegevens zijn geladen';
-                        case 'quickbooksDesktopImportVendors':
-                            return 'Leveranciers importeren';
-
-
-
                         default: {
                             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                             return `Vertaling ontbreekt voor fase: ${stage}`;
                         }
                     }
                 },
-            },
+},
             preferredExporter: 'Voorkeurs-exporteur',
             exportPreferredExporterNote:
                 'De voorkeursexporteur kan elke werkruimtebeheerder zijn, maar moet ook een domeinbeheerder zijn als je verschillende exportaccounts instelt voor individuele bedrijfskaarten in Domeininstellingen.',
@@ -4420,8 +4286,8 @@ const translations = {
             continuousReconciliation: 'Continue Reconciliatie',
             saveHoursOnReconciliation:
                 'Bespaar uren op reconciliatie elke boekhoudperiode door Expensify continu Expensify Card-afschriften en afrekeningen namens u te laten reconciliëren.',
-            enableContinuousReconciliation: ({accountingAdvancedSettingsLink, connectionName}: EnableContinuousReconciliationParams) =>
-                `<muted-text-label>Om continue afstemming mogelijk te maken, moet u <a href="${accountingAdvancedSettingsLink}">automatische synchronisatie</a> voor ${connectionName} inschakelen.</muted-text-label>`,
+            enableContinuousReconciliation: ({connectionName}: EnableContinuousReconciliationParams) =>
+                `<muted-text-label>Om continue afstemming mogelijk te maken, moet u automatische synchronisatie voor ${connectionName} inschakelen.</muted-text-label>`,
             chooseReconciliationAccount: {
                 chooseBankAccount: 'Kies de bankrekening waarmee uw Expensify Card-betalingen worden verrekend.',
                 accountMatches: 'Zorg ervoor dat dit account overeenkomt met uw',
@@ -4603,11 +4469,6 @@ const translations = {
                 title: 'Rapportvelden',
                 description: `Rapportvelden laten u header-niveau details specificeren, anders dan tags die betrekking hebben op uitgaven op individuele regelitems. Deze details kunnen specifieke projectnamen, zakenreis-informatie, locaties en meer omvatten.`,
                 onlyAvailableOnPlan: 'Rapportvelden zijn alleen beschikbaar op het Control-abonnement, beginnend bij',
-            },
-            [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
-                title: 'QuickBooks Desktop',
-                description: `Geniet van geautomatiseerde synchronisatie en verminder handmatige invoer met de Expensify + QuickBooks Desktop-integratie. Behaal ultieme efficiëntie met een realtime, tweerichtingsverbinding en uitgavecodering per klasse, item, klant en project.`,
-                onlyAvailableOnPlan: 'Onze QuickBooks Desktop-integratie is alleen beschikbaar op het Control-abonnement, beginnend bij',
             },
             approvals: {
                 title: 'Geavanceerde goedkeuringen',

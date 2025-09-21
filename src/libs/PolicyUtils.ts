@@ -918,12 +918,24 @@ function goBackWhenEnableFeature(policyID: string) {
     }, CONST.WORKSPACE_ENABLE_FEATURE_REDIRECT_DELAY);
 }
 
+function getAvailableIntegrationNames(policy: Policy | undefined, accountingIntegrations?: ConnectionName[]) {
+    if (accountingIntegrations && accountingIntegrations.length > 0) {
+        return accountingIntegrations;
+    }
+
+    if (!policy) {
+        return [] as ConnectionName[];
+    }
+
+    return Object.keys(policy.connections ?? {}) as ConnectionName[];
+}
+
 function getConnectedIntegration(policy: Policy | undefined, accountingIntegrations?: ConnectionName[]) {
-    return (accountingIntegrations ?? Object.values(CONST.POLICY.CONNECTIONS.NAME)).find((integration) => !!policy?.connections?.[integration]);
+    return getAvailableIntegrationNames(policy, accountingIntegrations).find((integration) => !!policy?.connections?.[integration]);
 }
 
 function getValidConnectedIntegration(policy: Policy | undefined, accountingIntegrations?: ConnectionName[]) {
-    return (accountingIntegrations ?? Object.values(CONST.POLICY.CONNECTIONS.NAME)).find(
+    return getAvailableIntegrationNames(policy, accountingIntegrations).find(
         (integration) => !!policy?.connections?.[integration] && !isAuthenticationError(policy, integration),
     );
 }
@@ -941,9 +953,13 @@ function hasSupportedOnlyOnOldDotIntegration(policy: Policy | undefined) {
 }
 
 function getCurrentConnectionName(policy: Policy | undefined): string | undefined {
-    const accountingIntegrations = Object.values(CONST.POLICY.CONNECTIONS.NAME);
-    const connectionKey = accountingIntegrations.find((integration) => !!policy?.connections?.[integration]);
-    return connectionKey ? CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionKey] : undefined;
+    const connectionKey = getConnectedIntegration(policy);
+
+    if (!connectionKey) {
+        return undefined;
+    }
+
+    return CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionKey] ?? connectionKey;
 }
 
 /**
@@ -1137,7 +1153,14 @@ const getDescriptionForPolicyDomainCard = (domainName: string): string => {
 
 function isPreferredExporter(policy: Policy) {
     const user = getCurrentUserEmail();
-    const exporters = [policy.connections?.quickbooksDesktop?.config?.export?.exporter];
+    const exporters = Object.values(policy.connections ?? {}).map((connection) => {
+        if (!connection) {
+            return undefined;
+        }
+
+        const config = connection.config as {export?: {exporter?: string}} | undefined;
+        return config?.export?.exporter;
+    });
 
     return exporters.some((exporter) => exporter && exporter === user);
 }

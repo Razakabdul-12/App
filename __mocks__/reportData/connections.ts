@@ -11,13 +11,6 @@ const connections = {
             },
         },
     },
-    [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
-        config: {
-            autoSync: {
-                enabled: false,
-            },
-        },
-    },
 } as unknown as Connections;
 
 export default connections;

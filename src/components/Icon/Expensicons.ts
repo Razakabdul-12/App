@@ -128,7 +128,6 @@ import OracleExport from '@assets/images/integrationicons/export/oracle-icon.svg
 import SapExport from '@assets/images/integrationicons/export/sap-icon.svg';
 import MicrosoftDynamicsSquare from '@assets/images/integrationicons/microsoft-dynamics-icon-square.svg';
 import OracleSquare from '@assets/images/integrationicons/oracle-icon-square.svg';
-import QBDSquare from '@assets/images/integrationicons/qbd-icon-square.svg';
 import SapSquare from '@assets/images/integrationicons/sap-icon-square.svg';
 import Uber from '@assets/images/integrationicons/uber.svg';
 import InvoiceGeneric from '@assets/images/invoice-generic.svg';
@@ -457,7 +456,6 @@ export {
     SpreadsheetComputer,
     Bookmark,
     Star,
-    QBDSquare,
     GalleryNotFound,
     Train,
     boltSlash,

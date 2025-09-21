@@ -26,6 +26,7 @@ const REPORT_ID = 1;
 const CHAT_REPORT_ID = 2;
 const POLICY_ID = 3;
 const INVOICE_SENDER_ACCOUNT_ID = 4;
+const MOCK_CONNECTION = 'mockConnection';
 
 // This keeps the error "@rnmapbox/maps native code not available." from causing the tests to fail
 jest.mock('@components/ConfirmedRoute.tsx');
@@ -306,7 +307,7 @@ describe('getPrimaryAction', () => {
         await Onyx.merge(`${ONYXKEYS.COLLECTION.REPORT}${REPORT_ID}`, report);
         const policy = {
             connections: {
-                [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
+                [MOCK_CONNECTION]: {
                     config: {
                         export: {
                             exporter: CURRENT_USER_EMAIL,
@@ -334,7 +335,7 @@ describe('getPrimaryAction', () => {
         await Onyx.merge(`${ONYXKEYS.COLLECTION.REPORT}${REPORT_ID}`, report);
         const policy = {
             connections: {
-                [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
+                [MOCK_CONNECTION]: {
                     config: {
                         export: {
                             exporter: CURRENT_USER_EMAIL,
@@ -362,7 +363,7 @@ describe('getPrimaryAction', () => {
         await Onyx.merge(`${ONYXKEYS.COLLECTION.REPORT}${REPORT_ID}`, report);
         const policy = {
             connections: {
-                [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
+                [MOCK_CONNECTION]: {
                     config: {
                         export: {
                             exporter: CURRENT_USER_EMAIL,
@@ -645,7 +646,7 @@ describe('getTransactionThreadPrimaryAction', () => {
         expect(getTransactionThreadPrimaryAction(report, {} as Report, transaction, [], policy as Policy)).toBe(CONST.REPORT.TRANSACTION_PRIMARY_ACTIONS.REMOVE_HOLD);
     });
 
-    it('should return REVIEW DUPLICATES when there are duplicated transactions', async () => {
+    it('should not return a primary action when there are duplicated transactions', async () => {
         const report = {
             reportID: REPORT_ID,
             ownerAccountID: CURRENT_USER_ACCOUNT_ID,
@@ -670,7 +671,7 @@ describe('getTransactionThreadPrimaryAction', () => {
             } as TransactionViolation,
         ]);
 
-        expect(getTransactionThreadPrimaryAction({} as Report, report, transaction, [], policy as Policy)).toBe(CONST.REPORT.TRANSACTION_PRIMARY_ACTIONS.REVIEW_DUPLICATES);
+        expect(getTransactionThreadPrimaryAction({} as Report, report, transaction, [], policy as Policy)).toBe('');
     });
 
     it('should return MARK AS CASH if has all RTER violations', async () => {
@@ -737,7 +738,7 @@ describe('getTransactionThreadPrimaryAction', () => {
         await Onyx.merge(`${ONYXKEYS.COLLECTION.REPORT}${REPORT_ID}`, report);
         const policy = {
             connections: {
-                [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
+                [MOCK_CONNECTION]: {
                     config: {
                         export: {
                             exporter: CURRENT_USER_EMAIL,

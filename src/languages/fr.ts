@@ -171,7 +171,6 @@ import type {
     PolicyDisabledReportFieldAllOptionsParams,
     PolicyDisabledReportFieldOptionParams,
     PolicyExpenseChatNameParams,
-    QBDSetupErrorBodyParams,
     RailTicketParams,
     ReconciliationWorksParams,
     RemovedFromApprovalWorkflowParams,
@@ -3486,7 +3485,8 @@ const translations = {
             viewTransactions: 'Voir les transactions',
             policyExpenseChatName: ({displayName}: PolicyExpenseChatNameParams) => `Les dépenses de ${displayName}`,
             deepDiveExpensifyCard: `<muted-text-label>Les transactions Expensify Card seront automatiquement exportées vers un « Expensify Card Liability Account » créé avec <a href="${CONST.DEEP_DIVE_EXPENSIFY_CARD}">notre intégration</a>.</muted-text-label>`,
-        },        perDiem: {
+        },
+        perDiem: {
             subtitle: 'Définissez des taux de per diem pour contrôler les dépenses quotidiennes des employés.',
             amount: 'Montant',
             deleteRates: () => ({
@@ -3511,103 +3511,6 @@ const translations = {
             editPerDiemRates: 'Modifier les taux de per diem',
             editDestinationSubtitle: ({destination}: EditDestinationSubtitleParams) => `La mise à jour de cette destination la modifiera pour tous les sous-taux de ${destination} par diem.`,
             editCurrencySubtitle: ({destination}: EditDestinationSubtitleParams) => `La mise à jour de cette devise la modifiera pour tous les sous-taux de per diem ${destination}.`,
-        },
-        qbd: {
-            exportOutOfPocketExpensesDescription: 'Définissez comment les dépenses hors de la poche sont exportées vers QuickBooks Desktop.',
-            exportOutOfPocketExpensesCheckToggle: 'Marquer les chèques comme « imprimer plus tard »',
-            exportDescription: 'Configurez comment les données Expensify sont exportées vers QuickBooks Desktop.',
-            date: "Date d'exportation",
-            exportInvoices: 'Exporter les factures vers',
-            exportExpensifyCard: 'Exporter les transactions de la carte Expensify en tant que',
-            account: 'Compte',
-            accountDescription: 'Choisissez où publier les écritures de journal.',
-            accountsPayable: 'Comptes fournisseurs',
-            accountsPayableDescription: 'Choisissez où créer des factures fournisseurs.',
-            bankAccount: 'Compte bancaire',
-            notConfigured: 'Non configuré',
-            bankAccountDescription: "Choisissez d'où envoyer les chèques.",
-            creditCardAccount: 'Compte de carte de crédit',
-            exportDate: {
-                label: "Date d'exportation",
-                description: "Utilisez cette date lors de l'exportation des rapports vers QuickBooks Desktop.",
-                values: {
-                    [CONST.QUICKBOOKS_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: 'Date de la dernière dépense',
-                        description: 'Date de la dépense la plus récente sur le rapport.',
-                    },
-                    [CONST.QUICKBOOKS_EXPORT_DATE.REPORT_EXPORTED]: {
-                        label: "Date d'exportation",
-                        description: 'Date à laquelle le rapport a été exporté vers QuickBooks Desktop.',
-                    },
-                    [CONST.QUICKBOOKS_EXPORT_DATE.REPORT_SUBMITTED]: {
-                        label: 'Date de soumission',
-                        description: 'Date à laquelle le rapport a été soumis pour approbation.',
-                    },
-                },
-            },
-            exportCheckDescription: "Nous créerons un chèque détaillé pour chaque rapport Expensify et l'enverrons depuis le compte bancaire ci-dessous.",
-            exportJournalEntryDescription: 'Nous créerons une écriture de journal détaillée pour chaque rapport Expensify et la publierons sur le compte ci-dessous.',
-            exportVendorBillDescription:
-                "Nous créerons une facture détaillée pour chaque rapport Expensify et l'ajouterons au compte ci-dessous. Si cette période est clôturée, nous la publierons au 1er de la prochaine période ouverte.",
-            outOfPocketTaxEnabledDescription:
-                "QuickBooks Desktop ne prend pas en charge les taxes sur les exportations d'écritures de journal. Comme vous avez activé les taxes dans votre espace de travail, cette option d'exportation n'est pas disponible.",
-            outOfPocketTaxEnabledError: "Les écritures de journal ne sont pas disponibles lorsque les taxes sont activées. Veuillez choisir une autre option d'exportation.",
-            accounts: {
-                [CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD]: 'Carte de crédit',
-                [CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL]: 'Facture fournisseur',
-                [CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY]: 'Écriture comptable',
-                [CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.CHECK]: 'Vérifier',
-                [`${CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CHECK}Description`]:
-                    "Nous créerons un chèque détaillé pour chaque rapport Expensify et l'enverrons depuis le compte bancaire ci-dessous.",
-                [`${CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD}Description`]:
-                    "Nous associerons automatiquement le nom du commerçant sur la transaction par carte de crédit à tout fournisseur correspondant dans QuickBooks. Si aucun fournisseur n'existe, nous créerons un fournisseur « Crédit Carte Divers » pour l'association.",
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}Description`]:
-                    "Nous créerons une facture fournisseur détaillée pour chaque rapport Expensify avec la date de la dernière dépense, et l'ajouterons au compte ci-dessous. Si cette période est clôturée, nous la publierons au 1er de la prochaine période ouverte.",
-                [`${CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD}AccountDescription`]: 'Choisissez où exporter les transactions par carte de crédit.',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}AccountDescription`]:
-                    'Choisissez un fournisseur à appliquer à toutes les transactions par carte de crédit.',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.CHECK}AccountDescription`]: "Choisissez d'où envoyer les chèques.",
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}Error`]:
-                    "Les factures des fournisseurs ne sont pas disponibles lorsque les emplacements sont activés. Veuillez choisir une autre option d'exportation.",
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.CHECK}Error`]:
-                    "Les chèques sont indisponibles lorsque les emplacements sont activés. Veuillez choisir une autre option d'exportation.",
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY}Error`]:
-                    "Les écritures de journal ne sont pas disponibles lorsque les taxes sont activées. Veuillez choisir une autre option d'exportation.",
-            },
-            noAccountsFound: 'Aucun compte trouvé',
-            noAccountsFoundDescription: 'Ajoutez le compte dans QuickBooks Desktop et synchronisez à nouveau la connexion.',
-            qbdSetup: 'Configuration de QuickBooks Desktop',
-            requiredSetupDevice: {
-                title: 'Impossible de se connecter depuis cet appareil',
-                body1: "Vous devrez configurer cette connexion à partir de l'ordinateur qui héberge votre fichier d'entreprise QuickBooks Desktop.",
-                body2: "Une fois connecté, vous pourrez synchroniser et exporter de n'importe où.",
-            },
-            setupPage: {
-                title: 'Ouvrez ce lien pour vous connecter.',
-                body: "Pour terminer la configuration, ouvrez le lien suivant sur l'ordinateur où QuickBooks Desktop est en cours d'exécution.",
-                setupErrorTitle: "Quelque chose s'est mal passé",
-                setupErrorBody: ({conciergeLink}: QBDSetupErrorBodyParams) =>
-                    `<muted-text><centered-text>La connexion à QuickBooks Desktop ne fonctionne pas pour le moment. Veuillez réessayer plus tard ou <a href="${conciergeLink}">contacter le Concierge</a> si le problème persiste.</centered-text></muted-text>`,
-            },
-            importDescription: 'Choisissez quelles configurations de codage importer de QuickBooks Desktop vers Expensify.',
-            classes: 'Cours',
-            items: 'Articles',
-            customers: 'Clients/projets',
-            exportCompanyCardsDescription: "Définir comment les achats par carte d'entreprise sont exportés vers QuickBooks Desktop.",
-            defaultVendorDescription: "Définir un fournisseur par défaut qui s'appliquera à toutes les transactions par carte de crédit lors de l'exportation.",
-            accountsDescription: 'Votre plan comptable QuickBooks Desktop sera importé dans Expensify en tant que catégories.',
-            accountsSwitchTitle: "Choisissez d'importer de nouveaux comptes en tant que catégories activées ou désactivées.",
-            accountsSwitchDescription: 'Les catégories activées seront disponibles pour les membres lors de la création de leurs dépenses.',
-            classesDescription: 'Choisissez comment gérer les classes QuickBooks Desktop dans Expensify.',
-            tagsDisplayedAsDescription: "Niveau de ligne d'article",
-            reportFieldsDisplayedAsDescription: 'Niveau de rapport',
-            customersDescription: 'Choisissez comment gérer les clients/projets QuickBooks Desktop dans Expensify.',
-            advancedConfig: {
-                autoSyncDescription: 'Expensify se synchronisera automatiquement avec QuickBooks Desktop tous les jours.',
-                createEntities: 'Créer automatiquement des entités',
-                createEntitiesDescription: "Expensify créera automatiquement des fournisseurs dans QuickBooks Desktop s'ils n'existent pas déjà.",
-            },
-            itemsDescription: 'Choisissez comment gérer les éléments QuickBooks Desktop dans Expensify.',
         },
         workspaceList: {
             joinNow: 'Rejoignez maintenant',
@@ -4294,7 +4197,6 @@ const translations = {
             title: 'Connexions',
             subtitle:
                 'Connectez-vous à votre système comptable pour coder les transactions avec votre plan comptable, faire correspondre automatiquement les paiements et garder vos finances synchronisées.',
-            qbd: 'QuickBooks Desktop',
             sap: 'SAP',
             oracle: 'Oracle',
             microsoftDynamics: 'Microsoft Dynamics',
@@ -4328,15 +4230,7 @@ const translations = {
                 return `Déconnecter ${integrationName}`;
             },
             connectTitle: ({connectionName}: ConnectionNameParams) => `Connecter ${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? 'intégration comptable'}`,
-            syncError: ({connectionName}: ConnectionNameParams) => {
-                switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.QBD:
-                        return 'Impossible de se connecter à QuickBooks Desktop';
-                    default: {
-                        return "Impossible de se connecter à l'intégration";
-                    }
-                }
-            },
+            syncError: () => "Impossible de se connecter à l'intégration",
             accounts: 'Plan comptable',
             taxes: 'Impôts',
             imported: 'Importé',
@@ -4361,41 +4255,15 @@ const translations = {
             connections: {
                 syncStageName: ({stage}: SyncStageNameConnectionsParams) => {
                     switch (stage) {
-                        case 'quickbooksDesktopImportCustomers':
-                            return 'Importation des clients';
-                        case 'quickbooksDesktopImportEmployees':
-                            return 'Importation des employés';
-                        case 'quickbooksDesktopImportAccounts':
-                            return 'Importation de comptes';
-                        case 'quickbooksDesktopImportClasses':
-                            return 'Importation de classes';
-                            return 'Importation des emplacements';
-                            return 'Traitement des données importées';
-                            return 'Importation des codes fiscaux';
-                        case 'startingImportQBD':
-                        case 'quickbooksDesktopImportMore':
-                            return 'Importation des données QuickBooks Desktop';
-                        case 'quickbooksDesktopImportTitle':
-                            return "Titre d'importation";
-                        case 'quickbooksDesktopImportApproveCertificate':
-                            return "Importer le certificat d'approbation";
-                        case 'quickbooksDesktopImportDimensions':
-                            return 'Importation des dimensions';
-                        case 'quickbooksDesktopImportSavePolicy':
-                            return "Importer la politique d'enregistrement";
-                        case 'quickbooksDesktopWebConnectorReminder':
-                            return "Synchronisation des données avec QuickBooks en cours... Veuillez vous assurer que le Web Connector est en cours d'exécution.";
                         case 'jobDone':
                             return 'En attente du chargement des données importées';
-                        case 'quickbooksDesktopImportVendors':
-                            return 'Importation des fournisseurs';
                         default: {
                             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                             return `Traduction manquante pour l'étape : ${stage}`;
                         }
                     }
                 },
-            },
+},
             preferredExporter: 'Exportateur préféré',
             exportPreferredExporterNote:
                 "L'exportateur préféré peut être n'importe quel administrateur de l'espace de travail, mais doit également être un administrateur de domaine si vous définissez différents comptes d'exportation pour des cartes d'entreprise individuelles dans les paramètres de domaine.",
@@ -4414,8 +4282,8 @@ const translations = {
             continuousReconciliation: 'Réconciliation Continue',
             saveHoursOnReconciliation:
                 'Gagnez des heures sur la réconciliation à chaque période comptable en laissant Expensify réconcilier en continu les relevés et les règlements de la carte Expensify pour vous.',
-            enableContinuousReconciliation: ({accountingAdvancedSettingsLink, connectionName}: EnableContinuousReconciliationParams) =>
-                `<muted-text-label>Pour activer la réconciliation continue, veuillez activer la <a href="${accountingAdvancedSettingsLink}">synchronisation automatique</a> pour ${connectionName}.</muted-text-label>`,
+            enableContinuousReconciliation: ({connectionName}: EnableContinuousReconciliationParams) =>
+                `<muted-text-label>Pour activer la réconciliation continue, veuillez activer la synchronisation automatique pour ${connectionName}.</muted-text-label>`,
             chooseReconciliationAccount: {
                 chooseBankAccount: 'Choisissez le compte bancaire sur lequel les paiements de votre carte Expensify seront rapprochés.',
                 accountMatches: 'Assurez-vous que ce compte correspond à votre',
@@ -4599,11 +4467,6 @@ const translations = {
                 title: 'Champs de rapport',
                 description: `Les champs de rapport vous permettent de spécifier des détails au niveau de l'en-tête, distincts des tags qui se rapportent aux dépenses sur des éléments de ligne individuels. Ces détails peuvent inclure des noms de projet spécifiques, des informations sur les voyages d'affaires, des emplacements, et plus encore.`,
                 onlyAvailableOnPlan: 'Les champs de rapport ne sont disponibles que sur le plan Control, à partir de',
-            },
-            [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
-                title: 'QuickBooks Desktop',
-                description: `Profitez de la synchronisation automatisée et réduisez les saisies manuelles avec l'intégration Expensify + QuickBooks Desktop. Obtenez une efficacité ultime grâce à une connexion bidirectionnelle en temps réel et au codage des dépenses par classe, article, client et projet.`,
-                onlyAvailableOnPlan: 'Notre intégration QuickBooks Desktop est uniquement disponible avec le plan Control, à partir de',
             },
             approvals: {
                 title: 'Approvals avancés',

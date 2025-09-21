@@ -5,7 +5,6 @@ import MenuItemWithTopDescription from '@components/MenuItemWithTopDescription';
 import RenderHTML from '@components/RenderHTML';
 import ScreenWrapper from '@components/ScreenWrapper';
 import ScrollView from '@components/ScrollView';
-import useEnvironment from '@hooks/useEnvironment';
 import useExpensifyCardFeeds from '@hooks/useExpensifyCardFeeds';
 import useLocalize from '@hooks/useLocalize';
 import useOnyx from '@hooks/useOnyx';
@@ -26,7 +25,6 @@ import ONYXKEYS from '@src/ONYXKEYS';
 import ROUTES from '@src/ROUTES';
 import type SCREENS from '@src/SCREENS';
 import type ExpensifyCardSettings from '@src/types/onyx/ExpensifyCardSettings';
-import type {ConnectionName} from '@src/types/onyx/Policy';
 
 type CardReconciliationPageProps = WithPolicyConnectionsProps & PlatformStackScreenProps<SettingsNavigatorParamList, typeof SCREENS.WORKSPACE.ACCOUNTING.CARD_RECONCILIATION>;
 
@@ -42,7 +40,6 @@ function CardReconciliationPage({policy, route}: CardReconciliationPageProps) {
     const workspaceAccountID = policy?.workspaceAccountID ?? CONST.DEFAULT_NUMBER_ID;
     const policyID = policy?.id;
     const allCardSettings = useExpensifyCardFeeds(policyID);
-    const {environmentURL} = useEnvironment();
 
     const fullySetUpCardSetting = useMemo(() => {
         const entries = Object.entries(allCardSettings ?? {});
@@ -77,25 +74,19 @@ function CardReconciliationPage({policy, route}: CardReconciliationPageProps) {
     const bankAccountTitle = bankAccountList?.[paymentBankAccountID]?.title ?? '';
 
     const {connection} = route.params;
-    const connectionName = getConnectionNameFromRouteParam(connection) as ConnectionName;
-    const autoSync = !!policy?.connections?.[connectionName]?.config?.autoSync?.enabled;
+    const connectionName = getConnectionNameFromRouteParam(connection);
+    const autoSync = !!(connectionName && policy?.connections?.[connectionName]?.config?.autoSync?.enabled);
     const shouldShow = !!fullySetUpCardSetting.cardSetting?.paymentBankAccountID;
 
     const handleToggleContinuousReconciliation = (value: boolean) => {
+        if (!connectionName) {
+            return;
+        }
         toggleContinuousReconciliation(effectiveDomainID, value, connectionName, currentConnectionName);
         if (value) {
             Navigation.navigate(ROUTES.WORKSPACE_ACCOUNTING_RECONCILIATION_ACCOUNT_SETTINGS.getRoute(policyID, connection));
         }
     };
-
-    const accountingAdvancedSettingsLink = useMemo(() => {
-        if (!policyID || connection !== CONST.POLICY.CONNECTIONS.ROUTE.QBD) {
-            return '';
-        }
-
-        const backTo = ROUTES.WORKSPACE_ACCOUNTING_CARD_RECONCILIATION.getRoute(policyID, connection);
-        return `${environmentURL}/${ROUTES.WORKSPACE_ACCOUNTING_QUICKBOOKS_DESKTOP_ADVANCED.getRoute(policyID, backTo)}`;
-    }, [connection, policyID, environmentURL]);
 
     const fetchPolicyAccountingData = useCallback(() => {
         if (!policyID) {
@@ -142,8 +133,7 @@ function CardReconciliationPage({policy, route}: CardReconciliationPageProps) {
                         <View style={[styles.renderHTML, styles.ph5, styles.mt2]}>
                             <RenderHTML
                                 html={translate('workspace.accounting.enableContinuousReconciliation', {
-                                    accountingAdvancedSettingsLink,
-                                    connectionName: CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName],
+                                    connectionName: connectionName ? CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] : '',
                                 })}
                             />
                         </View>
