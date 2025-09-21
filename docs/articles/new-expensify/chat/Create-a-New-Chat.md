@@ -13,53 +13,24 @@ Expensify Chat is an instant messaging system that helps you converse with peopl
 
 ---
 
-## Start a Private 1-on-1 Chat
+## Managing existing chats
 
-🛑 **Note:** You cannot add more people to a private chat. If you wish to include more people later, you’ll need to create a group chat.
+Manual creation of new chats and rooms is no longer available. Existing conversations remain accessible in your Inbox, and you can continue to collaborate within them:
 
-1. Click the **+** button in the navigation tabs and select **Start Chat**.
-2. Enter the name, email, or phone number of the person you want to chat with.
-3. Click or tap their name to start a new private chat.
+- Open the conversation from the Inbox to review history and send new messages.
+- Share the conversation link or ask a workspace admin to invite additional participants if needed.
 
----
-
-## Start a Group Chat
-
-1. Click the green **+** button in the navigation tabs and select **Start Chat**.
-2. Enter the name, email, or phone number of each participant and select **Add to group**.
-   - Group participants are listed with a green checkmark.
-3. Click or tap **Next**.
-4. Update the group image or name:
-   - **Name** – Click or tap **Group Name**, enter the new name, then select **Save**.
-   - **Image** – Click or tap the profile image, upload a new image, and select the zoom level.
-5. Click or tap **Start Group**.
-
----
-
-## Start a Chat Room
-
-1. Click the green **+** button in the navigation tabs and select **Start Chat**.
-2. Click or tap the **#Room** tab at the top.
-3. Enter a unique name for the room.
-4. (Optional) Add a room description.
-5. Select the **Workspace** where the room will be hosted.
-6. Set **Who Can Post**:
-   - All members
-   - Only Admins
-7. Choose **Visibility**:
-   - **Public** – Anyone can find and join the room.
-   - **Private** – Only invited users can see the room.
-   - **Workspace** – Only workspace members can find the room.
-
-🔒 **Note:** Anyone, including non-workspace members, can be invited to a private or restricted room.
-
-8. Click or tap **Create Room**.
+If you need a new discussion space for a team, contact your workspace admin so they can create the appropriate chat or room on your behalf.
 
 ---
 
 # FAQ
 
-## What's the difference between a private 1-on-1 chat and a group chat with only two people?
+## Can I still start a brand-new chat?
 
-With a group chat, you can add more participants later. A private chat does not allow new participants to be added.
+No. New chats are created by workspace admins or when someone first messages you. Use your existing Inbox conversations or reach out to an admin if a new space is required.
+
+## What happened to chat rooms?
+
+Room creation is now restricted to workspace administrators. They can decide which rooms should exist and who should have access.
 

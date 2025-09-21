@@ -2367,32 +2367,18 @@ const translations = {
                     `[Zaproś swojego księgowego teraz](${workspaceMembersLink}).`,
             },
 
-            startChatTask: {
-                title: 'Start een chat',
-                description:
-                    '*Start een chat* met iedereen met behulp van hun e-mailadres of telefoonnummer.\n' +
-                    '\n' +
-                    `1. Klik op de ${CONST.CUSTOM_EMOJIS.GLOBAL_CREATE}-knop.\n` +
-                    '2. Kies *Start chat*.\n' +
-                    '3. Voer een e-mailadres of telefoonnummer in.\n' +
-                    '\n' +
-                    'Als ze Expensify nog niet gebruiken, worden ze automatisch uitgenodigd.\n' +
-                    '\n' +
-                    'Elke chat wordt ook omgezet in een e-mail of sms waar ze direct op kunnen reageren.',
-            },
 
             splitExpenseTask: {
-                title: 'Splits een uitgave',
+                title: 'Podziel wydatek',
                 description:
-                    '*Splits uitgaven* met één of meer personen.\n' +
+                    '*Podziel wydatki* z jedną lub kilkoma osobami.\n' +
                     '\n' +
-                    `1. Klik op de ${CONST.CUSTOM_EMOJIS.GLOBAL_CREATE}-knop.\n` +
-                    '2. Kies *Start chat*.\n' +
-                    '3. Voer e-mailadressen of telefoonnummers in.\n' +
-                    '4. Klik op de grijze *+*-knop in de chat > *Splits uitgave*.\n' +
-                    '5. Maak de uitgave aan door *Handmatig*, *Scannen* of *Afstand* te selecteren.\n' +
+                    '1. Otwórz czat ze wszystkimi, z którymi musisz się rozliczyć.\n' +
+                    `2. Kliknij zielony przycisk ${CONST.CUSTOM_EMOJIS.GLOBAL_CREATE} w polu wiadomości.\n` +
+                    '3. Wybierz *Podziel wydatek*.\n' +
+                    '4. Utwórz wydatek, wybierając *Ręcznie*, *Skanuj* lub *Dystans*.\n' +
                     '\n' +
-                    'Voeg gerust meer details toe als u wilt, of stuur het gewoon op. Laten we ervoor zorgen dat u wordt terugbetaald!',
+                    'Dodaj więcej szczegółów, jeśli chcesz, albo po prostu wyślij. Zadbajmy o Twój zwrot!',
             },
 
             reviewWorkspaceSettingsTask: {
@@ -5508,11 +5494,6 @@ const translations = {
         transactionDate: 'Data transakcji',
     },
     referralProgram: {
-        [CONST.REFERRAL_PROGRAM.CONTENT_TYPES.START_CHAT]: {
-            buttonText: 'Rozpocznij czat, <success><strong>poleć znajomego</strong></success>.',
-            header: 'Rozpocznij czat, poleć znajomego',
-            body: 'Chcesz, aby Twoi znajomi również korzystali z Expensify? Po prostu rozpocznij z nimi czat, a my zajmiemy się resztą.',
-        },
         [CONST.REFERRAL_PROGRAM.CONTENT_TYPES.SUBMIT_EXPENSE]: {
             buttonText: 'Złóż wydatek, <success><strong>poleć swojego szefa</strong></success>.',
             header: 'Złóż wydatek, poleć swojego szefa',

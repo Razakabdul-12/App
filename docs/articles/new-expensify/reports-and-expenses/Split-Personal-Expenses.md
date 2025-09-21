@@ -10,18 +10,16 @@ Splitting a personal expense lets you share a bill with others by requesting pay
 
 # How to Split a Personal Expense
 
-To split an expense, you’ll need to start a chat with each person you’re requesting money from. Once the chat is started, you can request their share of the bill.
+To split an expense, you’ll need an active chat with each person you’re requesting money from. Once the chat is available, you can request their share of the bill.
 
 ---
 
-## Start a Chat Before Splitting
+## Prepare a Chat Before Splitting
 
-1. Click the green **Create** button in the left sidebar.
-2. Select **Start Chat**.
-3. Search for the person by name, email, or phone number.
-4. Send them a message to begin the conversation.
+1. From your Inbox, open the chat thread with the person you want to split the bill with.
+2. If you don’t see a conversation yet, ask them to send you a message so a thread appears in your Inbox.
 
-Once a chat is started, follow the steps below to split the expense.
+Once the conversation exists, follow the steps below to split the expense.
 
 ---
 
