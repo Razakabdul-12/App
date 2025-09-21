@@ -5285,6 +5285,8 @@ const translations = {
         genericCreateReportFailureMessage: 'Unerwarteter Fehler beim Erstellen dieses Chats. Bitte versuchen Sie es später erneut.',
         genericAddCommentFailureMessage: 'Unerwarteter Fehler beim Posten des Kommentars. Bitte versuchen Sie es später noch einmal.',
         genericUpdateReportFieldFailureMessage: 'Unerwarteter Fehler beim Aktualisieren des Feldes. Bitte versuchen Sie es später erneut.',
+        chatRemovedTitle: 'Chat unavailable',
+        chatRemovedSubtitle: 'The Current chat experience has been removed from this application.',
         genericUpdateReportNameEditFailureMessage: 'Unerwarteter Fehler beim Umbenennen des Berichts. Bitte versuchen Sie es später erneut.',
         noActivityYet: 'Noch keine Aktivität',
         actions: {

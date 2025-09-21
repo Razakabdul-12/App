@@ -5293,6 +5293,8 @@ const translations = {
         genericCreateReportFailureMessage: 'Errore imprevisto durante la creazione di questa chat. Si prega di riprovare più tardi.',
         genericAddCommentFailureMessage: 'Errore imprevisto durante la pubblicazione del commento. Per favore riprova più tardi.',
         genericUpdateReportFieldFailureMessage: "Errore imprevisto durante l'aggiornamento del campo. Si prega di riprovare più tardi.",
+        chatRemovedTitle: 'Chat unavailable',
+        chatRemovedSubtitle: 'The Current chat experience has been removed from this application.',
         genericUpdateReportNameEditFailureMessage: 'Errore imprevisto durante la rinomina del rapporto. Per favore riprova più tardi.',
         noActivityYet: 'Nessuna attività ancora',
         actions: {

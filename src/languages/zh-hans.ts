@@ -5195,6 +5195,8 @@ const translations = {
         genericCreateReportFailureMessage: '创建此聊天时出现意外错误。请稍后再试。',
         genericAddCommentFailureMessage: '发表评论时出现意外错误。请稍后再试。',
         genericUpdateReportFieldFailureMessage: '更新字段时出现意外错误。请稍后再试。',
+        chatRemovedTitle: 'Chat unavailable',
+        chatRemovedSubtitle: 'The Current chat experience has been removed from this application.',
         genericUpdateReportNameEditFailureMessage: '重命名报告时出现意外错误。请稍后再试。',
         noActivityYet: '暂无活动',
         actions: {
