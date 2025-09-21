@@ -1,26 +1,20 @@
 import React from 'react';
 import type {OnyxEntry} from 'react-native-onyx';
 import ConnectToQuickbooksDesktopFlow from '@components/ConnectToQuickbooksDesktopFlow';
-import ConnectToXeroFlow from '@components/ConnectToXeroFlow';
 import * as Expensicons from '@components/Icon/Expensicons';
 import type {LocaleContextProps} from '@components/LocaleContextProvider';
 import Text from '@components/Text';
 import TextLink from '@components/TextLink';
 import {isAuthenticationError} from '@libs/actions/connections';
-import getPlatform from '@libs/getPlatform';
 import {translateLocal} from '@libs/Localize';
 import Navigation from '@navigation/Navigation';
 import type {ThemeStyles} from '@styles/index';
-import {getTrackingCategories} from '@userActions/connections/Xero';
 import CONST from '@src/CONST';
 import ROUTES from '@src/ROUTES';
 import type {Policy} from '@src/types/onyx';
-import type {Account, ConnectionName, Connections, PolicyConnectionName, QBDNonReimbursableExportAccountType, QBDReimbursableExportAccountType} from '@src/types/onyx/Policy';
+import type {Account, Connections, PolicyConnectionName, QBDNonReimbursableExportAccountType, QBDReimbursableExportAccountType} from '@src/types/onyx/Policy';
 import {isEmptyObject} from '@src/types/utils/EmptyObject';
 import type {AccountingIntegration} from './types';
-
-const platform = getPlatform(true);
-const isMobile = [CONST.PLATFORM.MOBILE_WEB, CONST.PLATFORM.IOS, CONST.PLATFORM.ANDROID].some((value) => value === platform);
 
 function getAccountingIntegrationData(
     connectionName: PolicyConnectionName,
@@ -28,41 +22,8 @@ function getAccountingIntegrationData(
     translate: LocaleContextProps['translate'],
     policy?: Policy,
     key?: number,
-    integrationToDisconnect?: ConnectionName,
-    shouldDisconnectIntegrationBeforeConnecting?: boolean,
 ): AccountingIntegration | undefined {
     switch (connectionName) {
-        case CONST.POLICY.CONNECTIONS.NAME.XERO:
-            return {
-                title: translate('workspace.accounting.xero'),
-                icon: Expensicons.XeroSquare,
-                setupConnectionFlow: (
-                    <ConnectToXeroFlow
-                        policyID={policyID}
-                        key={key}
-                    />
-                ),
-                onImportPagePress: () => Navigation.navigate(ROUTES.POLICY_ACCOUNTING_XERO_IMPORT.getRoute(policyID)),
-                subscribedImportSettings: [
-                    CONST.XERO_CONFIG.ENABLE_NEW_CATEGORIES,
-                    CONST.XERO_CONFIG.IMPORT_TRACKING_CATEGORIES,
-                    CONST.XERO_CONFIG.IMPORT_CUSTOMERS,
-                    CONST.XERO_CONFIG.IMPORT_TAX_RATES,
-                    ...getTrackingCategories(policy).map((category) => `${CONST.XERO_CONFIG.TRACKING_CATEGORY_PREFIX}${category.id}`),
-                ],
-                onExportPagePress: () => Navigation.navigate(ROUTES.POLICY_ACCOUNTING_XERO_EXPORT.getRoute(policyID)),
-                subscribedExportSettings: [CONST.XERO_CONFIG.EXPORTER, CONST.XERO_CONFIG.BILL_DATE, CONST.XERO_CONFIG.BILL_STATUS, CONST.XERO_CONFIG.NON_REIMBURSABLE_ACCOUNT],
-                onCardReconciliationPagePress: () => Navigation.navigate(ROUTES.WORKSPACE_ACCOUNTING_CARD_RECONCILIATION.getRoute(policyID, CONST.POLICY.CONNECTIONS.ROUTE.XERO)),
-                onAdvancedPagePress: () => Navigation.navigate(ROUTES.POLICY_ACCOUNTING_XERO_ADVANCED.getRoute(policyID)),
-                subscribedAdvancedSettings: [
-                    CONST.XERO_CONFIG.ENABLED,
-                    CONST.XERO_CONFIG.SYNC_REIMBURSED_REPORTS,
-                    CONST.XERO_CONFIG.REIMBURSEMENT_ACCOUNT_ID,
-                    CONST.XERO_CONFIG.INVOICE_COLLECTIONS_ACCOUNT_ID,
-                ],
-                pendingFields: policy?.connections?.xero?.config?.pendingFields,
-                errorFields: policy?.connections?.xero?.config?.errorFields,
-            };
         case CONST.POLICY.CONNECTIONS.NAME.QBD:
             return {
                 title: translate('workspace.accounting.qbd'),

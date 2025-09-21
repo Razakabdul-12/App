@@ -417,59 +417,6 @@ type SettingsNavigatorParamList = {
     [SCREENS.WORKSPACE.ACCOUNTING.QUICKBOOKS_DESKTOP_ITEMS]: {
         policyID: string;
     };
-    [SCREENS.WORKSPACE.ACCOUNTING.XERO_IMPORT]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.XERO_CHART_OF_ACCOUNTS]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.XERO_CUSTOMER]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.XERO_ORGANIZATION]: {
-        policyID: string;
-        organizationID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.XERO_TAXES]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.XERO_TRACKING_CATEGORIES]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.XERO_MAP_TRACKING_CATEGORY]: {
-        policyID: string;
-        categoryId: string;
-        categoryName: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.XERO_EXPORT]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.XERO_EXPORT_PURCHASE_BILL_DATE_SELECT]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.XERO_ADVANCED]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.XERO_BILL_STATUS_SELECTOR]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.XERO_EXPORT_BANK_ACCOUNT_SELECT]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.XERO_INVOICE_ACCOUNT_SELECTOR]: {
-        policyID: string;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.XERO_EXPORT_PREFERRED_EXPORTER_SELECT]: {
-        policyID: string;
-        backTo?: Routes;
-    };
-    [SCREENS.WORKSPACE.ACCOUNTING.XERO_BILL_PAYMENT_ACCOUNT_SELECTOR]: {
-        policyID: string;
-    };
     [SCREENS.WORKSPACE.ACCOUNTING.CARD_RECONCILIATION]: {
         policyID: string;
         connection: ValueOf<typeof CONST.POLICY.CONNECTIONS.ROUTE>;

@@ -243,197 +243,6 @@ type QBDReimbursableExportAccountType = ValueOf<typeof CONST.QUICKBOOKS_DESKTOP_
  */
 type QBDNonReimbursableExportAccountType = ValueOf<typeof CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE>;
 
-/** Xero bill status values
- *
- * TODO: Xero remaining comments will be handled here (https://github.com/Expensify/App/issues/43033)
- */
-type BillStatusValues = 'DRAFT' | 'AWT_APPROVAL' | 'AWT_PAYMENT';
-
-/** Xero expense status values
- *
- *  TODO: Xero remaining comments will be handled here (https://github.com/Expensify/App/issues/43033)
- */
-type ExpenseTypesValues = 'BILL' | 'BANK_TRANSACTION' | 'SALES_INVOICE' | 'NOTHING';
-
-/** Xero bill date values
- *
- *  TODO: Xero remaining comments will be handled here (https://github.com/Expensify/App/issues/43033)
- */
-type BillDateValues = 'REPORT_SUBMITTED' | 'REPORT_EXPORTED' | 'LAST_EXPENSE';
-
-/**
- * Model of an organization in Xero
- *
- * TODO: Xero remaining comments will be handled here (https://github.com/Expensify/App/issues/43033)
- */
-type Tenant = {
-    /** ID of the organization */
-    id: string;
-
-    /** Name of the organization */
-    name: string;
-
-    /** TODO: Will be handled in another issue */
-    value: string;
-};
-
-/** TODO: Xero remaining comments will be handled here (https://github.com/Expensify/App/issues/43033) */
-type XeroTrackingCategory = {
-    /** TODO: Will be handled in another issue */
-    id: string;
-
-    /** TODO: Will be handled in another issue */
-    name: string;
-};
-
-/**
- * Data imported from Xero
- *
- * TODO: Xero remaining comments will be handled here (https://github.com/Expensify/App/issues/43033)
- */
-type XeroConnectionData = {
-    /** Collection of bank accounts */
-    bankAccounts: Account[];
-
-    /** TODO: Will be handled in another issue */
-    countryCode: string;
-
-    /** TODO: Will be handled in another issue */
-    organisationID: string;
-
-    /** TODO: Will be handled in another issue */
-    revenueAccounts: Array<{
-        /** TODO: Will be handled in another issue */
-        id: string;
-
-        /** TODO: Will be handled in another issue */
-        name: string;
-    }>;
-
-    /** Collection of organizations */
-    tenants: Tenant[];
-
-    /** TODO: Will be handled in another issue */
-    trackingCategories: XeroTrackingCategory[];
-};
-
-/** TODO: Xero remaining comments will be handled here (https://github.com/Expensify/App/issues/43033) */
-type XeroMappingType = {
-    /** TODO: Will be handled in another issue */
-    customer: string;
-} & {
-    [key in `trackingCategory_${string}`]: string;
-};
-
-/** Xero auto synchronization configs */
-type XeroAutoSyncConfig = {
-    /** Whether data should be automatically synched between the app and Xero */
-    enabled: boolean;
-
-    /** TODO: Will be handled in another issue */
-    jobID: string;
-};
-
-/** Xero export configs */
-type XeroExportConfig = {
-    /** Current bill status */
-    billDate: BillDateValues;
-
-    /** TODO: Will be handled in another issue */
-    billStatus: {
-        /** Current status of the purchase bill */
-        purchase: BillStatusValues;
-
-        /** Current status of the sales bill */
-        sales: BillStatusValues;
-    };
-
-    /** TODO: Will be handled in another issue */
-    billable: ExpenseTypesValues;
-
-    /** The e-mail of the exporter */
-    exporter: string;
-
-    /** TODO: Will be handled in another issue */
-    nonReimbursable: ExpenseTypesValues;
-
-    /** TODO: Will be handled in another issue */
-    nonReimbursableAccount: string;
-
-    /** TODO: Will be handled in another issue */
-    reimbursable: ExpenseTypesValues;
-
-    /** The accounting Method for Xero connection config */
-    accountingMethod?: ValueOf<typeof COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD>;
-};
-
-/** TODO: Will be handled in another issue */
-type XeroSyncConfig = {
-    /** TODO: Will be handled in another issue */
-    hasChosenAutoSyncOption: boolean;
-
-    /** TODO: Will be handled in another issue */
-    hasChosenSyncReimbursedReportsOption: boolean;
-
-    /** ID of the bank account for Xero invoice collections */
-    invoiceCollectionsAccountID: string;
-
-    /** ID of the bank account for Xero bill payment account */
-    reimbursementAccountID: string;
-
-    /** Whether the reimbursed reports should be synched */
-    syncReimbursedReports: boolean;
-};
-
-/**
- * User configuration for the Xero accounting integration.
- *
- * TODO: Xero remaining comments will be handled here (https://github.com/Expensify/App/issues/43033)
- */
-type XeroConnectionConfig = OnyxCommon.OnyxValueWithOfflineFeedback<
-    {
-        /** Xero auto synchronization configs */
-        autoSync: XeroAutoSyncConfig;
-
-        /** TODO: Will be handled in another issue */
-        enableNewCategories: boolean;
-
-        /** Xero export configs */
-        export: XeroExportConfig;
-
-        /** Whether customers should be imported from Xero */
-        importCustomers: boolean;
-
-        /** Whether tax rates should be imported from Xero */
-        importTaxRates: boolean;
-
-        /** Whether tracking categories should be imported from Xero */
-        importTrackingCategories: boolean;
-
-        /** TODO: Will be handled in another issue */
-        isConfigured: boolean;
-
-        /** TODO: Will be handled in another issue */
-        mappings: XeroMappingType;
-
-        /** TODO: Will be handled in another issue */
-        sync: XeroSyncConfig;
-
-        /** ID of Xero organization */
-        tenantID: string;
-
-        /** TODO: Will be handled in another issue */
-        errors?: OnyxCommon.Errors;
-
-        /** Collection of form field errors  */
-        errorFields?: OnyxCommon.ErrorFields;
-    },
-    keyof XeroAutoSyncConfig | keyof XeroExportConfig | keyof XeroSyncConfig | keyof XeroMappingType
->;
-
-/**
- * Data imported from QuickBooks Desktop.
- */
 type QBDConnectionData = {
     /** Collection of cash accounts */
     cashAccounts: Account[];
@@ -541,9 +350,6 @@ type Connection<ConnectionData, ConnectionConfig> = {
 
 /** Available integration connections */
 type Connections = {
-    /** Xero integration connection */
-    [CONST.POLICY.CONNECTIONS.NAME.XERO]: Connection<XeroConnectionData, XeroConnectionConfig>;
-
     /** QuickBooks Desktop integration connection */
     [CONST.POLICY.CONNECTIONS.NAME.QBD]: Connection<QBDConnectionData, QBDConnectionConfig>;
 };
@@ -1116,10 +922,8 @@ export type {
     Connections,
     ConnectionName,
     AllConnectionName,
-    Tenant,
     Account,
     QBDNonReimbursableExportAccountType,
-    XeroTrackingCategory,
     ConnectionLastSync,
     QBDReimbursableExportAccountType,
     InvoiceItem,

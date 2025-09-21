@@ -46,8 +46,6 @@ function WorkspaceCompanyCardAccountSelectCardPage({route}: WorkspaceCompanyCard
     const currentConnectionName = getCurrentConnectionName(policy);
     const shouldShowTextInput = (exportMenuItem?.data?.length ?? 0) >= CONST.STANDARD_LIST_ITEM_LIMIT;
     const defaultCard = translate('workspace.moreFeatures.companyCards.defaultCard');
-    const isXeroConnection = connectedIntegration === CONST.POLICY.CONNECTIONS.NAME.XERO;
-
     const [cardFeeds] = useCardFeeds(policyID);
     const companyFeeds = getCompanyFeeds(cardFeeds);
     const domainOrWorkspaceAccountID = getDomainOrWorkspaceAccountID(workspaceAccountID, companyFeeds[bank as CompanyCardFeed]);
@@ -92,14 +90,10 @@ function WorkspaceCompanyCardAccountSelectCardPage({route}: WorkspaceCompanyCard
                     {!!exportMenuItem?.description && (
                         <View style={[styles.renderHTML, styles.flexRow]}>
                             <RenderHTML
-                                html={
-                                    isXeroConnection
-                                        ? translate('workspace.moreFeatures.companyCards.integrationExportTitleXero', {integration: exportMenuItem.description})
-                                        : translate('workspace.moreFeatures.companyCards.integrationExportTitle', {
-                                              integration: exportMenuItem.description,
-                                              exportPageLink: `${environmentURL}/${exportMenuItem.exportPageLink}`,
-                                          })
-                                }
+                                html={translate('workspace.moreFeatures.companyCards.integrationExportTitle', {
+                                    integration: exportMenuItem.description,
+                                    exportPageLink: `${environmentURL}/${exportMenuItem.exportPageLink}`,
+                                })}
                             />
                         </View>
                     )}

@@ -70,16 +70,11 @@ const chatTypes = {
 } as const;
 
 const ONBOARDING_ACCOUNTING_MAPPING = {
-    xero: 'Xero',
     quickbooksDesktop: 'QuickBooks Desktop',
     sap: 'SAP',
     oracle: 'Oracle',
     microsoftDynamics: 'Microsoft Dynamics',
     other: 'accounting software',
-};
-
-const connectionsVideoPaths = {
-    [ONBOARDING_ACCOUNTING_MAPPING.xero]: 'videos/walkthrough-connect_to_xero-v2.mp4',
 };
 
 // Explicit type annotation is required
@@ -912,7 +907,6 @@ const CONST = {
     EXAMPLE_PHONE_NUMBER: '+15005550006',
     CONCIERGE_CHAT_NAME: 'Concierge',
     CLOUDFRONT_URL,
-    connectionsVideoPaths,
     EMPTY_ARRAY,
     EMPTY_OBJECT,
     DEFAULT_NUMBER_ID,
@@ -2101,52 +2095,10 @@ const CONST = {
         ACCOUNTING_METHOD: 'accountingMethod',
     },
 
-    XERO_CONFIG: {
-        AUTO_SYNC: 'autoSync',
-        ENABLED: 'enabled',
-        REIMBURSEMENT_ACCOUNT_ID: 'reimbursementAccountID',
-        INVOICE_COLLECTIONS_ACCOUNT_ID: 'invoiceCollectionsAccountID',
-        SYNC: 'sync',
-        SYNC_REIMBURSED_REPORTS: 'syncReimbursedReports',
-        ENABLE_NEW_CATEGORIES: 'enableNewCategories',
-        EXPORT: 'export',
-        EXPORTER: 'exporter',
-        BILL_DATE: 'billDate',
-        BILL_STATUS: 'billStatus',
-        NON_REIMBURSABLE_ACCOUNT: 'nonReimbursableAccount',
-        TENANT_ID: 'tenantID',
-        IMPORT_CUSTOMERS: 'importCustomers',
-        IMPORT_TAX_RATES: 'importTaxRates',
-        INVOICE_STATUS: {
-            DRAFT: 'DRAFT',
-            AWAITING_APPROVAL: 'AWT_APPROVAL',
-            AWAITING_PAYMENT: 'AWT_PAYMENT',
-        },
-        IMPORT_TRACKING_CATEGORIES: 'importTrackingCategories',
-        MAPPINGS: 'mappings',
-        TRACKING_CATEGORY_PREFIX: 'trackingCategory_',
-        TRACKING_CATEGORY_FIELDS: {
-            COST_CENTERS: 'cost centers',
-            REGION: 'region',
-        },
-        TRACKING_CATEGORY_OPTIONS: {
-            DEFAULT: 'DEFAULT',
-            TAG: 'TAG',
-            REPORT_FIELD: 'REPORT_FIELD',
-        },
-        ACCOUNTING_METHOD: 'accountingMethod',
-    },
-
     QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE: {
         VENDOR_BILL: 'VENDOR_BILL',
         CHECK: 'CHECK',
         JOURNAL_ENTRY: 'JOURNAL_ENTRY',
-    },
-
-    XERO_EXPORT_DATE: {
-        LAST_EXPENSE: 'LAST_EXPENSE',
-        REPORT_EXPORTED: 'REPORT_EXPORTED',
-        REPORT_SUBMITTED: 'REPORT_SUBMITTED',
     },
 
     QUICKBOOKS_EXPORT_DATE: {
@@ -2657,7 +2609,6 @@ const CONST = {
             NAME: {
                 // Here we will add other connections names when we add support for them
                 QBD: 'quickbooksDesktop',
-                XERO: 'xero',
             },
             SUPPORTED_ONLY_ON_OLDDOT: {
                 FINANCIALFORCE: 'financialForce',
@@ -2666,12 +2617,10 @@ const CONST = {
                 GENERIC_INDIRECT_CONNECTION: 'generic_indirect_connection',
             },
             ROUTE: {
-                XERO: 'xero',
                 QBD: 'quickbooks-desktop',
             },
             NAME_USER_FRIENDLY: {
                 quickbooksDesktop: 'QuickBooks Desktop',
-                xero: 'Xero',
                 financialForce: 'FinancialForce',
                 billCom: 'Bill.com',
                 zenefits: 'Zenefits',
@@ -2683,7 +2632,6 @@ const CONST = {
             CORPORATE: ['quickbooksDesktop', 'oracle', 'sap', 'microsoftDynamics', 'other'],
             AUTH_HELP_LINKS: {},
             SYNC_STAGE_NAME: {
-                STARTING_IMPORT_XERO: 'startingImportXero',
                 STARTING_IMPORT_QBD: 'startingImportQBD',
                 QBD_IMPORT_TITLE: 'quickbooksDesktopImportTitle',
                 QBD_IMPORT_ACCOUNTS: 'quickbooksDesktopImportAccounts',
@@ -2697,17 +2645,6 @@ const CONST = {
                 QBD_IMPORT_GENERIC: 'quickbooksDesktopImportSavePolicy',
                 QBD_WEB_CONNECTOR_REMINDER: 'quickbooksDesktopWebConnectorReminder',
                 JOB_DONE: 'jobDone',
-                XERO_SYNC_STEP: 'xeroSyncStep',
-                XERO_SYNC_XERO_REIMBURSED_REPORTS: 'xeroSyncXeroReimbursedReports',
-                XERO_SYNC_EXPENSIFY_REIMBURSED_REPORTS: 'xeroSyncExpensifyReimbursedReports',
-                XERO_SYNC_IMPORT_CHART_OF_ACCOUNTS: 'xeroSyncImportChartOfAccounts',
-                XERO_SYNC_IMPORT_CATEGORIES: 'xeroSyncImportCategories',
-                XERO_SYNC_IMPORT_TRACKING_CATEGORIES: 'xeroSyncImportTrackingCategories',
-                XERO_SYNC_IMPORT_CUSTOMERS: 'xeroSyncImportCustomers',
-                XERO_SYNC_IMPORT_BANK_ACCOUNTS: 'xeroSyncImportBankAccounts',
-                XERO_SYNC_IMPORT_TAX_RATES: 'xeroSyncImportTaxRates',
-                XERO_CHECK_CONNECTION: 'xeroCheckConnection',
-                XERO_SYNC_TITLE: 'xeroSyncTitle',
             },
             SYNC_STAGE_TIMEOUT_MINUTES: 20,
         },
@@ -2732,7 +2669,6 @@ const CONST = {
 
     HELP_DOC_LINKS: {
         'QuickBooks Desktop': '',
-        Xero: 'https://help.expensify.com/articles/new-expensify/connections/xero/Configure-Xero',
         FinancialForce: 'https://help.expensify.com/articles/expensify-classic/connections/certinia/Connect-To-Certinia',
         Certinia: 'https://help.expensify.com/articles/expensify-classic/connections/certinia/Connect-To-Certinia',
         MERGE_EXPENSES: 'https://help.expensify.com/articles/new-expensify/reports-and-expenses/Merging-expenses',
@@ -2943,13 +2879,6 @@ const CONST = {
         DEFAULT_EXPORT_TYPE: 'default',
         EXPORT_CARD_TYPES: {
             /**
-         
-            /**
-             * Name of Card NVP for Xero custom export accounts
-             */
-            NVP_XERO_EXPORT_BANK_ACCOUNT: 'xero_export_bank_account',
-
-            /**
              * Name of Card NVP for QuickBooks Desktop custom export accounts
              */
             NVP_QUICKBOOKS_DESKTOP_EXPORT_ACCOUNT_CREDIT: 'quickbooks_desktop_export_account_credit',
@@ -2960,11 +2889,6 @@ const CONST = {
             NVP_FINANCIALFORCE_EXPORT_VENDOR: 'financialforce_export_vendor',
         },
         EXPORT_CARD_POLICY_TYPES: {
-          
-            /**
-             * Name of Card NVP for Xero custom export accounts
-             */
-            NVP_XERO_EXPORT_BANK_ACCOUNT_POLICY_ID: 'xero_export_bank_account_policy_id',
 
             /**
              * Name of Card NVP for QuickBooks Desktop custom export accounts

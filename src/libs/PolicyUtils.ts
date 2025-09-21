@@ -798,14 +798,6 @@ function hasActiveAdminWorkspaces(currentUserLogin: string | undefined) {
     return getActiveAdminWorkspaces(allPolicies, currentUserLogin).length > 0;
 }
 
-/**
- *
- * Checks whether the current user has a policy with Xero accounting software integration
- */
-function hasPolicyWithXeroConnection(currentUserLogin: string | undefined) {
-    return getActiveAdminWorkspaces(allPolicies, currentUserLogin)?.some((policy) => !!policy?.connections?.[CONST.POLICY.CONNECTIONS.NAME.XERO]);
-}
-
 /** Whether the user can send invoice from the workspace */
 function canSendInvoiceFromWorkspace(policyID: string | undefined): boolean {
     // This will be fixed as part of https://github.com/Expensify/Expensify/issues/507850
@@ -837,35 +829,6 @@ function hasIndependentTags(policy: OnyxEntry<Policy>, policyTagList: OnyxEntry<
         return false;
     }
     return Object.values(policyTagList ?? {}).every((tagList) => Object.values(tagList.tags).every((tag) => !tag.rules?.parentTagsFilter && !tag.parentTagsFilter));
-}
-
-/** Get the Xero organizations connected to the policy */
-function getXeroTenants(policy: Policy | undefined): Tenant[] {
-    // Due to the way optional chain is being handled in this useMemo we are forced to use this approach to properly handle undefined values
-    // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
-    if (!policy || !policy.connections || !policy.connections.xero || !policy.connections.xero.data) {
-        return [];
-    }
-    return policy.connections.xero.data.tenants ?? [];
-}
-
-function findCurrentXeroOrganization(tenants: Tenant[] | undefined, organizationID: string | undefined): Tenant | undefined {
-    return tenants?.find((tenant) => tenant.id === organizationID);
-}
-
-function getCurrentXeroOrganizationName(policy: Policy | undefined): string | undefined {
-    return findCurrentXeroOrganization(getXeroTenants(policy), policy?.connections?.xero?.config?.tenantID)?.name;
-}
-
-function getXeroBankAccounts(policy: Policy | undefined, selectedBankAccountId: string | undefined): SelectorType[] {
-    const bankAccounts = policy?.connections?.xero?.data?.bankAccounts ?? [];
-
-    return (bankAccounts ?? []).map(({id, name}) => ({
-        value: id,
-        text: name,
-        keyForList: id,
-        isSelected: selectedBankAccountId === id,
-    }));
 }
 
 function areSettingsInErrorFields(settings?: string[], errorFields?: ErrorFields) {
@@ -1174,10 +1137,7 @@ const getDescriptionForPolicyDomainCard = (domainName: string): string => {
 
 function isPreferredExporter(policy: Policy) {
     const user = getCurrentUserEmail();
-    const exporters = [
-        policy.connections?.quickbooksDesktop?.config?.export?.exporter,
-        policy.connections?.xero?.config?.export?.exporter,
-    ];
+    const exporters = [policy.connections?.quickbooksDesktop?.config?.export?.exporter];
 
     return exporters.some((exporter) => exporter && exporter === user);
 }
@@ -1266,11 +1226,6 @@ export {
     canSendInvoice,
     hasDependentTags,
     hasVBBA,
-    getXeroTenants,
-    findCurrentXeroOrganization,
-    getCurrentXeroOrganizationName,
-    getXeroBankAccounts,
-    hasPolicyWithXeroConnection,
     getDistanceRateCustomUnit,
     getPerDiemCustomUnit,
     getDistanceRateCustomUnitRate,
