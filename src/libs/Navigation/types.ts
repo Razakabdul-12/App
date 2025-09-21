@@ -1396,9 +1396,6 @@ type OnboardingModalNavigatorParamList = {
     [SCREENS.ONBOARDING.EMPLOYEES]: {
         backTo?: string;
     };
-    [SCREENS.ONBOARDING.ACCOUNTING]: {
-        backTo?: string;
-    };
     [SCREENS.ONBOARDING.INTERESTED_FEATURES]: {
         backTo?: string;
     };

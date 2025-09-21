@@ -471,7 +471,6 @@ const SCREENS = {
         PURPOSE: 'Onboarding_Purpose',
         PRIVATE_DOMAIN: 'Onboarding_Private_Domain',
         EMPLOYEES: 'Onboarding_Employees',
-        ACCOUNTING: 'Onboarding_Accounting',
         INTERESTED_FEATURES: 'Onboarding_Interested_Features',
         WORKSPACES: 'Onboarding_Workspaces',
         WORK_EMAIL: 'Onboarding_Work_Email',

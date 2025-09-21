@@ -103,7 +103,11 @@ function getOnboardingInitialPath(getOnboardingInitialPathParams: GetOnboardingI
         currentOnboardingCompanySize,
         onboardingInitialPath = '',
     } = getOnboardingInitialPathParams;
-    const state = getStateFromPath(onboardingInitialPath, linkingConfig.config);
+    const legacyAccountingRoute = 'onboarding/accounting';
+    const sanitizedOnboardingInitialPath = onboardingInitialPath.includes(legacyAccountingRoute)
+        ? onboardingInitialPath.replace(legacyAccountingRoute, ROUTES.ONBOARDING_INTERESTED_FEATURES.route)
+        : onboardingInitialPath;
+    const state = getStateFromPath(sanitizedOnboardingInitialPath, linkingConfig.config);
     const currentOnboardingValues = onboardingValuesParam ?? onboardingValues;
     const isVsb = currentOnboardingValues?.signupQualifier === CONST.ONBOARDING_SIGNUP_QUALIFIERS.VSB;
     const isSmb = currentOnboardingValues?.signupQualifier === CONST.ONBOARDING_SIGNUP_QUALIFIERS.SMB;
@@ -134,7 +138,7 @@ function getOnboardingInitialPath(getOnboardingInitialPathParams: GetOnboardingI
     }
 
     if (isVsb) {
-        return `/${ROUTES.ONBOARDING_ACCOUNTING.route}`;
+        return `/${ROUTES.ONBOARDING_INTERESTED_FEATURES.route}`;
     }
     if (isSmb) {
         return `/${ROUTES.ONBOARDING_EMPLOYEES.route}`;
@@ -144,15 +148,18 @@ function getOnboardingInitialPath(getOnboardingInitialPathParams: GetOnboardingI
         return `/${ROUTES.ONBOARDING_ROOT.route}`;
     }
 
-    if (onboardingInitialPath.includes(ROUTES.ONBOARDING_EMPLOYEES.route) && !isCurrentOnboardingPurposeManageTeam) {
+    if (sanitizedOnboardingInitialPath.includes(ROUTES.ONBOARDING_EMPLOYEES.route) && !isCurrentOnboardingPurposeManageTeam) {
         return `/${ROUTES.ONBOARDING_PURPOSE.route}`;
     }
 
-    if (onboardingInitialPath.includes(ROUTES.ONBOARDING_ACCOUNTING.route) && (!isCurrentOnboardingPurposeManageTeam || !currentOnboardingCompanySize)) {
+    if (
+        sanitizedOnboardingInitialPath.includes(ROUTES.ONBOARDING_INTERESTED_FEATURES.route) &&
+        (!isCurrentOnboardingPurposeManageTeam || !currentOnboardingCompanySize)
+    ) {
         return `/${ROUTES.ONBOARDING_PURPOSE.route}`;
     }
 
-    return onboardingInitialPath;
+    return sanitizedOnboardingInitialPath;
 }
 
 const getOnboardingMessages = (hasIntroSelected = false, locale?: Locale) => {
