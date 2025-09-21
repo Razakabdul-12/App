@@ -21,7 +21,7 @@ const data: ExampleDataType[] = [
             {commit: '2', subject: 'Setting up bones', authorName: 'test@gmail.com'},
             {commit: '3', subject: 'Merge pull request #337 from Expensify/francoisUpdateQbdSyncManager', authorName: 'test@gmail.com'},
             {commit: '4', subject: 'Merge pull request #336 from Expensify/andrew-pr-cla', authorName: 'test@gmail.com'},
-            {commit: '5', subject: 'Update QBD Sync Manager version', authorName: 'test@gmail.com'},
+            {commit: '5', subject: 'Update Sync Manager version', authorName: 'test@gmail.com'},
             {commit: '6', subject: 'Only run CLA on PR comments or events', authorName: 'test@gmail.com'},
             {commit: '7', subject: 'Merge pull request #331 from Expensify/marcaaron-killMoment', authorName: 'test@gmail.com'},
             {commit: '8', subject: 'Merge pull request #330 from Expensify/andrew-cla-update', authorName: 'test@gmail.com'},

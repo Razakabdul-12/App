@@ -5054,13 +5054,6 @@ const staticStyles = (theme: ThemeColors) =>
             width: '100%',
         },
 
-        qbdSetupLinkBox: {
-            backgroundColor: theme.hoverComponentBG,
-            borderRadius: variables.componentBorderRadiusMedium,
-            borderColor: theme.border,
-            padding: 16,
-        },
-
         // We have to use 10000 here as sidePanel has to be displayed on top of modals which have z-index of 9999
         sidePanelContainer: {zIndex: 10000},
 

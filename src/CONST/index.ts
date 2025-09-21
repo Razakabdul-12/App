@@ -70,7 +70,6 @@ const chatTypes = {
 } as const;
 
 const ONBOARDING_ACCOUNTING_MAPPING = {
-    quickbooksDesktop: 'QuickBooks Desktop',
     sap: 'SAP',
     oracle: 'Oracle',
     microsoftDynamics: 'Microsoft Dynamics',
@@ -2050,25 +2049,6 @@ const CONST = {
         NOT_IMPORTED: 'NOT_IMPORTED',
         IMPORTED: 'IMPORTED',
     },
-    QUICKBOOKS_DESKTOP_CONFIG: {
-        EXPORT_DATE: 'exportDate',
-        EXPORTER: 'exporter',
-        MARK_CHECKS_TO_BE_PRINTED: 'markChecksToBePrinted',
-        REIMBURSABLE_ACCOUNT: 'reimbursableAccount',
-        NON_REIMBURSABLE_ACCOUNT: 'nonReimbursableAccount',
-        REIMBURSABLE: 'reimbursable',
-        NON_REIMBURSABLE: 'nonReimbursable',
-        SHOULD_AUTO_CREATE_VENDOR: 'shouldAutoCreateVendor',
-        NON_REIMBURSABLE_BILL_DEFAULT_VENDOR: 'nonReimbursableBillDefaultVendor',
-        AUTO_SYNC: 'autoSync',
-        ENABLE_NEW_CATEGORIES: 'enableNewCategories',
-        MAPPINGS: {
-            CLASSES: 'classes',
-            CUSTOMERS: 'customers',
-        },
-        IMPORT_ITEMS: 'importItems',
-    },
-
     QUICKBOOKS_CONFIG: {
         ENABLE_NEW_CATEGORIES: 'enableNewCategories',
         SYNC_CLASSES: 'syncClasses',
@@ -2093,24 +2073,6 @@ const CONST = {
         REIMBURSEMENT_ACCOUNT_ID: 'reimbursementAccountID',
         COLLECTION_ACCOUNT_ID: 'collectionAccountID',
         ACCOUNTING_METHOD: 'accountingMethod',
-    },
-
-    QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE: {
-        VENDOR_BILL: 'VENDOR_BILL',
-        CHECK: 'CHECK',
-        JOURNAL_ENTRY: 'JOURNAL_ENTRY',
-    },
-
-    QUICKBOOKS_EXPORT_DATE: {
-        LAST_EXPENSE: 'LAST_EXPENSE',
-        REPORT_EXPORTED: 'REPORT_EXPORTED',
-        REPORT_SUBMITTED: 'REPORT_SUBMITTED',
-    },
-
-    QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE: {
-        CREDIT_CARD: 'CREDIT_CARD_CHARGE',
-        CHECK: 'CHECK',
-        VENDOR_BILL: 'VENDOR_BILL',
     },
 
     ACCOUNT_ID: {
@@ -2606,21 +2568,15 @@ const CONST = {
             ADULT_ENTERTAINMENT: 'adultEntertainment',
         },
         CONNECTIONS: {
-            NAME: {
-                // Here we will add other connections names when we add support for them
-                QBD: 'quickbooksDesktop',
-            },
+            NAME: {},
             SUPPORTED_ONLY_ON_OLDDOT: {
                 FINANCIALFORCE: 'financialForce',
             },
             UNSUPPORTED_NAMES: {
                 GENERIC_INDIRECT_CONNECTION: 'generic_indirect_connection',
             },
-            ROUTE: {
-                QBD: 'quickbooks-desktop',
-            },
+            ROUTE: {},
             NAME_USER_FRIENDLY: {
-                quickbooksDesktop: 'QuickBooks Desktop',
                 financialForce: 'FinancialForce',
                 billCom: 'Bill.com',
                 zenefits: 'Zenefits',
@@ -2629,21 +2585,8 @@ const CONST = {
                 microsoftDynamics: 'Microsoft Dynamics',
                 other: 'Other',
             },
-            CORPORATE: ['quickbooksDesktop', 'oracle', 'sap', 'microsoftDynamics', 'other'],
             AUTH_HELP_LINKS: {},
             SYNC_STAGE_NAME: {
-                STARTING_IMPORT_QBD: 'startingImportQBD',
-                QBD_IMPORT_TITLE: 'quickbooksDesktopImportTitle',
-                QBD_IMPORT_ACCOUNTS: 'quickbooksDesktopImportAccounts',
-                QBD_IMPORT_APPROVE_CERTIFICATE: 'quickbooksDesktopImportApproveCertificate',
-                QBD_IMPORT_DIMENSIONS: 'quickbooksDesktopImportDimensions',
-                QBD_IMPORT_CLASSES: 'quickbooksDesktopImportClasses',
-                QBD_IMPORT_CUSTOMERS: 'quickbooksDesktopImportCustomers',
-                QBD_IMPORT_VENDORS: 'quickbooksDesktopImportVendors',
-                QBD_IMPORT_EMPLOYEES: 'quickbooksDesktopImportEmployees',
-                QBD_IMPORT_MORE: 'quickbooksDesktopImportMore',
-                QBD_IMPORT_GENERIC: 'quickbooksDesktopImportSavePolicy',
-                QBD_WEB_CONNECTOR_REMINDER: 'quickbooksDesktopWebConnectorReminder',
                 JOB_DONE: 'jobDone',
             },
             SYNC_STAGE_TIMEOUT_MINUTES: 20,
@@ -2668,7 +2611,6 @@ const CONST = {
     },
 
     HELP_DOC_LINKS: {
-        'QuickBooks Desktop': '',
         FinancialForce: 'https://help.expensify.com/articles/expensify-classic/connections/certinia/Connect-To-Certinia',
         Certinia: 'https://help.expensify.com/articles/expensify-classic/connections/certinia/Connect-To-Certinia',
         MERGE_EXPENSES: 'https://help.expensify.com/articles/new-expensify/reports-and-expenses/Merging-expenses',
@@ -2879,24 +2821,18 @@ const CONST = {
         DEFAULT_EXPORT_TYPE: 'default',
         EXPORT_CARD_TYPES: {
             /**
-             * Name of Card NVP for QuickBooks Desktop custom export accounts
              */
-            NVP_QUICKBOOKS_DESKTOP_EXPORT_ACCOUNT_CREDIT: 'quickbooks_desktop_export_account_credit',
 
             /**
-             * Name of Card NVP for QuickBooks Desktop custom export accounts
              */
             NVP_FINANCIALFORCE_EXPORT_VENDOR: 'financialforce_export_vendor',
         },
         EXPORT_CARD_POLICY_TYPES: {
 
             /**
-             * Name of Card NVP for QuickBooks Desktop custom export accounts
              */
-            NVP_QUICKBOOKS_DESKTOP_EXPORT_ACCOUNT_CREDIT_POLICY_ID: 'quickbooks_desktop_export_account_credit_policy_id',
 
             /**
-             * Name of Card NVP for QuickBooks Desktop custom export accounts
              */
             NVP_FINANCIALFORCE_EXPORT_VENDOR_POLICY_ID: 'financialforce_export_vendor_policy_id',
         },

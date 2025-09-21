@@ -171,7 +171,6 @@ import type {
     PolicyDisabledReportFieldAllOptionsParams,
     PolicyDisabledReportFieldOptionParams,
     PolicyExpenseChatNameParams,
-    QBDSetupErrorBodyParams,
     RailTicketParams,
     ReconciliationWorksParams,
     RemovedFromApprovalWorkflowParams,
@@ -3492,7 +3491,8 @@ const translations = {
             viewTransactions: '取引を表示',
             policyExpenseChatName: ({displayName}: PolicyExpenseChatNameParams) => `${displayName}の経費`,
             deepDiveExpensifyCard: `<muted-text-label>Expensify Cardの取引は、<a href="${CONST.DEEP_DIVE_EXPENSIFY_CARD}">弊社の統合</a>で作成された 「Expensify Card Liability Account 」に自動的にエクスポートされます。</muted-text-label>`,
-        },        perDiem: {
+        },
+        perDiem: {
             subtitle: '日当料金を設定して、従業員の1日の支出を管理します。',
             amount: '金額',
             deleteRates: () => ({
@@ -3517,100 +3517,6 @@ const translations = {
             editPerDiemRates: '日当のレートを編集',
             editDestinationSubtitle: ({destination}: EditDestinationSubtitleParams) => `この宛先を更新すると、すべての${destination}の日当サブレートが変更されます。`,
             editCurrencySubtitle: ({destination}: EditDestinationSubtitleParams) => `この通貨を更新すると、すべての${destination}の日当サブレートが変更されます。`,
-        },
-        qbd: {
-            exportOutOfPocketExpensesDescription: '実費経費がQuickBooks Desktopにエクスポートされる方法を設定します。',
-            exportOutOfPocketExpensesCheckToggle: 'チェックを「後で印刷」としてマークする',
-            exportDescription: 'ExpensifyデータをQuickBooks Desktopにエクスポートする方法を設定します。',
-            date: 'エクスポート日付',
-            exportInvoices: '請求書をエクスポート',
-            exportExpensifyCard: 'Expensifyカードの取引をエクスポートする',
-            account: 'アカウント',
-            accountDescription: '仕訳を投稿する場所を選択してください。',
-            accountsPayable: '買掛金',
-            accountsPayableDescription: '仕入先請求書を作成する場所を選択してください。',
-            bankAccount: '銀行口座',
-            notConfigured: '未設定',
-            bankAccountDescription: '小切手の送付先を選択してください。',
-            creditCardAccount: 'クレジットカードアカウント',
-            exportDate: {
-                label: 'エクスポート日付',
-                description: 'この日付を使用してレポートをQuickBooks Desktopにエクスポートしてください。',
-                values: {
-                    [CONST.QUICKBOOKS_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: '最後の経費の日付',
-                        description: 'レポート上の最新経費の日付。',
-                    },
-                    [CONST.QUICKBOOKS_EXPORT_DATE.REPORT_EXPORTED]: {
-                        label: 'エクスポート日付',
-                        description: 'レポートがQuickBooks Desktopにエクスポートされた日付。',
-                    },
-                    [CONST.QUICKBOOKS_EXPORT_DATE.REPORT_SUBMITTED]: {
-                        label: '提出日',
-                        description: 'レポートが承認のために提出された日付。',
-                    },
-                },
-            },
-            exportCheckDescription: '各Expensifyレポートに対して項目別の小切手を作成し、以下の銀行口座から送信します。',
-            exportJournalEntryDescription: '各Expensifyレポートに対して項目別の仕訳を作成し、以下のアカウントに投稿します。',
-            exportVendorBillDescription:
-                '私たちは、各Expensifyレポートのために項目別のベンダー請求書を作成し、以下のアカウントに追加します。この期間が閉じている場合、次の開いている期間の1日に投稿します。',
-            outOfPocketTaxEnabledDescription:
-                'QuickBooks Desktopは、仕訳帳エクスポートで税金をサポートしていません。ワークスペースで税金が有効になっているため、このエクスポートオプションは利用できません。',
-            outOfPocketTaxEnabledError: '税金が有効になっている場合、仕訳帳は利用できません。別のエクスポートオプションを選択してください。',
-            accounts: {
-                [CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD]: 'クレジットカード',
-                [CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL]: '仕入先請求書',
-                [CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY]: '仕訳帳エントリ',
-                [CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.CHECK]: 'チェック',
-                [`${CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CHECK}Description`]: '各Expensifyレポートに対して項目別の小切手を作成し、以下の銀行口座から送信します。',
-                [`${CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD}Description`]:
-                    'クレジットカード取引の加盟店名をQuickBooksの対応するベンダーに自動的に一致させます。ベンダーが存在しない場合は、関連付けのために「Credit Card Misc.」ベンダーを作成します。',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}Description`]:
-                    '私たちは、各Expensifyレポートに対して最後の経費の日付を含む項目別のベンダー請求書を作成し、以下のアカウントに追加します。この期間が閉じている場合、次の開いている期間の1日に投稿します。',
-                [`${CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE.CREDIT_CARD}AccountDescription`]: 'クレジットカード取引のエクスポート先を選択してください。',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}AccountDescription`]: 'すべてのクレジットカード取引に適用するベンダーを選択してください。',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.CHECK}AccountDescription`]: '小切手の送付先を選択してください。',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.VENDOR_BILL}Error`]:
-                    '場所が有効になっている場合、ベンダー請求書は利用できません。別のエクスポートオプションを選択してください。',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.CHECK}Error`]: '場所が有効になっている場合、小切手は利用できません。別のエクスポートオプションを選択してください。',
-                [`${CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE.JOURNAL_ENTRY}Error`]:
-                    '税金が有効になっている場合、仕訳帳は利用できません。別のエクスポートオプションを選択してください。',
-            },
-            noAccountsFound: 'アカウントが見つかりません',
-            noAccountsFoundDescription: 'QuickBooks Desktopにアカウントを追加して、接続を再同期してください。',
-            qbdSetup: 'QuickBooks Desktop のセットアップ',
-            requiredSetupDevice: {
-                title: 'このデバイスから接続できません',
-                body1: 'QuickBooks Desktopの会社ファイルをホストしているコンピュータからこの接続を設定する必要があります。',
-                body2: '接続が完了すると、どこからでも同期とエクスポートが可能になります。',
-            },
-            setupPage: {
-                title: 'このリンクを開いて接続してください。',
-                body: 'セットアップを完了するには、QuickBooks Desktop が実行されているコンピューターで次のリンクを開いてください。',
-                setupErrorTitle: '問題が発生しました',
-                setupErrorBody: ({conciergeLink}: QBDSetupErrorBodyParams) =>
-                    `<muted-text><centered-text>現在、QuickBooks Desktopへの接続ができません。問題が解決しない場合は、後でもう一度お試しいただくか、<a href="${conciergeLink}">Conciergeまでご連絡ください</a>。</centered-text></muted-text>`,
-            },
-            importDescription: 'QuickBooks DesktopからExpensifyにインポートするコーディング設定を選択してください。',
-            classes: 'クラス',
-            items: 'アイテム',
-            customers: '顧客/プロジェクト',
-            exportCompanyCardsDescription: '会社カードの購入をQuickBooks Desktopにエクスポートする方法を設定します。',
-            defaultVendorDescription: 'エクスポート時にすべてのクレジットカード取引に適用されるデフォルトのベンダーを設定します。',
-            accountsDescription: 'QuickBooks Desktopの勘定科目表は、Expensifyにカテゴリーとしてインポートされます。',
-            accountsSwitchTitle: '新しいアカウントを有効または無効なカテゴリとしてインポートすることを選択します。',
-            accountsSwitchDescription: '有効になっているカテゴリーは、メンバーが経費を作成する際に選択できるようになります。',
-            classesDescription: 'ExpensifyでQuickBooks Desktopクラスをどのように処理するか選択してください。',
-            tagsDisplayedAsDescription: 'ラインアイテムレベル',
-            reportFieldsDisplayedAsDescription: 'レポートレベル',
-            customersDescription: 'ExpensifyでQuickBooks Desktopの顧客/プロジェクトをどのように処理するか選択してください。',
-            advancedConfig: {
-                autoSyncDescription: 'Expensifyは毎日QuickBooks Desktopと自動的に同期します。',
-                createEntities: 'エンティティを自動作成',
-                createEntitiesDescription: 'Expensifyは、QuickBooks Desktopに既に存在しない場合、自動的にベンダーを作成します。',
-            },
-            itemsDescription: 'ExpensifyでQuickBooks Desktopの項目をどのように処理するか選択します。',
         },
         workspaceList: {
             joinNow: '今すぐ参加',
@@ -4284,7 +4190,6 @@ const translations = {
             settings: '設定',
             title: '接続',
             subtitle: '会計システムに接続して、勘定科目表で取引をコード化し、支払いを自動マッチングし、財務を同期させましょう。',
-            qbd: 'QuickBooks Desktop',
             sap: 'SAP',
             oracle: 'Oracle',
             microsoftDynamics: 'Microsoft Dynamics',
@@ -4317,15 +4222,7 @@ const translations = {
                 return `${integrationName}を切断`;
             },
             connectTitle: ({connectionName}: ConnectionNameParams) => `${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? '会計統合'} に接続`,
-            syncError: ({connectionName}: ConnectionNameParams) => {
-                switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.QBD:
-                        return 'QuickBooks Desktopに接続できません';
-                    default: {
-                        return '統合に接続できません';
-                    }
-                }
-            },
+            syncError: () => '統合に接続できません',
             accounts: '勘定科目表',
             taxes: '税金',
             imported: 'インポート済み',
@@ -4350,45 +4247,15 @@ const translations = {
             connections: {
                 syncStageName: ({stage}: SyncStageNameConnectionsParams) => {
                     switch (stage) {
-                        case 'quickbooksDesktopImportCustomers':
-                            return '顧客のインポート';
-                        case 'quickbooksDesktopImportEmployees':
-                            return '従業員のインポート';
-                        case 'quickbooksDesktopImportAccounts':
-                            return 'アカウントのインポート';
-                        case 'quickbooksDesktopImportClasses':
-                            return 'クラスのインポート';
-                            return '場所のインポート';
-                            return 'インポートされたデータを処理中';
-                            return '払い戻されたレポートと請求書の支払いを同期中';
-                            return '税コードのインポート';
-                        case 'startingImportQBD':
-                        case 'quickbooksDesktopImportMore':
-                            return 'QuickBooks Desktopデータのインポート';
-                        case 'quickbooksDesktopImportTitle':
-                            return 'インポートタイトル';
-                        case 'quickbooksDesktopImportApproveCertificate':
-                            return '承認証明書のインポート';
-                        case 'quickbooksDesktopImportDimensions':
-                            return 'ディメンションのインポート';
-                        case 'quickbooksDesktopImportSavePolicy':
-                            return '保存ポリシーのインポート';
-                        case 'quickbooksDesktopWebConnectorReminder':
-                            return 'QuickBooksとのデータを同期中です... Web Connectorが実行中であることを確認してください';
                         case 'jobDone':
                             return 'インポートされたデータの読み込みを待っています';
-                        case 'quickbooksDesktopImportVendors':
-                            return 'ベンダーのインポート';
-
-
-
                         default: {
                             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                             return `ステージの翻訳が見つかりません: ${stage}`;
                         }
                     }
                 },
-            },
+},
             preferredExporter: '優先エクスポーター',
             exportPreferredExporterNote:
                 '優先されるエクスポーターは任意のワークスペース管理者で構いませんが、ドメイン設定で個々の会社カードに異なるエクスポートアカウントを設定する場合は、ドメイン管理者である必要があります。',
@@ -4406,8 +4273,8 @@ const translations = {
             reconciliationAccount: '調整口座',
             continuousReconciliation: '継続的な照合',
             saveHoursOnReconciliation: '各会計期間の調整にかかる時間を節約するために、ExpensifyがExpensify Cardの明細書と決済を継続的に調整します。',
-            enableContinuousReconciliation: ({accountingAdvancedSettingsLink, connectionName}: EnableContinuousReconciliationParams) =>
-                `<muted-text-label>継続的な照合を有効にするため、${connectionName}の<a href="${accountingAdvancedSettingsLink}">自動同期</a>を有効にしてください。</muted-text-label>`,
+            enableContinuousReconciliation: ({connectionName}: EnableContinuousReconciliationParams) =>
+                `<muted-text-label>継続的な照合を有効にするには、${connectionName}の自動同期を有効にしてください。</muted-text-label>`,
             chooseReconciliationAccount: {
                 chooseBankAccount: 'Expensifyカードの支払いを照合する銀行口座を選択してください。',
                 accountMatches: 'このアカウントがあなたのものと一致していることを確認してください',
@@ -4586,11 +4453,6 @@ const translations = {
                 title: 'レポートフィールド',
                 description: `レポートフィールドでは、個々の項目の経費に関連するタグとは異なり、ヘッダーレベルの詳細を指定できます。これらの詳細には、特定のプロジェクト名、出張情報、場所などが含まれることがあります。`,
                 onlyAvailableOnPlan: 'レポートフィールドは、Controlプランでのみ利用可能です。料金は',
-            },
-            [CONST.POLICY.CONNECTIONS.NAME.QBD]: {
-                title: 'QuickBooks Desktop',
-                description: `Expensify + QuickBooks Desktop の統合で、自動同期を楽しみ、手動入力を減らしましょう。クラス、アイテム、顧客、プロジェクトごとの経費コード化とリアルタイムの双方向接続で、究極の効率性を実現します。`,
-                onlyAvailableOnPlan: 'QuickBooks Desktopの統合は、Controlプランでのみ利用可能で、料金は',
             },
             approvals: {
                 title: '高度な承認',

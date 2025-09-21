@@ -339,61 +339,14 @@ function resetAccountingPreferredExporter(policyID: string, loginList: string[])
     // This will be fixed as part of https://github.com/Expensify/Expensify/issues/507850
     // eslint-disable-next-line deprecation/deprecation
     const policy = getPolicy(policyID);
-    const owner = policy?.owner ?? ReportUtils.getPersonalDetailsForAccountID(policy?.ownerAccountID).login ?? '';
     const optimisticData: OnyxUpdate[] = [];
     const successData: OnyxUpdate[] = [];
     const failureData: OnyxUpdate[] = [];
     const policyKey = `${ONYXKEYS.COLLECTION.POLICY}${policyID}` as const;
     const adminLoginList = loginList.filter((login) => isUserPolicyAdmin(policy, login));
-    const connections = [CONST.POLICY.CONNECTIONS.NAME.QBD];
-
     if (!adminLoginList.length) {
         return {optimisticData, successData, failureData};
     }
-
-    connections.forEach((connection) => {
-        const exporter = policy?.connections?.[connection]?.config.export.exporter;
-        if (!exporter || !adminLoginList.includes(exporter)) {
-            return;
-        }
-
-        const pendingFieldKey = CONST.QUICKBOOKS_CONFIG.EXPORTER;
-        optimisticData.push({
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: policyKey,
-            value: {
-                connections: {
-                    [connection]: {
-                        config: {
-                            export: {exporter: owner},
-                            pendingFields: {[pendingFieldKey]: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE},
-                        },
-                    },
-                },
-            },
-        });
-        successData.push({
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: policyKey,
-            value: {
-                connections: {[connection]: {config: {pendingFields: {[pendingFieldKey]: null}}}},
-            },
-        });
-        failureData.push({
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: policyKey,
-            value: {
-                connections: {
-                    [connection]: {
-                        config: {
-                            export: {exporter: policy?.connections?.[connection]?.config.export.exporter},
-                            pendingFields: {[pendingFieldKey]: null},
-                        },
-                    },
-                },
-            },
-        });
-    });
 
     return {optimisticData, successData, failureData};
 }

@@ -230,114 +230,8 @@ type Account = {
     id: string;
 };
 
-/** Sync entity names */
-type IntegrationEntityMap = ValueOf<typeof CONST.INTEGRATION_ENTITY_MAP_TYPES>;
-
-/**
- * Reimbursable account types exported from QuickBooks Desktop
- */
-type QBDReimbursableExportAccountType = ValueOf<typeof CONST.QUICKBOOKS_DESKTOP_REIMBURSABLE_ACCOUNT_TYPE>;
-
-/**
- * Non reimbursable account types exported from QuickBooks Desktop
- */
-type QBDNonReimbursableExportAccountType = ValueOf<typeof CONST.QUICKBOOKS_DESKTOP_NON_REIMBURSABLE_EXPORT_ACCOUNT_TYPE>;
-
-type QBDConnectionData = {
-    /** Collection of cash accounts */
-    cashAccounts: Account[];
-
-    /** Collection of credit cards */
-    creditCardAccounts: Account[];
-
-    /** Collection of journal entry accounts  */
-    journalEntryAccounts: Account[];
-
-    /** Collection of payable accounts */
-    payableAccounts: Account[];
-
-    /** Collection of bank accounts */
-    bankAccounts: Account[];
-
-    /** Collections of vendors */
-    vendors: Vendor[];
-};
-
-/**
- * Export config for QuickBooks Desktop
- */
-type QBDExportConfig = {
-    /** E-mail of the exporter */
-    exporter: string;
-
-    /** Defines how reimbursable expenses are exported */
-    reimbursable: QBDReimbursableExportAccountType;
-
-    /** Account that receives the reimbursable expenses */
-    reimbursableAccount: string;
-
-    /** Export date type */
-    exportDate: ValueOf<typeof CONST.QUICKBOOKS_EXPORT_DATE>;
-
-    /** Defines how non-reimbursable expenses are exported */
-    nonReimbursable: QBDNonReimbursableExportAccountType;
-
-    /** Account that receives the non reimbursable expenses */
-    nonReimbursableAccount: string;
-
-    /** Default vendor of non reimbursable bill */
-    nonReimbursableBillDefaultVendor: string;
-};
-
-/**
- * User configuration for the QuickBooks Desktop accounting integration.
- */
-type QBDConnectionConfig = OnyxCommon.OnyxValueWithOfflineFeedback<
-    {
-        /** API provider */
-        apiProvider: string;
-
-        /** Configuration of automatic synchronization from QuickBooks Desktop to the app */
-        autoSync: {
-            /** Job ID of the synchronization */
-            jobID: string;
-
-            /** Whether changes made in QuickBooks Desktop should be reflected into the app automatically */
-            enabled: boolean;
-        };
-
-        /** Whether a check to be printed */
-        markChecksToBePrinted: boolean;
-
-        /** Determines if a vendor should be automatically created */
-        shouldAutoCreateVendor: boolean;
-
-        /** Whether items is imported */
-        importItems: boolean;
-
-        /** Configuration of the export */
-        export: QBDExportConfig;
-
-        /** Configuration of import settings from QuickBooks Desktop to the app */
-        mappings: {
-            /** How QuickBooks Desktop classes displayed as */
-            classes: IntegrationEntityMap;
-
-            /** How QuickBooks Desktop customers displayed as */
-            customers: IntegrationEntityMap;
-        };
-
-        /** Whether new categories are enabled in chart of accounts */
-        enableNewCategories: boolean;
-
-        /** Collections of form field errors */
-        errorFields?: OnyxCommon.ErrorFields;
-    },
-    keyof QBDExportConfig
->;
-
 /** State of integration connection */
-type Connection<ConnectionData, ConnectionConfig> = {
+type Connection<ConnectionData = Record<string, unknown>, ConnectionConfig = OnyxCommon.OnyxValueWithOfflineFeedback<Record<string, unknown>, string>> = {
     /** State of the last synchronization */
     lastSync?: ConnectionLastSync;
 
@@ -349,17 +243,10 @@ type Connection<ConnectionData, ConnectionConfig> = {
 };
 
 /** Available integration connections */
-type Connections = {
-    /** QuickBooks Desktop integration connection */
-    [CONST.POLICY.CONNECTIONS.NAME.QBD]: Connection<QBDConnectionData, QBDConnectionConfig>;
-};
+type Connections = Record<string, Connection>;
 
 /** All integration connections, including unsupported ones */
-type AllConnections = Connections & {
-    /** Quickbooks Desktop integration connection */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    quickbooksDesktop: any;
-};
+type AllConnections = Connections;
 
 /** Names of integration connections */
 type ConnectionName = keyof Connections;
@@ -913,7 +800,6 @@ export type {
     TaxRates,
     TaxRatesWithDefault,
     CompanyAddress,
-    IntegrationEntityMap,
     PolicyFeatureName,
     PolicyDetailsForNonMembers,
     PolicyConnectionName,
@@ -923,9 +809,7 @@ export type {
     ConnectionName,
     AllConnectionName,
     Account,
-    QBDNonReimbursableExportAccountType,
     ConnectionLastSync,
-    QBDReimbursableExportAccountType,
     InvoiceItem,
     ACHAccount,
     ApprovalRule,

@@ -2,7 +2,7 @@ import {differenceInMinutes, isValid, parseISO} from 'date-fns';
 import type {OnyxEntry, OnyxUpdate} from 'react-native-onyx';
 import Onyx from 'react-native-onyx';
 import * as API from '@libs/API';
-import type {RemovePolicyConnectionParams, SyncPolicyToQuickbooksDesktopParams, UpdateManyPolicyConnectionConfigurationsParams} from '@libs/API/parameters';
+import type {RemovePolicyConnectionParams, UpdateManyPolicyConnectionConfigurationsParams} from '@libs/API/parameters';
 import {READ_COMMANDS, WRITE_COMMANDS} from '@libs/API/types';
 import * as ErrorUtils from '@libs/ErrorUtils';
 import CONST from '@src/CONST';
@@ -58,13 +58,7 @@ function removePolicyConnection(policy: Policy, connectionName: PolicyConnection
  * @param connectionName - Name of the connection
  */
 function getSyncConnectionParameters(connectionName: PolicyConnectionName) {
-    switch (connectionName) {
-        case CONST.POLICY.CONNECTIONS.NAME.QBD: {
-            return {readCommand: READ_COMMANDS.SYNC_POLICY_TO_QUICKBOOKS_DESKTOP, stageInProgress: CONST.POLICY.CONNECTIONS.SYNC_STAGE_NAME.STARTING_IMPORT_QBD};
-        }
-        default:
-            return undefined;
-    }
+    return undefined;
 }
 
 /**
@@ -74,16 +68,16 @@ function getSyncConnectionParameters(connectionName: PolicyConnectionName) {
  * @param connectionName - Name of the connection
  * @param forceDataRefresh - If true, it will trigger a full data refresh
  */
-function syncConnection(policy: Policy | undefined, connectionName: PolicyConnectionName | undefined, forceDataRefresh = false) {
+function syncConnection(policy: Policy | undefined, connectionName: PolicyConnectionName | undefined, _forceDataRefresh = false) {
     if (!connectionName || !policy) {
         return;
     }
-    const policyID = policy.id;
     const syncConnectionData = getSyncConnectionParameters(connectionName);
 
     if (!syncConnectionData) {
         return;
     }
+    const policyID = policy.id;
     const optimisticData: OnyxUpdate[] = [
         {
             onyxMethod: Onyx.METHOD.MERGE,
@@ -104,14 +98,10 @@ function syncConnection(policy: Policy | undefined, connectionName: PolicyConnec
         },
     ];
 
-    const parameters: SyncPolicyToQuickbooksDesktopParams = {
+    const parameters = {
         policyID,
         idempotencyKey: policyID,
     };
-
-    if (connectionName === CONST.POLICY.CONNECTIONS.NAME.QBD) {
-        parameters.forceDataRefresh = forceDataRefresh;
-    }
 
     API.read(syncConnectionData.readCommand, parameters, {
         optimisticData,

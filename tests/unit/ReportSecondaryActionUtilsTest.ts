@@ -30,6 +30,7 @@ const PERSONAL_DETAILS = {
 const REPORT_ID = 1;
 const POLICY_ID = 'POLICY_ID';
 const OLD_POLICY_ID = 'OLD_POLICY_ID';
+const MOCK_CONNECTION = 'mockConnection';
 describe('getSecondaryAction', () => {
     beforeAll(() => {
         Onyx.init({
@@ -1189,7 +1190,7 @@ describe('getSecondaryExportReportActions', () => {
         const policy = {
             role: CONST.POLICY.ROLE.ADMIN,
             reimbursementChoice: CONST.POLICY.REIMBURSEMENT_CHOICES.REIMBURSEMENT_YES,
-            connections: {[CONST.POLICY.CONNECTIONS.NAME.QBD]: {}},
+            connections: {[MOCK_CONNECTION]: {}},
         } as unknown as Policy;
 
         const result = getSecondaryExportReportActions(report, policy);
@@ -1206,7 +1207,7 @@ describe('getSecondaryExportReportActions', () => {
         } as unknown as Report;
         const policy = {
             role: CONST.POLICY.ROLE.ADMIN,
-            connections: {[CONST.POLICY.CONNECTIONS.NAME.QBD]: {config: {autosync: {enabled: true}}}},
+            connections: {[MOCK_CONNECTION]: {config: {autosync: {enabled: true}}}},
         } as unknown as Policy;
 
         const result = getSecondaryExportReportActions(report, policy);
@@ -1220,7 +1221,7 @@ describe('getSecondaryExportReportActions', () => {
             ownerAccountID: EMPLOYEE_ACCOUNT_ID,
         } as unknown as Report;
         const policy = {
-            connections: {[CONST.POLICY.CONNECTIONS.NAME.QBD]: {}},
+            connections: {[MOCK_CONNECTION]: {}},
         } as unknown as Policy;
         await Onyx.merge(`${ONYXKEYS.COLLECTION.REPORT}${REPORT_ID}`, report);
 
@@ -1237,7 +1238,7 @@ describe('getSecondaryExportReportActions', () => {
             statusNum: CONST.REPORT.STATUS_NUM.APPROVED,
         } as unknown as Report;
         const policy = {
-            connections: {[CONST.POLICY.CONNECTIONS.NAME.QBD]: {config: {export: {exporter: EMPLOYEE_EMAIL}, autoSync: {enabled: false}}}},
+            connections: {[MOCK_CONNECTION]: {config: {export: {exporter: EMPLOYEE_EMAIL}, autoSync: {enabled: false}}}},
         } as unknown as Policy;
 
         const result = getSecondaryExportReportActions(report, policy);
@@ -1255,7 +1256,7 @@ describe('getSecondaryExportReportActions', () => {
         const policy = {
             role: CONST.POLICY.ROLE.ADMIN,
             reimbursementChoice: CONST.POLICY.REIMBURSEMENT_CHOICES.REIMBURSEMENT_YES,
-            connections: {[CONST.POLICY.CONNECTIONS.NAME.QBD]: {}},
+            connections: {[MOCK_CONNECTION]: {}},
         } as unknown as Policy;
 
         const result = getSecondaryExportReportActions(report, policy);
@@ -1272,7 +1273,7 @@ describe('getSecondaryExportReportActions', () => {
         } as unknown as Report;
         const policy = {
             role: CONST.POLICY.ROLE.ADMIN,
-            connections: {[CONST.POLICY.CONNECTIONS.NAME.QBD]: {config: {autosync: {enabled: true}}}},
+            connections: {[MOCK_CONNECTION]: {config: {autosync: {enabled: true}}}},
         } as unknown as Policy;
 
         const result = getSecondaryExportReportActions(report, policy);
@@ -1288,7 +1289,7 @@ describe('getSecondaryExportReportActions', () => {
             statusNum: CONST.REPORT.STATUS_NUM.APPROVED,
         } as unknown as Report;
         const policy = {
-            connections: {[CONST.POLICY.CONNECTIONS.NAME.QBD]: {config: {export: {exporter: EMPLOYEE_EMAIL}, autoSync: {enabled: false}}}},
+            connections: {[MOCK_CONNECTION]: {config: {export: {exporter: EMPLOYEE_EMAIL}, autoSync: {enabled: false}}}},
         } as unknown as Policy;
 
         const result = getSecondaryExportReportActions(report, policy);
@@ -1304,7 +1305,7 @@ describe('getSecondaryExportReportActions', () => {
             statusNum: CONST.REPORT.STATUS_NUM.APPROVED,
         } as unknown as Report;
         const policy = {
-            connections: {[CONST.POLICY.CONNECTIONS.NAME.QBD]: {config: {export: {exporter: ADMIN_EMAIL}, autoSync: {enabled: true}}}},
+            connections: {[MOCK_CONNECTION]: {config: {export: {exporter: ADMIN_EMAIL}, autoSync: {enabled: true}}}},
             role: CONST.POLICY.ROLE.ADMIN,
         } as unknown as Policy;
 

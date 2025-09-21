@@ -98,22 +98,9 @@ function PolicyAccountingPage({policy}: PolicyAccountingPageProps) {
     const hasUnsupportedNDIntegration = !isEmptyObject(policy?.connections) && hasSupportedOnlyOnOldDotIntegration(policy);
 
     const shouldShowSynchronizationError = !!synchronizationError;
-    const shouldShowReinstallConnectorMenuItem = shouldShowSynchronizationError && connectedIntegration === CONST.POLICY.CONNECTIONS.NAME.QBD;
     const shouldShowCardReconciliationOption = Object.values(allCardSettings ?? {})?.some((cardSetting) => isExpensifyCardFullySetUp(policy, cardSetting));
     const overflowMenu: ThreeDotsMenuProps['menuItems'] = useMemo(
         () => [
-            ...(shouldShowReinstallConnectorMenuItem
-                ? [
-                      {
-                          icon: Expensicons.CircularArrowBackwards,
-                          text: translate('workspace.accounting.reinstall'),
-                          onSelected: () => startIntegrationFlow({name: CONST.POLICY.CONNECTIONS.NAME.QBD}),
-                          shouldCallAfterModalHide: true,
-                          disabled: isOffline,
-                          iconRight: Expensicons.NewWindow,
-                      },
-                  ]
-                : []),
             ...(shouldShowEnterCredentials
                 ? [
                       {
@@ -140,7 +127,7 @@ function PolicyAccountingPage({policy}: PolicyAccountingPageProps) {
                 shouldCallAfterModalHide: true,
             },
         ],
-        [shouldShowEnterCredentials, shouldShowReinstallConnectorMenuItem, translate, isOffline, policy, connectedIntegration, startIntegrationFlow],
+        [shouldShowEnterCredentials, translate, isOffline, policy, connectedIntegration, startIntegrationFlow],
     );
 
     useFocusEffect(
@@ -213,6 +200,9 @@ function PolicyAccountingPage({policy}: PolicyAccountingPageProps) {
         }
         const isConnectionVerified = !isConnectionUnverified(policy, connectedIntegration);
         const integrationData = getAccountingIntegrationData(connectedIntegration, policyID, translate, policy);
+        if (!integrationData) {
+            return [];
+        }
         const iconProps = integrationData?.icon ? {icon: integrationData.icon, iconType: CONST.ICON_TYPE_AVATAR} : {};
 
         let connectionMessage;
