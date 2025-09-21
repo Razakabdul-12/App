@@ -2369,16 +2369,30 @@ const translations = {
                     `[Convide seu contador agora](${workspaceMembersLink}).`,
             },
 
+            startChatTask: {
+                title: 'Iniciar um bate-papo',
+                description:
+                    '*Inicie um bate-papo* com qualquer pessoa usando seu e-mail ou número de telefone.\n' +
+                    '\n' +
+                    `1. Clique no botão ${CONST.CUSTOM_EMOJIS.GLOBAL_CREATE}.\n` +
+                    '2. Escolha *Iniciar bate-papo*.\n' +
+                    '3. Insira um e-mail ou número de telefone.\n' +
+                    '\n' +
+                    'Se eles ainda não estiverem usando o Expensify, serão convidados automaticamente.\n' +
+                    '\n' +
+                    'Cada bate-papo também se transformará em um e-mail ou mensagem de texto que eles podem responder diretamente.',
+            },
 
             splitExpenseTask: {
                 title: 'Dividir uma despesa',
                 description:
                     '*Divida despesas* com uma ou mais pessoas.\n' +
                     '\n' +
-                    '1. Abra o bate-papo com todas as pessoas com quem precisa dividir.\n' +
-                    `2. Clique no botão verde ${CONST.CUSTOM_EMOJIS.GLOBAL_CREATE} no campo de mensagem.\n` +
-                    '3. Escolha *Dividir despesa*.\n' +
-                    '4. Crie a despesa selecionando *Manual*, *Digitalizar* ou *Distância*.\n' +
+                    `1. Clique no botão ${CONST.CUSTOM_EMOJIS.GLOBAL_CREATE}.\n` +
+                    '2. Escolha *Iniciar bate-papo*.\n' +
+                    '3. Insira e-mails ou números de telefone.\n' +
+                    '4. Clique no botão cinza *+* no bate-papo > *Dividir despesa*.\n' +
+                    '5. Crie a despesa selecionando *Manual*, *Digitalizar* ou *Distância*.\n' +
                     '\n' +
                     'Sinta-se à vontade para adicionar mais detalhes, se quiser, ou apenas envie. Vamos te reembolsar!',
             },
@@ -5506,6 +5520,11 @@ const translations = {
         transactionDate: 'Data da transação',
     },
     referralProgram: {
+        [CONST.REFERRAL_PROGRAM.CONTENT_TYPES.START_CHAT]: {
+            buttonText: 'Inicie um chat, <success><strong>indique um amigo</strong></success>.',
+            header: 'Inicie um chat, indique um amigo',
+            body: 'Quer que seus amigos usem o Expensify também? Basta iniciar um chat com eles e nós cuidaremos do resto.',
+        },
         [CONST.REFERRAL_PROGRAM.CONTENT_TYPES.SUBMIT_EXPENSE]: {
             buttonText: 'Enviar uma despesa, <success><strong>indique seu chefe</strong></success>.',
             header: 'Envie uma despesa, indique seu chefe',

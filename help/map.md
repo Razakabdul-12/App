@@ -314,6 +314,30 @@ Lost in the app?  Let this map guide you!
     * Search for something
     * Recent searches
     * Recent chats
+* Global Create
+    * Start chat
+        * Chat
+            * Name, email, or phone number
+            * Recents
+            * Contacts
+            * Add to group
+        * Room
+            * Room name
+            * Room description
+            * Workspace
+            * Visibility
+    * Track expense
+        1. Choose type:
+            * Manual
+                * Amount
+                * Currency
+            * Scan
+                * Choose file
+                * Camera
+            * Distance
+                * Start
+                * Stop
+        2. Code the expense
             * Amount
             * Description
             * Show more

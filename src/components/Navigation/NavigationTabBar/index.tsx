@@ -35,6 +35,7 @@ import {getChatTabBrickRoad} from '@libs/WorkspacesSettingsUtils';
 import navigationRef from '@navigation/navigationRef';
 import type {NavigationPartialRoute, RootNavigatorParamList, SearchFullscreenNavigatorParamList, State, WorkspaceSplitNavigatorParamList} from '@navigation/types';
 import NavigationTabBarAvatar from '@pages/home/sidebar/NavigationTabBarAvatar';
+import NavigationTabBarFloatingActionButton from '@pages/home/sidebar/NavigationTabBarFloatingActionButton';
 import variables from '@styles/variables';
 import CONST from '@src/CONST';
 import NAVIGATORS from '@src/NAVIGATORS';
@@ -332,6 +333,9 @@ function NavigationTabBar({selectedTab, isTooltipAllowed = false, isTopLevelBar 
                             onPress={navigateToSettings}
                         />
                     </View>
+                    <View style={styles.leftNavigationTabBarItem}>
+                        <NavigationTabBarFloatingActionButton isTooltipAllowed={isTooltipAllowed} />
+                    </View>
                 </View>
             </>
         );
@@ -418,6 +422,9 @@ function NavigationTabBar({selectedTab, isTooltipAllowed = false, isTopLevelBar 
                         {translate('common.reports')}
                     </Text>
                 </PressableWithFeedback>
+                <View style={[styles.flex1, styles.navigationTabBarItem]}>
+                    <NavigationTabBarFloatingActionButton isTooltipAllowed={isTooltipAllowed} />
+                </View>
                 <PressableWithFeedback
                     onPress={showWorkspaces}
                     role={CONST.ROLE.BUTTON}

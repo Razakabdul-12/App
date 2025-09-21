@@ -16,6 +16,7 @@ The vertical **left-hand bar** is your main navigation hub:
 - **Reports** - Access all your expense reports and filtering tools
 - **Workspaces** - Manage company and personal workspace settings
 - **Account** - Personal settings, profile, and preferences
+- **Global Create** button - Quick access to create reports, expenses, invoices, and chats
 
 ## Inbox Overview
 
@@ -40,6 +41,15 @@ The **Reports** tab consolidates filtering and reporting:
 - Use the **Workspace filter** inside the Filters menu to refine results
 - Apply filters and queries that update automatically
 - View all expense reports across your workspaces
+
+## Quick Actions
+
+Use the green **Create** button to quickly:
+- Start a new chat or conversation
+- Create an expense report
+- Add an expense or receipt
+- Create a task or invoice
+- Submit expenses for approval
 
 ---
 

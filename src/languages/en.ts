@@ -2353,15 +2353,30 @@ const translations = {
                     `[Invite your accountant now](${workspaceMembersLink}).`,
             },
 
+            startChatTask: {
+                title: 'Start a chat',
+                description:
+                    '*Start a chat* with anyone using their email or phone number.\n' +
+                    '\n' +
+                    `1. Click the ${CONST.CUSTOM_EMOJIS.GLOBAL_CREATE} button.\n` +
+                    '2. Choose *Start chat*.\n' +
+                    '3. Enter an email or phone number.\n' +
+                    '\n' +
+                    'If they’re not using Expensify already, they’ll be invited automatically.\n' +
+                    '\n' +
+                    'Every chat will also turn into an email or text that they can respond to directly.',
+            },
+
             splitExpenseTask: {
                 title: 'Split an expense',
                 description:
                     '*Split expenses* with one or more people.\n' +
                     '\n' +
-                    '1. Open the chat with everyone you need to split with.\n' +
-                    `2. Click the green ${CONST.CUSTOM_EMOJIS.GLOBAL_CREATE} button in the composer.\n` +
-                    '3. Choose *Split expense*.\n' +
-                    '4. Create the expense by selecting *Manual*, *Scan*, or *Distance*.\n' +
+                    `1. Click the ${CONST.CUSTOM_EMOJIS.GLOBAL_CREATE} button.\n` +
+                    '2. Choose *Start chat*.\n' +
+                    '3. Enter emails or phone numbers..\n' +
+                    '4. Click the grey *+* button in the chat > *Split expense*.\n' +
+                    '5. Create the expense by selecting *Manual*, *Scan*, or *Distance*.\n' +
                     '\n' +
                     'Feel free to add more details if you want, or just send it off. Let’s get you paid back!',
             },
@@ -5464,6 +5479,11 @@ const translations = {
         transactionDate: 'Transaction date',
     },
     referralProgram: {
+        [CONST.REFERRAL_PROGRAM.CONTENT_TYPES.START_CHAT]: {
+            buttonText: 'Start a chat, <success><strong>refer a friend</strong></success>.',
+            header: 'Start a chat, refer a friend',
+            body: "Want your friends to use Expensify, too? Just start a chat with them and we'll take care of the rest.",
+        },
         [CONST.REFERRAL_PROGRAM.CONTENT_TYPES.SUBMIT_EXPENSE]: {
             buttonText: 'Submit an expense, <success><strong>refer your boss</strong></success>.',
             header: 'Submit an expense, refer your boss',

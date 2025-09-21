@@ -54,6 +54,9 @@ const helpContentMap: HelpContent = {
                             <Text style={styles.textNormal}>
                                 <Text style={styles.textBold}>Account</Text> - Personal settings, profile, and preferences
                             </Text>,
+                            <Text style={styles.textNormal}>
+                                <Text style={styles.textBold}>Global Create</Text> button - Quick access to create reports, expenses, invoices, and chats
+                            </Text>,
                         ]}
                     />
                     <Text style={[styles.textHeadlineH2, styles.mv4]}>Inbox Overview</Text>
@@ -105,6 +108,21 @@ const helpContentMap: HelpContent = {
                             <Text style={styles.textNormal}>View all expense reports across your workspaces</Text>,
                         ]}
                     />
+                    <Text style={[styles.textHeadlineH2, styles.mv4]}>Quick Actions</Text>
+                    <Text style={[styles.textNormal]}>
+                        Use the green <Text style={styles.textBold}>Create</Text> button to quickly:
+                    </Text>
+                    <BulletList
+                        styles={styles}
+                        items={[
+                            <Text style={styles.textNormal}>Start a new chat or conversation</Text>,
+                            <Text style={styles.textNormal}>Create an expense report</Text>,
+                            <Text style={styles.textNormal}>Add an expense or receipt</Text>,
+                            <Text style={styles.textNormal}>Create a task or invoice</Text>,
+                            <Text style={styles.textNormal}>Submit expenses for approval</Text>,
+                        ]}
+                    />
+
                     <Text style={[styles.textNormal]}>
                         <Text style={styles.textBold}>Tip:</Text> Navigation is consistent across web, mobile, and desktop versions of Expensify.
                     </Text>
@@ -123,8 +141,8 @@ const helpContentMap: HelpContent = {
                         items={[
                             <Text style={styles.textNormal}>
                                 <Text style={[styles.textNormal]}>
-                                    <Text style={styles.textBold}>Create distance expenses:</Text> Open an expense report, choose to add a distance expense, and enter your starting point and
-                                    destination. You can also add stops if needed.
+                                    <Text style={styles.textBold}>Create distance expenses:</Text> Click the green + button and choose Create expense, then select Distance. Enter your
+                                    starting point and destination. You can also add stops if needed.
                                 </Text>
                             </Text>,
                             <Text style={styles.textNormal}>

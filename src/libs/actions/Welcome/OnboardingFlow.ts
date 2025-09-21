@@ -257,6 +257,14 @@ const getOnboardingMessages = (hasIntroSelected = false, locale?: Locale) => {
     };
 
 
+    const startChatTask: OnboardingTask = {
+        type: CONST.ONBOARDING_TASK_TYPE.START_CHAT,
+        autoCompleted: false,
+        mediaAttributes: {},
+        title: translate(resolvedLocale, 'onboarding.tasks.startChatTask.title'),
+        description: translate(resolvedLocale, 'onboarding.tasks.startChatTask.description'),
+    };
+
     const splitExpenseTask: OnboardingTask = {
         type: CONST.ONBOARDING_TASK_TYPE.SPLIT_EXPENSE,
         autoCompleted: false,
@@ -319,7 +327,7 @@ const getOnboardingMessages = (hasIntroSelected = false, locale?: Locale) => {
 
     const onboardingChatSplitMessage: OnboardingMessage = {
         message: translate(resolvedLocale, 'onboarding.messages.onboardingChatSplitMessage'),
-        tasks: [testDriveEmployeeTask, splitExpenseTask],
+        tasks: [testDriveEmployeeTask, startChatTask, splitExpenseTask],
     };
 
     const onboardingAdminMessage: OnboardingMessage = {
