@@ -27,7 +27,6 @@ export default function (targetLang: TranslationTargetLocale): string {
         - Intacct
         - Microsoft
         - Microsoft Dynamics
-        - NetSuite
         - Oracle
         - QuickBooks
         - QuickBooks Desktop

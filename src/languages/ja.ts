@@ -3772,312 +3772,6 @@ const translations = {
                 },
             },
         },
-        netsuite: {
-            subsidiary: '子会社',
-            subsidiarySelectDescription: 'NetSuiteからデータをインポートしたい子会社を選択してください。',
-            exportDescription: 'ExpensifyデータをNetSuiteにエクスポートする方法を設定します。',
-            exportInvoices: '請求書をエクスポート',
-            journalEntriesTaxPostingAccount: '仕訳税計上口座',
-            journalEntriesProvTaxPostingAccount: '仕訳の州税計上口座',
-            foreignCurrencyAmount: '外国通貨額をエクスポート',
-            exportToNextOpenPeriod: '次のオープン期間にエクスポート',
-            nonReimbursableJournalPostingAccount: '非払い戻し仕訳記入アカウント',
-            reimbursableJournalPostingAccount: '払い戻し可能な仕訳記帳口座',
-            journalPostingPreference: {
-                label: '仕訳の投稿設定',
-                values: {
-                    [CONST.NETSUITE_JOURNAL_POSTING_PREFERENCE.JOURNALS_POSTING_INDIVIDUAL_LINE]: '各レポートの単一の項目別エントリ',
-                    [CONST.NETSUITE_JOURNAL_POSTING_PREFERENCE.JOURNALS_POSTING_TOTAL_LINE]: '各経費の単一エントリ',
-                },
-            },
-            invoiceItem: {
-                label: '請求書項目',
-                values: {
-                    [CONST.NETSUITE_INVOICE_ITEM_PREFERENCE.CREATE]: {
-                        label: '作成してください。',
-                        description: 'エクスポート時に（既に存在しない場合は）「Expensify請求書の項目」を作成します。',
-                    },
-                    [CONST.NETSUITE_INVOICE_ITEM_PREFERENCE.SELECT]: {
-                        label: '既存のものを選択',
-                        description: 'Expensifyの請求書を以下で選択された項目に結びつけます。',
-                    },
-                },
-            },
-            exportDate: {
-                label: 'エクスポート日付',
-                description: 'この日付を使用してレポートをNetSuiteにエクスポートしてください。',
-                values: {
-                    [CONST.NETSUITE_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: '最後の経費の日付',
-                        description: 'レポート上の最新経費の日付。',
-                    },
-                    [CONST.NETSUITE_EXPORT_DATE.EXPORTED]: {
-                        label: 'エクスポート日付',
-                        description: 'レポートがNetSuiteにエクスポートされた日付。',
-                    },
-                    [CONST.NETSUITE_EXPORT_DATE.SUBMITTED]: {
-                        label: '提出日',
-                        description: 'レポートが承認のために提出された日付。',
-                    },
-                },
-            },
-            exportDestination: {
-                values: {
-                    [CONST.NETSUITE_EXPORT_DESTINATION.EXPENSE_REPORT]: {
-                        label: '経費報告書',
-                        reimbursableDescription: '実費は、経費報告書としてNetSuiteにエクスポートされます。',
-                        nonReimbursableDescription: '会社のカード経費は、経費報告書としてNetSuiteにエクスポートされます。',
-                    },
-                    [CONST.NETSUITE_EXPORT_DESTINATION.VENDOR_BILL]: {
-                        label: '仕入先請求書',
-                        reimbursableDescription:
-                            'Out-of-pocket expenses will export as bills payable to the NetSuite vendor specified below.\n' +
-                            '\n' +
-                            'If you’d like to set a specific vendor for each card, go to *Settings > Domains > Company Cards*.',
-                        nonReimbursableDescription:
-                            'Company card expenses will export as bills payable to the NetSuite vendor specified below.\n' +
-                            '\n' +
-                            'If you’d like to set a specific vendor for each card, go to *Settings > Domains > Company Cards*.',
-                    },
-                    [CONST.NETSUITE_EXPORT_DESTINATION.JOURNAL_ENTRY]: {
-                        label: '仕訳帳エントリ',
-                        reimbursableDescription:
-                            'Out-of-pocket expenses will export as journal entries to the NetSuite account specified below.\n' +
-                            '\n' +
-                            'If you’d like to set a specific vendor for each card, go to *Settings > Domains > Company Cards*.',
-                        nonReimbursableDescription:
-                            'Company card expenses will export as journal entries to the NetSuite account specified below.\n' +
-                            '\n' +
-                            'If you’d like to set a specific vendor for each card, go to *Settings > Domains > Company Cards*.',
-                    },
-                },
-            },
-            advancedConfig: {
-                autoSyncDescription: 'Expensifyは毎日自動的にNetSuiteと同期します。',
-                reimbursedReportsDescription: 'レポートがExpensify ACHを使用して支払われるたびに、対応する請求書支払いが以下のNetSuiteアカウントに作成されます。',
-                reimbursementsAccount: '払い戻し口座',
-                reimbursementsAccountDescription: '払い戻しに使用する銀行口座を選択すると、関連する支払いがNetSuiteで作成されます。',
-                collectionsAccount: 'コレクションアカウント',
-                collectionsAccountDescription: '請求書がExpensifyで支払済みとしてマークされ、NetSuiteにエクスポートされると、以下のアカウントに表示されます。',
-                approvalAccount: 'A/P承認アカウント',
-                approvalAccountDescription:
-                    'NetSuiteで取引が承認されるアカウントを選択してください。払い戻されたレポートを同期している場合、これは請求書の支払いが作成されるアカウントでもあります。',
-                defaultApprovalAccount: 'NetSuite デフォルト',
-                inviteEmployees: '従業員を招待して承認を設定する',
-                inviteEmployeesDescription:
-                    'NetSuiteの従業員記録をインポートし、従業員をこのワークスペースに招待します。承認ワークフローはデフォルトでマネージャー承認になり、*メンバー* ページでさらに設定できます。',
-                autoCreateEntities: '従業員/ベンダーを自動作成',
-                enableCategories: '新しくインポートされたカテゴリーを有効にする',
-                customFormID: 'カスタムフォームID',
-                customFormIDDescription:
-                    'デフォルトでは、Expensify は NetSuite で設定された優先トランザクションフォームを使用してエントリを作成します。あるいは、特定のトランザクションフォームを指定して使用することもできます。',
-                customFormIDReimbursable: '自己負担経費',
-                customFormIDNonReimbursable: '会社カード経費',
-                exportReportsTo: {
-                    label: '経費報告承認レベル',
-                    description: 'Expensifyで経費報告書が承認され、NetSuiteにエクスポートされた後、NetSuiteで投稿する前に追加の承認レベルを設定できます。',
-                    values: {
-                        [CONST.NETSUITE_REPORTS_APPROVAL_LEVEL.REPORTS_APPROVED_NONE]: 'NetSuiteのデフォルト設定',
-                        [CONST.NETSUITE_REPORTS_APPROVAL_LEVEL.REPORTS_SUPERVISOR_APPROVED]: 'スーパーバイザー承認のみ',
-                        [CONST.NETSUITE_REPORTS_APPROVAL_LEVEL.REPORTS_ACCOUNTING_APPROVED]: '会計のみ承認済み',
-                        [CONST.NETSUITE_REPORTS_APPROVAL_LEVEL.REPORTS_APPROVED_BOTH]: '監督者と会計が承認しました',
-                    },
-                },
-                accountingMethods: {
-                    label: 'エクスポートのタイミング',
-                    description: '経費をエクスポートするタイミングを選択:',
-                    values: {
-                        [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '発生主義',
-                        [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '現金',
-                    },
-                    alternateText: {
-                        [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '自己負担の経費は最終承認時にエクスポートされます。',
-                        [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '自己負担の経費は支払われたときにエクスポートされます。',
-                    },
-                },
-                exportVendorBillsTo: {
-                    label: 'ベンダー請求書承認レベル',
-                    description: 'ベンダーの請求書がExpensifyで承認され、NetSuiteにエクスポートされると、NetSuiteで投稿する前に追加の承認レベルを設定できます。',
-                    values: {
-                        [CONST.NETSUITE_VENDOR_BILLS_APPROVAL_LEVEL.VENDOR_BILLS_APPROVED_NONE]: 'NetSuiteのデフォルト設定',
-                        [CONST.NETSUITE_VENDOR_BILLS_APPROVAL_LEVEL.VENDOR_BILLS_APPROVAL_PENDING]: '承認待ち',
-                        [CONST.NETSUITE_VENDOR_BILLS_APPROVAL_LEVEL.VENDOR_BILLS_APPROVED]: '投稿が承認されました',
-                    },
-                },
-                exportJournalsTo: {
-                    label: '仕訳承認レベル',
-                    description: 'Expensifyで仕訳が承認され、NetSuiteにエクスポートされた後、NetSuiteで仕訳を記帳する前に追加の承認レベルを設定できます。',
-                    values: {
-                        [CONST.NETSUITE_JOURNALS_APPROVAL_LEVEL.JOURNALS_APPROVED_NONE]: 'NetSuiteのデフォルト設定',
-                        [CONST.NETSUITE_JOURNALS_APPROVAL_LEVEL.JOURNALS_APPROVAL_PENDING]: '承認待ち',
-                        [CONST.NETSUITE_JOURNALS_APPROVAL_LEVEL.JOURNALS_APPROVED]: '投稿が承認されました',
-                    },
-                },
-                error: {
-                    customFormID: '有効な数値のカスタムフォームIDを入力してください',
-                },
-            },
-            noAccountsFound: 'アカウントが見つかりません',
-            noAccountsFoundDescription: 'NetSuiteでアカウントを追加し、再度接続を同期してください。',
-            noVendorsFound: 'ベンダーが見つかりませんでした',
-            noVendorsFoundDescription: 'NetSuiteにベンダーを追加し、再度接続を同期してください。',
-            noItemsFound: '請求書の項目が見つかりませんでした',
-            noItemsFoundDescription: 'NetSuiteで請求書項目を追加し、再度接続を同期してください。',
-            noSubsidiariesFound: '子会社が見つかりませんでした',
-            noSubsidiariesFoundDescription: 'NetSuiteに子会社を追加し、再度接続を同期してください。',
-            tokenInput: {
-                title: 'NetSuiteのセットアップ',
-                formSteps: {
-                    installBundle: {
-                        title: 'Expensifyバンドルをインストールする',
-                        description: 'NetSuiteで、*Customization > SuiteBundler > Search & Install Bundles* に移動し、「Expensify」を検索してバンドルをインストールします。',
-                    },
-                    enableTokenAuthentication: {
-                        title: 'トークンベースの認証を有効にする',
-                        description: 'NetSuiteで、*Setup > Company > Enable Features > SuiteCloud* に移動し、*token-based authentication* を有効にします。',
-                    },
-                    enableSoapServices: {
-                        title: 'SOAPウェブサービスを有効にする',
-                        description: 'NetSuiteで、*Setup > Company > Enable Features > SuiteCloud* に移動し、*SOAP Web Services* を有効にします。',
-                    },
-                    createAccessToken: {
-                        title: 'アクセストークンを作成',
-                        description:
-                            'NetSuiteで、*Setup > Users/Roles > Access Tokens* に移動し、「Expensify」アプリおよび「Expensify Integration」または「Administrator」ロールのアクセストークンを作成します。\n\n*重要:* このステップで *Token ID* と *Token Secret* を必ず保存してください。次のステップで必要になります。',
-                    },
-                    enterCredentials: {
-                        title: 'NetSuiteの認証情報を入力してください',
-                        formInputs: {
-                            netSuiteAccountID: 'NetSuite Account ID',
-                            netSuiteTokenID: 'トークンID',
-                            netSuiteTokenSecret: 'トークンシークレット',
-                        },
-                        netSuiteAccountIDDescription: 'NetSuiteで、*Setup > Integration > SOAP Web Services Preferences*に移動します。',
-                    },
-                },
-            },
-            import: {
-                expenseCategories: '経費カテゴリー',
-                expenseCategoriesDescription: 'あなたのNetSuite経費カテゴリーは、Expensifyにカテゴリーとしてインポートされます。',
-                crossSubsidiaryCustomers: '複数子会社間の顧客/プロジェクト',
-                importFields: {
-                    departments: {
-                        title: '部門',
-                        subtitle: 'ExpensifyでNetSuiteの*部門*をどのように処理するか選択してください。',
-                    },
-                    classes: {
-                        title: 'クラス',
-                        subtitle: 'Expensifyで*クラス*をどのように処理するか選択してください。',
-                    },
-                    locations: {
-                        title: '場所',
-                        subtitle: 'Expensifyで*ロケーション*をどのように処理するか選択してください。',
-                    },
-                },
-                customersOrJobs: {
-                    title: '顧客/プロジェクト',
-                    subtitle: 'ExpensifyでNetSuiteの「顧客」と「プロジェクト」をどのように処理するか選択してください。',
-                    importCustomers: '顧客をインポート',
-                    importJobs: 'プロジェクトをインポート',
-                    customers: '顧客',
-                    jobs: 'プロジェクト',
-                    label: ({importFields, importType}: CustomersOrJobsLabelParams) => `${importFields.join('と')}, ${importType}`,
-                },
-                importTaxDescription: 'NetSuiteから税グループをインポートします。',
-                importCustomFields: {
-                    chooseOptionBelow: '以下のオプションから選択してください:',
-                    label: ({importedTypes}: ImportedTypesParams) => `Imported as ${importedTypes.join('と')}`,
-                    requiredFieldError: ({fieldName}: RequiredFieldParams) => `${fieldName}を入力してください`,
-                    customSegments: {
-                        title: 'カスタムセグメント/レコード',
-                        addText: 'カスタムセグメント/レコードを追加',
-                        recordTitle: 'カスタムセグメント/レコード',
-                        helpLink: CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS,
-                        helpLinkText: '詳細な指示を表示',
-                        helpText: 'カスタムセグメント/レコードの設定について。',
-                        emptyTitle: 'カスタムセグメントまたはカスタムレコードを追加',
-                        fields: {
-                            segmentName: '名前',
-                            internalID: '内部ID',
-                            scriptID: 'スクリプトID',
-                            customRecordScriptID: 'トランザクション列ID',
-                            mapping: '表示される内容',
-                        },
-                        removeTitle: 'カスタムセグメント/レコードを削除',
-                        removePrompt: 'このカスタムセグメント/レコードを削除してもよろしいですか？',
-                        addForm: {
-                            customSegmentName: 'カスタムセグメント名',
-                            customRecordName: 'カスタムレコード名',
-                            segmentTitle: 'カスタムセグメント',
-                            customSegmentAddTitle: 'カスタムセグメントを追加',
-                            customRecordAddTitle: 'カスタムレコードを追加',
-                            recordTitle: 'カスタムレコード',
-                            segmentRecordType: 'カスタムセグメントまたはカスタムレコードを追加しますか？',
-                            customSegmentNameTitle: 'カスタムセグメント名は何ですか？',
-                            customRecordNameTitle: 'カスタムレコード名は何ですか？',
-                            customSegmentNameFooter: `NetSuiteの*カスタマイズ > リンク、レコード、フィールド > カスタムセグメント*ページでカスタムセグメント名を見つけることができます。\n\n_詳細な手順については、[ヘルプサイトをご覧ください](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS})。_`,
-                            customRecordNameFooter: `NetSuiteでカスタムレコード名を見つけるには、グローバル検索で「Transaction Column Field」を入力します。\n\n_詳細な手順については、[ヘルプサイトをご覧ください](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS})。_`,
-                            customSegmentInternalIDTitle: '内部IDは何ですか？',
-                            customSegmentInternalIDFooter: `まず、NetSuiteで内部IDを有効にするには、*Home > Set Preferences > Show Internal ID*に移動してください。\n\nNetSuiteでカスタムセグメントの内部IDを見つけるには、以下の手順に従ってください：\n\n1. *Customization > Lists, Records, & Fields > Custom Segments*に移動します。\n2. カスタムセグメントをクリックします。\n3. *Custom Record Type*の隣にあるハイパーリンクをクリックします。\n4. 下部のテーブルで内部IDを見つけます。\n\n_詳細な手順については、[こちらのヘルプサイト](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_LISTS})をご覧ください。_`,
-                            customRecordInternalIDFooter: `NetSuiteでカスタムレコードの内部IDを見つけるには、次の手順に従います：\n\n1. グローバル検索に「Transaction Line Fields」と入力します。\n2. カスタムレコードをクリックします。\n3. 左側に内部IDを見つけます。\n\n_詳細な手順については、[ヘルプサイト](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS})をご覧ください。_`,
-                            customSegmentScriptIDTitle: 'スクリプトIDは何ですか？',
-                            customSegmentScriptIDFooter: `NetSuiteでカスタムセグメントスクリプトIDを見つけるには、次の手順に従ってください：\n\n1. *Customization > Lists, Records, & Fields > Custom Segments*を選択します。\n2. カスタムセグメントをクリックします。\n3. 画面下部近くの*Application and Sourcing*タブをクリックし、次のいずれかを選択します：\n    a. カスタムセグメントをExpensifyで*タグ*（ラインアイテムレベル）として表示したい場合は、*Transaction Columns*サブタブをクリックし、*Field ID*を使用します。\n    b. カスタムセグメントをExpensifyで*レポートフィールド*（レポートレベル）として表示したい場合は、*Transactions*サブタブをクリックし、*Field ID*を使用します。\n\n_詳細な手順については、[こちらのヘルプサイト](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_LISTS})をご覧ください。_`,
-                            customRecordScriptIDTitle: 'トランザクション列IDは何ですか？',
-                            customRecordScriptIDFooter: `NetSuiteでカスタムレコードスクリプトIDを見つけるには、次の手順に従ってください：\n\n1. グローバル検索で「Transaction Line Fields」と入力します。\n2. カスタムレコードをクリックします。\n3. 左側にスクリプトIDを見つけます。\n\n_詳細な手順については、[ヘルプサイト](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS})をご覧ください。_`,
-                            customSegmentMappingTitle: 'このカスタムセグメントはExpensifyでどのように表示されるべきですか？',
-                            customRecordMappingTitle: 'このカスタムレコードはExpensifyでどのように表示されるべきですか？',
-                        },
-                        errors: {
-                            uniqueFieldError: ({fieldName}: RequiredFieldParams) => `この${fieldName?.toLowerCase()}を持つカスタムセグメント/レコードはすでに存在します`,
-                        },
-                    },
-                    customLists: {
-                        title: 'カスタムリスト',
-                        addText: 'カスタムリストを追加',
-                        recordTitle: 'カスタムリスト',
-                        helpLink: CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_LISTS,
-                        helpLinkText: '詳細な指示を表示',
-                        helpText: 'カスタムリストの設定について。',
-                        emptyTitle: 'カスタムリストを追加',
-                        fields: {
-                            listName: '名前',
-                            internalID: '内部ID',
-                            transactionFieldID: 'トランザクションフィールドID',
-                            mapping: '表示される内容',
-                        },
-                        removeTitle: 'カスタムリストを削除',
-                        removePrompt: 'このカスタムリストを削除してもよろしいですか？',
-                        addForm: {
-                            listNameTitle: 'カスタムリストを選択',
-                            transactionFieldIDTitle: '取引フィールドIDは何ですか？',
-                            transactionFieldIDFooter: `NetSuiteでトランザクションフィールドIDを見つけるには、次の手順に従ってください：\n\n1. グローバル検索で「Transaction Line Fields」と入力します。\n2. カスタムリストにクリックします。\n3. 左側にトランザクションフィールドIDを見つけます。\n\n_詳細な手順については、[ヘルプサイト](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_LISTS})をご覧ください。_`,
-                            mappingTitle: 'このカスタムリストはExpensifyでどのように表示されるべきですか？',
-                        },
-                        errors: {
-                            uniqueTransactionFieldIDError: `この取引フィールドIDを持つカスタムリストは既に存在します`,
-                        },
-                    },
-                },
-                importTypes: {
-                    [CONST.INTEGRATION_ENTITY_MAP_TYPES.NETSUITE_DEFAULT]: {
-                        label: 'NetSuiteの従業員デフォルト',
-                        description: 'Expensifyにインポートされず、エクスポート時に適用されます。',
-                        footerContent: ({importField}: ImportFieldParams) =>
-                            `NetSuiteで${importField}を使用する場合、Expense ReportまたはJournal Entryへのエクスポート時に従業員記録に設定されたデフォルトを適用します。`,
-                    },
-                    [CONST.INTEGRATION_ENTITY_MAP_TYPES.TAG]: {
-                        label: 'タグ',
-                        description: 'ラインアイテムレベル',
-                        footerContent: ({importField}: ImportFieldParams) => `${startCase(importField)} は、従業員のレポートの各経費に対して選択可能になります。`,
-                    },
-                    [CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD]: {
-                        label: 'レポートフィールド',
-                        description: 'レポートレベル',
-                        footerContent: ({importField}: ImportFieldParams) => `${startCase(importField)} の選択は、従業員のレポート上のすべての経費に適用されます。`,
-                    },
-                },
-            },
-        },
         intacct: {
             sageIntacctSetup: 'Sage Intacctのセットアップ',
             prerequisitesTitle: '接続する前に...',
@@ -4797,7 +4491,6 @@ const translations = {
             subtitle: '会計システムに接続して、勘定科目表で取引をコード化し、支払いを自動マッチングし、財務を同期させましょう。',
             qbd: 'QuickBooks Desktop',
             xero: 'Xero',
-            netsuite: 'NetSuite',
             intacct: 'Sage Intacct',
             sap: 'SAP',
             oracle: 'Oracle',
@@ -4810,8 +4503,6 @@ const translations = {
                 switch (connectionName) {
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Xero';
-                    case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
-                        return 'NetSuite';
                     case CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT:
                         return 'Sage Intacct';
                     default: {
@@ -4841,8 +4532,6 @@ const translations = {
                 switch (connectionName) {
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Xeroに接続できません';
-                    case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
-                        return 'NetSuiteに接続できません';
                     case CONST.POLICY.CONNECTIONS.NAME.QBD:
                         return 'QuickBooks Desktopに接続できません';
                     default: {
@@ -4862,7 +4551,6 @@ const translations = {
                 [CONST.INTEGRATION_ENTITY_MAP_TYPES.NOT_IMPORTED]: 'インポートされていません',
                 [CONST.INTEGRATION_ENTITY_MAP_TYPES.NONE]: 'インポートされていません',
                 [CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD]: 'レポートフィールドとしてインポートされました',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.NETSUITE_DEFAULT]: 'NetSuiteの従業員デフォルト',
             },
             disconnectPrompt: ({connectionName}: OptionalParam<ConnectionNameParams> = {}) => {
                 const integrationName =
@@ -4877,7 +4565,6 @@ const translations = {
                     switch (stage) {
                         case 'quickbooksDesktopImportCustomers':
                             return '顧客のインポート';
-                        case 'netSuiteSyncImportEmployees':
                         case 'intacctImportEmployees':
                         case 'quickbooksDesktopImportEmployees':
                             return '従業員のインポート';
@@ -4934,43 +4621,6 @@ const translations = {
                             return 'Xero接続を確認中';
                         case 'xeroSyncTitle':
                             return 'Xeroデータを同期中';
-                        case 'netSuiteSyncConnection':
-                            return 'NetSuiteへの接続を初期化しています';
-                        case 'netSuiteSyncCustomers':
-                            return '顧客のインポート';
-                        case 'netSuiteSyncInitData':
-                            return 'NetSuiteからデータを取得中';
-                        case 'netSuiteSyncImportTaxes':
-                            return '税金のインポート';
-                        case 'netSuiteSyncImportItems':
-                            return 'アイテムをインポート中';
-                        case 'netSuiteSyncData':
-                            return 'Expensifyにデータをインポートする';
-                        case 'netSuiteSyncAccounts':
-                            return 'アカウントを同期中';
-                        case 'netSuiteSyncCurrencies':
-                            return '通貨を同期中';
-                        case 'netSuiteSyncCategories':
-                            return 'カテゴリを同期中';
-                        case 'netSuiteSyncReportFields':
-                            return 'Expensifyレポートフィールドとしてデータをインポート';
-                        case 'netSuiteSyncTags':
-                            return 'Expensifyタグとしてデータをインポート';
-                        case 'netSuiteSyncUpdateConnectionData':
-                            return '接続情報を更新中';
-                        case 'netSuiteSyncNetSuiteReimbursedReports':
-                            return 'Expensifyレポートを払い戻し済みとしてマークする';
-                        case 'netSuiteSyncExpensifyReimbursedReports':
-                            return 'NetSuiteの請求書と請求書を支払い済みとしてマークする';
-                        case 'netSuiteImportVendorsTitle':
-                            return 'ベンダーのインポート';
-                        case 'netSuiteImportCustomListsTitle':
-                            return 'カスタムリストのインポート';
-                        case 'netSuiteSyncImportCustomLists':
-                            return 'カスタムリストのインポート';
-                        case 'netSuiteSyncImportSubsidiaries':
-                            return '子会社のインポート';
-                        case 'netSuiteSyncImportVendors':
                         case 'quickbooksDesktopImportVendors':
                             return 'ベンダーのインポート';
                         case 'intacctCheckConnection':
@@ -4996,7 +4646,8 @@ const translations = {
             exportDate: 'エクスポート日付',
             defaultVendor: 'デフォルトのベンダー',
             autoSync: '自動同期',
-            autoSyncDescription: 'NetSuiteとExpensifyを毎日自動的に同期します。確定したレポートをリアルタイムでエクスポートします。',
+            autoSyncDescription:
+                '会計連携とExpensifyを毎日自動的に同期します。確定したレポートをリアルタイムでエクスポートします。',
             reimbursedReports: '払い戻されたレポートを同期する',
             cardReconciliation: 'カード照合',
             reconciliationAccount: '調整口座',
@@ -5183,11 +4834,6 @@ const translations = {
                 description: `レポートフィールドでは、個々の項目の経費に関連するタグとは異なり、ヘッダーレベルの詳細を指定できます。これらの詳細には、特定のプロジェクト名、出張情報、場所などが含まれることがあります。`,
                 onlyAvailableOnPlan: 'レポートフィールドは、Controlプランでのみ利用可能です。料金は',
             },
-            [CONST.POLICY.CONNECTIONS.NAME.NETSUITE]: {
-                title: 'NetSuite',
-                description: `Expensify + NetSuiteの統合により、自動同期を楽しみ、手動入力を削減できます。プロジェクトや顧客のマッピングを含むネイティブおよびカスタムセグメントのサポートで、詳細でリアルタイムの財務インサイトを得ることができます。`,
-                onlyAvailableOnPlan: '私たちのNetSuite統合は、Controlプランでのみ利用可能です。開始価格は',
-            },
             [CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT]: {
                 title: 'Sage Intacct',
                 description: `Expensify + Sage Intacct の統合で、自動同期を楽しみ、手動入力を減らしましょう。ユーザー定義のディメンションによる詳細でリアルタイムな財務インサイトを得るとともに、部門、クラス、場所、顧客、プロジェクト（ジョブ）ごとの経費コード化が可能です。`,
@@ -5285,7 +4931,7 @@ const translations = {
                     perMember: 'アクティブメンバー1人あたり月額。',
                     learnMore: '詳細を確認',
                     pricing: '私たちのプランと価格について。',
-                    benefit1: '高度な会計接続（NetSuite、Sage Intacct、その他）',
+                    benefit1: '高度な会計接続（Sage Intacct、その他）',
                     benefit2: 'スマート経費ルール',
                     benefit3: 'マルチレベル承認ワークフロー',
                     benefit4: '強化されたセキュリティコントロール',
@@ -6539,7 +6185,7 @@ const translations = {
                 benefit1: 'Collectプランのすべて',
                 benefit2: 'マルチレベル承認ワークフロー',
                 benefit3: 'カスタム経費ルール',
-                benefit4: 'ERP統合 (NetSuite, Sage Intacct, Oracle)',
+                benefit4: 'ERP統合 (Sage Intacct, Oracle)',
                 benefit5: 'HR統合（Workday、Certinia）',
                 benefit6: 'SAML/SSO',
                 benefit7: 'カスタムインサイトとレポート',

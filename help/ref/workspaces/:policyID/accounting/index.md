@@ -31,12 +31,7 @@ Link your workspace directly to your accounting system to make expense tracking 
 - Import tracking categories  
 - Manage tax rates seamlessly  
 
-**NetSuite**  
-- Built for complex orgs with multi-entity support  
-- Custom dimension mapping  
-- Automated bill payments  
-
-**Sage Intacct**  
+**Sage Intacct**
 - Track departments, classes, and more  
 - Multi-currency support  
 - Advanced approval workflows
@@ -63,4 +58,3 @@ Link your workspace directly to your accounting system to make expense tracking 
 
 - [Connect to QuickBooks Online](https://help.expensify.com/articles/new-expensify/connections/quickbooks-online/Connect-to-QuickBooks-Online)  
 - [Connect to Xero](https://help.expensify.com/articles/new-expensify/connections/xero/Connect-to-Xero)  
-- [Connect to NetSuite](https://help.expensify.com/articles/new-expensify/connections/netsuite/Connect-To-NetSuite)

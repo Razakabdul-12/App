@@ -257,7 +257,6 @@ Lost in the app?  Let this map guide you!
                 * QuickBooks Online Connect
                 * QuickBooks Desktop Connect
                 * Xero
-                * NetSuite
                 * Sage Intacct
         * More features
             * Spend

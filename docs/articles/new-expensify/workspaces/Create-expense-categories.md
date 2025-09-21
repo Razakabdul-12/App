@@ -7,7 +7,7 @@ keywords: [New Expensify, expense categories, GL codes, payroll codes, chart of 
 
 In Expensify, categories represent your **chart of accounts, GL accounts, expense accounts**, or other financial coding used for reporting and accounting.
 
-Admins can manually create categories for a workspace, or they can be imported automatically when connected to an accounting platform like QuickBooks, Xero, NetSuite, or Intacct. Once imported, categories can be enabled or disabled as needed. Over time, Expensify also learns how you apply categories to specific merchants and suggests them automatically.
+Admins can manually create categories for a workspace, or they can be imported automatically when connected to an accounting platform like QuickBooks, Xero, or Intacct. Once imported, categories can be enabled or disabled as needed. Over time, Expensify also learns how you apply categories to specific merchants and suggests them automatically.
 
 ![The Categories tab]({{site.url}}/assets/images/ExpensifyHelp_R3_Categories_1.png){:width="100%"}
 

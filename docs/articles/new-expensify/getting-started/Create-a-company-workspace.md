@@ -23,7 +23,7 @@ Workspaces help manage company expenses, enforce policies, and integrate with ac
 
 # Connect to Accounting Software
 
-If your team uses **QuickBooks Online**, **Xero**, **NetSuite**, or **Sage Intacct**, connect your workspace for seamless imports and exports.
+If your team uses **QuickBooks Online**, **Xero**, or **Sage Intacct**, connect your workspace for seamless imports and exports.
 
 **Benefits of connecting an accounting integration to Expensify:**
 - **Import:** Sync your chart of accounts for accurate coding.
@@ -32,7 +32,6 @@ If your team uses **QuickBooks Online**, **Xero**, **NetSuite**, or **Sage Intac
 ## Accounting Integration Guides
 - [Connect to QuickBooks Online](https://help.expensify.com/articles/new-expensify/connections/quickbooks-online/Connect-to-QuickBooks-Online)
 - [Connect to Xero](https://help.expensify.com/articles/new-expensify/connections/xero/Connect-to-Xero)
-- [Connect to NetSuite](https://help.expensify.com/articles/new-expensify/connections/netsuite/Connect-To-NetSuite)
 - [Connect to Sage Intacct](https://help.expensify.com/articles/new-expensify/connections/sage-intacct/Connect-to-Sage-Intacct)
 
 ---

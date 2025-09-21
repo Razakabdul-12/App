@@ -32,9 +32,6 @@ import type {FileObject} from '@pages/media/AttachmentModalScreen/types';
 import type OnboardingCurrencyPicker from '@pages/OnboardingWorkspaceConfirmation/OnboardingCurrencyPicker';
 import type BusinessTypePicker from '@pages/ReimbursementAccount/USD/BusinessInfo/subSteps/TypeBusiness/BusinessTypePicker';
 import type DimensionTypeSelector from '@pages/workspace/accounting/intacct/import/DimensionTypeSelector';
-import type NetSuiteCustomFieldMappingPicker from '@pages/workspace/accounting/netsuite/import/NetSuiteImportCustomFieldNew/NetSuiteCustomFieldMappingPicker';
-import type NetSuiteCustomListPicker from '@pages/workspace/accounting/netsuite/import/NetSuiteImportCustomFieldNew/NetSuiteCustomListPicker';
-import type NetSuiteMenuWithTopDescriptionForm from '@pages/workspace/accounting/netsuite/import/NetSuiteImportCustomFieldNew/NetSuiteMenuWithTopDescriptionForm';
 import type {Country} from '@src/CONST';
 import type {OnyxFormKey, OnyxValues} from '@src/ONYXKEYS';
 import type {Form} from '@src/types/form';
@@ -67,9 +64,6 @@ type ValidInputs =
     | typeof TextPicker
     | typeof AddPlaidBankAccount
     | typeof EmojiPickerButtonDropdown
-    | typeof NetSuiteCustomListPicker
-    | typeof NetSuiteCustomFieldMappingPicker
-    | typeof NetSuiteMenuWithTopDescriptionForm
     | typeof CountryPicker
     | typeof StatePicker
     | typeof ConstantSelector

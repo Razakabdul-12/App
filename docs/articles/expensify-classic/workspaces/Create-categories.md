@@ -20,7 +20,7 @@ You can enable, turn off, edit, or delete the default categories. You can also a
 
 # Automatically Import Categories via Accounting Integration
 
-When integrating with an accounting system, Expensify automatically imports general ledger accounts as categories (e.g., QuickBooks Online, QuickBooks Desktop, Sage Intacct, Xero, or NetSuite).
+When integrating with an accounting system, Expensify automatically imports general ledger accounts as categories (e.g., QuickBooks Online, QuickBooks Desktop, Sage Intacct, or Xero).
 
 To update categories that are imported from an accounting integration:
 1. In your accounting system, update the category details.

@@ -72,7 +72,7 @@ After it's unapproved:
 
 ### Example
 
-Taylor submits a report to Jordan. Jordan approves, pays, and exports it to NetSuite, then notices the report includes an unpaid invoice meant for the AP team. Jordan cancels the payment, unapproves the report, and Taylor undoes the submission to remove the invoice. Meanwhile, Jordan deletes the exported report from NetSuite, preparing it for fresh export.
+Taylor submits a report to Jordan. Jordan approves, pays, and exports it to QuickBooks Online, then notices the report includes an unpaid invoice meant for the AP team. Jordan cancels the payment, unapproves the report, and Taylor undoes the submission to remove the invoice. Meanwhile, Jordan deletes the exported report from QuickBooks Online, preparing it for fresh export.
 
 ---
 

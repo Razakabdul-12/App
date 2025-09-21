@@ -56,7 +56,7 @@ _**Note: A business bank account must be linked as your settlement account to co
    - If the accounts do not match, repeat the steps above to update the account.
 6. Click **Save**.
 
-If your workspace is integrated with QuickBooks Online, Xero, NetSuite, or Sage Intacct, complete these additional steps:
+If your workspace is integrated with QuickBooks Online, Xero, or Sage Intacct, complete these additional steps:
 
 1. From the **Reconciliation Account** dropdown, select the GL account associated with your settlement account and click **Save**.
 2. *(Optional)* For Sage Intacct users:

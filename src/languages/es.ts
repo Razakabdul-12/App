@@ -3755,315 +3755,6 @@ const translations = {
                 },
             },
         },
-        netsuite: {
-            subsidiary: 'Subsidiaria',
-            subsidiarySelectDescription: 'Elige la subsidiaria de NetSuite de la que deseas importar datos.',
-            exportDescription: 'Configura cómo se exportan los datos de Expensify a NetSuite.',
-            exportInvoices: 'Exportar facturas a',
-            journalEntriesTaxPostingAccount: 'Cuenta de registro de impuestos de asientos contables',
-            journalEntriesProvTaxPostingAccount: 'Cuenta de registro de impuestos provinciales de asientos contables',
-            foreignCurrencyAmount: 'Exportar importe en moneda extranjera',
-            exportToNextOpenPeriod: 'Exportar al siguiente período abierto',
-            nonReimbursableJournalPostingAccount: 'Cuenta de registro de diario no reembolsable',
-            reimbursableJournalPostingAccount: 'Cuenta de registro de diario reembolsable',
-            journalPostingPreference: {
-                label: 'Preferencia de registro de asientos contables',
-                values: {
-                    [CONST.NETSUITE_JOURNAL_POSTING_PREFERENCE.JOURNALS_POSTING_INDIVIDUAL_LINE]: 'Entrada única y detallada para cada informe',
-                    [CONST.NETSUITE_JOURNAL_POSTING_PREFERENCE.JOURNALS_POSTING_TOTAL_LINE]: 'Entrada única para cada gasto individual',
-                },
-            },
-            invoiceItem: {
-                label: 'Artículo de la factura',
-                values: {
-                    [CONST.NETSUITE_INVOICE_ITEM_PREFERENCE.CREATE]: {
-                        label: 'Crear uno para mí',
-                        description: "Crearemos un 'Artículo de línea de factura de Expensify' para ti al exportar (si aún no existe).",
-                    },
-                    [CONST.NETSUITE_INVOICE_ITEM_PREFERENCE.SELECT]: {
-                        label: 'Seleccionar existente',
-                        description: 'Asociaremos las facturas de Expensify al artículo seleccionado a continuación.',
-                    },
-                },
-            },
-            exportDate: {
-                label: 'Fecha de exportación',
-                description: 'Usa esta fecha al exportar informe a NetSuite.',
-                values: {
-                    [CONST.NETSUITE_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: 'Fecha del último gasto',
-                        description: 'Fecha del gasto mas reciente en el informe.',
-                    },
-                    [CONST.NETSUITE_EXPORT_DATE.EXPORTED]: {
-                        label: 'Fecha de exportación',
-                        description: 'Fecha de exportación del informe a NetSuite.',
-                    },
-                    [CONST.NETSUITE_EXPORT_DATE.SUBMITTED]: {
-                        label: 'Fecha de envío',
-                        description: 'Fecha en la que el informe se envió para su aprobación.',
-                    },
-                },
-            },
-            exportDestination: {
-                values: {
-                    [CONST.NETSUITE_EXPORT_DESTINATION.EXPENSE_REPORT]: {
-                        label: 'Informes de gastos',
-                        reimbursableDescription: 'Los gastos reembolsables se exportarán como informes de gastos a NetSuite.',
-                        nonReimbursableDescription: 'Los gastos no reembolsables se exportarán como informes de gastos a NetSuite.',
-                    },
-                    [CONST.NETSUITE_EXPORT_DESTINATION.VENDOR_BILL]: {
-                        label: 'Facturas de proveedores',
-                        reimbursableDescription:
-                            'Los gastos reembolsables se exportarán como facturas pagaderas al proveedor especificado en NetSuite.\n' +
-                            '\n' +
-                            'Si deseas establecer un proveedor específico para cada tarjeta, ve a *Configuraciones > Dominios > Tarjetas de Empresa*.',
-                        nonReimbursableDescription:
-                            'Los gastos no reembolsables se exportarán como facturas pagaderas al proveedor especificado en NetSuite.\n' +
-                            '\n' +
-                            'Si deseas establecer un proveedor específico para cada tarjeta, ve a *Configuraciones > Dominios > Tarjetas de Empresa*.',
-                    },
-                    [CONST.NETSUITE_EXPORT_DESTINATION.JOURNAL_ENTRY]: {
-                        label: 'Asientos contables',
-                        reimbursableDescription:
-                            'Los gastos reembolsables se exportarán como asientos contables a la cuenta especificada en NetSuite.\n' +
-                            '\n' +
-                            'Si deseas establecer un proveedor específico para cada tarjeta, ve a *Configuraciones > Dominios > Tarjetas de Empresa*.',
-                        nonReimbursableDescription:
-                            'Los gastos no reembolsables se exportarán como asientos contables a la cuenta especificada en NetSuite.\n' +
-                            '\n' +
-                            'Si deseas establecer un proveedor específico para cada tarjeta, ve a *Configuraciones > Dominios > Tarjetas de Empresa*.',
-                    },
-                },
-            },
-            advancedConfig: {
-                autoSyncDescription: 'Expensify se sincronizará automáticamente con NetSuite todos los días.',
-                reimbursedReportsDescription:
-                    'Cada vez que se pague un informe utilizando Expensify ACH, se creará el correspondiente pago de la factura en la cuenta de NetSuite indicadas a continuación.',
-                reimbursementsAccount: 'Cuenta de reembolsos',
-                reimbursementsAccountDescription: 'Elija la cuenta bancaria que utilizará para los reembolsos y crearemos el pago asociado en NetSuite.',
-                collectionsAccount: 'Cuenta de cobros',
-                collectionsAccountDescription: 'Una vez que una factura se marca como pagada en Expensify y se exporta a NetSuite, aparecerá contra la cuenta de abajo.',
-                approvalAccount: 'Cuenta de aprobación de cuentas por pagar',
-                approvalAccountDescription:
-                    'Elija la cuenta con la que se aprobarán las transacciones en NetSuite. Si está sincronizando informes reembolsados, esta es también la cuenta con la que se crearán los pagos de facturas.',
-                defaultApprovalAccount: 'Preferencia predeterminada de NetSuite',
-                inviteEmployees: 'Invitar empleados y establecer aprobaciones',
-                inviteEmployeesDescription:
-                    'Importar registros de empleados de NetSuite e invitar a empleados a este espacio de trabajo. Su flujo de trabajo de aprobación será por defecto la aprobación del gerente y se puede configurar más en la página *Miembros*.',
-                autoCreateEntities: 'Crear automáticamente empleados/proveedores',
-                enableCategories: 'Activar categorías recién importadas',
-                customFormID: 'ID de formulario personalizado',
-                customFormIDDescription:
-                    'Por defecto, Expensify creará entradas utilizando el formulario de transacción preferido configurado en NetSuite. Alternativamente, tienes la opción de designar un formulario de transacción específico para ser utilizado.',
-                customFormIDReimbursable: 'Gasto reembolsable',
-                customFormIDNonReimbursable: 'Gasto no reembolsable',
-                exportReportsTo: {
-                    label: 'Nivel de aprobación del informe de gastos',
-                    description:
-                        'Una vez aprobado un informe de gastos en Expensify y exportado a NetSuite, puede establecer un nivel adicional de aprobación en NetSuite antes de su contabilización.',
-                    values: {
-                        [CONST.NETSUITE_REPORTS_APPROVAL_LEVEL.REPORTS_APPROVED_NONE]: 'Preferencia predeterminada de NetSuite',
-                        [CONST.NETSUITE_REPORTS_APPROVAL_LEVEL.REPORTS_SUPERVISOR_APPROVED]: 'Solo aprobado por el supervisor',
-                        [CONST.NETSUITE_REPORTS_APPROVAL_LEVEL.REPORTS_ACCOUNTING_APPROVED]: 'Solo aprobado por contabilidad',
-                        [CONST.NETSUITE_REPORTS_APPROVAL_LEVEL.REPORTS_APPROVED_BOTH]: 'Aprobado por supervisor y contabilidad',
-                    },
-                },
-                accountingMethods: {
-                    label: 'Cuándo Exportar',
-                    description: 'Elige cuándo exportar los gastos:',
-                    values: {
-                        [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Devengo',
-                        [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Efectivo',
-                    },
-                    alternateText: {
-                        [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Los gastos por cuenta propia se exportarán cuando estén aprobados definitivamente',
-                        [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Los gastos por cuenta propia se exportarán cuando estén pagados',
-                    },
-                },
-                exportVendorBillsTo: {
-                    label: 'Nivel de aprobación de facturas de proveedores',
-                    description:
-                        'Una vez aprobada una factura de proveedor en Expensify y exportada a NetSuite, puede establecer un nivel adicional de aprobación en NetSuite antes de su contabilización.',
-                    values: {
-                        [CONST.NETSUITE_VENDOR_BILLS_APPROVAL_LEVEL.VENDOR_BILLS_APPROVED_NONE]: 'Preferencia predeterminada de NetSuite',
-                        [CONST.NETSUITE_VENDOR_BILLS_APPROVAL_LEVEL.VENDOR_BILLS_APPROVAL_PENDING]: 'Aprobación pendiente',
-                        [CONST.NETSUITE_VENDOR_BILLS_APPROVAL_LEVEL.VENDOR_BILLS_APPROVED]: 'Aprobado para publicación',
-                    },
-                },
-                exportJournalsTo: {
-                    label: 'Nivel de aprobación de asientos contables',
-                    description: 'Una vez aprobado un asiento en Expensify y exportado a NetSuite, puede establecer un nivel adicional de aprobación en NetSuite antes de contabilizarlo.',
-                    values: {
-                        [CONST.NETSUITE_JOURNALS_APPROVAL_LEVEL.JOURNALS_APPROVED_NONE]: 'Preferencia predeterminada de NetSuite',
-                        [CONST.NETSUITE_JOURNALS_APPROVAL_LEVEL.JOURNALS_APPROVAL_PENDING]: 'Aprobación pendiente',
-                        [CONST.NETSUITE_JOURNALS_APPROVAL_LEVEL.JOURNALS_APPROVED]: 'Aprobado para publicación',
-                    },
-                },
-                error: {
-                    customFormID: 'Introduzca un ID numérico válido para el formulario personalizado',
-                },
-            },
-            noAccountsFound: 'No se han encontrado cuentas',
-            noAccountsFoundDescription: 'Añade la cuenta en NetSuite y sincroniza la conexión de nuevo',
-            noVendorsFound: 'No se han encontrado proveedores',
-            noVendorsFoundDescription: 'Añade proveedores en NetSuite y sincroniza la conexión de nuevo',
-            noItemsFound: 'No se han encontrado artículos de factura',
-            noItemsFoundDescription: 'Añade artículos de factura en NetSuite y sincroniza la conexión de nuevo',
-            noSubsidiariesFound: 'No se ha encontrado subsidiarias',
-            noSubsidiariesFoundDescription: 'Añade la subsidiaria en NetSuite y sincroniza de nuevo la conexión',
-            tokenInput: {
-                title: 'Netsuite configuración',
-                formSteps: {
-                    installBundle: {
-                        title: 'Instala el paquete de Expensify',
-                        description: 'En NetSuite, ir a *Personalización > SuiteBundler > Buscar e Instalar Paquetes* > busca "Expensify" > instala el paquete.',
-                    },
-                    enableTokenAuthentication: {
-                        title: 'Habilitar la autenticación basada en token',
-                        description: 'En NetSuite, ir a *Configuración > Empresa > Habilitar Funciones > SuiteCloud* > activar *autenticación basada en token*.',
-                    },
-                    enableSoapServices: {
-                        title: 'Habilitar servicios web SOAP',
-                        description: 'En NetSuite, ir a *Configuración > Empresa > Habilitar funciones > SuiteCloud* > habilitar *Servicios Web SOAP*.',
-                    },
-                    createAccessToken: {
-                        title: 'Crear un token de acceso',
-                        description:
-                            'En NetSuite, ir a *Configuración > Usuarios/Roles > Tokens de Acceso* > crear un token de acceso para la aplicación "Expensify" y tambiém para el rol de "Integración Expensify" o "Administrador".\n\n*Importante:* Asegúrese de guardar el ID y el secreto del Token en este paso. Los necesitará para el siguiente paso.',
-                    },
-                    enterCredentials: {
-                        title: 'Ingresa tus credenciales de NetSuite',
-                        formInputs: {
-                            netSuiteAccountID: 'ID de Cuenta NetSuite',
-                            netSuiteTokenID: 'ID de Token',
-                            netSuiteTokenSecret: 'Secreto de Token',
-                        },
-                        netSuiteAccountIDDescription: 'En NetSuite, ir a *Configuración > Integración > Preferencias de Servicios Web SOAP*.',
-                    },
-                },
-            },
-            import: {
-                expenseCategories: 'Categorías de gastos',
-                expenseCategoriesDescription: 'Las categorías de gastos de NetSuite se importan a Expensify como categorías.',
-                crossSubsidiaryCustomers: 'Clientes/proyectos entre subsidiaria',
-                importFields: {
-                    departments: {
-                        title: 'Departamentos',
-                        subtitle: 'Elige cómo manejar los *departamentos* de NetSuite en Expensify.',
-                    },
-                    classes: {
-                        title: 'Clases',
-                        subtitle: 'Elige cómo manejar las *clases* en Expensify.',
-                    },
-                    locations: {
-                        title: 'Ubicaciones',
-                        subtitle: 'Elija cómo manejar *ubicaciones* en Expensify.',
-                    },
-                },
-                customersOrJobs: {
-                    title: 'Clientes/proyectos',
-                    subtitle: 'Elija cómo manejar los *clientes* y *proyectos* de NetSuite en Expensify.',
-                    importCustomers: 'Importar clientes',
-                    importJobs: 'Importar proyectos',
-                    customers: 'clientes',
-                    jobs: 'proyectos',
-                    label: ({importFields, importType}: CustomersOrJobsLabelParams) => `${importFields.join(' y ')}, ${importType}`,
-                },
-                importTaxDescription: 'Importar grupos de impuestos desde NetSuite.',
-                importCustomFields: {
-                    chooseOptionBelow: 'Elija una de las opciones siguientes:',
-                    label: ({importedTypes}: ImportedTypesParams) => `Importados como ${importedTypes.join(' y ')}`,
-                    requiredFieldError: ({fieldName}: RequiredFieldParams) => `Por favor, introduzca el ${fieldName}`,
-                    customSegments: {
-                        title: 'Segmentos/registros personalizados',
-                        addText: 'Añadir segmento/registro personalizado',
-                        recordTitle: 'Segmento/registro personalizado',
-                        helpLink: CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS,
-                        helpLinkText: 'Ver instrucciones detalladas',
-                        helpText: ' sobre la configuración de segmentos/registros personalizado.',
-                        emptyTitle: 'Añadir un segmento personalizado o un registro personalizado',
-                        fields: {
-                            segmentName: 'Name',
-                            internalID: 'Identificación interna',
-                            scriptID: 'ID de guión',
-                            mapping: 'Mostrado como',
-                            customRecordScriptID: 'ID de columna de transacción',
-                        },
-                        removeTitle: 'Eliminar segmento/registro personalizado',
-                        removePrompt: '¿Está seguro de que desea eliminar este segmento/registro personalizado?',
-                        addForm: {
-                            customSegmentName: 'nombre de segmento personalizado',
-                            customRecordName: 'nombre de registro personalizado',
-                            segmentTitle: 'Segmento personalizado',
-                            customSegmentAddTitle: 'Añadir segmento personalizado',
-                            customRecordAddTitle: 'Añadir registro personalizado',
-                            recordTitle: 'Registro personalizado',
-                            segmentRecordType: '¿Desea añadir un segmento personalizado o un registro personalizado?',
-                            customSegmentNameTitle: '¿Cuál es el nombre del segmento personalizado?',
-                            customRecordNameTitle: '¿Cuál es el nombre del registro personalizado?',
-                            customSegmentNameFooter: `Puede encontrar los nombres de los segmentos personalizados en NetSuite en la página *Personalizaciones > Vínculos, registros y campos > Segmentos personalizados*.\nn_Para obtener instrucciones más detalladas, [visite nuestro sitio de ayuda](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS})_.`,
-                            customRecordNameFooter: `Puede encontrar nombres de registros personalizados en NetSuite introduciendo el "Campo de columna de transacción" en la búsqueda global.\nn_Para obtener instrucciones más detalladas, [visite nuestro sitio de ayuda](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS})_.`,
-                            customSegmentInternalIDTitle: '¿Cuál es la identificación interna?',
-                            customSegmentInternalIDFooter: `En primer lugar, asegúrese de que ha habilitado los ID internos en NetSuite en *Inicio > Establecer preferencias > Mostrar ID interno*. *Personalización > Listas, registros y campos > Segmentos personalizados*.\n2. Haga clic en un segmento personalizado. Haga clic en un segmento personalizado. Haga clic en el hipervínculo situado junto a *Tipo de registro personalizado*.\n4. Para obtener instrucciones más detalladas, [visite nuestro sitio de ayuda](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_LISTS})_.`,
-                            customRecordInternalIDFooter: `Puede encontrar IDs internos de registros personalizados en NetSuite siguiendo estos pasos:\n\n1. Introduzca "Campos de línea de transacción" en la búsqueda global. Haga clic en un registro personalizado. Para obtener instrucciones más detalladas, [visite nuestro sitio de ayuda](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS})_.`,
-                            customSegmentScriptIDTitle: '¿Cuál es el ID del guión?',
-                            customSegmentScriptIDFooter: `Puede encontrar IDs de script de segmentos personalizados en NetSuite en: \n\n1. *Personalización > Listas, Registros y Campos > Segmentos Personalizados*.\n2. Haga clic en un segmento personalizado. a. Si desea mostrar el segmento personalizado como una *etiqueta* (a nivel de partida) en Expensify, haga clic en la subpestaña *Columnas de transacción* y utilice el *ID de campo*. b. Si desea mostrar el segmento personalizado como una *etiqueta* (a nivel de partida) en Expensify, haga clic en la subpestaña *Columnas de transacción* y utilice el *ID de campo*. Si desea mostrar el segmento personalizado como un *campo de informe* (a nivel de informe) en Expensify, haga clic en la subpestaña *Transacciones* y utilice el *ID de campo*. Para obtener instrucciones más detalladas, [visite nuestro sitio de ayuda](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_LISTS})_.`,
-                            customRecordScriptIDTitle: '¿Cuál es el ID de columna de la transacción?',
-                            customRecordScriptIDFooter: `Puede encontrar IDs de script de registro personalizados en NetSuite en:\n\n1. Introduzca "Campos de línea de transacción" en la búsqueda global.\n2. Haga clic en un registro personalizado.\n3. Para obtener instrucciones más detalladas, [visite nuestro sitio de ayuda](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS})_.`,
-                            customSegmentMappingTitle: '¿Cómo debería mostrarse este segmento personalizado en Expensify?',
-                            customRecordMappingTitle: '¿Cómo debería mostrarse este registro de segmento personalizado en Expensify?',
-                        },
-                        errors: {
-                            uniqueFieldError: ({fieldName}: RequiredFieldParams) => `Ya existe un segmento/registro personalizado con este ${fieldName?.toLowerCase()}`,
-                        },
-                    },
-                    customLists: {
-                        title: 'Listas personalizadas',
-                        addText: 'Añadir lista personalizada',
-                        recordTitle: 'Lista personalizado',
-                        helpLink: CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_LISTS,
-                        helpLinkText: 'Ver instrucciones detalladas',
-                        helpText: ' sobre cómo configurar listas personalizada.',
-                        emptyTitle: 'Añadir una lista personalizado',
-                        fields: {
-                            listName: 'Nombre',
-                            internalID: 'Identificación interna',
-                            transactionFieldID: 'ID del campo de transacción',
-                            mapping: 'Mostrado como',
-                        },
-                        removeTitle: 'Eliminar lista personalizado',
-                        removePrompt: '¿Está seguro de que desea eliminar esta lista personalizado?',
-                        addForm: {
-                            listNameTitle: 'Elija una lista personalizada',
-                            transactionFieldIDTitle: '¿Cuál es el ID del campo de transacción?',
-                            transactionFieldIDFooter: `Puede encontrar los ID de campo de transacción en NetSuite siguiendo estos pasos:\n\n1. Introduzca "Campos de línea de transacción" en búsqueda global. Introduzca "Campos de línea de transacción" en la búsqueda global.\n2. Haga clic en una lista personalizada.\n3. Para obtener instrucciones más detalladas, [visite nuestro sitio de ayuda](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_LISTS})_.`,
-                            mappingTitle: '¿Cómo debería mostrarse esta lista personalizada en Expensify?',
-                        },
-                        errors: {
-                            uniqueTransactionFieldIDError: `Ya existe una lista personalizada con este ID de campo de transacción`,
-                        },
-                    },
-                },
-                importTypes: {
-                    [CONST.INTEGRATION_ENTITY_MAP_TYPES.NETSUITE_DEFAULT]: {
-                        label: 'Predeterminado del empleado NetSuite',
-                        description: 'No importado a Expensify, aplicado en exportación',
-                        footerContent: ({importField}: ImportFieldParams) =>
-                            `Si usa ${importField} en NetSuite, aplicaremos el conjunto predeterminado en el registro del empleado al exportarlo a Informe de gastos o Entrada de diario.`,
-                    },
-                    [CONST.INTEGRATION_ENTITY_MAP_TYPES.TAG]: {
-                        label: 'Etiquetas',
-                        description: 'Nivel de línea de pedido',
-                        footerContent: ({importField}: ImportFieldParams) => `Se podrán seleccionar ${importField} para cada gasto individual en el informe de un empleado.`,
-                    },
-                    [CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD]: {
-                        label: 'Campos de informe',
-                        description: 'Nivel de informe',
-                        footerContent: ({importField}: ImportFieldParams) => `La selección de ${importField} se aplicará a todos los gastos en el informe de un empleado.`,
-                    },
-                },
-            },
-        },
         intacct: {
             sageIntacctSetup: 'Sage Intacct configuración',
             prerequisitesTitle: 'Antes de conectar...',
@@ -4751,7 +4442,6 @@ const translations = {
             subtitle: 'Conecta a tu sistema de contabilidad para codificar transacciones con tu plan de cuentas, auto-cotejar pagos, y mantener tus finanzas sincronizadas.',
             qbd: 'QuickBooks Desktop',
             xero: 'Xero',
-            netsuite: 'NetSuite',
             intacct: 'Sage Intacct',
             sap: 'SAP',
             oracle: 'Oracle',
@@ -4764,8 +4454,6 @@ const translations = {
                 switch (connectionName) {
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Xero';
-                    case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
-                        return 'NetSuite';
                     case CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT:
                         return 'Sage Intacct';
                     default: {
@@ -4796,8 +4484,6 @@ const translations = {
                 switch (connectionName) {
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'No se puede conectar a Xero';
-                    case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
-                        return 'No se puede conectar a NetSuite';
                     case CONST.POLICY.CONNECTIONS.NAME.QBD:
                         return 'No se puede conectar a QuickBooks Desktop';
                     default: {
@@ -4817,7 +4503,6 @@ const translations = {
                 [CONST.INTEGRATION_ENTITY_MAP_TYPES.NOT_IMPORTED]: 'No importado',
                 [CONST.INTEGRATION_ENTITY_MAP_TYPES.NONE]: 'No importado',
                 [CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD]: 'Importado como campos de informe',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.NETSUITE_DEFAULT]: 'Predeterminado del empleado NetSuite',
             },
             disconnectPrompt: ({connectionName}: OptionalParam<ConnectionNameParams> = {}) => {
                 const integrationName =
@@ -4834,7 +4519,6 @@ const translations = {
                     switch (stage) {
                         case 'quickbooksDesktopImportCustomers':
                             return 'Importando clientes';
-                        case 'netSuiteSyncImportEmployees':
                         case 'intacctImportEmployees':
                         case 'quickbooksDesktopImportEmployees':
                             return 'Importando empleados';
@@ -4891,45 +4575,8 @@ const translations = {
                             return 'Comprobando la conexión a Xero';
                         case 'xeroSyncTitle':
                             return 'Sincronizando los datos de Xero';
-                        case 'netSuiteSyncConnection':
-                            return 'Iniciando conexión a NetSuite';
-                        case 'netSuiteSyncCustomers':
-                            return 'Importando clientes';
-                        case 'netSuiteSyncInitData':
-                            return 'Recuperando datos de NetSuite';
-                        case 'netSuiteSyncImportTaxes':
-                            return 'Importando impuestos';
-                        case 'netSuiteSyncImportItems':
-                            return 'Importando artículos';
-                        case 'netSuiteSyncData':
-                            return 'Importando datos a Expensify';
-                        case 'netSuiteSyncAccounts':
-                            return 'Sincronizando cuentas';
-                        case 'netSuiteSyncCurrencies':
-                            return 'Sincronizando divisas';
-                        case 'netSuiteSyncCategories':
-                            return 'Sincronizando categorías';
-                        case 'netSuiteSyncReportFields':
-                            return 'Importando datos como campos de informe de Expensify';
-                        case 'netSuiteSyncTags':
-                            return 'Importando datos como etiquetas de Expensify';
-                        case 'netSuiteSyncUpdateConnectionData':
-                            return 'Actualizando información de conexión';
-                        case 'netSuiteSyncNetSuiteReimbursedReports':
-                            return 'Marcando informes de Expensify como reembolsados';
-                        case 'netSuiteSyncImportCustomLists':
-                            return 'Importando listas personalizadas';
-                        case 'netSuiteSyncImportSubsidiaries':
-                            return 'Importando subsidiarias';
-                        case 'netSuiteSyncImportVendors':
                         case 'quickbooksDesktopImportVendors':
                             return 'Importando proveedores';
-                        case 'netSuiteSyncExpensifyReimbursedReports':
-                            return 'Marcando facturas y recibos de NetSuite como pagados';
-                        case 'netSuiteImportVendorsTitle':
-                            return 'Importando proveedores';
-                        case 'netSuiteImportCustomListsTitle':
-                            return 'Importando listas personalizadas';
                         case 'intacctCheckConnection':
                             return 'Comprobando la conexión a Sage Intacct';
                         case 'intacctImportDimensions':
@@ -4953,7 +4600,8 @@ const translations = {
             exportDate: 'Fecha de exportación',
             defaultVendor: 'Proveedor predeterminado',
             autoSync: 'Autosincronización',
-            autoSyncDescription: 'Sincroniza NetSuite y Expensify automáticamente, todos los días. Exporta el informe finalizado en tiempo real',
+            autoSyncDescription:
+                'Sincroniza tu integración contable y Expensify automáticamente todos los días. Exporta los informes finalizados en tiempo real.',
             reimbursedReports: 'Sincronizar informes reembolsados',
             cardReconciliation: 'Conciliación de tarjetas',
             reconciliationAccount: 'Cuenta de conciliación',
@@ -5204,11 +4852,6 @@ const translations = {
                 description: `Los campos de informe permiten especificar detalles a nivel de cabecera, distintos de las etiquetas que pertenecen a los gastos en partidas individuales. Estos detalles pueden incluir nombres de proyectos específicos, información sobre viajes de negocios, ubicaciones, etc.`,
                 onlyAvailableOnPlan: 'Los campos de informe sólo están disponibles en el plan Controlar, a partir de ',
             },
-            [CONST.POLICY.CONNECTIONS.NAME.NETSUITE]: {
-                title: 'NetSuite',
-                description: `Disfruta de la sincronización automática y reduce las entradas manuales con la integración Expensify + NetSuite. Obtén información financiera en profundidad y en tiempo real con la compatibilidad nativa y personalizada con segmentos, incluida la asignación de proyectos y clientes.`,
-                onlyAvailableOnPlan: 'Nuestra integración NetSuite sólo está disponible en el plan Controlar, a partir de ',
-            },
             [CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT]: {
                 title: 'Sage Intacct',
                 description: `Disfruta de una sincronización automatizada y reduce las entradas manuales con la integración Expensify + Sage Intacct. Obtén información financiera en profundidad y en tiempo real con dimensiones definidas por el usuario, así como codificación de gastos por departamento, clase, ubicación, cliente y proyecto (trabajo).`,
@@ -5308,7 +4951,7 @@ const translations = {
                     perMember: 'por miembro activo al mes.',
                     learnMore: 'Más información',
                     pricing: 'sobre nuestros planes y precios.',
-                    benefit1: 'Conexiones avanzadas de contabilidad (NetSuite, Sage Intacct y más)',
+                    benefit1: 'Conexiones avanzadas de contabilidad (Sage Intacct y más)',
                     benefit2: 'Reglas inteligentes de gastos',
                     benefit3: 'Flujos de aprobación de varios niveles',
                     benefit4: 'Controles de seguridad mejorados',
@@ -7022,7 +6665,7 @@ const translations = {
                 benefit1: 'Todo lo incluido en el plan Collect',
                 benefit2: 'Flujos de aprobación multinivel',
                 benefit3: 'Reglas de gastos personalizadas',
-                benefit4: 'Integraciones con ERP (NetSuite, Sage Intacct, Oracle)',
+                benefit4: 'Integraciones con ERP (Sage Intacct, Oracle)',
                 benefit5: 'Integraciones con RR. HH. (Workday, Certinia)',
                 benefit6: 'SAML/SSO',
                 benefit7: 'Informes y análisis personalizados',

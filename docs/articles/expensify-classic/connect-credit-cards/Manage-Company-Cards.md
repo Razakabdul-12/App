@@ -125,7 +125,7 @@ _**Note: Unassigning a card deletes all open or unreported expenses linked to it
 
 ## Export Company Card Expenses to a Connected Accounting Integration: Centralized General Ledger Account
 
-For businesses using accounting integrations like QuickBooks or NetSuite, connect the cards to export expenses to specific general ledger (GL) accounts via the "Edit Exports" option.
+For businesses using accounting integrations like QuickBooks or Xero, connect the cards to export expenses to specific general ledger (GL) accounts via the "Edit Exports" option.
 
 ![Find the desired card in the table. In that same row, click Edit Exports.](https://help.expensify.com/assets/images/cardfeeds-02.png){:width="100%"} 
 
@@ -135,7 +135,7 @@ For businesses using accounting integrations like QuickBooks or NetSuite, connec
 3. Open the **Connections** tab.  
 4. Under **Accounting Integrations**, click **Configure** next to the relevant integration.  
 5. In the **Non-reimbursable Export** section, select **Credit Card / Charge Card / Bank Transaction**.  
-6. Review the **Export Settings** page to ensure proper expense report export to NetSuite.  
+6. Review the **Export Settings** page to ensure expense report exports are mapped correctly for your integration.
 7. Choose the **Vendor/Liability Account** for exporting all non-reimbursable expenses.  
 
 ## Exporting to Individual General Ledger Accounts 

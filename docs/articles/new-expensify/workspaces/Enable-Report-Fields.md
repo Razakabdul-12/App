@@ -6,7 +6,7 @@ keywords: [New Expensify, report fields, custom report fields, workspace headers
 
 Report Fields let workspace admins collect additional header-level information on reports, such as project names, client codes, or trip types. This feature is only available on the **Control plan**.
 
-**Note:** If your workspace is connected to an accounting system like QuickBooks Online, QuickBooks Desktop, Intacct, Xero, or NetSuite, Report Fields must be created in that system directly. [Learn more about connecting integrations.](#)
+**Note:** If your workspace is connected to an accounting system like QuickBooks Online, QuickBooks Desktop, Intacct, or Xero, Report Fields must be created in that system directly. [Learn more about connecting integrations.](#)
 
 ---
 

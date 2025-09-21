@@ -55,11 +55,6 @@ const integrations: Integration[] = [
         translationKey: 'workspace.accounting.xero',
     },
     {
-        key: 'netsuite',
-        icon: Expensicons.NetSuiteSquare,
-        translationKey: 'workspace.accounting.netsuite',
-    },
-    {
         key: 'intacct',
         icon: Expensicons.IntacctSquare,
         translationKey: 'workspace.accounting.intacct',

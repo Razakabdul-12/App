@@ -46,7 +46,7 @@ You can retract reports with the following statuses:
 
 # Editing Expense Reports After Exporting to an Accounting System
 
-Admins can still retract closed reports even if they’ve already been exported to an accounting system such as QuickBooks or NetSuite.
+Admins can still retract closed reports even if they’ve already been exported to an accounting system such as QuickBooks or Xero.
 
 When you click **Undo close**, a warning modal will appear to let you know:
 - Reopening the report may cause **data mismatches** between Expensify and the accounting software.

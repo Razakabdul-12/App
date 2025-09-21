@@ -168,20 +168,6 @@ Aircall is a cloud-based phone system for sales and support teams. Expensify Car
 
 ---
 
-## NetSuite
-NetSuite helps companies manage core business processes with a cloud-based ERP and accounting software. Expensify has a direct integration with NetSuite to synchronize data and customize expense coding.
-
-**Offer:** 10% off for the first year.
-
-**How to redeem:**
-- Fill out this [Google form](https://docs.google.com/forms/d/e/1FAIpQLSeiOzLrdO-MgqeEMwEqgdQoh4SJBi42MZME9ycHp4SQjlk3bQ/viewform?usp=sf_link).
-- An Expensify rep will introduce you to a NetSuite sales rep to start the process.
-- Once set up, pay for your first year with NetSuite, and Expensify will send you a payment equal to 10% of your first-year contract within three months of your first NetSuite invoice.
-
-**Note:** This offer is only for prospective NetSuite customers.
-
----
-
 ## PagerDuty
 PagerDuty's platform integrates machine data and human intelligence to improve visibility and agility across organizations.
 

@@ -30,7 +30,7 @@ Expensify Expense offers a variety of advantages:
 * **Integrated Corporate Cards** - Link company cards to track purchases in real-time.
 * **Real-Time Expense Tracking** - Monitor budgets and expenses as they happen.
 * **Custom Approval Workflows** - Create multi-level approval processes.
-* **Seamless Integration** - Sync your expenses with accounting systems like QuickBooks, Xero, NetSuite, and others.
+* **Seamless Integration** - Sync your expenses with accounting systems like QuickBooks, Xero, and others.
 * **Worldwide Compatibility** - Expensify supports every currency, ideal for international business.
 
 ## Concepts
@@ -42,7 +42,7 @@ Receipt capture simplifies receipt management with SmartScan:
 * **Manual Upload** - Take a photo or upload your receipt manually from your device.
 
 ### [Expense categories] What are expense categories?
-Expense categories help code expenses for accounting and financial reporting. Categories can be manually created or imported from connected platforms like QuickBooks, Xero, and NetSuite. Over time, Expensify learns how you categorize specific merchants and applies them automatically.
+Expense categories help code expenses for accounting and financial reporting. Categories can be manually created or imported from connected platforms like QuickBooks and Xero. Over time, Expensify learns how you categorize specific merchants and applies them automatically.
 
 ### [Track taxes] What is tax management in Expensify?
 Expensify allows you to configure and manage tax rates within your workspace, applicable on Collect and Control plans. This applies the correct tax rates to expenses based on currency and workspace settings.
@@ -61,17 +61,10 @@ Corporate cards integrate with Expensify Expense for automated expense tracking:
 * **Rewards** - Earn cashback on Expensify Card purchases.
 
 ### [Integrations] What accounting systems does Expensify support?
-Expensify integrates with all major accounting systems, including QuickBooks Online, Xero, NetSuite, and Sage Intacct.
+Expensify integrates with major accounting systems, including QuickBooks Online, Xero, and Sage Intacct.
 
 ### [Distance Rates] What are distance rates in Expensify?
 Distance rates are configured for mileage expenses, allowing employees to select predefined rates when logging distance-based expenses.
-
-### [NetSuite Integration] What is the NetSuite integration in Expensify?
-NetSuite integration allows for seamless data transfer between Expensify and NetSuite:
-* **Expense Categories** - Automatically imported from NetSuite into Expensify for consistency.
-* **Tags and Report Fields** - Import departments, classes, and locations as tags or report fields for detailed categorization.
-* **Custom Segments/Records** - Import custom segments and records for more specific data mapping.
-* **Auto-Sync** - Synchronize data changes between Expensify and NetSuite daily.
 
 ### [Duplicate Detection] What is duplicate detection in Expensify?
 Duplicate Detection helps prevent duplicate expense requests by flagging expenses with the same date and amount in the same member's account:
@@ -613,24 +606,6 @@ To configure Sage Intacct:
 3. Press **Export** to choose exporter and methods for expenses.
 4. Press **Advanced** to enable features like auto-sync.
 
-#### [Connect to NetSuite] How do I connect Expensify to NetSuite?
-To integrate with NetSuite:
-1. Log into Expensify as a workspace admin and press your profile image or icon in the bottom left menu.
-2. Scroll down and press **Workspaces** and select the workspace you want to connect to NetSuite.
-3. Press **More features** and enable the Accounting toggle.
-4. Press **Accounting** and then **Set up** next to NetSuite.
-5. Enter your NetSuite Account ID, Token ID, and Token Secret. These can be found in NetSuite under **Setup > Integration > Web Services Preferences**.
-6. Press **Confirm** to complete the setup.
-
-#### [Configure NetSuite] How do I configure NetSuite settings in Expensify?
-To configure NetSuite settings:
-1. Ensure the Expensify Bundle is installed in NetSuite by going to **Customization > SuiteBundler > Search & Install Bundles**.
-2. Enable Token-Based Authentication in NetSuite under **Setup > Company > Enable Features > SuiteCloud > Manage Authentication**.
-3. Add the Expensify Integration Role to a user in NetSuite under **Lists > Employees** and manage access.
-4. Create Access Tokens in NetSuite by entering "page: tokens" in the Global Search and selecting **New Access Token**.
-5. Confirm Expense Categories and Reports are enabled in NetSuite under **Setup > Accounting** and **Employees**.
-6. Follow the detailed steps for ensuring transaction forms are properly configured in NetSuite for Expense Reports, Journal Entries, Vendor Bills, and Credits.
-
 ### Exporting Data
 #### [Export Expenses] How do I export expenses to a CSV file?
 To export your expense data to a CSV file:
@@ -707,15 +682,6 @@ There are a number of factors that can cause auto-export to fail. If this happen
 
 #### [Negative Expenses to Sage Intacct] Can I export negative expenses to Sage Intacct?
 Yes, you can export negative expenses to Sage Intacct. If you are exporting out-of-pocket expenses as expense reports, then the total of each exported report cannot be negative.
-
-#### [NetSuite Plan Requirement] What type of Expensify plan is required to connect to NetSuite?
-You need a Control workspace to integrate with NetSuite. If you have a Collect workspace, you will need to upgrade to Control.
-
-#### [NetSuite Page Size] What should I set my page size to in NetSuite for importing customers and vendors?
-Make sure your page size is set to 1000 in NetSuite for importing your customers and vendors. Go to **Setup > Integration > Web Services Preferences** and search **Page Size** to determine your page size.
-
-#### [NetSuite Export Options] What are the export options for NetSuite?
-You can export out-of-pocket expenses and company card expenses as Expense Reports, Vendor Bills, or Journal Entries in NetSuite. For invoices, select an Accounts Receivable account. Export settings can be configured to choose the date for records, export foreign currency amounts, and export to the next open period if a period is closed.
 
 #### [QuickBooks Online Error Resolution] Why do I see a red dot next to my QuickBooks Online connection?
 If there is an error with your connection, you’ll see a red dot next to Accounting in the left menu. When you press Accounting, you’ll also see a red dot displayed next to the QuickBooks Online connection card. This may occur if you incorrectly enter your QuickBooks Online login information when trying to establish the connection. To resubmit your login details:

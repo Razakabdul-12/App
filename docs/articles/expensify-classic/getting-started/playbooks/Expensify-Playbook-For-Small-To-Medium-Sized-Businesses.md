@@ -31,7 +31,7 @@ If you don’t already have an account, sign up at [new.expensify.com](https://n
 For small businesses, we recommend the **Control Plan** because:
 - It supports high-volume expense submissions.
 - It enforces compliance controls.
-- It integrates with QuickBooks Online, Xero, NetSuite, and Sage Intacct.
+- It integrates with QuickBooks Online, Xero, and Sage Intacct.
 
 ## Set Up a Control Workspace
 1. Go to Settings > Workspace.
@@ -49,7 +49,6 @@ Sync Expensify with your accounting software for real-time financial tracking:
 2. Select your accounting system and follow the setup prompts:
      - [QuickBooks Online](https://help.expensify.com/articles/expensify-classic/integrations/accounting-integrations/QuickBooks-Online)
      - [Xero](https://help.expensify.com/articles/expensify-classic/integrations/accounting-integrations/Xero)
-     - [NetSuite](https://help.expensify.com/articles/expensify-classic/integrations/accounting-integrations/NetSuite)
      - [Sage Intacct](https://help.expensify.com/articles/expensify-classic/integrations/accounting-integrations/Sage-Intacct)
 
 ---
@@ -66,7 +65,7 @@ Sync Expensify with your accounting software for real-time financial tracking:
 
 # Step 5: Require or Set Default Tags
 - **Require Tags:** Under **Settings > Workspace > [Workspace Name] > Tags**, enable the **Required** field to flag uncategorized expenses.
-- **Set Employee Default Tags:** If using NetSuite or Sage Intacct, auto-assign employee departments to expenses.
+- **Set Employee Default Tags:** If using Sage Intacct, auto-assign employee departments to expenses.
 
 ---
 

@@ -71,7 +71,6 @@ const chatTypes = {
 
 const ONBOARDING_ACCOUNTING_MAPPING = {
     xero: 'Xero',
-    netsuite: 'NetSuite',
     intacct: 'Sage Intacct',
     quickbooksDesktop: 'QuickBooks Desktop',
     sap: 'SAP',
@@ -82,7 +81,6 @@ const ONBOARDING_ACCOUNTING_MAPPING = {
 
 const connectionsVideoPaths = {
     [ONBOARDING_ACCOUNTING_MAPPING.xero]: 'videos/walkthrough-connect_to_xero-v2.mp4',
-    [ONBOARDING_ACCOUNTING_MAPPING.netsuite]: 'videos/walkthrough-connect_to_netsuite-v2.mp4',
 };
 
 // Explicit type annotation is required
@@ -687,7 +685,6 @@ const CONST = {
         DEFAULT_ROOMS: 'defaultRooms',
         P2P_DISTANCE_REQUESTS: 'p2pDistanceRequests',
         REPORT_FIELDS_FEATURE: 'reportFieldsFeature',
-        NETSUITE_USA_TAX: 'netsuiteUsaTax',
         NEWDOT_MANAGER_MCTEST: 'newDotManagerMcTest',
         NEWDOT_REJECT: 'newDotReject',
         GLOBAL_REIMBURSEMENTS_ON_ND: 'globalReimbursementsOnND',
@@ -2063,7 +2060,6 @@ const CONST = {
         REPORT_FIELD: 'REPORT_FIELD',
         NOT_IMPORTED: 'NOT_IMPORTED',
         IMPORTED: 'IMPORTED',
-        NETSUITE_DEFAULT: 'NETSUITE_DEFAULT',
     },
     QUICKBOOKS_DESKTOP_CONFIG: {
         EXPORT_DATE: 'exportDate',
@@ -2218,251 +2214,6 @@ const CONST = {
         EXPORTED: 'EXPORTED',
         SUBMITTED: 'SUBMITTED',
     },
-
-    NETSUITE_CONFIG: {
-        SUBSIDIARY: 'subsidiary',
-        EXPORTER: 'exporter',
-        EXPORT_DATE: 'exportDate',
-        REIMBURSABLE_EXPENSES_EXPORT_DESTINATION: 'reimbursableExpensesExportDestination',
-        NON_REIMBURSABLE_EXPENSES_EXPORT_DESTINATION: 'nonreimbursableExpensesExportDestination',
-        DEFAULT_VENDOR: 'defaultVendor',
-        REIMBURSABLE_PAYABLE_ACCOUNT: 'reimbursablePayableAccount',
-        PAYABLE_ACCT: 'payableAcct',
-        JOURNAL_POSTING_PREFERENCE: 'journalPostingPreference',
-        RECEIVABLE_ACCOUNT: 'receivableAccount',
-        INVOICE_ITEM_PREFERENCE: 'invoiceItemPreference',
-        INVOICE_ITEM: 'invoiceItem',
-        TAX_POSTING_ACCOUNT: 'taxPostingAccount',
-        PROVINCIAL_TAX_POSTING_ACCOUNT: 'provincialTaxPostingAccount',
-        ALLOW_FOREIGN_CURRENCY: 'allowForeignCurrency',
-        EXPORT_TO_NEXT_OPEN_PERIOD: 'exportToNextOpenPeriod',
-        IMPORT_FIELDS: ['departments', 'classes', 'locations'],
-        AUTO_SYNC: 'autoSync',
-        ACCOUNTING_METHOD: 'accountingMethod',
-        REIMBURSEMENT_ACCOUNT_ID: 'reimbursementAccountID',
-        COLLECTION_ACCOUNT: 'collectionAccount',
-        AUTO_CREATE_ENTITIES: 'autoCreateEntities',
-        APPROVAL_ACCOUNT: 'approvalAccount',
-        CUSTOM_FORM_ID_OPTIONS: 'customFormIDOptions',
-        TOKEN_INPUT_STEP_NAMES: ['1', '2,', '3', '4', '5'],
-        TOKEN_INPUT_STEP_KEYS: {
-            0: 'installBundle',
-            1: 'enableTokenAuthentication',
-            2: 'enableSoapServices',
-            3: 'createAccessToken',
-            4: 'enterCredentials',
-        },
-        IMPORT_CUSTOM_FIELDS: {
-            CUSTOM_SEGMENTS: 'customSegments',
-            CUSTOM_LISTS: 'customLists',
-        },
-        CUSTOM_SEGMENT_FIELDS: ['segmentName', 'internalID', 'scriptID', 'mapping'],
-        CUSTOM_LIST_FIELDS: ['listName', 'internalID', 'transactionFieldID', 'mapping'],
-        CUSTOM_FORM_ID_ENABLED: 'enabled',
-        CUSTOM_FORM_ID_TYPE: {
-            REIMBURSABLE: 'reimbursable',
-            NON_REIMBURSABLE: 'nonReimbursable',
-        },
-        SYNC_OPTIONS: {
-            SYNC_REIMBURSED_REPORTS: 'syncReimbursedReports',
-            SYNC_PEOPLE: 'syncPeople',
-            ENABLE_NEW_CATEGORIES: 'enableNewCategories',
-            EXPORT_REPORTS_TO: 'exportReportsTo',
-            EXPORT_VENDOR_BILLS_TO: 'exportVendorBillsTo',
-            EXPORT_JOURNALS_TO: 'exportJournalsTo',
-            SYNC_TAX: 'syncTax',
-            CROSS_SUBSIDIARY_CUSTOMERS: 'crossSubsidiaryCustomers',
-            CUSTOMER_MAPPINGS: {
-                CUSTOMERS: 'customers',
-                JOBS: 'jobs',
-            },
-        },
-        NETSUITE_ADD_CUSTOM_LIST_STEP_NAMES: ['1', '2,', '3', '4'],
-        NETSUITE_ADD_CUSTOM_SEGMENT_STEP_NAMES: ['1', '2,', '3', '4', '5', '6,'],
-    },
-
-    NETSUITE_CUSTOM_FIELD_SUBSTEP_INDEXES: {
-        CUSTOM_LISTS: {
-            CUSTOM_LIST_PICKER: 0,
-            TRANSACTION_FIELD_ID: 1,
-            MAPPING: 2,
-            CONFIRM: 3,
-        },
-        CUSTOM_SEGMENTS: {
-            SEGMENT_TYPE: 0,
-            SEGMENT_NAME: 1,
-            INTERNAL_ID: 2,
-            SCRIPT_ID: 3,
-            MAPPING: 4,
-            CONFIRM: 5,
-        },
-    },
-
-    NETSUITE_CUSTOM_RECORD_TYPES: {
-        CUSTOM_SEGMENT: 'customSegment',
-        CUSTOM_RECORD: 'customRecord',
-    },
-
-    NETSUITE_FORM_STEPS_HEADER_HEIGHT: 40,
-
-    NETSUITE_IMPORT: {
-        HELP_LINKS: {
-            CUSTOM_SEGMENTS: 'https://help.expensify.com/articles/expensify-classic/integrations/accounting-integrations/NetSuite#custom-segments',
-            CUSTOM_LISTS: 'https://help.expensify.com/articles/expensify-classic/integrations/accounting-integrations/NetSuite#custom-lists',
-        },
-    },
-
-    NETSUITE_EXPORT_DATE: {
-        LAST_EXPENSE: 'LAST_EXPENSE',
-        EXPORTED: 'EXPORTED',
-        SUBMITTED: 'SUBMITTED',
-    },
-
-    NETSUITE_EXPORT_DESTINATION: {
-        EXPENSE_REPORT: 'EXPENSE_REPORT',
-        VENDOR_BILL: 'VENDOR_BILL',
-        JOURNAL_ENTRY: 'JOURNAL_ENTRY',
-    },
-
-    NETSUITE_MAP_EXPORT_DESTINATION: {
-        EXPENSE_REPORT: 'expenseReport',
-        VENDOR_BILL: 'vendorBill',
-        JOURNAL_ENTRY: 'journalEntry',
-    },
-
-    NETSUITE_INVOICE_ITEM_PREFERENCE: {
-        CREATE: 'create',
-        SELECT: 'select',
-    },
-
-    NETSUITE_JOURNAL_POSTING_PREFERENCE: {
-        JOURNALS_POSTING_INDIVIDUAL_LINE: 'JOURNALS_POSTING_INDIVIDUAL_LINE',
-        JOURNALS_POSTING_TOTAL_LINE: 'JOURNALS_POSTING_TOTAL_LINE',
-    },
-
-    NETSUITE_EXPENSE_TYPE: {
-        REIMBURSABLE: 'reimbursable',
-        NON_REIMBURSABLE: 'nonreimbursable',
-    },
-
-    NETSUITE_REPORTS_APPROVAL_LEVEL: {
-        REPORTS_APPROVED_NONE: 'REPORTS_APPROVED_NONE',
-        REPORTS_SUPERVISOR_APPROVED: 'REPORTS_SUPERVISOR_APPROVED',
-        REPORTS_ACCOUNTING_APPROVED: 'REPORTS_ACCOUNTING_APPROVED',
-        REPORTS_APPROVED_BOTH: 'REPORTS_APPROVED_BOTH',
-    },
-
-    NETSUITE_VENDOR_BILLS_APPROVAL_LEVEL: {
-        VENDOR_BILLS_APPROVED_NONE: 'VENDOR_BILLS_APPROVED_NONE',
-        VENDOR_BILLS_APPROVAL_PENDING: 'VENDOR_BILLS_APPROVAL_PENDING',
-        VENDOR_BILLS_APPROVED: 'VENDOR_BILLS_APPROVED',
-    },
-
-    NETSUITE_JOURNALS_APPROVAL_LEVEL: {
-        JOURNALS_APPROVED_NONE: 'JOURNALS_APPROVED_NONE',
-        JOURNALS_APPROVAL_PENDING: 'JOURNALS_APPROVAL_PENDING',
-        JOURNALS_APPROVED: 'JOURNALS_APPROVED',
-    },
-
-    NETSUITE_ACCOUNT_TYPE: {
-        ACCOUNTS_PAYABLE: '_accountsPayable',
-        ACCOUNTS_RECEIVABLE: '_accountsReceivable',
-        OTHER_CURRENT_LIABILITY: '_otherCurrentLiability',
-        CREDIT_CARD: '_creditCard',
-        BANK: '_bank',
-        OTHER_CURRENT_ASSET: '_otherCurrentAsset',
-        LONG_TERM_LIABILITY: '_longTermLiability',
-        EXPENSE: '_expense',
-    },
-
-    NETSUITE_APPROVAL_ACCOUNT_DEFAULT: 'APPROVAL_ACCOUNT_DEFAULT',
-
-    NETSUITE_PAYABLE_ACCOUNT_DEFAULT_VALUE: '',
-
-    /**
-     * Countries where tax setting is permitted (Strings are in the format of Netsuite's Country type/enum)
-     *
-     * Should mirror the list on the OldDot.
-     */
-    NETSUITE_TAX_COUNTRIES: [
-        '_argentina',
-        '_australia',
-        '_austria',
-        '_azerbaijan',
-        '_belgium',
-        '_brazil',
-        '_bulgaria',
-        '_canada',
-        '_chile',
-        '_china',
-        '_costaRica',
-        '_croatia',
-        '_croatiaHrvatska',
-        '_cyprus',
-        '_czechRepublic',
-        '_denmark',
-        '_egypt',
-        '_estonia',
-        '_finland',
-        '_france',
-        '_georgia',
-        '_germany',
-        '_ghana',
-        '_greece',
-        '_hongKong',
-        '_hungary',
-        '_india',
-        '_indonesia',
-        '_iranIslamicRepublicOf',
-        '_ireland',
-        '_israel',
-        '_italy',
-        '_japan',
-        '_jordan',
-        '_kenya',
-        '_koreaRepublicOf',
-        '_koreaTheRepublicOf',
-        '_kuwait',
-        '_latvia',
-        '_lebanon',
-        '_lithuania',
-        '_luxembourg',
-        '_malaysia',
-        '_malta',
-        '_mexico',
-        '_morocco',
-        '_myanmar',
-        '_netherlands',
-        '_newZealand',
-        '_nigeria',
-        '_norway',
-        '_pakistan',
-        '_philippines',
-        '_poland',
-        '_portugal',
-        '_romania',
-        '_saudiArabia',
-        '_serbia',
-        '_singapore',
-        '_slovakRepublic',
-        '_slovakia',
-        '_slovenia',
-        '_southAfrica',
-        '_spain',
-        '_sriLanka',
-        '_sweden',
-        '_switzerland',
-        '_taiwan',
-        '_thailand',
-        '_turkey',
-        '_turkiye',
-        '_ukraine',
-        '_unitedArabEmirates',
-        '_unitedKingdom',
-        '_unitedKingdomGB',
-        '_vietnam',
-        '_vietNam',
-    ] as string[],
 
     QUICKBOOKS_EXPORT_DATE: {
         LAST_EXPENSE: 'LAST_EXPENSE',
@@ -2973,7 +2724,6 @@ const CONST = {
                 // Here we will add other connections names when we add support for them
                 QBD: 'quickbooksDesktop',
                 XERO: 'xero',
-                NETSUITE: 'netsuite',
                 SAGE_INTACCT: 'intacct',
             },
             SUPPORTED_ONLY_ON_OLDDOT: {
@@ -2984,12 +2734,10 @@ const CONST = {
             },
             ROUTE: {
                 XERO: 'xero',
-                NETSUITE: 'netsuite',
                 SAGE_INTACCT: 'sage-intacct',
                 QBD: 'quickbooks-desktop',
             },
             NAME_USER_FRIENDLY: {
-                netsuite: 'NetSuite',
                 quickbooksDesktop: 'QuickBooks Desktop',
                 xero: 'Xero',
                 intacct: 'Sage Intacct',
@@ -3001,12 +2749,10 @@ const CONST = {
                 microsoftDynamics: 'Microsoft Dynamics',
                 other: 'Other',
             },
-            CORPORATE: ['quickbooksDesktop', 'netsuite', 'intacct', 'oracle', 'sap', 'microsoftDynamics', 'other'],
+            CORPORATE: ['quickbooksDesktop', 'intacct', 'oracle', 'sap', 'microsoftDynamics', 'other'],
             AUTH_HELP_LINKS: {
                 intacct:
                     "https://help.expensify.com/articles/expensify-classic/connections/sage-intacct/Sage-Intacct-Troubleshooting#:~:text=First%20make%20sure%20that%20you,your%20company's%20Web%20Services%20authorizations.",
-                netsuite:
-                    'https://help.expensify.com/articles/expensify-classic/connections/netsuite/Netsuite-Troubleshooting#expensierror-ns0109-failed-to-login-to-netsuite-please-verify-your-credentials',
             },
             SYNC_STAGE_NAME: {
                 STARTING_IMPORT_XERO: 'startingImportXero',
@@ -3034,26 +2780,6 @@ const CONST = {
                 XERO_SYNC_IMPORT_TAX_RATES: 'xeroSyncImportTaxRates',
                 XERO_CHECK_CONNECTION: 'xeroCheckConnection',
                 XERO_SYNC_TITLE: 'xeroSyncTitle',
-                NETSUITE_SYNC_CONNECTION: 'netSuiteSyncConnection',
-                NETSUITE_SYNC_CUSTOMERS: 'netSuiteSyncCustomers',
-                NETSUITE_SYNC_INIT_DATA: 'netSuiteSyncInitData',
-                NETSUITE_SYNC_IMPORT_TAXES: 'netSuiteSyncImportTaxes',
-                NETSUITE_SYNC_IMPORT_ITEMS: 'netSuiteSyncImportItems',
-                NETSUITE_SYNC_DATA: 'netSuiteSyncData',
-                NETSUITE_SYNC_ACCOUNTS: 'netSuiteSyncAccounts',
-                NETSUITE_SYNC_CURRENCIES: 'netSuiteSyncCurrencies',
-                NETSUITE_SYNC_CATEGORIES: 'netSuiteSyncCategories',
-                NETSUITE_SYNC_IMPORT_CUSTOM_LISTS: 'netSuiteSyncImportCustomLists',
-                NETSUITE_SYNC_IMPORT_EMPLOYEES: 'netSuiteSyncImportEmployees',
-                NETSUITE_SYNC_IMPORT_SUBSIDIARIES: 'netSuiteSyncImportSubsidiaries',
-                NETSUITE_SYNC_IMPORT_VENDORS: 'netSuiteSyncImportVendors',
-                NETSUITE_SYNC_REPORT_FIELDS: 'netSuiteSyncReportFields',
-                NETSUITE_SYNC_TAGS: 'netSuiteSyncTags',
-                NETSUITE_SYNC_UPDATE_DATA: 'netSuiteSyncUpdateConnectionData',
-                NETSUITE_SYNC_NETSUITE_REIMBURSED_REPORTS: 'netSuiteSyncNetSuiteReimbursedReports',
-                NETSUITE_SYNC_EXPENSIFY_REIMBURSED_REPORTS: 'netSuiteSyncExpensifyReimbursedReports',
-                NETSUITE_SYNC_IMPORT_VENDORS_TITLE: 'netSuiteImportVendorsTitle',
-                NETSUITE_SYNC_IMPORT_CUSTOM_LISTS_TITLE: 'netSuiteImportCustomListsTitle',
                 SAGE_INTACCT_SYNC_CHECK_CONNECTION: 'intacctCheckConnection',
                 SAGE_INTACCT_SYNC_IMPORT_TITLE: 'intacctImportTitle',
                 SAGE_INTACCT_SYNC_IMPORT_DATA: 'intacctImportData',
@@ -3084,7 +2810,6 @@ const CONST = {
 
     HELP_DOC_LINKS: {
         'QuickBooks Desktop': '',
-        NetSuite: 'https://help.expensify.com/articles/new-expensify/connections/netsuite/Configure-Netsuite',
         Xero: 'https://help.expensify.com/articles/new-expensify/connections/xero/Configure-Xero',
         Intacct: 'https://help.expensify.com/articles/new-expensify/connections/sage-intacct/Configure-Sage-Intacct',
         FinancialForce: 'https://help.expensify.com/articles/expensify-classic/connections/certinia/Connect-To-Certinia',
@@ -3298,15 +3023,7 @@ const CONST = {
         DEFAULT_EXPORT_TYPE: 'default',
         EXPORT_CARD_TYPES: {
             /**
-             * Name of Card NVP for NetSuite custom export accounts
-             */
-            NVP_NETSUITE_EXPORT_ACCOUNT: 'netsuite_export_payable_account',
-
-            /**
-             * Name of Card NVP for NetSuite custom vendors
-             */
-            NVP_NETSUITE_EXPORT_VENDOR: 'netsuite_export_vendor',
-
+         
             /**
              * Name of Card NVP for Xero custom export accounts
              */
@@ -3333,16 +3050,7 @@ const CONST = {
             NVP_FINANCIALFORCE_EXPORT_VENDOR: 'financialforce_export_vendor',
         },
         EXPORT_CARD_POLICY_TYPES: {
-            /**
-             * Name of Card NVP for NetSuite custom export accounts
-             */
-            NVP_NETSUITE_EXPORT_ACCOUNT_POLICY_ID: 'netsuite_export_payable_account_policy_id',
-
-            /**
-             * Name of Card NVP for NetSuite custom vendors
-             */
-            NVP_NETSUITE_EXPORT_VENDOR_POLICY_ID: 'netsuite_export_vendor_policy_id',
-
+          
             /**
              * Name of Card NVP for Xero custom export accounts
              */

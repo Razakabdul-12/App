@@ -395,29 +395,6 @@ function resetAccountingPreferredExporter(policyID: string, loginList: string[])
         });
     });
 
-    const exporter = policy?.connections?.netsuite?.options.config.exporter;
-    if (exporter && adminLoginList.includes(exporter)) {
-        optimisticData.push({
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: policyKey,
-            value: {
-                connections: {netsuite: {options: {config: {exporter: owner, pendingFields: {exporter: CONST.RED_BRICK_ROAD_PENDING_ACTION.UPDATE}}}}},
-            },
-        });
-        successData.push({
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: policyKey,
-            value: {
-                connections: {netsuite: {options: {config: {pendingFields: {exporter: null}}}}},
-            },
-        });
-        failureData.push({
-            onyxMethod: Onyx.METHOD.MERGE,
-            key: policyKey,
-            value: {connections: {netsuite: {options: {config: {exporter: policy?.connections?.netsuite?.options.config.exporter, pendingFields: {exporter: null}}}}}},
-        });
-    }
-
     return {optimisticData, successData, failureData};
 }
 

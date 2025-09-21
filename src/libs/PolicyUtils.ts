@@ -7,7 +7,6 @@ import type {SelectorType} from '@components/SelectionScreen';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import ROUTES from '@src/ROUTES';
-import INPUT_IDS from '@src/types/form/NetSuiteCustomFieldForm';
 import type {OnyxInputOrEntry, Policy, PolicyCategories, PolicyEmployeeList, PolicyTagLists, PolicyTags, Report, TaxRate} from '@src/types/onyx';
 import type {ErrorFields, PendingAction, PendingFields} from '@src/types/onyx/OnyxCommon';
 import type {
@@ -16,12 +15,6 @@ import type {
     Connections,
     CustomUnit,
     InvoiceItem,
-    NetSuiteAccount,
-    NetSuiteConnection,
-    NetSuiteCustomList,
-    NetSuiteCustomSegment,
-    NetSuiteTaxAccount,
-    NetSuiteVendor,
     PolicyConnectionSyncProgress,
     PolicyFeatureName,
     Rate,
@@ -898,226 +891,6 @@ function settingsPendingAction(settings?: string[], pendingFields?: PendingField
     return pendingFields[key];
 }
 
-function findSelectedVendorWithDefaultSelect(vendors: NetSuiteVendor[] | undefined, selectedVendorId: string | undefined) {
-    const selectedVendor = (vendors ?? []).find(({id}) => id === selectedVendorId);
-    return selectedVendor ?? vendors?.[0] ?? undefined;
-}
-
-function findSelectedSageVendorWithDefaultSelect(vendors: SageIntacctDataElementWithValue[] | SageIntacctDataElement[] | undefined, selectedVendorID: string | undefined) {
-    const selectedVendor = (vendors ?? []).find(({id}) => id === selectedVendorID);
-    return selectedVendor ?? vendors?.[0] ?? undefined;
-}
-
-function findSelectedBankAccountWithDefaultSelect(accounts: NetSuiteAccount[] | undefined, selectedBankAccountId: string | undefined) {
-    const selectedBankAccount = (accounts ?? []).find(({id}) => id === selectedBankAccountId);
-    return selectedBankAccount ?? accounts?.[0] ?? undefined;
-}
-
-function findSelectedInvoiceItemWithDefaultSelect(invoiceItems: InvoiceItem[] | undefined, selectedItemId: string | undefined) {
-    const selectedInvoiceItem = (invoiceItems ?? []).find(({id}) => id === selectedItemId);
-    return selectedInvoiceItem ?? invoiceItems?.[0] ?? undefined;
-}
-
-function findSelectedTaxAccountWithDefaultSelect(taxAccounts: NetSuiteTaxAccount[] | undefined, selectedAccountId: string | undefined) {
-    const selectedTaxAccount = (taxAccounts ?? []).find(({externalID}) => externalID === selectedAccountId);
-    return selectedTaxAccount ?? taxAccounts?.[0] ?? undefined;
-}
-
-function getNetSuiteVendorOptions(policy: Policy | undefined, selectedVendorId: string | undefined): SelectorType[] {
-    const vendors = policy?.connections?.netsuite?.options.data.vendors;
-
-    const selectedVendor = findSelectedVendorWithDefaultSelect(vendors, selectedVendorId);
-
-    return (vendors ?? []).map(({id, name}) => ({
-        value: id,
-        text: name,
-        keyForList: id,
-        isSelected: selectedVendor?.id === id,
-    }));
-}
-
-function getNetSuitePayableAccountOptions(policy: Policy | undefined, selectedBankAccountId: string | undefined): SelectorType[] {
-    const payableAccounts = policy?.connections?.netsuite?.options.data.payableList;
-
-    const selectedPayableAccount = findSelectedBankAccountWithDefaultSelect(payableAccounts, selectedBankAccountId);
-
-    return (payableAccounts ?? []).map(({id, name}) => ({
-        value: id,
-        text: name,
-        keyForList: id,
-        isSelected: selectedPayableAccount?.id === id,
-    }));
-}
-
-function getNetSuiteReceivableAccountOptions(policy: Policy | undefined, selectedBankAccountId: string | undefined): SelectorType[] {
-    const receivableAccounts = policy?.connections?.netsuite?.options.data.receivableList;
-
-    const selectedReceivableAccount = findSelectedBankAccountWithDefaultSelect(receivableAccounts, selectedBankAccountId);
-
-    return (receivableAccounts ?? []).map(({id, name}) => ({
-        value: id,
-        text: name,
-        keyForList: id,
-        isSelected: selectedReceivableAccount?.id === id,
-    }));
-}
-
-function getNetSuiteInvoiceItemOptions(policy: Policy | undefined, selectedItemId: string | undefined): SelectorType[] {
-    const invoiceItems = policy?.connections?.netsuite?.options.data.items;
-
-    const selectedInvoiceItem = findSelectedInvoiceItemWithDefaultSelect(invoiceItems, selectedItemId);
-
-    return (invoiceItems ?? []).map(({id, name}) => ({
-        value: id,
-        text: name,
-        keyForList: id,
-        isSelected: selectedInvoiceItem?.id === id,
-    }));
-}
-
-function getNetSuiteTaxAccountOptions(policy: Policy | undefined, subsidiaryCountry?: string, selectedAccountId?: string): SelectorType[] {
-    const taxAccounts = policy?.connections?.netsuite?.options.data.taxAccountsList;
-    const accountOptions = (taxAccounts ?? []).filter(({country}) => country === subsidiaryCountry);
-
-    const selectedTaxAccount = findSelectedTaxAccountWithDefaultSelect(accountOptions, selectedAccountId);
-
-    return accountOptions.map(({externalID, name}) => ({
-        value: externalID,
-        text: name,
-        keyForList: externalID,
-        isSelected: selectedTaxAccount?.externalID === externalID,
-    }));
-}
-
-function canUseTaxNetSuite(canUseNetSuiteUSATax?: boolean, subsidiaryCountry?: string) {
-    return !!canUseNetSuiteUSATax || CONST.NETSUITE_TAX_COUNTRIES.includes(subsidiaryCountry ?? '');
-}
-
-function canUseProvincialTaxNetSuite(subsidiaryCountry?: string) {
-    return subsidiaryCountry === '_canada';
-}
-
-function getFilteredReimbursableAccountOptions(payableAccounts: NetSuiteAccount[] | undefined) {
-    return (payableAccounts ?? []).filter(({type}) => type === CONST.NETSUITE_ACCOUNT_TYPE.BANK || type === CONST.NETSUITE_ACCOUNT_TYPE.CREDIT_CARD);
-}
-
-function getNetSuiteReimbursableAccountOptions(policy: Policy | undefined, selectedBankAccountId: string | undefined): SelectorType[] {
-    const payableAccounts = policy?.connections?.netsuite?.options.data.payableList;
-    const accountOptions = getFilteredReimbursableAccountOptions(payableAccounts);
-
-    const selectedPayableAccount = findSelectedBankAccountWithDefaultSelect(accountOptions, selectedBankAccountId);
-
-    return accountOptions.map(({id, name}) => ({
-        value: id,
-        text: name,
-        keyForList: id,
-        isSelected: selectedPayableAccount?.id === id,
-    }));
-}
-
-function getFilteredCollectionAccountOptions(payableAccounts: NetSuiteAccount[] | undefined) {
-    return (payableAccounts ?? []).filter(({type}) => type === CONST.NETSUITE_ACCOUNT_TYPE.BANK);
-}
-
-function getNetSuiteCollectionAccountOptions(policy: Policy | undefined, selectedBankAccountId: string | undefined): SelectorType[] {
-    const payableAccounts = policy?.connections?.netsuite?.options.data.payableList;
-    const accountOptions = getFilteredCollectionAccountOptions(payableAccounts);
-
-    const selectedPayableAccount = findSelectedBankAccountWithDefaultSelect(accountOptions, selectedBankAccountId);
-
-    return accountOptions.map(({id, name}) => ({
-        value: id,
-        text: name,
-        keyForList: id,
-        isSelected: selectedPayableAccount?.id === id,
-    }));
-}
-
-function getFilteredApprovalAccountOptions(payableAccounts: NetSuiteAccount[] | undefined) {
-    return (payableAccounts ?? []).filter(({type}) => type === CONST.NETSUITE_ACCOUNT_TYPE.ACCOUNTS_PAYABLE);
-}
-
-function getNetSuiteApprovalAccountOptions(policy: Policy | undefined, selectedBankAccountId: string | undefined): SelectorType[] {
-    const payableAccounts = policy?.connections?.netsuite?.options.data.payableList;
-    const defaultApprovalAccount: NetSuiteAccount = {
-        id: CONST.NETSUITE_APPROVAL_ACCOUNT_DEFAULT,
-        name: translateLocal('workspace.netsuite.advancedConfig.defaultApprovalAccount'),
-        type: CONST.NETSUITE_ACCOUNT_TYPE.ACCOUNTS_PAYABLE,
-    };
-    const accountOptions = getFilteredApprovalAccountOptions([defaultApprovalAccount].concat(payableAccounts ?? []));
-
-    const selectedPayableAccount = findSelectedBankAccountWithDefaultSelect(accountOptions, selectedBankAccountId);
-
-    return accountOptions.map(({id, name}) => ({
-        value: id,
-        text: name,
-        keyForList: id,
-        isSelected: selectedPayableAccount?.id === id,
-    }));
-}
-
-function getCustomersOrJobsLabelNetSuite(policy: Policy | undefined, translate: LocaleContextProps['translate']): string | undefined {
-    const importMapping = policy?.connections?.netsuite?.options?.config?.syncOptions?.mapping;
-    if (!importMapping?.customers && !importMapping?.jobs) {
-        return undefined;
-    }
-    const importFields: string[] = [];
-    const importCustomer = importMapping?.customers ?? CONST.INTEGRATION_ENTITY_MAP_TYPES.NETSUITE_DEFAULT;
-    const importJobs = importMapping?.jobs ?? CONST.INTEGRATION_ENTITY_MAP_TYPES.NETSUITE_DEFAULT;
-
-    if (importCustomer === CONST.INTEGRATION_ENTITY_MAP_TYPES.NETSUITE_DEFAULT && importJobs === CONST.INTEGRATION_ENTITY_MAP_TYPES.NETSUITE_DEFAULT) {
-        return undefined;
-    }
-
-    const importedValue = importMapping?.customers !== CONST.INTEGRATION_ENTITY_MAP_TYPES.NETSUITE_DEFAULT ? importCustomer : importJobs;
-
-    if (importCustomer !== CONST.INTEGRATION_ENTITY_MAP_TYPES.NETSUITE_DEFAULT) {
-        importFields.push(translate('workspace.netsuite.import.customersOrJobs.customers'));
-    }
-
-    if (importJobs !== CONST.INTEGRATION_ENTITY_MAP_TYPES.NETSUITE_DEFAULT) {
-        importFields.push(translate('workspace.netsuite.import.customersOrJobs.jobs'));
-    }
-
-    const importedValueLabel = translate(`workspace.netsuite.import.customersOrJobs.label`, {
-        importFields,
-        importType: translate(`workspace.accounting.importTypes.${importedValue}`).toLowerCase(),
-    });
-    return importedValueLabel.charAt(0).toUpperCase() + importedValueLabel.slice(1);
-}
-
-function getNetSuiteImportCustomFieldLabel(
-    policy: Policy | undefined,
-    importField: ValueOf<typeof CONST.NETSUITE_CONFIG.IMPORT_CUSTOM_FIELDS>,
-    translate: LocaleContextProps['translate'],
-    localeCompare: LocaleContextProps['localeCompare'],
-): string | undefined {
-    const fieldData = policy?.connections?.netsuite?.options?.config.syncOptions?.[importField] ?? [];
-    if (fieldData.length === 0) {
-        return undefined;
-    }
-
-    const mappingSet = new Set(fieldData.map((item) => item.mapping));
-    const importedTypes = Array.from(mappingSet)
-        .sort((a, b) => localeCompare(b, a))
-        .map((mapping) => translate(`workspace.netsuite.import.importTypes.${mapping !== '' ? mapping : 'TAG'}.label`).toLowerCase());
-    return translate(`workspace.netsuite.import.importCustomFields.label`, {importedTypes});
-}
-
-function isNetSuiteCustomSegmentRecord(customField: NetSuiteCustomList | NetSuiteCustomSegment): boolean {
-    return 'segmentName' in customField;
-}
-
-function getNameFromNetSuiteCustomField(customField: NetSuiteCustomList | NetSuiteCustomSegment): string {
-    return 'segmentName' in customField ? customField.segmentName : customField.listName;
-}
-
-function isNetSuiteCustomFieldPropertyEditable(customField: NetSuiteCustomList | NetSuiteCustomSegment, fieldName: string) {
-    const fieldsAllowedToEdit = isNetSuiteCustomSegmentRecord(customField) ? [INPUT_IDS.SEGMENT_NAME, INPUT_IDS.INTERNAL_ID, INPUT_IDS.SCRIPT_ID, INPUT_IDS.MAPPING] : [INPUT_IDS.MAPPING];
-    const fieldKey = fieldName as keyof typeof customField;
-    return fieldsAllowedToEdit.includes(fieldKey);
-}
-
 function getIntegrationLastSuccessfulDate(
     getLocalDateFromDatetime: LocaleContextProps['getLocalDateFromDatetime'],
     connection?: Connections[keyof Connections],
@@ -1127,11 +900,7 @@ function getIntegrationLastSuccessfulDate(
     if (!connection) {
         return undefined;
     }
-    if ((connection as NetSuiteConnection)?.lastSyncDate) {
-        syncSuccessfulDate = (connection as NetSuiteConnection)?.lastSyncDate;
-    } else {
-        syncSuccessfulDate = (connection as ConnectionWithLastSyncData)?.lastSync?.successfulDate;
-    }
+    syncSuccessfulDate = (connection as ConnectionWithLastSyncData)?.lastSync?.successfulDate;
 
     const connectionSyncTimeStamp = getLocalDateFromDatetime(connectionSyncProgress?.timestamp).toISOString();
 
@@ -1458,7 +1227,6 @@ function isPreferredExporter(policy: Policy) {
     const user = getCurrentUserEmail();
     const exporters = [
         policy.connections?.intacct?.config?.export?.exporter,
-        policy.connections?.netsuite?.options?.config?.exporter,
         policy.connections?.quickbooksDesktop?.config?.export?.exporter,
         policy.connections?.xero?.config?.export?.exporter,
     ];
@@ -1554,25 +1322,8 @@ export {
     findCurrentXeroOrganization,
     getCurrentXeroOrganizationName,
     getXeroBankAccounts,
-    findSelectedVendorWithDefaultSelect,
-    findSelectedBankAccountWithDefaultSelect,
-    findSelectedInvoiceItemWithDefaultSelect,
-    findSelectedTaxAccountWithDefaultSelect,
     findSelectedSageVendorWithDefaultSelect,
     hasPolicyWithXeroConnection,
-    getNetSuiteVendorOptions,
-    canUseTaxNetSuite,
-    canUseProvincialTaxNetSuite,
-    getFilteredReimbursableAccountOptions,
-    getNetSuiteReimbursableAccountOptions,
-    getFilteredCollectionAccountOptions,
-    getNetSuiteCollectionAccountOptions,
-    getFilteredApprovalAccountOptions,
-    getNetSuiteApprovalAccountOptions,
-    getNetSuitePayableAccountOptions,
-    getNetSuiteReceivableAccountOptions,
-    getNetSuiteInvoiceItemOptions,
-    getNetSuiteTaxAccountOptions,
     getSageIntacctVendors,
     getSageIntacctNonReimbursableActiveDefaultVendor,
     getSageIntacctCreditCards,
@@ -1586,15 +1337,11 @@ export {
     goBackWhenEnableFeature,
     getIntegrationLastSuccessfulDate,
     getCurrentConnectionName,
-    getCustomersOrJobsLabelNetSuite,
     getDefaultApprover,
     getApprovalWorkflow,
     getReimburserAccountID,
     isControlPolicy,
     isCollectPolicy,
-    isNetSuiteCustomSegmentRecord,
-    getNameFromNetSuiteCustomField,
-    isNetSuiteCustomFieldPropertyEditable,
     getCurrentSageIntacctEntityName,
     hasNoPolicyOtherThanPersonalType,
     areSettingsInErrorFields,
@@ -1610,7 +1357,6 @@ export {
     hasUnsupportedIntegration,
     hasSupportedOnlyOnOldDotIntegration,
     getWorkflowApprovalsUnavailable,
-    getNetSuiteImportCustomFieldLabel,
     getUserFriendlyWorkspaceType,
     isPolicyAccessible,
     hasOtherControlWorkspaces,

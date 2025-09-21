@@ -3784,317 +3784,6 @@ const translations = {
                 },
             },
         },
-        netsuite: {
-            subsidiary: 'Dochteronderneming',
-            subsidiarySelectDescription: 'Kies de dochteronderneming in NetSuite waarvan je gegevens wilt importeren.',
-            exportDescription: 'Configureer hoe Expensify-gegevens naar NetSuite worden geëxporteerd.',
-            exportInvoices: 'Facturen exporteren naar',
-            journalEntriesTaxPostingAccount: 'Journaalposten belastingboekhoudrekening',
-            journalEntriesProvTaxPostingAccount: 'Journaalposten provinciale belastingboekingsrekening',
-            foreignCurrencyAmount: 'Buitenlandse valuta bedrag exporteren',
-            exportToNextOpenPeriod: 'Exporteer naar de volgende open periode',
-            nonReimbursableJournalPostingAccount: 'Niet-vergoedbare journaalboekingrekening',
-            reimbursableJournalPostingAccount: 'Vergoedbaar journaalboekingsaccount',
-            journalPostingPreference: {
-                label: 'Voorkeur voor het boeken van journaalposten',
-                values: {
-                    [CONST.NETSUITE_JOURNAL_POSTING_PREFERENCE.JOURNALS_POSTING_INDIVIDUAL_LINE]: 'Enkele, gespecificeerde invoer voor elk rapport',
-                    [CONST.NETSUITE_JOURNAL_POSTING_PREFERENCE.JOURNALS_POSTING_TOTAL_LINE]: 'Enkele invoer voor elke uitgave',
-                },
-            },
-            invoiceItem: {
-                label: 'Factuuritem',
-                values: {
-                    [CONST.NETSUITE_INVOICE_ITEM_PREFERENCE.CREATE]: {
-                        label: 'Maak er een voor mij.',
-                        description: 'We zullen een "Expensify factuurregelitem" voor je aanmaken bij export (als er nog geen bestaat).',
-                    },
-                    [CONST.NETSUITE_INVOICE_ITEM_PREFERENCE.SELECT]: {
-                        label: 'Bestaande selecteren',
-                        description: 'We koppelen facturen van Expensify aan het hieronder geselecteerde item.',
-                    },
-                },
-            },
-            exportDate: {
-                label: 'Exportdatum',
-                description: 'Gebruik deze datum bij het exporteren van rapporten naar NetSuite.',
-                values: {
-                    [CONST.NETSUITE_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: 'Datum van laatste uitgave',
-                        description: 'Datum van de meest recente uitgave op het rapport.',
-                    },
-                    [CONST.NETSUITE_EXPORT_DATE.EXPORTED]: {
-                        label: 'Exportdatum',
-                        description: 'Datum waarop het rapport is geëxporteerd naar NetSuite.',
-                    },
-                    [CONST.NETSUITE_EXPORT_DATE.SUBMITTED]: {
-                        label: 'Ingediende datum',
-                        description: 'Datum waarop het rapport ter goedkeuring is ingediend.',
-                    },
-                },
-            },
-            exportDestination: {
-                values: {
-                    [CONST.NETSUITE_EXPORT_DESTINATION.EXPENSE_REPORT]: {
-                        label: 'Onkostendeclaraties',
-                        reimbursableDescription: "Uit eigen zak gemaakte uitgaven worden geëxporteerd als onkostennota's naar NetSuite.",
-                        nonReimbursableDescription: "Bedrijfskosten op de kaart worden geëxporteerd als onkostennota's naar NetSuite.",
-                    },
-                    [CONST.NETSUITE_EXPORT_DESTINATION.VENDOR_BILL]: {
-                        label: 'Leveranciersfacturen',
-                        reimbursableDescription:
-                            'Out-of-pocket expenses will export as bills payable to the NetSuite vendor specified below.\n' +
-                            '\n' +
-                            'If you’d like to set a specific vendor for each card, go to *Settings > Domains > Company Cards*.',
-                        nonReimbursableDescription:
-                            'Company card expenses will export as bills payable to the NetSuite vendor specified below.\n' +
-                            '\n' +
-                            'If you’d like to set a specific vendor for each card, go to *Settings > Domains > Company Cards*.',
-                    },
-                    [CONST.NETSUITE_EXPORT_DESTINATION.JOURNAL_ENTRY]: {
-                        label: 'Journaalposten',
-                        reimbursableDescription:
-                            'Out-of-pocket expenses will export as journal entries to the NetSuite account specified below.\n' +
-                            '\n' +
-                            'If you’d like to set a specific vendor for each card, go to *Settings > Domains > Company Cards*.',
-                        nonReimbursableDescription:
-                            'Company card expenses will export as journal entries to the NetSuite account specified below.\n' +
-                            '\n' +
-                            'If you’d like to set a specific vendor for each card, go to *Settings > Domains > Company Cards*.',
-                    },
-                },
-            },
-            advancedConfig: {
-                autoSyncDescription: 'Expensify zal elke dag automatisch synchroniseren met NetSuite.',
-                reimbursedReportsDescription:
-                    'Telkens wanneer een rapport wordt betaald met Expensify ACH, wordt de overeenkomstige factuurbetaling aangemaakt in het NetSuite-account hieronder.',
-                reimbursementsAccount: 'Vergoedingenrekening',
-                reimbursementsAccountDescription: 'Kies de bankrekening die je wilt gebruiken voor terugbetalingen, en we zullen de bijbehorende betaling in NetSuite aanmaken.',
-                collectionsAccount: 'Incasso-account',
-                collectionsAccountDescription: 'Zodra een factuur in Expensify als betaald is gemarkeerd en naar NetSuite is geëxporteerd, zal deze verschijnen op het onderstaande account.',
-                approvalAccount: 'A/P goedkeuringsaccount',
-                approvalAccountDescription:
-                    'Kies de account waartegen transacties in NetSuite worden goedgekeurd. Als je terugbetaalde rapporten synchroniseert, is dit ook de account waartegen betalingsopdrachten worden aangemaakt.',
-                defaultApprovalAccount: 'NetSuite standaardinstelling',
-                inviteEmployees: 'Nodig werknemers uit en stel goedkeuringen in',
-                inviteEmployeesDescription:
-                    'Importeer NetSuite-medewerkersrecords en nodig medewerkers uit voor deze werkruimte. Uw goedkeuringsworkflow wordt standaard ingesteld op goedkeuring door de manager en kan verder worden geconfigureerd op de pagina *Leden*.',
-                autoCreateEntities: 'Automatisch medewerkers/leveranciers aanmaken',
-                enableCategories: 'Ingeschakelde nieuw geïmporteerde categorieën',
-                customFormID: 'Aangepaste formulier-ID',
-                customFormIDDescription:
-                    'Standaard zal Expensify boekingen aanmaken met behulp van het voorkeursformulier voor transacties dat is ingesteld in NetSuite. U kunt echter ook een specifiek transactieformulier aanwijzen dat moet worden gebruikt.',
-                customFormIDReimbursable: 'Uit eigen zak gemaakte uitgave',
-                customFormIDNonReimbursable: 'Bedrijfskostenkaartuitgave',
-                exportReportsTo: {
-                    label: 'Goedkeuringsniveau van onkostendeclaratie',
-                    description:
-                        'Zodra een onkostennota is goedgekeurd in Expensify en geëxporteerd naar NetSuite, kun je een extra goedkeuringsniveau instellen in NetSuite voordat je deze boekt.',
-                    values: {
-                        [CONST.NETSUITE_REPORTS_APPROVAL_LEVEL.REPORTS_APPROVED_NONE]: 'NetSuite standaardvoorkeur',
-                        [CONST.NETSUITE_REPORTS_APPROVAL_LEVEL.REPORTS_SUPERVISOR_APPROVED]: 'Alleen door supervisor goedgekeurd',
-                        [CONST.NETSUITE_REPORTS_APPROVAL_LEVEL.REPORTS_ACCOUNTING_APPROVED]: 'Alleen boekhouding goedgekeurd',
-                        [CONST.NETSUITE_REPORTS_APPROVAL_LEVEL.REPORTS_APPROVED_BOTH]: 'Supervisor en boekhouding goedgekeurd',
-                    },
-                },
-                accountingMethods: {
-                    label: 'Wanneer exporteren',
-                    description: 'Kies wanneer u de uitgaven wilt exporteren:',
-                    values: {
-                        [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Accrual',
-                        [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Contant',
-                    },
-                    alternateText: {
-                        [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Uit eigen zak gemaakte uitgaven worden geëxporteerd wanneer ze definitief zijn goedgekeurd.',
-                        [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Uit eigen zak gemaakte uitgaven worden geëxporteerd wanneer ze zijn betaald.',
-                    },
-                },
-                exportVendorBillsTo: {
-                    label: 'Goedkeuringsniveau leveranciersfactuur',
-                    description:
-                        'Zodra een leveranciersfactuur is goedgekeurd in Expensify en geëxporteerd naar NetSuite, kun je een extra goedkeuringsniveau instellen in NetSuite voordat deze wordt geboekt.',
-                    values: {
-                        [CONST.NETSUITE_VENDOR_BILLS_APPROVAL_LEVEL.VENDOR_BILLS_APPROVED_NONE]: 'NetSuite standaardvoorkeur',
-                        [CONST.NETSUITE_VENDOR_BILLS_APPROVAL_LEVEL.VENDOR_BILLS_APPROVAL_PENDING]: 'In afwachting van goedkeuring',
-                        [CONST.NETSUITE_VENDOR_BILLS_APPROVAL_LEVEL.VENDOR_BILLS_APPROVED]: 'Goedgekeurd voor plaatsing',
-                    },
-                },
-                exportJournalsTo: {
-                    label: 'Boekhoudkundige goedkeuringsniveau',
-                    description:
-                        'Zodra een journaalpost is goedgekeurd in Expensify en geëxporteerd naar NetSuite, kun je een extra goedkeuringsniveau instellen in NetSuite voordat je deze boekt.',
-                    values: {
-                        [CONST.NETSUITE_JOURNALS_APPROVAL_LEVEL.JOURNALS_APPROVED_NONE]: 'NetSuite standaardvoorkeur',
-                        [CONST.NETSUITE_JOURNALS_APPROVAL_LEVEL.JOURNALS_APPROVAL_PENDING]: 'In afwachting van goedkeuring',
-                        [CONST.NETSUITE_JOURNALS_APPROVAL_LEVEL.JOURNALS_APPROVED]: 'Goedgekeurd voor plaatsing',
-                    },
-                },
-                error: {
-                    customFormID: 'Voer een geldige numerieke aangepaste formulier-ID in',
-                },
-            },
-            noAccountsFound: 'Geen accounts gevonden',
-            noAccountsFoundDescription: 'Voeg het account toe in NetSuite en synchroniseer de verbinding opnieuw.',
-            noVendorsFound: 'Geen leveranciers gevonden',
-            noVendorsFoundDescription: 'Voeg alstublieft leveranciers toe in NetSuite en synchroniseer de verbinding opnieuw.',
-            noItemsFound: 'Geen factuuritems gevonden',
-            noItemsFoundDescription: 'Voeg alstublieft factuuritems toe in NetSuite en synchroniseer de verbinding opnieuw.',
-            noSubsidiariesFound: 'Geen dochterondernemingen gevonden',
-            noSubsidiariesFoundDescription: 'Voeg alstublieft een dochteronderneming toe in NetSuite en synchroniseer de verbinding opnieuw.',
-            tokenInput: {
-                title: 'NetSuite setup',
-                formSteps: {
-                    installBundle: {
-                        title: 'Installeer het Expensify-pakket',
-                        description: 'In NetSuite, ga naar *Customization > SuiteBundler > Search & Install Bundles* > zoek naar "Expensify" > installeer de bundel.',
-                    },
-                    enableTokenAuthentication: {
-                        title: 'Token-gebaseerde authenticatie inschakelen',
-                        description: 'In NetSuite, ga naar *Setup > Company > Enable Features > SuiteCloud* > schakel *token-based authentication* in.',
-                    },
-                    enableSoapServices: {
-                        title: 'SOAP-webservices inschakelen',
-                        description: 'In NetSuite, ga naar *Setup > Company > Enable Features > SuiteCloud* > schakel *SOAP Web Services* in.',
-                    },
-                    createAccessToken: {
-                        title: 'Maak een toegangstoken aan',
-                        description:
-                            'In NetSuite, ga naar *Setup > Users/Roles > Access Tokens* > maak een toegangstoken aan voor de "Expensify" app en de rol "Expensify Integration" of "Administrator".\n\n*Belangrijk:* Zorg ervoor dat je de *Token ID* en *Token Secret* van deze stap opslaat. Je hebt deze nodig voor de volgende stap.',
-                    },
-                    enterCredentials: {
-                        title: 'Voer uw NetSuite-inloggegevens in',
-                        formInputs: {
-                            netSuiteAccountID: 'NetSuite Account ID',
-                            netSuiteTokenID: 'Token-ID',
-                            netSuiteTokenSecret: 'Token Geheim',
-                        },
-                        netSuiteAccountIDDescription: 'Ga in NetSuite naar *Setup > Integration > SOAP Web Services Preferences*.',
-                    },
-                },
-            },
-            import: {
-                expenseCategories: 'Uitgavecategorieën',
-                expenseCategoriesDescription: 'Uw NetSuite-uitgavencategorieën worden in Expensify geïmporteerd als categorieën.',
-                crossSubsidiaryCustomers: 'Klanten/projecten tussen dochterondernemingen',
-                importFields: {
-                    departments: {
-                        title: 'Afdelingen',
-                        subtitle: 'Kies hoe je de NetSuite *afdelingen* in Expensify wilt beheren.',
-                    },
-                    classes: {
-                        title: 'Klassen',
-                        subtitle: 'Kies hoe om te gaan met *classes* in Expensify.',
-                    },
-                    locations: {
-                        title: 'Locaties',
-                        subtitle: 'Kies hoe om te gaan met *locaties* in Expensify.',
-                    },
-                },
-                customersOrJobs: {
-                    title: 'Klanten/projecten',
-                    subtitle: 'Kies hoe je NetSuite *klanten* en *projecten* in Expensify wilt beheren.',
-                    importCustomers: 'Klanten importeren',
-                    importJobs: 'Projecten importeren',
-                    customers: 'klanten',
-                    jobs: 'projecten',
-                    label: ({importFields, importType}: CustomersOrJobsLabelParams) => `${importFields.join('en')}, ${importType}`,
-                },
-                importTaxDescription: 'Importeer belastinggroepen uit NetSuite.',
-                importCustomFields: {
-                    chooseOptionBelow: 'Kies een optie hieronder:',
-                    label: ({importedTypes}: ImportedTypesParams) => `Geïmporteerd als ${importedTypes.join('en')}`,
-                    requiredFieldError: ({fieldName}: RequiredFieldParams) => `Voer alstublieft de ${fieldName} in.`,
-                    customSegments: {
-                        title: 'Aangepaste segmenten/records',
-                        addText: 'Aangepast segment/record toevoegen',
-                        recordTitle: 'Aangepast segment/record',
-                        helpLink: CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS,
-                        helpLinkText: 'Bekijk gedetailleerde instructies',
-                        helpText: 'over het configureren van aangepaste segmenten/records.',
-                        emptyTitle: 'Een aangepast segment of aangepast record toevoegen',
-                        fields: {
-                            segmentName: 'Naam',
-                            internalID: 'Interne ID',
-                            scriptID: 'Script-ID',
-                            customRecordScriptID: 'Transactiekolom-ID',
-                            mapping: 'Weergegeven als',
-                        },
-                        removeTitle: 'Aangepast segment/record verwijderen',
-                        removePrompt: 'Weet je zeker dat je dit aangepaste segment/record wilt verwijderen?',
-                        addForm: {
-                            customSegmentName: 'aangepaste segmentnaam',
-                            customRecordName: 'aangepaste recordnaam',
-                            segmentTitle: 'Aangepast segment',
-                            customSegmentAddTitle: 'Aangepast segment toevoegen',
-                            customRecordAddTitle: 'Aangepast record toevoegen',
-                            recordTitle: 'Aangepast record',
-                            segmentRecordType: 'Wilt u een aangepast segment of een aangepast record toevoegen?',
-                            customSegmentNameTitle: 'Wat is de naam van het aangepaste segment?',
-                            customRecordNameTitle: 'Wat is de naam van het aangepaste record?',
-                            customSegmentNameFooter: `U kunt aangepaste segmentnamen vinden in NetSuite onder *Customizations > Links, Records & Fields > Custom Segments* pagina.\n\n_Voor meer gedetailleerde instructies, [bezoek onze help-site](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS})_.`,
-                            customRecordNameFooter: `U kunt aangepaste recordnamen in NetSuite vinden door "Transaction Column Field" in de globale zoekopdracht in te voeren.\n\n_Voor meer gedetailleerde instructies, [bezoek onze help site](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS})_.`,
-                            customSegmentInternalIDTitle: 'Wat is het interne ID?',
-                            customSegmentInternalIDFooter: `Zorg er eerst voor dat je interne ID's hebt ingeschakeld in NetSuite onder *Home > Set Preferences > Show Internal ID.*\n\nJe kunt interne ID's van aangepaste segmenten vinden in NetSuite onder:\n\n1. *Customization > Lists, Records, & Fields > Custom Segments*.\n2. Klik op een aangepast segment.\n3. Klik op de hyperlink naast *Custom Record Type*.\n4. Vind de interne ID in de tabel onderaan.\n\n_Voor meer gedetailleerde instructies, [bezoek onze help site](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_LISTS})_.`,
-                            customRecordInternalIDFooter: `Je kunt interne ID's van aangepaste records in NetSuite vinden door de volgende stappen te volgen:\n\n1. Voer "Transaction Line Fields" in de globale zoekopdracht in.\n2. Klik op een aangepast record.\n3. Zoek de interne ID aan de linkerkant.\n\n_Voor meer gedetailleerde instructies, [bezoek onze help-site](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS})_.`,
-                            customSegmentScriptIDTitle: 'Wat is het script-ID?',
-                            customSegmentScriptIDFooter: `U kunt aangepaste segment script-ID's vinden in NetSuite onder:\n\n1. *Customization > Lists, Records, & Fields > Custom Segments*.\n2. Klik op een aangepast segment.\n3. Klik op het tabblad *Application and Sourcing* onderaan, en dan:\n    a. Als u het aangepaste segment als een *tag* (op het regelitemniveau) in Expensify wilt weergeven, klikt u op het sub-tabblad *Transaction Columns* en gebruikt u de *Field ID*.\n    b. Als u het aangepaste segment als een *rapportveld* (op het rapportniveau) in Expensify wilt weergeven, klikt u op het sub-tabblad *Transactions* en gebruikt u de *Field ID*.\n\n_Voor meer gedetailleerde instructies, [bezoek onze help site](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_LISTS})_.`,
-                            customRecordScriptIDTitle: 'Wat is het transactie kolom ID?',
-                            customRecordScriptIDFooter: `U kunt aangepaste recordscript-ID's in NetSuite vinden onder:\n\n1. Voer "Transaction Line Fields" in in de globale zoekopdracht.\n2. Klik op een aangepast record.\n3. Zoek de script-ID aan de linkerkant.\n\n_Voor meer gedetailleerde instructies, [bezoek onze help-site](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS})_.`,
-                            customSegmentMappingTitle: 'Hoe moet dit aangepaste segment worden weergegeven in Expensify?',
-                            customRecordMappingTitle: 'Hoe moet dit aangepaste record worden weergegeven in Expensify?',
-                        },
-                        errors: {
-                            uniqueFieldError: ({fieldName}: RequiredFieldParams) => `Een aangepast segment/record met deze ${fieldName?.toLowerCase()} bestaat al.`,
-                        },
-                    },
-                    customLists: {
-                        title: 'Aangepaste lijsten',
-                        addText: 'Aangepaste lijst toevoegen',
-                        recordTitle: 'Aangepaste lijst',
-                        helpLink: CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_LISTS,
-                        helpLinkText: 'Bekijk gedetailleerde instructies',
-                        helpText: 'over het configureren van aangepaste lijsten.',
-                        emptyTitle: 'Een aangepaste lijst toevoegen',
-                        fields: {
-                            listName: 'Naam',
-                            internalID: 'Interne ID',
-                            transactionFieldID: 'Transactieveld-ID',
-                            mapping: 'Weergegeven als',
-                        },
-                        removeTitle: 'Aangepaste lijst verwijderen',
-                        removePrompt: 'Weet je zeker dat je deze aangepaste lijst wilt verwijderen?',
-                        addForm: {
-                            listNameTitle: 'Kies een aangepaste lijst',
-                            transactionFieldIDTitle: 'Wat is het transactieveld-ID?',
-                            transactionFieldIDFooter: `U kunt transactieveld-ID's in NetSuite vinden door de volgende stappen te volgen:\n\n1. Voer "Transaction Line Fields" in de globale zoekopdracht in.\n2. Klik op een aangepaste lijst.\n3. Zoek de transactieveld-ID aan de linkerkant.\n\n_Voor meer gedetailleerde instructies, [bezoek onze help-site](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_LISTS})_.`,
-                            mappingTitle: 'Hoe moet deze aangepaste lijst worden weergegeven in Expensify?',
-                        },
-                        errors: {
-                            uniqueTransactionFieldIDError: `Er bestaat al een aangepaste lijst met dit transactieveld-ID.`,
-                        },
-                    },
-                },
-                importTypes: {
-                    [CONST.INTEGRATION_ENTITY_MAP_TYPES.NETSUITE_DEFAULT]: {
-                        label: 'NetSuite medewerker standaardwaarde',
-                        description: 'Niet geïmporteerd in Expensify, toegepast bij exporteren',
-                        footerContent: ({importField}: ImportFieldParams) =>
-                            `Als je ${importField} in NetSuite gebruikt, passen we de standaardinstelling toe die op de werknemersrecord is ingesteld bij export naar Expense Report of Journal Entry.`,
-                    },
-                    [CONST.INTEGRATION_ENTITY_MAP_TYPES.TAG]: {
-                        label: 'Tags',
-                        description: 'Regelniveau',
-                        footerContent: ({importField}: ImportFieldParams) =>
-                            `${startCase(importField)} zal selecteerbaar zijn voor elke afzonderlijke uitgave op het rapport van een werknemer.`,
-                    },
-                    [CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD]: {
-                        label: 'Rapportvelden',
-                        description: 'Rapportniveau',
-                        footerContent: ({importField}: ImportFieldParams) => `${startCase(importField)} selectie zal van toepassing zijn op alle uitgaven in het rapport van een werknemer.`,
-                    },
-                },
-            },
-        },
         intacct: {
             sageIntacctSetup: 'Sage Intacct setup',
             prerequisitesTitle: 'Voordat je verbinding maakt...',
@@ -4817,7 +4506,6 @@ const translations = {
             subtitle: 'Maak verbinding met uw boekhoudsysteem om transacties te coderen met uw rekeningschema, betalingen automatisch te matchen en uw financiën synchroon te houden.',
             qbd: 'QuickBooks Desktop',
             xero: 'Xero',
-            netsuite: 'NetSuite',
             intacct: 'Sage Intacct',
             sap: 'SAP',
             oracle: 'Oracle',
@@ -4830,8 +4518,6 @@ const translations = {
                 switch (connectionName) {
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Xero';
-                    case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
-                        return 'NetSuite';
                     case CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT:
                         return 'Sage Intacct';
                     default: {
@@ -4862,8 +4548,6 @@ const translations = {
                 switch (connectionName) {
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Kan geen verbinding maken met Xero';
-                    case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
-                        return 'Kan geen verbinding maken met NetSuite';
                     case CONST.POLICY.CONNECTIONS.NAME.QBD:
                         return 'Kan geen verbinding maken met QuickBooks Desktop';
                     default: {
@@ -4883,7 +4567,6 @@ const translations = {
                 [CONST.INTEGRATION_ENTITY_MAP_TYPES.NOT_IMPORTED]: 'Niet geïmporteerd',
                 [CONST.INTEGRATION_ENTITY_MAP_TYPES.NONE]: 'Niet geïmporteerd',
                 [CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD]: 'Geïmporteerd als rapportvelden',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.NETSUITE_DEFAULT]: 'NetSuite medewerker standaardwaarde',
             },
             disconnectPrompt: ({connectionName}: OptionalParam<ConnectionNameParams> = {}) => {
                 const integrationName =
@@ -4898,7 +4581,6 @@ const translations = {
                     switch (stage) {
                         case 'quickbooksDesktopImportCustomers':
                             return 'Klanten importeren';
-                        case 'netSuiteSyncImportEmployees':
                         case 'intacctImportEmployees':
                         case 'quickbooksDesktopImportEmployees':
                             return 'Werknemers importeren';
@@ -4955,43 +4637,6 @@ const translations = {
                             return 'Xero-verbinding controleren';
                         case 'xeroSyncTitle':
                             return 'Xero-gegevens synchroniseren';
-                        case 'netSuiteSyncConnection':
-                            return 'Initialiseren van verbinding met NetSuite';
-                        case 'netSuiteSyncCustomers':
-                            return 'Klanten importeren';
-                        case 'netSuiteSyncInitData':
-                            return 'Gegevens ophalen van NetSuite';
-                        case 'netSuiteSyncImportTaxes':
-                            return 'Belastingen importeren';
-                        case 'netSuiteSyncImportItems':
-                            return 'Items importeren';
-                        case 'netSuiteSyncData':
-                            return 'Gegevens importeren in Expensify';
-                        case 'netSuiteSyncAccounts':
-                            return 'Accounts synchroniseren';
-                        case 'netSuiteSyncCurrencies':
-                            return "Valuta's synchroniseren";
-                        case 'netSuiteSyncCategories':
-                            return 'Categorieën synchroniseren';
-                        case 'netSuiteSyncReportFields':
-                            return 'Gegevens importeren als Expensify-rapportvelden';
-                        case 'netSuiteSyncTags':
-                            return 'Gegevens importeren als Expensify-tags';
-                        case 'netSuiteSyncUpdateConnectionData':
-                            return 'Verbindingsinformatie bijwerken';
-                        case 'netSuiteSyncNetSuiteReimbursedReports':
-                            return 'Expensify-rapporten markeren als vergoed';
-                        case 'netSuiteSyncExpensifyReimbursedReports':
-                            return 'NetSuite-facturen en -rekeningen als betaald markeren';
-                        case 'netSuiteImportVendorsTitle':
-                            return 'Leveranciers importeren';
-                        case 'netSuiteImportCustomListsTitle':
-                            return 'Aangepaste lijsten importeren';
-                        case 'netSuiteSyncImportCustomLists':
-                            return 'Aangepaste lijsten importeren';
-                        case 'netSuiteSyncImportSubsidiaries':
-                            return 'Subsidiairies importeren';
-                        case 'netSuiteSyncImportVendors':
                         case 'quickbooksDesktopImportVendors':
                             return 'Leveranciers importeren';
                         case 'intacctCheckConnection':
@@ -5017,7 +4662,8 @@ const translations = {
             exportDate: 'Exportdatum',
             defaultVendor: 'Standaard leverancier',
             autoSync: 'Auto-sync',
-            autoSyncDescription: 'Synchroniseer NetSuite en Expensify automatisch, elke dag. Exporteer het afgeronde rapport in realtime.',
+            autoSyncDescription:
+                'Synchroniseer je boekhoudintegratie en Expensify automatisch, elke dag. Exporteer voltooide rapporten in realtime.',
             reimbursedReports: 'Gesynchroniseerde vergoede rapporten',
             cardReconciliation: 'Kaartafstemming',
             reconciliationAccount: 'Rekening voor afstemming',
@@ -5208,11 +4854,6 @@ const translations = {
                 description: `Rapportvelden laten u header-niveau details specificeren, anders dan tags die betrekking hebben op uitgaven op individuele regelitems. Deze details kunnen specifieke projectnamen, zakenreis-informatie, locaties en meer omvatten.`,
                 onlyAvailableOnPlan: 'Rapportvelden zijn alleen beschikbaar op het Control-abonnement, beginnend bij',
             },
-            [CONST.POLICY.CONNECTIONS.NAME.NETSUITE]: {
-                title: 'NetSuite',
-                description: `Geniet van geautomatiseerde synchronisatie en verminder handmatige invoer met de Expensify + NetSuite-integratie. Krijg diepgaande, realtime financiële inzichten met ondersteuning voor native en aangepaste segmenten, inclusief project- en klanttoewijzing.`,
-                onlyAvailableOnPlan: 'Onze NetSuite-integratie is alleen beschikbaar op het Control-abonnement, beginnend bij',
-            },
             [CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT]: {
                 title: 'Sage Intacct',
                 description: `Geniet van geautomatiseerde synchronisatie en verminder handmatige invoer met de Expensify + Sage Intacct-integratie. Verkrijg diepgaande, realtime financiële inzichten met door de gebruiker gedefinieerde dimensies, evenals onkostencodering per afdeling, klasse, locatie, klant en project (taak).`,
@@ -5310,7 +4951,7 @@ const translations = {
                     perMember: 'per actief lid per maand.',
                     learnMore: 'Meer informatie',
                     pricing: 'over onze plannen en prijzen.',
-                    benefit1: 'Geavanceerde boekhoudkoppelingen (NetSuite, Sage Intacct en meer)',
+                    benefit1: 'Geavanceerde boekhoudkoppelingen (Sage Intacct en meer)',
                     benefit2: 'Slimme uitgavenregels',
                     benefit3: 'Meerniveau goedkeuringsworkflows',
                     benefit4: 'Verbeterde beveiligingscontroles',
@@ -6573,7 +6214,7 @@ const translations = {
                 benefit1: 'Alles in het Collect-plan',
                 benefit2: 'Meerniveau goedkeuringsworkflows',
                 benefit3: 'Aangepaste uitgavenregels',
-                benefit4: 'ERP-integraties (NetSuite, Sage Intacct, Oracle)',
+                benefit4: 'ERP-integraties (Sage Intacct, Oracle)',
                 benefit5: 'HR-integraties (Workday, Certinia)',
                 benefit6: 'SAML/SSO',
                 benefit7: 'Aangepaste inzichten en rapportage',

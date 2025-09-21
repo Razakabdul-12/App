@@ -3721,308 +3721,6 @@ const translations = {
                 },
             },
         },
-        netsuite: {
-            subsidiary: '子公司',
-            subsidiarySelectDescription: '选择您希望从中导入数据的 NetSuite 子公司。',
-            exportDescription: '配置如何将Expensify数据导出到NetSuite。',
-            exportInvoices: '导出发票到',
-            journalEntriesTaxPostingAccount: '日记账分录税务过账账户',
-            journalEntriesProvTaxPostingAccount: '分录省税入账账户',
-            foreignCurrencyAmount: '导出外币金额',
-            exportToNextOpenPeriod: '导出到下一个开放期',
-            nonReimbursableJournalPostingAccount: '不可报销的记账账户',
-            reimbursableJournalPostingAccount: '可报销的日记账过账账户',
-            journalPostingPreference: {
-                label: '过账偏好设置',
-                values: {
-                    [CONST.NETSUITE_JOURNAL_POSTING_PREFERENCE.JOURNALS_POSTING_INDIVIDUAL_LINE]: '每个报告的单项明细条目',
-                    [CONST.NETSUITE_JOURNAL_POSTING_PREFERENCE.JOURNALS_POSTING_TOTAL_LINE]: '每笔费用的单项录入',
-                },
-            },
-            invoiceItem: {
-                label: '发票项目',
-                values: {
-                    [CONST.NETSUITE_INVOICE_ITEM_PREFERENCE.CREATE]: {
-                        label: '为我创建一个',
-                        description: '在导出时，我们会为您创建一个“Expensify 发票项目”（如果尚不存在）。',
-                    },
-                    [CONST.NETSUITE_INVOICE_ITEM_PREFERENCE.SELECT]: {
-                        label: '选择现有的',
-                        description: '我们会将Expensify的发票与下面选择的项目关联。',
-                    },
-                },
-            },
-            exportDate: {
-                label: '导出日期',
-                description: '将此日期用于导出报告到NetSuite。',
-                values: {
-                    [CONST.NETSUITE_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: '最后报销日期',
-                        description: '报告中最近费用的日期。',
-                    },
-                    [CONST.NETSUITE_EXPORT_DATE.EXPORTED]: {
-                        label: '导出日期',
-                        description: '报告导出到NetSuite的日期。',
-                    },
-                    [CONST.NETSUITE_EXPORT_DATE.SUBMITTED]: {
-                        label: '提交日期',
-                        description: '报告提交审批的日期。',
-                    },
-                },
-            },
-            exportDestination: {
-                values: {
-                    [CONST.NETSUITE_EXPORT_DESTINATION.EXPENSE_REPORT]: {
-                        label: '费用报告',
-                        reimbursableDescription: '自付费用将作为费用报告导出到NetSuite。',
-                        nonReimbursableDescription: '公司卡费用将作为费用报告导出到NetSuite。',
-                    },
-                    [CONST.NETSUITE_EXPORT_DESTINATION.VENDOR_BILL]: {
-                        label: '供应商账单',
-                        reimbursableDescription:
-                            'Out-of-pocket expenses will export as bills payable to the NetSuite vendor specified below.\n' +
-                            '\n' +
-                            'If you’d like to set a specific vendor for each card, go to *Settings > Domains > Company Cards*.',
-                        nonReimbursableDescription:
-                            'Company card expenses will export as bills payable to the NetSuite vendor specified below.\n' +
-                            '\n' +
-                            'If you’d like to set a specific vendor for each card, go to *Settings > Domains > Company Cards*.',
-                    },
-                    [CONST.NETSUITE_EXPORT_DESTINATION.JOURNAL_ENTRY]: {
-                        label: '日记条目',
-                        reimbursableDescription:
-                            'Out-of-pocket expenses will export as journal entries to the NetSuite account specified below.\n' +
-                            '\n' +
-                            'If you’d like to set a specific vendor for each card, go to *Settings > Domains > Company Cards*.',
-                        nonReimbursableDescription:
-                            'Company card expenses will export as journal entries to the NetSuite account specified below.\n' +
-                            '\n' +
-                            'If you’d like to set a specific vendor for each card, go to *Settings > Domains > Company Cards*.',
-                    },
-                },
-            },
-            advancedConfig: {
-                autoSyncDescription: 'Expensify将每天自动与NetSuite同步。',
-                reimbursedReportsDescription: '每当使用Expensify ACH支付报告时，相应的账单付款将在下面的NetSuite账户中创建。',
-                reimbursementsAccount: '报销账户',
-                reimbursementsAccountDescription: '选择您用于报销的银行账户，我们将在NetSuite中创建相关付款。',
-                collectionsAccount: '催收账户',
-                collectionsAccountDescription: '一旦发票在Expensify中标记为已支付并导出到NetSuite，它将显示在以下账户中。',
-                approvalAccount: 'A/P审批账户',
-                approvalAccountDescription: '选择在 NetSuite 中批准交易的账户。如果您正在同步报销报告，这也是创建账单付款的账户。',
-                defaultApprovalAccount: 'NetSuite 默认',
-                inviteEmployees: '邀请员工并设置审批流程',
-                inviteEmployeesDescription: '导入 NetSuite 员工记录并邀请员工加入此工作区。您的审批流程将默认设置为经理审批，并可以在*成员*页面上进一步配置。',
-                autoCreateEntities: '自动创建员工/供应商',
-                enableCategories: '启用新导入的类别',
-                customFormID: '自定义表单ID',
-                customFormIDDescription: '默认情况下，Expensify 将使用 NetSuite 中设置的首选交易表单创建条目。或者，您可以指定要使用的特定交易表单。',
-                customFormIDReimbursable: '自付费用',
-                customFormIDNonReimbursable: '公司卡费用',
-                exportReportsTo: {
-                    label: '费用报告审批级别',
-                    description: '一旦在Expensify中批准了费用报告并导出到NetSuite，您可以在NetSuite中设置额外的审批级别，然后再进行发布。',
-                    values: {
-                        [CONST.NETSUITE_REPORTS_APPROVAL_LEVEL.REPORTS_APPROVED_NONE]: 'NetSuite 默认偏好设置',
-                        [CONST.NETSUITE_REPORTS_APPROVAL_LEVEL.REPORTS_SUPERVISOR_APPROVED]: '仅限主管批准',
-                        [CONST.NETSUITE_REPORTS_APPROVAL_LEVEL.REPORTS_ACCOUNTING_APPROVED]: '仅会计批准',
-                        [CONST.NETSUITE_REPORTS_APPROVAL_LEVEL.REPORTS_APPROVED_BOTH]: '主管和会计已批准',
-                    },
-                },
-                accountingMethods: {
-                    label: '何时导出',
-                    description: '选择何时导出费用：',
-                    values: {
-                        [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '应计',
-                        [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '现金',
-                    },
-                    alternateText: {
-                        [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '自付费用将在最终批准时导出',
-                        [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '自付费用将在支付时导出',
-                    },
-                },
-                exportVendorBillsTo: {
-                    label: '供应商账单审批级别',
-                    description: '一旦供应商账单在Expensify中获得批准并导出到NetSuite，您可以在NetSuite中设置额外的审批级别，然后再进行过账。',
-                    values: {
-                        [CONST.NETSUITE_VENDOR_BILLS_APPROVAL_LEVEL.VENDOR_BILLS_APPROVED_NONE]: 'NetSuite 默认偏好设置',
-                        [CONST.NETSUITE_VENDOR_BILLS_APPROVAL_LEVEL.VENDOR_BILLS_APPROVAL_PENDING]: '待批准',
-                        [CONST.NETSUITE_VENDOR_BILLS_APPROVAL_LEVEL.VENDOR_BILLS_APPROVED]: '批准发布',
-                    },
-                },
-                exportJournalsTo: {
-                    label: '日记分录审批级别',
-                    description: '一旦在Expensify中批准了日记账分录并导出到NetSuite，您可以在NetSuite中设置额外的审批级别，然后再进行过账。',
-                    values: {
-                        [CONST.NETSUITE_JOURNALS_APPROVAL_LEVEL.JOURNALS_APPROVED_NONE]: 'NetSuite 默认偏好设置',
-                        [CONST.NETSUITE_JOURNALS_APPROVAL_LEVEL.JOURNALS_APPROVAL_PENDING]: '待批准',
-                        [CONST.NETSUITE_JOURNALS_APPROVAL_LEVEL.JOURNALS_APPROVED]: '批准发布',
-                    },
-                },
-                error: {
-                    customFormID: '请输入有效的数字自定义表单ID',
-                },
-            },
-            noAccountsFound: '未找到账户',
-            noAccountsFoundDescription: '请在NetSuite中添加账户并再次同步连接。',
-            noVendorsFound: '未找到供应商',
-            noVendorsFoundDescription: '请在NetSuite中添加供应商并再次同步连接',
-            noItemsFound: '未找到发票项目',
-            noItemsFoundDescription: '请在NetSuite中添加发票项目并再次同步连接',
-            noSubsidiariesFound: '未找到子公司',
-            noSubsidiariesFoundDescription: '请在NetSuite中添加一个子公司并再次同步连接',
-            tokenInput: {
-                title: 'NetSuite设置',
-                formSteps: {
-                    installBundle: {
-                        title: '安装 Expensify 套件',
-                        description: '在 NetSuite 中，依次进入*Customization > SuiteBundler > Search & Install Bundles* > 搜索“Expensify” > 安装该捆绑包。',
-                    },
-                    enableTokenAuthentication: {
-                        title: '启用基于令牌的身份验证',
-                        description: '在 NetSuite 中，依次转到 *Setup > Company > Enable Features > SuiteCloud* > 启用 *token-based authentication*。',
-                    },
-                    enableSoapServices: {
-                        title: '启用SOAP Web服务',
-                        description: '在 NetSuite 中，依次转到 *Setup > Company > Enable Features > SuiteCloud* > 启用 *SOAP Web Services*。',
-                    },
-                    createAccessToken: {
-                        title: '创建访问令牌',
-                        description:
-                            '在 NetSuite 中，进入 *Setup > Users/Roles > Access Tokens*，为 "Expensify" 应用和 "Expensify Integration" 或 "Administrator" 角色创建一个访问令牌。\n\n*重要提示：* 确保保存此步骤中的 *Token ID* 和 *Token Secret*。您将在下一步需要用到它。',
-                    },
-                    enterCredentials: {
-                        title: '输入您的 NetSuite 凭据',
-                        formInputs: {
-                            netSuiteAccountID: 'NetSuite Account ID',
-                            netSuiteTokenID: '令牌 ID',
-                            netSuiteTokenSecret: '令牌密钥',
-                        },
-                        netSuiteAccountIDDescription: '在 NetSuite 中，转到 *Setup > Integration > SOAP Web Services Preferences*。',
-                    },
-                },
-            },
-            import: {
-                expenseCategories: '费用类别',
-                expenseCategoriesDescription: '您的 NetSuite 费用类别将作为类别导入到 Expensify 中。',
-                crossSubsidiaryCustomers: '跨子公司客户/项目',
-                importFields: {
-                    departments: {
-                        title: '部门',
-                        subtitle: '选择如何在Expensify中处理NetSuite的*部门*。',
-                    },
-                    classes: {
-                        title: '类',
-                        subtitle: '选择如何在Expensify中处理*类别*。',
-                    },
-                    locations: {
-                        title: '位置',
-                        subtitle: '选择如何在Expensify中处理*位置*。',
-                    },
-                },
-                customersOrJobs: {
-                    title: '客户/项目',
-                    subtitle: '选择如何在Expensify中处理NetSuite的*客户*和*项目*。',
-                    importCustomers: '导入客户',
-                    importJobs: '导入项目',
-                    customers: '客户',
-                    jobs: '项目',
-                    label: ({importFields, importType}: CustomersOrJobsLabelParams) => `${importFields.join('和')}, ${importType}`,
-                },
-                importTaxDescription: '从 NetSuite 导入税务组。',
-                importCustomFields: {
-                    chooseOptionBelow: '选择以下选项：',
-                    label: ({importedTypes}: ImportedTypesParams) => `Imported as ${importedTypes.join('和')}`,
-                    requiredFieldError: ({fieldName}: RequiredFieldParams) => `请输入${fieldName}`,
-                    customSegments: {
-                        title: '自定义段/记录',
-                        addText: '添加自定义段/记录',
-                        recordTitle: '自定义段/记录',
-                        helpLink: CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS,
-                        helpLinkText: '查看详细说明',
-                        helpText: '关于配置自定义段/记录。',
-                        emptyTitle: '添加自定义段或自定义记录',
-                        fields: {
-                            segmentName: '名称',
-                            internalID: '内部ID',
-                            scriptID: '脚本 ID',
-                            customRecordScriptID: '交易列ID',
-                            mapping: '显示为',
-                        },
-                        removeTitle: '删除自定义段/记录',
-                        removePrompt: '您确定要删除此自定义段/记录吗？',
-                        addForm: {
-                            customSegmentName: '自定义段名称',
-                            customRecordName: '自定义记录名称',
-                            segmentTitle: '自定义段',
-                            customSegmentAddTitle: '添加自定义段',
-                            customRecordAddTitle: '添加自定义记录',
-                            recordTitle: '自定义记录',
-                            segmentRecordType: '您想添加自定义段还是自定义记录？',
-                            customSegmentNameTitle: '自定义分段名称是什么？',
-                            customRecordNameTitle: '自定义记录名称是什么？',
-                            customSegmentNameFooter: `您可以在 NetSuite 的 *Customizations > Links, Records & Fields > Custom Segments* 页面下找到自定义段名称。\n\n_有关更详细的说明，请[访问我们的帮助网站](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS})_。`,
-                            customRecordNameFooter: `您可以通过在全局搜索中输入“Transaction Column Field”来查找NetSuite中的自定义记录名称。\n\n_有关更详细的说明，请[访问我们的帮助网站](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS})_。`,
-                            customSegmentInternalIDTitle: '内部ID是什么？',
-                            customSegmentInternalIDFooter: `首先，请确保您在 NetSuite 中启用了内部 ID，路径为 *Home > Set Preferences > Show Internal ID*。\n\n您可以在 NetSuite 中找到自定义段的内部 ID，路径为：\n\n1. *Customization > Lists, Records, & Fields > Custom Segments*。\n2. 点击进入一个自定义段。\n3. 点击 *Custom Record Type* 旁边的超链接。\n4. 在底部的表格中找到内部 ID。\n\n_有关更详细的说明，请[访问我们的帮助网站](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_LISTS})_。`,
-                            customRecordInternalIDFooter: `您可以通过以下步骤在 NetSuite 中找到自定义记录的内部 ID：\n\n1. 在全局搜索中输入“Transaction Line Fields”。\n2. 点击进入一个自定义记录。\n3. 在左侧找到内部 ID。\n\n_有关更详细的说明，请[访问我们的帮助网站](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS})_。`,
-                            customSegmentScriptIDTitle: '脚本ID是什么？',
-                            customSegmentScriptIDFooter: `您可以在 NetSuite 中找到自定义段脚本 ID，路径为：\n\n1. *Customization > Lists, Records, & Fields > Custom Segments*。\n2. 点击进入一个自定义段。\n3. 点击靠近底部的 *Application and Sourcing* 标签页，然后：\n    a. 如果您想在 Expensify 中将自定义段显示为 *标签*（在单项级别），请点击 *Transaction Columns* 子标签页并使用 *Field ID*。\n    b. 如果您想在 Expensify 中将自定义段显示为 *报告字段*（在报告级别），请点击 *Transactions* 子标签页并使用 *Field ID*。\n\n_有关更详细的说明，请[访问我们的帮助网站](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_LISTS})_。`,
-                            customRecordScriptIDTitle: '交易列ID是什么？',
-                            customRecordScriptIDFooter: `您可以在 NetSuite 中找到自定义记录脚本 ID，步骤如下：\n\n1. 在全局搜索中输入“Transaction Line Fields”。\n2. 点击进入一个自定义记录。\n3. 在左侧找到脚本 ID。\n\n_有关更详细的说明，请[访问我们的帮助网站](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_SEGMENTS})_。`,
-                            customSegmentMappingTitle: '如何在Expensify中显示此自定义段？',
-                            customRecordMappingTitle: '在Expensify中，这个自定义记录应该如何显示？',
-                        },
-                        errors: {
-                            uniqueFieldError: ({fieldName}: RequiredFieldParams) => `具有此 ${fieldName?.toLowerCase()} 的自定义段/记录已存在`,
-                        },
-                    },
-                    customLists: {
-                        title: '自定义列表',
-                        addText: '添加自定义列表',
-                        recordTitle: '自定义列表',
-                        helpLink: CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_LISTS,
-                        helpLinkText: '查看详细说明',
-                        helpText: '关于配置自定义列表。',
-                        emptyTitle: '添加自定义列表',
-                        fields: {
-                            listName: '名称',
-                            internalID: '内部ID',
-                            transactionFieldID: '交易字段ID',
-                            mapping: '显示为',
-                        },
-                        removeTitle: '删除自定义列表',
-                        removePrompt: '您确定要删除此自定义列表吗？',
-                        addForm: {
-                            listNameTitle: '选择自定义列表',
-                            transactionFieldIDTitle: '交易字段ID是什么？',
-                            transactionFieldIDFooter: `您可以通过以下步骤在 NetSuite 中找到交易字段 ID：\n\n1. 在全局搜索中输入“Transaction Line Fields”。\n2. 点击进入自定义列表。\n3. 在左侧找到交易字段 ID。\n\n_有关更详细的说明，请[访问我们的帮助网站](${CONST.NETSUITE_IMPORT.HELP_LINKS.CUSTOM_LISTS})_。`,
-                            mappingTitle: '在Expensify中，这个自定义列表应该如何显示？',
-                        },
-                        errors: {
-                            uniqueTransactionFieldIDError: `已存在具有此交易字段ID的自定义列表`,
-                        },
-                    },
-                },
-                importTypes: {
-                    [CONST.INTEGRATION_ENTITY_MAP_TYPES.NETSUITE_DEFAULT]: {
-                        label: 'NetSuite 员工默认值',
-                        description: '未导入Expensify，已在导出时应用',
-                        footerContent: ({importField}: ImportFieldParams) => `如果您在NetSuite中使用${importField}，我们将在导出到费用报告或日记账分录时应用员工记录上设置的默认值。`,
-                    },
-                    [CONST.INTEGRATION_ENTITY_MAP_TYPES.TAG]: {
-                        label: '标签',
-                        description: '逐项级别',
-                        footerContent: ({importField}: ImportFieldParams) => `${startCase(importField)} 将可用于员工报告中的每一笔费用。`,
-                    },
-                    [CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD]: {
-                        label: '报告字段',
-                        description: '报告级别',
-                        footerContent: ({importField}: ImportFieldParams) => `${startCase(importField)} 选择将适用于员工报告中的所有费用。`,
-                    },
-                },
-            },
-        },
         intacct: {
             sageIntacctSetup: 'Sage Intacct 设置',
             prerequisitesTitle: '在您连接之前...',
@@ -4735,7 +4433,6 @@ const translations = {
             subtitle: '连接到您的会计系统，以使用您的科目表对交易进行编码，自动匹配付款，并保持您的财务同步。',
             qbd: 'QuickBooks Desktop',
             xero: 'Xero',
-            netsuite: 'NetSuite',
             intacct: 'Sage Intacct',
             sap: 'SAP',
             oracle: 'Oracle',
@@ -4748,8 +4445,6 @@ const translations = {
                 switch (connectionName) {
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return 'Xero';
-                    case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
-                        return 'NetSuite';
                     case CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT:
                         return 'Sage Intacct';
                     default: {
@@ -4779,8 +4474,6 @@ const translations = {
                 switch (connectionName) {
                     case CONST.POLICY.CONNECTIONS.NAME.XERO:
                         return '无法连接到Xero';
-                    case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
-                        return '无法连接到 NetSuite';
                     case CONST.POLICY.CONNECTIONS.NAME.QBD:
                         return '无法连接到 QuickBooks Desktop';
                     default: {
@@ -4800,7 +4493,6 @@ const translations = {
                 [CONST.INTEGRATION_ENTITY_MAP_TYPES.NOT_IMPORTED]: '未导入',
                 [CONST.INTEGRATION_ENTITY_MAP_TYPES.NONE]: '未导入',
                 [CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD]: '作为报告字段导入',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.NETSUITE_DEFAULT]: 'NetSuite 员工默认值',
             },
             disconnectPrompt: ({connectionName}: OptionalParam<ConnectionNameParams> = {}) => {
                 const integrationName =
@@ -4815,7 +4507,6 @@ const translations = {
                     switch (stage) {
                         case 'quickbooksDesktopImportCustomers':
                             return '导入客户';
-                        case 'netSuiteSyncImportEmployees':
                         case 'intacctImportEmployees':
                         case 'quickbooksDesktopImportEmployees':
                             return '导入员工';
@@ -4872,43 +4563,6 @@ const translations = {
                             return '检查 Xero 连接';
                         case 'xeroSyncTitle':
                             return '正在同步 Xero 数据';
-                        case 'netSuiteSyncConnection':
-                            return '正在初始化与NetSuite的连接';
-                        case 'netSuiteSyncCustomers':
-                            return '导入客户';
-                        case 'netSuiteSyncInitData':
-                            return '从NetSuite检索数据';
-                        case 'netSuiteSyncImportTaxes':
-                            return '导入税款';
-                        case 'netSuiteSyncImportItems':
-                            return '导入项目';
-                        case 'netSuiteSyncData':
-                            return '将数据导入Expensify';
-                        case 'netSuiteSyncAccounts':
-                            return '同步账户';
-                        case 'netSuiteSyncCurrencies':
-                            return '同步货币种类';
-                        case 'netSuiteSyncCategories':
-                            return '同步类别';
-                        case 'netSuiteSyncReportFields':
-                            return '将数据导入为Expensify报告字段';
-                        case 'netSuiteSyncTags':
-                            return '将数据导入为Expensify标签';
-                        case 'netSuiteSyncUpdateConnectionData':
-                            return '更新连接信息';
-                        case 'netSuiteSyncNetSuiteReimbursedReports':
-                            return '将Expensify报告标记为已报销';
-                        case 'netSuiteSyncExpensifyReimbursedReports':
-                            return '将 NetSuite 账单和发票标记为已支付';
-                        case 'netSuiteImportVendorsTitle':
-                            return '导入供应商';
-                        case 'netSuiteImportCustomListsTitle':
-                            return '导入自定义列表';
-                        case 'netSuiteSyncImportCustomLists':
-                            return '导入自定义列表';
-                        case 'netSuiteSyncImportSubsidiaries':
-                            return '导入子公司';
-                        case 'netSuiteSyncImportVendors':
                         case 'quickbooksDesktopImportVendors':
                             return '导入供应商';
                         case 'intacctCheckConnection':
@@ -4933,7 +4587,8 @@ const translations = {
             exportDate: '导出日期',
             defaultVendor: '默认供应商',
             autoSync: '自动同步',
-            autoSyncDescription: '每天自动同步 NetSuite 和 Expensify。实时导出最终报告。',
+            autoSyncDescription:
+                '每天自动同步您的会计集成与 Expensify，实时导出最终报告。',
             reimbursedReports: '同步已报销的报告',
             cardReconciliation: '卡片对账',
             reconciliationAccount: '对账账户',
@@ -5120,11 +4775,6 @@ const translations = {
                 description: `报告字段允许您指定标题级别的详细信息，与适用于单个项目费用的标签不同。这些详细信息可以包括特定的项目名称、商务旅行信息、地点等。`,
                 onlyAvailableOnPlan: '报告字段仅在Control计划中可用，起价为',
             },
-            [CONST.POLICY.CONNECTIONS.NAME.NETSUITE]: {
-                title: 'NetSuite',
-                description: `通过 Expensify + NetSuite 集成享受自动同步并减少手动输入。通过原生和自定义分段支持（包括项目和客户映射），获得深入的实时财务洞察。`,
-                onlyAvailableOnPlan: '我们的 NetSuite 集成仅在 Control 计划中可用，起价为',
-            },
             [CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT]: {
                 title: 'Sage Intacct',
                 description: `通过Expensify + Sage Intacct集成，享受自动同步并减少手动输入。通过用户定义的维度，以及按部门、类别、地点、客户和项目（工作）进行的费用编码，获得深入的实时财务洞察。`,
@@ -5219,7 +4869,7 @@ const translations = {
                     perMember: '每位活跃成员每月。',
                     learnMore: '了解更多',
                     pricing: '关于我们的计划和定价。',
-                    benefit1: '高级会计连接（NetSuite、Sage Intacct 等）',
+                    benefit1: '高级会计连接（Sage Intacct 等）',
                     benefit2: '智能费用规则',
                     benefit3: '多级审批工作流程',
                     benefit4: '增强的安全控制',
@@ -6447,7 +6097,7 @@ const translations = {
                 benefit1: 'Collect 计划中的所有内容',
                 benefit2: '多级审批工作流程',
                 benefit3: '自定义费用规则',
-                benefit4: 'ERP 集成 (NetSuite, Sage Intacct, Oracle)',
+                benefit4: 'ERP 集成 (Sage Intacct, Oracle)',
                 benefit5: 'HR 集成 (Workday, Certinia)',
                 benefit6: 'SAML/SSO',
                 benefit7: '自定义洞察和报告',

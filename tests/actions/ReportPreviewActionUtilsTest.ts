@@ -10,7 +10,7 @@ import * as ReportUtils from '@libs/ReportUtils';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import type {Report, ReportViolations, Transaction, TransactionViolation} from '@src/types/onyx';
-import type {Connections, NetSuiteConnection} from '@src/types/onyx/Policy';
+import type {Connections} from '@src/types/onyx/Policy';
 import * as InvoiceData from '../data/Invoice';
 import type {InvoiceTestData} from '../data/Invoice';
 import createRandomPolicy from '../utils/collections/policies';
@@ -439,7 +439,9 @@ describe('getReportPreviewAction', () => {
 
         const policy = createRandomPolicy(0);
         policy.type = CONST.POLICY.TYPE.CORPORATE;
-        policy.connections = {[CONST.POLICY.CONNECTIONS.NAME.NETSUITE]: {} as NetSuiteConnection} as Connections;
+        policy.connections = {
+            [CONST.POLICY.CONNECTIONS.NAME.QBO]: {} as Connections[typeof CONST.POLICY.CONNECTIONS.NAME.QBO],
+        } as Connections;
         policy.reimbursementChoice = CONST.POLICY.REIMBURSEMENT_CHOICES.REIMBURSEMENT_NO;
         await Onyx.merge(`${ONYXKEYS.COLLECTION.REPORT}${REPORT_ID}`, report);
         const transaction = {
@@ -532,7 +534,9 @@ describe('getReportPreviewAction', () => {
 
         const policy = createRandomPolicy(0);
         policy.type = CONST.POLICY.TYPE.CORPORATE;
-        policy.connections = {[CONST.POLICY.CONNECTIONS.NAME.NETSUITE]: {} as NetSuiteConnection} as Connections;
+        policy.connections = {
+            [CONST.POLICY.CONNECTIONS.NAME.QBO]: {} as Connections[typeof CONST.POLICY.CONNECTIONS.NAME.QBO],
+        } as Connections;
         policy.reimbursementChoice = CONST.POLICY.REIMBURSEMENT_CHOICES.REIMBURSEMENT_NO;
         await Onyx.merge(`${ONYXKEYS.COLLECTION.REPORT}${REPORT_ID}`, report);
         const transaction = {

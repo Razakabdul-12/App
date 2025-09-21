@@ -93,7 +93,6 @@ The application uses a nested provider structure for context management:
 7. **Accounting Integrations**
    - QuickBooks Online
    - Xero
-   - NetSuite
    - Sage Intacct
    - QuickBooks Desktop
    - Generic accounting connections

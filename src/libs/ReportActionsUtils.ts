@@ -116,12 +116,6 @@ getOldDotEnvironmentURL().then((url: string) => (oldDotEnvironmentURL = url));
 const XERO_NON_REIMBURSABLE_EXPENSES_URL = 'https://go.xero.com/Bank/BankAccounts.aspx';
 
 /*
- * Url to the NetSuite global search, which should be suffixed with the reportID.
- */
-const NETSUITE_NON_REIMBURSABLE_EXPENSES_URL_PREFIX =
-    'https://system.netsuite.com/app/common/search/ubersearchresults.nl?quicksearch=T&searchtype=Uber&frame=be&Uber_NAMEtype=KEYWORDSTARTSWITH&Uber_NAME=';
-
-/*
  * Url prefix to any Salesforce transaction or transaction list.
  */
 const SALESFORCE_EXPENSES_URL_PREFIX = 'https://login.salesforce.com/';
@@ -1984,10 +1978,6 @@ function getExportIntegrationActionFragments(reportAction: OnyxEntry<ReportActio
             switch (label) {
                 case CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY.xero:
                     url = XERO_NON_REIMBURSABLE_EXPENSES_URL;
-                    break;
-                case CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY.netsuite:
-                    url = NETSUITE_NON_REIMBURSABLE_EXPENSES_URL_PREFIX;
-                    url += wasExportedAfterBase62 ? base62ReportID : reportID;
                     break;
                 case CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY.financialForce:
                     // The first three characters in a Salesforce ID is the expense type

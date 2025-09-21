@@ -621,17 +621,6 @@ const helpContentMap: HelpContent = {
                                         ]}
                                     />
                                     <Text style={[styles.textNormal, styles.mt4]}>
-                                        <Text style={styles.textBold}>NetSuite</Text>
-                                    </Text>
-                                    <BulletList
-                                        styles={styles}
-                                        items={[
-                                            <Text style={styles.textNormal}>Built for complex orgs with multi-entity support</Text>,
-                                            <Text style={styles.textNormal}>Custom dimension mapping</Text>,
-                                            <Text style={styles.textNormal}>Automated bill payments</Text>,
-                                        ]}
-                                    />
-                                    <Text style={[styles.textNormal, styles.mt4]}>
                                         <Text style={styles.textBold}>Sage Intacct</Text>
                                     </Text>
                                     <BulletList
@@ -679,14 +668,6 @@ const helpContentMap: HelpContent = {
                                                     style={styles.link}
                                                 >
                                                     Connect to Xero
-                                                </TextLink>
-                                            </Text>,
-                                            <Text style={styles.textNormal}>
-                                                <TextLink
-                                                    href="https://help.expensify.com/articles/new-expensify/connections/netsuite/Connect-To-NetSuite"
-                                                    style={styles.link}
-                                                >
-                                                    Connect to NetSuite
                                                 </TextLink>
                                             </Text>,
                                         ]}

@@ -11,8 +11,6 @@ import type {ConnectionName, Connections, PolicyConnectionName, PolicyConnection
 import type Policy from '@src/types/onyx/Policy';
 import {isEmptyObject} from '@src/types/utils/EmptyObject';
 
-type ConnectionNameExceptNetSuite = Exclude<ConnectionName, typeof CONST.POLICY.CONNECTIONS.NAME.NETSUITE>;
-
 function removePolicyConnection(policy: Policy, connectionName: PolicyConnectionName) {
     const policyID = policy.id;
     const workspaceAccountID = policy?.workspaceAccountID ?? CONST.DEFAULT_NUMBER_ID;
@@ -63,9 +61,6 @@ function getSyncConnectionParameters(connectionName: PolicyConnectionName) {
     switch (connectionName) {
         case CONST.POLICY.CONNECTIONS.NAME.XERO: {
             return {readCommand: READ_COMMANDS.SYNC_POLICY_TO_XERO, stageInProgress: CONST.POLICY.CONNECTIONS.SYNC_STAGE_NAME.STARTING_IMPORT_XERO};
-        }
-        case CONST.POLICY.CONNECTIONS.NAME.NETSUITE: {
-            return {readCommand: READ_COMMANDS.SYNC_POLICY_TO_NETSUITE, stageInProgress: CONST.POLICY.CONNECTIONS.SYNC_STAGE_NAME.NETSUITE_SYNC_CONNECTION};
         }
         case CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT: {
             return {readCommand: READ_COMMANDS.SYNC_POLICY_TO_SAGE_INTACCT, stageInProgress: CONST.POLICY.CONNECTIONS.SYNC_STAGE_NAME.SAGE_INTACCT_SYNC_CHECK_CONNECTION};
@@ -130,7 +125,7 @@ function syncConnection(policy: Policy | undefined, connectionName: PolicyConnec
     });
 }
 
-function updateManyPolicyConnectionConfigs<TConnectionName extends ConnectionNameExceptNetSuite, TConfigUpdate extends Partial<Connections[TConnectionName]['config']>>(
+function updateManyPolicyConnectionConfigs<TConnectionName extends ConnectionName, TConfigUpdate extends Partial<Connections[TConnectionName]['config']>>(
     policyID: string | undefined,
     connectionName: TConnectionName,
     configUpdate: TConfigUpdate,
@@ -221,10 +216,6 @@ function isConnectionUnverified(policy: OnyxEntry<Policy>, connectionName: Polic
     // A verified connection is one that has been successfully synced at least once
     // We'll always err on the side of considering a connection as verified connected even if we can't find a lastSync property saying as such
     // i.e. this is a property that is explicitly set to false, not just missing
-    if (connectionName === CONST.POLICY.CONNECTIONS.NAME.NETSUITE) {
-        return !(policy?.connections?.[CONST.POLICY.CONNECTIONS.NAME.NETSUITE]?.verified ?? true);
-    }
-
     // If the connection has no lastSync property, we'll consider it unverified
     if (isEmptyObject(policy?.connections?.[connectionName]?.lastSync)) {
         return true;
@@ -251,9 +242,6 @@ function setConnectionError(policyID: string, connectionName: PolicyConnectionNa
 function copyExistingPolicyConnection(connectedPolicyID: string, targetPolicyID: string, connectionName: ConnectionName) {
     let stageInProgress;
     switch (connectionName) {
-        case CONST.POLICY.CONNECTIONS.NAME.NETSUITE:
-            stageInProgress = CONST.POLICY.CONNECTIONS.SYNC_STAGE_NAME.NETSUITE_SYNC_CONNECTION;
-            break;
         case CONST.POLICY.CONNECTIONS.NAME.SAGE_INTACCT:
             stageInProgress = CONST.POLICY.CONNECTIONS.SYNC_STAGE_NAME.SAGE_INTACCT_SYNC_CHECK_CONNECTION;
             break;

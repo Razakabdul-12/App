@@ -7,7 +7,7 @@ keywords: [New Expensify, tax rates, VAT, GST, expense tax codes, foreign curren
 
 Workspaces on the **Collect** and **Control** plans can add tax rates to track VAT, GST, or other regional taxes. Tax rates are applied by default based on currency, but can also be manually selected per expense.
 
-**Note:** Taxes can only be managed manually in workspaces that do **not** use a direct accounting integration (e.g., QuickBooks, Xero, NetSuite). If you’re connected to an integration, tax rates must be managed within that system.
+**Note:** Taxes can only be managed manually in workspaces that do **not** use a direct accounting integration (e.g., QuickBooks or Xero). If you’re connected to an integration, tax rates must be managed within that system.
 
 ---
 

@@ -124,14 +124,11 @@ import Inbox from '@assets/images/inbox.svg';
 import Info from '@assets/images/info.svg';
 import CircleSlash from '@assets/images/integrationicons/circle-slash.svg';
 import MicrosoftDynamicsExport from '@assets/images/integrationicons/export/microsoft-dynamics-icon.svg';
-import NetSuiteExport from '@assets/images/integrationicons/export/netsuite-icon.svg';
-import NetSuiteOracleExport from '@assets/images/integrationicons/export/netsuite-oracle-icon.svg';
 import OracleExport from '@assets/images/integrationicons/export/oracle-icon.svg';
 import SageIntacctExport from '@assets/images/integrationicons/export/sage-intacct-icon.svg';
 import SapExport from '@assets/images/integrationicons/export/sap-icon.svg';
 import XeroExport from '@assets/images/integrationicons/export/xero-icon.svg';
 import MicrosoftDynamicsSquare from '@assets/images/integrationicons/microsoft-dynamics-icon-square.svg';
-import NetSuiteSquare from '@assets/images/integrationicons/netsuite-icon-square.svg';
 import OracleSquare from '@assets/images/integrationicons/oracle-icon-square.svg';
 import QBDSquare from '@assets/images/integrationicons/qbd-icon-square.svg';
 import SageIntacctSquare from '@assets/images/integrationicons/sage-intacct-icon-square.svg';
@@ -453,7 +450,6 @@ export {
     Clear,
     CheckCircle,
     CheckmarkCircle,
-    NetSuiteSquare,
     XeroCircle,
     MicrosoftDynamicsSquare,
     OracleSquare,
@@ -481,8 +477,6 @@ export {
     UserLock,
     EmptyStateSpyPigeon,
     MicrosoftDynamicsExport,
-    NetSuiteExport,
-    NetSuiteOracleExport,
     OracleExport,
     SageIntacctExport,
     SapExport,

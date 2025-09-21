@@ -5,7 +5,7 @@ keywords: [Expensify Classic, Deel, integration, expense syncing, reimbursements
 ---
 
 
-Expensify’s API helps connect your account to third-party tools like NetSuite, Xero, and even internal systems like Workday. This guide includes tips, usage examples, and common troubleshooting questions — many sourced from customers who’ve done it before.
+Expensify’s API helps connect your account to third-party tools like QuickBooks Online, Xero, and even internal systems like Workday. This guide includes tips, usage examples, and common troubleshooting questions — many sourced from customers who’ve done it before.
 
 ---
 
