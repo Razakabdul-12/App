@@ -105,13 +105,6 @@ function formatPaymentMethods(bankAccountList: Record<string, BankAccount>, fund
     return combinedPaymentMethods;
 }
 
-function calculateWalletTransferBalanceFee(currentBalance: number, methodType: string): number {
-    const transferMethodTypeFeeStructure =
-        methodType === CONST.WALLET.TRANSFER_METHOD_TYPE.INSTANT ? CONST.WALLET.TRANSFER_METHOD_TYPE_FEE.INSTANT : CONST.WALLET.TRANSFER_METHOD_TYPE_FEE.ACH;
-    const calculateFee = Math.ceil(currentBalance * (transferMethodTypeFeeStructure.RATE / 100));
-    return Math.max(calculateFee, transferMethodTypeFeeStructure.MINIMUM_FEE);
-}
-
 /**
  * Determines the appropriate payment action based on user validation and policy restrictions.
  * It navigates users to verification pages if necessary, triggers KYC flows for specific payment methods,
@@ -138,7 +131,7 @@ const selectPaymentType = (
             return;
         }
         triggerKYCFlow(event, iouPaymentType);
-        setPersonalBankAccountContinueKYCOnSuccess(ROUTES.SETTINGS_WALLET);
+        setPersonalBankAccountContinueKYCOnSuccess(ROUTES.SETTINGS);
         return;
     }
 
@@ -168,5 +161,5 @@ const isSecondaryActionAPaymentOption = (item: PopoverMenuItem): item is Payment
     return isPaymentInArray.length > 0;
 };
 
-export {hasExpensifyPaymentMethod, getPaymentMethodDescription, formatPaymentMethods, calculateWalletTransferBalanceFee, selectPaymentType, isSecondaryActionAPaymentOption};
+export {hasExpensifyPaymentMethod, getPaymentMethodDescription, formatPaymentMethods, selectPaymentType, isSecondaryActionAPaymentOption};
 export type {KYCFlowEvent, TriggerKYCFlow, PaymentOrApproveOption, PaymentOption};

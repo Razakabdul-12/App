@@ -838,7 +838,7 @@ type AncestorIDs = {
     reportActionsIDs: string[];
 };
 
-type MissingPaymentMethod = 'bankAccount' | 'wallet';
+type MissingPaymentMethod = 'bankAccount';
 
 type OutstandingChildRequest = {
     hasOutstandingChildRequest?: boolean;
@@ -3506,14 +3506,7 @@ function getReimbursementQueuedActionMessage({
     const report = typeof reportOrID === 'string' ? getReport(reportOrID, reports ?? allReports) : reportOrID;
     const submitterDisplayName = getDisplayNameForParticipant({accountID: report?.ownerAccountID, shouldUseShortForm: shouldUseShortDisplayName, personalDetailsData: personalDetails}) ?? '';
     const originalMessage = getOriginalMessage(reportAction);
-    let messageKey: TranslationPaths;
-    if (originalMessage?.paymentType === CONST.IOU.PAYMENT_TYPE.EXPENSIFY) {
-        messageKey = 'iou.waitingOnEnabledWallet';
-    } else {
-        messageKey = 'iou.waitingOnBankAccount';
-    }
-
-    return translateLocal(messageKey, {submitterDisplayName});
+    return translateLocal('iou.waitingOnBankAccount', {submitterDisplayName});
 }
 
 /**
@@ -9828,7 +9821,6 @@ function isAllowedToSubmitDraftExpenseReport(report: OnyxEntry<Report>): boolean
  * What missing payment method does this report action indicate, if any?
  */
 function getIndicatedMissingPaymentMethod(
-    userWalletTierName: string | undefined,
     reportId: string | undefined,
     reportAction: ReportAction,
     bankAccountList: OnyxEntry<BankAccountList>,
@@ -9837,22 +9829,17 @@ function getIndicatedMissingPaymentMethod(
     if (!reportId || !isSubmitterOfUnsettledReport || !isReimbursementQueuedAction(reportAction)) {
         return undefined;
     }
-    const paymentType = getOriginalMessage(reportAction)?.paymentType;
-    if (paymentType === CONST.IOU.PAYMENT_TYPE.EXPENSIFY) {
-        return !userWalletTierName || userWalletTierName === CONST.WALLET.TIER_NAME.SILVER ? 'wallet' : undefined;
-    }
-
     return !hasCreditBankAccount(bankAccountList) ? 'bankAccount' : undefined;
 }
 
 /**
  * Checks if report chat contains missing payment method
  */
-function hasMissingPaymentMethod(userWalletTierName: string | undefined, iouReportID: string | undefined, bankAccountList: OnyxEntry<BankAccountList>): boolean {
+function hasMissingPaymentMethod(iouReportID: string | undefined, bankAccountList: OnyxEntry<BankAccountList>): boolean {
     const reportActions = allReportActions?.[`${ONYXKEYS.COLLECTION.REPORT_ACTIONS}${iouReportID}`] ?? {};
     return Object.values(reportActions)
         .filter(Boolean)
-        .some((action) => getIndicatedMissingPaymentMethod(userWalletTierName, iouReportID, action, bankAccountList) !== undefined);
+        .some((action) => getIndicatedMissingPaymentMethod(iouReportID, action, bankAccountList) !== undefined);
 }
 
 /**

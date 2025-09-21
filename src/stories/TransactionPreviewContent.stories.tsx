@@ -41,7 +41,6 @@ const disabledProperties = [
     'sessionAccountID',
     'isHovered',
     'isWhisper',
-    'walletTermsErrors',
     'personalDetails',
     'chatReport',
 ].reduce<Record<string, {table: {disable: boolean}}>>((disabledArgTypes, property) => {
@@ -112,7 +111,6 @@ const story: Meta<typeof TransactionPreviewContent> = {
         isBillSplit: false,
         areThereDuplicates: false,
         sessionAccountID: 11111111,
-        walletTermsErrors: undefined,
         routeName: SCREENS.TRANSACTION_DUPLICATE.REVIEW,
         shouldHideOnDelete: false,
         transactionPreviewWidth: 303,

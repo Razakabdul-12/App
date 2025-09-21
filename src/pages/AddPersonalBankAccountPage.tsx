@@ -32,7 +32,7 @@ function AddPersonalBankAccountPage() {
     const goBack = useCallback(() => {
         switch (topmostFullScreenRoute?.name) {
             case NAVIGATORS.SETTINGS_SPLIT_NAVIGATOR:
-                Navigation.goBack(ROUTES.SETTINGS_WALLET);
+                Navigation.goBack(ROUTES.SETTINGS);
                 break;
             case NAVIGATORS.REPORTS_SPLIT_NAVIGATOR:
                 Navigation.closeRHPFlow();
@@ -113,7 +113,6 @@ function AddPersonalBankAccountPage() {
                             onSelect={setSelectedPlaidAccountId}
                             text={translate('walletPage.chooseAccountBody')}
                             plaidData={plaidData}
-                            isDisplayedInWalletFlow
                             onExitPlaid={Navigation.goBack}
                             receivedRedirectURI={getPlaidOAuthReceivedRedirectURI()}
                             selectedPlaidAccountID={selectedPlaidAccountId}

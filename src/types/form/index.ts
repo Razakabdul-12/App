@@ -47,7 +47,6 @@ export type {AdditionalDetailStepForm} from './AdditionalDetailStepForm';
 export type {PolicyTagNameForm} from './PolicyTagNameForm';
 export type {WorkspaceTagForm} from './WorkspaceTagForm';
 
-export type {WalletAdditionalDetailsForm} from './WalletAdditionalDetailsForm';
 export type {NewChatNameForm} from './NewChatNameForm';
 export type {SageIntacctDimensionForm} from './SageIntacctDimensionsForm';
 export type {SubscriptionSizeForm} from './SubscriptionSizeForm';

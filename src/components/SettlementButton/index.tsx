@@ -49,7 +49,6 @@ type TriggerKYCFlow = (event: KYCFlowEvent, iouPaymentType: PaymentMethodType, p
 type CurrencyType = TupleToUnion<typeof CONST.DIRECT_REIMBURSEMENT_CURRENCIES>;
 
 function SettlementButton({
-    addDebitCardRoute = ROUTES.IOU_SEND_ADD_DEBIT_CARD,
     kycWallAnchorAlignment = {
         horizontal: CONST.MODAL.ANCHOR_ORIGIN_HORIZONTAL.LEFT, // button is at left, so horizontal anchor is at LEFT
         vertical: CONST.MODAL.ANCHOR_ORIGIN_VERTICAL.TOP, // we assume that popover menu opens below the button, anchor is at TOP
@@ -97,8 +96,6 @@ function SettlementButton({
     const policyEmployeeAccountIDs = getPolicyEmployeeAccountIDs(policy, accountID);
     const reportBelongsToWorkspace = policyID ? doesReportBelongToWorkspace(chatReport, policyEmployeeAccountIDs, policyID) : false;
     const policyIDKey = reportBelongsToWorkspace ? policyID : (iouReport?.policyID ?? CONST.POLICY.ID_FAKE);
-    const [userWallet] = useOnyx(ONYXKEYS.USER_WALLET, {canBeMissing: true});
-    const hasActivatedWallet = ([CONST.WALLET.TIER_NAME.GOLD, CONST.WALLET.TIER_NAME.PLATINUM] as string[]).includes(userWallet?.tierName ?? '');
     const [lastPaymentMethods, lastPaymentMethodResult] = useOnyx(ONYXKEYS.NVP_LAST_PAYMENT_METHOD, {canBeMissing: true});
 
     const lastPaymentMethod = useMemo(() => {
@@ -174,7 +171,7 @@ function SettlementButton({
         const buttonOptions = [];
         const paymentMethods = {
             [CONST.PAYMENT_METHODS.PERSONAL_BANK_ACCOUNT]: {
-                text: hasActivatedWallet ? translate('iou.settleWallet', {formattedAmount: ''}) : translate('iou.settlePersonal', {formattedAmount: ''}),
+                text: translate('iou.settlePersonal', {formattedAmount: ''}),
                 icon: Expensicons.User,
                 value: CONST.PAYMENT_METHODS.PERSONAL_BANK_ACCOUNT,
                 shouldUpdateSelectedIndex: false,
@@ -217,16 +214,8 @@ function SettlementButton({
         }
 
         // To achieve the one tap pay experience we need to choose the correct payment type as default.
-        if (canUseWallet) {
-            if (personalBankAccountList.length && canUsePersonalBankAccount) {
-                buttonOptions.push({
-                    text: translate('iou.settleWallet', {formattedAmount: ''}),
-                    value: CONST.PAYMENT_METHODS.PERSONAL_BANK_ACCOUNT,
-                    icon: Expensicons.Wallet,
-                });
-            } else if (canUsePersonalBankAccount) {
-                buttonOptions.push(paymentMethods[CONST.PAYMENT_METHODS.PERSONAL_BANK_ACCOUNT]);
-            }
+        if (!isExpenseReport && !isInvoiceReport && currency === CONST.CURRENCY.USD && canUsePersonalBankAccount) {
+            buttonOptions.push(paymentMethods[CONST.PAYMENT_METHODS.PERSONAL_BANK_ACCOUNT]);
 
             if (activeAdminPolicies.length === 0 && !isPersonalOnlyOption) {
                 buttonOptions.push(paymentMethods[CONST.PAYMENT_METHODS.BUSINESS_BANK_ACCOUNT]);
@@ -396,7 +385,7 @@ function SettlementButton({
         }
         triggerKYCFlow(event, paymentType, paymentMethod, selectedPolicy ?? (event ? lastPaymentPolicy : undefined));
         if (paymentType === CONST.IOU.PAYMENT_TYPE.EXPENSIFY || paymentType === CONST.IOU.PAYMENT_TYPE.VBBA) {
-            setPersonalBankAccountContinueKYCOnSuccess(ROUTES.SETTINGS_WALLET);
+            setPersonalBankAccountContinueKYCOnSuccess(ROUTES.SETTINGS);
         }
     };
 
@@ -502,7 +491,6 @@ function SettlementButton({
     return (
         <KYCWall
             onSuccessfulKYC={(paymentType) => onPress(paymentType, undefined, undefined)}
-            addDebitCardRoute={addDebitCardRoute}
             isDisabled={isOffline}
             source={CONST.KYC_WALL_SOURCE.REPORT}
             chatReportID={chatReportID}

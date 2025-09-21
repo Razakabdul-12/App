@@ -50,7 +50,6 @@ const mockRenderItem: ListRenderItem<Transaction> = ({item}) => (
         isBillSplit={false}
         areThereDuplicates={false}
         sessionAccountID={11111111}
-        walletTermsErrors={undefined}
         routeName={SCREENS.TRANSACTION_DUPLICATE.REVIEW}
         shouldHideOnDelete={false}
         transactionPreviewWidth={303}

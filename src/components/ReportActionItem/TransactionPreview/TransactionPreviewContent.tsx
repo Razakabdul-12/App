@@ -49,7 +49,6 @@ function TransactionPreviewContent({
     isBillSplit,
     areThereDuplicates,
     sessionAccountID,
-    walletTermsErrors,
     reportPreviewAction,
     shouldHideOnDelete = true,
     shouldShowPayerAndReceiver,
@@ -201,8 +200,7 @@ function TransactionPreviewContent({
     return (
         <View style={[transactionWrapperStyles, containerStyles]}>
             <OfflineWithFeedback
-                errors={walletTermsErrors}
-                onClose={() => offlineWithFeedbackOnClose}
+                onClose={offlineWithFeedbackOnClose}
                 errorRowStyles={[styles.mbn1]}
                 needsOffscreenAlphaCompositing
                 pendingAction={action?.pendingAction}

@@ -79,13 +79,11 @@ const SCREENS = {
         SECURITY: 'Settings_Security',
         ABOUT: 'Settings_About',
         APP_DOWNLOAD_LINKS: 'Settings_App_Download_Links',
-        ADD_DEBIT_CARD: 'Settings_Add_Debit_Card',
         ADD_PAYMENT_CARD_CHANGE_CURRENCY: 'Settings_Add_Payment_Card_Change_Currency',
         ADD_BANK_ACCOUNT_VERIFY_ACCOUNT: 'Settings_Add_Bank_Account_Verify_Account',
         ADD_BANK_ACCOUNT: 'Settings_Add_Bank_Account',
         ADD_US_BANK_ACCOUNT: 'Settings_Add_US_Bank_Account',
         CLOSE: 'Settings_Close',
-        REPORT_CARD_LOST_OR_DAMAGED: 'Settings_ReportCardLostOrDamaged',
         TROUBLESHOOT: 'Settings_Troubleshoot',
         CONSOLE: 'Settings_Console',
         SHARE_LOG: 'Share_Log',
@@ -121,18 +119,6 @@ const SCREENS = {
             PAYMENT_CURRENCY: 'Settings_Payment_Currency',
         },
 
-        WALLET: {
-            ROOT: 'Settings_Wallet',
-            VERIFY_ACCOUNT: 'Settings_Wallet_VerifyAccount',
-            DOMAIN_CARD: 'Settings_Wallet_DomainCard',
-            TRANSFER_BALANCE: 'Settings_Wallet_Transfer_Balance',
-            CHOOSE_TRANSFER_ACCOUNT: 'Settings_Wallet_Choose_Transfer_Account',
-            CARD_ACTIVATE: 'Settings_Wallet_Card_Activate',
-            REPORT_VIRTUAL_CARD_FRAUD: 'Settings_Wallet_ReportVirtualCardFraud',
-            REPORT_VIRTUAL_CARD_FRAUD_CONFIRMATION: 'Settings_Wallet_ReportVirtualCardFraudConfirmation',
-            CARDS_DIGITAL_DETAILS_UPDATE_ADDRESS: 'Settings_Wallet_Cards_Digital_Details_Update_Address',
-            ENABLE_GLOBAL_REIMBURSEMENTS: 'Settings_Wallet_Enable_Global_Reimbursements',
-        },
         LOCK: {
             LOCK_ACCOUNT: 'Settings_Lock_LockAccount',
             UNLOCK_ACCOUNT: 'Settings_Lock_UnlockAccount',
@@ -176,7 +162,6 @@ const SCREENS = {
         TASK_DETAILS: 'Task_Details',
         SPLIT_DETAILS: 'SplitDetails',
         ADD_PERSONAL_BANK_ACCOUNT: 'AddPersonalBankAccount',
-        WALLET_STATEMENT: 'Wallet_Statement',
         FLAG_COMMENT: 'Flag_Comment',
         EDIT_REQUEST: 'EditRequest',
         SIGN_IN: 'SignIn',
@@ -191,7 +176,6 @@ const SCREENS = {
         SEARCH_SAVED_SEARCH: 'SearchSavedSearch',
         SETTINGS_CATEGORIES: 'SettingsCategories',
         EXPENSIFY_CARD: 'ExpensifyCard',
-        DOMAIN_CARD: 'DomainCard',
         RESTRICTED_ACTION: 'RestrictedAction',
         REPORT_EXPORT: 'Report_Export',
         DEBUG: 'Debug',
@@ -276,7 +260,6 @@ const SCREENS = {
 
     IOU_SEND: {
         ADD_BANK_ACCOUNT: 'IOU_Send_Add_Bank_Account',
-        ADD_DEBIT_CARD: 'IOU_Send_Add_Debit_Card',
     },
 
     SETTINGS_CATEGORIES: {
@@ -295,10 +278,6 @@ const SCREENS = {
         EXPENSIFY_CARD_NAME: 'Expensify_Card_Name',
         EXPENSIFY_CARD_LIMIT: 'Expensify_Card_Limit',
         EXPENSIFY_CARD_LIMIT_TYPE: 'Expensify_Card_Limit_Type',
-    },
-    DOMAIN_CARD: {
-        DOMAIN_CARD_DETAIL: 'Domain_Card_Detail',
-        DOMAIN_CARD_REPORT_FRAUD: 'Domain_Card_Report_Fraud',
     },
 
 
@@ -600,7 +579,6 @@ const SCREENS = {
 
     ADD_PERSONAL_BANK_ACCOUNT_ROOT: 'AddPersonalBankAccount_Root',
     REIMBURSEMENT_ACCOUNT_ROOT: 'Reimbursement_Account_Root',
-    WALLET_STATEMENT_ROOT: 'WalletStatement_Root',
     SIGN_IN_ROOT: 'SignIn_Root',
     DETAILS_ROOT: 'Details_Root',
     PROFILE_ROOT: 'Profile_Root',

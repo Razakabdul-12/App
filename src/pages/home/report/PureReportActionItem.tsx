@@ -16,7 +16,6 @@ import MentionReportContext from '@components/HTMLEngineProvider/HTMLRenderers/M
 import Icon from '@components/Icon';
 import {Eye} from '@components/Icon/Expensicons';
 import InlineSystemMessage from '@components/InlineSystemMessage';
-import KYCWall from '@components/KYCWall';
 import type {LocaleContextProps} from '@components/LocaleContextProvider';
 import OfflineWithFeedback from '@components/OfflineWithFeedback';
 import PressableWithSecondaryInteraction from '@components/PressableWithSecondaryInteraction';
@@ -1012,11 +1011,9 @@ function PureReportActionItem({
         } else if (isReimbursementQueuedAction(action)) {
             const targetReport = isChatThread(report) ? parentReport : report;
             const submitterDisplayName = formatPhoneNumber(getDisplayNameOrDefault(personalDetails?.[targetReport?.ownerAccountID ?? CONST.DEFAULT_NUMBER_ID]));
-            const paymentType = getOriginalMessage(action)?.paymentType ?? '';
-
             children = (
                 <ReportActionItemBasicMessage
-                    message={translate(paymentType === CONST.IOU.PAYMENT_TYPE.EXPENSIFY ? 'iou.waitingOnEnabledWallet' : 'iou.waitingOnBankAccount', {submitterDisplayName})}
+                    message={translate('iou.waitingOnBankAccount', {submitterDisplayName})}
                 >
                     <>
                         {missingPaymentMethod === 'bankAccount' && (
@@ -1028,26 +1025,6 @@ function PureReportActionItem({
                                 pressOnEnter
                                 large
                             />
-                        )}
-                        {missingPaymentMethod === 'wallet' && (
-                            <KYCWall
-                                onSuccessfulKYC={() => Navigation.navigate(ROUTES.SETTINGS_WALLET)}
-                                addBankAccountRoute={ROUTES.BANK_ACCOUNT_PERSONAL}
-                                addDebitCardRoute={ROUTES.SETTINGS_ADD_DEBIT_CARD}
-                                chatReportID={targetReport?.reportID}
-                                iouReport={iouReport}
-                            >
-                                {(triggerKYCFlow, buttonRef) => (
-                                    <Button
-                                        ref={buttonRef}
-                                        success
-                                        large
-                                        style={[styles.w100, styles.requestPreviewBox]}
-                                        text={translate('iou.enableWallet')}
-                                        onPress={triggerKYCFlow}
-                                    />
-                                )}
-                            </KYCWall>
                         )}
                     </>
                 </ReportActionItemBasicMessage>

@@ -18,7 +18,6 @@ import {getReviewNavigationRoute} from '@libs/TransactionPreviewUtils';
 import {getOriginalTransactionWithSplitInfo, isCardTransaction, removeSettledAndApprovedTransactions} from '@libs/TransactionUtils';
 import type {PlatformStackRouteProp} from '@navigation/PlatformStackNavigation/types';
 import type {TransactionDuplicateNavigatorParamList} from '@navigation/types';
-import {clearWalletTermsError} from '@userActions/PaymentMethods';
 import {clearIOUError} from '@userActions/Report';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
@@ -50,7 +49,6 @@ function TransactionPreview(props: TransactionPreviewProps) {
     const transactionID = transactionIDFromProps ?? (isMoneyRequestAction ? getOriginalMessage(action)?.IOUTransactionID : undefined);
     const [transaction] = useOnyx(`${ONYXKEYS.COLLECTION.TRANSACTION}${getNonEmptyStringOnyxID(transactionID)}`, {canBeMissing: true});
     const violations = useTransactionViolations(transaction?.transactionID);
-    const [walletTerms] = useOnyx(ONYXKEYS.WALLET_TERMS, {canBeMissing: true});
     const session = useSession();
     const chatReport = allReports?.[`${ONYXKEYS.COLLECTION.REPORT}${chatReportID}`];
     const personalDetails = usePersonalDetails();
@@ -80,7 +78,6 @@ function TransactionPreview(props: TransactionPreviewProps) {
     };
 
     const offlineWithFeedbackOnClose = useCallback(() => {
-        clearWalletTermsError();
         clearIOUError(chatReportID);
     }, [chatReportID]);
 
@@ -129,7 +126,6 @@ function TransactionPreview(props: TransactionPreviewProps) {
                     navigateToReviewFields={navigateToReviewFields}
                     areThereDuplicates={areThereDuplicates}
                     sessionAccountID={sessionAccountID}
-                    walletTermsErrors={walletTerms?.errors}
                     routeName={route.name}
                     isReviewDuplicateTransactionPage={isReviewDuplicateTransactionPage}
                 />
@@ -153,7 +149,6 @@ function TransactionPreview(props: TransactionPreviewProps) {
             navigateToReviewFields={navigateToReviewFields}
             areThereDuplicates={areThereDuplicates}
             sessionAccountID={sessionAccountID}
-            walletTermsErrors={walletTerms?.errors}
             routeName={route.name}
             reportPreviewAction={reportPreviewAction}
             isReviewDuplicateTransactionPage={isReviewDuplicateTransactionPage}

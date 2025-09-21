@@ -22,24 +22,6 @@ const getMockForStatus = (status: string) =>
                         : undefined,
             },
         },
-        [ONYXKEYS.USER_WALLET]: {
-            bankAccountID: 12345,
-            errors:
-                status === CONST.INDICATOR_STATUS.HAS_USER_WALLET_ERRORS
-                    ? {
-                          error: 'Something went wrong',
-                      }
-                    : undefined,
-        },
-        [ONYXKEYS.WALLET_TERMS]: {
-            errors:
-                status === CONST.INDICATOR_STATUS.HAS_WALLET_TERMS_ERRORS
-                    ? {
-                          error: 'Something went wrong',
-                      }
-                    : undefined,
-            chatReportID: status === CONST.INDICATOR_STATUS.HAS_WALLET_TERMS_ERRORS ? undefined : '123',
-        },
         [ONYXKEYS.LOGIN_LIST]: {
             // eslint-disable-next-line @typescript-eslint/naming-convention
             'johndoe12@expensify.com': {
@@ -107,11 +89,6 @@ type TestCase = {
 
 const TEST_CASES: TestCase[] = [
     {
-        name: 'has user wallet errors',
-        indicatorColor: defaultTheme.danger,
-        status: CONST.INDICATOR_STATUS.HAS_USER_WALLET_ERRORS,
-    },
-    {
         name: 'has payment method error',
         indicatorColor: defaultTheme.danger,
         status: CONST.INDICATOR_STATUS.HAS_PAYMENT_METHOD_ERROR,
@@ -125,11 +102,6 @@ const TEST_CASES: TestCase[] = [
         name: 'has login list error',
         indicatorColor: defaultTheme.danger,
         status: CONST.INDICATOR_STATUS.HAS_LOGIN_LIST_ERROR,
-    },
-    {
-        name: 'has wallet terms errors',
-        indicatorColor: defaultTheme.danger,
-        status: CONST.INDICATOR_STATUS.HAS_WALLET_TERMS_ERRORS,
     },
     {
         name: 'has card connection error',
@@ -177,8 +149,6 @@ describe('useAccountTabIndicatorStatus', () => {
         beforeAll(() => {
             return Onyx.multiSet({
                 [ONYXKEYS.BANK_ACCOUNT_LIST]: {},
-                [ONYXKEYS.USER_WALLET]: {},
-                [ONYXKEYS.WALLET_TERMS]: {},
                 [ONYXKEYS.LOGIN_LIST]: {},
                 [ONYXKEYS.REIMBURSEMENT_ACCOUNT]: {},
                 [ONYXKEYS.PRIVATE_PERSONAL_DETAILS]: {},
@@ -202,34 +172,6 @@ describe('useAccountTabIndicatorStatus', () => {
         });
     });
 
-    describe('wallet terms with chatReportID', () => {
-        beforeAll(() => {
-            return Onyx.multiSet({
-                [ONYXKEYS.BANK_ACCOUNT_LIST]: {},
-                [ONYXKEYS.USER_WALLET]: {},
-                [ONYXKEYS.WALLET_TERMS]: {
-                    errors: {
-                        error: 'Something went wrong',
-                    },
-                    chatReportID: '123',
-                },
-                [ONYXKEYS.LOGIN_LIST]: {},
-                [ONYXKEYS.REIMBURSEMENT_ACCOUNT]: {},
-                [ONYXKEYS.PRIVATE_PERSONAL_DETAILS]: {},
-                [`${ONYXKEYS.CARD_LIST}`]: {},
-                [ONYXKEYS.SESSION]: {
-                    email: 'johndoe12@expensify.com',
-                },
-            } as unknown as OnyxMultiSetInput).then(waitForBatchedUpdates);
-        });
-
-        it('does not show wallet terms error when chatReportID exists', () => {
-            const {result} = renderHook(() => useAccountTabIndicatorStatus());
-            const {status} = result.current;
-            expect(status).toBeUndefined();
-        });
-    });
-
     describe('multiple errors', () => {
         beforeAll(() => {
             return Onyx.multiSet({
@@ -242,15 +184,12 @@ describe('useAccountTabIndicatorStatus', () => {
                         },
                     },
                 },
-                [ONYXKEYS.USER_WALLET]: {
-                    bankAccountID: 12345,
+                [ONYXKEYS.LOGIN_LIST]: {},
+                [ONYXKEYS.REIMBURSEMENT_ACCOUNT]: {
                     errors: {
-                        error: 'Wallet error',
+                        error: 'Reimbursement account error',
                     },
                 },
-                [ONYXKEYS.WALLET_TERMS]: {},
-                [ONYXKEYS.LOGIN_LIST]: {},
-                [ONYXKEYS.REIMBURSEMENT_ACCOUNT]: {},
                 [ONYXKEYS.PRIVATE_PERSONAL_DETAILS]: {},
                 [`${ONYXKEYS.CARD_LIST}`]: {},
                 [ONYXKEYS.SESSION]: {
@@ -263,7 +202,7 @@ describe('useAccountTabIndicatorStatus', () => {
             const {result} = renderHook(() => useAccountTabIndicatorStatus());
             const {status} = result.current;
             // Should return the first error in the errorChecking object
-            expect(status).toBe(CONST.INDICATOR_STATUS.HAS_USER_WALLET_ERRORS);
+            expect(status).toBe(CONST.INDICATOR_STATUS.HAS_PAYMENT_METHOD_ERROR);
         });
 
         it('returns danger color for multiple errors', () => {
@@ -277,13 +216,11 @@ describe('useAccountTabIndicatorStatus', () => {
         beforeAll(() => {
             return Onyx.multiSet({
                 [ONYXKEYS.BANK_ACCOUNT_LIST]: {},
-                [ONYXKEYS.USER_WALLET]: {
-                    bankAccountID: 12345,
+                [ONYXKEYS.FUND_LIST]: {
                     errors: {
-                        error: 'Wallet error',
+                        error: 'Payment method error',
                     },
                 },
-                [ONYXKEYS.WALLET_TERMS]: {},
                 [ONYXKEYS.LOGIN_LIST]: {
                     // eslint-disable-next-line @typescript-eslint/naming-convention
                     'johndoe12@expensify.com': {
@@ -304,7 +241,7 @@ describe('useAccountTabIndicatorStatus', () => {
         it('returns error status when both error and info exist', () => {
             const {result} = renderHook(() => useAccountTabIndicatorStatus());
             const {status} = result.current;
-            expect(status).toBe(CONST.INDICATOR_STATUS.HAS_USER_WALLET_ERRORS);
+            expect(status).toBe(CONST.INDICATOR_STATUS.HAS_PAYMENT_METHOD_ERROR);
         });
 
         it('returns danger color when error takes priority', () => {
@@ -318,8 +255,6 @@ describe('useAccountTabIndicatorStatus', () => {
         beforeAll(() => {
             return Onyx.multiSet({
                 [ONYXKEYS.BANK_ACCOUNT_LIST]: null,
-                [ONYXKEYS.USER_WALLET]: null,
-                [ONYXKEYS.WALLET_TERMS]: null,
                 [ONYXKEYS.LOGIN_LIST]: null,
                 [ONYXKEYS.REIMBURSEMENT_ACCOUNT]: null,
                 [ONYXKEYS.PRIVATE_PERSONAL_DETAILS]: null,

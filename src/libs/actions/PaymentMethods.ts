@@ -11,7 +11,6 @@ import type {
     MakeDefaultPaymentMethodParams,
     PaymentCardParams,
     SetInvoicingTransferBankAccountParams,
-    TransferWalletBalanceParams,
     UpdateBillingCurrencyParams,
 } from '@libs/API/parameters';
 import {READ_COMMANDS, WRITE_COMMANDS} from '@libs/API/types';
@@ -28,7 +27,6 @@ import type {BankAccountList, FundList} from '@src/types/onyx';
 import type {PaymentMethodType} from '@src/types/onyx/OriginalMessage';
 import type PaymentMethod from '@src/types/onyx/PaymentMethod';
 import type {OnyxData} from '@src/types/onyx/Request';
-import type {FilterMethodPaymentType} from '@src/types/onyx/WalletTransfer';
 
 type KYCWallRef = {
     continueAction?: (event?: GestureResponderEvent | KeyboardEvent, iouPaymentType?: PaymentMethodType) => void;
@@ -52,6 +50,8 @@ function continueSetup(fallbackRoute?: Route) {
     Navigation.goBack(fallbackRoute);
     kycWallRef.current.continueAction();
 }
+
+function setKYCWallSource(_source?: ValueOf<typeof CONST.KYC_WALL_SOURCE>, _chatReportID = '') {}
 
 function getPaymentMethods() {
     const optimisticData: OnyxUpdate[] = [
@@ -90,29 +90,7 @@ function getMakeDefaultPaymentOnyxData(
     currentPaymentMethod?: PaymentMethod,
     isOptimisticData = true,
 ): OnyxUpdate[] {
-    const onyxData: OnyxUpdate[] = [
-        isOptimisticData
-            ? {
-                  onyxMethod: Onyx.METHOD.MERGE,
-                  key: ONYXKEYS.USER_WALLET,
-                  value: {
-                      // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-                      walletLinkedAccountID: bankAccountID || fundID,
-                      walletLinkedAccountType: bankAccountID ? CONST.PAYMENT_METHODS.PERSONAL_BANK_ACCOUNT : CONST.PAYMENT_METHODS.DEBIT_CARD,
-                      // Only clear the error if this is optimistic data. If this is failure data, we do not want to clear the error that came from the server.
-                      errors: null,
-                  },
-              }
-            : {
-                  onyxMethod: Onyx.METHOD.MERGE,
-                  key: ONYXKEYS.USER_WALLET,
-                  value: {
-                      // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-                      walletLinkedAccountID: bankAccountID || fundID,
-                      walletLinkedAccountType: bankAccountID ? CONST.PAYMENT_METHODS.PERSONAL_BANK_ACCOUNT : CONST.PAYMENT_METHODS.DEBIT_CARD,
-                  },
-              },
-    ];
+    const onyxData: OnyxUpdate[] = [];
 
     if (previousPaymentMethod?.methodID) {
         onyxData.push({
@@ -335,86 +313,6 @@ function setPaymentMethodCurrency(currency: ValueOf<typeof CONST.PAYMENT_CARD_CU
 }
 
 /**
- * Call the API to transfer wallet balance.
- *
- */
-function transferWalletBalance(paymentMethod: PaymentMethod) {
-    const paymentMethodIDKey =
-        paymentMethod.accountType === CONST.PAYMENT_METHODS.PERSONAL_BANK_ACCOUNT ? CONST.PAYMENT_METHOD_ID_KEYS.BANK_ACCOUNT : CONST.PAYMENT_METHOD_ID_KEYS.DEBIT_CARD;
-
-    const parameters: TransferWalletBalanceParams = {
-        [paymentMethodIDKey]: paymentMethod.methodID,
-    };
-
-    const optimisticData: OnyxUpdate[] = [
-        {
-            onyxMethod: 'merge',
-            key: ONYXKEYS.WALLET_TRANSFER,
-            value: {
-                loading: true,
-                errors: null,
-            },
-        },
-    ];
-
-    const successData: OnyxUpdate[] = [
-        {
-            onyxMethod: 'merge',
-            key: ONYXKEYS.WALLET_TRANSFER,
-            value: {
-                loading: false,
-                shouldShowSuccess: true,
-                paymentMethodType: paymentMethod.accountType,
-            },
-        },
-    ];
-
-    const failureData: OnyxUpdate[] = [
-        {
-            onyxMethod: 'merge',
-            key: ONYXKEYS.WALLET_TRANSFER,
-            value: {
-                loading: false,
-                shouldShowSuccess: false,
-            },
-        },
-    ];
-
-    API.write(WRITE_COMMANDS.TRANSFER_WALLET_BALANCE, parameters, {
-        optimisticData,
-        successData,
-        failureData,
-    });
-}
-
-function resetWalletTransferData() {
-    Onyx.merge(ONYXKEYS.WALLET_TRANSFER, {
-        selectedAccountType: '',
-        selectedAccountID: null,
-        filterPaymentMethodType: null,
-        loading: false,
-        shouldShowSuccess: false,
-    });
-}
-
-function saveWalletTransferAccountTypeAndID(selectedAccountType: string | undefined, selectedAccountID: string | undefined) {
-    Onyx.merge(ONYXKEYS.WALLET_TRANSFER, {selectedAccountType, selectedAccountID});
-}
-
-/**
- * Toggles the user's selected type of payment method (bank account or debit card) on the wallet transfer balance screen.
- *
- */
-function saveWalletTransferMethodType(filterPaymentMethodType?: FilterMethodPaymentType) {
-    Onyx.merge(ONYXKEYS.WALLET_TRANSFER, {filterPaymentMethodType});
-}
-
-function dismissSuccessfulTransferBalancePage() {
-    Onyx.merge(ONYXKEYS.WALLET_TRANSFER, {shouldShowSuccess: false});
-    Navigation.goBack();
-}
-
-/**
  * Looks through each payment method to see if there is an existing error
  *
  */
@@ -453,20 +351,6 @@ function clearAddPaymentMethodError(paymentListKey: PaymentListKey, paymentMetho
     Onyx.merge(paymentListKey, {
         [paymentMethodID]: null,
     });
-}
-
-/**
- * Clear any error(s) related to the user's wallet
- */
-function clearWalletError() {
-    Onyx.merge(ONYXKEYS.USER_WALLET, {errors: null});
-}
-
-/**
- * Clear any error(s) related to the user's wallet terms
- */
-function clearWalletTermsError() {
-    Onyx.merge(ONYXKEYS.WALLET_TERMS, {errors: null});
 }
 
 function deletePaymentCard(fundID: number) {
@@ -588,20 +472,14 @@ export {
     continueSetup,
     addSubscriptionPaymentCard,
     clearPaymentCardFormErrorAndSubmit,
-    dismissSuccessfulTransferBalancePage,
-    transferWalletBalance,
-    resetWalletTransferData,
-    saveWalletTransferAccountTypeAndID,
-    saveWalletTransferMethodType,
     hasPaymentMethodError,
     updateBillingCurrency,
     clearDeletePaymentMethodError,
     clearAddPaymentMethodError,
-    clearWalletError,
     setPaymentMethodCurrency,
     clearPaymentCard3dsVerification,
-    clearWalletTermsError,
     verifySetupIntent,
     addPaymentCardSCA,
     setInvoicingTransferBankAccount,
+    setKYCWallSource,
 };

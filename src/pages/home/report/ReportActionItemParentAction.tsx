@@ -64,9 +64,6 @@ type ReportActionItemParentActionProps = {
     /** If the thread divider line will be used */
     shouldUseThreadDividerLine?: boolean;
 
-    /** User wallet tierName */
-    userWalletTierName: string | undefined;
-
     /** Whether the user is validated */
     isUserValidated: boolean | undefined;
 
@@ -104,7 +101,6 @@ function ReportActionItemParentAction({
     shouldDisplayReplyDivider,
     isFirstVisibleReportAction = false,
     shouldUseThreadDividerLine = false,
-    userWalletTierName,
     isUserValidated,
     personalDetails,
     allDraftMessages,
@@ -221,7 +217,6 @@ function ReportActionItemParentAction({
                             isFirstVisibleReportAction={isFirstVisibleReportAction}
                             shouldUseThreadDividerLine={shouldUseThreadDividerLine}
                             isThreadReportParentAction
-                            userWalletTierName={userWalletTierName}
                             isUserValidated={isUserValidated}
                             personalDetails={personalDetails}
                             draftMessage={matchingDraftMessageString}

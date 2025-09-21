@@ -111,16 +111,9 @@ import type TransactionViolations from './TransactionViolation';
 import type TryNewDot from './TryNewDot';
 import type UserLocation from './UserLocation';
 import type UserMetadata from './UserMetadata';
-import type UserWallet from './UserWallet';
 import type VacationDelegate from './VacationDelegate';
 import type ValidateMagicCodeAction from './ValidateMagicCodeAction';
 import type ValidateUserAndGetAccessiblePolicies from './ValidateUserAndGetAccessiblePolicies';
-import type WalletAdditionalDetails from './WalletAdditionalDetails';
-import type {WalletAdditionalQuestionDetails} from './WalletAdditionalDetails';
-import type WalletOnfido from './WalletOnfido';
-import type WalletStatement from './WalletStatement';
-import type WalletTerms from './WalletTerms';
-import type WalletTransfer from './WalletTransfer';
 
 export type {
     FileObject,
@@ -218,14 +211,7 @@ export type {
     TransactionViolations,
     UserLocation,
     UserMetadata,
-    UserWallet,
     ViolationName,
-    WalletAdditionalDetails,
-    WalletAdditionalQuestionDetails,
-    WalletOnfido,
-    WalletStatement,
-    WalletTerms,
-    WalletTransfer,
     PurchaseList,
     ReportUserIsTyping,
     PolicyReportField,

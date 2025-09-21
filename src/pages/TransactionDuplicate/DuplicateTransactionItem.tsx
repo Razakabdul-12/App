@@ -22,7 +22,6 @@ type DuplicateTransactionItemProps = {
 
 function DuplicateTransactionItem({transaction, index, allReports, policies}: DuplicateTransactionItemProps) {
     const styles = useThemeStyles();
-    const [userWalletTierName] = useOnyx(ONYXKEYS.USER_WALLET, {selector: (wallet) => wallet?.tierName, canBeMissing: false});
     const [isUserValidated] = useOnyx(ONYXKEYS.ACCOUNT, {selector: isUserValidatedSelector, canBeMissing: true});
     const personalDetails = usePersonalDetails();
     const [userBillingFundID] = useOnyx(ONYXKEYS.NVP_BILLING_FUND_ID, {canBeMissing: true});
@@ -74,7 +73,6 @@ function DuplicateTransactionItem({transaction, index, allReports, policies}: Du
                 isMostRecentIOUReportAction={false}
                 isFirstVisibleReportAction={false}
                 shouldDisplayContextMenu={false}
-                userWalletTierName={userWalletTierName}
                 isUserValidated={isUserValidated}
                 personalDetails={personalDetails}
                 draftMessage={matchingDraftMessage}

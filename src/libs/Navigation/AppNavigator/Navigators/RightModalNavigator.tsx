@@ -134,10 +134,6 @@ function RightModalNavigator({navigation, route}: RightModalNavigatorProps) {
                             component={ModalStackNavigators.ExpensifyCardModalStackNavigator}
                         />
                         <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.DOMAIN_CARD}
-                            component={ModalStackNavigators.DomainCardModalStackNavigator}
-                        />
-                        <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.PARTICIPANTS}
                             component={ModalStackNavigators.ReportParticipantsModalStackNavigator}
                         />
@@ -168,10 +164,6 @@ function RightModalNavigator({navigation, route}: RightModalNavigatorProps) {
                         <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.ADD_PERSONAL_BANK_ACCOUNT}
                             component={ModalStackNavigators.AddPersonalBankAccountModalStackNavigator}
-                        />
-                        <Stack.Screen
-                            name={SCREENS.RIGHT_MODAL.WALLET_STATEMENT}
-                            component={ModalStackNavigators.WalletStatementStackNavigator}
                         />
                         <Stack.Screen
                             name={SCREENS.RIGHT_MODAL.FLAG_COMMENT}

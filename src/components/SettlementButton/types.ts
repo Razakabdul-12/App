@@ -1,7 +1,6 @@
 import type {StyleProp, ViewStyle} from 'react-native';
 import type {OnyxEntry} from 'react-native-onyx';
 import type {PaymentMethod} from '@components/KYCWall/types';
-import type {Route} from '@src/ROUTES';
 import type {ButtonSizeValue} from '@src/styles/utils/types';
 import type {Report} from '@src/types/onyx';
 import type {PaymentMethodType} from '@src/types/onyx/OriginalMessage';
@@ -55,9 +54,6 @@ type SettlementButtonProps = {
 
     /** The size of button size */
     buttonSize?: ButtonSizeValue;
-
-    /** Route for the Add Debit Card screen for a given navigation stack */
-    addDebitCardRoute?: Route;
 
     /** Whether the button should be disabled */
     isDisabled?: boolean;

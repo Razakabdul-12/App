@@ -535,9 +535,6 @@ type ChatListItemProps<TItem extends ListItem> = ListItemProps<TItem> & {
     /** The report data */
     report?: Report;
 
-    /** The user wallet tierName */
-    userWalletTierName: string | undefined;
-
     /** Whether the user is validated */
     isUserValidated: boolean | undefined;
 

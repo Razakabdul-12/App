@@ -50,7 +50,6 @@ export {
     cancelResetBankAccount,
 } from './ReimbursementAccount';
 export {openPlaidBankAccountSelector, openPlaidBankLogin} from './Plaid';
-export {openOnfidoFlow, answerQuestionsForWallet, verifyIdentity, acceptWalletTerms} from './Wallet';
 
 type AccountFormValues = typeof ONYXKEYS.FORMS.PERSONAL_BANK_ACCOUNT_FORM | typeof ONYXKEYS.FORMS.REIMBURSEMENT_ACCOUNT_FORM;
 
@@ -288,13 +287,6 @@ function addPersonalBankAccount(account: PlaidBankAccount, policyID?: string, so
                     isLoading: false,
                     errors: null,
                     shouldShowSuccess: true,
-                },
-            },
-            {
-                onyxMethod: Onyx.METHOD.MERGE,
-                key: ONYXKEYS.USER_WALLET,
-                value: {
-                    currentStep: CONST.WALLET.STEP.ADDITIONAL_DETAILS,
                 },
             },
         ],
@@ -1204,64 +1196,6 @@ function fetchCorpayFields(bankCountry: string, bankCurrency?: string, isWithdra
     );
 }
 
-function createCorpayBankAccountForWalletFlow(data: InternationalBankAccountForm, classification: string, destinationCountry: string, preferredMethod: string) {
-    const inputData = {
-        ...data,
-        classification,
-        destinationCountry,
-        preferredMethod,
-        setupType: 'manual',
-        fieldsType: 'international',
-        country: data.bankCountry,
-        currency: data.bankCurrency,
-    };
-
-    const parameters = {
-        isWithdrawal: false,
-        isSavings: true,
-        inputs: JSON.stringify(inputData),
-    };
-
-    const onyxData: OnyxData = {
-        optimisticData: [
-            {
-                onyxMethod: Onyx.METHOD.MERGE,
-                key: ONYXKEYS.REIMBURSEMENT_ACCOUNT,
-                value: {
-                    isLoading: true,
-                    isCreateCorpayBankAccount: true,
-                },
-            },
-        ],
-        successData: [
-            {
-                onyxMethod: Onyx.METHOD.MERGE,
-                key: ONYXKEYS.REIMBURSEMENT_ACCOUNT,
-                value: {
-                    isLoading: false,
-                    isCreateCorpayBankAccount: false,
-                    errors: null,
-                    isSuccess: true,
-                },
-            },
-        ],
-        failureData: [
-            {
-                onyxMethod: Onyx.METHOD.MERGE,
-                key: ONYXKEYS.REIMBURSEMENT_ACCOUNT,
-                value: {
-                    isLoading: false,
-                    isCreateCorpayBankAccount: false,
-                    isSuccess: false,
-                    errors: getMicroSecondOnyxErrorWithTranslationKey('walletPage.addBankAccountFailure'),
-                },
-            },
-        ],
-    };
-
-    return API.write(WRITE_COMMANDS.BANK_ACCOUNT_CREATE_CORPAY, parameters, onyxData);
-}
-
 export {
     acceptACHContractForBankAccount,
     addBusinessWebsiteForDraft,
@@ -1292,7 +1226,6 @@ export {
     fetchCorpayFields,
     clearReimbursementAccountBankCreation,
     getCorpayBankAccountFields,
-    createCorpayBankAccountForWalletFlow,
     getCorpayOnboardingFields,
     saveCorpayOnboardingCompanyDetails,
     clearReimbursementAccountSaveCorpayOnboardingCompanyDetails,
