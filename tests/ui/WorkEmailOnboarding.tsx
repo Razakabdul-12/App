@@ -339,7 +339,7 @@ describe('OnboardingWorkEmail Page', () => {
         await waitForBatchedUpdatesWithAct();
     });
 
-    it('should navigate to Onboarding employee page when skip is pressed and user is routed app via smb', async () => {
+    it('should navigate to Onboarding interested features page when skip is pressed and user is routed app via smb', async () => {
         await TestHelper.signInWithTestUser();
 
         await act(async () => {
@@ -365,7 +365,7 @@ describe('OnboardingWorkEmail Page', () => {
         fireEvent.press(skipButton, mockEvent);
 
         await waitFor(() => {
-            expect(navigate).toHaveBeenCalledWith(ROUTES.ONBOARDING_EMPLOYEES.getRoute(), {forceReplace: true});
+            expect(navigate).toHaveBeenCalledWith(ROUTES.ONBOARDING_INTERESTED_FEATURES.getRoute(), {forceReplace: true});
         });
 
         unmount();
@@ -543,7 +543,7 @@ describe('OnboardingWorkEmailValidation Page', () => {
         await waitForBatchedUpdatesWithAct();
     });
 
-    it('should navigate to Onboarding employee page when validate code step is successful and user is routed app via smb', async () => {
+    it('should navigate to Onboarding interested features page when validate code step is successful and user is routed app via smb', async () => {
         await TestHelper.signInWithTestUser();
 
         await act(async () => {
@@ -566,7 +566,7 @@ describe('OnboardingWorkEmailValidation Page', () => {
         await waitForBatchedUpdatesWithAct();
 
         await waitFor(() => {
-            expect(navigate).toHaveBeenCalledWith(ROUTES.ONBOARDING_EMPLOYEES.getRoute(), {forceReplace: true});
+            expect(navigate).toHaveBeenCalledWith(ROUTES.ONBOARDING_INTERESTED_FEATURES.getRoute(), {forceReplace: true});
         });
 
         unmount();

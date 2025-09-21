@@ -952,10 +952,6 @@ type OnboardingModalNavigatorParamList = {
     [SCREENS.ONBOARDING.PURPOSE]: {
         backTo?: string;
     };
-    [SCREENS.ONBOARDING.EMPLOYEES]: {
-        backTo?: string;
-    };
-   
     [SCREENS.ONBOARDING.WORK_EMAIL]: {
         backTo?: string;
     };

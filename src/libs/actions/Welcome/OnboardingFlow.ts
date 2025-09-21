@@ -35,7 +35,6 @@ type GetOnboardingInitialPathParamsType = {
     hasAccessiblePolicies: boolean;
     onboardingValuesParam?: Onboarding;
     currentOnboardingPurposeSelected: OnyxEntry<OnboardingPurpose>;
-    currentOnboardingCompanySize: OnyxEntry<OnboardingCompanySize>;
     onboardingInitialPath: OnyxEntry<string>;
 };
 
@@ -100,13 +99,19 @@ function getOnboardingInitialPath(getOnboardingInitialPathParams: GetOnboardingI
         hasAccessiblePolicies,
         onboardingValuesParam,
         currentOnboardingPurposeSelected,
-        currentOnboardingCompanySize,
         onboardingInitialPath = '',
     } = getOnboardingInitialPathParams;
     const legacyAccountingRoute = 'onboarding/accounting';
-    const sanitizedOnboardingInitialPath = onboardingInitialPath.includes(legacyAccountingRoute)
+    const legacyEmployeesRoute = 'onboarding/employees';
+    let sanitizedOnboardingInitialPath = onboardingInitialPath.includes(legacyAccountingRoute)
         ? onboardingInitialPath.replace(legacyAccountingRoute, ROUTES.ONBOARDING_INTERESTED_FEATURES.route)
         : onboardingInitialPath;
+    if (sanitizedOnboardingInitialPath.includes(legacyEmployeesRoute)) {
+        sanitizedOnboardingInitialPath = sanitizedOnboardingInitialPath.replace(
+            legacyEmployeesRoute,
+            ROUTES.ONBOARDING_INTERESTED_FEATURES.route,
+        );
+    }
     const state = getStateFromPath(sanitizedOnboardingInitialPath, linkingConfig.config);
     const currentOnboardingValues = onboardingValuesParam ?? onboardingValues;
     const isVsb = currentOnboardingValues?.signupQualifier === CONST.ONBOARDING_SIGNUP_QUALIFIERS.VSB;
@@ -124,6 +129,7 @@ function getOnboardingInitialPath(getOnboardingInitialPathParams: GetOnboardingI
     }
     if (isSmb) {
         Onyx.set(ONYXKEYS.ONBOARDING_PURPOSE_SELECTED, CONST.ONBOARDING_CHOICES.MANAGE_TEAM);
+        Onyx.set(ONYXKEYS.ONBOARDING_COMPANY_SIZE, CONST.ONBOARDING_COMPANY_SIZE.SMALL);
     }
 
     if (isIndividual) {
@@ -141,20 +147,16 @@ function getOnboardingInitialPath(getOnboardingInitialPathParams: GetOnboardingI
         return `/${ROUTES.ONBOARDING_INTERESTED_FEATURES.route}`;
     }
     if (isSmb) {
-        return `/${ROUTES.ONBOARDING_EMPLOYEES.route}`;
+        return `/${ROUTES.ONBOARDING_INTERESTED_FEATURES.route}`;
     }
 
     if (state?.routes?.at(-1)?.name !== NAVIGATORS.ONBOARDING_MODAL_NAVIGATOR) {
         return `/${ROUTES.ONBOARDING_ROOT.route}`;
     }
 
-    if (sanitizedOnboardingInitialPath.includes(ROUTES.ONBOARDING_EMPLOYEES.route) && !isCurrentOnboardingPurposeManageTeam) {
-        return `/${ROUTES.ONBOARDING_PURPOSE.route}`;
-    }
-
     if (
         sanitizedOnboardingInitialPath.includes(ROUTES.ONBOARDING_INTERESTED_FEATURES.route) &&
-        (!isCurrentOnboardingPurposeManageTeam || !currentOnboardingCompanySize)
+        !isCurrentOnboardingPurposeManageTeam
     ) {
         return `/${ROUTES.ONBOARDING_PURPOSE.route}`;
     }
