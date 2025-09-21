@@ -1713,14 +1713,7 @@ const translations = {
         copy: 'Kopiëren',
         disable: 'Uitschakelen',
         enableTwoFactorAuth: 'Twee-factor-authenticatie inschakelen',
-        pleaseEnableTwoFactorAuth: 'Schakel alsjeblieft twee-factor authenticatie in.',
-        twoFactorAuthIsRequiredDescription: 'Voor beveiligingsdoeleinden vereist Xero tweefactorauthenticatie om de integratie te verbinden.',
-        twoFactorAuthIsRequiredForAdminsHeader: 'Twee-factor authenticatie vereist',
-        twoFactorAuthIsRequiredForAdminsTitle: 'Schakel alsjeblieft twee-factor authenticatie in.',
-        twoFactorAuthIsRequiredForAdminsDescription: 'Uw Xero-boekhoudkoppeling vereist het gebruik van tweefactorauthenticatie. Om Expensify te blijven gebruiken, schakelt u dit in.',
-        twoFactorAuthCannotDisable: 'Kan 2FA niet uitschakelen',
-        twoFactorAuthRequired: 'Twee-factor authenticatie (2FA) is vereist voor uw Xero-verbinding en kan niet worden uitgeschakeld.',
-    },
+        pleaseEnableTwoFactorAuth: 'Schakel alsjeblieft twee-factor authenticatie in.',        twoFactorAuthCannotDisable: 'Kan 2FA niet uitschakelen',    },
     recoveryCodeForm: {
         error: {
             pleaseFillRecoveryCode: 'Voer uw herstelcode in alstublieft',
@@ -3630,92 +3623,7 @@ const translations = {
             joinNow: 'Nu lid worden',
             askToJoin: 'Vragen om deel te nemen',
         },
-        xero: {
-            organization: 'Xero organisatie',
-            organizationDescription: 'Kies de Xero-organisatie waarvan je gegevens wilt importeren.',
-            importDescription: 'Kies welke coderingsconfiguraties je wilt importeren van Xero naar Expensify.',
-            accountsDescription: 'Je Xero-rekeningschema wordt in Expensify geïmporteerd als categorieën.',
-            accountsSwitchTitle: 'Kies ervoor om nieuwe accounts te importeren als ingeschakelde of uitgeschakelde categorieën.',
-            accountsSwitchDescription: 'Ingeschakelde categorieën zullen beschikbaar zijn voor leden om te selecteren bij het aanmaken van hun uitgaven.',
-            trackingCategories: 'Categorieën bijhouden',
-            trackingCategoriesDescription: 'Kies hoe Xero-trackingcategorieën in Expensify moeten worden behandeld.',
-            mapTrackingCategoryTo: ({categoryName}: CategoryNameParams) => `Map Xero ${categoryName} naar`,
-            mapTrackingCategoryToDescription: ({categoryName}: CategoryNameParams) => `Kies waar u ${categoryName} wilt toewijzen bij het exporteren naar Xero.`,
-            customers: 'Klanten opnieuw factureren',
-            customersDescription:
-                'Kies of u klanten opnieuw wilt factureren in Expensify. Uw Xero-klantcontacten kunnen aan uitgaven worden gekoppeld en zullen naar Xero worden geëxporteerd als een verkoopfactuur.',
-            taxesDescription: 'Kies hoe je Xero-belastingen in Expensify wilt verwerken.',
-            notImported: 'Niet geïmporteerd',
-            notConfigured: 'Niet geconfigureerd',
-            trackingCategoriesOptions: {
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.DEFAULT]: 'Xero contact standaardinstelling',
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.TAG]: 'Tags',
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.REPORT_FIELD]: 'Rapportvelden',
-            },
-            exportDescription: 'Configureer hoe Expensify-gegevens worden geëxporteerd naar Xero.',
-            purchaseBill: 'Aankoopfactuur',
-            exportDeepDiveCompanyCard:
-                'Geëxporteerde uitgaven worden als banktransacties geboekt naar de Xero-bankrekening hieronder, en de transactiedata zullen overeenkomen met de data op uw bankafschrift.',
-            bankTransactions: 'Banktransacties',
-            xeroBankAccount: 'Xero bankrekening',
-            xeroBankAccountDescription: 'Kies waar uitgaven als banktransacties worden geboekt.',
-            exportExpensesDescription: 'Rapporten worden geëxporteerd als een inkoopfactuur met de hieronder geselecteerde datum en status.',
-            purchaseBillDate: 'Aankoopfactuurdatum',
-            exportInvoices: 'Facturen exporteren als',
-            salesInvoice: 'Verkoopfactuur',
-            exportInvoicesDescription: 'Verkoopfacturen tonen altijd de datum waarop de factuur is verzonden.',
-            advancedConfig: {
-                autoSyncDescription: 'Expensify zal elke dag automatisch synchroniseren met Xero.',
-                purchaseBillStatusTitle: 'Status van aankoopfactuur',
-                reimbursedReportsDescription: 'Elke keer dat een rapport wordt betaald met Expensify ACH, wordt de overeenkomstige factuurbetaling aangemaakt in het Xero-account hieronder.',
-                xeroBillPaymentAccount: 'Xero factuurbetalingsaccount',
-                xeroInvoiceCollectionAccount: 'Xero factuurincasso-account',
-                xeroBillPaymentAccountDescription: 'Kies waar u de rekeningen wilt betalen en wij maken de betaling aan in Xero.',
-                invoiceAccountSelectorDescription: 'Kies waar je factuurbetalingen wilt ontvangen en we maken de betaling aan in Xero.',
-            },
-            exportDate: {
-                label: 'Aankoopfactuurdatum',
-                description: 'Gebruik deze datum bij het exporteren van rapporten naar Xero.',
-                values: {
-                    [CONST.XERO_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: 'Datum van laatste uitgave',
-                        description: 'Datum van de meest recente uitgave op het rapport.',
-                    },
-                    [CONST.XERO_EXPORT_DATE.REPORT_EXPORTED]: {
-                        label: 'Exportdatum',
-                        description: 'Datum waarop het rapport naar Xero is geëxporteerd.',
-                    },
-                    [CONST.XERO_EXPORT_DATE.REPORT_SUBMITTED]: {
-                        label: 'Ingediende datum',
-                        description: 'Datum waarop het rapport ter goedkeuring is ingediend.',
-                    },
-                },
-            },
-            invoiceStatus: {
-                label: 'Status van aankoopfactuur',
-                description: 'Gebruik deze status bij het exporteren van aankoopfacturen naar Xero.',
-                values: {
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.DRAFT]: 'Conceptversie',
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.AWAITING_APPROVAL]: 'In afwachting van goedkeuring',
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.AWAITING_PAYMENT]: 'In afwachting van betaling',
-                },
-            },
-            noAccountsFound: 'Geen accounts gevonden',
-            noAccountsFoundDescription: 'Voeg alstublieft het account toe in Xero en synchroniseer de verbinding opnieuw.',
-            accountingMethods: {
-                label: 'Wanneer exporteren',
-                description: 'Kies wanneer u de uitgaven wilt exporteren:',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Accrual',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Contant',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Uit eigen zak gemaakte uitgaven worden geëxporteerd wanneer ze definitief zijn goedgekeurd.',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Uit eigen zak gemaakte uitgaven worden geëxporteerd wanneer ze zijn betaald.',
-                },
-            },
-        },
-        type: {
+type: {
             free: 'Gratis',
             control: 'Beheer',
             collect: 'Verzamel',
@@ -4006,9 +3914,7 @@ const translations = {
                 cardNumber: 'Kaartnummer',
                 cardholder: 'Kaart houder',
                 cardName: 'Kaartnaam',
-                integrationExport: ({integration, type}: IntegrationExportParams) => (integration && type ? `${integration} ${type.toLowerCase()} exporteren` : `${integration} exporteren`),
-                integrationExportTitleXero: ({integration}: IntegrationExportParams) => `Kies de ${integration}-account waarnaar transacties moeten worden geëxporteerd.`,
-                integrationExportTitle: ({integration, exportPageLink}: IntegrationExportParams) =>
+                integrationExport: ({integration, type}: IntegrationExportParams) => (integration && type ? `${integration} ${type.toLowerCase()} exporteren` : `${integration} exporteren`),                integrationExportTitle: ({integration, exportPageLink}: IntegrationExportParams) =>
                     `Kies de ${integration}-account waarnaar transacties moeten worden geëxporteerd. Selecteer een andere <a href="${exportPageLink}">exportoptie</a> om de beschikbare accounts te wijzigen.`,
                 lastUpdated: 'Laatst bijgewerkt',
                 transactionStartDate: 'Transactiebeginndatum',
@@ -4083,381 +3989,6 @@ const translations = {
                 subtitle: 'Aangepaste velden instellen voor uitgaven.',
             },
             connections: {
-                title: 'Boekhouding',
-                subtitle: 'Synchroniseer uw rekeningschema en meer.',
-            },            connectionsWarningModal: {
-                featureEnabledTitle: 'Niet zo snel...',
-                featureEnabledText: 'Om deze functie in of uit te schakelen, moet je je boekhoudimportinstellingen wijzigen.',
-                disconnectText: 'Om boekhouding uit te schakelen, moet je de boekhoudkoppeling van je werkruimte loskoppelen.',
-                manageSettings: 'Instellingen beheren',
-            },            workflowWarningModal: {
-                featureEnabledTitle: 'Niet zo snel...',
-                featureEnabledText:
-                    'Expensify-kaarten in deze werkruimte zijn afhankelijk van goedkeuringsworkflows om hun Smart Limits te definiëren.\n\nWijzig de limiettypen van alle kaarten met Smart Limits voordat u workflows uitschakelt.',
-                confirmText: 'Ga naar Expensify Cards',
-            },
-            rules: {
-                title: 'Regels',
-                subtitle: 'Vereis bonnen, markeer hoge uitgaven en meer.',
-            },
-        },
-        reports: {
-            reportsCustomTitleExamples: 'Voorbeelden:',
-            customReportNamesSubtitle: `<muted-text>Pas rapporttitels aan met behulp van onze <a href="${CONST.CUSTOM_REPORT_NAME_HELP_URL}">uitgebreide formules</a>.</muted-text>`,
-            customNameTitle: 'Standaard rapporttitel',
-            customNameDescription: `Kies een aangepaste naam voor onkostendeclaraties met behulp van onze <a href="${CONST.CUSTOM_REPORT_NAME_HELP_URL}">uitgebreide formules</a>.`,
-            customNameInputLabel: 'Naam',
-            customNameEmailPhoneExample: 'E-mail of telefoonnummer van lid: {report:submit:from}',
-            customNameStartDateExample: 'Rapport startdatum: {report:startdate}',
-            customNameWorkspaceNameExample: 'Werkruimte naam: {report:workspacename}',
-            customNameReportIDExample: 'Report ID: {report:id}',
-            customNameTotalExample: 'Totaal: {report:total}.',
-            preventMembersFromChangingCustomNamesTitle: 'Voorkom dat leden aangepaste rapportnamen wijzigen',
-        },
-        reportFields: {
-            addField: 'Veld toevoegen',
-            delete: 'Veld verwijderen',
-            deleteFields: 'Velden verwijderen',
-            findReportField: 'Rapportveld zoeken',
-            deleteConfirmation: 'Weet je zeker dat je dit rapportveld wilt verwijderen?',
-            deleteFieldsConfirmation: 'Weet je zeker dat je deze rapportvelden wilt verwijderen?',
-            emptyReportFields: {
-                title: 'Je hebt nog geen rapportvelden aangemaakt',
-                subtitle: 'Voeg een aangepast veld toe (tekst, datum of dropdown) dat op rapporten verschijnt.',
-            },
-            subtitle: 'Rapportvelden zijn van toepassing op alle uitgaven en kunnen nuttig zijn wanneer u om extra informatie wilt vragen.',
-            disableReportFields: 'Rapportvelden uitschakelen',
-            disableReportFieldsConfirmation: 'Weet je het zeker? Tekst- en datumvelden worden verwijderd en lijsten worden uitgeschakeld.',
-            importedFromAccountingSoftware: 'De onderstaande rapportvelden zijn geïmporteerd uit uw',
-            textType: 'Tekst',
-            dateType: 'Datum',
-            dropdownType: 'Lijst',
-            textAlternateText: 'Voeg een veld toe voor vrije tekstinvoer.',
-            dateAlternateText: 'Voeg een kalender toe voor datumselectie.',
-            dropdownAlternateText: 'Voeg een lijst met opties toe om uit te kiezen.',
-            nameInputSubtitle: 'Kies een naam voor het rapportveld.',
-            typeInputSubtitle: 'Kies welk type rapportveld je wilt gebruiken.',
-            initialValueInputSubtitle: 'Voer een startwaarde in om in het rapportveld te tonen.',
-            listValuesInputSubtitle: 'Deze waarden zullen verschijnen in de dropdown van uw rapportveld. Ingeschakelde waarden kunnen door leden worden geselecteerd.',
-            listInputSubtitle: 'Deze waarden zullen verschijnen in uw rapportveldlijst. Ingeschakelde waarden kunnen door leden worden geselecteerd.',
-            deleteValue: 'Waarde verwijderen',
-            deleteValues: 'Waarden verwijderen',
-            disableValue: 'Waarde uitschakelen',
-            disableValues: 'Waarden uitschakelen',
-            enableValue: 'Waarde inschakelen',
-            enableValues: 'Waarden inschakelen',
-            emptyReportFieldsValues: {
-                title: 'Je hebt nog geen lijstwaarden aangemaakt.',
-                subtitle: 'Voeg aangepaste waarden toe om op rapporten te verschijnen.',
-            },
-            deleteValuePrompt: 'Weet je zeker dat je deze lijstwaarde wilt verwijderen?',
-            deleteValuesPrompt: 'Weet je zeker dat je deze lijstwaarden wilt verwijderen?',
-            listValueRequiredError: 'Voer een lijstwaardenaam in, alstublieft',
-            existingListValueError: 'Er bestaat al een lijstwaarde met deze naam.',
-            editValue: 'Waarde bewerken',
-            listValues: 'Waarden opsommen',
-            addValue: 'Waarde toevoegen',
-            existingReportFieldNameError: 'Er bestaat al een rapportveld met deze naam',
-            reportFieldNameRequiredError: 'Voer een rapportveldnaam in alstublieft',
-            reportFieldTypeRequiredError: 'Kies een rapportveldtype aub',
-            reportFieldInitialValueRequiredError: 'Kies een initiële waarde voor een rapportveld alstublieft.',
-            genericFailureMessage: 'Er is een fout opgetreden bij het bijwerken van het rapportveld. Probeer het opnieuw.',
-        },
-        tags: {
-            tagName: 'Tagnaam',
-            requiresTag: 'Leden moeten alle uitgaven taggen',
-            trackBillable: 'Volg factureerbare uitgaven',
-            customTagName: 'Aangepaste tagnaam',
-            enableTag: 'Tag inschakelen',
-            enableTags: 'Tags inschakelen',
-            requireTag: 'Vereist label',
-            requireTags: 'Vereiste tags',
-            notRequireTags: 'Niet vereisen',
-            disableTag: 'Label uitschakelen',
-            disableTags: 'Tags uitschakelen',
-            addTag: 'Tag toevoegen',
-            editTag: 'Bewerk tag',
-            editTags: 'Bewerk tags',
-            findTag: 'Tag vinden',
-            subtitle: 'Tags voegen meer gedetailleerde manieren toe om kosten te classificeren.',
-            dependentMultiLevelTagsSubtitle: ({importSpreadsheetLink}: DependentMultiLevelTagsSubtitleParams) =>
-                `<muted-text>U gebruikt <a href="${CONST.IMPORT_TAGS_EXPENSIFY_URL_DEPENDENT_TAGS}">afhankelijke tags</a>. U kunt een <a href="${importSpreadsheetLink}">spreadsheet opnieuw importeren</a> om uw tags bij te werken.</muted-text>`,
-            emptyTags: {
-                title: 'Je hebt nog geen tags aangemaakt',
-                //  We need to remove the subtitle and use the below one when we remove the canUseMultiLevelTags beta
-                subtitle: 'Voeg een tag toe om projecten, locaties, afdelingen en meer bij te houden.',
-                subtitleHTML: `<muted-text><centered-text>Importeer een spreadsheet om tags toe te voegen voor het volgen van projecten, locaties, afdelingen en meer. <a href="${CONST.IMPORT_TAGS_EXPENSIFY_URL}">Meer informatie</a> over het opmaken van tagbestanden.</centered-text></muted-text>`,
-                subtitleWithAccounting: ({accountingPageURL}: EmptyTagsSubtitleWithAccountingParams) =>
-                    `<muted-text><centered-text>Je tags worden momenteel geïmporteerd vanuit een boekhoudverbinding. Ga naar de <a href="${accountingPageURL}">boekhouding</a> om wijzigingen aan te brengen.</centered-text></muted-text>`,
-            },
-            deleteTag: 'Verwijder tag',
-            deleteTags: 'Verwijder tags',
-            deleteTagConfirmation: 'Weet je zeker dat je deze tag wilt verwijderen?',
-            deleteTagsConfirmation: 'Weet je zeker dat je deze tags wilt verwijderen?',
-            deleteFailureMessage: 'Er is een fout opgetreden bij het verwijderen van de tag, probeer het opnieuw.',
-            tagRequiredError: 'Tagnaam is vereist',
-            existingTagError: 'Er bestaat al een tag met deze naam.',
-            invalidTagNameError: 'Tagnaam kan niet 0 zijn. Kies een andere waarde.',
-            genericFailureMessage: 'Er is een fout opgetreden bij het bijwerken van de tag, probeer het alstublieft opnieuw.',
-            importedFromAccountingSoftware: 'De onderstaande labels zijn geïmporteerd uit uw',
-            glCode: 'GL-code',
-            updateGLCodeFailureMessage: 'Er is een fout opgetreden bij het bijwerken van de GL-code, probeer het alstublieft opnieuw.',
-            tagRules: 'Tagregels',
-            approverDescription: 'Goedkeurder',
-            importTags: 'Tags importeren',
-            importTagsSupportingText: 'Codeer uw uitgaven met één type label of meerdere.',
-            configureMultiLevelTags: 'Configureer uw lijst met tags voor meerlagige tagging.',
-            importMultiLevelTagsSupportingText: `Hier is een voorbeeld van je tags. Als alles er goed uitziet, klik dan hieronder om ze te importeren.`,
-            importMultiLevelTags: {
-                firstRowTitle: 'De eerste rij is de titel voor elke taglijst',
-                independentTags: 'Dit zijn onafhankelijke tags',
-                glAdjacentColumn: 'Er is een GL-code in de aangrenzende kolom',
-            },
-            tagLevel: {
-                singleLevel: 'Enkel niveau van tags',
-                multiLevel: 'Meerniveautags',
-            },
-            switchSingleToMultiLevelTagWarning: {
-                title: 'Wissel tag-niveaus om',
-                prompt1: 'Het wisselen van tag-niveaus zal alle huidige tags wissen.',
-                prompt2: 'We raden aan dat u eerst',
-                prompt3: 'download een back-up',
-                prompt4: 'door uw tags te exporteren.',
-                prompt5: 'Meer informatie',
-                prompt6: 'over tag-niveaus.',
-            },
-            importedTagsMessage: ({columnCounts}: ImportedTagsMessageParams) =>
-                `We hebben *${columnCounts} kolommen* in uw spreadsheet gevonden. Selecteer *Naam* naast de kolom die tag-namen bevat. U kunt ook *Ingeschakeld* selecteren naast de kolom die de tag-status instelt.`,
-            cannotDeleteOrDisableAllTags: {
-                title: 'Kan niet alle tags verwijderen of uitschakelen',
-                description: `Er moet minstens één tag ingeschakeld blijven omdat uw werkruimte tags vereist.`,
-            },
-            cannotMakeAllTagsOptional: {
-                title: 'Kan niet alle tags optioneel maken',
-                description: `Er moet minstens één tag verplicht blijven omdat uw werkruimte-instellingen tags vereisen.`,
-            },
-            tagCount: () => ({
-                one: '1 Dag',
-                other: (count: number) => `${count} Tags`,
-            }),
-        },
-        taxes: {
-            subtitle: 'Voeg belastingnamen, tarieven toe en stel standaardwaarden in.',
-            addRate: 'Tarief toevoegen',
-            workspaceDefault: 'Werkruimte valuta standaardinstelling',
-            foreignDefault: 'Standaard vreemde valuta',
-            customTaxName: 'Aangepaste belastingnaam',
-            value: 'Waarde',
-            taxReclaimableOn: 'Belasting terugvorderbaar op',
-            taxRate: 'Belastingtarief',
-            findTaxRate: 'Vind belastingtarief',
-            error: {
-                taxRateAlreadyExists: 'Deze belastingnaam is al in gebruik',
-                taxCodeAlreadyExists: 'Deze belastingcode is al in gebruik',
-                valuePercentageRange: 'Voer een geldig percentage in tussen 0 en 100',
-                customNameRequired: 'Aangepaste belastingnaam is vereist',
-                deleteFailureMessage: 'Er is een fout opgetreden bij het verwijderen van het belastingtarief. Probeer het opnieuw of vraag Concierge om hulp.',
-                updateFailureMessage: 'Er is een fout opgetreden bij het bijwerken van het belastingtarief. Probeer het opnieuw of vraag Concierge om hulp.',
-                createFailureMessage: 'Er is een fout opgetreden bij het aanmaken van het belastingtarief. Probeer het opnieuw of vraag Concierge om hulp.',
-                updateTaxClaimableFailureMessage: 'Het terugvorderbare deel moet minder zijn dan het kilometertarief.',
-            },
-            deleteTaxConfirmation: 'Weet je zeker dat je deze belasting wilt verwijderen?',
-            deleteMultipleTaxConfirmation: ({taxAmount}: TaxAmountParams) => `Weet je zeker dat je ${taxAmount} belastingen wilt verwijderen?`,
-            actions: {
-                delete: 'Verwijder tarief',
-                deleteMultiple: 'Tarieven verwijderen',
-                enable: 'Tarief inschakelen',
-                disable: 'Tarief uitschakelen',
-                enableTaxRates: () => ({
-                    one: 'Tarief inschakelen',
-                    other: 'Tarieven inschakelen',
-                }),
-                disableTaxRates: () => ({
-                    one: 'Tarief uitschakelen',
-                    other: 'Tarieven uitschakelen',
-                }),
-            },
-            importedFromAccountingSoftware: 'De onderstaande belastingen zijn geïmporteerd van uw',
-            taxCode: 'Belastingcode',
-            updateTaxCodeFailureMessage: 'Er is een fout opgetreden bij het bijwerken van de belastingcode, probeer het opnieuw.',
-        },
-        duplicateWorkspace: {
-            title: 'Geef je nieuwe werkruimte een naam',
-            selectFeatures: 'Selecteer te kopiëren functies',
-            whichFeatures: 'Welke functies wil je kopiëren naar je nieuwe werkruimte?',
-            confirmDuplicate: '\n\nWil je doorgaan?',
-            categories: 'categorieën en je regels voor automatische categorisatie',
-            reimbursementAccount: 'vergoedingsrekening',
-            delayedSubmission: 'vertraagde indiening',
-            welcomeNote: 'Ga aan de slag met mijn nieuwe werkruimte',
-            confirmTitle: ({newWorkspaceName, totalMembers}: {newWorkspaceName?: string; totalMembers?: number}) =>
-                `Je staat op het punt om ${newWorkspaceName ?? ''} te maken en te delen met ${totalMembers ?? 0} leden uit de oorspronkelijke werkruimte.`,
-        },
-        emptyWorkspace: {
-            title: 'Je hebt geen werkruimtes',
-            subtitle: 'Beheer bonnetjes, vergoed uitgaven, regel reizen, verstuur facturen en meer.',
-            createAWorkspaceCTA: 'Aan de slag',
-            features: {
-                trackAndCollect: 'Volg en verzamel bonnetjes',
-                reimbursements: 'Medewerkers vergoeden',
-                companyCards: 'Bedrijfspassen beheren',
-            },
-            notFound: 'Geen werkruimte gevonden',
-            description: 'Kamers zijn een geweldige plek om te discussiëren en samen te werken met meerdere mensen. Om te beginnen met samenwerken, maak of neem deel aan een werkruimte.',
-        },
-        new: {
-            newWorkspace: 'Nieuwe werkruimte',
-            getTheExpensifyCardAndMore: 'Krijg de Expensify Card en meer',
-            confirmWorkspace: 'Werkruimte bevestigen',
-            myGroupWorkspace: ({workspaceNumber}: {workspaceNumber?: number}) => `Mijn Groepswerkruimte${workspaceNumber ? ` ${workspaceNumber}` : ''}`,
-            workspaceName: ({userName, workspaceNumber}: NewWorkspaceNameParams) => `${userName}'s Werkruimte${workspaceNumber ? ` ${workspaceNumber}` : ''}`,
-        },
-        people: {
-            genericFailureMessage: 'Er is een fout opgetreden bij het verwijderen van een lid uit de werkruimte, probeer het opnieuw.',
-            removeMembersPrompt: ({memberName}: {memberName: string}) => ({
-                one: `Weet je zeker dat je ${memberName} wilt verwijderen?`,
-                other: 'Weet je zeker dat je deze leden wilt verwijderen?',
-            }),
-            removeMembersWarningPrompt: ({memberName, ownerName}: RemoveMembersWarningPrompt) =>
-                `${memberName} is een goedkeurder in deze werkruimte. Wanneer je deze werkruimte niet meer met hen deelt, zullen we hen in de goedkeuringsworkflow vervangen door de eigenaar van de werkruimte, ${ownerName}.`,
-            removeMembersTitle: () => ({
-                one: 'Lid verwijderen',
-                other: 'Leden verwijderen',
-            }),
-            findMember: 'Lid zoeken',
-            removeWorkspaceMemberButtonTitle: 'Verwijderen uit werkruimte',
-            removeGroupMemberButtonTitle: 'Verwijderen uit groep',
-            removeRoomMemberButtonTitle: 'Verwijderen uit chat',
-            removeMemberPrompt: ({memberName}: RemoveMemberPromptParams) => `Weet je zeker dat je ${memberName} wilt verwijderen?`,
-            removeMemberTitle: 'Lid verwijderen',
-            transferOwner: 'Eigenaar overdragen',
-            makeMember: 'Lid maken',
-            makeAdmin: 'Beheerder maken',
-            makeAuditor: 'Maak controleur',
-            selectAll: 'Alles selecteren',
-            error: {
-                genericAdd: 'Er was een probleem bij het toevoegen van dit werkruimtelid.',
-                cannotRemove: 'Je kunt jezelf of de eigenaar van de werkruimte niet verwijderen.',
-                genericRemove: 'Er was een probleem met het verwijderen van dat werkruimte lid.',
-            },
-            addedWithPrimary: 'Sommige leden zijn toegevoegd met hun primaire logins.',
-            invitedBySecondaryLogin: ({secondaryLogin}: SecondaryLoginParams) => `Toegevoegd door secundaire login ${secondaryLogin}.`,
-            workspaceMembersCount: ({count}: WorkspaceMembersCountParams) => `Totaal aantal leden van de werkruimte: ${count}`,
-            importMembers: 'Leden importeren',
-        },
-        card: {
-            getStartedIssuing: 'Begin met het aanvragen van je eerste virtuele of fysieke kaart.',
-            issueCard: 'Kaart uitgeven',
-            issueNewCard: {
-                whoNeedsCard: 'Wie heeft een kaart nodig?',
-                findMember: 'Lid zoeken',
-                chooseCardType: 'Kies een kaarttype',
-                physicalCard: 'Fysieke kaart',
-                physicalCardDescription: 'Geweldig voor de frequente spender',
-                virtualCard: 'Virtuele kaart',
-                virtualCardDescription: 'Instant en flexibel',
-                chooseLimitType: 'Kies een limiettype',
-                smartLimit: 'Slimme limiet',
-                smartLimitDescription: 'Besteed tot een bepaald bedrag voordat goedkeuring vereist is.',
-                monthly: 'Maandelijks',
-                monthlyDescription: 'Besteed tot een bepaald bedrag per maand',
-                fixedAmount: 'Vast bedrag',
-                fixedAmountDescription: 'Eenmalig tot een bepaald bedrag uitgeven',
-                setLimit: 'Stel een limiet in',
-                cardLimitError: 'Voer een bedrag in dat minder is dan $21,474,836',
-                giveItName: 'Geef het een naam',
-                giveItNameInstruction: 'Maak het uniek genoeg om het te onderscheiden van andere kaarten. Specifieke gebruikssituaties zijn zelfs nog beter!',
-                cardName: 'Kaartnaam',
-                letsDoubleCheck: 'Laten we dubbel controleren of alles er goed uitziet.',
-                willBeReady: 'Deze kaart is direct klaar voor gebruik.',
-                cardholder: 'Kaart houder',
-                cardType: 'Kaarttype',
-                limit: 'Limiet',
-                limitType: 'Limiettype',
-                name: 'Naam',
-                disabledApprovalForSmartLimitError: 'Schakel goedkeuringen in <strong>Workflows > Goedkeuringen toevoegen</strong> in voordat u slimme limieten instelt',
-            },
-            deactivateCardModal: {
-                deactivate: 'Deactiveren',
-                deactivateCard: 'Deactiveer kaart',
-                deactivateConfirmation: 'Het deactiveren van deze kaart zal alle toekomstige transacties weigeren en kan niet ongedaan worden gemaakt.',
-            },
-        },
-        accounting: {
-            settings: 'instellingen',
-            title: 'Verbindingen',
-            subtitle: 'Maak verbinding met uw boekhoudsysteem om transacties te coderen met uw rekeningschema, betalingen automatisch te matchen en uw financiën synchroon te houden.',
-            qbd: 'QuickBooks Desktop',
-            xero: 'Xero',
-            sap: 'SAP',
-            oracle: 'Oracle',
-            microsoftDynamics: 'Microsoft Dynamics',
-            talkYourOnboardingSpecialist: 'Chat met uw installatiespecialist.',
-            talkYourAccountManager: 'Chat met uw accountmanager.',
-            talkToConcierge: 'Chat met Concierge.',
-            needAnotherAccounting: 'Nog een boekhoudsoftware nodig?',
-            connectionName: ({connectionName}: ConnectionNameParams) => {
-                switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                        return 'Xero';
-
-                    default: {
-                        return '';
-                    }
-                }
-            },
-            errorODIntegration: 'Er is een fout opgetreden met een verbinding die is ingesteld in Expensify Classic.',
-            goToODToFix: 'Ga naar Expensify Classic om dit probleem op te lossen.',
-            goToODToSettings: 'Ga naar Expensify Classic om je instellingen te beheren.',
-            setup: 'Verbind',
-            lastSync: ({relativeDate}: LastSyncAccountingParams) => `Laatst gesynchroniseerd ${relativeDate}`,
-            notSync: 'Niet gesynchroniseerd',
-            import: 'Importeren',
-            export: 'Exporteren',
-            advanced: 'Geavanceerd',
-            other: 'Andere',
-            syncNow: 'Nu synchroniseren',
-            disconnect: 'Verbreek verbinding',
-            reinstall: 'Connector opnieuw installeren',
-            disconnectTitle: ({connectionName}: OptionalParam<ConnectionNameParams> = {}) => {
-                const integrationName =
-                    connectionName && CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ? CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] : 'integratie';
-                return `Verbreek verbinding met ${integrationName}`;
-            },
-            connectTitle: ({connectionName}: ConnectionNameParams) => `Verbind ${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? 'boekhoudintegratie'}`,
-            syncError: ({connectionName}: ConnectionNameParams) => {
-                switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                        return 'Kan geen verbinding maken met Xero';
-                    case CONST.POLICY.CONNECTIONS.NAME.QBD:
-                        return 'Kan geen verbinding maken met QuickBooks Desktop';
-                    default: {
-                        return 'Kan geen verbinding maken met integratie';
-                    }
-                }
-            },
-            accounts: 'Rekeningschema',
-            taxes: 'Belastingen',
-            imported: 'Geïmporteerd',
-            notImported: 'Niet geïmporteerd',
-            importAsCategory: 'Geïmporteerd als categorieën',
-            importTypes: {
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.IMPORTED]: 'Geïmporteerd',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.TAG]: 'Geïmporteerd als tags',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.DEFAULT]: 'Geïmporteerd',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.NOT_IMPORTED]: 'Niet geïmporteerd',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.NONE]: 'Niet geïmporteerd',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD]: 'Geïmporteerd als rapportvelden',
-            },
-            disconnectPrompt: ({connectionName}: OptionalParam<ConnectionNameParams> = {}) => {
-                const integrationName =
-                    connectionName && CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ? CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] : 'deze integratie';
-                return `Weet je zeker dat je ${integrationName} wilt loskoppelen?`;
-            },
-            connectPrompt: ({connectionName}: ConnectionNameParams) =>
-                `Weet je zeker dat je ${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? 'deze boekhoudintegratie'} wilt verbinden? Dit zal alle bestaande boekhoudkundige verbindingen verwijderen.`,
-            enterCredentials: 'Voer uw inloggegevens in',
-            connections: {
                 syncStageName: ({stage}: SyncStageNameConnectionsParams) => {
                     switch (stage) {
                         case 'quickbooksDesktopImportCustomers':
@@ -4465,61 +3996,26 @@ const translations = {
                         case 'quickbooksDesktopImportEmployees':
                             return 'Werknemers importeren';
                         case 'quickbooksDesktopImportAccounts':
-                            return 'Accounts importeren';
+                            return 'Rekeningen importeren';
                         case 'quickbooksDesktopImportClasses':
                             return 'Klassen importeren';
-                            return 'Locaties importeren';
-                            return 'Geïmporteerde gegevens verwerken';
-                            return 'Gesynchroniseerde vergoede rapporten en factuurbetalingen';
-                            return 'Belastingcodes importeren';
-                        case 'startingImportXero':
-                            return 'Xero-gegevens importeren';
                         case 'startingImportQBD':
                         case 'quickbooksDesktopImportMore':
                             return 'QuickBooks Desktop-gegevens importeren';
                         case 'quickbooksDesktopImportTitle':
                             return 'Titel importeren';
                         case 'quickbooksDesktopImportApproveCertificate':
-                            return 'Certificaat voor goedkeuring importeren';
+                            return 'Goedkeuringscertificaat importeren';
                         case 'quickbooksDesktopImportDimensions':
                             return 'Dimensies importeren';
                         case 'quickbooksDesktopImportSavePolicy':
-                            return 'Beleid voor importeren opslaan';
+                            return 'Opslagbeleid importeren';
                         case 'quickbooksDesktopWebConnectorReminder':
-                            return 'Nog steeds gegevens synchroniseren met QuickBooks... Zorg ervoor dat de Web Connector actief is.';
-                        case 'xeroSyncStep':
-                            return 'Gegevens laden';
-                            return 'Categorieën bijwerken';
-                            return 'Klanten/projecten bijwerken';
-                            return 'Lijst met personen bijwerken';
-                            return 'Rapportvelden bijwerken';
+                            return 'Nog steeds gegevens synchroniseren met QuickBooks... Zorg ervoor dat de Web Connector actief is';
                         case 'jobDone':
                             return 'Wachten tot geïmporteerde gegevens zijn geladen';
-                        case 'xeroSyncImportChartOfAccounts':
-                            return 'Synchroniseren van rekeningschema';
-                        case 'xeroSyncImportCategories':
-                            return 'Categorieën synchroniseren';
-                        case 'xeroSyncImportCustomers':
-                            return 'Klanten synchroniseren';
-                        case 'xeroSyncXeroReimbursedReports':
-                            return 'Expensify-rapporten markeren als vergoed';
-                        case 'xeroSyncExpensifyReimbursedReports':
-                            return 'Xero-facturen en -rekeningen als betaald markeren';
-                        case 'xeroSyncImportTrackingCategories':
-                            return 'Synchroniseren van trackingcategorieën';
-                        case 'xeroSyncImportBankAccounts':
-                            return 'Bankrekeningen synchroniseren';
-                        case 'xeroSyncImportTaxRates':
-                            return 'Belastingtarieven synchroniseren';
-                        case 'xeroCheckConnection':
-                            return 'Xero-verbinding controleren';
-                        case 'xeroSyncTitle':
-                            return 'Xero-gegevens synchroniseren';
                         case 'quickbooksDesktopImportVendors':
                             return 'Leveranciers importeren';
-
-
-
                         default: {
                             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                             return `Vertaling ontbreekt voor fase: ${stage}`;
@@ -4839,7 +4335,7 @@ const translations = {
                     pricingPage: 'prijs pagina',
                     confirm: 'Weet je zeker dat je wilt downgraden en je configuraties wilt verwijderen?',
                     warning: 'Dit kan niet ongedaan worden gemaakt.',
-                    benefit1: 'Boekhoudkoppelingen (behalve Xero)',
+                    benefit1: 'Boekhoudkoppelingen',
                     benefit2: 'Slimme uitgavenregels',
                     benefit3: 'Meerniveau goedkeuringsworkflows',
                     benefit4: 'Verbeterde beveiligingscontroles',
@@ -6072,7 +5568,7 @@ const translations = {
                 benefit3: 'Beheer van bedrijfskaarten',
                 benefit4: 'Uitgaven- en reisgoedkeuringen',
                 benefit5: 'Reisreservering en regels',
-                benefit6: 'QuickBooks/Xero-integraties',
+                benefit6: 'QuickBooks-integraties',
                 benefit7: 'Chat over uitgaven, rapporten en kamers',
                 benefit8: 'AI- en menselijke ondersteuning',
             },

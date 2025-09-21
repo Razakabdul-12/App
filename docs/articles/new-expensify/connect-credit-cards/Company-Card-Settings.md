@@ -27,7 +27,7 @@ To adjust your card feed configuration:
 
 # Export Transactions to Your Accounting System
 
-If you’ve connected accounting software (like **QuickBooks** or **Xero**), you can export company card expenses either to a **central account** or **individual accounts**.
+If you’ve connected accounting software (like **QuickBooks**), you can export company card expenses either to a **central account** or **individual accounts**.
 
 ## Export to a Central Account
 

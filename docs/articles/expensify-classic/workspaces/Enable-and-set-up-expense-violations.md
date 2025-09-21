@@ -90,7 +90,7 @@ To enable strict compliance:
 
 Employees may have their default workspace set to their personal workspace. Check the **Details** section at the top right of the report to ensure it is being reported under the correct workspace.
 
-## Will the account numbers from our accounting system (QuickBooks Online, Xero, etc.) show in the category list for employees?
+## Will the account numbers from our accounting system (QuickBooks Online, etc.) show in the category list for employees?
 
 GL account numbers are only visible to **Workspace Admins** when part of a Control workspace. They are not visible to other members. If you want employees to see this information, modify the account name in your accounting system to include the GL number (e.g., Accounts Payable - 12345).
 

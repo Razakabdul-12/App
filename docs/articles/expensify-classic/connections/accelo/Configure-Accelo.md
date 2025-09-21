@@ -27,7 +27,7 @@ Once connected, you must upload your Accelo Project Codes as tags in Expensify:
 
 1. Go to **Settings > Workspaces > [Workspace Name] Tags**.
 2. Choose to upload a CSV file.
-3. If you also integrate with **Xero** or **QuickBooks Online**, append your Project Codes to existing tags:
+3. If you also integrate with **QuickBooks Online**, append your Project Codes to existing tags:
    - Navigate to **Settings > Workspaces > [Workspace Name] > Tags**.
    - Click **Append a custom tag list from a CSV** and upload your file.
 

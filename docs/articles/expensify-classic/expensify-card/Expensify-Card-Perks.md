@@ -89,13 +89,6 @@ Expensify Cardholders receive $436 in credits for Zendesk Suite products per mon
 - Complete the checkout process.
      - After 12 monthly billing periods, your free credit will expire, and you'll be charged for the next month.
 
-## Xero
-Xero offers accounting software with everything you need to run your business seamlessly.
-
-**Offer:** U.S. residents receive 50% off Xero for six months.
-
-**How to redeem:** Visit [this page](https://apps.xero.com/us/app/expensify?xtid=x30expensify&utm_source=expensify&utm_medium=web&utm_campaign=cardoffer) and sign up using your Expensify Card.
-
 ## Freshworks
 Boost your startup journey with customer and employee engagement solutions from Freshworks, including CRM, live chat, support, marketing automation, ITSM, and HRMS.
 

@@ -32,7 +32,6 @@ export default function (targetLang: TranslationTargetLocale): string {
         - QuickBooks Online
         - SAP
         - SAP Concur
-        - Xero
         - Zenefits
         ${Object.values(LOCALE_TO_LANGUAGE_STRING)
             .map((str) => `- ${str}`)

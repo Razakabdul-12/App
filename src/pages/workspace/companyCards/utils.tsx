@@ -26,7 +26,6 @@ function getExportMenuItem(
 ): ExportIntegration | undefined {
     const currentConnectionName = getCurrentConnectionName(policy);
     const defaultCard = translate('workspace.moreFeatures.companyCards.defaultCard');
-    const defaultVendor = translate('workspace.accounting.defaultVendor');
 
     const defaultMenuItem: Account & {value?: string} = {
         name: defaultCard,
@@ -35,48 +34,10 @@ function getExportMenuItem(
         currency: '',
     };
 
-    const defaultVendorMenuItem: Account & {value?: string} = {
-        name: defaultVendor,
-        value: defaultVendor,
-        id: defaultVendor,
-        currency: '',
-    };
-
-    const {export: exportConfiguration} = policy?.connections?.xero?.config ?? {};
-    const {bankAccounts} = policy?.connections?.xero?.data ?? {};
     const {creditCardAccounts} = policy?.connections?.quickbooksDesktop?.data ?? {};
     const {export: exportQBD} = policy?.connections?.quickbooksDesktop?.config ?? {};
 
     switch (connectionName) {
-        case CONST.POLICY.CONNECTIONS.NAME.XERO: {
-            const type = translate('workspace.xero.xeroBankAccount');
-            const description = currentConnectionName && type ? translate('workspace.moreFeatures.companyCards.integrationExport', {integration: type}) : undefined;
-            const exportType = CONST.COMPANY_CARDS.EXPORT_CARD_TYPES.NVP_XERO_EXPORT_BANK_ACCOUNT;
-            // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-            const defaultAccount = exportConfiguration?.nonReimbursableAccount || bankAccounts?.[0]?.id;
-            const isDefaultTitle = !!(
-                defaultAccount &&
-                (!companyCard?.nameValuePairs?.xero_export_bank_account || companyCard?.nameValuePairs?.xero_export_bank_account === CONST.COMPANY_CARDS.DEFAULT_EXPORT_TYPE)
-            );
-            const selectedAccount = (bankAccounts ?? []).find((bank) => bank.id === (companyCard?.nameValuePairs?.xero_export_bank_account ?? defaultAccount));
-            const resultData = (bankAccounts ?? [])?.length > 0 ? [defaultMenuItem, ...(bankAccounts ?? [])] : bankAccounts;
-
-            return {
-                description,
-                exportType,
-                shouldShowMenuItem: !!exportConfiguration?.nonReimbursableAccount,
-                title: isDefaultTitle ? defaultCard : selectedAccount?.name,
-                exportPageLink: ROUTES.POLICY_ACCOUNTING_XERO_EXPORT.getRoute(policyID, backTo),
-                data: (resultData ?? []).map((card) => {
-                    return {
-                        value: card.id,
-                        text: card.name,
-                        keyForList: card.id,
-                        isSelected: isDefaultTitle ? card.name === defaultCard : selectedAccount?.id === card.id,
-                    };
-                }),
-            };
-        }
         case CONST.POLICY.CONNECTIONS.NAME.QBD: {
             const nonReimbursableExpenses = exportQBD?.nonReimbursable;
             const reimbursableExpenses = exportQBD?.reimbursable;

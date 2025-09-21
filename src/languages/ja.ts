@@ -1710,14 +1710,7 @@ const translations = {
         copy: 'コピー',
         disable: '無効にする',
         enableTwoFactorAuth: '2要素認証を有効にする',
-        pleaseEnableTwoFactorAuth: '2要素認証を有効にしてください。',
-        twoFactorAuthIsRequiredDescription: 'セキュリティ目的のため、Xeroは統合を接続するために二要素認証を必要とします。',
-        twoFactorAuthIsRequiredForAdminsHeader: '二要素認証が必要です',
-        twoFactorAuthIsRequiredForAdminsTitle: '2要素認証を有効にしてください',
-        twoFactorAuthIsRequiredForAdminsDescription: 'Xeroの会計接続には二要素認証の使用が必要です。Expensifyを引き続き使用するには、有効にしてください。',
-        twoFactorAuthCannotDisable: '2FAを無効にできません',
-        twoFactorAuthRequired: 'Xeroの接続には二要素認証（2FA）が必要であり、無効にすることはできません。',
-    },
+        pleaseEnableTwoFactorAuth: '2要素認証を有効にしてください。',        twoFactorAuthCannotDisable: '2FAを無効にできません',    },
     recoveryCodeForm: {
         error: {
             pleaseFillRecoveryCode: 'リカバリーコードを入力してください',
@@ -3621,90 +3614,7 @@ const translations = {
             joinNow: '今すぐ参加',
             askToJoin: '参加を依頼する',
         },
-        xero: {
-            organization: 'Xero組織',
-            organizationDescription: 'データをインポートしたいXero組織を選択してください。',
-            importDescription: 'XeroからExpensifyにインポートするコーディング設定を選択します。',
-            accountsDescription: 'あなたのXero勘定科目表は、Expensifyにカテゴリーとしてインポートされます。',
-            accountsSwitchTitle: '新しいアカウントを有効または無効なカテゴリとしてインポートすることを選択します。',
-            accountsSwitchDescription: '有効になっているカテゴリーは、メンバーが経費を作成する際に選択できるようになります。',
-            trackingCategories: 'トラッキングカテゴリ',
-            trackingCategoriesDescription: 'ExpensifyでXeroのトラッキングカテゴリをどのように処理するか選択してください。',
-            mapTrackingCategoryTo: ({categoryName}: CategoryNameParams) => `Xero ${categoryName} をマッピングする`,
-            mapTrackingCategoryToDescription: ({categoryName}: CategoryNameParams) => `Xeroにエクスポートする際に${categoryName}をどこにマッピングするか選択してください。`,
-            customers: '顧客への再請求',
-            customersDescription: 'Expensifyで顧客に再請求するかどうかを選択します。Xeroの顧客連絡先は経費にタグ付けでき、Xeroに売上請求書としてエクスポートされます。',
-            taxesDescription: 'ExpensifyでXeroの税金をどのように処理するか選択してください。',
-            notImported: 'インポートされていません',
-            notConfigured: '未設定',
-            trackingCategoriesOptions: {
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.DEFAULT]: 'Xero連絡先のデフォルト',
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.TAG]: 'タグ',
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.REPORT_FIELD]: 'レポートフィールド',
-            },
-            exportDescription: 'ExpensifyデータをXeroにエクスポートする方法を設定します。',
-            purchaseBill: '購入請求書',
-            exportDeepDiveCompanyCard: 'エクスポートされた経費は、以下のXero銀行口座に銀行取引として記録され、取引日付は銀行明細書の日付と一致します。',
-            bankTransactions: '銀行取引',
-            xeroBankAccount: 'Xero銀行口座',
-            xeroBankAccountDescription: '経費を銀行取引として記録する場所を選択してください。',
-            exportExpensesDescription: 'レポートは、以下で選択された日付とステータスで購入請求書としてエクスポートされます。',
-            purchaseBillDate: '購入請求書の日付',
-            exportInvoices: '請求書をエクスポート',
-            salesInvoice: '売上請求書',
-            exportInvoicesDescription: '売上請求書には、請求書が送信された日付が常に表示されます。',
-            advancedConfig: {
-                autoSyncDescription: 'Expensifyは毎日自動的にXeroと同期します。',
-                purchaseBillStatusTitle: '購入請求書のステータス',
-                reimbursedReportsDescription: 'レポートがExpensify ACHを使用して支払われるたびに、対応する請求書の支払いが以下のXeroアカウントに作成されます。',
-                xeroBillPaymentAccount: 'Xeroの請求書支払いアカウント',
-                xeroInvoiceCollectionAccount: 'Xero請求書回収アカウント',
-                xeroBillPaymentAccountDescription: '支払い元を選択すると、Xeroで支払いが作成されます。',
-                invoiceAccountSelectorDescription: '請求書の支払いを受け取る場所を選択すると、Xeroで支払いを作成します。',
-            },
-            exportDate: {
-                label: '購入請求書の日付',
-                description: 'この日付を使用してレポートをXeroにエクスポートしてください。',
-                values: {
-                    [CONST.XERO_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: '最後の経費の日付',
-                        description: 'レポート上の最新経費の日付。',
-                    },
-                    [CONST.XERO_EXPORT_DATE.REPORT_EXPORTED]: {
-                        label: 'エクスポート日付',
-                        description: 'レポートがXeroにエクスポートされた日付。',
-                    },
-                    [CONST.XERO_EXPORT_DATE.REPORT_SUBMITTED]: {
-                        label: '提出日',
-                        description: 'レポートが承認のために提出された日付。',
-                    },
-                },
-            },
-            invoiceStatus: {
-                label: '購入請求書のステータス',
-                description: 'このステータスを使用して、購入請求書をXeroにエクスポートします。',
-                values: {
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.DRAFT]: '下書き',
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.AWAITING_APPROVAL]: '承認待ち',
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.AWAITING_PAYMENT]: '支払い待ち',
-                },
-            },
-            noAccountsFound: 'アカウントが見つかりません',
-            noAccountsFoundDescription: 'Xeroにアカウントを追加し、再度接続を同期してください。',
-            accountingMethods: {
-                label: 'エクスポートのタイミング',
-                description: '経費をエクスポートするタイミングを選択:',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '発生主義',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '現金',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: '自己負担の経費は最終承認時にエクスポートされます。',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: '自己負担の経費は支払われたときにエクスポートされます。',
-                },
-            },
-        },
-        type: {
+type: {
             free: '無料',
             control: 'コントロール',
             collect: '収集する',
@@ -3992,9 +3902,7 @@ const translations = {
                 cardholder: 'カードホルダー',
                 cardName: 'カード名',
                 integrationExport: ({integration, type}: IntegrationExportParams) =>
-                    integration && type ? `${integration} ${type.toLowerCase()} エクスポート` : `${integration} エクスポート`,
-                integrationExportTitleXero: ({integration}: IntegrationExportParams) => `取引をエクスポートする${integration}アカウントを選択してください。`,
-                integrationExportTitle: ({integration, exportPageLink}: IntegrationExportParams) =>
+                    integration && type ? `${integration} ${type.toLowerCase()} エクスポート` : `${integration} エクスポート`,                integrationExportTitle: ({integration, exportPageLink}: IntegrationExportParams) =>
                     `取引をエクスポートする${integration}アカウントを選択してください。利用可能なアカウントを変更するには、別の<a href="${exportPageLink}">エクスポートオプション</a>を選択します。`,
                 lastUpdated: '最終更新日',
                 transactionStartDate: '取引開始日',
@@ -4069,380 +3977,6 @@ const translations = {
                 subtitle: '支出のカスタムフィールドを設定する。',
             },
             connections: {
-                title: '会計',
-                subtitle: '勘定科目表などを同期します。',
-            },            connectionsWarningModal: {
-                featureEnabledTitle: 'ちょっと待ってください…',
-                featureEnabledText: 'この機能を有効または無効にするには、会計インポート設定を変更する必要があります。',
-                disconnectText: '会計を無効にするには、ワークスペースから会計接続を切断する必要があります。',
-                manageSettings: '設定を管理',
-            },            workflowWarningModal: {
-                featureEnabledTitle: 'ちょっと待ってください…',
-                featureEnabledText:
-                    'このワークスペースのExpensifyカードは、承認ワークフローに依存してスマートリミットを定義しています。\n\nワークフローを無効にする前に、スマートリミットが設定されているカードのリミットタイプを変更してください。',
-                confirmText: 'Expensifyカードに移動',
-            },
-            rules: {
-                title: 'ルール',
-                subtitle: '領収書の要求、高額支出のフラグ付け、その他。',
-            },
-        },
-        reports: {
-            reportsCustomTitleExamples: '例:',
-            customReportNamesSubtitle: `<muted-text>当社の<a href="${CONST.CUSTOM_REPORT_NAME_HELP_URL}">豊富な数式</a>を使用して、レポートのタイトルをカスタマイズできます。</muted-text>`,
-            customNameTitle: 'デフォルトのレポートタイトル',
-            customNameDescription: `当社の<a href="${CONST.CUSTOM_REPORT_NAME_HELP_URL}">豊富な数式</a>を使用して、経費報告書のカスタム名を選択してください。`,
-            customNameInputLabel: '名前',
-            customNameEmailPhoneExample: 'メンバーのメールまたは電話番号: {report:submit:from}',
-            customNameStartDateExample: 'レポート開始日: {report:startdate}',
-            customNameWorkspaceNameExample: 'ワークスペース名: {report:workspacename}',
-            customNameReportIDExample: 'Report ID: {report:id}',
-            customNameTotalExample: '合計: {report:total}.',
-            preventMembersFromChangingCustomNamesTitle: 'メンバーがカスタムレポート名を変更するのを防ぐ',
-        },
-        reportFields: {
-            addField: 'フィールドを追加',
-            delete: 'フィールドを削除',
-            deleteFields: 'フィールドを削除',
-            findReportField: 'レポートフィールドを見つける',
-            deleteConfirmation: 'このレポートフィールドを削除してもよろしいですか？',
-            deleteFieldsConfirmation: 'これらのレポートフィールドを削除してもよろしいですか？',
-            emptyReportFields: {
-                title: 'レポートフィールドが作成されていません',
-                subtitle: 'レポートに表示されるカスタムフィールド（テキスト、日付、またはドロップダウン）を追加します。',
-            },
-            subtitle: 'レポートフィールドはすべての支出に適用され、追加情報を求めたいときに役立ちます。',
-            disableReportFields: 'レポートフィールドを無効にする',
-            disableReportFieldsConfirmation: 'よろしいですか？テキストおよび日付フィールドが削除され、リストが無効になります。',
-            importedFromAccountingSoftware: '以下のレポートフィールドはあなたのからインポートされています',
-            textType: 'テキスト',
-            dateType: '日付',
-            dropdownType: 'リスト',
-            textAlternateText: '自由入力フィールドを追加してください。',
-            dateAlternateText: '日付選択用のカレンダーを追加します。',
-            dropdownAlternateText: '選択肢のリストを追加してください。',
-            nameInputSubtitle: 'レポートフィールドの名前を選択してください。',
-            typeInputSubtitle: '使用するレポートフィールドのタイプを選択してください。',
-            initialValueInputSubtitle: 'レポートフィールドに表示する開始値を入力してください。',
-            listValuesInputSubtitle: 'これらの値は、レポートフィールドのドロップダウンに表示されます。有効な値はメンバーによって選択できます。',
-            listInputSubtitle: 'これらの値は、レポートフィールドリストに表示されます。有効な値はメンバーが選択できます。',
-            deleteValue: '値を削除',
-            deleteValues: '値を削除',
-            disableValue: '値を無効にする',
-            disableValues: '値を無効にする',
-            enableValue: '値を有効にする',
-            enableValues: '値を有効にする',
-            emptyReportFieldsValues: {
-                title: 'リスト値が作成されていません',
-                subtitle: 'レポートに表示されるカスタム値を追加します。',
-            },
-            deleteValuePrompt: 'このリストの値を削除してもよろしいですか？',
-            deleteValuesPrompt: 'これらのリスト値を削除してもよろしいですか？',
-            listValueRequiredError: 'リスト値の名前を入力してください',
-            existingListValueError: 'この名前のリスト値はすでに存在します',
-            editValue: '値を編集',
-            listValues: '値を一覧表示',
-            addValue: '価値を追加',
-            existingReportFieldNameError: 'この名前のレポートフィールドは既に存在します',
-            reportFieldNameRequiredError: 'レポートフィールド名を入力してください',
-            reportFieldTypeRequiredError: 'レポートフィールドのタイプを選択してください',
-            reportFieldInitialValueRequiredError: 'レポートフィールドの初期値を選択してください',
-            genericFailureMessage: 'レポートフィールドの更新中にエラーが発生しました。もう一度お試しください。',
-        },
-        tags: {
-            tagName: 'タグ名',
-            requiresTag: 'メンバーはすべての経費にタグを付けなければなりません。',
-            trackBillable: '請求可能な経費を追跡する',
-            customTagName: 'カスタムタグ名',
-            enableTag: 'タグを有効にする',
-            enableTags: 'タグを有効にする',
-            requireTag: 'タグが必要',
-            requireTags: 'タグを必須にする',
-            notRequireTags: '必要としない',
-            disableTag: 'タグを無効にする',
-            disableTags: 'タグを無効にする',
-            addTag: 'タグを追加',
-            editTag: 'タグを編集',
-            editTags: 'タグを編集',
-            findTag: 'タグを見つける',
-            subtitle: 'タグは、コストをより詳細に分類する方法を追加します。',
-            dependentMultiLevelTagsSubtitle: ({importSpreadsheetLink}: DependentMultiLevelTagsSubtitleParams) =>
-                `<muted-text><a href="${CONST.IMPORT_TAGS_EXPENSIFY_URL_DEPENDENT_TAGS}">依存タグ</a>を使用しています。<a href="${importSpreadsheetLink}">スプレッドシートを再インポート</a>してタグを更新できます。</muted-text>`,
-            emptyTags: {
-                title: 'タグが作成されていません',
-                //  We need to remove the subtitle and use the below one when we remove the canUseMultiLevelTags beta
-                subtitle: 'プロジェクト、場所、部門などを追跡するためのタグを追加します。',
-                subtitleHTML: `<muted-text><centered-text>スプレッドシートをインポートして、プロジェクト、場所、部署などを追跡するためのタグを追加できます。タグファイルのフォーマットについては<a href="${CONST.IMPORT_TAGS_EXPENSIFY_URL}">こちらをご覧</a>ください。</centered-text></muted-text>`,
-                subtitleWithAccounting: ({accountingPageURL}: EmptyTagsSubtitleWithAccountingParams) =>
-                    `<muted-text><centered-text>タグは現在、会計接続からインポートされています。<a href="${accountingPageURL}">アカウンティング</a>に移動して変更してください。</centered-text></muted-text>`,
-            },
-            deleteTag: 'タグを削除',
-            deleteTags: 'タグを削除',
-            deleteTagConfirmation: 'このタグを削除してもよろしいですか？',
-            deleteTagsConfirmation: 'これらのタグを削除してもよろしいですか？',
-            deleteFailureMessage: 'タグの削除中にエラーが発生しました。もう一度お試しください。',
-            tagRequiredError: 'タグ名が必要です',
-            existingTagError: 'この名前のタグはすでに存在します',
-            invalidTagNameError: 'タグ名は0にできません。別の値を選んでください。',
-            genericFailureMessage: 'タグの更新中にエラーが発生しました。もう一度お試しください。',
-            importedFromAccountingSoftware: '以下のタグはあなたのからインポートされます',
-            glCode: 'GLコード',
-            updateGLCodeFailureMessage: 'GLコードの更新中にエラーが発生しました。もう一度お試しください。',
-            tagRules: 'タグルール',
-            approverDescription: '承認者',
-            importTags: 'タグをインポート',
-            importTagsSupportingText: '経費を1種類のタグまたは複数のタグでコード化します。',
-            configureMultiLevelTags: 'マルチレベルタグ付けのためのタグリストを設定します。',
-            importMultiLevelTagsSupportingText: `こちらがタグのプレビューです。すべて問題なければ、下のボタンをクリックしてインポートしてください。`,
-            importMultiLevelTags: {
-                firstRowTitle: '最初の行は各タグリストのタイトルです',
-                independentTags: 'これらは独立したタグです',
-                glAdjacentColumn: '隣の列にGLコードがあります。',
-            },
-            tagLevel: {
-                singleLevel: '単一レベルのタグ',
-                multiLevel: 'マルチレベルタグ',
-            },
-            switchSingleToMultiLevelTagWarning: {
-                title: 'タグレベルを切り替える',
-                prompt1: 'タグレベルを切り替えると、現在のすべてのタグが消去されます。',
-                prompt2: '最初にお勧めします',
-                prompt3: 'バックアップをダウンロード',
-                prompt4: 'タグをエクスポートすることによって。',
-                prompt5: '詳細を確認',
-                prompt6: 'タグレベルについて。',
-            },
-            importedTagsMessage: ({columnCounts}: ImportedTagsMessageParams) =>
-                `スプレッドシートで*${columnCounts}列*が見つかりました。タグ名を含む列の横に*名前*を選択してください。また、タグのステータスを設定する列の横に*有効*を選択することもできます。`,
-            cannotDeleteOrDisableAllTags: {
-                title: 'すべてのタグを削除または無効にすることはできません',
-                description: `ワークスペースでタグが必要なため、少なくとも1つのタグを有効にしておく必要があります。`,
-            },
-            cannotMakeAllTagsOptional: {
-                title: 'すべてのタグをオプションにすることはできません',
-                description: `ワークスペースの設定でタグが必要なため、少なくとも1つのタグを必須にする必要があります。`,
-            },
-            tagCount: () => ({
-                one: '1日',
-                other: (count: number) => `${count} タグ`,
-            }),
-        },
-        taxes: {
-            subtitle: '税名、税率を追加し、デフォルトを設定します。',
-            addRate: 'レートを追加',
-            workspaceDefault: 'ワークスペースの通貨デフォルト',
-            foreignDefault: '外貨のデフォルト',
-            customTaxName: 'カスタム税名',
-            value: '値段',
-            taxReclaimableOn: '税金の還付可能',
-            taxRate: '税率',
-            findTaxRate: '税率を見つける',
-            error: {
-                taxRateAlreadyExists: 'この税名は既に使用されています',
-                taxCodeAlreadyExists: 'この税コードはすでに使用されています',
-                valuePercentageRange: '0から100の間の有効なパーセンテージを入力してください',
-                customNameRequired: 'カスタム税名が必要です',
-                deleteFailureMessage: '税率の削除中にエラーが発生しました。もう一度お試しいただくか、Conciergeにヘルプを依頼してください。',
-                updateFailureMessage: '税率の更新中にエラーが発生しました。もう一度お試しいただくか、Conciergeにヘルプを依頼してください。',
-                createFailureMessage: '税率の作成中にエラーが発生しました。もう一度お試しいただくか、Conciergeに助けを求めてください。',
-                updateTaxClaimableFailureMessage: '返金可能な部分は、距離料金額より少なくなければなりません。',
-            },
-            deleteTaxConfirmation: 'この税金を削除してもよろしいですか？',
-            deleteMultipleTaxConfirmation: ({taxAmount}: TaxAmountParams) => `${taxAmount}の税金を削除してもよろしいですか？`,
-            actions: {
-                delete: 'レートを削除',
-                deleteMultiple: 'レートを削除',
-                enable: 'レートを有効にする',
-                disable: 'レートを無効にする',
-                enableTaxRates: () => ({
-                    one: 'レートを有効にする',
-                    other: 'レートを有効にする',
-                }),
-                disableTaxRates: () => ({
-                    one: 'レートを無効にする',
-                    other: 'レートを無効にする',
-                }),
-            },
-            importedFromAccountingSoftware: '以下の税金はあなたのからインポートされています',
-            taxCode: '税コード',
-            updateTaxCodeFailureMessage: '税コードの更新中にエラーが発生しました。もう一度お試しください。',
-        },
-        duplicateWorkspace: {
-            title: '新しいワークスペースに名前を付けてください',
-            selectFeatures: 'コピーする機能を選択してください',
-            whichFeatures: '新しいワークスペースにコピーする機能はどれですか？',
-            confirmDuplicate: '\n\n続行しますか?',
-            categories: 'カテゴリと自動分類ルール',
-            reimbursementAccount: '払い戻し口座',
-            delayedSubmission: '遅延送信',
-            welcomeNote: '新しいワークスペースの使用を開始してください',
-            confirmTitle: ({newWorkspaceName, totalMembers}: {newWorkspaceName?: string; totalMembers?: number}) =>
-                `${newWorkspaceName ?? ''} を作成し、元のワークスペースの ${totalMembers ?? 0} 人のメンバーと共有しようとしています。`,
-        },
-        emptyWorkspace: {
-            title: 'ワークスペースがありません',
-            subtitle: '領収書の管理、経費精算、出張管理、請求書の送信などができます。',
-            createAWorkspaceCTA: '開始する',
-            features: {
-                trackAndCollect: '領収書を追跡して収集する',
-                reimbursements: '従業員に払い戻す',
-                companyCards: '会社カードを管理する',
-            },
-            notFound: 'ワークスペースが見つかりません',
-            description: 'ルームは、複数の人と話し合い、作業するのに最適な場所です。コラボレーションを始めるには、ワークスペースを作成するか参加してください。',
-        },
-        new: {
-            newWorkspace: '新しいワークスペース',
-            getTheExpensifyCardAndMore: 'Expensifyカードを取得して、さらに多くの特典を享受しましょう。',
-            confirmWorkspace: 'ワークスペースを確認',
-            myGroupWorkspace: ({workspaceNumber}: {workspaceNumber?: number}) => `マイグループワークスペース${workspaceNumber ? ` ${workspaceNumber}` : ''}`,
-            workspaceName: ({userName, workspaceNumber}: NewWorkspaceNameParams) => `${userName}のワークスペース${workspaceNumber ? ` ${workspaceNumber}` : ''}`,
-        },
-        people: {
-            genericFailureMessage: 'ワークスペースからメンバーを削除する際にエラーが発生しました。もう一度お試しください。',
-            removeMembersPrompt: ({memberName}: {memberName: string}) => ({
-                one: `${memberName}を削除してもよろしいですか？`,
-                other: 'これらのメンバーを削除してもよろしいですか？',
-            }),
-            removeMembersWarningPrompt: ({memberName, ownerName}: RemoveMembersWarningPrompt) =>
-                `${memberName} はこのワークスペースの承認者です。このワークスペースの共有を解除すると、承認ワークフローで ${ownerName} というワークスペースの所有者に置き換えられます。`,
-            removeMembersTitle: () => ({
-                one: 'メンバーを削除',
-                other: 'メンバーを削除',
-            }),
-            findMember: 'メンバーを探す',
-            removeWorkspaceMemberButtonTitle: 'ワークスペースから削除',
-            removeGroupMemberButtonTitle: 'グループから削除',
-            removeRoomMemberButtonTitle: 'チャットから削除',
-            removeMemberPrompt: ({memberName}: RemoveMemberPromptParams) => `${memberName}を削除してもよろしいですか？`,
-            removeMemberTitle: 'メンバーを削除',
-            transferOwner: 'オーナーを移行',
-            makeMember: 'メンバーにする',
-            makeAdmin: '管理者にする',
-            makeAuditor: '監査人を作成',
-            selectAll: 'すべて選択',
-            error: {
-                genericAdd: 'このワークスペースメンバーを追加する際に問題が発生しました',
-                cannotRemove: '自分自身やワークスペースの所有者を削除することはできません。',
-                genericRemove: 'そのワークスペースメンバーの削除に問題が発生しました。',
-            },
-            addedWithPrimary: '一部のメンバーがプライマリーログインで追加されました。',
-            invitedBySecondaryLogin: ({secondaryLogin}: SecondaryLoginParams) => `セカンダリーログイン ${secondaryLogin} によって追加されました。`,
-            workspaceMembersCount: ({count}: WorkspaceMembersCountParams) => `ワークスペースのメンバー総数: ${count}`,
-            importMembers: 'メンバーをインポート',
-        },
-        card: {
-            getStartedIssuing: '最初のバーチャルカードまたは物理カードを発行して始めましょう。',
-            issueCard: 'カードを発行',
-            issueNewCard: {
-                whoNeedsCard: '誰がカードを必要としていますか？',
-                findMember: 'メンバーを探す',
-                chooseCardType: 'カードタイプを選択',
-                physicalCard: '物理カード',
-                physicalCardDescription: '頻繁に支出する人に最適',
-                virtualCard: 'バーチャルカード',
-                virtualCardDescription: 'インスタントで柔軟',
-                chooseLimitType: '制限タイプを選択',
-                smartLimit: 'スマートリミット',
-                smartLimitDescription: '承認が必要になる前に、特定の金額まで使用する',
-                monthly: '毎月',
-                monthlyDescription: '月ごとに一定の金額まで使う',
-                fixedAmount: '固定金額',
-                fixedAmountDescription: '一度だけ特定の金額まで支出する',
-                setLimit: '制限を設定する',
-                cardLimitError: '$21,474,836未満の金額を入力してください。',
-                giveItName: '名前を付けてください。',
-                giveItNameInstruction: '他のカードと区別できるようにユニークにしましょう。具体的な使用例があるとさらに良いです！',
-                cardName: 'カード名',
-                letsDoubleCheck: 'すべてが正しいかどうかをもう一度確認しましょう。',
-                willBeReady: 'このカードはすぐに使用可能になります。',
-                cardholder: 'カードホルダー',
-                cardType: 'カードタイプ',
-                limit: '制限',
-                limitType: 'タイプを制限',
-                name: '名前',
-                disabledApprovalForSmartLimitError: 'スマートリミットを設定する前に、<strong>ワークフロー > 承認を追加</strong>で承認を有効にしてください',
-            },
-            deactivateCardModal: {
-                deactivate: '無効化',
-                deactivateCard: 'カードを無効化する',
-                deactivateConfirmation: 'このカードを無効化すると、今後のすべての取引が拒否され、元に戻すことはできません。',
-            },
-        },
-        accounting: {
-            settings: '設定',
-            title: '接続',
-            subtitle: '会計システムに接続して、勘定科目表で取引をコード化し、支払いを自動マッチングし、財務を同期させましょう。',
-            qbd: 'QuickBooks Desktop',
-            xero: 'Xero',
-            sap: 'SAP',
-            oracle: 'Oracle',
-            microsoftDynamics: 'Microsoft Dynamics',
-            talkYourOnboardingSpecialist: 'セットアップスペシャリストとチャットする。',
-            talkYourAccountManager: 'アカウントマネージャーとチャットする。',
-            talkToConcierge: 'Conciergeとチャットする。',
-            needAnotherAccounting: '別の会計ソフトウェアが必要ですか？',
-            connectionName: ({connectionName}: ConnectionNameParams) => {
-                switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                        return 'Xero';
-
-                    default: {
-                        return '';
-                    }
-                }
-            },
-            errorODIntegration: 'Expensify Classicで設定された接続にエラーがあります。',
-            goToODToFix: 'この問題を解決するには、Expensify Classicに移動してください。',
-            goToODToSettings: '設定を管理するには、Expensify Classicに移動してください。',
-            setup: '接続する',
-            lastSync: ({relativeDate}: LastSyncAccountingParams) => `最終同期日時: ${relativeDate}`,
-            notSync: '同期されていません',
-            import: 'インポート',
-            export: 'エクスポート',
-            advanced: '上級',
-            other: 'その他',
-            syncNow: '今すぐ同期',
-            disconnect: '切断する',
-            reinstall: 'コネクタを再インストール',
-            disconnectTitle: ({connectionName}: OptionalParam<ConnectionNameParams> = {}) => {
-                const integrationName = connectionName && CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ? CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] : '統合';
-                return `${integrationName}を切断`;
-            },
-            connectTitle: ({connectionName}: ConnectionNameParams) => `${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? '会計統合'} に接続`,
-            syncError: ({connectionName}: ConnectionNameParams) => {
-                switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                        return 'Xeroに接続できません';
-                    case CONST.POLICY.CONNECTIONS.NAME.QBD:
-                        return 'QuickBooks Desktopに接続できません';
-                    default: {
-                        return '統合に接続できません';
-                    }
-                }
-            },
-            accounts: '勘定科目表',
-            taxes: '税金',
-            imported: 'インポート済み',
-            notImported: 'インポートされていません',
-            importAsCategory: 'カテゴリとしてインポートされました',
-            importTypes: {
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.IMPORTED]: 'インポート済み',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.TAG]: 'タグとしてインポートされました',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.DEFAULT]: 'インポート済み',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.NOT_IMPORTED]: 'インポートされていません',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.NONE]: 'インポートされていません',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD]: 'レポートフィールドとしてインポートされました',
-            },
-            disconnectPrompt: ({connectionName}: OptionalParam<ConnectionNameParams> = {}) => {
-                const integrationName =
-                    connectionName && CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ? CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] : 'この統合';
-                return `${integrationName}を切断してもよろしいですか？`;
-            },
-            connectPrompt: ({connectionName}: ConnectionNameParams) =>
-                `${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? 'この会計統合'}を接続してもよろしいですか？これにより、既存の会計接続がすべて削除されます。`,
-            enterCredentials: '資格情報を入力してください',
-            connections: {
                 syncStageName: ({stage}: SyncStageNameConnectionsParams) => {
                     switch (stage) {
                         case 'quickbooksDesktopImportCustomers':
@@ -4453,12 +3987,6 @@ const translations = {
                             return 'アカウントのインポート';
                         case 'quickbooksDesktopImportClasses':
                             return 'クラスのインポート';
-                            return '場所のインポート';
-                            return 'インポートされたデータを処理中';
-                            return '払い戻されたレポートと請求書の支払いを同期中';
-                            return '税コードのインポート';
-                        case 'startingImportXero':
-                            return 'Xeroデータのインポート';
                         case 'startingImportQBD':
                         case 'quickbooksDesktopImportMore':
                             return 'QuickBooks Desktopデータのインポート';
@@ -4472,39 +4000,10 @@ const translations = {
                             return '保存ポリシーのインポート';
                         case 'quickbooksDesktopWebConnectorReminder':
                             return 'QuickBooksとのデータを同期中です... Web Connectorが実行中であることを確認してください';
-                        case 'xeroSyncStep':
-                            return 'データを読み込んでいます';
-                            return 'カテゴリを更新中';
-                            return '顧客/プロジェクトの更新';
-                            return '人のリストを更新中';
-                            return 'レポートフィールドを更新中';
                         case 'jobDone':
                             return 'インポートされたデータの読み込みを待っています';
-                        case 'xeroSyncImportChartOfAccounts':
-                            return '勘定科目表を同期中';
-                        case 'xeroSyncImportCategories':
-                            return 'カテゴリを同期中';
-                        case 'xeroSyncImportCustomers':
-                            return '顧客を同期中';
-                        case 'xeroSyncXeroReimbursedReports':
-                            return 'Expensifyレポートを払い戻し済みとしてマークする';
-                        case 'xeroSyncExpensifyReimbursedReports':
-                            return 'Xeroの請求書と請求書を支払済みとしてマークする';
-                        case 'xeroSyncImportTrackingCategories':
-                            return 'トラッキングカテゴリを同期中';
-                        case 'xeroSyncImportBankAccounts':
-                            return '銀行口座の同期';
-                        case 'xeroSyncImportTaxRates':
-                            return '税率を同期中';
-                        case 'xeroCheckConnection':
-                            return 'Xero接続を確認中';
-                        case 'xeroSyncTitle':
-                            return 'Xeroデータを同期中';
                         case 'quickbooksDesktopImportVendors':
                             return 'ベンダーのインポート';
-
-
-
                         default: {
                             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                             return `ステージの翻訳が見つかりません: ${stage}`;
@@ -4820,7 +4319,7 @@ const translations = {
                     pricingPage: '価格ページ',
                     confirm: '設定を削除してダウングレードしてもよろしいですか？',
                     warning: 'これは元に戻せません。',
-                    benefit1: '会計接続（Xero を除く）',
+                    benefit1: '会計接続',
                     benefit2: 'スマート経費ルール',
                     benefit3: 'マルチレベル承認ワークフロー',
                     benefit4: '強化されたセキュリティコントロール',
@@ -6044,7 +5543,7 @@ const translations = {
                 benefit3: '法人カード管理',
                 benefit4: '経費と出張の承認',
                 benefit5: '旅行の予約とルール',
-                benefit6: 'QuickBooks/Xero 統合',
+                benefit6: 'QuickBooks 統合',
                 benefit7: '経費、レポート、ルームでチャットする',
                 benefit8: 'AIと人間のサポート',
             },

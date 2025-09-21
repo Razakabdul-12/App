@@ -63,7 +63,7 @@ const getMockForStatus = (status: IndicatorStatus, isAdmin = true) =>
             connections:
                 status === CONST.INDICATOR_STATUS.HAS_SYNC_ERRORS
                     ? {
-                          xero: {
+                          quickbooksDesktop: {
                               lastSync: {
                                   isSuccessful: false,
                                   errorDate: new Date().toISOString(),

@@ -73,4 +73,4 @@ If you modify an expense manually, you can create a rule based on those changes:
 When exporting non-reimbursable expenses, the **Payee** field in the accounting software will show "Credit Card Misc." if there is no exact match for the merchant name. This prevents multiple variations of the same vendor (e.g., "Starbucks" vs. "Starbucks #1234") from being created.  
 
 To avoid this, use **Expense Rules** to standardize vendor names before export.  
-- **Supported integrations:** QuickBooks Online, QuickBooks Desktop, Xero.  
+- **Supported integrations:** QuickBooks Online, QuickBooks Desktop.  

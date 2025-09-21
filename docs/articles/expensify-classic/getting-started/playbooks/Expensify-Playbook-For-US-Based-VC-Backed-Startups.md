@@ -36,7 +36,7 @@ Proper financial management is key for VC-backed companies. Ensure that:
 ### To connect your accounting system:
 1. Go to Settings > Workspaces.
 2. Click the **Connections** tab.
-3. Select your accounting software (e.g., QuickBooks, Xero).
+3. Select your accounting software (e.g., QuickBooks).
 4. Follow the prompts to complete the connection.
 5. Once connected, your categories will sync, allowing you to set **Category Rules**.
 

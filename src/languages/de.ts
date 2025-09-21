@@ -1723,13 +1723,7 @@ const translations = {
         disable: 'Deaktivieren',
         enableTwoFactorAuth: 'Zwei-Faktor-Authentifizierung aktivieren',
         pleaseEnableTwoFactorAuth: 'Bitte aktivieren Sie die Zwei-Faktor-Authentifizierung.',
-        twoFactorAuthIsRequiredDescription: 'Aus Sicherheitsgründen erfordert Xero eine Zwei-Faktor-Authentifizierung, um die Integration zu verbinden.',
-        twoFactorAuthIsRequiredForAdminsHeader: 'Zwei-Faktor-Authentifizierung erforderlich',
-        twoFactorAuthIsRequiredForAdminsTitle: 'Bitte aktivieren Sie die Zwei-Faktor-Authentifizierung',
-        twoFactorAuthIsRequiredForAdminsDescription:
-            'Ihre Xero-Buchhaltungsverbindung erfordert die Verwendung der Zwei-Faktor-Authentifizierung. Um Expensify weiterhin zu nutzen, aktivieren Sie diese bitte.',
         twoFactorAuthCannotDisable: '2FA kann nicht deaktiviert werden.',
-        twoFactorAuthRequired: 'Die Zwei-Faktor-Authentifizierung (2FA) ist für Ihre Xero-Verbindung erforderlich und kann nicht deaktiviert werden.',
     },
     recoveryCodeForm: {
         error: {
@@ -3615,92 +3609,7 @@ const translations = {
             joinNow: 'Jetzt beitreten',
             askToJoin: 'Beitreten anfragen',
         },
-        xero: {
-            organization: 'Xero-Organisation',
-            organizationDescription: 'Wählen Sie die Xero-Organisation aus, aus der Sie Daten importieren möchten.',
-            importDescription: 'Wählen Sie aus, welche Kodierungskonfigurationen von Xero nach Expensify importiert werden sollen.',
-            accountsDescription: 'Ihr Xero-Kontenplan wird in Expensify als Kategorien importiert.',
-            accountsSwitchTitle: 'Wählen Sie, ob neue Konten als aktivierte oder deaktivierte Kategorien importiert werden sollen.',
-            accountsSwitchDescription: 'Aktivierte Kategorien stehen den Mitgliedern zur Auswahl, wenn sie ihre Ausgaben erstellen.',
-            trackingCategories: 'Verfolgungskategorien',
-            trackingCategoriesDescription: 'Wählen Sie, wie Xero-Tracking-Kategorien in Expensify behandelt werden sollen.',
-            mapTrackingCategoryTo: ({categoryName}: CategoryNameParams) => `Xero ${categoryName} zuordnen zu`,
-            mapTrackingCategoryToDescription: ({categoryName}: CategoryNameParams) => `Wählen Sie, wo ${categoryName} beim Export nach Xero zugeordnet werden soll.`,
-            customers: 'Kunden erneut in Rechnung stellen',
-            customersDescription:
-                'Wählen Sie, ob Sie Kunden in Expensify erneut in Rechnung stellen möchten. Ihre Xero-Kundenkontakte können Ausgaben zugeordnet werden und werden als Verkaufsrechnung nach Xero exportiert.',
-            taxesDescription: 'Wählen Sie, wie Xero-Steuern in Expensify behandelt werden sollen.',
-            notImported: 'Nicht importiert',
-            notConfigured: 'Nicht konfiguriert',
-            trackingCategoriesOptions: {
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.DEFAULT]: 'Xero-Kontaktstandard',
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.TAG]: 'Tags',
-                [CONST.XERO_CONFIG.TRACKING_CATEGORY_OPTIONS.REPORT_FIELD]: 'Berichtsfelder',
-            },
-            exportDescription: 'Konfigurieren Sie, wie Expensify-Daten nach Xero exportiert werden.',
-            purchaseBill: 'Kaufrechnung',
-            exportDeepDiveCompanyCard:
-                'Exportierte Ausgaben werden als Banktransaktionen auf das unten stehende Xero-Bankkonto gebucht, und die Transaktionsdaten werden mit den Daten auf Ihrem Kontoauszug übereinstimmen.',
-            bankTransactions: 'Banktransaktionen',
-            xeroBankAccount: 'Xero-Bankkonto',
-            xeroBankAccountDescription: 'Wählen Sie, wo Ausgaben als Banktransaktionen gebucht werden sollen.',
-            exportExpensesDescription: 'Berichte werden als Einkaufsrechnung mit dem unten ausgewählten Datum und Status exportiert.',
-            purchaseBillDate: 'Rechnungsdatum des Kaufs',
-            exportInvoices: 'Rechnungen exportieren als',
-            salesInvoice: 'Verkaufsrechnung',
-            exportInvoicesDescription: 'Verkaufsrechnungen zeigen immer das Datum an, an dem die Rechnung gesendet wurde.',
-            advancedConfig: {
-                autoSyncDescription: 'Expensify wird jeden Tag automatisch mit Xero synchronisieren.',
-                purchaseBillStatusTitle: 'Kaufrechnungsstatus',
-                reimbursedReportsDescription: 'Jedes Mal, wenn ein Bericht über Expensify ACH bezahlt wird, wird die entsprechende Rechnungszahlung im unten stehenden Xero-Konto erstellt.',
-                xeroBillPaymentAccount: 'Xero-Rechnungszahlungskonto',
-                xeroInvoiceCollectionAccount: 'Xero-Rechnungsinkassokonto',
-                xeroBillPaymentAccountDescription: 'Wählen Sie aus, von wo aus Sie Rechnungen bezahlen möchten, und wir erstellen die Zahlung in Xero.',
-                invoiceAccountSelectorDescription: 'Wählen Sie aus, wo Sie Rechnungszahlungen erhalten möchten, und wir erstellen die Zahlung in Xero.',
-            },
-            exportDate: {
-                label: 'Rechnungsdatum des Kaufs',
-                description: 'Verwenden Sie dieses Datum beim Exportieren von Berichten nach Xero.',
-                values: {
-                    [CONST.XERO_EXPORT_DATE.LAST_EXPENSE]: {
-                        label: 'Datum der letzten Ausgabe',
-                        description: 'Datum der letzten Ausgabe im Bericht.',
-                    },
-                    [CONST.XERO_EXPORT_DATE.REPORT_EXPORTED]: {
-                        label: 'Exportdatum',
-                        description: 'Datum, an dem der Bericht nach Xero exportiert wurde.',
-                    },
-                    [CONST.XERO_EXPORT_DATE.REPORT_SUBMITTED]: {
-                        label: 'Eingereichtes Datum',
-                        description: 'Datum, an dem der Bericht zur Genehmigung eingereicht wurde.',
-                    },
-                },
-            },
-            invoiceStatus: {
-                label: 'Kaufrechnungsstatus',
-                description: 'Verwenden Sie diesen Status beim Exportieren von Einkaufsrechnungen nach Xero.',
-                values: {
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.DRAFT]: 'Entwurf',
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.AWAITING_APPROVAL]: 'Warten auf Genehmigung',
-                    [CONST.XERO_CONFIG.INVOICE_STATUS.AWAITING_PAYMENT]: 'Zahlung ausstehend',
-                },
-            },
-            noAccountsFound: 'Keine Konten gefunden',
-            noAccountsFoundDescription: 'Bitte fügen Sie das Konto in Xero hinzu und synchronisieren Sie die Verbindung erneut.',
-            accountingMethods: {
-                label: 'Wann exportieren',
-                description: 'Wählen Sie, wann die Ausgaben exportiert werden sollen:',
-                values: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Accrual',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Bargeld',
-                },
-                alternateText: {
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.ACCRUAL]: 'Auslagen werden exportiert, wenn sie endgültig genehmigt sind.',
-                    [COMMON_CONST.INTEGRATIONS.ACCOUNTING_METHOD.CASH]: 'Auslagen werden exportiert, wenn sie bezahlt sind.',
-                },
-            },
-        },
-        type: {
+type: {
             free: 'Kostenlos',
             control: 'Steuerung',
             collect: 'Sammeln',
@@ -3992,9 +3901,7 @@ const translations = {
                 cardNumber: 'Kartennummer',
                 cardholder: 'Karteninhaber',
                 cardName: 'Kartenname',
-                integrationExport: ({integration, type}: IntegrationExportParams) => (integration && type ? `${integration} ${type.toLowerCase()} Export` : `${integration}-Export`),
-                integrationExportTitleXero: ({integration}: IntegrationExportParams) => `Wählen Sie das ${integration}-Konto aus, in das die Transaktionen exportiert werden sollen.`,
-                integrationExportTitle: ({integration, exportPageLink}: IntegrationExportParams) =>
+                integrationExport: ({integration, type}: IntegrationExportParams) => (integration && type ? `${integration} ${type.toLowerCase()} Export` : `${integration}-Export`),                integrationExportTitle: ({integration, exportPageLink}: IntegrationExportParams) =>
                     `Wählen Sie das ${integration}-Konto aus, in das die Transaktionen exportiert werden sollen. Wählen Sie eine andere <a href="${exportPageLink}">Exportoption</a>, um die verfügbaren Konten zu ändern.`,
                 lastUpdated: 'Zuletzt aktualisiert',
                 transactionStartDate: 'Transaktionsstartdatum',
@@ -4071,384 +3978,6 @@ const translations = {
                 subtitle: 'Benutzerdefinierte Felder für Ausgaben einrichten.',
             },
             connections: {
-                title: 'Buchhaltung',
-                subtitle: 'Synchronisieren Sie Ihren Kontenplan und mehr.',
-            },            connectionsWarningModal: {
-                featureEnabledTitle: 'Nicht so schnell...',
-                featureEnabledText: 'Um diese Funktion zu aktivieren oder zu deaktivieren, müssen Sie Ihre Buchhaltungsimporteinstellungen ändern.',
-                disconnectText: 'Um die Buchhaltung zu deaktivieren, müssen Sie Ihre Buchhaltungsverbindung von Ihrem Arbeitsbereich trennen.',
-                manageSettings: 'Einstellungen verwalten',
-            },            workflowWarningModal: {
-                featureEnabledTitle: 'Nicht so schnell...',
-                featureEnabledText:
-                    'Expensify-Karten in diesem Arbeitsbereich basieren auf Genehmigungs-Workflows, um ihre Smart Limits festzulegen.\n\nBitte ändern Sie die Limittypen von Karten mit Smart Limits, bevor Sie Workflows deaktivieren.',
-                confirmText: 'Gehe zu Expensify-Karten',
-            },
-            rules: {
-                title: 'Regeln',
-                subtitle: 'Belege anfordern, hohe Ausgaben kennzeichnen und mehr.',
-            },
-        },
-        reports: {
-            reportsCustomTitleExamples: 'Beispiele:',
-            customReportNamesSubtitle: `<muted-text>Passen Sie Berichtstitel mithilfe unserer <a href="${CONST.CUSTOM_REPORT_NAME_HELP_URL}">umfangreichen Formeln an</a>.</muted-text>`,
-            customNameTitle: 'Standardberichtstitel',
-            customNameDescription: `Wählen Sie mithilfe unserer <a href="${CONST.CUSTOM_REPORT_NAME_HELP_URL}">umfangreichen Formeln</a> einen benutzerdefinierten Namen für Spesenabrechnungen.`,
-            customNameInputLabel: 'Name',
-            customNameEmailPhoneExample: 'E-Mail oder Telefon des Mitglieds: {report:submit:from}',
-            customNameStartDateExample: 'Berichtsstartdatum: {report:startdate}',
-            customNameWorkspaceNameExample: 'Workspace-Name: {report:workspacename}',
-            customNameReportIDExample: 'Report-ID: {report:id}',
-            customNameTotalExample: 'Gesamt: {report:total}.',
-            preventMembersFromChangingCustomNamesTitle: 'Verhindern Sie, dass Mitglieder benutzerdefinierte Berichtsnamen ändern',
-        },
-        reportFields: {
-            addField: 'Feld hinzufügen',
-            delete: 'Feld löschen',
-            deleteFields: 'Felder löschen',
-            findReportField: 'Berichtsfeld finden',
-            deleteConfirmation: 'Möchten Sie dieses Berichtsfeld wirklich löschen?',
-            deleteFieldsConfirmation: 'Möchten Sie diese Berichts-Felder wirklich löschen?',
-            emptyReportFields: {
-                title: 'Sie haben noch keine Berichts-Felder erstellt.',
-                subtitle: 'Fügen Sie ein benutzerdefiniertes Feld (Text, Datum oder Dropdown) hinzu, das in Berichten angezeigt wird.',
-            },
-            subtitle: 'Berichtsfelder gelten für alle Ausgaben und können hilfreich sein, wenn Sie nach zusätzlichen Informationen fragen möchten.',
-            disableReportFields: 'Berichtsfelder deaktivieren',
-            disableReportFieldsConfirmation: 'Bist du sicher? Text- und Datumsfelder werden gelöscht und Listen werden deaktiviert.',
-            importedFromAccountingSoftware: 'Die unten aufgeführten Berichtsfelder werden aus Ihrem importiert.',
-            textType: 'Text',
-            dateType: 'Datum',
-            dropdownType: 'Liste',
-            textAlternateText: 'Fügen Sie ein Feld für die freie Texteingabe hinzu.',
-            dateAlternateText: 'Fügen Sie einen Kalender zur Datumauswahl hinzu.',
-            dropdownAlternateText: 'Fügen Sie eine Liste von Optionen zur Auswahl hinzu.',
-            nameInputSubtitle: 'Wählen Sie einen Namen für das Berichtsfeld.',
-            typeInputSubtitle: 'Wählen Sie aus, welche Art von Berichtsfeld verwendet werden soll.',
-            initialValueInputSubtitle: 'Geben Sie einen Startwert ein, der im Berichtsfeld angezeigt werden soll.',
-            listValuesInputSubtitle: 'Diese Werte werden im Dropdown-Menü Ihres Berichtsfelds angezeigt. Aktivierte Werte können von Mitgliedern ausgewählt werden.',
-            listInputSubtitle: 'Diese Werte werden in Ihrer Berichts-Feldliste angezeigt. Aktivierte Werte können von Mitgliedern ausgewählt werden.',
-            deleteValue: 'Wert löschen',
-            deleteValues: 'Werte löschen',
-            disableValue: 'Wert deaktivieren',
-            disableValues: 'Werte deaktivieren',
-            enableValue: 'Wert aktivieren',
-            enableValues: 'Werte aktivieren',
-            emptyReportFieldsValues: {
-                title: 'Sie haben keine Listenwerte erstellt.',
-                subtitle: 'Benutzerdefinierte Werte hinzufügen, die in Berichten erscheinen sollen.',
-            },
-            deleteValuePrompt: 'Möchten Sie diesen Listenwert wirklich löschen?',
-            deleteValuesPrompt: 'Möchten Sie diese Listenwerte wirklich löschen?',
-            listValueRequiredError: 'Bitte geben Sie einen Listennamen ein',
-            existingListValueError: 'Ein Listenwert mit diesem Namen existiert bereits.',
-            editValue: 'Wert bearbeiten',
-            listValues: 'Werte auflisten',
-            addValue: 'Wert hinzufügen',
-            existingReportFieldNameError: 'Ein Berichtsfeld mit diesem Namen existiert bereits.',
-            reportFieldNameRequiredError: 'Bitte geben Sie einen Berichtsfeldnamen ein',
-            reportFieldTypeRequiredError: 'Bitte wählen Sie einen Berichtsfeldtyp aus',
-            reportFieldInitialValueRequiredError: 'Bitte wählen Sie einen Anfangswert für das Berichtsfeld aus',
-            genericFailureMessage: 'Beim Aktualisieren des Berichtsfeldes ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.',
-        },
-        tags: {
-            tagName: 'Tag-Name',
-            requiresTag: 'Mitglieder müssen alle Ausgaben kennzeichnen',
-            trackBillable: 'Verfolgen Sie abrechenbare Ausgaben',
-            customTagName: 'Benutzerdefinierter Tag-Name',
-            enableTag: 'Tag aktivieren',
-            enableTags: 'Tags aktivieren',
-            requireTag: 'Require tag',
-            requireTags: 'Tags erforderlich',
-            notRequireTags: 'Nicht erforderlich',
-            disableTag: 'Tag deaktivieren',
-            disableTags: 'Tags deaktivieren',
-            addTag: 'Tag hinzufügen',
-            editTag: 'Tag bearbeiten',
-            editTags: 'Tags bearbeiten',
-            findTag: 'Tag finden',
-            subtitle: 'Tags bieten detailliertere Möglichkeiten, Kosten zu klassifizieren.',
-            dependentMultiLevelTagsSubtitle: ({importSpreadsheetLink}: DependentMultiLevelTagsSubtitleParams) =>
-                `<muted-text>Sie verwenden <a href="${CONST.IMPORT_TAGS_EXPENSIFY_URL_DEPENDENT_TAGS}">abhängige Tags</a>. Sie können <a href="${importSpreadsheetLink}">eine Kalkulationstabelle neu importieren</a>, um Ihre Tags zu aktualisieren.</muted-text>`,
-            emptyTags: {
-                title: 'Sie haben noch keine Tags erstellt.',
-                //  We need to remove the subtitle and use the below one when we remove the canUseMultiLevelTags beta
-                subtitle: 'Fügen Sie ein Tag hinzu, um Projekte, Standorte, Abteilungen und mehr zu verfolgen.',
-                subtitleHTML: `<muted-text><centered-text>Importieren Sie eine Kalkulationstabelle, um Tags für die Verfolgung von Projekten, Standorten, Abteilungen und mehr hinzuzufügen. <a href="${CONST.IMPORT_TAGS_EXPENSIFY_URL}">Erfahren Sie mehr</a> über die Formatierung von Tag-Dateien.</centered-text></muted-text>`,
-                subtitleWithAccounting: ({accountingPageURL}: EmptyTagsSubtitleWithAccountingParams) =>
-                    `<muted-text><centered-text>Your tags are currently importing from an accounting connection. Gehen Sie zur <a href="${accountingPageURL}">Buchhaltung</a>, um Änderungen vorzunehmen.</centered-text></muted-text>`,
-            },
-            deleteTag: 'Tag löschen',
-            deleteTags: 'Tags löschen',
-            deleteTagConfirmation: 'Möchten Sie dieses Tag wirklich löschen?',
-            deleteTagsConfirmation: 'Möchten Sie diese Tags wirklich löschen?',
-            deleteFailureMessage: 'Beim Löschen des Tags ist ein Fehler aufgetreten, bitte versuchen Sie es erneut.',
-            tagRequiredError: 'Tag-Name ist erforderlich',
-            existingTagError: 'Ein Tag mit diesem Namen existiert bereits',
-            invalidTagNameError: 'Der Tag-Name darf nicht 0 sein. Bitte wählen Sie einen anderen Wert.',
-            genericFailureMessage: 'Beim Aktualisieren des Tags ist ein Fehler aufgetreten, bitte versuchen Sie es erneut.',
-            importedFromAccountingSoftware: 'Die unten stehenden Tags werden aus Ihrem',
-            glCode: 'GL-Code',
-            updateGLCodeFailureMessage: 'Beim Aktualisieren des GL-Codes ist ein Fehler aufgetreten, bitte versuchen Sie es erneut.',
-            tagRules: 'Tag-Regeln',
-            approverDescription: 'Genehmiger',
-            importTags: 'Tags importieren',
-            importTagsSupportingText: 'Kodieren Sie Ihre Ausgaben mit einer Art von Tag oder vielen.',
-            configureMultiLevelTags: 'Konfigurieren Sie Ihre Liste von Tags für die mehrstufige Kategorisierung.',
-            importMultiLevelTagsSupportingText: `Hier ist eine Vorschau Ihrer Tags. Wenn alles gut aussieht, klicken Sie unten, um sie zu importieren.`,
-            importMultiLevelTags: {
-                firstRowTitle: 'Die erste Zeile ist der Titel für jede Tag-Liste.',
-                independentTags: 'Dies sind unabhängige Tags',
-                glAdjacentColumn: 'Es gibt einen GL-Code in der angrenzenden Spalte.',
-            },
-            tagLevel: {
-                singleLevel: 'Einzelne Ebene von Tags',
-                multiLevel: 'Mehrstufige Tags',
-            },
-            switchSingleToMultiLevelTagWarning: {
-                title: 'Tag-Ebenen wechseln',
-                prompt1: 'Das Ändern der Tag-Ebenen löscht alle aktuellen Tags.',
-                prompt2: 'Wir empfehlen Ihnen zuerst',
-                prompt3: 'ein Backup herunterladen',
-                prompt4: 'indem Sie Ihre Tags exportieren.',
-                prompt5: 'Erfahren Sie mehr',
-                prompt6: 'about tag levels.',
-            },
-            importedTagsMessage: ({columnCounts}: ImportedTagsMessageParams) =>
-                `Wir haben *${columnCounts} Spalten* in Ihrer Tabelle gefunden. Wählen Sie *Name* neben der Spalte, die die Tag-Namen enthält. Sie können auch *Aktiviert* neben der Spalte auswählen, die den Tag-Status festlegt.`,
-            cannotDeleteOrDisableAllTags: {
-                title: 'Kann nicht alle Tags löschen oder deaktivieren',
-                description: `Mindestens ein Tag muss aktiviert bleiben, da Ihr Arbeitsbereich Tags benötigt.`,
-            },
-            cannotMakeAllTagsOptional: {
-                title: 'Kann nicht alle Tags optional machen',
-                description: `Mindestens ein Tag muss erforderlich bleiben, da Ihre Arbeitsbereichseinstellungen Tags erfordern.`,
-            },
-            tagCount: () => ({
-                one: '1 Tag',
-                other: (count: number) => `${count} Tags`,
-            }),
-        },
-        taxes: {
-            subtitle: 'Steuernamen, -sätze hinzufügen und Standardwerte festlegen.',
-            addRate: 'Rate hinzufügen',
-            workspaceDefault: 'Standardwährung des Arbeitsbereichs',
-            foreignDefault: 'Fremdwährungsstandard',
-            customTaxName: 'Benutzerdefinierter Steuername',
-            value: 'Wert',
-            taxReclaimableOn: 'Steuer erstattungsfähig auf',
-            taxRate: 'Steuersatz',
-            findTaxRate: 'Steuersatz finden',
-            error: {
-                taxRateAlreadyExists: 'Dieser Steuername wird bereits verwendet',
-                taxCodeAlreadyExists: 'Dieser Steuercode wird bereits verwendet',
-                valuePercentageRange: 'Bitte geben Sie einen gültigen Prozentsatz zwischen 0 und 100 ein.',
-                customNameRequired: 'Benutzerdefinierter Steuername ist erforderlich',
-                deleteFailureMessage: 'Beim Löschen des Steuersatzes ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder bitten Sie Concierge um Hilfe.',
-                updateFailureMessage: 'Beim Aktualisieren des Steuersatzes ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder bitten Sie Concierge um Hilfe.',
-                createFailureMessage: 'Beim Erstellen des Steuersatzes ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder bitten Sie Concierge um Hilfe.',
-                updateTaxClaimableFailureMessage: 'Der erstattungsfähige Teil muss geringer sein als der Distanzsatzbetrag.',
-            },
-            deleteTaxConfirmation: 'Möchten Sie diese Steuer wirklich löschen?',
-            deleteMultipleTaxConfirmation: ({taxAmount}: TaxAmountParams) => `Möchten Sie wirklich ${taxAmount} Steuern löschen?`,
-            actions: {
-                delete: 'Löschrate',
-                deleteMultiple: 'Raten löschen',
-                enable: 'Rate aktivieren',
-                disable: 'Rate deaktivieren',
-                enableTaxRates: () => ({
-                    one: 'Rate aktivieren',
-                    other: 'Raten aktivieren',
-                }),
-                disableTaxRates: () => ({
-                    one: 'Rate deaktivieren',
-                    other: 'Raten deaktivieren',
-                }),
-            },
-            importedFromAccountingSoftware: 'Die unten aufgeführten Steuern werden von Ihrem importiert',
-            taxCode: 'Steuercode',
-            updateTaxCodeFailureMessage: 'Beim Aktualisieren des Steuercodes ist ein Fehler aufgetreten, bitte versuchen Sie es erneut.',
-        },
-        duplicateWorkspace: {
-            title: 'Benennen Sie Ihren neuen Arbeitsbereich',
-            selectFeatures: 'Auswählen der zu kopierenden Features',
-            whichFeatures: 'Welche Funktionen möchten Sie in Ihren neuen Arbeitsbereich kopieren?',
-            confirmDuplicate: '\n\nMöchten Sie fortfahren?',
-            categories: 'Kategorien und Ihre Auto-Kategorisierungsregeln',
-            reimbursementAccount: 'Erstattungskonto',
-            delayedSubmission: 'verspätete Einreichung',
-            welcomeNote: 'Bitte beginnen Sie mit der Nutzung meines neuen Arbeitsbereichs',
-            confirmTitle: ({newWorkspaceName, totalMembers}: {newWorkspaceName?: string; totalMembers?: number}) =>
-                `Sie sind dabei, ${newWorkspaceName ?? ''} zu erstellen und mit ${totalMembers ?? 0} Mitgliedern aus dem ursprünglichen Arbeitsbereich zu teilen.`,
-        },
-        emptyWorkspace: {
-            title: 'Sie haben keine Arbeitsbereiche',
-            subtitle: 'Verfolgen Sie Belege, erstatten Sie Ausgaben, verwalten Sie Reisen, senden Sie Rechnungen und mehr.',
-            createAWorkspaceCTA: 'Loslegen',
-            features: {
-                trackAndCollect: 'Belege verfolgen und sammeln',
-                reimbursements: 'Mitarbeiter erstatten',
-                companyCards: 'Firmenkarten verwalten',
-            },
-            notFound: 'Kein Arbeitsbereich gefunden',
-            description:
-                'Räume sind ein großartiger Ort, um mit mehreren Personen zu diskutieren und zu arbeiten. Um mit der Zusammenarbeit zu beginnen, erstellen Sie einen Arbeitsbereich oder treten Sie einem bei.',
-        },
-        new: {
-            newWorkspace: 'Neuer Arbeitsbereich',
-            getTheExpensifyCardAndMore: 'Holen Sie sich die Expensify-Karte und mehr',
-            confirmWorkspace: 'Arbeitsbereich bestätigen',
-            myGroupWorkspace: ({workspaceNumber}: {workspaceNumber?: number}) => `Mein Gruppenarbeitsbereich${workspaceNumber ? ` ${workspaceNumber}` : ''}`,
-            workspaceName: ({userName, workspaceNumber}: NewWorkspaceNameParams) => `${userName}'s Workspace${workspaceNumber ? ` ${workspaceNumber}` : ''}`,
-        },
-        people: {
-            genericFailureMessage: 'Beim Entfernen eines Mitglieds aus dem Arbeitsbereich ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.',
-            removeMembersPrompt: ({memberName}: {memberName: string}) => ({
-                one: `Möchten Sie ${memberName} wirklich entfernen?`,
-                other: 'Möchten Sie diese Mitglieder wirklich entfernen?',
-            }),
-            removeMembersWarningPrompt: ({memberName, ownerName}: RemoveMembersWarningPrompt) =>
-                `${memberName} ist ein Genehmiger in diesem Arbeitsbereich. Wenn Sie diesen Arbeitsbereich mit ihnen nicht mehr teilen, ersetzen wir sie im Genehmigungsprozess durch den Arbeitsbereichsinhaber, ${ownerName}.`,
-            removeMembersTitle: () => ({
-                one: 'Mitglied entfernen',
-                other: 'Mitglieder entfernen',
-            }),
-            findMember: 'Mitglied finden',
-            removeWorkspaceMemberButtonTitle: 'Aus dem Arbeitsbereich entfernen',
-            removeGroupMemberButtonTitle: 'Aus Gruppe entfernen',
-            removeRoomMemberButtonTitle: 'Aus dem Chat entfernen',
-            removeMemberPrompt: ({memberName}: RemoveMemberPromptParams) => `Möchten Sie ${memberName} wirklich entfernen?`,
-            removeMemberTitle: 'Mitglied entfernen',
-            transferOwner: 'Besitzer übertragen',
-            makeMember: 'Mitglied machen',
-            makeAdmin: 'Admin machen',
-            makeAuditor: 'Prüfer erstellen',
-            selectAll: 'Alle auswählen',
-            error: {
-                genericAdd: 'Es gab ein Problem beim Hinzufügen dieses Arbeitsbereichsmitglieds.',
-                cannotRemove: 'Sie können sich selbst oder den Workspace-Inhaber nicht entfernen.',
-                genericRemove: 'Es gab ein Problem beim Entfernen dieses Arbeitsbereichsmitglieds.',
-            },
-            addedWithPrimary: 'Einige Mitglieder wurden mit ihren primären Anmeldungen hinzugefügt.',
-            invitedBySecondaryLogin: ({secondaryLogin}: SecondaryLoginParams) => `Hinzugefügt durch sekundären Login ${secondaryLogin}.`,
-            workspaceMembersCount: ({count}: WorkspaceMembersCountParams) => `Gesamtanzahl der Arbeitsbereichsmitglieder: ${count}`,
-            importMembers: 'Mitglieder importieren',
-        },
-        card: {
-            getStartedIssuing: 'Beginnen Sie, indem Sie Ihre erste virtuelle oder physische Karte ausstellen.',
-            issueCard: 'Karte ausstellen',
-            issueNewCard: {
-                whoNeedsCard: 'Wer braucht eine Karte?',
-                findMember: 'Mitglied finden',
-                chooseCardType: 'Wählen Sie einen Kartentyp aus',
-                physicalCard: 'Physische Karte',
-                physicalCardDescription: 'Ideal für den häufigen Ausgeber',
-                virtualCard: 'Virtuelle Karte',
-                virtualCardDescription: 'Sofort und flexibel',
-                chooseLimitType: 'Wählen Sie einen Grenztyp',
-                smartLimit: 'Smart Limit',
-                smartLimitDescription: 'Bis zu einem bestimmten Betrag ausgeben, bevor eine Genehmigung erforderlich ist.',
-                monthly: 'Monatlich',
-                monthlyDescription: 'Bis zu einem bestimmten Betrag pro Monat ausgeben',
-                fixedAmount: 'Fester Betrag',
-                fixedAmountDescription: 'Einmalig bis zu einem bestimmten Betrag ausgeben',
-                setLimit: 'Ein Limit festlegen',
-                cardLimitError: 'Bitte geben Sie einen Betrag unter $21,474,836 ein.',
-                giveItName: 'Gib ihm einen Namen',
-                giveItNameInstruction: 'Gestalten Sie es einzigartig genug, um es von anderen Karten zu unterscheiden. Spezifische Anwendungsfälle sind sogar noch besser!',
-                cardName: 'Kartenname',
-                letsDoubleCheck: 'Lassen Sie uns noch einmal überprüfen, ob alles richtig aussieht.',
-                willBeReady: 'Diese Karte wird sofort einsatzbereit sein.',
-                cardholder: 'Karteninhaber',
-                cardType: 'Kartentyp',
-                limit: 'Limit',
-                limitType: 'Typ begrenzen',
-                name: 'Name',
-                disabledApprovalForSmartLimitError:
-                    'Bitte aktivieren Sie Genehmigungen unter <strong>Workflows > Genehmigungen hinzufügen</strong>, bevor Sie intelligente Limits einrichten',
-            },
-            deactivateCardModal: {
-                deactivate: 'Deaktivieren',
-                deactivateCard: 'Karte deaktivieren',
-                deactivateConfirmation: 'Das Deaktivieren dieser Karte wird alle zukünftigen Transaktionen ablehnen und kann nicht rückgängig gemacht werden.',
-            },
-        },
-        accounting: {
-            settings: 'Einstellungen',
-            title: 'Verbindungen',
-            subtitle:
-                'Verbinden Sie sich mit Ihrem Buchhaltungssystem, um Transaktionen mit Ihrem Kontenplan zu kodieren, Zahlungen automatisch abzugleichen und Ihre Finanzen synchron zu halten.',
-            qbd: 'QuickBooks Desktop',
-            xero: 'Xero',
-            sap: 'SAP',
-            oracle: 'Oracle',
-            microsoftDynamics: 'Microsoft Dynamics',
-            talkYourOnboardingSpecialist: 'Chatten Sie mit Ihrem Einrichtungsspezialisten.',
-            talkYourAccountManager: 'Chatten Sie mit Ihrem Kundenbetreuer.',
-            talkToConcierge: 'Chatten Sie mit Concierge.',
-            needAnotherAccounting: 'Benötigen Sie eine weitere Buchhaltungssoftware?',
-            connectionName: ({connectionName}: ConnectionNameParams) => {
-                switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                        return 'Xero';
-
-                    default: {
-                        return '';
-                    }
-                }
-            },
-            errorODIntegration: 'Es gibt einen Fehler mit einer Verbindung, die in Expensify Classic eingerichtet wurde.',
-            goToODToFix: 'Gehen Sie zu Expensify Classic, um dieses Problem zu beheben.',
-            goToODToSettings: 'Gehe zu Expensify Classic, um deine Einstellungen zu verwalten.',
-            setup: 'Verbinden',
-            lastSync: ({relativeDate}: LastSyncAccountingParams) => `Zuletzt synchronisiert ${relativeDate}`,
-            notSync: 'Nicht synchronisiert',
-            import: 'Importieren',
-            export: 'Exportieren',
-            advanced: 'Fortgeschritten',
-            other: 'Andere',
-            syncNow: 'Jetzt synchronisieren',
-            disconnect: 'Trennen',
-            reinstall: 'Connector neu installieren',
-            disconnectTitle: ({connectionName}: OptionalParam<ConnectionNameParams> = {}) => {
-                const integrationName =
-                    connectionName && CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ? CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] : 'Integration';
-                return `${integrationName} trennen`;
-            },
-            connectTitle: ({connectionName}: ConnectionNameParams) => `Connect ${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? 'Buchhaltungsintegration'}`,
-            syncError: ({connectionName}: ConnectionNameParams) => {
-                switch (connectionName) {
-                    case CONST.POLICY.CONNECTIONS.NAME.XERO:
-                        return 'Kann keine Verbindung zu Xero herstellen';
-                    case CONST.POLICY.CONNECTIONS.NAME.QBD:
-                        return 'Kann keine Verbindung zu QuickBooks Desktop herstellen';
-                    default: {
-                        return 'Kann keine Verbindung zur Integration herstellen';
-                    }
-                }
-            },
-            accounts: 'Kontenplan',
-            taxes: 'Steuern',
-            imported: 'Importiert',
-            notImported: 'Nicht importiert',
-            importAsCategory: 'Als Kategorien importiert',
-            importTypes: {
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.IMPORTED]: 'Importiert',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.TAG]: 'Als Tags importiert',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.DEFAULT]: 'Importiert',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.NOT_IMPORTED]: 'Nicht importiert',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.NONE]: 'Nicht importiert',
-                [CONST.INTEGRATION_ENTITY_MAP_TYPES.REPORT_FIELD]: 'Als Berichtsfelder importiert',
-            },
-            disconnectPrompt: ({connectionName}: OptionalParam<ConnectionNameParams> = {}) => {
-                const integrationName =
-                    connectionName && CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ? CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] : 'diese Integration';
-                return `Möchten Sie ${integrationName} wirklich trennen?`;
-            },
-            connectPrompt: ({connectionName}: ConnectionNameParams) =>
-                `Möchten Sie wirklich ${CONST.POLICY.CONNECTIONS.NAME_USER_FRIENDLY[connectionName] ?? 'diese Buchhaltungsintegration'} verbinden? Dadurch werden alle bestehenden Buchhaltungsverbindungen entfernt.`,
-            enterCredentials: 'Geben Sie Ihre Anmeldedaten ein',
-            connections: {
                 syncStageName: ({stage}: SyncStageNameConnectionsParams) => {
                     switch (stage) {
                         case 'quickbooksDesktopImportCustomers':
@@ -4459,12 +3988,6 @@ const translations = {
                             return 'Konten importieren';
                         case 'quickbooksDesktopImportClasses':
                             return 'Klassen importieren';
-                            return 'Standorte importieren';
-                            return 'Verarbeitung importierter Daten';
-                            return 'Synchronisieren von erstatteten Berichten und Rechnungszahlungen';
-                            return 'Importieren von Steuercodes';
-                        case 'startingImportXero':
-                            return 'Importieren von Xero-Daten';
                         case 'startingImportQBD':
                         case 'quickbooksDesktopImportMore':
                             return 'Importieren von QuickBooks Desktop-Daten';
@@ -4478,42 +4001,13 @@ const translations = {
                             return 'Speicherungsrichtlinie importieren';
                         case 'quickbooksDesktopWebConnectorReminder':
                             return 'Daten werden weiterhin mit QuickBooks synchronisiert... Bitte stellen Sie sicher, dass der Web Connector läuft.';
-                        case 'xeroSyncStep':
-                            return 'Daten werden geladen';
-                            return 'Kategorien aktualisieren';
-                            return 'Kunden/Projekte aktualisieren';
-                            return 'Aktualisierung der Personenliste';
-                            return 'Aktualisieren von Berichtsfeldern';
                         case 'jobDone':
                             return 'Warten auf das Laden der importierten Daten';
-                        case 'xeroSyncImportChartOfAccounts':
-                            return 'Kontenplan synchronisieren';
-                        case 'xeroSyncImportCategories':
-                            return 'Kategorien synchronisieren';
-                        case 'xeroSyncImportCustomers':
-                            return 'Kunden synchronisieren';
-                        case 'xeroSyncXeroReimbursedReports':
-                            return 'Expensify-Berichte als erstattet markieren';
-                        case 'xeroSyncExpensifyReimbursedReports':
-                            return 'Xero-Rechnungen und -Rechnungen als bezahlt markieren';
-                        case 'xeroSyncImportTrackingCategories':
-                            return 'Synchronisieren von Tracking-Kategorien';
-                        case 'xeroSyncImportBankAccounts':
-                            return 'Synchronisieren von Bankkonten';
-                        case 'xeroSyncImportTaxRates':
-                            return 'Steuersätze synchronisieren';
-                        case 'xeroCheckConnection':
-                            return 'Xero-Verbindung wird überprüft';
-                        case 'xeroSyncTitle':
-                            return 'Synchronisiere Xero-Daten';
                         case 'quickbooksDesktopImportVendors':
                             return 'Importieren von Lieferanten';
-
-
-
                         default: {
                             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-                            return `Übersetzung fehlt für Stufe: ${stage}`;
+                            return `Translation missing for stage: ${stage}`;
                         }
                     }
                 },
@@ -4835,7 +4329,7 @@ const translations = {
                     pricingPage: 'Preisseite',
                     confirm: 'Möchten Sie wirklich herabstufen und Ihre Konfigurationen entfernen?',
                     warning: 'Dies kann nicht rückgängig gemacht werden.',
-                    benefit1: 'Buchhaltungsverbindungen (außer Xero)',
+                    benefit1: 'Buchhaltungsverbindungen',
                     benefit2: 'Intelligente Ausgabenregeln',
                     benefit3: 'Genehmigungsabläufe mit mehreren Ebenen',
                     benefit4: 'Erweiterte Sicherheitskontrollen',
@@ -6075,7 +5569,7 @@ const translations = {
                 benefit3: 'Verwaltung von Firmenkreditkarten',
                 benefit4: 'Spesen- und Reisegenehmigungen',
                 benefit5: 'Reisebuchung und -regeln',
-                benefit6: 'QuickBooks/Xero-Integrationen',
+                benefit6: 'QuickBooks-Integrationen',
                 benefit7: 'Chat über Ausgaben, Berichte und Räume',
                 benefit8: 'KI- und menschlicher Support',
             },

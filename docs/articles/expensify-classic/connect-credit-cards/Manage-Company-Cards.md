@@ -125,7 +125,7 @@ _**Note: Unassigning a card deletes all open or unreported expenses linked to it
 
 ## Export Company Card Expenses to a Connected Accounting Integration: Centralized General Ledger Account
 
-For businesses using accounting integrations like QuickBooks or Xero, connect the cards to export expenses to specific general ledger (GL) accounts via the "Edit Exports" option.
+For businesses using accounting integrations like QuickBooks, connect the cards to export expenses to specific general ledger (GL) accounts via the "Edit Exports" option.
 
 ![Find the desired card in the table. In that same row, click Edit Exports.](https://help.expensify.com/assets/images/cardfeeds-02.png){:width="100%"} 
 

@@ -89,18 +89,11 @@ function CardReconciliationPage({policy, route}: CardReconciliationPageProps) {
     };
 
     const accountingAdvancedSettingsLink = useMemo(() => {
-        if (!policyID) {
+        if (!policyID || connection !== CONST.POLICY.CONNECTIONS.ROUTE.QBD) {
             return '';
         }
         const backTo = ROUTES.WORKSPACE_ACCOUNTING_CARD_RECONCILIATION.getRoute(policyID, connection);
-        switch (connection) {
-            case CONST.POLICY.CONNECTIONS.ROUTE.XERO:
-                return `${environmentURL}/${ROUTES.POLICY_ACCOUNTING_XERO_AUTO_SYNC.getRoute(policyID, backTo)}`;
-            case CONST.POLICY.CONNECTIONS.ROUTE.QBD:
-                return `${environmentURL}/${ROUTES.WORKSPACE_ACCOUNTING_QUICKBOOKS_DESKTOP_ADVANCED.getRoute(policyID, backTo)}`;
-            default:
-                return '';
-        }
+        return `${environmentURL}/${ROUTES.WORKSPACE_ACCOUNTING_QUICKBOOKS_DESKTOP_ADVANCED.getRoute(policyID, backTo)}`;
     }, [connection, policyID, environmentURL]);
 
     const fetchPolicyAccountingData = useCallback(() => {

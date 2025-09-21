@@ -30,7 +30,7 @@ Expensify Expense offers a variety of advantages:
 * **Integrated Corporate Cards** - Link company cards to track purchases in real-time.
 * **Real-Time Expense Tracking** - Monitor budgets and expenses as they happen.
 * **Custom Approval Workflows** - Create multi-level approval processes.
-* **Seamless Integration** - Sync your expenses with accounting systems like QuickBooks, Xero, and others.
+* **Seamless Integration** - Sync your expenses with accounting systems like QuickBooks and other supported tools.
 * **Worldwide Compatibility** - Expensify supports every currency, ideal for international business.
 
 ## Concepts
@@ -42,7 +42,7 @@ Receipt capture simplifies receipt management with SmartScan:
 * **Manual Upload** - Take a photo or upload your receipt manually from your device.
 
 ### [Expense categories] What are expense categories?
-Expense categories help code expenses for accounting and financial reporting. Categories can be manually created or imported from connected platforms like QuickBooks and Xero. Over time, Expensify learns how you categorize specific merchants and applies them automatically.
+Expense categories help code expenses for accounting and financial reporting. Categories can be manually created or imported from connected platforms like QuickBooks. Over time, Expensify learns how you categorize specific merchants and applies them automatically.
 
 ### [Track taxes] What is tax management in Expensify?
 Expensify allows you to configure and manage tax rates within your workspace, applicable on Collect and Control plans. This applies the correct tax rates to expenses based on currency and workspace settings.
@@ -61,7 +61,7 @@ Corporate cards integrate with Expensify Expense for automated expense tracking:
 * **Rewards** - Earn cashback on Expensify Card purchases.
 
 ### [Integrations] What accounting systems does Expensify support?
-Expensify integrates with major accounting systems, including QuickBooks Online and Xero.
+Expensify integrates with major accounting systems, including QuickBooks Online.
 
 ### [Distance Rates] What are distance rates in Expensify?
 Distance rates are configured for mileage expenses, allowing employees to select predefined rates when logging distance-based expenses.
@@ -577,38 +577,6 @@ Configuring QuickBooks Online involves setting import, export, and advanced sett
    - Select **Advanced** under QuickBooks Online.
    - Set options for Auto-sync, Invite Employees, Automatically Create Entities, and Sync Reimbursed Reports.
 
-#### [Connect to Xero] How do I connect Expensify to Xero?
-To integrate with Xero:
-1. Press your profile image or icon in the bottom left menu to access settings.
-2. Press **Workspaces** and select your desired workspace.
-3. Press **More features** and enable the Accounting toggle.
-4. Press **Accounting** and then **Set up** next to Xero.
-5. Enter your Xero login details to import your settings.
-
-#### [Configure Xero] How do I configure Xero settings in Expensify?
-To configure Xero settings:
-1. Under the Accounting settings for your workspace, press **Import** under the Xero connection.
-2. Select options for settings like Xero organization, Chart of Accounts, Tracking Categories, Re-bill Customers, and Taxes.
-3. Under the Accounting settings, press **Export** for Xero connection configuration.
-4. Review export settings like Preferred Exporter, Export Out-of-Pocket Expenses, and Xero Bank Account.
-5. Press **Advanced** under Xero connection to set Auto-sync, Set Purchase Bill Status, Sync Reimbursed Reports, and other advanced settings.
-
-### Exporting Data
-#### [Export Expenses] How do I export expenses to a CSV file?
-To export your expense data to a CSV file:
-1. Press the **Search** tab in the bottom left menu to view your expenses.
-2. Select the checkbox next to the expenses or reports you wish to export.
-3. Press **# selected** at the top-right and select **Download** to export.
-
-   The CSV download will save locally to your device with the file naming prefix "Expensify." This file includes data such as Date, Merchant, Description, From, To, Category, Tag, Tax, Amount, Currency, Type, and Receipt URL.
-
-#### [Exporting Reports to Xero] How do I export reports to Xero manually?
-If an error occurs during an automatic export to Xero:
-1. Check your email or the related Expense Chat for error notifications.
-2. Resolve the issue by opening the expense and making necessary changes.
-3. Ensure the report is in the Approved, Closed, or Reimbursed state.
-4. An admin must press the heading at the top of the expense, select **Export**, and then choose **Xero**.
-
 #### [Exporting Reports to QuickBooks Online] How do I manually export reports to QuickBooks Online?
 If an error occurs during an automatic export to QuickBooks Online:
 1. Check your email or the related Expense Chat for error notifications.
@@ -642,28 +610,6 @@ When Add Approver is enabled with Delay Submission, expense reports go from Open
 No, each employee can have only one approval workflow.
 
 ### Integration and Export
-#### [Disconnect from Xero] How do I disconnect Xero from Expensify?
-To disconnect Xero:
-1. Press your profile image or icon in the bottom left menu.
-2. Press **Workspaces** and select your workspace.
-3. Press **Accounting**.
-4. Press the three-dot menu next to Xero and select **Disconnect**.
-5. Press **Disconnect** again to confirm.
-
-You will no longer see the imported options from Xero.
-
-#### [Xero Export Confirmation] How do I know if a report successfully exported to Xero?
-When a report exports successfully, a message is posted in the related Expensify Chat room.
-
-#### [Duplicate Report Handling] What happens if I manually export a report that has already been exported?
-When an admin manually exports a report, Expensify will warn them if the report has already been exported. If the admin chooses to export it again, it will create a duplicate report in Xero. You will need to delete the duplicate entries from within Xero.
-
-#### [Auto Sync Impact] What happens to existing reports that have already been approved and reimbursed if I enable Auto Sync?
-- If Auto Sync was disabled when your Workspace was linked to Xero, enabling it won’t impact existing reports that haven’t been exported.
-- If a report has been exported and reimbursed via ACH, it will be automatically marked as paid in Xero during the next sync.
-- If a report has been exported and marked as paid in Xero, it will be automatically marked as reimbursed in Expensify during the next sync.
-- If a report has not yet been exported to Xero, it won’t be automatically exported.
-
 #### [QuickBooks Online Error Resolution] Why do I see a red dot next to my QuickBooks Online connection?
 If there is an error with your connection, you’ll see a red dot next to Accounting in the left menu. When you press Accounting, you’ll also see a red dot displayed next to the QuickBooks Online connection card. This may occur if you incorrectly enter your QuickBooks Online login information when trying to establish the connection. To resubmit your login details:
 1. Press the three-dot menu to the right of the QuickBooks Online connection.
@@ -682,9 +628,6 @@ When an admin manually exports a report, Expensify will notify them if the repor
 - If a report has been exported and marked as paid in QuickBooks Online, it will be automatically marked as reimbursed in Expensify during the next sync.
 
 Reports that have yet to be exported to QuickBooks Online won’t be automatically exported.
-
-#### [Report Exporting to Xero Troubleshooting] Why can't I manually export a report to Xero?
-To export a report to Xero, it must be in the Approved, Closed, or Reimbursed state. If it is in the Open state, pressing **Export** will lead to a notification that the data is not yet available for export. Make sure the report is submitted or approved if it's in the Processing state. Once these changes are made, an admin can manually export the report to Xero.
 
 ### Exporting and Downloading Options
 #### [CSV Export Options] Can I export in a different format, like PDF or XLS?
