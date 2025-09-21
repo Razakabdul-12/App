@@ -3970,12 +3970,6 @@ function getAccessiblePolicies(validateCode?: string) {
     API.write(command, validateCode ? {validateCode} : null, {optimisticData, successData, failureData});
 }
 
-/**
- * Clear the errors from the get accessible policies request
- */
-function clearGetAccessiblePoliciesErrors() {
-    Onyx.merge(ONYXKEYS.VALIDATE_USER_AND_GET_ACCESSIBLE_POLICIES, {errors: null});
-}
 
 /**
  * Call the API to calculate the bill for the new dot
@@ -4072,7 +4066,6 @@ export {
     updateInvoiceCompanyName,
     updateInvoiceCompanyWebsite,
     getAccessiblePolicies,
-    clearGetAccessiblePoliciesErrors,
    
     setIsComingFromGlobalReimbursementsFlow,
     clearPolicyTitleFieldError,
