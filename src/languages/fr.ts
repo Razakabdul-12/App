@@ -5290,6 +5290,8 @@ const translations = {
         genericCreateReportFailureMessage: 'Erreur inattendue lors de la création de ce chat. Veuillez réessayer plus tard.',
         genericAddCommentFailureMessage: 'Erreur inattendue lors de la publication du commentaire. Veuillez réessayer plus tard.',
         genericUpdateReportFieldFailureMessage: 'Erreur inattendue lors de la mise à jour du champ. Veuillez réessayer plus tard.',
+        chatRemovedTitle: 'Chat unavailable',
+        chatRemovedSubtitle: 'The Current chat experience has been removed from this application.',
         genericUpdateReportNameEditFailureMessage: 'Erreur inattendue lors du renommage du rapport. Veuillez réessayer plus tard.',
         noActivityYet: 'Aucune activité pour le moment',
         actions: {

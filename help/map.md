@@ -20,52 +20,7 @@ Lost in the app?  Let this map guide you!
             * Green dot
             * Red dot
             * Unread
-    * Current chat
-        * Chat header
-            * Profile image
-            * Name
-            * Description
-            * Pin / Unpin
-            * Share shortcut
-            * Members
-                * Invite member
-                * Bulk actions
-                * Find a member
-                * Member list
-                    * Select all
-                * Member row
-                    * Profile image
-                    * Name
-                    * Remove from chat
-                    * Profile link
-                        * Profile image
-                        * Message
-                        * Email
-                        * Preferred pronouns
-                        * Local time
-            * Settings
-                * Notify me about new messages
-                * Who can post
-                * Visibility
-            * Private notes
-            * Leave
-        * Message list
-            * Message actions
-                * Add reaction
-                * Reply in thread
-                * Mark as unread
-                * Join thread
-                * Copy link
-                * Flag as offensive
-                * Download
-            * Message composer
-                * Attach
-                    * Split expense
-                    * Assign task
-                    * Add attachment
-                * Write something
-                * Emoji
-                * Send
+
 * Search
     * Type selector
     * State selector

@@ -5278,6 +5278,8 @@ const translations = {
         genericCreateReportFailureMessage: 'Nieoczekiwany błąd podczas tworzenia tego czatu. Proszę spróbować ponownie później.',
         genericAddCommentFailureMessage: 'Nieoczekiwany błąd podczas publikowania komentarza. Spróbuj ponownie później.',
         genericUpdateReportFieldFailureMessage: 'Nieoczekiwany błąd podczas aktualizacji pola. Spróbuj ponownie później.',
+        chatRemovedTitle: 'Chat unavailable',
+        chatRemovedSubtitle: 'The Current chat experience has been removed from this application.',
         genericUpdateReportNameEditFailureMessage: 'Nieoczekiwany błąd podczas zmiany nazwy raportu. Proszę spróbować ponownie później.',
         noActivityYet: 'Brak aktywności',
         actions: {
